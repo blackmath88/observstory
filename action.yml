@@ -1,0 +1,33 @@
+name: Observstory
+description: Build a living project-state dashboard from GitHub repository activity.
+author: blackmath88
+
+inputs:
+  github-token:
+    description: GitHub token used to read repository activity.
+    required: true
+  config:
+    description: Optional path to observstory.config.json.
+    required: false
+    default: observstory.config.json
+  output:
+    description: Output directory for the generated dashboard and snapshot.
+    required: false
+    default: observstory
+
+runs:
+  using: composite
+  steps:
+    - name: Build project snapshot and dashboard
+      shell: bash
+      env:
+        OBSERVSTORY_TOKEN: ${{ inputs.github-token }}
+        OBSERVSTORY_REPOSITORY: ${{ github.repository }}
+        OBSERVSTORY_SHA: ${{ github.sha }}
+        OBSERVSTORY_REF: ${{ github.ref }}
+        OBSERVSTORY_EVENT: ${{ github.event_name }}
+        OBSERVSTORY_RUN_ID: ${{ github.run_id }}
+        OBSERVSTORY_SERVER_URL: ${{ github.server_url }}
+        OBSERVSTORY_CONFIG: ${{ inputs.config }}
+        OBSERVSTORY_OUTPUT: ${{ inputs.output }}
+      run: python3 "$GITHUB_ACTION_PATH/scripts/observstory.py"
