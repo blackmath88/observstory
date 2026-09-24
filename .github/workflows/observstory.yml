@@ -1,0 +1,32 @@
+name: Dogfood Observstory
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: read
+  actions: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Observstory
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload control center
+        uses: actions/upload-artifact@v4
+        with:
+          name: observstory-${{ github.run_id }}
+          path: observstory
+          retention-days: 7
