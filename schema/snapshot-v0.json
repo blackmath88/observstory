@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/blackmath88/observstory/schema/snapshot-v0.json",
+  "title": "Observstory Snapshot v0",
+  "type": "object",
+  "required": ["schema", "generated_at", "repository", "summary", "contributors", "lanes", "overlaps", "commits", "pull_requests", "issues", "provenance"],
+  "properties": {
+    "schema": {"const": "observstory.snapshot/v0"},
+    "generated_at": {"type": "string"},
+    "window": {"type": "object"},
+    "trigger": {"type": "object"},
+    "repository": {"type": "object"},
+    "summary": {"type": "object"},
+    "contributors": {"type": "array"},
+    "lanes": {"type": "array"},
+    "overlaps": {"type": "array"},
+    "commits": {"type": "array"},
+    "pull_requests": {"type": "array"},
+    "issues": {"type": "array"},
+    "provenance": {"type": "object"}
+  },
+  "additionalProperties": true
+}
