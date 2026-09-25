@@ -20,7 +20,7 @@ DEFAULT_IGNORE = [
     "package-lock.json", "yarn.lock", "pnpm-lock.yaml", "poetry.lock", "Cargo.lock", "go.sum",
     "uv.lock", "Gemfile.lock", "composer.lock",
     "dist/", "build/", "node_modules/", "vendor/", "*.min.js", "*.min.css", "*.map",
-    "observstory/",
+    "/observstory/",  # the generated output; leading "/" anchors to the repo root (gitignore style)
 ]
 
 DEFAULT_CONTAINERS = ["src", "packages", "apps", "services", "lib", "libs", "app", "modules", "crates", "internal", "cmd"]

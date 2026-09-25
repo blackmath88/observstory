@@ -51,7 +51,13 @@ def link(url, text, cls=""):
 def radar_svg(snap: dict) -> str:
     now = parse_time(snap["generated_at"])
     window = float(snap["window"]["hours"])
-    size, cx, cy, R, r0 = 560, 280, 280, 214, 26
+    size, cx, cy, R = 620, 310, 300, 214
+    r0 = 0.3 * R  # an inner band, so "just now" still has room to spread by angle
+
+    def radius(hours: float) -> float:
+        # log scale: the last few hours get most of the room, where real activity concentrates
+        return r0 + (R - r0) * math.log1p(min(max(hours, 0.0), window)) / math.log1p(window)
+
     overlap_by_area = {s["subject"]["id"]: s for s in snap["signals"] if s["type"] == "overlap"}
     lanes = [lane for lane in snap["lanes"] if lane["areas"]]
     areas = {a["id"]: a for a in snap["areas"]}
@@ -61,10 +67,12 @@ def radar_svg(snap: dict) -> str:
              f'<desc id="radar-desc">Sectors are lanes, marks are areas. Distance from centre is time since last '
              f'activity (centre is now, the edge is {int(window)} hours or more). Filled marks have work in flight; '
              f'rings mark overlap.</desc>']
-    for i in range(1, 5):
-        r = r0 + (R - r0) * i / 4
+    marks = [1, 6, 24, window] if window > 24 else [1, 3, 12, window]
+    for h in marks:
+        r = radius(h)
         parts.append(f'<circle class="ring" cx="{cx}" cy="{cy}" r="{r:.1f}"/>')
-        parts.append(f'<text class="ring-label" x="{cx + 4}" y="{cy - r + 11:.1f}">{int(window * i / 4)}h</text>')
+        parts.append(f'<text class="ring-label" x="{cx + 4}" y="{cy - r + 11:.1f}">{h:g}h</text>')
+    parts.append(f'<circle class="ring" cx="{cx}" cy="{cy}" r="{r0:.1f}" stroke-dasharray="2 4"/>')
     parts.append(f'<circle class="now" cx="{cx}" cy="{cy}" r="3"/>')
     if not lanes:
         parts.append(f'<text class="empty" x="{cx}" y="{cy + 40}" text-anchor="middle">No activity in this window</text>')
@@ -85,7 +93,7 @@ def radar_svg(snap: dict) -> str:
             angle = start + span * (ai + 1) / (len(ids) + 1)
             last = parse_time(area.get("last_activity_at"))
             hours = (now - last).total_seconds() / 3600 if last else window
-            r = r0 + (R - r0) * min(1.0, max(0.0, hours / window))
+            r = radius(hours)
             x, y = cx + r * math.cos(angle), cy + r * math.sin(angle)
             n = len(area["in_flight"])
             live = n > 0
@@ -99,10 +107,12 @@ def radar_svg(snap: dict) -> str:
                 parts.append(f'<circle class="overlap-ring" cx="{x:.1f}" cy="{y:.1f}" r="{dot + 5:.1f}" '
                              f'stroke-dasharray="{CONF_DASH[sig["confidence"]]}"/>')
             parts.append(f'<circle class="mark" cx="{x:.1f}" cy="{y:.1f}" r="{dot:.1f}"/>')
-            if live or sig:
-                tx = x + (dot + 8) * (1 if math.cos(angle) >= 0 else -1)
-                parts.append(f'<text class="area-label{" hot" if sig else ""}" x="{tx:.1f}" y="{y + 4:.1f}" '
-                             f'text-anchor="{"start" if math.cos(angle) >= 0 else "end"}">{esc(area_id)}</text>')
+            if sig or n >= 2:  # label what needs attention; everything else is on hover and in the lane list
+                lr = r + dot + 8
+                tx, ty = cx + lr * math.cos(angle), cy + lr * math.sin(angle)
+                anchor = "middle" if abs(math.cos(angle)) < 0.25 else ("start" if math.cos(angle) > 0 else "end")
+                parts.append(f'<text class="area-label{" hot" if sig else ""}" x="{tx:.1f}" y="{ty + 4:.1f}" '
+                             f'text-anchor="{anchor}">{esc(area_id)}</text>')
             parts.append("</g></a>")
     parts.append("</svg>")
     return "".join(parts)
@@ -285,7 +295,7 @@ footer{{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);color:
 <header class="top">
   <div><span class="eyebrow">Observstory · in-flight project state</span>
   <h1>{esc(repo["full_name"])}</h1>
-  <div class="muted">{esc(title)} · last {esc(snap["window"]["hours"])} hours</div></div>
+  <div class="muted">{esc(title)} · last {snap["window"]["hours"]:g} hours</div></div>
   <div class="meta">generated {esc(snap["generated_at"])}<br>trigger {esc(snap.get("trigger", {}).get("event", "—"))} ·
   config {esc(snap["config"]["source"])} · lanes {esc(snap["config"].get("lanes_source", ""))}<br>
   {esc(prov.get("api_calls", 0))} API calls · collector {esc(prov["collector_version"])}</div>
@@ -304,7 +314,7 @@ footer{{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);color:
     <h2 class="eyebrow">Topology</h2>
     <div class="radar-wrap">{radar_svg(snap)}
       <div class="legend"><span><i class="lg-live"></i>work in flight</span><span><i class="lg-idle"></i>recent commits only</span>
-      <span><i class="lg-ov"></i>overlap (solid high · dashed medium · dotted low)</span><span>centre = now</span></div>
+      <span><i class="lg-ov"></i>overlap (solid high · dashed medium · dotted low)</span><span>centre = now · distance = time since last activity (log scale) · labels on overlap and busy areas; hover for others</span></div>
     </div>
   </section>
   <section>

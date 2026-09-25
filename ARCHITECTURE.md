@@ -2,143 +2,130 @@
 
 ## Core claim
 
-Repository activity should be transformed into a stable **project-state model** before it is rendered for humans or exposed to agents.
+Repository activity is turned into a stable, typed **project-state model** before anything renders
+it or an agent reads it. The UI is a projection, and so is the agent query surface (and a future MCP
+server). **The snapshot is the product boundary** (ADR-001).
 
-The UI is a projection. MCP is a projection. The typed snapshot is the product boundary.
-
-## State pipeline
+## Pipeline (v1, GitHub Action)
 
 ```text
 GitHub
-  |-- push / PR / issue / workflow events
-  |-- periodic reconciliation
-  v
-Collector
-  |-- commits
-  |-- changed files
-  |-- pull requests
-  |-- issues
-  |-- contributors
-  |-- checks
-  v
-Normalizer
-  v
-Typed Snapshot
-  |-- repository
-  |-- contributors
-  |-- activity
-  |-- lanes
-  |-- overlaps
-  |-- pull_requests
-  |-- issues
-  |-- provenance
-  +-------------------+
-  |                   |
-  v                   v
-Human dashboard     API / MCP
+  ├─ push / pull_request / issues events  (primary trigger)
+  └─ hourly cron at :17                   (reconciliation; crons are best-effort)
+        │
+        ▼
+src/observstory/collect.py + github.py          IMPURE · rate-limit aware · budgeted
+  repo · default-branch commits (+files) · PRs (+files, +commits for open ones)
+  branches without PRs (compare vs default) · issues
+        │
+        ▼
+observstory/data/observations.json              facts only (observstory.observations/v1)
+        │
+        ▼
+src/observstory/derive.py + signals.py          PURE: derive(observations, config, now)
+  work items · areas · lanes · actors · signals (overlap, stale, waiting, burst)
+        │
+        ▼
+observstory/data/snapshot.json                  typed state (schema/snapshot-v1.json), validated every run
+        │
+   ┌────┴───────────────────────┐
+   ▼                            ▼
+render.py → index.html      query.py → `observstory query …` JSON  (MCP adapter: later, same functions)
+```
+
+| Module | Role | Pure? |
+|---|---|---|
+| `config.py` | Defaults and validation; every field optional | yes |
+| `github.py` | REST client: call accounting, `X-RateLimit-Remaining`, reserve, retries, clear errors | no |
+| `collect.py` | GitHub → observations. Degrades in a fixed order and records it in `meta.degraded` | no |
+| `derive.py` | Observations → snapshot: areas, lanes, work items, actors | yes |
+| `signals.py` | The four v1 signals | yes |
+| `validate.py` | Stdlib JSON Schema subset, plus semantic rules (no per-person numbers) | yes |
+| `render.py` | Radar dashboard (projection only) | yes |
+| `query.py` | Agent questions over the snapshot | yes |
+| `cli.py` | `build`, `derive`, `render`, `query`, `validate` | — |
+
+Because derivation is pure, **fixtures are observation bundles** and every signal is tested
+without the network. The same property enables replay: timeline playback is `derive` applied to
+a sequence of observation bundles.
+
+## Typed model (snapshot v1)
+
+```text
+Snapshot
+ ├─ repository, window, config (thresholds echoed), summary, provenance
+ ├─ work_items[]   id: pr:<n> | branch:<name> | direct:<author>
+ │                  state, in_flight, paths, areas, lanes, actors, last_activity_at,
+ │                  review_state, waiting_on[], agent_declared, burst
+ ├─ areas[]        path prefix (container-aware: src/x, packages/y; root files are their own area)
+ ├─ lanes[]        semantic groups of areas (config, defaults, or "other")
+ ├─ signals[]      type, basis, confidence, subject{area|work_item}, work_items, evidence[], rule
+ ├─ actors[]       id, kind (human|bot), linked, work_items   ← no counts, by design
+ ├─ commits[]      default-branch commits in the window, attributed to a work item
+ └─ issues[]
+```
+
+Types considered and rejected are listed in [docs/definition/README.md](docs/definition/README.md).
+
+## API budget
+
+`GITHUB_TOKEN` allows 1,000 requests/hour/repo. A typical run costs:
+
+```text
+5 + commits_in_window + 2 × open_prs + unproposed_branches
+```
+
+That is 15–120 calls. The client keeps a reserve (25) and a hard cap (400). When the budget runs
+out it skips, in this order: commit file lists, branch comparisons, PR commit lists, PR file
+lists. Each skip is recorded in `provenance.degraded`, shown on the dashboard, and emitted as a
+workflow warning.
+
+## Publishing
+
+The default is a workflow artifact, visible only to people who can read the repo. For a hosted
+page on a **public** repo:
+
+```yaml
+permissions: { contents: read, pull-requests: read, issues: read, pages: write, id-token: write }
+# after the observstory step:
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: observstory }
+  deploy:
+    needs: observstory
+    runs-on: ubuntu-latest
+    environment: { name: github-pages, url: "${{ steps.d.outputs.page_url }}" }
+    steps:
+      - id: d
+        uses: actions/deploy-pages@v4
 ```
 
 ## Why not MCP first?
 
-MCP is excellent for giving an agent tools and contextual resources. It is not a substitute for event ingestion, durable state or webhook handling.
-
-An Observstory MCP server should eventually offer tools such as:
-
-- `project.snapshot`
-- `project.changes_since`
-- `project.lanes`
-- `project.overlaps`
-- `project.contributor_activity`
-- `project.open_loops`
-- `project.handoff`
-
-Those tools should read the same state that powers the dashboard.
+MCP gives an agent tools and resources. It isn't a substitute for event ingestion, durable state
+or webhook handling. The MCP server is a thin adapter over `query.py` reading a snapshot. See
+[docs/demo/agent-contract.md](docs/demo/agent-contract.md) and
+[prototypes/agent-surface/mcp-tools.json](prototypes/agent-surface/mcp-tools.json).
 
 ## Deployment evolution
 
-### Stage 1 — reusable GitHub Action
-
-A repository includes one workflow. Push/PR/issue events trigger immediately; a schedule reconciles state.
-
-Pros:
-- trivial to understand
-- no external service required
-- works with GitHub permissions
-- ideal for proving the model
-
-Limits:
-- no durable cross-run state by default
-- each repository owns deployment
-- schedules are best-effort
-- harder to aggregate multiple repositories
-
-### Stage 2 — GitHub App + hosted service
-
-A user installs Observstory on selected repositories.
-
-The App receives webhooks and places normalized events on a queue. A worker updates project state in durable storage. A periodic reconciliation job detects missed events and refreshes derived state.
-
-```text
-GitHub App
-   |
- webhooks
-   v
-event queue ---> normalizer ---> project store ---> web UI
-                       ^              |
-                       |              +--> REST/GraphQL
-                 reconciliation       +--> MCP
-```
-
-This is the actual "add it to my repo and it builds itself" product.
-
-### Stage 3 — collaboration intelligence
-
-Derived modules can be added without changing the ingestion contract:
-
-- overlapping work / likely merge collisions
-- stalled work
-- orphaned tasks
-- PR dependency graph
-- ownership drift
-- decision-to-code trace
-- handoff readiness
-- activity heat
-- parallel-agent work visibility
-
-These should remain explainable signals, not opaque productivity scores.
-
-## Typed lane model
-
-A lane is a semantic grouping of work, not a hardcoded UI column.
-
-Example:
-
-```json
-{
-  "id": "verify",
-  "label": "Verify",
-  "description": "Tests, evaluations and evidence",
-  "signals": {
-    "paths": ["tests/", "evals/"],
-    "labels": ["validation", "qa"]
-  }
-}
-```
-
-Different repositories can define different lanes. Future adapters may infer proposed lane mappings, but repository configuration remains authoritative.
-
-## Snapshot contract
-
-The current MVP emits `observstory/data/snapshot.json`.
-
-Version the schema. Renderers and MCP consumers should depend on the schema rather than GitHub's raw API representation.
-
-## Persistence
-
-For the Action MVP, the dashboard represents current state plus activity reconstructed from GitHub history.
-
-For the hosted service, persist append-only observations and materialize current project state. This allows true ten-minute snapshots, historical playback and "what changed since the last sync?" without committing generated telemetry back into the observed repository.
+1. **GitHub Action (v1, now).** Stateless: each run rebuilds from GitHub. No infrastructure.
+   Limits: no history between runs, schedules are best-effort, one repo per install.
+2. **GitHub App + hosted state (v2).** Webhooks go to a queue, then to the same `collect`
+   normalisation, then an append-only observation log, then the same `derive` into a
+   materialised snapshot. Reconciliation catches missed events. Durable history enables the
+   timeline ([prototypes/timeline](prototypes/timeline/)), whose `diff()` is the event-log spec.
+3. **Agent interface (v2/v3).** MCP server and REST over the stored snapshots.
+4. **Richer signals (v3).** Hunk-level overlap, duplicate intent, CI state. Each must pass the
+   evidence rules, and any LLM use must pass the justification test in
+   [system-boundary.md](docs/definition/system-boundary.md).
 
 ## Privacy and governance
 
-For private repositories, the hosted service should use least-privilege GitHub App permissions. Repository source should not be retained unless a feature explicitly requires it. Prefer metadata and derived signals; make retention configurable.
+- Metadata only: paths, titles, PR bodies (truncated at 4k characters), timestamps, logins. No
+  file contents.
+- The Action keeps nothing between runs. Artifact retention is set in the workflow.
+- There are no per-person aggregates in the model (ADR-004), and the validator rejects numeric
+  fields on actors.
+- The hosted service (v2) should use least-privilege App permissions (metadata, contents: read,
+  pull requests: read, issues: read) and configurable retention.

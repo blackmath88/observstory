@@ -1,33 +1,28 @@
 {
   "title": "Project Observatory",
   "window_hours": 48,
+  "lanes": [
+    {"id": "intent", "label": "Intent", "description": "Problem framing, research, architecture and decisions",
+     "paths": ["README", "docs/", "research/", "ARCHITECTURE", "DECISIONS"]},
+    {"id": "build", "label": "Build", "description": "Product implementation",
+     "paths": ["src/", "app/", "lib/", "packages/", "public/"]},
+    {"id": "verify", "label": "Verify", "description": "Tests, evaluations and evidence",
+     "paths": ["test/", "tests/", "evals/", "fixtures/"]},
+    {"id": "ship", "label": "Ship", "description": "Automation, deployment and runtime",
+     "paths": [".github/", "Dockerfile", "docker-compose", "deploy/", "infra/"]}
+  ],
+  "signals": {
+    "overlap_min_work_items": 2,
+    "stale_hours": 72,
+    "burst_min_commits": 8,
+    "burst_window_minutes": 30
+  },
+  "ignore": ["generated/", "*.snap"],
+  "containers": ["src", "packages", "apps", "services"],
+  "area_depth": 1,
   "max_commits": 60,
   "max_pull_requests": 40,
-  "max_issues": 40,
-  "lanes": [
-    {
-      "id": "intent",
-      "label": "Intent",
-      "description": "Problem framing, research, architecture and decisions",
-      "paths": ["README.md", "docs/", "research/", "ARCHITECTURE.md", "DECISIONS.md"]
-    },
-    {
-      "id": "build",
-      "label": "Build",
-      "description": "Product implementation",
-      "paths": ["src/", "app/", "lib/", "packages/", "public/"]
-    },
-    {
-      "id": "verify",
-      "label": "Verify",
-      "description": "Tests, evaluations and evidence",
-      "paths": ["test/", "tests/", "evals/", "fixtures/"]
-    },
-    {
-      "id": "ship",
-      "label": "Ship",
-      "description": "Automation, deployment and runtime",
-      "paths": [".github/", "Dockerfile", "docker-compose", "deploy/", "infra/"]
-    }
-  ]
+  "max_open_pull_requests": 30,
+  "max_branches": 20,
+  "max_issues": 40
 }

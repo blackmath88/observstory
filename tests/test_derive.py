@@ -33,6 +33,12 @@ class Paths(unittest.TestCase):
         self.assertTrue(is_ignored("static/app.min.js", ignore))
         self.assertFalse(is_ignored("src/distance.py", ignore))
 
+    def test_anchored_ignore_does_not_hide_nested_dirs(self):
+        """Dogfood finding: the output dir 'observstory/' was hiding src/observstory/."""
+        ignore = config.DEFAULT_IGNORE
+        self.assertTrue(is_ignored("observstory/index.html", ignore))
+        self.assertFalse(is_ignored("src/observstory/cli.py", ignore))
+
 
 class Config(unittest.TestCase):
     def test_zero_config_produces_areas_and_signals(self):

@@ -1,21 +1,24 @@
 {
   "title": "Observstory / self-observation",
-  "window_hours": 48,
-  "max_commits": 60,
-  "max_pull_requests": 40,
-  "max_issues": 40,
+  "window_hours": 72,
   "lanes": [
     {
       "id": "model",
       "label": "Model",
-      "description": "Architecture, product boundaries and project semantics",
-      "paths": ["README.md", "ARCHITECTURE.md", "ROADMAP.md", "docs/"]
+      "description": "Problem, product boundary and decisions",
+      "paths": ["README.md", "ARCHITECTURE.md", "ROADMAP.md", "DECISIONS.md", "CLAUDE_DOUBLE_DIAMOND.md", "docs/"]
     },
     {
       "id": "engine",
       "label": "Engine",
-      "description": "Collection, normalization and derived signals",
-      "paths": ["scripts/"]
+      "description": "Collection, derivation and signals",
+      "paths": ["src/", "scripts/"]
+    },
+    {
+      "id": "evidence",
+      "label": "Evidence",
+      "description": "Tests, fixtures and prototypes that prove or falsify signals",
+      "paths": ["tests/", "fixtures/", "prototypes/"]
     },
     {
       "id": "integration",

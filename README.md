@@ -1,147 +1,155 @@
 # Observstory
 
-**A living control center for shared repositories.**
+**Shared situational awareness for AI-assisted software work.**
 
-Observstory turns repository activity into a project view that answers:
+When several people, each with their own coding agents, build in parallel, the work moves faster
+than the team's shared picture of it. Overlaps and stalled work are discovered at merge time.
+Observstory reads your repository's **in-flight work** (open PRs, unmerged branches, direct
+pushes) and builds a typed, evidence-backed model of it. That model shows:
 
-- What changed?
-- Who is working on what?
-- Which parts of the project are moving?
-- Where are parallel efforts colliding?
-- What is waiting for review or integration?
-- What does the project look like right now?
+- **where** unmerged changes overlap
+- **what** has stopped moving
+- **what** is waiting on what
 
-It is designed for hackathons and other fast, AI-assisted team builds where each contributor may be working in a separate coding-agent loop.
+Humans get a dashboard. Coding agents query the same state before they act.
 
-## Product idea
+![Radar: an overlap in src/conversation, with evidence](docs/demo/img/demo-t2.png)
 
-A shared repository already contains a large part of the coordination signal: commits, pull requests, issues, changed files, checks, contributors and timestamps. Observstory continuously interprets those signals into **typed project lanes** and builds a dashboard from them.
-
-```text
-GitHub events + periodic reconciliation
-                  |
-                  v
-            state collector
-                  |
-                  v
-          typed project model
-                  |
-          +-------+--------+
-          |                |
-          v                v
-     dashboard          MCP/API
-     for humans        for agents
-```
-
-### The important boundary
-
-**MCP is not the collector.**
-
-For the installable product:
-
-1. **GitHub Action (now)** — easiest repo-native MVP. Add one workflow and Observstory builds a dashboard.
-2. **GitHub App (next)** — install once; webhooks + scheduled reconciliation build project state without copying code into every repo.
-3. **MCP server (later)** — exposes the same typed state to coding agents and LLMs.
-
-That means humans and agents see the same project model.
-
-## Quick start
-
-Create `.github/workflows/observstory.yml` in the repository you want to observe:
+## Install (zero config)
 
 ```yaml
+# .github/workflows/observstory.yml
 name: Observstory
-
 on:
   push:
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    types: [opened, synchronize, reopened, closed, ready_for_review, converted_to_draft]
   issues:
-    types: [opened, edited, closed, reopened, labeled, unlabeled]
+    types: [opened, closed, reopened]
   workflow_dispatch:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "17 * * * *"   # reconciliation only; events are the primary trigger
 
 permissions:
   contents: read
   pull-requests: read
   issues: read
-  actions: read
-  pages: write
-  id-token: write
 
 jobs:
-  build:
+  observstory:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build Observstory
-        uses: blackmath88/observstory@main
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: actions/configure-pages@v5
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: observstory
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - id: observstory
+        uses: blackmath88/observstory@main   # pin a release tag once one is published
+      - uses: actions/upload-artifact@v4
+        with: { name: observstory, path: observstory, retention-days: 7 }
 ```
 
-Then enable **Settings → Pages → Source: GitHub Actions**.
+Open the run's `observstory` artifact and load `index.html`. **Without any config file** you
+get:
 
-GitHub scheduled workflows are best-effort rather than a hard realtime clock; pushes, PRs and issues update immediately, while the ten-minute schedule acts as reconciliation.
+- areas derived from your paths
+- default lanes (Intent, Build, Verify, Ship)
+- in-flight work items
+- the four signals below
+- `data/snapshot.json` for agents
 
-## Configuration
+The job summary lists the signals. For a hosted page, add the `configure-pages` /
+`upload-pages-artifact` / `deploy-pages` steps (see [ARCHITECTURE.md](ARCHITECTURE.md#publishing)).
+Think twice before doing that on a private repo: Pages may be more visible than the repo.
 
-Optional `observstory.config.json`:
+To name your own lanes, thresholds or ignore globs, add `observstory.config.json` (see
+[`observstory.config.example.json`](observstory.config.example.json)). Every field is optional.
 
-```json
-{
-  "title": "Project Observatory",
-  "window_hours": 48,
-  "lanes": [
-    {"id": "intent", "label": "Intent", "paths": ["README.md", "docs/", "research/"]},
-    {"id": "build", "label": "Build", "paths": ["src/", "app/", "lib/", "packages/"]},
-    {"id": "verify", "label": "Verify", "paths": ["test/", "tests/", "evals/"]},
-    {"id": "ship", "label": "Ship", "paths": [".github/", "Dockerfile", "deploy/"]}
-  ]
-}
+## What it shows: four signals, each with its evidence
+
+| Signal | Question | Evidence | Basis |
+|---|---|---|---|
+| **overlap** | Is other unmerged work touching the same part of the project? | Changed files of each open PR, unproposed branch, or direct-push stream, grouped by area | derived when files are shared, heuristic when only the area is |
+| **stale** | What has stopped moving? | Last commit or update time; branches without a PR say so | heuristic (threshold, default 72 h) |
+| **waiting** | What can't land until something else lands? | PR stacked on another PR's branch; "Depends on #N" in the PR body | derived / declared |
+| **burst** | Is this a machine-paced change stream? | ≥8 commits within 30 min; agent trailers make it high confidence | heuristic, used to fold the commit list |
+
+Every signal carries `basis`, `confidence`, `evidence[]` (with GitHub URLs) and the `rule` with
+its parameters. **Observed, derived and inferred are never mixed up.** See
+[observable-signals.md](docs/discovery/observable-signals.md).
+
+## How it works
+
+```text
+GitHub events + hourly reconciliation
+          │
+          ▼
+  collect  ──►  observations.json   facts: commits, PR files and commits, branch compares, issues
+          │
+          ▼
+  derive   ──►  snapshot.json       typed state v1: work items · areas · lanes · signals · actors
+          │     (pure function; schema-validated every run)
+     ┌────┴─────┐
+     ▼          ▼
+ index.html   observstory query …   (the MCP adapter wraps these same five queries)
+ humans       agents
 ```
 
-Anything not matching a configured path lands in **Other**. Coordination signals (PRs/issues) are shown separately rather than forced into a code lane.
+The typed model ([`schema/snapshot-v1.json`](schema/snapshot-v1.json)):
 
-## Current MVP
+- **WorkItem**: a PR, a branch without a PR, or a direct-push stream
+- **Area**: a path prefix, derived without config
+- **Lane**: an optional semantic grouping of areas
+- **Signal**, with its **Evidence**
+- **Actor**: an author, with no counts attached
+- **Commit** and **Issue**
 
-The Action builds:
+## For coding agents
 
-- repository health summary
-- contributor activity
-- recent commits
-- open and recently changed PRs
-- open and recently changed issues
-- file activity grouped into typed lanes
-- likely overlap/collision signals when multiple contributors touch the same paths
-- a machine-readable `observstory/data/snapshot.json`
-- a static `observstory/index.html`
+```bash
+python3 scripts/observstory.py query work-near src/conversation/store.py --snapshot observstory/data/snapshot.json
+# -> in-flight work touching that path, overlap signals with evidence, coordination_needed: true|false
+```
 
-The dashboard is intentionally generated from a typed snapshot rather than directly from arbitrary API responses. That snapshot becomes the contract for future UI modules, storage, APIs and MCP tools.
+The other queries are `changes-since <iso>`, `overlaps [path]`, `open-loops` and `handoff`.
+The contract is in [docs/demo/agent-contract.md](docs/demo/agent-contract.md).
 
-## Roadmap
+**MCP is a delivery channel, not the product.** An MCP server would expose these same queries
+over the same snapshot. It wouldn't collect data, call GitHub, or keep state of its own.
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) and [ROADMAP.md](ROADMAP.md).
+## Why GitHub (or GitHub Projects) doesn't already do this
 
-## Why this exists
+GitHub shows *objects* (a PR, a branch) and *feeds*. GitHub Projects shows what people type into
+cards. Neither computes the **relations between different authors' unmerged work**, and those
+relations are the coordination state. IDE conflict tools compare *your* branch with main. Agent
+orchestrators see *their own* sessions. Observstory is the project-wide, zero-maintenance view
+that humans and agents share. More in
+[competitive-landscape.md](docs/discovery/competitive-landscape.md).
 
-AI-assisted development makes individual creation extremely fast, but can make collaboration less visible: contributors can disappear into private agent conversations and return with large finished artifacts. Observstory focuses on the missing coordination layer — shared situational awareness while the work is happening.
+## Not surveillance, by design
+
+- Signals are about **areas and work items**, never people.
+- No commit counts, line counts, rankings or per-person pages.
+- Authors appear only as the people to talk to about a piece of work.
+- These rules are enforced by tests (`tests/test_principles.py`) and by the schema: actor
+  objects can't carry numeric fields.
+- Only metadata is read. File contents are never stored. There is no LLM anywhere.
+
+## Evidence that it works
+
+- **Experiments:** 5+ signal experiments with fixtures, including a found and fixed false
+  positive → [experiment-results.md](docs/development/experiment-results.md).
+- **Demo:** the overlap emerges and then resolves → [docs/demo](docs/demo/README.md).
+- **Self-observation:** Observstory run against its own repo caught its own branch overlapping
+  the maintainer's recent pushes, and caught a real ignore-pattern bug →
+  [self-observation.md](docs/demo/self-observation.md).
+
+```bash
+python3 -m unittest discover -s tests -t .      # stdlib only, no install
+```
+
+## Documentation map
+
+| Phase | Docs |
+|---|---|
+| Discover | [docs/discovery](docs/discovery/README.md): problem, landscape, failures, signals, scenarios, risks, opportunity map |
+| Define | [docs/definition](docs/definition/README.md): thesis, JTBD, boundary, v1 scope, signal specs, principles |
+| Develop | [docs/development](docs/development/): concept comparison, experiments, UI language · [prototypes/](prototypes/) |
+| Deliver | [docs/demo](docs/demo/README.md) · [ARCHITECTURE.md](ARCHITECTURE.md) · [DECISIONS.md](DECISIONS.md) · [ROADMAP.md](ROADMAP.md) |

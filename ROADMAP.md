@@ -1,56 +1,45 @@
 # Roadmap
 
-## V0 — repo-native proof
+## v0: repo-native proof ✅
+Composite Action, typed lanes, JSON snapshot, static dashboard, path overlap on default-branch commits.
 
-- [x] reusable composite GitHub Action
-- [x] event-triggered builds
-- [x] ten-minute reconciliation workflow pattern
-- [x] typed lane configuration
-- [x] normalized JSON snapshot
-- [x] generated static dashboard
-- [x] basic overlap signals from changed paths
-- [ ] dogfood Observstory on this repository
-- [ ] publish a tagged `v0` action release
+## v1: in-flight coordination state ✅ (this release)
+- [x] Double Diamond research, definition and ADRs (`docs/`, `DECISIONS.md`)
+- [x] Collect **in-flight** evidence: open PR files and commits, branches without PRs, direct pushes
+- [x] Snapshot v1: work items, areas, lanes, signals, actors without counts, provenance
+- [x] Pure derivation, with observation-bundle fixtures and tests
+- [x] Signals: overlap, stale, waiting, burst (each with evidence, basis, confidence, rule)
+- [x] Radar dashboard, evidence-first, light and dark
+- [x] Agent query CLI (5 questions) plus an MCP tool contract
+- [x] Schema validation on every run; rate-limit budget with recorded degradation
+- [x] Zero-config defaults; anchored lane and ignore matching
+- [x] Dogfooding on this repository; demo scenario
+- [ ] Publish a tagged `v1` release so installs can pin `@v1`
 
-## V1 — useful in a live team
+## Next: validate with real teams (before building more)
+- [ ] Run against 3–5 active public repos; hand-label 50 overlap signals for precision
+- [ ] One live hackathon team: do people act on overlaps? Does WIP get pushed early enough (assumption A1)?
+- [ ] Tune default thresholds from that data
 
-- [ ] richer PR/check status
-- [ ] branch/worktree view
-- [ ] contributor focus view
-- [ ] open-loop detection
-- [ ] better path ownership and overlap heuristics
-- [ ] configurable modules
-- [ ] timeline playback
-- [ ] snapshot schema tests
+## v1.x: cheap refinements
+- [ ] Hunk-level overlap (patch ranges) to raise overlap precision
+- [ ] CI state on work items
+- [ ] `CODEOWNERS` as *declared* ownership on areas
+- [ ] Optional snapshot history via the previous run's artifact (enables `changes-since` across runs)
 
-## V2 — installable service
+## v2: installable service
+Install Observstory, select repositories, open the control center.
+- [ ] GitHub App: webhooks, queue, append-only observation log, the same `derive`, materialised snapshots
+- [ ] Scheduled reconciliation
+- [ ] Timeline and playback (prototype: `prototypes/timeline/`); work-item identity across branch → PR
+- [ ] Hosted dashboard with repository-scoped auth
+- [ ] MCP server over stored snapshots (contract: `prototypes/agent-surface/mcp-tools.json`)
 
-Build a GitHub App so setup becomes:
+## v3: collaboration intelligence (each must pass the evidence rules)
+- [ ] Duplicate-intent detection across issues and PRs
+- [ ] Decision index (DECISIONS.md / ADR files / labels), linked to the areas they govern
+- [ ] Multi-repo views
+- [ ] Opt-in, labelled LLM annotations, only where deterministic code can't answer (see system-boundary.md)
 
-> Install Observstory → select repositories → open control center.
-
-Components:
-
-- webhook receiver
-- event queue
-- normalized event log
-- materialized project state
-- scheduled reconciliation
-- hosted dashboard
-- auth and repository permissions
-
-## V3 — agent interface
-
-Expose the typed project state through MCP.
-
-Candidate resources/tools:
-
-- `project://snapshot`
-- `project://lanes`
-- `project://contributors`
-- `project://open-loops`
-- `project.changes_since`
-- `project.overlaps`
-- `project.handoff`
-
-The MCP layer should not independently crawl GitHub. It should read Observstory state so agents and humans share one source of coordination truth.
+## Never
+Productivity scores, leaderboards, per-person timelines, ownership inferred from authorship.

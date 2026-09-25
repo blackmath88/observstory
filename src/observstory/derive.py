@@ -52,7 +52,10 @@ def _pattern_matches(path: str, pattern: str) -> bool:
 def is_ignored(path: str, ignore: list[str]) -> bool:
     name = path.rsplit("/", 1)[-1]
     for pattern in ignore:
-        if pattern.endswith("/"):
+        if pattern.startswith("/"):
+            if _pattern_matches(path, pattern[1:]):
+                return True
+        elif pattern.endswith("/"):
             if path.startswith(pattern) or f"/{pattern}" in f"/{path}":
                 return True
         elif _pattern_matches(path, pattern) or name == pattern:
