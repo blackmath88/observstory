@@ -62,3 +62,19 @@ event-triggered runs plus in-flight evidence, and both work inside an Action.
 ## ADR-012: Area derivation is container-aware
 **Decision.** An area is the first directory segment, or the first two when the first is a container (`src`, `packages`, `apps`, `services`, `lib`, `app`, `libs`, `modules`, `crates`). Root files are their own area. Configurable through `area_depth` and `containers`.
 **Uncertain.** Precision on large monorepos (R11).
+
+## ADR-013: Radar plus agent surface ship in v1; timeline waits for durable history
+**Context.** Three directions were prototyped (docs/development/concept-comparison.md).
+**Decision.** The radar dashboard is the human projection, and the query CLI is the machine projection. Timeline and playback are v2.
+**Evidence.** Radar and query need no state across runs. Timeline needs history, which the stateless Action doesn't have.
+**Rejected.** Committing snapshot history to the observed repo (noise and permissions: `contents: write`, and a risk of loops, R17).
+
+## ADR-014: Overlap is discounted by explicit dependency
+**Context.** Experiment E4: stacked PRs share ground by design and were reported as overlaps.
+**Decision.** A work item whose `waiting_on` target touches the same area doesn't count towards that area's overlap. This is recorded in `rule.params.explained_by_waiting`.
+**Consequence.** Declaring "Depends on #N" is also how a team *acknowledges* an overlap. This is the resolution path in the demo.
+
+## ADR-015: Direct pushes form one work item per author
+**Context.** Hackathon teams often push straight to the default branch (E6).
+**Decision.** Default-branch commits that aren't attributable to a merged PR (via `(#N)` or `Merge pull request #N`) are grouped as `direct:<author>`. They take part in overlap at reduced confidence and are never stale.
+**Uncertain.** Whether grouping by author reads as person-focused. The id names the stream, and the signal subject is still the area.
