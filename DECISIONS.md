@@ -78,3 +78,12 @@ event-triggered runs plus in-flight evidence, and both work inside an Action.
 **Context.** Hackathon teams often push straight to the default branch (E6).
 **Decision.** Default-branch commits that aren't attributable to a merged PR (via `(#N)` or `Merge pull request #N`) are grouped as `direct:<author>`. They take part in overlap at reduced confidence and are never stale.
 **Uncertain.** Whether grouping by author reads as person-focused. The id names the stream, and the signal subject is still the area.
+
+## ADR-016: Overlap signals stay per-area in the model and are grouped only in the UI
+**Context.** Dogfooding: one branch against one push stream produced 9 per-area overlap signals.
+**Decision.** The snapshot keeps one signal per area, which gives stable ids and path-level agent queries. The dashboard groups overlaps that share the same work-item set into one entry.
+**Rejected.** A "pair" signal type in the model: it would duplicate evidence and break `work_near` path matching.
+
+## ADR-017: Ignore patterns follow gitignore anchoring
+**Context.** Dogfooding: the unanchored `observstory/` output entry hid `src/observstory/`.
+**Decision.** A leading `/` anchors a pattern to the repo root. A trailing `/` matches directories at any depth. Globs match the path or the basename.
