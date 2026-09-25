@@ -1,0 +1,74 @@
+{
+  "schema": "observstory.observations/v1",
+  "note": "two people push straight to main in the same area; no PRs, no branches",
+  "fetched_at": "2026-09-21T12:00:00Z",
+  "repository": {
+    "full_name": "example/chat-app",
+    "url": "https://github.com/example/chat-app",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": "Fictional fixture repository"
+  },
+  "window": {
+    "hours": 48
+  },
+  "trigger": {
+    "event": "fixture",
+    "run_id": "e6",
+    "sha": ""
+  },
+  "commits": [
+    {
+      "sha": "0000033000000000000000000000000000000000",
+      "url": "https://github.com/example/chat-app/commit/0000033",
+      "date": "2026-09-20T16:00:00Z",
+      "author": {
+        "login": "alice",
+        "name": "Alice",
+        "type": "User"
+      },
+      "message": "direct change",
+      "paths": [
+        "app/game/loop.js"
+      ]
+    },
+    {
+      "sha": "0000034000000000000000000000000000000000",
+      "url": "https://github.com/example/chat-app/commit/0000034",
+      "date": "2026-09-21T04:00:00Z",
+      "author": {
+        "login": "sofia",
+        "name": "Sofia",
+        "type": "User"
+      },
+      "message": "direct change",
+      "paths": [
+        "app/game/loop.js",
+        "app/game/input.js"
+      ]
+    },
+    {
+      "sha": "0000035000000000000000000000000000000000",
+      "url": "https://github.com/example/chat-app/commit/0000035",
+      "date": "2026-09-21T08:00:00Z",
+      "author": {
+        "login": "ben",
+        "name": "Ben",
+        "type": "User"
+      },
+      "message": "direct change",
+      "paths": [
+        "pitch.md"
+      ]
+    }
+  ],
+  "pull_requests": [],
+  "branches": [],
+  "issues": [],
+  "meta": {
+    "source": "fixture",
+    "api_calls": 0,
+    "rate_limit_remaining": null,
+    "degraded": []
+  }
+}

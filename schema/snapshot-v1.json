@@ -4,192 +4,686 @@
   "title": "Observstory Snapshot v1",
   "description": "Typed project state derived from GitHub repository activity. Organised around in-flight work items and path-derived areas. Signals are about areas and work items, never about people.",
   "type": "object",
-  "required": ["schema", "generated_at", "repository", "window", "config", "summary", "lanes", "areas", "work_items", "commits", "issues", "actors", "signals", "provenance"],
+  "required": [
+    "schema",
+    "generated_at",
+    "repository",
+    "window",
+    "config",
+    "summary",
+    "lanes",
+    "areas",
+    "work_items",
+    "commits",
+    "issues",
+    "actors",
+    "signals",
+    "provenance"
+  ],
   "properties": {
-    "schema": {"const": "observstory.snapshot/v1"},
-    "generated_at": {"type": "string"},
-    "trigger": {"type": "object"},
+    "schema": {
+      "const": "observstory.snapshot/v1"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "trigger": {
+      "type": "object"
+    },
     "repository": {
       "type": "object",
-      "required": ["full_name", "default_branch"],
+      "required": [
+        "full_name",
+        "default_branch"
+      ],
       "properties": {
-        "full_name": {"type": "string"},
-        "url": {"type": ["string", "null"]},
-        "default_branch": {"type": "string"},
-        "visibility": {"type": ["string", "null"]},
-        "description": {"type": ["string", "null"]}
+        "full_name": {
+          "type": "string"
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "default_branch": {
+          "type": "string"
+        },
+        "visibility": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
     "window": {
       "type": "object",
-      "required": ["hours", "since"],
-      "properties": {"hours": {"type": "number"}, "since": {"type": "string"}}
+      "required": [
+        "hours",
+        "since"
+      ],
+      "properties": {
+        "hours": {
+          "type": "number"
+        },
+        "since": {
+          "type": "string"
+        }
+      }
     },
     "config": {
       "type": "object",
-      "required": ["source", "signals", "ignore"],
+      "required": [
+        "source",
+        "signals",
+        "ignore"
+      ],
       "properties": {
-        "source": {"enum": ["file", "default"]},
-        "signals": {"type": "object"},
-        "ignore": {"type": "array", "items": {"type": "string"}},
-        "containers": {"type": "array", "items": {"type": "string"}}
+        "source": {
+          "enum": [
+            "file",
+            "default"
+          ]
+        },
+        "signals": {
+          "type": "object"
+        },
+        "ignore": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "containers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "summary": {
       "type": "object",
-      "required": ["in_flight", "areas_active", "signals", "commits_in_window", "open_issues"],
+      "required": [
+        "in_flight",
+        "areas_active",
+        "signals",
+        "commits_in_window",
+        "open_issues"
+      ],
       "properties": {
-        "in_flight": {"type": "integer"},
-        "areas_active": {"type": "integer"},
-        "commits_in_window": {"type": "integer"},
-        "open_issues": {"type": "integer"},
-        "signals": {"type": "object"}
+        "in_flight": {
+          "type": "integer"
+        },
+        "areas_active": {
+          "type": "integer"
+        },
+        "commits_in_window": {
+          "type": "integer"
+        },
+        "open_issues": {
+          "type": "integer"
+        },
+        "signals": {
+          "type": "object"
+        }
       }
     },
-    "lanes": {"type": "array", "items": {"$ref": "#/$defs/lane"}},
-    "areas": {"type": "array", "items": {"$ref": "#/$defs/area"}},
-    "work_items": {"type": "array", "items": {"$ref": "#/$defs/work_item"}},
-    "commits": {"type": "array", "items": {"$ref": "#/$defs/commit"}},
-    "issues": {"type": "array", "items": {"$ref": "#/$defs/issue"}},
-    "actors": {"type": "array", "items": {"$ref": "#/$defs/actor"}},
-    "signals": {"type": "array", "items": {"$ref": "#/$defs/signal"}},
+    "lanes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/lane"
+      }
+    },
+    "areas": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/area"
+      }
+    },
+    "work_items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/work_item"
+      }
+    },
+    "commits": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/commit"
+      }
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/issue"
+      }
+    },
+    "actors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/actor"
+      }
+    },
+    "signals": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/signal"
+      }
+    },
     "provenance": {
       "type": "object",
-      "required": ["source", "collector_version", "degraded"],
+      "required": [
+        "source",
+        "collector_version",
+        "degraded"
+      ],
       "properties": {
-        "source": {"type": "string"},
-        "collector_version": {"type": "string"},
-        "api_calls": {"type": "integer"},
-        "rate_limit_remaining": {"type": ["integer", "null"]},
-        "degraded": {"type": "array", "items": {"type": "string"}}
+        "source": {
+          "type": "string"
+        },
+        "collector_version": {
+          "type": "string"
+        },
+        "api_calls": {
+          "type": "integer"
+        },
+        "rate_limit_remaining": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "degraded": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     }
   },
   "$defs": {
     "lane": {
       "type": "object",
-      "required": ["id", "label", "source", "areas", "in_flight", "recent_commits"],
+      "required": [
+        "id",
+        "label",
+        "source",
+        "areas",
+        "in_flight",
+        "recent_commits"
+      ],
       "properties": {
-        "id": {"type": "string"},
-        "label": {"type": "string"},
-        "description": {"type": "string"},
-        "source": {"enum": ["config", "default", "fallback"]},
-        "areas": {"type": "array", "items": {"type": "string"}},
-        "in_flight": {"type": "array", "items": {"type": "string"}},
-        "recent_commits": {"type": "integer"}
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "config",
+            "default",
+            "fallback"
+          ]
+        },
+        "areas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "in_flight": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recent_commits": {
+          "type": "integer"
+        }
       }
     },
     "area": {
       "type": "object",
-      "required": ["id", "lane", "in_flight", "files", "recent_commits", "actors"],
+      "required": [
+        "id",
+        "lane",
+        "in_flight",
+        "files",
+        "recent_commits",
+        "actors"
+      ],
       "properties": {
-        "id": {"type": "string", "description": "Path prefix, e.g. src/conversation, or a root file name."},
-        "lane": {"type": "string"},
-        "in_flight": {"type": "array", "items": {"type": "string"}},
-        "files": {"type": "array", "items": {"type": "string"}},
-        "recent_commits": {"type": "integer"},
-        "actors": {"type": "array", "items": {"type": "string"}}
+        "id": {
+          "type": "string",
+          "description": "Path prefix, e.g. src/conversation, or a root file name."
+        },
+        "lane": {
+          "type": "string"
+        },
+        "in_flight": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recent_commits": {
+          "type": "integer"
+        },
+        "actors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "last_activity_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
     "work_item": {
       "type": "object",
-      "required": ["id", "kind", "title", "url", "state", "in_flight", "actors", "last_activity_at", "paths", "areas", "lanes", "commit_count", "waiting_on", "agent_declared"],
+      "required": [
+        "id",
+        "kind",
+        "title",
+        "url",
+        "state",
+        "in_flight",
+        "actors",
+        "last_activity_at",
+        "paths",
+        "areas",
+        "lanes",
+        "commit_count",
+        "waiting_on",
+        "agent_declared"
+      ],
       "properties": {
-        "id": {"type": "string", "description": "pr:<n> | branch:<name> | direct:<actor>"},
-        "kind": {"enum": ["pull_request", "branch", "direct"]},
-        "number": {"type": ["integer", "null"]},
-        "title": {"type": "string"},
-        "url": {"type": ["string", "null"]},
-        "state": {"enum": ["open", "draft", "merged", "closed", "unproposed", "pushed"]},
-        "in_flight": {"type": "boolean"},
-        "head": {"type": ["string", "null"]},
-        "base": {"type": ["string", "null"]},
-        "actors": {"type": "array", "items": {"type": "string"}},
-        "created_at": {"type": ["string", "null"]},
-        "last_activity_at": {"type": ["string", "null"]},
-        "paths": {"type": "array", "items": {"type": "string"}},
-        "areas": {"type": "array", "items": {"type": "string"}},
-        "lanes": {"type": "array", "items": {"type": "string"}},
-        "commit_count": {"type": "integer"},
-        "review_state": {"enum": ["draft", "no_reviewer", "review_requested", null]},
-        "waiting_on": {"type": "array", "items": {"type": "string"}},
-        "agent_declared": {"type": "boolean"},
-        "burst": {"type": ["object", "null"]}
+        "id": {
+          "type": "string",
+          "description": "pr:<n> | branch:<name> | direct:<actor>"
+        },
+        "kind": {
+          "enum": [
+            "pull_request",
+            "branch",
+            "direct"
+          ]
+        },
+        "number": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state": {
+          "enum": [
+            "open",
+            "draft",
+            "merged",
+            "closed",
+            "unproposed",
+            "pushed"
+          ]
+        },
+        "in_flight": {
+          "type": "boolean"
+        },
+        "head": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "base": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "actors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "created_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "last_activity_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "areas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lanes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "commit_count": {
+          "type": "integer"
+        },
+        "review_state": {
+          "enum": [
+            "draft",
+            "no_reviewer",
+            "review_requested",
+            null
+          ]
+        },
+        "waiting_on": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "agent_declared": {
+          "type": "boolean"
+        },
+        "burst": {
+          "type": [
+            "object",
+            "null"
+          ]
+        }
       }
     },
     "commit": {
       "type": "object",
-      "required": ["sha", "url", "message", "date", "actor", "paths", "areas"],
+      "required": [
+        "sha",
+        "url",
+        "message",
+        "date",
+        "actor",
+        "paths",
+        "areas"
+      ],
       "properties": {
-        "sha": {"type": "string"},
-        "url": {"type": ["string", "null"]},
-        "message": {"type": "string"},
-        "date": {"type": ["string", "null"]},
-        "actor": {"type": "string"},
-        "paths": {"type": "array", "items": {"type": "string"}},
-        "areas": {"type": "array", "items": {"type": "string"}}
+        "sha": {
+          "type": "string"
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "message": {
+          "type": "string"
+        },
+        "date": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "actor": {
+          "type": "string"
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "areas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "issue": {
       "type": "object",
-      "required": ["number", "title", "state", "url"],
+      "required": [
+        "number",
+        "title",
+        "state",
+        "url"
+      ],
       "properties": {
-        "number": {"type": "integer"},
-        "title": {"type": "string"},
-        "state": {"type": "string"},
-        "url": {"type": ["string", "null"]},
-        "labels": {"type": "array", "items": {"type": "string"}},
-        "updated_at": {"type": ["string", "null"]}
+        "number": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "updated_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
     "actor": {
       "type": "object",
       "description": "An author of evidence. Deliberately carries no activity counts (ADR-004).",
-      "required": ["id", "kind", "linked", "work_items"],
+      "required": [
+        "id",
+        "kind",
+        "linked",
+        "work_items"
+      ],
       "properties": {
-        "id": {"type": "string"},
-        "kind": {"enum": ["human", "bot"]},
-        "linked": {"type": "boolean", "description": "False when the git author is not linked to a GitHub account."},
-        "work_items": {"type": "array", "items": {"type": "string"}}
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "human",
+            "bot"
+          ]
+        },
+        "linked": {
+          "type": "boolean",
+          "description": "False when the git author is not linked to a GitHub account."
+        },
+        "work_items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       },
       "additionalProperties": false
     },
     "signal": {
       "type": "object",
-      "required": ["id", "type", "basis", "confidence", "subject", "summary", "work_items", "actors", "evidence", "rule"],
+      "required": [
+        "id",
+        "type",
+        "basis",
+        "confidence",
+        "subject",
+        "summary",
+        "work_items",
+        "actors",
+        "evidence",
+        "rule"
+      ],
       "properties": {
-        "id": {"type": "string"},
-        "type": {"enum": ["overlap", "stale", "waiting", "burst"]},
-        "basis": {"enum": ["derived", "heuristic", "declared"]},
-        "confidence": {"enum": ["high", "medium", "low"]},
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "overlap",
+            "stale",
+            "waiting",
+            "burst"
+          ]
+        },
+        "basis": {
+          "enum": [
+            "derived",
+            "heuristic",
+            "declared"
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
         "subject": {
           "type": "object",
-          "required": ["kind", "id"],
+          "required": [
+            "kind",
+            "id"
+          ],
           "properties": {
-            "kind": {"enum": ["area", "work_item"]},
-            "id": {"type": "string"}
+            "kind": {
+              "enum": [
+                "area",
+                "work_item"
+              ]
+            },
+            "id": {
+              "type": "string"
+            }
           }
         },
-        "summary": {"type": "string"},
-        "work_items": {"type": "array", "items": {"type": "string"}},
-        "actors": {"type": "array", "items": {"type": "string"}},
-        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}},
+        "summary": {
+          "type": "string"
+        },
+        "work_items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "actors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
         "rule": {
           "type": "object",
-          "required": ["name", "params"],
-          "properties": {"name": {"type": "string"}, "params": {"type": "object"}}
+          "required": [
+            "name",
+            "params"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object"
+            }
+          }
         }
       }
     },
     "evidence": {
       "type": "object",
-      "required": ["kind", "ref"],
+      "required": [
+        "kind",
+        "ref"
+      ],
       "properties": {
-        "kind": {"enum": ["file", "work_item", "commit", "text", "timestamp"]},
-        "ref": {"type": "string"},
-        "url": {"type": ["string", "null"]},
-        "detail": {"type": "string"},
-        "work_items": {"type": "array", "items": {"type": "string"}}
+        "kind": {
+          "enum": [
+            "file",
+            "work_item",
+            "commit",
+            "text",
+            "timestamp"
+          ]
+        },
+        "ref": {
+          "type": "string"
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "detail": {
+          "type": "string"
+        },
+        "work_items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     }
   }

@@ -1,0 +1,128 @@
+{
+  "schema": "observstory.observations/v1",
+  "note": "alice's PR and sofia's unproposed branch both change src/conversation (store.py shared)",
+  "fetched_at": "2026-09-21T12:00:00Z",
+  "repository": {
+    "full_name": "example/chat-app",
+    "url": "https://github.com/example/chat-app",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": "Fictional fixture repository"
+  },
+  "window": {
+    "hours": 48
+  },
+  "trigger": {
+    "event": "fixture",
+    "run_id": "e1",
+    "sha": ""
+  },
+  "commits": [],
+  "pull_requests": [
+    {
+      "number": 14,
+      "title": "Conversation memory",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "alice/pr-14",
+      "base": "main",
+      "author": {
+        "login": "alice",
+        "name": "Alice",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T10:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/14",
+      "requested_reviewers": [],
+      "paths": [
+        "src/conversation/store.py",
+        "src/conversation/ui.tsx"
+      ],
+      "commits": [
+        {
+          "sha": "0000001000000000000000000000000000000000",
+          "date": "2026-09-20T16:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "work 0"
+        },
+        {
+          "sha": "0000002000000000000000000000000000000000",
+          "date": "2026-09-21T06:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "work 1"
+        },
+        {
+          "sha": "0000003000000000000000000000000000000000",
+          "date": "2026-09-21T10:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "work 2"
+        }
+      ]
+    }
+  ],
+  "branches": [
+    {
+      "name": "sofia/convo-rewrite",
+      "url": "https://github.com/example/chat-app/tree/sofia/convo-rewrite",
+      "ahead_by": 3,
+      "paths": [
+        "src/conversation/store.py",
+        "src/conversation/prompt.py"
+      ],
+      "commits": [
+        {
+          "sha": "0000004000000000000000000000000000000000",
+          "date": "2026-09-21T07:00:00Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "work 0"
+        },
+        {
+          "sha": "0000005000000000000000000000000000000000",
+          "date": "2026-09-21T09:00:00Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "work 1"
+        },
+        {
+          "sha": "0000006000000000000000000000000000000000",
+          "date": "2026-09-21T11:00:00Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "work 2"
+        }
+      ]
+    }
+  ],
+  "issues": [],
+  "meta": {
+    "source": "fixture",
+    "api_calls": 0,
+    "rate_limit_remaining": null,
+    "degraded": []
+  }
+}

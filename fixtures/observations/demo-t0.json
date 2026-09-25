@@ -1,0 +1,131 @@
+{
+  "schema": "observstory.observations/v1",
+  "note": "Two contributors working normally",
+  "fetched_at": "2026-09-21T09:00:00Z",
+  "repository": {
+    "full_name": "example/chat-app",
+    "url": "https://github.com/example/chat-app",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": "Fictional fixture repository"
+  },
+  "window": {
+    "hours": 48
+  },
+  "trigger": {
+    "event": "fixture",
+    "run_id": "demo-t0",
+    "sha": ""
+  },
+  "commits": [],
+  "pull_requests": [
+    {
+      "number": 41,
+      "title": "Conversation memory",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "alice/pr-41",
+      "base": "main",
+      "author": {
+        "login": "alice",
+        "name": "Alice",
+        "type": "User"
+      },
+      "created_at": "2026-09-21T05:00:00Z",
+      "updated_at": "2026-09-21T09:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/41",
+      "requested_reviewers": [],
+      "paths": [
+        "src/conversation/store.py",
+        "src/conversation/memory.py"
+      ],
+      "commits": [
+        {
+          "sha": "0000036000000000000000000000000000000000",
+          "date": "2026-09-21T05:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "memory 0"
+        },
+        {
+          "sha": "0000037000000000000000000000000000000000",
+          "date": "2026-09-21T08:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "memory 1"
+        },
+        {
+          "sha": "0000038000000000000000000000000000000000",
+          "date": "2026-09-21T09:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "memory 2"
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "title": "Search index",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "ben/pr-42",
+      "base": "main",
+      "author": {
+        "login": "ben",
+        "name": "Ben",
+        "type": "User"
+      },
+      "created_at": "2026-09-21T06:00:00Z",
+      "updated_at": "2026-09-21T09:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/42",
+      "requested_reviewers": [],
+      "paths": [
+        "src/search/index.py",
+        "src/search/query.py"
+      ],
+      "commits": [
+        {
+          "sha": "0000039000000000000000000000000000000000",
+          "date": "2026-09-21T06:00:00Z",
+          "author": {
+            "login": "ben",
+            "name": "Ben",
+            "type": "User"
+          },
+          "message": "search 0"
+        },
+        {
+          "sha": "000003a000000000000000000000000000000000",
+          "date": "2026-09-21T09:00:00Z",
+          "author": {
+            "login": "ben",
+            "name": "Ben",
+            "type": "User"
+          },
+          "message": "search 1"
+        }
+      ]
+    }
+  ],
+  "branches": [],
+  "issues": [],
+  "meta": {
+    "source": "fixture",
+    "api_calls": 0,
+    "rate_limit_remaining": null,
+    "degraded": []
+  }
+}
