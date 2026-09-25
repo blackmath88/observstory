@@ -1,0 +1,128 @@
+{
+  "agent_question": "What changed since my last run?",
+  "request": {
+    "tool": "observstory.changes_since",
+    "arguments": {
+      "since": "2026-09-21T15:00:00Z"
+    }
+  },
+  "response": {
+    "query": "changes_since",
+    "args": {
+      "since": "2026-09-21T15:00:00Z"
+    },
+    "as_of": "2026-09-22T10:00:00Z",
+    "repository": "example/chat-app",
+    "answer": {
+      "work_items": [
+        {
+          "id": "pr:43",
+          "kind": "pull_request",
+          "title": "Chat history persistence",
+          "url": "https://github.com/example/chat-app/pull/43",
+          "state": "open",
+          "actors": [
+            "sofia"
+          ],
+          "last_activity_at": "2026-09-22T09:30:00Z",
+          "review_state": "no_reviewer",
+          "waiting_on": [],
+          "areas": [
+            "src/conversation"
+          ]
+        }
+      ],
+      "commits_on_default_branch": [],
+      "areas_touched": [
+        "src/conversation"
+      ]
+    },
+    "signals": [
+      {
+        "id": "overlap:src/conversation",
+        "type": "overlap",
+        "basis": "derived",
+        "confidence": "high",
+        "subject": {
+          "kind": "area",
+          "id": "src/conversation"
+        },
+        "summary": "2 work items touch src/conversation; 1 file changed in more than one",
+        "work_items": [
+          "pr:41",
+          "pr:43"
+        ],
+        "actors": [
+          "alice",
+          "sofia"
+        ],
+        "evidence": [
+          {
+            "kind": "file",
+            "ref": "src/conversation/store.py",
+            "url": null,
+            "work_items": [
+              "pr:41",
+              "pr:43"
+            ],
+            "detail": "changed by 2 work items"
+          },
+          {
+            "kind": "work_item",
+            "ref": "pr:41",
+            "url": "https://github.com/example/chat-app/pull/41",
+            "detail": "Conversation memory (open)"
+          },
+          {
+            "kind": "work_item",
+            "ref": "pr:43",
+            "url": "https://github.com/example/chat-app/pull/43",
+            "detail": "Chat history persistence (open)"
+          }
+        ],
+        "rule": {
+          "name": "overlap.area",
+          "params": {
+            "min_work_items": 2,
+            "same_author": false,
+            "shared_files": 1,
+            "explained_by_waiting": []
+          }
+        }
+      },
+      {
+        "id": "burst:pr:43",
+        "type": "burst",
+        "basis": "heuristic",
+        "confidence": "high",
+        "subject": {
+          "kind": "work_item",
+          "id": "pr:43"
+        },
+        "summary": "pr:43: 12 commits within 20 min (machine-paced stream)",
+        "work_items": [
+          "pr:43"
+        ],
+        "actors": [
+          "sofia"
+        ],
+        "evidence": [
+          {
+            "kind": "commit",
+            "ref": "12 commits",
+            "url": "https://github.com/example/chat-app/pull/43",
+            "detail": "from 2026-09-21T13:00:00+00:00 to 2026-09-21T13:19:48+00:00; agent trailer declared"
+          }
+        ],
+        "rule": {
+          "name": "burst.rate",
+          "params": {
+            "min_commits": 8,
+            "window_minutes": 30
+          }
+        }
+      }
+    ],
+    "evidence_note": "Derived from GitHub metadata. 'basis' says whether a signal is derived, heuristic or declared; follow evidence URLs before acting. Observstory describes work, not people."
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "agent_question": "What open loops exist?",
+  "request": {
+    "tool": "observstory.open_loops",
+    "arguments": {}
+  },
+  "response": {
+    "query": "open_loops",
+    "args": {},
+    "as_of": "2026-09-22T10:00:00Z",
+    "repository": "example/chat-app",
+    "answer": {
+      "stale": [],
+      "waiting": [],
+      "open_prs_without_reviewer": [
+        {
+          "id": "pr:43",
+          "kind": "pull_request",
+          "title": "Chat history persistence",
+          "url": "https://github.com/example/chat-app/pull/43",
+          "state": "open",
+          "actors": [
+            "sofia"
+          ],
+          "last_activity_at": "2026-09-22T09:30:00Z",
+          "review_state": "no_reviewer",
+          "waiting_on": [],
+          "areas": [
+            "src/conversation"
+          ]
+        },
+        {
+          "id": "pr:42",
+          "kind": "pull_request",
+          "title": "Search index",
+          "url": "https://github.com/example/chat-app/pull/42",
+          "state": "open",
+          "actors": [
+            "ben"
+          ],
+          "last_activity_at": "2026-09-21T09:00:00Z",
+          "review_state": "no_reviewer",
+          "waiting_on": [],
+          "areas": [
+            "src/search"
+          ]
+        }
+      ],
+      "branches_without_pr": []
+    },
+    "signals": [],
+    "evidence_note": "Derived from GitHub metadata. 'basis' says whether a signal is derived, heuristic or declared; follow evidence URLs before acting. Observstory describes work, not people."
+  }
+}
