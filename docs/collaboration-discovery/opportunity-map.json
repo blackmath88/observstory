@@ -1,0 +1,26 @@
+{
+  "schema": "observstory.opportunity-map/v1",
+  "scope": "collaboration state (issue #7)",
+  "note": "Ranks PROBLEMS, not features. score = severity * frequency * observability (1-5 each). observability = how well declared-vs-observed evidence can show it without inference.",
+  "problems": [
+    {"rank": 1, "id": "Q1", "problem": "Declared time-scoped constraints (freezes, gates) are crossed without anyone noticing until the demo",
+     "relations": ["R3", "R4"], "scenarios": ["C1", "C3"], "severity": 4, "frequency": 4, "observability": 5, "score": 80,
+     "existing_coverage": "none found: trackers have due dates, not area-scoped rules"},
+    {"rank": 2, "id": "Q2", "problem": "Commitments made in check-ins evaporate or go unstarted before their due time",
+     "relations": ["R1", "R2"], "scenarios": ["C2", "C4", "C5"], "severity": 4, "frequency": 5, "observability": 3, "score": 60,
+     "existing_coverage": "AI note-takers draft items (unreliably); trackers hold them only if someone types them in"},
+    {"rank": 3, "id": "Q3", "problem": "A person joining midway cannot see the plan against reality: next gate, open commitments",
+     "relations": ["R1", "R2", "R4"], "scenarios": ["C5"], "severity": 3, "frequency": 3, "observability": 4, "score": 36,
+     "existing_coverage": "boards plus calendars, both stale in fast projects"},
+    {"rank": 4, "id": "Q4", "problem": "Verbal decisions about an area are forgotten when that area changes later",
+     "relations": ["R7"], "scenarios": ["C6"], "severity": 3, "frequency": 3, "observability": 2, "score": 18,
+     "existing_coverage": "ADRs, when anyone writes them"},
+    {"rank": 5, "id": "Q5", "problem": "Meeting outcomes are captured unreliably, or not at all",
+     "relations": [], "scenarios": ["C2"], "severity": 3, "frequency": 5, "observability": 1, "score": 15,
+     "existing_coverage": "crowded: AI note-takers. Observstory should consume confirmed outcomes, not compete"}
+  ],
+  "rejected_as_anti_goal": [
+    {"problem": "Know whether each person is delivering on their commitments", "reason": "per-person scoring (K1, R8)"},
+    {"problem": "Know which work has no declared task", "reason": "nagging, and incompatible with fast projects (R6)"}
+  ]
+}
