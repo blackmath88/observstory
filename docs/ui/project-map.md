@@ -52,6 +52,11 @@ still generated as an alternative projection (`observstory/radar.html`).
 - **Escape** closes the inspector and returns focus to where you were. Nothing animates except the panel sliding in, and that stops under `prefers-reduced-motion`.
 - **Without JavaScript** the map, the lanes, the cards and the attention list still render. Only the connectors and the inspector need the script.
 
+## Demo Lab
+
+[`demo/index.html`](../../demo/index.html) walks through one synthetic project, `northstar/chat-app`,
+at nine moments, each compiled by the real pipeline. See [demo/README.md](../../demo/README.md).
+
 ## Scenarios (all compiled from fixtures, `prototypes/project-map/`)
 
 | Page | Shows |

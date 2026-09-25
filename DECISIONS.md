@@ -126,3 +126,9 @@ event-triggered runs plus in-flight evidence, and both work inside an Action.
 **Context.** Self-observation during issue #3: this repo's working branch was reused after PR #4 merged, and its new commits were invisible. The collector skipped every branch that had ever been a PR head, to avoid reporting squash-merged branches left behind.
 **Decision.** Skip a branch while it has an **open** PR, or while it still points at the last commit of a closed or merged PR. Once it moves on, it's new work.
 **Test.** `tests/test_collect.py::test_branch_reused_after_its_pr_merged_is_new_work`.
+
+## ADR-026: The Demo Lab shows real generated pages in a thin shell (issue #6)
+**Context.** The demo must use the same snapshot → scene → Project Map pipeline as the product, with no second visual implementation.
+**Decision.** Synthetic observation bundles (`fixtures/demo_lab.py`: one fictional repo over about a week, stable people and PR numbers) are rendered into one real Project Map page per state. `demo/index.html` is a small shell (tabs, caption, Prev/Next, hash URLs, arrow keys) that swaps those pages in an iframe.
+**Rejected.** Re-rendering the map in the browser from `scene.json`: that would need a JavaScript port of the renderer, which is a second implementation that could drift.
+**Details.** The renderer gained `time_label` (a fixed "story time" instead of "snapshot N h old") and `data_href` (per-state JSON links). Synthetic data carries no URLs, so an invented repository name can never link to a real account. The inspector hides "Open on GitHub" when there's no URL.

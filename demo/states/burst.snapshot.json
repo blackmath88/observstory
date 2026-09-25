@@ -1,0 +1,520 @@
+{
+ "schema": "observstory.snapshot/v1",
+ "generated_at": "2026-09-18T14:00:00Z",
+ "trigger": {
+  "event": "demo-lab"
+ },
+ "repository": {
+  "full_name": "northstar/chat-app",
+  "url": null,
+  "default_branch": "main",
+  "visibility": "public",
+  "description": "Synthetic demo repository"
+ },
+ "window": {
+  "hours": 48,
+  "since": "2026-09-16T14:00:00Z"
+ },
+ "config": {
+  "source": "file",
+  "lanes_source": "config",
+  "title": "Northstar chat (synthetic demo)",
+  "signals": {
+   "overlap_min_work_items": 2,
+   "stale_hours": 72,
+   "burst_min_commits": 8,
+   "burst_window_minutes": 30,
+   "overlap_require_shared_file": true
+  },
+  "ignore": [
+   "package-lock.json",
+   "yarn.lock",
+   "pnpm-lock.yaml",
+   "poetry.lock",
+   "Cargo.lock",
+   "go.sum",
+   "uv.lock",
+   "Gemfile.lock",
+   "composer.lock",
+   "dist/",
+   "build/",
+   "node_modules/",
+   "vendor/",
+   "*.min.js",
+   "*.min.css",
+   "*.map",
+   "CHANGELOG*",
+   ".changeset/",
+   "*.api.md",
+   "/observstory/"
+  ],
+  "containers": [
+   "src",
+   "packages",
+   "apps",
+   "services",
+   "lib",
+   "libs",
+   "app",
+   "modules",
+   "crates",
+   "internal",
+   "cmd"
+  ],
+  "area_depth": 1
+ },
+ "summary": {
+  "in_flight": 3,
+  "areas_active": 2,
+  "commits_in_window": 3,
+  "open_issues": 0,
+  "signals": {
+   "overlap": 0,
+   "stale": 0,
+   "waiting": 0,
+   "burst": 1
+  }
+ },
+ "lanes": [
+  {
+   "id": "intent",
+   "label": "Intent",
+   "description": "Why and what: docs and decisions",
+   "source": "config",
+   "areas": [],
+   "in_flight": [],
+   "recent_commits": 0
+  },
+  {
+   "id": "core",
+   "label": "Core",
+   "description": "Conversation and search engine",
+   "source": "config",
+   "areas": [
+    "src/conversation"
+   ],
+   "in_flight": [],
+   "recent_commits": 3
+  },
+  {
+   "id": "interface",
+   "label": "Interface",
+   "description": "What people see",
+   "source": "config",
+   "areas": [
+    "web"
+   ],
+   "in_flight": [
+    "pr:48",
+    "pr:50"
+   ],
+   "recent_commits": 0
+  },
+  {
+   "id": "verify",
+   "label": "Verify",
+   "description": "Tests and evaluations",
+   "source": "config",
+   "areas": [
+    "evals"
+   ],
+   "in_flight": [
+    "pr:44"
+   ],
+   "recent_commits": 0
+  },
+  {
+   "id": "ship",
+   "label": "Ship",
+   "description": "Build and deploy",
+   "source": "config",
+   "areas": [],
+   "in_flight": [],
+   "recent_commits": 0
+  }
+ ],
+ "areas": [
+  {
+   "id": "evals",
+   "lane": "verify",
+   "in_flight": [
+    "pr:44"
+   ],
+   "files": [
+    "evals/conversation/cases.json",
+    "evals/conversation/test_memory.py"
+   ],
+   "recent_commits": 0,
+   "actors": [
+    "sofia"
+   ],
+   "last_activity_at": "2026-09-18T09:00:00Z"
+  },
+  {
+   "id": "src/conversation",
+   "lane": "core",
+   "in_flight": [],
+   "files": [],
+   "recent_commits": 3,
+   "actors": [
+    "alice",
+    "ben"
+   ],
+   "last_activity_at": "2026-09-17T16:00:00Z"
+  },
+  {
+   "id": "web",
+   "lane": "interface",
+   "in_flight": [
+    "pr:48",
+    "pr:50"
+   ],
+   "files": [
+    "web/chat/Composer.tsx",
+    "web/settings/Notifications.tsx",
+    "web/settings/Privacy.tsx",
+    "web/settings/Profile.tsx"
+   ],
+   "recent_commits": 0,
+   "actors": [
+    "alice",
+    "sofia"
+   ],
+   "last_activity_at": "2026-09-18T13:46:00Z"
+  }
+ ],
+ "work_items": [
+  {
+   "id": "pr:50",
+   "kind": "pull_request",
+   "number": 50,
+   "title": "Generate settings screens",
+   "url": null,
+   "state": "open",
+   "in_flight": true,
+   "head": "sofia/settings-screens",
+   "base": "main",
+   "actors": [
+    "sofia"
+   ],
+   "created_at": "2026-09-18T13:00:00Z",
+   "last_activity_at": "2026-09-18T13:46:00Z",
+   "paths": [
+    "web/settings/Notifications.tsx",
+    "web/settings/Privacy.tsx",
+    "web/settings/Profile.tsx"
+   ],
+   "areas": [
+    "web"
+   ],
+   "lanes": [
+    "interface"
+   ],
+   "commit_count": 24,
+   "review_state": "no_reviewer",
+   "waiting_on": [],
+   "agent_declared": true,
+   "burst": {
+    "commits": 16,
+    "minutes": 30,
+    "total_commits": 24
+   },
+   "merge_base": {
+    "sha": "e070230531653120e45ee9b8a8753cc068d1be41",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:44",
+   "kind": "pull_request",
+   "number": 44,
+   "title": "Evaluation harness for conversation memory",
+   "url": null,
+   "state": "open",
+   "in_flight": true,
+   "head": "sofia/pr-44",
+   "base": "main",
+   "actors": [
+    "sofia"
+   ],
+   "created_at": "2026-09-16T11:00:00Z",
+   "last_activity_at": "2026-09-18T09:00:00Z",
+   "paths": [
+    "evals/conversation/cases.json",
+    "evals/conversation/test_memory.py"
+   ],
+   "areas": [
+    "evals"
+   ],
+   "lanes": [
+    "verify"
+   ],
+   "commit_count": 2,
+   "review_state": "review_requested",
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "ab44d38a92171752c744dc6021d04dc4b198ab98",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:48",
+   "kind": "pull_request",
+   "number": 48,
+   "title": "Composer keyboard shortcuts",
+   "url": null,
+   "state": "open",
+   "in_flight": true,
+   "head": "alice/pr-48",
+   "base": "main",
+   "actors": [
+    "alice"
+   ],
+   "created_at": "2026-09-18T08:00:00Z",
+   "last_activity_at": "2026-09-18T09:00:00Z",
+   "paths": [
+    "web/chat/Composer.tsx"
+   ],
+   "areas": [
+    "web"
+   ],
+   "lanes": [
+    "interface"
+   ],
+   "commit_count": 2,
+   "review_state": "no_reviewer",
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "e070230531653120e45ee9b8a8753cc068d1be41",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:47",
+   "kind": "pull_request",
+   "number": 47,
+   "title": "Conversation export",
+   "url": null,
+   "state": "merged",
+   "in_flight": false,
+   "head": "ben/export",
+   "base": "main",
+   "actors": [
+    "ben"
+   ],
+   "created_at": "2026-09-15T14:00:00Z",
+   "last_activity_at": "2026-09-17T16:00:00Z",
+   "paths": [
+    "src/conversation/export.py"
+   ],
+   "areas": [
+    "src/conversation"
+   ],
+   "lanes": [
+    "core"
+   ],
+   "commit_count": 1,
+   "review_state": null,
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "e02a034ede6ecbbfcf8f02558a25c889ef3363f9",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:46",
+   "kind": "pull_request",
+   "number": 46,
+   "title": "Store serialization refactor",
+   "url": null,
+   "state": "merged",
+   "in_flight": false,
+   "head": "ben/store-serialization",
+   "base": "alice/conversation-memory",
+   "actors": [
+    "ben"
+   ],
+   "created_at": "2026-09-15T12:00:00Z",
+   "last_activity_at": "2026-09-17T15:00:00Z",
+   "paths": [
+    "src/conversation/serialize.py",
+    "src/conversation/store.py"
+   ],
+   "areas": [
+    "src/conversation"
+   ],
+   "lanes": [
+    "core"
+   ],
+   "commit_count": 4,
+   "review_state": null,
+   "waiting_on": [],
+   "agent_declared": true,
+   "burst": null,
+   "merge_base": {
+    "sha": "e02a034ede6ecbbfcf8f02558a25c889ef3363f9",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:41",
+   "kind": "pull_request",
+   "number": 41,
+   "title": "Conversation memory",
+   "url": null,
+   "state": "merged",
+   "in_flight": false,
+   "head": "alice/conversation-memory",
+   "base": "main",
+   "actors": [
+    "alice"
+   ],
+   "created_at": "2026-09-14T09:00:00Z",
+   "last_activity_at": "2026-09-17T10:00:00Z",
+   "paths": [
+    "src/conversation/memory.py",
+    "src/conversation/store.py"
+   ],
+   "areas": [
+    "src/conversation"
+   ],
+   "lanes": [
+    "core"
+   ],
+   "commit_count": 4,
+   "review_state": null,
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "e9d03a99fea174c3dd53baed43383ee35683b49f",
+    "source": "compare"
+   }
+  }
+ ],
+ "commits": [
+  {
+   "sha": "e070230531653120e45ee9b8a8753cc068d1be41",
+   "url": null,
+   "message": "Conversation export (#47)",
+   "date": "2026-09-17T16:00:00Z",
+   "actor": "ben",
+   "paths": [
+    "src/conversation/export.py"
+   ],
+   "areas": [
+    "src/conversation"
+   ],
+   "work_item": "pr:47"
+  },
+  {
+   "sha": "1cda87b2b0ee0fe3614a581813d438f64bc5605d",
+   "url": null,
+   "message": "Store serialization refactor (#46)",
+   "date": "2026-09-17T15:00:00Z",
+   "actor": "ben",
+   "paths": [
+    "src/conversation/serialize.py",
+    "src/conversation/store.py"
+   ],
+   "areas": [
+    "src/conversation"
+   ],
+   "work_item": "pr:46"
+  },
+  {
+   "sha": "3f49d426ec18103d82ec1084ded0f832f5e3a162",
+   "url": null,
+   "message": "Conversation memory (#41)",
+   "date": "2026-09-17T10:00:00Z",
+   "actor": "alice",
+   "paths": [
+    "src/conversation/memory.py",
+    "src/conversation/store.py"
+   ],
+   "areas": [
+    "src/conversation"
+   ],
+   "work_item": "pr:41"
+  }
+ ],
+ "issues": [],
+ "actors": [
+  {
+   "id": "alice",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "pr:41",
+    "pr:48"
+   ]
+  },
+  {
+   "id": "ben",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "pr:46",
+    "pr:47"
+   ]
+  },
+  {
+   "id": "sofia",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "pr:44",
+    "pr:50"
+   ]
+  }
+ ],
+ "signals": [
+  {
+   "id": "burst:pr:50",
+   "type": "burst",
+   "basis": "heuristic",
+   "confidence": "high",
+   "subject": {
+    "kind": "work_item",
+    "id": "pr:50"
+   },
+   "summary": "pr:50: 16 commits within 30 min (machine-paced stream)",
+   "work_items": [
+    "pr:50"
+   ],
+   "actors": [
+    "sofia"
+   ],
+   "evidence": [
+    {
+     "kind": "commit",
+     "ref": "16 commits",
+     "url": null,
+     "detail": "from 2026-09-18T13:00:00+00:00 to 2026-09-18T13:30:00+00:00; agent trailer declared"
+    }
+   ],
+   "rule": {
+    "name": "burst.rate",
+    "params": {
+     "min_commits": 8,
+     "window_minutes": 30
+    }
+   }
+  }
+ ],
+ "provenance": {
+  "source": "synthetic (Demo Lab)",
+  "collector": "blackmath88/observstory",
+  "collector_version": "1.0.0",
+  "observations_fetched_at": "2026-09-18T14:00:00Z",
+  "api_calls": 0,
+  "rate_limit_remaining": null,
+  "degraded": []
+ }
+}

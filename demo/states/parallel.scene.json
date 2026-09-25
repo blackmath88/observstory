@@ -1,0 +1,291 @@
+{
+ "schema": "observstory.scene/v1",
+ "source": {
+  "snapshot_schema": "observstory.snapshot/v1",
+  "generated_at": "2026-09-14T17:00:00Z",
+  "repository": "northstar/chat-app",
+  "repository_url": null,
+  "default_branch": "main",
+  "window_hours": 48,
+  "title": "Northstar chat (synthetic demo)",
+  "lanes_source": "config",
+  "degraded": []
+ },
+ "status": {
+  "in_flight": 3,
+  "overlaps": 0,
+  "waiting": 0,
+  "stale": 0,
+  "areas_active": 5
+ },
+ "zones": [
+  {
+   "id": "intent",
+   "label": "Intent",
+   "description": "Why and what: docs and decisions",
+   "order": 0,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "core",
+   "label": "Core",
+   "description": "Conversation and search engine",
+   "order": 1,
+   "state": "active",
+   "groups": [
+    "area:src/conversation",
+    "area:src/search"
+   ],
+   "in_flight": 2,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "interface",
+   "label": "Interface",
+   "description": "What people see",
+   "order": 2,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [
+    "web"
+   ],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "verify",
+   "label": "Verify",
+   "description": "Tests and evaluations",
+   "order": 3,
+   "state": "active",
+   "groups": [
+    "area:evals"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "ship",
+   "label": "Ship",
+   "description": "Build and deploy",
+   "order": 4,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [
+    ".github"
+   ],
+   "recently_changed_more": 0
+  }
+ ],
+ "groups": [
+  {
+   "id": "area:src/conversation",
+   "zone": "core",
+   "path": "src/conversation",
+   "label": "conversation",
+   "parent": "src",
+   "attention": false,
+   "nodes": [
+    "pr:41"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-09-14T15:00:00Z",
+   "age_hours": 2.0
+  },
+  {
+   "id": "area:src/search",
+   "zone": "core",
+   "path": "src/search",
+   "label": "search",
+   "parent": "src",
+   "attention": false,
+   "nodes": [
+    "pr:42"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-09-14T15:00:00Z",
+   "age_hours": 2.0
+  },
+  {
+   "id": "area:evals",
+   "zone": "verify",
+   "path": "evals",
+   "label": "evals",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:45"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-09-14T15:00:00Z",
+   "age_hours": 2.0
+  }
+ ],
+ "nodes": [
+  {
+   "id": "pr:45",
+   "kind": "pull_request",
+   "group": "area:evals",
+   "zone": "verify",
+   "ref": "#45",
+   "label": "Search relevance evals",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "sofia"
+   ],
+   "last_activity_at": "2026-09-14T15:00:00Z",
+   "age_hours": 2.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:41",
+   "kind": "pull_request",
+   "group": "area:src/conversation",
+   "zone": "core",
+   "ref": "#41",
+   "label": "Conversation memory",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-09-14T15:00:00Z",
+   "age_hours": 2.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:42",
+   "kind": "pull_request",
+   "group": "area:src/search",
+   "zone": "core",
+   "ref": "#42",
+   "label": "Search index",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "ben"
+   ],
+   "last_activity_at": "2026-09-14T15:00:00Z",
+   "age_hours": 2.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  }
+ ],
+ "edges": [],
+ "attention": [],
+ "details": {
+  "signals": {},
+  "work_items": {
+   "pr:41": {
+    "paths": [
+     "src/conversation/memory.py",
+     "src/conversation/store.py"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "src/conversation"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "e9d03a99fea174c3dd53baed43383ee35683b49f",
+     "source": "compare"
+    },
+    "commit_count": 3,
+    "waiting_on": []
+   },
+   "pr:42": {
+    "paths": [
+     "src/search/index.py",
+     "src/search/query.py"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "src/search"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "e9d03a99fea174c3dd53baed43383ee35683b49f",
+     "source": "compare"
+    },
+    "commit_count": 2,
+    "waiting_on": []
+   },
+   "pr:45": {
+    "paths": [
+     "evals/search/cases.json",
+     "evals/search/run.py"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "evals"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "e9d03a99fea174c3dd53baed43383ee35683b49f",
+     "source": "compare"
+    },
+    "commit_count": 2,
+    "waiting_on": []
+   }
+  },
+  "areas": {
+   "src/conversation": {
+    "files": [
+     "src/conversation/memory.py",
+     "src/conversation/store.py"
+    ],
+    "actors": [
+     "alice"
+    ],
+    "recent_commits": 0
+   },
+   "src/search": {
+    "files": [
+     "src/search/index.py",
+     "src/search/query.py"
+    ],
+    "actors": [
+     "ben"
+    ],
+    "recent_commits": 0
+   },
+   "evals": {
+    "files": [
+     "evals/search/cases.json",
+     "evals/search/run.py"
+    ],
+    "actors": [
+     "sofia"
+    ],
+    "recent_commits": 0
+   }
+  }
+ }
+}
