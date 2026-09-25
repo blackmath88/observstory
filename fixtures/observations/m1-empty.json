@@ -1,0 +1,30 @@
+{
+  "schema": "observstory.observations/v1",
+  "note": "nothing happened in the window: every lane is quiet",
+  "fetched_at": "2026-09-21T12:00:00Z",
+  "repository": {
+    "full_name": "example/chat-app",
+    "url": "https://github.com/example/chat-app",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": "Fictional fixture repository"
+  },
+  "window": {
+    "hours": 48
+  },
+  "trigger": {
+    "event": "fixture",
+    "run_id": "m1",
+    "sha": ""
+  },
+  "commits": [],
+  "pull_requests": [],
+  "branches": [],
+  "issues": [],
+  "meta": {
+    "source": "fixture",
+    "api_calls": 0,
+    "rate_limit_remaining": null,
+    "degraded": []
+  }
+}

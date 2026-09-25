@@ -111,3 +111,18 @@ event-triggered runs plus in-flight evidence, and both work inside an Action.
 ## ADR-022: A dependency chain explains shared ground transitively
 **Decision.** If A waits on B and B waits on C, A's shared ground with C is explained too.
 **Evidence.** 9 of the 20 non-useful final signals came from two-level stacks (uv#21962 → #21961 → #21963; uv#21952 → #21944 → #21942). Fixture p2.
+
+## ADR-023: Project Map is the default human view, compiled through a scene contract (issue #3)
+**Context.** The radar showed that the snapshot can be projected visually, but people read it as a dashboard. The preferred direction is a calm architectural infographic that builds itself from project state.
+**Decision.** Add a pure compiler (`map_compiler.py`) from snapshot v1 to **scene v1** (`schema/scene-v1.json`): zone, group, node, edge, plus attention and details. A renderer (`map_render.py`) draws it with HTML/CSS and SVG connectors. The Action writes the map to `index.html` and `data/scene.json`. The radar stays at `radar.html`.
+**Rejected.** A force-directed graph (the project already has semantic order). Canvas (it loses selectable text, links and accessibility). A frontend framework (no need: one inline script of about 250 lines). BADGE, NOTE and BAND as scene types (no data needs them yet).
+**Consequence.** Layout meaning is testable without a browser. Scene validation runs on every build.
+
+## ADR-024: A work item is drawn once, in its primary area
+**Decision.** A node goes in the area where the work item changes the most files (ties go to the earlier lane, then the path). Every other area it touches shows a compact reference. Landed changes appear only where they take part in a relationship.
+**Why.** Drawing a work item in every area it touches multiplied a 97-file PR into 20 cards. Drawing it only once made the lanes it also changes look quiet. Self-observation showed both failures.
+
+## ADR-025: A branch that moved past its merged PR is work in flight again
+**Context.** Self-observation during issue #3: this repo's working branch was reused after PR #4 merged, and its new commits were invisible. The collector skipped every branch that had ever been a PR head, to avoid reporting squash-merged branches left behind.
+**Decision.** Skip a branch while it has an **open** PR, or while it still points at the last commit of a closed or merged PR. Once it moves on, it's new work.
+**Test.** `tests/test_collect.py::test_branch_reused_after_its_pr_merged_is_new_work`.

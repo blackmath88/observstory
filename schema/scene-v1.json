@@ -1,0 +1,432 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/blackmath88/observstory/schema/scene-v1.json",
+  "title": "Observstory Scene v1",
+  "description": "Visual intermediate representation compiled from snapshot v1 (docs/ui/scene-grammar.md). Four element types: zone, group, node, edge, plus ordered attention references and an on-demand evidence payload. No coordinates: layout belongs to the renderer.",
+  "type": "object",
+  "required": [
+    "schema",
+    "source",
+    "status",
+    "zones",
+    "groups",
+    "nodes",
+    "edges",
+    "attention",
+    "details"
+  ],
+  "properties": {
+    "schema": {
+      "const": "observstory.scene/v1"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "snapshot_schema",
+        "generated_at",
+        "repository",
+        "default_branch",
+        "window_hours"
+      ],
+      "properties": {
+        "snapshot_schema": {
+          "type": "string"
+        },
+        "generated_at": {
+          "type": "string"
+        },
+        "repository": {
+          "type": "string"
+        },
+        "default_branch": {
+          "type": "string"
+        },
+        "window_hours": {
+          "type": "number"
+        },
+        "degraded": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "required": [
+        "in_flight",
+        "overlaps",
+        "waiting",
+        "stale"
+      ],
+      "properties": {
+        "in_flight": {
+          "type": "integer"
+        },
+        "overlaps": {
+          "type": "integer"
+        },
+        "waiting": {
+          "type": "integer"
+        },
+        "stale": {
+          "type": "integer"
+        }
+      }
+    },
+    "zones": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/zone"
+      }
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/group"
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/node"
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/edge"
+      }
+    },
+    "attention": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/attention"
+      }
+    },
+    "details": {
+      "type": "object",
+      "required": [
+        "signals",
+        "work_items",
+        "areas"
+      ]
+    }
+  },
+  "$defs": {
+    "zone": {
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "order",
+        "state",
+        "groups",
+        "in_flight",
+        "attention"
+      ],
+      "description": "A lane. Rendered in `order`; quiet zones collapse.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "order": {
+          "type": "integer"
+        },
+        "state": {
+          "enum": [
+            "active",
+            "quiet"
+          ]
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "in_flight": {
+          "type": "integer"
+        },
+        "attention": {
+          "type": "boolean"
+        },
+        "recently_changed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recently_changed_more": {
+          "type": "integer"
+        }
+      }
+    },
+    "group": {
+      "type": "object",
+      "required": [
+        "id",
+        "zone",
+        "path",
+        "label",
+        "attention",
+        "nodes",
+        "also_active"
+      ],
+      "description": "An area with something to show. `nodes` are drawn here; `also_active` are drawn in their primary area and only referenced here.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "zone": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "parent": {
+          "type": "string"
+        },
+        "attention": {
+          "type": "boolean"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "also_active": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recent_commits": {
+          "type": "integer"
+        },
+        "age_hours": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      }
+    },
+    "node": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "group",
+        "zone",
+        "ref",
+        "label",
+        "status",
+        "actors",
+        "age_hours",
+        "flags",
+        "attention"
+      ],
+      "description": "A work item, placed once in its primary area.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "pull_request",
+            "branch",
+            "direct"
+          ]
+        },
+        "group": {
+          "type": "string"
+        },
+        "zone": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "enum": [
+            "in_flight",
+            "draft",
+            "stale",
+            "landed"
+          ]
+        },
+        "review_state": {
+          "enum": [
+            "draft",
+            "no_reviewer",
+            "review_requested",
+            null
+          ]
+        },
+        "actors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "age_hours": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "also_touches": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "waiting",
+              "burst",
+              "agent",
+              "unproposed"
+            ]
+          }
+        },
+        "attention": {
+          "type": "boolean"
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "from",
+        "to",
+        "directed",
+        "basis",
+        "confidence",
+        "attention",
+        "signals"
+      ],
+      "description": "overlap: undirected, one per pair of work items, listing every area and shared file. waiting: from the waiting item to the one it waits on.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "overlap",
+            "waiting"
+          ]
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "directed": {
+          "type": "boolean"
+        },
+        "basis": {
+          "enum": [
+            "derived",
+            "heuristic",
+            "declared"
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "attention": {
+          "type": "boolean"
+        },
+        "areas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "signals": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "attention": {
+      "type": "object",
+      "required": [
+        "kind",
+        "target",
+        "label",
+        "confidence",
+        "basis"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "overlap",
+            "waiting",
+            "stale"
+          ]
+        },
+        "target": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "basis": {
+          "enum": [
+            "derived",
+            "heuristic",
+            "declared"
+          ]
+        }
+      }
+    }
+  }
+}

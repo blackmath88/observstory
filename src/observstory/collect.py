@@ -61,11 +61,14 @@ def collect(client: Client, repository: str, cfg: dict, now: dt.datetime, trigge
     raw_prs = client.get(f"{base}/pulls", {"state": "all", "sort": "updated", "direction": "desc",
                                            "per_page": min(int(cfg["max_pull_requests"]), 100)}, essential=True)
     open_budget = int(cfg["max_open_pull_requests"])
-    prs, pr_heads = [], set()
+    prs, open_heads, closed_heads = [], set(), {}
     for pr in raw_prs:
         head_repo = ((pr.get("head") or {}).get("repo") or {}).get("full_name")
         if head_repo == repository:
-            pr_heads.add(pr["head"]["ref"])
+            if pr.get("state") == "open":
+                open_heads.add(pr["head"]["ref"])
+            else:  # remember where a closed/merged PR's branch ended; new commits after that are new work
+                closed_heads.setdefault(pr["head"]["ref"], set()).add(pr["head"].get("sha"))
         row = {
             "number": pr["number"], "title": pr.get("title", ""), "body": (pr.get("body") or "")[:4000],
             "state": pr.get("state"), "draft": bool(pr.get("draft")), "merged": bool(pr.get("merged_at")),
@@ -105,14 +108,17 @@ def collect(client: Client, repository: str, cfg: dict, now: dt.datetime, trigge
             degraded.append(f"pr:{pr['number']} not inspected (max_open_pull_requests reached)")
         prs.append(row)
 
-    # Unmerged branches with no PR (squash-merged PR branches are excluded via pr_heads)
+    # Branches with no open PR. A closed/merged PR's branch is skipped only while it still points at the
+    # PR's last commit (a squash-merged branch left behind); if it moved on, it carries new work.
     branches = []
     try:
         raw_branches = client.get(f"{base}/branches", {"per_page": 100})
     except BudgetExhausted:
         raw_branches = []
         degraded.append("branch list skipped (API budget)")
-    candidates = [b["name"] for b in raw_branches if b["name"] != default_branch and b["name"] not in pr_heads]
+    candidates = [b["name"] for b in raw_branches
+                  if b["name"] != default_branch and b["name"] not in open_heads
+                  and (b.get("commit") or {}).get("sha") not in closed_heads.get(b["name"], set())]
     if len(candidates) > int(cfg["max_branches"]):
         degraded.append(f"{len(candidates) - int(cfg['max_branches'])} branches without PRs not inspected (max_branches)")
     for name in candidates[: int(cfg["max_branches"])]:

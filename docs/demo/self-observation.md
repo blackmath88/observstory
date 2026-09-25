@@ -42,6 +42,18 @@ reading the real GitHub API.
    dashboard now groups overlaps with the same work-item set into one entry. The snapshot keeps
    per-area signals, so agents can still query by path.
 
+## Project Map (issue #3)
+
+The same repository, run live after the Project Map landed
+([`prototypes/project-map/self.html`](../../prototypes/project-map/self.html), from `self-snapshot.json`):
+
+![Project Map of this repository](img/map-self.png)
+
+One branch is in flight. It's drawn in `prototypes`, where it changes the most files, and referenced
+in every other area it touches. Nothing needs a conversation. Getting there took one more
+dogfooding fix: the collector had been skipping any branch that was ever a PR head, so this reused
+branch was invisible (ADR-025).
+
 ## Reproduce
 
 ```bash

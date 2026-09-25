@@ -75,6 +75,21 @@ class Collector(unittest.TestCase):
         [ov] = [s for s in snap["signals"] if s["type"] == "overlap"]
         self.assertEqual(ov["work_items"], ["branch:ben/spike", "pr:8"])
 
+    def test_branch_reused_after_its_pr_merged_is_new_work(self):
+        """Self-observation (issue #3): a branch that moved past its merged PR's last commit is in flight again."""
+        routes = dict(ROUTES)
+        routes[f"{R}/pulls"] = [dict(ROUTES[f"{R}/pulls"][1], head={"ref": "alice/memory", "sha": "old", "repo": {"full_name": "o/r"}})]
+        routes[f"{R}/branches"] = [{"name": "main"}, {"name": "alice/memory", "commit": {"sha": "new"}},
+                                   {"name": "left-behind", "commit": {"sha": "gone"}}]
+        routes[f"{R}/compare/main...alice/memory"] = {"ahead_by": 1, "files": [{"filename": "src/chat/x.py"}], "commits": []}
+        routes[f"{R}/pulls"].append(dict(ROUTES[f"{R}/pulls"][1], number=6,
+                                         head={"ref": "left-behind", "sha": "gone", "repo": {"full_name": "o/r"}}))
+        client = FakeClient()
+        client_get = client.get
+        client.get = lambda path, params=None, essential=False: routes[path] if path in routes else client_get(path, params, essential=essential)
+        obs = collect(client, "o/r", config.normalise(None), NOW)
+        self.assertEqual([b["name"] for b in obs["branches"]], ["alice/memory"])
+
     def test_degrades_and_records_instead_of_failing(self):
         obs = collect(FakeClient(budget=3), "o/r", config.normalise(None), NOW)
         self.assertTrue(obs["meta"]["degraded"])

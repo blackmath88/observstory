@@ -11,6 +11,7 @@ import json
 import pathlib
 
 SCHEMA_PATH = pathlib.Path(__file__).resolve().parents[2] / "schema" / "snapshot-v1.json"
+SCENE_SCHEMA_PATH = SCHEMA_PATH.with_name("scene-v1.json")
 TYPES = {"object": dict, "array": list, "string": str, "boolean": bool, "null": type(None)}
 
 
@@ -77,4 +78,37 @@ def validate(snapshot: dict, schema: dict | None = None) -> list[str]:
     _check(snapshot, schema, schema, "$", errors)
     if not errors:
         errors += semantic_errors(snapshot)
+    return errors
+
+
+def scene_errors(scene: dict) -> list[str]:
+    """Scene contract plus referential integrity: every reference resolves, every node is drawn once."""
+    schema = json.loads(SCENE_SCHEMA_PATH.read_text(encoding="utf-8"))
+    errors: list[str] = []
+    _check(scene, schema, schema, "$", errors)
+    if errors:
+        return errors
+    zones = {z["id"] for z in scene["zones"]}
+    groups = {g["id"]: g for g in scene["groups"]}
+    nodes = {n["id"]: n for n in scene["nodes"]}
+    edges = {e["id"] for e in scene["edges"]}
+    for g in scene["groups"]:
+        if g["zone"] not in zones:
+            errors.append(f"group {g['id']}: unknown zone {g['zone']}")
+        for n in g["nodes"] + g["also_active"]:
+            if n not in nodes:
+                errors.append(f"group {g['id']}: unknown node {n}")
+    for n in scene["nodes"]:
+        if n["group"] not in groups or n["id"] not in groups[n["group"]]["nodes"]:
+            errors.append(f"node {n['id']}: not drawn in its group {n['group']}")
+    placed = [n for g in scene["groups"] for n in g["nodes"]]
+    if len(placed) != len(set(placed)):
+        errors.append("a node is drawn in more than one group")
+    for e in scene["edges"]:
+        for end in (e["from"], e["to"]):
+            if end not in nodes:
+                errors.append(f"edge {e['id']}: unknown node {end}")
+    for a in scene["attention"]:
+        if a["target"] not in edges and a["target"] not in nodes:
+            errors.append(f"attention {a['label']!r}: unknown target {a['target']}")
     return errors

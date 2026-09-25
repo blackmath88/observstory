@@ -1,0 +1,180 @@
+{
+  "schema": "observstory.observations/v1",
+  "note": "three PRs change src/editor/state.ts pairwise, a fourth works elsewhere; one area, three overlaps",
+  "fetched_at": "2026-09-21T12:00:00Z",
+  "repository": {
+    "full_name": "example/chat-app",
+    "url": "https://github.com/example/chat-app",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": "Fictional fixture repository"
+  },
+  "window": {
+    "hours": 48
+  },
+  "trigger": {
+    "event": "fixture",
+    "run_id": "m2",
+    "sha": ""
+  },
+  "commits": [],
+  "pull_requests": [
+    {
+      "number": 70,
+      "title": "Selection model rewrite",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "alice/pr-70",
+      "base": "main",
+      "author": {
+        "login": "alice",
+        "name": "Alice",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T09:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/70",
+      "requested_reviewers": [],
+      "paths": [
+        "src/editor/state.ts",
+        "src/editor/select.ts"
+      ],
+      "commits": [
+        {
+          "sha": "000004e000000000000000000000000000000000",
+          "date": "2026-09-21T06:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "work 0"
+        },
+        {
+          "sha": "000004f000000000000000000000000000000000",
+          "date": "2026-09-21T09:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "work 1"
+        }
+      ]
+    },
+    {
+      "number": 71,
+      "title": "Undo stack batching",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "ben/pr-71",
+      "base": "main",
+      "author": {
+        "login": "ben",
+        "name": "Ben",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T07:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/71",
+      "requested_reviewers": [],
+      "paths": [
+        "src/editor/state.ts",
+        "src/editor/history.ts"
+      ],
+      "commits": [
+        {
+          "sha": "0000050000000000000000000000000000000000",
+          "date": "2026-09-21T07:00:00Z",
+          "author": {
+            "login": "ben",
+            "name": "Ben",
+            "type": "User"
+          },
+          "message": "work 0"
+        }
+      ]
+    },
+    {
+      "number": 72,
+      "title": "Collaborative cursors",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "sofia/pr-72",
+      "base": "main",
+      "author": {
+        "login": "sofia",
+        "name": "Sofia",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T10:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/72",
+      "requested_reviewers": [],
+      "paths": [
+        "src/editor/state.ts",
+        "src/editor/presence.ts"
+      ],
+      "commits": [
+        {
+          "sha": "0000051000000000000000000000000000000000",
+          "date": "2026-09-21T10:00:00Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "work 0"
+        }
+      ]
+    },
+    {
+      "number": 73,
+      "title": "Docs: keyboard shortcuts",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "dana/pr-73",
+      "base": "main",
+      "author": {
+        "login": "dana",
+        "name": "Dana",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T08:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/73",
+      "requested_reviewers": [],
+      "paths": [
+        "docs/shortcuts.md"
+      ],
+      "commits": [
+        {
+          "sha": "0000052000000000000000000000000000000000",
+          "date": "2026-09-21T08:00:00Z",
+          "author": {
+            "login": "dana",
+            "name": "Dana",
+            "type": "User"
+          },
+          "message": "work 0"
+        }
+      ]
+    }
+  ],
+  "branches": [],
+  "issues": [],
+  "meta": {
+    "source": "fixture",
+    "api_calls": 0,
+    "rate_limit_remaining": null,
+    "degraded": []
+  }
+}

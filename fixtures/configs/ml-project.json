@@ -1,0 +1,57 @@
+{
+  "title": "ML project (fixture)",
+  "lanes": [
+    {
+      "id": "data",
+      "label": "Data",
+      "description": "Sources and datasets",
+      "paths": [
+        "data/",
+        "datasets/"
+      ]
+    },
+    {
+      "id": "pipeline",
+      "label": "Pipeline",
+      "description": "Ingestion and features",
+      "paths": [
+        "pipeline/"
+      ]
+    },
+    {
+      "id": "model",
+      "label": "Model",
+      "description": "Training and architecture",
+      "paths": [
+        "model/",
+        "train/"
+      ]
+    },
+    {
+      "id": "eval",
+      "label": "Eval",
+      "description": "Benchmarks and error analysis",
+      "paths": [
+        "eval/"
+      ]
+    },
+    {
+      "id": "api",
+      "label": "API",
+      "description": "Serving",
+      "paths": [
+        "api/",
+        "serve/"
+      ]
+    },
+    {
+      "id": "docs",
+      "label": "Docs",
+      "description": "Explaining it",
+      "paths": [
+        "docs/",
+        "README.md"
+      ]
+    }
+  ]
+}

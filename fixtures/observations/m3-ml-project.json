@@ -1,0 +1,179 @@
+{
+  "schema": "observstory.observations/v1",
+  "note": "six custom lanes; a feature change crosses pipeline and model; eval waits on the model PR",
+  "fetched_at": "2026-09-21T12:00:00Z",
+  "repository": {
+    "full_name": "example/chat-app",
+    "url": "https://github.com/example/chat-app",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": "Fictional fixture repository"
+  },
+  "window": {
+    "hours": 48
+  },
+  "trigger": {
+    "event": "fixture",
+    "run_id": "m3",
+    "sha": ""
+  },
+  "commits": [],
+  "pull_requests": [
+    {
+      "number": 80,
+      "title": "Tokenizer v2 features",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "alice/pr-80",
+      "base": "main",
+      "author": {
+        "login": "alice",
+        "name": "Alice",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T08:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/80",
+      "requested_reviewers": [],
+      "paths": [
+        "pipeline/features/tokenize.py",
+        "model/embed.py"
+      ],
+      "commits": [
+        {
+          "sha": "0000053000000000000000000000000000000000",
+          "date": "2026-09-21T04:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "work 0"
+        },
+        {
+          "sha": "0000054000000000000000000000000000000000",
+          "date": "2026-09-21T08:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "work 1"
+        }
+      ]
+    },
+    {
+      "number": 81,
+      "title": "Embedding dim 1024",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "ben/pr-81",
+      "base": "main",
+      "author": {
+        "login": "ben",
+        "name": "Ben",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T06:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/81",
+      "requested_reviewers": [],
+      "paths": [
+        "model/embed.py",
+        "model/config.yaml"
+      ],
+      "commits": [
+        {
+          "sha": "0000055000000000000000000000000000000000",
+          "date": "2026-09-21T06:00:00Z",
+          "author": {
+            "login": "ben",
+            "name": "Ben",
+            "type": "User"
+          },
+          "message": "work 0"
+        }
+      ]
+    },
+    {
+      "number": 82,
+      "title": "Eval set for multilingual",
+      "body": "Depends on #81 for the new embedding size.",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "sofia/pr-82",
+      "base": "main",
+      "author": {
+        "login": "sofia",
+        "name": "Sofia",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T09:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/82",
+      "requested_reviewers": [],
+      "paths": [
+        "eval/multilingual/run.py"
+      ],
+      "commits": [
+        {
+          "sha": "0000056000000000000000000000000000000000",
+          "date": "2026-09-21T09:00:00Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "work 0"
+        }
+      ]
+    },
+    {
+      "number": 83,
+      "title": "Serve batch endpoint",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "dana/pr-83",
+      "base": "main",
+      "author": {
+        "login": "dana",
+        "name": "Dana",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T10:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/83",
+      "requested_reviewers": [],
+      "paths": [
+        "api/batch.py"
+      ],
+      "commits": [
+        {
+          "sha": "0000057000000000000000000000000000000000",
+          "date": "2026-09-21T10:00:00Z",
+          "author": {
+            "login": "dana",
+            "name": "Dana",
+            "type": "User"
+          },
+          "message": "work 0"
+        }
+      ]
+    }
+  ],
+  "branches": [],
+  "issues": [],
+  "meta": {
+    "source": "fixture",
+    "api_calls": 0,
+    "rate_limit_remaining": null,
+    "degraded": []
+  }
+}

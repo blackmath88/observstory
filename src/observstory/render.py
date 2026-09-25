@@ -373,7 +373,7 @@ footer{{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);color:
 
 <footer>
   <span>Observstory describes work, not people. There are no scores and no rankings. Signals are labelled derived, heuristic or declared.</span>
-  <span><a href="data/snapshot.json">snapshot.json</a> · <a href="data/observations.json">observations.json</a> ·
+  <span><a href="index.html">Project Map</a> · <a href="data/snapshot.json">snapshot.json</a> · <a href="data/observations.json">observations.json</a> ·
   schema {esc(snap["schema"])}</span>
 </footer>
 </main>

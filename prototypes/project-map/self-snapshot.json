@@ -1,0 +1,1960 @@
+{
+  "schema": "observstory.snapshot/v1",
+  "generated_at": "2026-09-25T01:26:43Z",
+  "trigger": {
+    "event": "local-dogfood",
+    "run_id": "",
+    "sha": ""
+  },
+  "repository": {
+    "full_name": "blackmath88/observstory",
+    "url": "https://github.com/blackmath88/observstory",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": null
+  },
+  "window": {
+    "hours": 72.0,
+    "since": "2026-09-22T01:26:43Z"
+  },
+  "config": {
+    "source": "file",
+    "lanes_source": "config",
+    "title": "Observstory / self-observation",
+    "signals": {
+      "overlap_min_work_items": 2,
+      "stale_hours": 72,
+      "burst_min_commits": 8,
+      "burst_window_minutes": 30,
+      "overlap_require_shared_file": true
+    },
+    "ignore": [
+      "package-lock.json",
+      "yarn.lock",
+      "pnpm-lock.yaml",
+      "poetry.lock",
+      "Cargo.lock",
+      "go.sum",
+      "uv.lock",
+      "Gemfile.lock",
+      "composer.lock",
+      "dist/",
+      "build/",
+      "node_modules/",
+      "vendor/",
+      "*.min.js",
+      "*.min.css",
+      "*.map",
+      "CHANGELOG*",
+      ".changeset/",
+      "*.api.md",
+      "/observstory/"
+    ],
+    "containers": [
+      "src",
+      "packages",
+      "apps",
+      "services",
+      "lib",
+      "libs",
+      "app",
+      "modules",
+      "crates",
+      "internal",
+      "cmd"
+    ],
+    "area_depth": 1
+  },
+  "summary": {
+    "in_flight": 1,
+    "areas_active": 18,
+    "commits_in_window": 26,
+    "open_issues": 1,
+    "signals": {
+      "overlap": 0,
+      "stale": 0,
+      "waiting": 0,
+      "burst": 2
+    }
+  },
+  "lanes": [
+    {
+      "id": "model",
+      "label": "Model",
+      "description": "Problem, product boundary and decisions",
+      "source": "config",
+      "areas": [
+        "ARCHITECTURE.md",
+        "CLAUDE_DOUBLE_DIAMOND.md",
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "docs"
+      ],
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "recent_commits": 13
+    },
+    {
+      "id": "engine",
+      "label": "Engine",
+      "description": "Collection, derivation and signals",
+      "source": "config",
+      "areas": [
+        "scripts",
+        "src/observstory"
+      ],
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "recent_commits": 9
+    },
+    {
+      "id": "evidence",
+      "label": "Evidence",
+      "description": "Tests, fixtures and prototypes that prove or falsify signals",
+      "source": "config",
+      "areas": [
+        "fixtures",
+        "prototypes",
+        "tests"
+      ],
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "recent_commits": 11
+    },
+    {
+      "id": "integration",
+      "label": "Integration",
+      "description": "Install surface and repository automation",
+      "source": "config",
+      "areas": [
+        ".github",
+        "action.yml"
+      ],
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "recent_commits": 4
+    },
+    {
+      "id": "contract",
+      "label": "Contract",
+      "description": "Configuration and typed state contracts",
+      "source": "config",
+      "areas": [
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "schema"
+      ],
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "recent_commits": 9
+    },
+    {
+      "id": "other",
+      "label": "Other",
+      "description": "Paths no lane claims",
+      "source": "fallback",
+      "areas": [
+        ".gitignore",
+        "evals"
+      ],
+      "in_flight": [
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "recent_commits": 5
+    }
+  ],
+  "areas": [
+    {
+      "id": ".github",
+      "lane": "integration",
+      "in_flight": [
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        ".github/workflows/observstory.yml"
+      ],
+      "recent_commits": 3,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:15:47Z"
+    },
+    {
+      "id": ".gitignore",
+      "lane": "other",
+      "in_flight": [
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        ".gitignore"
+      ],
+      "recent_commits": 2,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:15:47Z"
+    },
+    {
+      "id": "ARCHITECTURE.md",
+      "lane": "model",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "ARCHITECTURE.md"
+      ],
+      "recent_commits": 3,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:26:09Z"
+    },
+    {
+      "id": "CLAUDE_DOUBLE_DIAMOND.md",
+      "lane": "model",
+      "in_flight": [
+        "direct:blackmath88"
+      ],
+      "files": [
+        "CLAUDE_DOUBLE_DIAMOND.md"
+      ],
+      "recent_commits": 1,
+      "actors": [
+        "blackmath88"
+      ],
+      "last_activity_at": "2026-09-25T01:15:47Z"
+    },
+    {
+      "id": "DECISIONS.md",
+      "lane": "model",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "DECISIONS.md"
+      ],
+      "recent_commits": 6,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:26:09Z"
+    },
+    {
+      "id": "README.md",
+      "lane": "model",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "README.md"
+      ],
+      "recent_commits": 6,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:26:09Z"
+    },
+    {
+      "id": "ROADMAP.md",
+      "lane": "model",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "ROADMAP.md"
+      ],
+      "recent_commits": 5,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:26:09Z"
+    },
+    {
+      "id": "action.yml",
+      "lane": "integration",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "action.yml"
+      ],
+      "recent_commits": 3,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:26:09Z"
+    },
+    {
+      "id": "docs",
+      "lane": "model",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "docs/definition/README.md",
+        "docs/definition/design-principles.md",
+        "docs/definition/jobs-to-be-done.md",
+        "docs/definition/product-thesis.md",
+        "docs/definition/signal-specs.md",
+        "docs/definition/system-boundary.md",
+        "docs/definition/v1-scope.md",
+        "docs/demo/README.md",
+        "docs/demo/acceptance.md",
+        "docs/demo/agent-contract.md",
+        "docs/demo/img/demo-t1.png",
+        "docs/demo/img/demo-t2.png",
+        "docs/demo/img/demo-t3.png",
+        "docs/demo/img/self.png",
+        "docs/demo/img/timeline.png",
+        "docs/demo/self-observation.md",
+        "docs/demo/self/data/observations.json",
+        "docs/demo/self/data/snapshot.json",
+        "docs/demo/self/index.html",
+        "docs/development/concept-comparison.md",
+        "docs/development/experiment-results.md",
+        "docs/development/precision-report.md",
+        "docs/development/ui-language.md",
+        "docs/discovery/README.md",
+        "docs/discovery/ai-collaboration-failures.md",
+        "docs/discovery/competitive-landscape.md",
+        "docs/discovery/observable-signals.md",
+        "docs/discovery/opportunity-map.json",
+        "docs/discovery/problem-space.md",
+        "docs/discovery/risks.md",
+        "docs/discovery/scenarios.md",
+        "docs/ui/design-language.md",
+        "docs/ui/project-map.md",
+        "docs/ui/scene-grammar.md"
+      ],
+      "recent_commits": 9,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:26:09Z"
+    },
+    {
+      "id": "evals",
+      "lane": "other",
+      "in_flight": [
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "evals/precision/README.md",
+        "evals/precision/analyze.py",
+        "evals/precision/data/ablation.json",
+        "evals/precision/data/astral-sh__uv.observations.json",
+        "evals/precision/data/breakdown-a-base-aware.json",
+        "evals/precision/data/breakdown.json",
+        "evals/precision/data/fastapi__fastapi.observations.json",
+        "evals/precision/data/final-labels.json",
+        "evals/precision/data/final-signals.json",
+        "evals/precision/data/labels.json",
+        "evals/precision/data/measurements-a-base-aware.json",
+        "evals/precision/data/measurements.json",
+        "evals/precision/data/pydantic__pydantic.observations.json",
+        "evals/precision/data/sample.json",
+        "evals/precision/data/stage0-v1-overlap-counts.json",
+        "evals/precision/data/tldraw__tldraw.observations.json",
+        "evals/precision/data/vitejs__vite.observations.json",
+        "evals/precision/data/withastro__astro.observations.json",
+        "evals/precision/git_study.py",
+        "evals/precision/run.py",
+        "evals/precision/sample.py"
+      ],
+      "recent_commits": 3,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:15:47Z"
+    },
+    {
+      "id": "fixtures",
+      "lane": "evidence",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "fixtures/configs/ml-project.json",
+        "fixtures/make_fixtures.py",
+        "fixtures/observations/b1-baseline.json",
+        "fixtures/observations/b2-after-divergence.json",
+        "fixtures/observations/b3-rebased.json",
+        "fixtures/observations/b4-merged-main-in-first-parent.json",
+        "fixtures/observations/b4-merged-main-in.json",
+        "fixtures/observations/b5-squash-merged.json",
+        "fixtures/observations/b6-base-before-window.json",
+        "fixtures/observations/b7-base-unresolved.json",
+        "fixtures/observations/demo-t0.json",
+        "fixtures/observations/demo-t1.json",
+        "fixtures/observations/demo-t2.json",
+        "fixtures/observations/demo-t3.json",
+        "fixtures/observations/e1-same-subsystem.json",
+        "fixtures/observations/e2-parallel.json",
+        "fixtures/observations/e3-stale.json",
+        "fixtures/observations/e4-waiting.json",
+        "fixtures/observations/e5-burst.json",
+        "fixtures/observations/e6-direct-pushes.json",
+        "fixtures/observations/m1-empty.json",
+        "fixtures/observations/m2-crowded-area.json",
+        "fixtures/observations/m3-ml-project.json",
+        "fixtures/observations/m4-long-labels.json",
+        "fixtures/observations/p1-stale-excluded.json",
+        "fixtures/observations/p2-transitive-stack.json"
+      ],
+      "recent_commits": 5,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:26:09Z"
+    },
+    {
+      "id": "observstory.config.example.json",
+      "lane": "contract",
+      "in_flight": [
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "observstory.config.example.json"
+      ],
+      "recent_commits": 3,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:15:47Z"
+    },
+    {
+      "id": "observstory.config.json",
+      "lane": "contract",
+      "in_flight": [
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "observstory.config.json"
+      ],
+      "recent_commits": 3,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:15:47Z"
+    },
+    {
+      "id": "prototypes",
+      "lane": "evidence",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "prototypes/README.md",
+        "prototypes/agent-surface/build.py",
+        "prototypes/agent-surface/examples/01-changes-since.json",
+        "prototypes/agent-surface/examples/02-work-near.json",
+        "prototypes/agent-surface/examples/03-proposed-task.json",
+        "prototypes/agent-surface/examples/04-open-loops.json",
+        "prototypes/agent-surface/examples/05-handoff.json",
+        "prototypes/agent-surface/mcp-tools.json",
+        "prototypes/project-map/build.py",
+        "prototypes/project-map/crowded-area.html",
+        "prototypes/project-map/demo-t0.html",
+        "prototypes/project-map/demo-t1.html",
+        "prototypes/project-map/demo-t2.html",
+        "prototypes/project-map/demo-t3.html",
+        "prototypes/project-map/long-labels.html",
+        "prototypes/project-map/ml-project.html",
+        "prototypes/project-map/quiet.html",
+        "prototypes/project-map/shot.js",
+        "prototypes/project-map/stale.html",
+        "prototypes/radar/build.py",
+        "prototypes/radar/demo-t0.html",
+        "prototypes/radar/demo-t1.html",
+        "prototypes/radar/demo-t2.html",
+        "prototypes/radar/demo-t3.html",
+        "prototypes/timeline/build.py",
+        "prototypes/timeline/index.html",
+        "prototypes/timeline/timeline.json"
+      ],
+      "recent_commits": 7,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:26:09Z"
+    },
+    {
+      "id": "schema",
+      "lane": "contract",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "schema/scene-v1.json",
+        "schema/snapshot-v0.json",
+        "schema/snapshot-v1.json"
+      ],
+      "recent_commits": 6,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:26:09Z"
+    },
+    {
+      "id": "scripts",
+      "lane": "engine",
+      "in_flight": [
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "scripts/observstory.py"
+      ],
+      "recent_commits": 3,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:15:47Z"
+    },
+    {
+      "id": "src/observstory",
+      "lane": "engine",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "src/observstory/__init__.py",
+        "src/observstory/cli.py",
+        "src/observstory/collect.py",
+        "src/observstory/config.py",
+        "src/observstory/derive.py",
+        "src/observstory/github.py",
+        "src/observstory/map_compiler.py",
+        "src/observstory/map_render.py",
+        "src/observstory/query.py",
+        "src/observstory/render.py",
+        "src/observstory/signals.py",
+        "src/observstory/validate.py"
+      ],
+      "recent_commits": 8,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:26:09Z"
+    },
+    {
+      "id": "tests",
+      "lane": "evidence",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88",
+        "direct:claude"
+      ],
+      "files": [
+        "tests/__init__.py",
+        "tests/helpers.py",
+        "tests/test_base_aware.py",
+        "tests/test_collect.py",
+        "tests/test_derive.py",
+        "tests/test_map.py",
+        "tests/test_principles.py",
+        "tests/test_query.py",
+        "tests/test_signals.py"
+      ],
+      "recent_commits": 8,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T01:26:09Z"
+    }
+  ],
+  "work_items": [
+    {
+      "id": "branch:claude/blissful-brahmagupta-xtddua",
+      "kind": "branch",
+      "number": null,
+      "title": "claude/blissful-brahmagupta-xtddua",
+      "url": "https://github.com/blackmath88/observstory/tree/claude/blissful-brahmagupta-xtddua",
+      "state": "unproposed",
+      "in_flight": true,
+      "head": "claude/blissful-brahmagupta-xtddua",
+      "base": "main",
+      "actors": [
+        "claude"
+      ],
+      "created_at": null,
+      "last_activity_at": "2026-09-25T01:26:09Z",
+      "paths": [
+        "ARCHITECTURE.md",
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "action.yml",
+        "docs/ui/design-language.md",
+        "docs/ui/project-map.md",
+        "docs/ui/scene-grammar.md",
+        "fixtures/configs/ml-project.json",
+        "fixtures/make_fixtures.py",
+        "fixtures/observations/m1-empty.json",
+        "fixtures/observations/m2-crowded-area.json",
+        "fixtures/observations/m3-ml-project.json",
+        "fixtures/observations/m4-long-labels.json",
+        "prototypes/project-map/build.py",
+        "prototypes/project-map/crowded-area.html",
+        "prototypes/project-map/demo-t0.html",
+        "prototypes/project-map/demo-t1.html",
+        "prototypes/project-map/demo-t2.html",
+        "prototypes/project-map/demo-t3.html",
+        "prototypes/project-map/long-labels.html",
+        "prototypes/project-map/ml-project.html",
+        "prototypes/project-map/quiet.html",
+        "prototypes/project-map/shot.js",
+        "prototypes/project-map/stale.html",
+        "schema/scene-v1.json",
+        "src/observstory/cli.py",
+        "src/observstory/map_compiler.py",
+        "src/observstory/map_render.py",
+        "src/observstory/render.py",
+        "src/observstory/validate.py",
+        "tests/test_map.py"
+      ],
+      "areas": [
+        "ARCHITECTURE.md",
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "action.yml",
+        "docs",
+        "fixtures",
+        "prototypes",
+        "schema",
+        "src/observstory",
+        "tests"
+      ],
+      "lanes": [
+        "contract",
+        "engine",
+        "evidence",
+        "integration",
+        "model"
+      ],
+      "commit_count": 2,
+      "review_state": null,
+      "waiting_on": [],
+      "agent_declared": true,
+      "burst": null,
+      "merge_base": {
+        "sha": "daf7895da66d32975204e65d4b26d308f06184fb",
+        "source": "compare"
+      }
+    },
+    {
+      "id": "pr:4",
+      "kind": "pull_request",
+      "number": 4,
+      "title": "Base-aware overlap (issue #2) and real-repository precision study",
+      "url": "https://github.com/blackmath88/observstory/pull/4",
+      "state": "merged",
+      "in_flight": false,
+      "head": "claude/blissful-brahmagupta-xtddua",
+      "base": "main",
+      "actors": [
+        "blackmath88"
+      ],
+      "created_at": "2026-09-25T01:15:42Z",
+      "last_activity_at": "2026-09-25T01:15:48Z",
+      "paths": [],
+      "areas": [],
+      "lanes": [],
+      "commit_count": 0,
+      "review_state": null,
+      "waiting_on": [],
+      "agent_declared": false,
+      "burst": null,
+      "merge_base": null
+    },
+    {
+      "id": "direct:blackmath88",
+      "kind": "direct",
+      "number": null,
+      "title": "Direct pushes to main",
+      "url": "https://github.com/blackmath88/observstory/commit/daf7895da66d32975204e65d4b26d308f06184fb",
+      "state": "pushed",
+      "in_flight": false,
+      "head": "main",
+      "base": null,
+      "actors": [
+        "blackmath88"
+      ],
+      "created_at": null,
+      "last_activity_at": "2026-09-25T01:15:47Z",
+      "paths": [
+        ".github/workflows/observstory.yml",
+        ".gitignore",
+        "ARCHITECTURE.md",
+        "CLAUDE_DOUBLE_DIAMOND.md",
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "action.yml",
+        "docs/definition/README.md",
+        "docs/definition/design-principles.md",
+        "docs/definition/jobs-to-be-done.md",
+        "docs/definition/product-thesis.md",
+        "docs/definition/signal-specs.md",
+        "docs/definition/system-boundary.md",
+        "docs/definition/v1-scope.md",
+        "docs/demo/README.md",
+        "docs/demo/acceptance.md",
+        "docs/demo/agent-contract.md",
+        "docs/demo/img/demo-t1.png",
+        "docs/demo/img/demo-t2.png",
+        "docs/demo/img/demo-t3.png",
+        "docs/demo/img/self.png",
+        "docs/demo/img/timeline.png",
+        "docs/demo/self-observation.md",
+        "docs/demo/self/data/observations.json",
+        "docs/demo/self/data/snapshot.json",
+        "docs/demo/self/index.html",
+        "docs/development/concept-comparison.md",
+        "docs/development/experiment-results.md",
+        "docs/development/precision-report.md",
+        "docs/development/ui-language.md",
+        "docs/discovery/README.md",
+        "docs/discovery/ai-collaboration-failures.md",
+        "docs/discovery/competitive-landscape.md",
+        "docs/discovery/observable-signals.md",
+        "docs/discovery/opportunity-map.json",
+        "docs/discovery/problem-space.md",
+        "docs/discovery/risks.md",
+        "docs/discovery/scenarios.md",
+        "evals/precision/README.md",
+        "evals/precision/analyze.py",
+        "evals/precision/data/ablation.json",
+        "evals/precision/data/astral-sh__uv.observations.json",
+        "evals/precision/data/breakdown-a-base-aware.json",
+        "evals/precision/data/breakdown.json",
+        "evals/precision/data/fastapi__fastapi.observations.json",
+        "evals/precision/data/final-labels.json",
+        "evals/precision/data/final-signals.json",
+        "evals/precision/data/labels.json",
+        "evals/precision/data/measurements-a-base-aware.json",
+        "evals/precision/data/measurements.json",
+        "evals/precision/data/pydantic__pydantic.observations.json",
+        "evals/precision/data/sample.json",
+        "evals/precision/data/stage0-v1-overlap-counts.json",
+        "evals/precision/data/tldraw__tldraw.observations.json",
+        "evals/precision/data/vitejs__vite.observations.json",
+        "evals/precision/data/withastro__astro.observations.json",
+        "evals/precision/git_study.py",
+        "evals/precision/run.py",
+        "evals/precision/sample.py",
+        "fixtures/make_fixtures.py",
+        "fixtures/observations/b1-baseline.json",
+        "fixtures/observations/b2-after-divergence.json",
+        "fixtures/observations/b3-rebased.json",
+        "fixtures/observations/b4-merged-main-in-first-parent.json",
+        "fixtures/observations/b4-merged-main-in.json",
+        "fixtures/observations/b5-squash-merged.json",
+        "fixtures/observations/b6-base-before-window.json",
+        "fixtures/observations/b7-base-unresolved.json",
+        "fixtures/observations/demo-t0.json",
+        "fixtures/observations/demo-t1.json",
+        "fixtures/observations/demo-t2.json",
+        "fixtures/observations/demo-t3.json",
+        "fixtures/observations/e1-same-subsystem.json",
+        "fixtures/observations/e2-parallel.json",
+        "fixtures/observations/e3-stale.json",
+        "fixtures/observations/e4-waiting.json",
+        "fixtures/observations/e5-burst.json",
+        "fixtures/observations/e6-direct-pushes.json",
+        "fixtures/observations/p1-stale-excluded.json",
+        "fixtures/observations/p2-transitive-stack.json",
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "prototypes/README.md",
+        "prototypes/agent-surface/build.py",
+        "prototypes/agent-surface/examples/01-changes-since.json",
+        "prototypes/agent-surface/examples/02-work-near.json",
+        "prototypes/agent-surface/examples/03-proposed-task.json",
+        "prototypes/agent-surface/examples/04-open-loops.json",
+        "prototypes/agent-surface/examples/05-handoff.json",
+        "prototypes/agent-surface/mcp-tools.json",
+        "prototypes/radar/build.py",
+        "prototypes/radar/demo-t0.html",
+        "prototypes/radar/demo-t1.html",
+        "prototypes/radar/demo-t2.html",
+        "prototypes/radar/demo-t3.html",
+        "prototypes/timeline/build.py",
+        "prototypes/timeline/index.html",
+        "prototypes/timeline/timeline.json",
+        "schema/snapshot-v0.json",
+        "schema/snapshot-v1.json",
+        "scripts/observstory.py",
+        "src/observstory/__init__.py",
+        "src/observstory/cli.py",
+        "src/observstory/collect.py",
+        "src/observstory/config.py",
+        "src/observstory/derive.py",
+        "src/observstory/github.py",
+        "src/observstory/query.py",
+        "src/observstory/render.py",
+        "src/observstory/signals.py",
+        "src/observstory/validate.py",
+        "tests/__init__.py",
+        "tests/helpers.py",
+        "tests/test_base_aware.py",
+        "tests/test_collect.py",
+        "tests/test_derive.py",
+        "tests/test_principles.py",
+        "tests/test_query.py",
+        "tests/test_signals.py"
+      ],
+      "areas": [
+        ".github",
+        ".gitignore",
+        "ARCHITECTURE.md",
+        "CLAUDE_DOUBLE_DIAMOND.md",
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "action.yml",
+        "docs",
+        "evals",
+        "fixtures",
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "prototypes",
+        "schema",
+        "scripts",
+        "src/observstory",
+        "tests"
+      ],
+      "lanes": [
+        "contract",
+        "engine",
+        "evidence",
+        "integration",
+        "model",
+        "other"
+      ],
+      "commit_count": 12,
+      "review_state": null,
+      "waiting_on": [],
+      "agent_declared": false,
+      "burst": {
+        "commits": 10,
+        "minutes": 10,
+        "total_commits": 12
+      },
+      "merge_base": null
+    },
+    {
+      "id": "direct:claude",
+      "kind": "direct",
+      "number": null,
+      "title": "Direct pushes to main",
+      "url": "https://github.com/blackmath88/observstory/commit/016c98c1d6d29766039e08ae88f3140dde8f90b8",
+      "state": "pushed",
+      "in_flight": false,
+      "head": "main",
+      "base": null,
+      "actors": [
+        "claude"
+      ],
+      "created_at": null,
+      "last_activity_at": "2026-09-25T01:05:50Z",
+      "paths": [
+        ".github/workflows/observstory.yml",
+        ".gitignore",
+        "ARCHITECTURE.md",
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "action.yml",
+        "docs/definition/README.md",
+        "docs/definition/design-principles.md",
+        "docs/definition/jobs-to-be-done.md",
+        "docs/definition/product-thesis.md",
+        "docs/definition/signal-specs.md",
+        "docs/definition/system-boundary.md",
+        "docs/definition/v1-scope.md",
+        "docs/demo/README.md",
+        "docs/demo/acceptance.md",
+        "docs/demo/agent-contract.md",
+        "docs/demo/img/demo-t1.png",
+        "docs/demo/img/demo-t2.png",
+        "docs/demo/img/demo-t3.png",
+        "docs/demo/img/self.png",
+        "docs/demo/img/timeline.png",
+        "docs/demo/self-observation.md",
+        "docs/demo/self/data/observations.json",
+        "docs/demo/self/data/snapshot.json",
+        "docs/demo/self/index.html",
+        "docs/development/concept-comparison.md",
+        "docs/development/experiment-results.md",
+        "docs/development/precision-report.md",
+        "docs/development/ui-language.md",
+        "docs/discovery/README.md",
+        "docs/discovery/ai-collaboration-failures.md",
+        "docs/discovery/competitive-landscape.md",
+        "docs/discovery/observable-signals.md",
+        "docs/discovery/opportunity-map.json",
+        "docs/discovery/problem-space.md",
+        "docs/discovery/risks.md",
+        "docs/discovery/scenarios.md",
+        "evals/precision/README.md",
+        "evals/precision/analyze.py",
+        "evals/precision/data/ablation.json",
+        "evals/precision/data/astral-sh__uv.observations.json",
+        "evals/precision/data/breakdown-a-base-aware.json",
+        "evals/precision/data/breakdown.json",
+        "evals/precision/data/fastapi__fastapi.observations.json",
+        "evals/precision/data/final-labels.json",
+        "evals/precision/data/final-signals.json",
+        "evals/precision/data/labels.json",
+        "evals/precision/data/measurements-a-base-aware.json",
+        "evals/precision/data/measurements.json",
+        "evals/precision/data/pydantic__pydantic.observations.json",
+        "evals/precision/data/sample.json",
+        "evals/precision/data/stage0-v1-overlap-counts.json",
+        "evals/precision/data/tldraw__tldraw.observations.json",
+        "evals/precision/data/vitejs__vite.observations.json",
+        "evals/precision/data/withastro__astro.observations.json",
+        "evals/precision/git_study.py",
+        "evals/precision/run.py",
+        "evals/precision/sample.py",
+        "fixtures/make_fixtures.py",
+        "fixtures/observations/b1-baseline.json",
+        "fixtures/observations/b2-after-divergence.json",
+        "fixtures/observations/b3-rebased.json",
+        "fixtures/observations/b4-merged-main-in-first-parent.json",
+        "fixtures/observations/b4-merged-main-in.json",
+        "fixtures/observations/b5-squash-merged.json",
+        "fixtures/observations/b6-base-before-window.json",
+        "fixtures/observations/b7-base-unresolved.json",
+        "fixtures/observations/demo-t0.json",
+        "fixtures/observations/demo-t1.json",
+        "fixtures/observations/demo-t2.json",
+        "fixtures/observations/demo-t3.json",
+        "fixtures/observations/e1-same-subsystem.json",
+        "fixtures/observations/e2-parallel.json",
+        "fixtures/observations/e3-stale.json",
+        "fixtures/observations/e4-waiting.json",
+        "fixtures/observations/e5-burst.json",
+        "fixtures/observations/e6-direct-pushes.json",
+        "fixtures/observations/p1-stale-excluded.json",
+        "fixtures/observations/p2-transitive-stack.json",
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "prototypes/README.md",
+        "prototypes/agent-surface/build.py",
+        "prototypes/agent-surface/examples/01-changes-since.json",
+        "prototypes/agent-surface/examples/02-work-near.json",
+        "prototypes/agent-surface/examples/03-proposed-task.json",
+        "prototypes/agent-surface/examples/04-open-loops.json",
+        "prototypes/agent-surface/examples/05-handoff.json",
+        "prototypes/agent-surface/mcp-tools.json",
+        "prototypes/radar/build.py",
+        "prototypes/radar/demo-t0.html",
+        "prototypes/radar/demo-t1.html",
+        "prototypes/radar/demo-t2.html",
+        "prototypes/radar/demo-t3.html",
+        "prototypes/timeline/build.py",
+        "prototypes/timeline/index.html",
+        "prototypes/timeline/timeline.json",
+        "schema/snapshot-v1.json",
+        "scripts/observstory.py",
+        "src/observstory/__init__.py",
+        "src/observstory/cli.py",
+        "src/observstory/collect.py",
+        "src/observstory/config.py",
+        "src/observstory/derive.py",
+        "src/observstory/github.py",
+        "src/observstory/query.py",
+        "src/observstory/render.py",
+        "src/observstory/signals.py",
+        "src/observstory/validate.py",
+        "tests/__init__.py",
+        "tests/helpers.py",
+        "tests/test_base_aware.py",
+        "tests/test_collect.py",
+        "tests/test_derive.py",
+        "tests/test_principles.py",
+        "tests/test_query.py",
+        "tests/test_signals.py"
+      ],
+      "areas": [
+        ".github",
+        ".gitignore",
+        "ARCHITECTURE.md",
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "action.yml",
+        "docs",
+        "evals",
+        "fixtures",
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "prototypes",
+        "schema",
+        "scripts",
+        "src/observstory",
+        "tests"
+      ],
+      "lanes": [
+        "contract",
+        "engine",
+        "evidence",
+        "integration",
+        "model",
+        "other"
+      ],
+      "commit_count": 14,
+      "review_state": null,
+      "waiting_on": [],
+      "agent_declared": true,
+      "burst": {
+        "commits": 9,
+        "minutes": 18,
+        "total_commits": 14
+      },
+      "merge_base": null
+    },
+    {
+      "id": "pr:1",
+      "kind": "pull_request",
+      "number": 1,
+      "title": "Refactor to v1 architecture: snapshot-driven pipeline with signals",
+      "url": "https://github.com/blackmath88/observstory/pull/1",
+      "state": "merged",
+      "in_flight": false,
+      "head": "claude/blissful-brahmagupta-xtddua",
+      "base": "main",
+      "actors": [
+        "blackmath88"
+      ],
+      "created_at": "2026-09-25T00:17:53Z",
+      "last_activity_at": "2026-09-25T00:22:30Z",
+      "paths": [],
+      "areas": [],
+      "lanes": [],
+      "commit_count": 0,
+      "review_state": null,
+      "waiting_on": [],
+      "agent_declared": false,
+      "burst": null,
+      "merge_base": null
+    }
+  ],
+  "commits": [
+    {
+      "sha": "daf7895da66d32975204e65d4b26d308f06184fb",
+      "url": "https://github.com/blackmath88/observstory/commit/daf7895da66d32975204e65d4b26d308f06184fb",
+      "message": "Merge PR #4: base-aware overlap (issue #2) and precision study",
+      "date": "2026-09-25T01:15:47Z",
+      "actor": "blackmath88",
+      "paths": [
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "docs/definition/signal-specs.md",
+        "docs/demo/img/self.png",
+        "docs/demo/self-observation.md",
+        "docs/demo/self/data/observations.json",
+        "docs/demo/self/data/snapshot.json",
+        "docs/demo/self/index.html",
+        "docs/development/experiment-results.md",
+        "docs/development/precision-report.md",
+        "docs/discovery/observable-signals.md",
+        "evals/precision/README.md",
+        "evals/precision/analyze.py",
+        "evals/precision/data/ablation.json",
+        "evals/precision/data/astral-sh__uv.observations.json",
+        "evals/precision/data/breakdown-a-base-aware.json",
+        "evals/precision/data/breakdown.json",
+        "evals/precision/data/fastapi__fastapi.observations.json",
+        "evals/precision/data/final-labels.json",
+        "evals/precision/data/final-signals.json",
+        "evals/precision/data/labels.json",
+        "evals/precision/data/measurements-a-base-aware.json",
+        "evals/precision/data/measurements.json",
+        "evals/precision/data/pydantic__pydantic.observations.json",
+        "evals/precision/data/sample.json",
+        "evals/precision/data/stage0-v1-overlap-counts.json",
+        "evals/precision/data/tldraw__tldraw.observations.json",
+        "evals/precision/data/vitejs__vite.observations.json",
+        "evals/precision/data/withastro__astro.observations.json",
+        "evals/precision/git_study.py",
+        "evals/precision/run.py",
+        "evals/precision/sample.py",
+        "fixtures/make_fixtures.py",
+        "fixtures/observations/b1-baseline.json",
+        "fixtures/observations/b2-after-divergence.json",
+        "fixtures/observations/b3-rebased.json",
+        "fixtures/observations/b4-merged-main-in-first-parent.json",
+        "fixtures/observations/b4-merged-main-in.json",
+        "fixtures/observations/b5-squash-merged.json",
+        "fixtures/observations/b6-base-before-window.json",
+        "fixtures/observations/b7-base-unresolved.json",
+        "fixtures/observations/demo-t0.json",
+        "fixtures/observations/demo-t1.json",
+        "fixtures/observations/demo-t2.json",
+        "fixtures/observations/demo-t3.json",
+        "fixtures/observations/p1-stale-excluded.json",
+        "fixtures/observations/p2-transitive-stack.json",
+        "prototypes/agent-surface/examples/01-changes-since.json",
+        "prototypes/agent-surface/examples/02-work-near.json",
+        "prototypes/agent-surface/examples/03-proposed-task.json",
+        "prototypes/radar/demo-t0.html",
+        "prototypes/radar/demo-t1.html",
+        "prototypes/radar/demo-t2.html",
+        "prototypes/radar/demo-t3.html",
+        "prototypes/timeline/index.html",
+        "prototypes/timeline/timeline.json",
+        "schema/snapshot-v1.json",
+        "src/observstory/collect.py",
+        "src/observstory/config.py",
+        "src/observstory/derive.py",
+        "src/observstory/signals.py",
+        "tests/test_base_aware.py",
+        "tests/test_collect.py",
+        "tests/test_derive.py",
+        "tests/test_signals.py"
+      ],
+      "areas": [
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "docs",
+        "evals",
+        "fixtures",
+        "prototypes",
+        "schema",
+        "src/observstory",
+        "tests"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "016c98c1d6d29766039e08ae88f3140dde8f90b8",
+      "url": "https://github.com/blackmath88/observstory/commit/016c98c1d6d29766039e08ae88f3140dde8f90b8",
+      "message": "develop: precision report on six real repositories; correct self-observation",
+      "date": "2026-09-25T01:05:50Z",
+      "actor": "claude",
+      "paths": [
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "docs/definition/signal-specs.md",
+        "docs/demo/img/self.png",
+        "docs/demo/self-observation.md",
+        "docs/demo/self/data/observations.json",
+        "docs/demo/self/data/snapshot.json",
+        "docs/demo/self/index.html",
+        "docs/development/experiment-results.md",
+        "docs/development/precision-report.md",
+        "docs/discovery/observable-signals.md",
+        "evals/precision/README.md",
+        "evals/precision/analyze.py",
+        "evals/precision/data/ablation.json",
+        "evals/precision/data/astral-sh__uv.observations.json",
+        "evals/precision/data/breakdown-a-base-aware.json",
+        "evals/precision/data/breakdown.json",
+        "evals/precision/data/final-labels.json",
+        "evals/precision/data/final-signals.json",
+        "evals/precision/data/labels.json",
+        "evals/precision/data/measurements-a-base-aware.json",
+        "evals/precision/data/measurements.json",
+        "evals/precision/data/pydantic__pydantic.observations.json",
+        "evals/precision/data/sample.json",
+        "evals/precision/data/stage0-v1-overlap-counts.json",
+        "evals/precision/data/tldraw__tldraw.observations.json",
+        "evals/precision/data/withastro__astro.observations.json",
+        "evals/precision/git_study.py",
+        "evals/precision/sample.py"
+      ],
+      "areas": [
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "docs",
+        "evals"
+      ],
+      "work_item": "direct:claude"
+    },
+    {
+      "sha": "5c925852da58e192809360678d491131e7dc13e0",
+      "url": "https://github.com/blackmath88/observstory/commit/5c925852da58e192809360678d491131e7dc13e0",
+      "message": "develop: evidence-driven overlap refinements from the precision study",
+      "date": "2026-09-25T01:05:50Z",
+      "actor": "claude",
+      "paths": [
+        "fixtures/make_fixtures.py",
+        "fixtures/observations/demo-t0.json",
+        "fixtures/observations/demo-t1.json",
+        "fixtures/observations/demo-t2.json",
+        "fixtures/observations/demo-t3.json",
+        "fixtures/observations/p1-stale-excluded.json",
+        "fixtures/observations/p2-transitive-stack.json",
+        "prototypes/agent-surface/examples/01-changes-since.json",
+        "prototypes/agent-surface/examples/02-work-near.json",
+        "prototypes/agent-surface/examples/03-proposed-task.json",
+        "prototypes/radar/demo-t0.html",
+        "prototypes/radar/demo-t1.html",
+        "prototypes/radar/demo-t2.html",
+        "prototypes/radar/demo-t3.html",
+        "prototypes/timeline/index.html",
+        "prototypes/timeline/timeline.json",
+        "src/observstory/config.py",
+        "src/observstory/derive.py",
+        "src/observstory/signals.py",
+        "tests/test_collect.py",
+        "tests/test_derive.py",
+        "tests/test_signals.py"
+      ],
+      "areas": [
+        "fixtures",
+        "prototypes",
+        "src/observstory",
+        "tests"
+      ],
+      "work_item": "direct:claude"
+    },
+    {
+      "sha": "90a4b5362fc66d6dfa3fa53bbbaa42ecfea68036",
+      "url": "https://github.com/blackmath88/observstory/commit/90a4b5362fc66d6dfa3fa53bbbaa42ecfea68036",
+      "message": "develop: precision study tooling (API and git-only modes)",
+      "date": "2026-09-25T00:54:17Z",
+      "actor": "claude",
+      "paths": [
+        "evals/precision/data/astral-sh__uv.observations.json",
+        "evals/precision/data/fastapi__fastapi.observations.json",
+        "evals/precision/data/pydantic__pydantic.observations.json",
+        "evals/precision/data/tldraw__tldraw.observations.json",
+        "evals/precision/data/vitejs__vite.observations.json",
+        "evals/precision/data/withastro__astro.observations.json",
+        "evals/precision/git_study.py",
+        "evals/precision/run.py"
+      ],
+      "areas": [
+        "evals"
+      ],
+      "work_item": "direct:claude"
+    },
+    {
+      "sha": "8f4ccc22429ed1dcb2def85e5eb2920b28925d4c",
+      "url": "https://github.com/blackmath88/observstory/commit/8f4ccc22429ed1dcb2def85e5eb2920b28925d4c",
+      "message": "develop: base-aware overlap (issue #2)",
+      "date": "2026-09-25T00:39:55Z",
+      "actor": "claude",
+      "paths": [
+        "fixtures/make_fixtures.py",
+        "fixtures/observations/b1-baseline.json",
+        "fixtures/observations/b2-after-divergence.json",
+        "fixtures/observations/b3-rebased.json",
+        "fixtures/observations/b4-merged-main-in-first-parent.json",
+        "fixtures/observations/b4-merged-main-in.json",
+        "fixtures/observations/b5-squash-merged.json",
+        "fixtures/observations/b6-base-before-window.json",
+        "fixtures/observations/b7-base-unresolved.json",
+        "fixtures/observations/demo-t0.json",
+        "fixtures/observations/demo-t1.json",
+        "fixtures/observations/demo-t2.json",
+        "fixtures/observations/demo-t3.json",
+        "schema/snapshot-v1.json",
+        "src/observstory/collect.py",
+        "src/observstory/derive.py",
+        "src/observstory/signals.py",
+        "tests/test_base_aware.py",
+        "tests/test_collect.py",
+        "tests/test_signals.py"
+      ],
+      "areas": [
+        "fixtures",
+        "schema",
+        "src/observstory",
+        "tests"
+      ],
+      "work_item": "direct:claude"
+    },
+    {
+      "sha": "797fabf1e652267c2bbc77b9b5ac5044fb487ac8",
+      "url": "https://github.com/blackmath88/observstory/commit/797fabf1e652267c2bbc77b9b5ac5044fb487ac8",
+      "message": "Merge main (squash of PR #1) into branch",
+      "date": "2026-09-25T00:37:26Z",
+      "actor": "claude",
+      "paths": [],
+      "areas": [],
+      "work_item": "direct:claude"
+    },
+    {
+      "sha": "0fd94b7bc4074fce687d3a59257f1468e695d5bc",
+      "url": "https://github.com/blackmath88/observstory/commit/0fd94b7bc4074fce687d3a59257f1468e695d5bc",
+      "message": "observstory v1: typed in-flight project state",
+      "date": "2026-09-25T00:22:29Z",
+      "actor": "blackmath88",
+      "paths": [
+        ".github/workflows/observstory.yml",
+        ".gitignore",
+        "ARCHITECTURE.md",
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "action.yml",
+        "docs/definition/README.md",
+        "docs/definition/design-principles.md",
+        "docs/definition/jobs-to-be-done.md",
+        "docs/definition/product-thesis.md",
+        "docs/definition/signal-specs.md",
+        "docs/definition/system-boundary.md",
+        "docs/definition/v1-scope.md",
+        "docs/demo/README.md",
+        "docs/demo/acceptance.md",
+        "docs/demo/agent-contract.md",
+        "docs/demo/img/demo-t1.png",
+        "docs/demo/img/demo-t2.png",
+        "docs/demo/img/demo-t3.png",
+        "docs/demo/img/self.png",
+        "docs/demo/img/timeline.png",
+        "docs/demo/self-observation.md",
+        "docs/demo/self/data/observations.json",
+        "docs/demo/self/data/snapshot.json",
+        "docs/demo/self/index.html",
+        "docs/development/concept-comparison.md",
+        "docs/development/experiment-results.md",
+        "docs/development/ui-language.md",
+        "docs/discovery/README.md",
+        "docs/discovery/ai-collaboration-failures.md",
+        "docs/discovery/competitive-landscape.md",
+        "docs/discovery/observable-signals.md",
+        "docs/discovery/opportunity-map.json",
+        "docs/discovery/problem-space.md",
+        "docs/discovery/risks.md",
+        "docs/discovery/scenarios.md",
+        "fixtures/make_fixtures.py",
+        "fixtures/observations/demo-t0.json",
+        "fixtures/observations/demo-t1.json",
+        "fixtures/observations/demo-t2.json",
+        "fixtures/observations/demo-t3.json",
+        "fixtures/observations/e1-same-subsystem.json",
+        "fixtures/observations/e2-parallel.json",
+        "fixtures/observations/e3-stale.json",
+        "fixtures/observations/e4-waiting.json",
+        "fixtures/observations/e5-burst.json",
+        "fixtures/observations/e6-direct-pushes.json",
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "prototypes/README.md",
+        "prototypes/agent-surface/build.py",
+        "prototypes/agent-surface/examples/01-changes-since.json",
+        "prototypes/agent-surface/examples/02-work-near.json",
+        "prototypes/agent-surface/examples/03-proposed-task.json",
+        "prototypes/agent-surface/examples/04-open-loops.json",
+        "prototypes/agent-surface/examples/05-handoff.json",
+        "prototypes/agent-surface/mcp-tools.json",
+        "prototypes/radar/build.py",
+        "prototypes/radar/demo-t0.html",
+        "prototypes/radar/demo-t1.html",
+        "prototypes/radar/demo-t2.html",
+        "prototypes/radar/demo-t3.html",
+        "prototypes/timeline/build.py",
+        "prototypes/timeline/index.html",
+        "prototypes/timeline/timeline.json",
+        "schema/snapshot-v1.json",
+        "scripts/observstory.py",
+        "src/observstory/__init__.py",
+        "src/observstory/cli.py",
+        "src/observstory/collect.py",
+        "src/observstory/config.py",
+        "src/observstory/derive.py",
+        "src/observstory/github.py",
+        "src/observstory/query.py",
+        "src/observstory/render.py",
+        "src/observstory/signals.py",
+        "src/observstory/validate.py",
+        "tests/__init__.py",
+        "tests/helpers.py",
+        "tests/test_collect.py",
+        "tests/test_derive.py",
+        "tests/test_principles.py",
+        "tests/test_query.py",
+        "tests/test_signals.py"
+      ],
+      "areas": [
+        ".github",
+        ".gitignore",
+        "ARCHITECTURE.md",
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "action.yml",
+        "docs",
+        "fixtures",
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "prototypes",
+        "schema",
+        "scripts",
+        "src/observstory",
+        "tests"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "9a7c23b6ac53a3847c836093a7a4487ce2e45358",
+      "url": "https://github.com/blackmath88/observstory/commit/9a7c23b6ac53a3847c836093a7a4487ce2e45358",
+      "message": "deliver: collector tests with fake GitHub, acceptance map, ADR-016/017",
+      "date": "2026-09-25T00:09:46Z",
+      "actor": "claude",
+      "paths": [
+        "DECISIONS.md",
+        "README.md",
+        "docs/demo/acceptance.md",
+        "tests/test_collect.py"
+      ],
+      "areas": [
+        "DECISIONS.md",
+        "README.md",
+        "docs",
+        "tests"
+      ],
+      "work_item": "direct:claude"
+    },
+    {
+      "sha": "5a82707351aa863fb8d17391b0c0122c31bb669c",
+      "url": "https://github.com/blackmath88/observstory/commit/5a82707351aa863fb8d17391b0c0122c31bb669c",
+      "message": "deliver: self-observation snapshot and findings; group overlaps by work-item set; radar label nudging",
+      "date": "2026-09-25T00:09:03Z",
+      "actor": "claude",
+      "paths": [
+        "docs/demo/img/self.png",
+        "docs/demo/self-observation.md",
+        "docs/demo/self/data/observations.json",
+        "docs/demo/self/data/snapshot.json",
+        "docs/demo/self/index.html",
+        "prototypes/radar/demo-t0.html",
+        "prototypes/radar/demo-t1.html",
+        "prototypes/radar/demo-t2.html",
+        "prototypes/radar/demo-t3.html",
+        "src/observstory/render.py"
+      ],
+      "areas": [
+        "docs",
+        "prototypes",
+        "src/observstory"
+      ],
+      "work_item": "direct:claude"
+    },
+    {
+      "sha": "b7d3bae68f4fecdb7215a9f877a693f6c599cd90",
+      "url": "https://github.com/blackmath88/observstory/commit/b7d3bae68f4fecdb7215a9f877a693f6c599cd90",
+      "message": "deliver: radar hardening, anchored ignore fix from dogfooding, demo, agent contract, README/ARCHITECTURE/ROADMAP",
+      "date": "2026-09-25T00:07:59Z",
+      "actor": "claude",
+      "paths": [
+        "ARCHITECTURE.md",
+        "README.md",
+        "ROADMAP.md",
+        "docs/demo/README.md",
+        "docs/demo/agent-contract.md",
+        "docs/demo/img/demo-t1.png",
+        "docs/demo/img/demo-t2.png",
+        "docs/demo/img/demo-t3.png",
+        "docs/demo/img/timeline.png",
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "prototypes/radar/demo-t0.html",
+        "prototypes/radar/demo-t1.html",
+        "prototypes/radar/demo-t2.html",
+        "prototypes/radar/demo-t3.html",
+        "src/observstory/config.py",
+        "src/observstory/derive.py",
+        "src/observstory/render.py",
+        "tests/test_derive.py"
+      ],
+      "areas": [
+        "ARCHITECTURE.md",
+        "README.md",
+        "ROADMAP.md",
+        "docs",
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "prototypes",
+        "src/observstory",
+        "tests"
+      ],
+      "work_item": "direct:claude"
+    },
+    {
+      "sha": "8bbc4f8bddee6f4854c2d03a6855689358063064",
+      "url": "https://github.com/blackmath88/observstory/commit/8bbc4f8bddee6f4854c2d03a6855689358063064",
+      "message": "deliver: zero-config action inputs, event-first dogfood workflow with tests, anonymous public reads",
+      "date": "2026-09-25T00:05:01Z",
+      "actor": "claude",
+      "paths": [
+        ".github/workflows/observstory.yml",
+        "action.yml",
+        "src/observstory/github.py",
+        "tests/test_signals.py"
+      ],
+      "areas": [
+        ".github",
+        "action.yml",
+        "src/observstory",
+        "tests"
+      ],
+      "work_item": "direct:claude"
+    },
+    {
+      "sha": "9d6cfbddf213cd321a14ebf820ccab6fd948321c",
+      "url": "https://github.com/blackmath88/observstory/commit/9d6cfbddf213cd321a14ebf820ccab6fd948321c",
+      "message": "develop: concept comparison, experiment results, UI language; select radar + agent surface",
+      "date": "2026-09-25T00:04:26Z",
+      "actor": "claude",
+      "paths": [
+        "DECISIONS.md",
+        "docs/development/concept-comparison.md",
+        "docs/development/experiment-results.md",
+        "docs/development/ui-language.md",
+        "prototypes/README.md"
+      ],
+      "areas": [
+        "DECISIONS.md",
+        "docs",
+        "prototypes"
+      ],
+      "work_item": "direct:claude"
+    },
+    {
+      "sha": "bccb8d999d7c060d608e6158d6b9909375b713d6",
+      "url": "https://github.com/blackmath88/observstory/commit/bccb8d999d7c060d608e6158d6b9909375b713d6",
+      "message": "develop: radar, timeline and agent-surface prototypes",
+      "date": "2026-09-25T00:03:30Z",
+      "actor": "claude",
+      "paths": [
+        "prototypes/agent-surface/build.py",
+        "prototypes/agent-surface/examples/01-changes-since.json",
+        "prototypes/agent-surface/examples/02-work-near.json",
+        "prototypes/agent-surface/examples/03-proposed-task.json",
+        "prototypes/agent-surface/examples/04-open-loops.json",
+        "prototypes/agent-surface/examples/05-handoff.json",
+        "prototypes/agent-surface/mcp-tools.json",
+        "prototypes/radar/build.py",
+        "prototypes/radar/demo-t0.html",
+        "prototypes/radar/demo-t1.html",
+        "prototypes/radar/demo-t2.html",
+        "prototypes/radar/demo-t3.html",
+        "prototypes/timeline/build.py",
+        "prototypes/timeline/index.html",
+        "prototypes/timeline/timeline.json"
+      ],
+      "areas": [
+        "prototypes"
+      ],
+      "work_item": "direct:claude"
+    },
+    {
+      "sha": "7ff6a6a5f31554069f16b972cae68cd4c289bab2",
+      "url": "https://github.com/blackmath88/observstory/commit/7ff6a6a5f31554069f16b972cae68cd4c289bab2",
+      "message": "develop: pure derivation engine, v1 signals, fixtures and signal experiments",
+      "date": "2026-09-25T00:03:30Z",
+      "actor": "claude",
+      "paths": [
+        ".gitignore",
+        "fixtures/make_fixtures.py",
+        "fixtures/observations/demo-t0.json",
+        "fixtures/observations/demo-t1.json",
+        "fixtures/observations/demo-t2.json",
+        "fixtures/observations/demo-t3.json",
+        "fixtures/observations/e1-same-subsystem.json",
+        "fixtures/observations/e2-parallel.json",
+        "fixtures/observations/e3-stale.json",
+        "fixtures/observations/e4-waiting.json",
+        "fixtures/observations/e5-burst.json",
+        "fixtures/observations/e6-direct-pushes.json",
+        "schema/snapshot-v1.json",
+        "scripts/observstory.py",
+        "src/observstory/__init__.py",
+        "src/observstory/cli.py",
+        "src/observstory/collect.py",
+        "src/observstory/config.py",
+        "src/observstory/derive.py",
+        "src/observstory/github.py",
+        "src/observstory/query.py",
+        "src/observstory/render.py",
+        "src/observstory/signals.py",
+        "src/observstory/validate.py",
+        "tests/__init__.py",
+        "tests/helpers.py",
+        "tests/test_derive.py",
+        "tests/test_principles.py",
+        "tests/test_query.py",
+        "tests/test_signals.py"
+      ],
+      "areas": [
+        ".gitignore",
+        "fixtures",
+        "schema",
+        "scripts",
+        "src/observstory",
+        "tests"
+      ],
+      "work_item": "direct:claude"
+    },
+    {
+      "sha": "a3ac3d3f1b2ffe2fa82b235b2801845fc845cad6",
+      "url": "https://github.com/blackmath88/observstory/commit/a3ac3d3f1b2ffe2fa82b235b2801845fc845cad6",
+      "message": "define: product thesis, JTBD, system boundary, v1 signal specs, snapshot v1 schema, ADRs",
+      "date": "2026-09-24T23:54:46Z",
+      "actor": "claude",
+      "paths": [
+        "DECISIONS.md",
+        "docs/definition/README.md",
+        "docs/definition/design-principles.md",
+        "docs/definition/jobs-to-be-done.md",
+        "docs/definition/product-thesis.md",
+        "docs/definition/signal-specs.md",
+        "docs/definition/system-boundary.md",
+        "docs/definition/v1-scope.md",
+        "schema/snapshot-v1.json"
+      ],
+      "areas": [
+        "DECISIONS.md",
+        "docs",
+        "schema"
+      ],
+      "work_item": "direct:claude"
+    },
+    {
+      "sha": "3c620866f8431e6c484fd6863bae8ec996d65c6b",
+      "url": "https://github.com/blackmath88/observstory/commit/3c620866f8431e6c484fd6863bae8ec996d65c6b",
+      "message": "discover: map collaboration problem space, signals, scenarios and risks",
+      "date": "2026-09-24T23:51:47Z",
+      "actor": "claude",
+      "paths": [
+        "docs/discovery/README.md",
+        "docs/discovery/ai-collaboration-failures.md",
+        "docs/discovery/competitive-landscape.md",
+        "docs/discovery/observable-signals.md",
+        "docs/discovery/opportunity-map.json",
+        "docs/discovery/problem-space.md",
+        "docs/discovery/risks.md",
+        "docs/discovery/scenarios.md"
+      ],
+      "areas": [
+        "docs"
+      ],
+      "work_item": "direct:claude"
+    },
+    {
+      "sha": "9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+      "url": "https://github.com/blackmath88/observstory/commit/9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+      "message": "Add Double Diamond production brief for Claude",
+      "date": "2026-09-24T23:27:18Z",
+      "actor": "blackmath88",
+      "paths": [
+        "CLAUDE_DOUBLE_DIAMOND.md"
+      ],
+      "areas": [
+        "CLAUDE_DOUBLE_DIAMOND.md"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "e56b289b71e1cf3dd3e3ecb4481f8e0d98b8e28d",
+      "url": "https://github.com/blackmath88/observstory/commit/e56b289b71e1cf3dd3e3ecb4481f8e0d98b8e28d",
+      "message": "Add versioned snapshot schema",
+      "date": "2026-09-24T23:18:42Z",
+      "actor": "blackmath88",
+      "paths": [
+        "schema/snapshot-v0.json"
+      ],
+      "areas": [
+        "schema"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "5dcd463b7c25a89b0545d4064b9cc49050528a65",
+      "url": "https://github.com/blackmath88/observstory/commit/5dcd463b7c25a89b0545d4064b9cc49050528a65",
+      "message": "Configure Observstory self-observation lanes",
+      "date": "2026-09-24T23:18:40Z",
+      "actor": "blackmath88",
+      "paths": [
+        "observstory.config.json"
+      ],
+      "areas": [
+        "observstory.config.json"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "c63d3e7a55cfaa6eb17736c11a7f8ab9e77fea0b",
+      "url": "https://github.com/blackmath88/observstory/commit/c63d3e7a55cfaa6eb17736c11a7f8ab9e77fea0b",
+      "message": "Dogfood Observstory on its own repository",
+      "date": "2026-09-24T23:18:39Z",
+      "actor": "blackmath88",
+      "paths": [
+        ".github/workflows/observstory.yml"
+      ],
+      "areas": [
+        ".github"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "845327c44af6d134ae19b8f0feebed1b96cd3388",
+      "url": "https://github.com/blackmath88/observstory/commit/845327c44af6d134ae19b8f0feebed1b96cd3388",
+      "message": "Build typed GitHub snapshot and generated control center",
+      "date": "2026-09-24T23:18:18Z",
+      "actor": "blackmath88",
+      "paths": [
+        "scripts/observstory.py"
+      ],
+      "areas": [
+        "scripts"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "f93a4495c5f8780ff335f3b3b2bc28a61cae82c2",
+      "url": "https://github.com/blackmath88/observstory/commit/f93a4495c5f8780ff335f3b3b2bc28a61cae82c2",
+      "message": "Add Observstory roadmap",
+      "date": "2026-09-24T23:17:13Z",
+      "actor": "blackmath88",
+      "paths": [
+        "ROADMAP.md"
+      ],
+      "areas": [
+        "ROADMAP.md"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "d9ec3c920d7c00b9d075cb03843b1d10aa5fff11",
+      "url": "https://github.com/blackmath88/observstory/commit/d9ec3c920d7c00b9d075cb03843b1d10aa5fff11",
+      "message": "Document Observstory system boundary and service architecture",
+      "date": "2026-09-24T23:17:11Z",
+      "actor": "blackmath88",
+      "paths": [
+        "ARCHITECTURE.md"
+      ],
+      "areas": [
+        "ARCHITECTURE.md"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "167c997c387f5398874ac547e8ec4d1ee96ce2d1",
+      "url": "https://github.com/blackmath88/observstory/commit/167c997c387f5398874ac547e8ec4d1ee96ce2d1",
+      "message": "Add example typed lane configuration",
+      "date": "2026-09-24T23:17:09Z",
+      "actor": "blackmath88",
+      "paths": [
+        "observstory.config.example.json"
+      ],
+      "areas": [
+        "observstory.config.example.json"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "9a0c6701944c85231bde41c2b7a41473d4d5bb1e",
+      "url": "https://github.com/blackmath88/observstory/commit/9a0c6701944c85231bde41c2b7a41473d4d5bb1e",
+      "message": "Add reusable Observstory composite action",
+      "date": "2026-09-24T23:16:57Z",
+      "actor": "blackmath88",
+      "paths": [
+        "action.yml"
+      ],
+      "areas": [
+        "action.yml"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "0157d860cc02ad69d6ea2c672787fb3748a28ba9",
+      "url": "https://github.com/blackmath88/observstory/commit/0157d860cc02ad69d6ea2c672787fb3748a28ba9",
+      "message": "Initialize Observstory product README",
+      "date": "2026-09-24T23:16:55Z",
+      "actor": "blackmath88",
+      "paths": [
+        "README.md"
+      ],
+      "areas": [
+        "README.md"
+      ],
+      "work_item": "direct:blackmath88"
+    }
+  ],
+  "issues": [
+    {
+      "number": 2,
+      "title": "Precision: make overlap base-aware",
+      "state": "closed",
+      "url": "https://github.com/blackmath88/observstory/issues/2",
+      "labels": [],
+      "updated_at": "2026-09-25T01:15:49Z"
+    },
+    {
+      "number": 3,
+      "title": "UI v1.1: Dynamic Project Map as semantic infographic compiler",
+      "state": "open",
+      "url": "https://github.com/blackmath88/observstory/issues/3",
+      "labels": [],
+      "updated_at": "2026-09-25T00:55:28Z"
+    }
+  ],
+  "actors": [
+    {
+      "id": "blackmath88",
+      "kind": "human",
+      "linked": true,
+      "work_items": [
+        "direct:blackmath88",
+        "pr:1",
+        "pr:4"
+      ]
+    },
+    {
+      "id": "claude",
+      "kind": "human",
+      "linked": true,
+      "work_items": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:claude"
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "id": "burst:direct:blackmath88",
+      "type": "burst",
+      "basis": "heuristic",
+      "confidence": "medium",
+      "subject": {
+        "kind": "work_item",
+        "id": "direct:blackmath88"
+      },
+      "summary": "direct:blackmath88: 10 commits within 10 min (machine-paced stream)",
+      "work_items": [
+        "direct:blackmath88"
+      ],
+      "actors": [
+        "blackmath88"
+      ],
+      "evidence": [
+        {
+          "kind": "commit",
+          "ref": "10 commits",
+          "url": "https://github.com/blackmath88/observstory/commit/daf7895da66d32975204e65d4b26d308f06184fb",
+          "detail": "from 2026-09-24T23:16:55+00:00 to 2026-09-24T23:27:18+00:00"
+        }
+      ],
+      "rule": {
+        "name": "burst.rate",
+        "params": {
+          "min_commits": 8,
+          "window_minutes": 30
+        }
+      }
+    },
+    {
+      "id": "burst:direct:claude",
+      "type": "burst",
+      "basis": "heuristic",
+      "confidence": "high",
+      "subject": {
+        "kind": "work_item",
+        "id": "direct:claude"
+      },
+      "summary": "direct:claude: 9 commits within 18 min (machine-paced stream)",
+      "work_items": [
+        "direct:claude"
+      ],
+      "actors": [
+        "claude"
+      ],
+      "evidence": [
+        {
+          "kind": "commit",
+          "ref": "9 commits",
+          "url": "https://github.com/blackmath88/observstory/commit/016c98c1d6d29766039e08ae88f3140dde8f90b8",
+          "detail": "from 2026-09-24T23:51:47+00:00 to 2026-09-25T00:09:46+00:00; agent trailer declared"
+        }
+      ],
+      "rule": {
+        "name": "burst.rate",
+        "params": {
+          "min_commits": 8,
+          "window_minutes": 30
+        }
+      }
+    }
+  ],
+  "provenance": {
+    "source": "GitHub REST API",
+    "collector": "blackmath88/observstory",
+    "collector_version": "1.0.0",
+    "observations_fetched_at": "2026-09-25T01:26:43Z",
+    "api_calls": 32,
+    "rate_limit_remaining": 14917,
+    "degraded": []
+  }
+}
