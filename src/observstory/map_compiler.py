@@ -172,8 +172,11 @@ def compile_scene(snap: dict) -> dict:
         if e["type"] == "waiting":
             attention.append({"kind": "waiting", "target": e["id"], "confidence": e["confidence"], "basis": e["basis"],
                               "label": f"{_ref(items[e['from']])} waits on {_ref(items[e['to']])}"})
+    drawn = {n["id"] for n in nodes}
     for s in sorted((s for s in signals if s["type"] == "stale"), key=lambda s: -s["rule"]["params"]["idle_hours"]):
         w = items[s["subject"]["id"]]
+        if w["id"] not in drawn:  # it only changed ignored files (e.g. a changeset): no card to point at; the snapshot keeps the signal
+            continue
         attention.append({"kind": "stale", "target": w["id"], "confidence": s["confidence"], "basis": s["basis"],
                           "label": f"{_ref(w)} idle for {s['summary'].split(' idle for ')[-1]}"})
 
@@ -250,7 +253,11 @@ def explain_frame(scene: dict) -> list[str]:
     edges = {t: [e for e in scene["edges"] if e["type"] == t] for t in ("overlap", "waiting")}
     ref = {n["id"]: n["ref"] for n in nodes}
     plural = lambda n, word: f"{n} {word}{'' if n == 1 else 's'}"  # noqa: E731
-    out = [f"{plural(len(zones), 'lane')} from the project's own configuration: {' → '.join(z['label'] for z in zones)}."]
+    names = " → ".join(z["label"] for z in zones)
+    if scene["source"].get("lanes_source") == "config":
+        out = [f"{plural(len(zones), 'lane')} from the project's own configuration: {names}."]
+    else:
+        out = [f"No configuration, so the default lanes: {names}; paths that match none land in Other."]
     active = [z for z in zones if z["in_flight"]]
     if not active:
         out.append("Nothing is in flight, so every lane is quiet.")
@@ -261,19 +268,33 @@ def explain_frame(scene: dict) -> list[str]:
                  else f"spread over {', '.join(z['label'] for z in active)}")
         out.append(f"{plural(st['in_flight'], 'work item')} in flight across {plural(st['areas_active'], 'area')}; "
                    f"{where}. Lanes without work stay compact.")
-    for e in edges["overlap"]:
-        out.append(f"{ref[e['from']]} and {ref[e['to']]} both change {', '.join(e['files'])} in parallel: "
-                   "coordination is foregrounded with an orange connector and an attention item.")
-    for e in edges["waiting"]:
-        out.append(f"{ref[e['from']]} waits on {ref[e['to']]} ({e['basis']}): drawn as a grey arrow, a dependency, not a conflict.")
+    refs = lambda ns: ", ".join(ns[:3]) + (f" and {len(ns) - 3} more" if len(ns) > 3 else "")  # noqa: E731
+    some = lambda ns, word: ", ".join(ns) if len(ns) <= 3 else f"{len(ns)} {word}"  # noqa: E731
+    ov = edges["overlap"]
+    if 0 < len(ov) <= 2:
+        for e in ov:
+            out.append(f"{ref[e['from']]} and {ref[e['to']]} both change {', '.join(e['files'][:2])} in parallel: "
+                       "coordination is foregrounded with an orange connector and an attention item.")
+    elif ov:
+        hot = sorted({a for e in ov for a in e["areas"]}, key=lambda a: (-sum(a in e["areas"] for e in ov), a))
+        out.append(f"{len(ov)} pairs of work change the same files in parallel, most in {refs(hot)}: "
+                   "each gets an orange connector and an attention item.")
+    wt = edges["waiting"]
+    if 0 < len(wt) <= 2:
+        for e in wt:
+            out.append(f"{ref[e['from']]} waits on {ref[e['to']]} ({e['basis']}): drawn as a grey arrow, a dependency, not a conflict.")
+    elif wt:
+        out.append(f"{len(wt)} pieces of work wait on others: grey arrows, dependencies rather than conflicts.")
     stale = [n for n in nodes if n["status"] == "stale"]
     if stale:
-        out.append(f"{', '.join(n['ref'] for n in stale)} has gone quiet ({round(max(n['age_hours'] for n in stale) / 24)} d): "
-                   "faded, and listed as an open loop to revisit.")
+        days = round(max(n["age_hours"] for n in stale) / 24)
+        out.append(f"{some([n['ref'] for n in stale], 'work items')} {'has' if len(stale) == 1 else 'have'} gone quiet "
+                   f"({'up to ' if len(stale) > 1 else ''}{days} d): faded, and listed as open loops to revisit.")
     burst = [n for n in nodes if "burst" in n["flags"]]
     if burst:
-        out.append(f"{', '.join(n['ref'] for n in burst)} is a machine-paced stream: folded into one card with ≋, kept in the background.")
-    if active and not (edges["overlap"] or edges["waiting"] or stale or burst):
+        out.append(f"{some([n['ref'] for n in burst], 'work items')} {'is a' if len(burst) == 1 else 'are'} machine-paced "
+                   f"stream{'' if len(burst) == 1 else 's'}: folded into one card with ≋, kept in the background.")
+    if active and not (ov or wt or stale or burst):
         out.append("No relations between work items, so nothing asks for attention; the map stays calm.")
     c = scene.get("coordination")
     if not c:
