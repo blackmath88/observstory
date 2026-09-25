@@ -29,6 +29,18 @@ Composite Action, typed lanes, JSON snapshot, static dashboard, path overlap on 
 - [x] Demo Lab: one synthetic project at nine moments, through the real pipeline (issue #6)
 - [ ] Run it with a real team for a week and see whether the attention column is what people actually open
 
+## v1.2: declared collaboration state ✅ (issue #7)
+- [x] Double Diamond: [discover](docs/collaboration-discovery/README.md), [define](docs/collaboration-definition/README.md), [develop](docs/collaboration-development/concept-comparison.md), ADR-027..032
+- [x] `schema/coordination-v1.json`: Session, Gate, Commitment, Decision; proposed vs declared
+- [x] `observstory checkin propose | pending | confirm --by` (deterministic marker extractor)
+- [x] Reconciliation: commitment states, `freeze.changed_after`, `commitment.unstarted`, `gate.passed_with_open_work`
+- [x] Mission rail and "Declared vs observed" cues on the Project Map; `query coordination`
+- [x] Demo Lab act: a synthetic 36-hour hackathon at four moments
+- [ ] One real hackathon: are marked notes written, and are cues acted on?
+- [ ] Optional LLM extractor behind the same interface (proposes only)
+- [ ] Check-in review page once there is a write path (v2 GitHub App, ADR-031)
+- [ ] Local, consent-first transcription only if typing notes proves to be the bottleneck
+
 ## v1.x: cheap refinements
 - [ ] Hunk-level overlap (patch ranges) to separate same-line pairs (75% useful) from same-file pairs (45%): the main remaining lever on overlap precision
 - [ ] CI state on work items

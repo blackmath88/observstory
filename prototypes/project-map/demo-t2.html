@@ -135,6 +135,32 @@ h1 a{text-decoration:none}
 .ins .jump{color:var(--ink);text-decoration:underline;text-decoration-color:var(--hair2);text-underline-offset:2px}
 .ins .files code{display:block;padding:2px 0;word-break:break-all}
 .ins .rule{color:var(--ink3);font-size:11.5px}
+.mission{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:10px 16px 8px;margin-bottom:22px}
+.mh{display:flex;align-items:baseline;gap:6px 16px;flex-wrap:wrap}.mh .mark{margin-right:4px}
+.nx{font-size:13.5px;color:var(--ink)}.nx b{font-weight:600}.pend{margin-left:auto;color:var(--ink3);font-size:11.5px}
+.railwrap{overflow-x:auto}.rail{position:relative;min-width:640px;margin:8px 34px 0}
+.axis{position:absolute;left:0;right:0;top:62px;height:2px;background:var(--hair2)}
+.past{position:absolute;left:0;top:62px;height:2px;background:var(--ink3)}
+.nowm{position:absolute;top:22px;height:64px;border-left:1.5px solid var(--ink)}
+.nowm span{position:absolute;top:-16px;left:-14px;font:600 10px var(--mono)}.nowm.low span{top:66px}
+.mk{position:absolute;transform:translateX(-50%);text-align:center;white-space:nowrap;font-size:11px;padding:0 3px;border-radius:5px}
+.mk:hover{background:color-mix(in srgb,var(--ink) 5%,transparent)}
+.mk.gate{top:14px;z-index:1}.mk.gate b{display:block;font-weight:600;font-size:11px;background:var(--surface)}.mk.gate i{display:block;margin:2px auto;width:2px;height:28px;background:var(--ink)}
+.mk.gate span{color:var(--ink3);font:10.5px var(--mono);background:var(--surface)}.mk.gate.passed{color:var(--ink3)}.mk.gate.passed i{background:var(--ink3)}
+.mk.gate.hot,.mk.gate.hot span{color:var(--accent)}.mk.gate.hot i{background:var(--accent)}
+.mk.ses{top:55px;z-index:1}.mk.ses i{display:block;margin:0 auto;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--ink2)}
+.mk.ses span{display:block;color:var(--ink3);font-size:10.5px;background:var(--surface);max-width:110px;overflow:hidden;text-overflow:ellipsis}.mk.ses.bare span{visibility:hidden}
+.mk.due i,.lg-due{display:inline-block;width:9px;height:9px;transform:rotate(45deg);background:var(--ink3)}
+.mk.due i{display:block;margin:0 auto}.mk.due span{font:10px var(--mono);color:var(--ink3)}
+.s-in_progress i,.lg-due.s-in_progress{background:var(--select)!important}.s-landed i,.lg-due.s-landed{background:#2f6b4f!important}
+.s-not_started i,.lg-due.s-not_started{background:transparent!important;border:1.5px solid var(--ink3)}
+.mk.due.hot i{border-color:var(--accent)!important}.mk.due.hot span{color:var(--accent)}
+.rl{margin:2px 0 0;color:var(--ink3);font-size:11px}.rl .lg-due{margin:0 3px 0 8px;width:8px;height:8px}
+.sh2{margin:14px 0 6px;font-size:11px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.att-item.k-declared .g{color:var(--accent)}
+.sides{display:grid;gap:8px;margin:6px 0 12px}.side-d,.side-o{border:1px solid var(--hair);border-radius:8px;padding:8px 10px;font-size:12.5px}
+.side-o{background:color-mix(in srgb,var(--ink) 2.5%,transparent)}.sides .k{font:600 10px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:2px}
+.sides .rel{color:var(--accent);font-size:11.5px;text-align:center}
 @media (prefers-reduced-motion:reduce){.inspector{transition:none}}
 @media (max-width:1100px){.layout{grid-template-columns:1fr}.side{position:static}}
 @media (max-width:760px){
@@ -156,6 +182,7 @@ h1 a{text-decoration:none}
 
 <main class="layout">
   <div class="mapwrap">
+    
     <div class="map" id="map" aria-label="Project map: lanes, areas and work in flight">
       <svg class="wires" id="wires" aria-hidden="false" role="group" aria-label="Relationships"></svg>
       <article class="zone quiet t0" id="z-intent" data-id="intent"><header class="zh"><span class="zo">01</span><h2>Intent</h2></header><p class="zq">quiet</p></article><article class="zone t1 att" id="z-build" data-id="build"><header class="zh"><span class="zo">02</span><h2>Build</h2><span class=zc>3</span></header><p class="zd">Product implementation</p><section class="group att" id="g-area:src/conversation" data-id="area:src/conversation"><button type="button" class="gh" data-kind="group" data-id="area:src/conversation" title="src/conversation"><span class="path"><span class="par">src/</span><span class="leaf">conversation</span></span><span class="pill">overlap</span><span class="gage">30m</span></button><button type="button" class="node s-in_flight att" id="n-pr:43" data-kind="node" data-id="pr:43" title="Chat history persistence"><span class="nl"><span class="ref">#43</span><span class="lbl">Chat history persistence</span></span><span class="nm">sofia · 30m ago · no reviewer<span class="flag" title="agent-assisted (declared)" aria-label="agent-assisted (declared)">⌁</span><span class="flag" title="machine-paced commit stream" aria-label="machine-paced commit stream">≋</span></span></button><button type="button" class="node s-in_flight att" id="n-pr:41" data-kind="node" data-id="pr:41" title="Conversation memory"><span class="nl"><span class="ref">#41</span><span class="lbl">Conversation memory</span></span><span class="nm">alice · 20h ago · review requested</span></button></section><section class="group" id="g-area:src/search" data-id="area:src/search"><button type="button" class="gh" data-kind="group" data-id="area:src/search" title="src/search"><span class="path"><span class="par">src/</span><span class="leaf">search</span></span><span class="gage">25h</span></button><button type="button" class="node s-in_flight" id="n-pr:42" data-kind="node" data-id="pr:42" title="Search index"><span class="nl"><span class="ref">#42</span><span class="lbl">Search index</span></span><span class="nm">ben · 25h ago · no reviewer</span></button></section></article><article class="zone quiet t2" id="z-verify" data-id="verify"><header class="zh"><span class="zo">03</span><h2>Verify</h2></header><p class="zq">quiet</p></article><article class="zone quiet t3" id="z-ship" data-id="ship"><header class="zh"><span class="zo">04</span><h2>Ship</h2></header><p class="zq">quiet</p></article>
@@ -164,7 +191,7 @@ h1 a{text-decoration:none}
   </div>
   <aside class="side">
     <h2 class="sh">Needs attention <span>1</span></h2>
-    <ul class=attention><li><button type="button" class="att-item k-overlap" data-kind="edge" data-id="overlap:pr:41|pr:43"><span class="g" aria-hidden="true">●</span><span class="t">#41 and #43 change src/conversation in parallel</span><span class="b">overlap · derived · high</span></button></li></ul>
+    <ul class=attention><li><button type="button" class="att-item k-overlap" data-kind="edge" data-id="overlap:pr:41|pr:43"><span class="g" aria-hidden="true">●</span><span class="t">#41 and #43 change src/conversation in parallel</span><span class="b">overlap · high</span></button></li></ul>
     <div class="legend">
       <p><span class="lz"></span>lane<span class="lg"></span>area<span class="ln"></span>work item</p>
       <p><svg width="28" height="8" aria-hidden="true"><path d="M2 4H26" class="k-ov"/></svg>parallel change
@@ -180,7 +207,7 @@ h1 a{text-decoration:none}
   <button type="button" class="close" id="close" aria-label="Close inspector">×</button>
   <div id="ins"></div>
 </aside>
-<script type="application/json" id="scene">{"schema": "observstory.scene/v1", "source": {"snapshot_schema": "observstory.snapshot/v1", "generated_at": "2026-09-22T10:00:00Z", "repository": "example/chat-app", "repository_url": "https://github.com/example/chat-app", "default_branch": "main", "window_hours": 48, "title": "Project Observatory", "lanes_source": "default", "degraded": []}, "status": {"in_flight": 3, "overlaps": 1, "waiting": 0, "stale": 0, "areas_active": 2}, "zones": [{"id": "intent", "label": "Intent", "description": "Framing, research and decisions", "order": 0, "state": "quiet", "groups": [], "in_flight": 0, "attention": false, "recently_changed": [], "recently_changed_more": 0}, {"id": "build", "label": "Build", "description": "Product implementation", "order": 1, "state": "active", "groups": ["area:src/conversation", "area:src/search"], "in_flight": 3, "attention": true, "recently_changed": [], "recently_changed_more": 0}, {"id": "verify", "label": "Verify", "description": "Tests, evaluations and evidence", "order": 2, "state": "quiet", "groups": [], "in_flight": 0, "attention": false, "recently_changed": [], "recently_changed_more": 0}, {"id": "ship", "label": "Ship", "description": "Automation, deployment and runtime", "order": 3, "state": "quiet", "groups": [], "in_flight": 0, "attention": false, "recently_changed": [], "recently_changed_more": 0}], "groups": [{"id": "area:src/conversation", "zone": "build", "path": "src/conversation", "label": "conversation", "parent": "src", "attention": true, "nodes": ["pr:43", "pr:41"], "also_active": [], "recent_commits": 0, "last_activity_at": "2026-09-22T09:30:00Z", "age_hours": 0.5}, {"id": "area:src/search", "zone": "build", "path": "src/search", "label": "search", "parent": "src", "attention": false, "nodes": ["pr:42"], "also_active": [], "recent_commits": 0, "last_activity_at": "2026-09-21T09:00:00Z", "age_hours": 25.0}], "nodes": [{"id": "pr:43", "kind": "pull_request", "group": "area:src/conversation", "zone": "build", "ref": "#43", "label": "Chat history persistence", "url": "https://github.com/example/chat-app/pull/43", "status": "in_flight", "review_state": "no_reviewer", "actors": ["sofia"], "last_activity_at": "2026-09-22T09:30:00Z", "age_hours": 0.5, "also_touches": [], "flags": ["agent", "burst"], "attention": true}, {"id": "pr:41", "kind": "pull_request", "group": "area:src/conversation", "zone": "build", "ref": "#41", "label": "Conversation memory", "url": "https://github.com/example/chat-app/pull/41", "status": "in_flight", "review_state": "review_requested", "actors": ["alice"], "last_activity_at": "2026-09-21T14:00:00Z", "age_hours": 20.0, "also_touches": [], "flags": [], "attention": true}, {"id": "pr:42", "kind": "pull_request", "group": "area:src/search", "zone": "build", "ref": "#42", "label": "Search index", "url": "https://github.com/example/chat-app/pull/42", "status": "in_flight", "review_state": "no_reviewer", "actors": ["ben"], "last_activity_at": "2026-09-21T09:00:00Z", "age_hours": 25.0, "also_touches": [], "flags": [], "attention": false}], "edges": [{"id": "overlap:pr:41|pr:43", "type": "overlap", "from": "pr:41", "to": "pr:43", "directed": false, "basis": "derived", "confidence": "high", "attention": true, "areas": ["src/conversation"], "files": ["src/conversation/store.py"], "signals": ["overlap:src/conversation"]}], "attention": [{"kind": "overlap", "target": "overlap:pr:41|pr:43", "confidence": "high", "basis": "derived", "label": "#41 and #43 change src/conversation in parallel"}], "details": {"signals": {"overlap:src/conversation": {"type": "overlap", "summary": "2 work items change src/conversation in parallel; 1 shared file", "basis": "derived", "confidence": "high", "evidence": [{"kind": "file", "ref": "src/conversation/store.py", "url": null, "work_items": ["pr:41", "pr:43"], "detail": "changed by 2 work items in parallel"}, {"kind": "work_item", "ref": "pr:41", "url": "https://github.com/example/chat-app/pull/41", "detail": "Conversation memory (open)"}, {"kind": "work_item", "ref": "pr:43", "url": "https://github.com/example/chat-app/pull/43", "detail": "Chat history persistence (open)"}], "rule": {"name": "overlap.parallel_pairs", "params": {"min_work_items": 2, "same_author": false, "shared_files": 1, "parallel_pairs": ["pr:41|pr:43"], "baseline_pairs": [], "sequential_direct_pairs": 0, "explained_by_waiting": [], "excluded_stale": [], "excluded_bot_only": [], "area_only_pairs_skipped": 0, "require_shared_file": true}}, "work_items": ["pr:41", "pr:43"]}, "burst:pr:43": {"type": "burst", "summary": "pr:43: 12 commits within 20 min (machine-paced stream)", "basis": "heuristic", "confidence": "high", "evidence": [{"kind": "commit", "ref": "12 commits", "url": "https://github.com/example/chat-app/pull/43", "detail": "from 2026-09-21T13:00:00+00:00 to 2026-09-21T13:19:48+00:00; agent trailer declared"}], "rule": {"name": "burst.rate", "params": {"min_commits": 8, "window_minutes": 30}}, "work_items": ["pr:43"]}}, "work_items": {"pr:43": {"paths": ["src/conversation/history.py", "src/conversation/store.py"], "paths_total": 2, "areas": ["src/conversation"], "state": "open", "burst": {"commits": 12, "minutes": 20, "total_commits": 12}, "merge_base": null, "commit_count": 12, "waiting_on": []}, "pr:41": {"paths": ["src/conversation/memory.py", "src/conversation/store.py"], "paths_total": 2, "areas": ["src/conversation"], "state": "open", "burst": null, "merge_base": null, "commit_count": 3, "waiting_on": []}, "pr:42": {"paths": ["src/search/index.py", "src/search/query.py"], "paths_total": 2, "areas": ["src/search"], "state": "open", "burst": null, "merge_base": null, "commit_count": 2, "waiting_on": []}}, "areas": {"src/conversation": {"files": ["src/conversation/history.py", "src/conversation/memory.py", "src/conversation/store.py"], "actors": ["alice", "sofia"], "recent_commits": 0}, "src/search": {"files": ["src/search/index.py", "src/search/query.py"], "actors": ["ben"], "recent_commits": 0}}}}</script>
+<script type="application/json" id="scene">{"schema": "observstory.scene/v1", "source": {"snapshot_schema": "observstory.snapshot/v1", "generated_at": "2026-09-22T10:00:00Z", "repository": "example/chat-app", "repository_url": "https://github.com/example/chat-app", "default_branch": "main", "window_hours": 48, "title": "Project Observatory", "lanes_source": "default", "degraded": []}, "status": {"in_flight": 3, "overlaps": 1, "waiting": 0, "stale": 0, "areas_active": 2}, "zones": [{"id": "intent", "label": "Intent", "description": "Framing, research and decisions", "order": 0, "state": "quiet", "groups": [], "in_flight": 0, "attention": false, "recently_changed": [], "recently_changed_more": 0}, {"id": "build", "label": "Build", "description": "Product implementation", "order": 1, "state": "active", "groups": ["area:src/conversation", "area:src/search"], "in_flight": 3, "attention": true, "recently_changed": [], "recently_changed_more": 0}, {"id": "verify", "label": "Verify", "description": "Tests, evaluations and evidence", "order": 2, "state": "quiet", "groups": [], "in_flight": 0, "attention": false, "recently_changed": [], "recently_changed_more": 0}, {"id": "ship", "label": "Ship", "description": "Automation, deployment and runtime", "order": 3, "state": "quiet", "groups": [], "in_flight": 0, "attention": false, "recently_changed": [], "recently_changed_more": 0}], "groups": [{"id": "area:src/conversation", "zone": "build", "path": "src/conversation", "label": "conversation", "parent": "src", "attention": true, "nodes": ["pr:43", "pr:41"], "also_active": [], "recent_commits": 0, "last_activity_at": "2026-09-22T09:30:00Z", "age_hours": 0.5}, {"id": "area:src/search", "zone": "build", "path": "src/search", "label": "search", "parent": "src", "attention": false, "nodes": ["pr:42"], "also_active": [], "recent_commits": 0, "last_activity_at": "2026-09-21T09:00:00Z", "age_hours": 25.0}], "nodes": [{"id": "pr:43", "kind": "pull_request", "group": "area:src/conversation", "zone": "build", "ref": "#43", "label": "Chat history persistence", "url": "https://github.com/example/chat-app/pull/43", "status": "in_flight", "review_state": "no_reviewer", "actors": ["sofia"], "last_activity_at": "2026-09-22T09:30:00Z", "age_hours": 0.5, "also_touches": [], "flags": ["agent", "burst"], "attention": true}, {"id": "pr:41", "kind": "pull_request", "group": "area:src/conversation", "zone": "build", "ref": "#41", "label": "Conversation memory", "url": "https://github.com/example/chat-app/pull/41", "status": "in_flight", "review_state": "review_requested", "actors": ["alice"], "last_activity_at": "2026-09-21T14:00:00Z", "age_hours": 20.0, "also_touches": [], "flags": [], "attention": true}, {"id": "pr:42", "kind": "pull_request", "group": "area:src/search", "zone": "build", "ref": "#42", "label": "Search index", "url": "https://github.com/example/chat-app/pull/42", "status": "in_flight", "review_state": "no_reviewer", "actors": ["ben"], "last_activity_at": "2026-09-21T09:00:00Z", "age_hours": 25.0, "also_touches": [], "flags": [], "attention": false}], "edges": [{"id": "overlap:pr:41|pr:43", "type": "overlap", "from": "pr:41", "to": "pr:43", "directed": false, "basis": "derived", "confidence": "high", "attention": true, "areas": ["src/conversation"], "files": ["src/conversation/store.py"], "signals": ["overlap:src/conversation"]}], "attention": [{"kind": "overlap", "target": "overlap:pr:41|pr:43", "confidence": "high", "basis": "derived", "label": "#41 and #43 change src/conversation in parallel"}], "details": {"signals": {"overlap:src/conversation": {"type": "overlap", "summary": "2 work items change src/conversation in parallel; 1 shared file", "basis": "derived", "confidence": "high", "evidence": [{"kind": "file", "ref": "src/conversation/store.py", "url": null, "work_items": ["pr:41", "pr:43"], "detail": "changed by 2 work items in parallel"}, {"kind": "work_item", "ref": "pr:41", "url": "https://github.com/example/chat-app/pull/41", "detail": "Conversation memory (open)"}, {"kind": "work_item", "ref": "pr:43", "url": "https://github.com/example/chat-app/pull/43", "detail": "Chat history persistence (open)"}], "rule": {"name": "overlap.parallel_pairs", "params": {"min_work_items": 2, "same_author": false, "shared_files": 1, "parallel_pairs": ["pr:41|pr:43"], "baseline_pairs": [], "sequential_direct_pairs": 0, "explained_by_waiting": [], "excluded_stale": [], "excluded_bot_only": [], "area_only_pairs_skipped": 0, "require_shared_file": true}}, "work_items": ["pr:41", "pr:43"]}, "burst:pr:43": {"type": "burst", "summary": "pr:43: 12 commits within 20 min (machine-paced stream)", "basis": "heuristic", "confidence": "high", "evidence": [{"kind": "commit", "ref": "12 commits", "url": "https://github.com/example/chat-app/pull/43", "detail": "from 2026-09-21T13:00:00+00:00 to 2026-09-21T13:19:48+00:00; agent trailer declared"}], "rule": {"name": "burst.rate", "params": {"min_commits": 8, "window_minutes": 30}}, "work_items": ["pr:43"]}}, "work_items": {"pr:43": {"paths": ["src/conversation/history.py", "src/conversation/store.py"], "paths_total": 2, "areas": ["src/conversation"], "state": "open", "burst": {"commits": 12, "minutes": 20, "total_commits": 12}, "merge_base": null, "commit_count": 12, "waiting_on": []}, "pr:41": {"paths": ["src/conversation/memory.py", "src/conversation/store.py"], "paths_total": 2, "areas": ["src/conversation"], "state": "open", "burst": null, "merge_base": null, "commit_count": 3, "waiting_on": []}, "pr:42": {"paths": ["src/search/index.py", "src/search/query.py"], "paths_total": 2, "areas": ["src/search"], "state": "open", "burst": null, "merge_base": null, "commit_count": 2, "waiting_on": []}}, "areas": {"src/conversation": {"files": ["src/conversation/history.py", "src/conversation/memory.py", "src/conversation/store.py"], "actors": ["alice", "sofia"], "recent_commits": 0}, "src/search": {"files": ["src/search/index.py", "src/search/query.py"], "actors": ["ben"], "recent_commits": 0}}}, "coordination": null}</script>
 <script>
 (function(){
 const scene = JSON.parse(document.getElementById('scene').textContent);
@@ -276,6 +303,8 @@ function related(sel){
   if (sel.kind === 'edge') { const e = edges[sel.id]; r.add(e.from); r.add(e.to); r.add(e.id); }
   if (sel.kind === 'group') { const g = groups[sel.id]; for (const n of [...g.nodes, ...g.also_active]) r.add(n);
     for (const e of scene.edges) if (e.areas.includes(g.path)) { r.add(e.id); r.add(e.from); r.add(e.to); } }
+  if (sel.kind === 'commitment') { (M.commitments[sel.id].matched || []).forEach(w => r.add(w)); }
+  if (sel.kind === 'gate') { const q = cueFor(sel.id); if (q) q.observed.work_items.forEach(w => r.add(w)); }
   return r;
 }
 function applyDim(){
@@ -287,9 +316,11 @@ function applyDim(){
 function select(kind, id, from){
   document.querySelectorAll('.is-selected').forEach(x => x.classList.remove('is-selected'));
   selected = {kind, id}; lastFocus = from || document.activeElement;
-  const target = kind === 'node' ? document.getElementById('n-' + id) : kind === 'group' ? document.querySelector(`#g-${CSS.escape(id)} > .gh`) : null;
+  const target = kind === 'node' ? document.getElementById('n-' + id) : kind === 'group' ? document.querySelector(`#g-${CSS.escape(id)} > .gh`)
+               : ['gate', 'commitment', 'session'].includes(kind) ? document.getElementById('m-' + id) : null;
   if (target) { target.classList.add('is-selected'); const d = target.closest('details'); if (d && !d.open) { d.open = true; draw(); } }
-  body.replaceChildren(kind === 'node' ? nodeView(id) : kind === 'group' ? groupView(id) : edgeView(id));
+  body.replaceChildren(kind === 'node' ? nodeView(id) : kind === 'group' ? groupView(id) : kind === 'edge' ? edgeView(id)
+                       : kind === 'gate' ? gateView(id) : kind === 'commitment' ? commitmentView(id) : sessionView(id));
   ins.hidden = false; applyDim(); draw();
   document.getElementById('close').focus({preventScroll: true});
 }
@@ -374,6 +405,57 @@ function edgeView(id){
   f.append(ul);
   if (e.files.length) { f.append(el('h4', {}, 'Shared files')); const d = el('div', {class: 'files'}); e.files.forEach(p => d.append(el('code', {}, p))); f.append(d); }
   f.append(el('h4', {}, 'Evidence'), evidenceList(e.signals));
+  return el('div', {class: 'ins'}, f);
+}
+
+// ---------------------------------------------------------------- declared state (issue #7)
+const C = scene.coordination || {gates: [], commitments: [], sessions: [], decisions: [], cues: []};
+const M = {gates: Object.fromEntries(C.gates.map(g => [g.id, g])), commitments: Object.fromEntries(C.commitments.map(c => [c.id, c])),
+           sessions: Object.fromEntries(C.sessions.map(s => [s.id, s]))};
+function cueFor(id){ return C.cues.find(q => q.subject.id === id); }
+function workRef(w){ return nodes[w] ? jump('node', w, nodes[w].ref + '  ' + nodes[w].label) : el('span', {}, w.startsWith('pr:') ? '#' + w.slice(3) + ' (not in flight)' : w.startsWith('direct:') ? 'a direct push' : w); }
+function sessionLine(sid, by){ const s = M.sessions[sid]; return (s ? s.label + ' · ' : '') + 'confirmed by ' + (by || '?'); }
+function sides(q){
+  if (!q) return null;
+  const d = q.declared, o = q.observed, box = el('div', {class: 'sides'});
+  box.append(el('div', {class: 'side-d'}, el('span', {class: 'k'}, 'Declared'), d.text,
+             el('div', {class: 'muted'}, [d.owner ? 'owner ' + d.owner : '', d.due ? 'due ' + d.due.slice(11, 16) : '', d.at ? 'at ' + d.at.slice(11, 16) : '',
+                                          (d.areas || []).join(', ')].filter(Boolean).join(' · ')),
+             el('div', {class: 'muted'}, sessionLine(d.session, d.confirmed_by))));
+  box.append(el('div', {class: 'rel'}, q.summary.split(': ').slice(-1)[0] + ' · ' + q.confidence));
+  const ob = el('div', {class: 'side-o'}, el('span', {class: 'k'}, 'Observed'));
+  if (o.work_items.length) o.work_items.forEach(w => ob.append(el('div', {}, workRef(w)))); else ob.append(el('div', {}, 'nothing linked'));
+  ob.append(el('div', {class: 'muted'}, o.detail)); box.append(ob); return box;
+}
+function gateView(id){
+  const g = M.gates[id], q = cueFor(id), f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k' + (q ? ' hot' : '')}, 'Gate · ' + g.kind + ' · declared'), el('h3', {}, g.label));
+  f.append(dl([['When', g.at.replace('T', ' ').slice(0, 16)], ['Scope', (g.areas || []).join(', ') || (g.kind === 'freeze' ? 'the whole repository' : '')],
+               ['Status', g.passed ? 'passed' : g.next ? 'next gate' : 'upcoming'], ['Declared in', sessionLine(g.session, g.confirmed_by)]]));
+  if (q) f.append(el('h4', {}, 'Declared vs observed'), sides(q));
+  return el('div', {class: 'ins'}, f);
+}
+function commitmentView(id){
+  const c = M.commitments[id], q = cueFor(id), f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k' + (q ? ' hot' : '')}, 'Commitment · declared'), el('h3', {}, c.text));
+  f.append(dl([['Owner', c.owner ? c.owner + ' (as declared)' : ''], ['Due', c.due ? c.due.replace('T', ' ').slice(0, 16) : ''],
+               ['Links', c.links.map(l => l.kind + ' ' + l.ref).join(', ') || 'none declared'],
+               ['Observed', c.state.replace('_', ' ')], ['Declared in', sessionLine(c.session, c.confirmed_by)]]));
+  if (c.matched.length) { f.append(el('h4', {}, 'Linked work')); const ul = el('ul'); c.matched.forEach(w => ul.append(el('li', {}, workRef(w)))); f.append(ul); }
+  if (q) f.append(el('h4', {}, 'Declared vs observed'), sides(q));
+  f.append(el('p', {class: 'rule'}, 'State comes from the repository, not from anyone updating a status.'));
+  return el('div', {class: 'ins'}, f);
+}
+function sessionView(id){
+  const s = M.sessions[id], f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k'}, 'Check-in · ' + s.kind), el('h3', {}, s.label));
+  f.append(dl([['When', s.at.replace('T', ' ').slice(0, 16)], ['Recorded', 'no (notes, confirmed by people)']]));
+  const mine = [...C.gates.map(g => ['gate', g.id, g.label, g.session]), ...C.commitments.map(c => ['commitment', c.id, c.text, c.session])].filter(x => x[3] === id);
+  if (mine.length) { f.append(el('h4', {}, 'Declared here')); const ul = el('ul'); mine.forEach(([k, i, t]) => ul.append(el('li', {}, jump(k, i, i + '  ' + t)))); f.append(ul); }
+  const dec = C.decisions.filter(d => d.session === id);
+  if (dec.length) { f.append(el('h4', {}, 'Decisions')); const ul = el('ul');
+    dec.forEach(d => ul.append(el('li', {}, d.text, el('span', {class: 'd'}, (d.areas || []).join(', ') + (d.changed_after.length ? ' · changed since: ' + d.changed_after.map(w => w.startsWith('direct:') ? 'a direct push' : w.replace('pr:', '#')).join(', ') : ''))))); f.append(ul); }
+  if ((s.open_questions || []).length) { f.append(el('h4', {}, 'Open questions')); const ul = el('ul'); s.open_questions.forEach(qq => ul.append(el('li', {}, qq))); f.append(ul); }
   return el('div', {class: 'ins'}, f);
 }
 

@@ -1,0 +1,428 @@
+{
+ "schema": "observstory.observations/v1",
+ "note": "The feature freeze has passed; the recorder PR is still open and changing.",
+ "synthetic": true,
+ "fetched_at": "2026-10-03T23:00:00Z",
+ "repository": {
+  "full_name": "northstar/voice-notes",
+  "url": null,
+  "default_branch": "main",
+  "visibility": "public",
+  "description": "Synthetic demo repository"
+ },
+ "window": {
+  "hours": 48
+ },
+ "trigger": {
+  "event": "demo-lab"
+ },
+ "commits": [
+  {
+   "sha": "7567929254e248e4dabb611eec41ac122c20fbd9",
+   "url": null,
+   "date": "2026-10-03T18:00:00Z",
+   "author": {
+    "login": "ben",
+    "name": "Ben",
+    "type": "User"
+   },
+   "message": "Transcription via the core API (#12)",
+   "paths": [
+    "src/transcribe/local.py",
+    "src/core/api.py"
+   ],
+   "parents": [
+    "335a92f004efa31cbe9c8b072391c3c3dc7e5f16"
+   ]
+  },
+  {
+   "sha": "335a92f004efa31cbe9c8b072391c3c3dc7e5f16",
+   "url": null,
+   "date": "2026-10-03T12:42:00Z",
+   "author": {
+    "login": "alice",
+    "name": "Alice",
+    "type": "User"
+   },
+   "message": "Fix buffer types in core API",
+   "paths": [
+    "src/core/api.py"
+   ],
+   "parents": [
+    "b6a86a03ad2c16279f415b3e7b364115aed091f4"
+   ]
+  },
+  {
+   "sha": "b6a86a03ad2c16279f415b3e7b364115aed091f4",
+   "url": null,
+   "date": "2026-10-03T09:30:00Z",
+   "author": {
+    "login": "alice",
+    "name": "Alice",
+    "type": "User"
+   },
+   "message": "Audio capture pipeline (#10)",
+   "paths": [
+    "src/audio/capture.py",
+    "src/audio/buffer.py",
+    "src/core/api.py"
+   ],
+   "parents": [
+    "7fd4b0deef4ca017eafcb089828710247ca6773d"
+   ]
+  },
+  {
+   "sha": "7fd4b0deef4ca017eafcb089828710247ca6773d",
+   "url": null,
+   "date": "2026-10-02T16:00:00Z",
+   "author": {
+    "login": "ben",
+    "name": "Ben",
+    "type": "User"
+   },
+   "message": "Core API skeleton",
+   "paths": [
+    "src/core/api.py"
+   ],
+   "parents": [
+    "72cc2bd91ad7b721c30bb8168b85de61b218c4ad"
+   ]
+  }
+ ],
+ "pull_requests": [
+  {
+   "number": 10,
+   "title": "Audio capture pipeline",
+   "body": "",
+   "state": "closed",
+   "draft": false,
+   "merged": true,
+   "head": "alice/audio",
+   "base": "main",
+   "author": {
+    "login": "alice",
+    "name": "Alice",
+    "type": "User"
+   },
+   "created_at": "2026-10-02T20:00:00Z",
+   "updated_at": "2026-10-03T09:30:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "src/audio/capture.py",
+    "src/audio/buffer.py",
+    "src/core/api.py"
+   ],
+   "commits": [
+    {
+     "sha": "92fe6b07cf6ac9eba674180232693a2dd18b4456",
+     "date": "2026-10-02T20:00:00Z",
+     "author": {
+      "login": "alice",
+      "name": "Alice",
+      "type": "User"
+     },
+     "message": "Audio capture pipeline (1)",
+     "parents": []
+    },
+    {
+     "sha": "56ad388f91fec1af287508afc92461f28307caae",
+     "date": "2026-10-02T23:00:00Z",
+     "author": {
+      "login": "alice",
+      "name": "Alice",
+      "type": "User"
+     },
+     "message": "Audio capture pipeline (2)",
+     "parents": []
+    },
+    {
+     "sha": "40220d5162a0d26664a5428818d5f76f02e711eb",
+     "date": "2026-10-03T02:00:00Z",
+     "author": {
+      "login": "alice",
+      "name": "Alice",
+      "type": "User"
+     },
+     "message": "Audio capture pipeline (3)",
+     "parents": []
+    },
+    {
+     "sha": "a1fcc979e4be2ab79dcf03f558741fe64c349f63",
+     "date": "2026-10-03T05:00:00Z",
+     "author": {
+      "login": "alice",
+      "name": "Alice",
+      "type": "User"
+     },
+     "message": "Audio capture pipeline (4)",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "7fd4b0deef4ca017eafcb089828710247ca6773d",
+    "source": "compare"
+   }
+  },
+  {
+   "number": 11,
+   "title": "Recorder UI",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "sofia/recorder",
+   "base": "main",
+   "author": {
+    "login": "sofia",
+    "name": "Sofia",
+    "type": "User"
+   },
+   "created_at": "2026-10-03T01:00:00Z",
+   "updated_at": "2026-10-03T21:30:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "web/recorder/Recorder.tsx",
+    "web/recorder/Waveform.tsx"
+   ],
+   "commits": [
+    {
+     "sha": "92eaf2f1d2d76c3bf5077f93bcd43cf11599cee3",
+     "date": "2026-10-03T01:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Recorder UI (1)",
+     "parents": []
+    },
+    {
+     "sha": "26858cf07e812eb28cb4d35d116989cf32503e8a",
+     "date": "2026-10-03T05:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Recorder UI (2)",
+     "parents": []
+    },
+    {
+     "sha": "843f74763b71779ddac4ac7a81c14c67cfdc819d",
+     "date": "2026-10-03T09:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Recorder UI (3)",
+     "parents": []
+    },
+    {
+     "sha": "940b54ca87a662bdf2fb1da713ba45146b256bb6",
+     "date": "2026-10-03T14:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Recorder UI (4)",
+     "parents": []
+    },
+    {
+     "sha": "36d6e1b0ee5640a4c58f3ed086e7eaa186366fdb",
+     "date": "2026-10-03T20:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Recorder: polish (1)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "b9309a78eefd66999dbd5164f298772bc784e96c",
+     "date": "2026-10-03T20:12:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Recorder: polish (2)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "4581ba421b231e4b34b075a9a781e54d550377d1",
+     "date": "2026-10-03T20:24:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Recorder: polish (3)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "7ce784e5ac140870e1fcd1a2cebad8b3cb7a0f62",
+     "date": "2026-10-03T20:36:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Recorder: polish (4)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "93b461d846020ebe90ab3c5381acaa95b70a5001",
+     "date": "2026-10-03T21:30:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Recorder: polish (5)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "7fd4b0deef4ca017eafcb089828710247ca6773d",
+    "source": "compare"
+   }
+  },
+  {
+   "number": 12,
+   "title": "Transcription via the core API",
+   "body": "",
+   "state": "closed",
+   "draft": false,
+   "merged": true,
+   "head": "ben/transcribe",
+   "base": "main",
+   "author": {
+    "login": "ben",
+    "name": "Ben",
+    "type": "User"
+   },
+   "created_at": "2026-10-03T08:00:00Z",
+   "updated_at": "2026-10-03T18:00:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "src/transcribe/local.py",
+    "src/core/api.py"
+   ],
+   "commits": [
+    {
+     "sha": "f3e01f2befb4e189d71be008433da9470ac995d0",
+     "date": "2026-10-03T08:00:00Z",
+     "author": {
+      "login": "ben",
+      "name": "Ben",
+      "type": "User"
+     },
+     "message": "Transcription via the core API (1)",
+     "parents": []
+    },
+    {
+     "sha": "c6b7a8f3005f77ce14682c5a20374f615f208284",
+     "date": "2026-10-03T09:00:00Z",
+     "author": {
+      "login": "ben",
+      "name": "Ben",
+      "type": "User"
+     },
+     "message": "Transcription via the core API (2)",
+     "parents": []
+    },
+    {
+     "sha": "b3afb957a18590934d8aec2025a50e23a54bf02c",
+     "date": "2026-10-03T13:00:00Z",
+     "author": {
+      "login": "ben",
+      "name": "Ben",
+      "type": "User"
+     },
+     "message": "Transcription: move model loading into core (1)",
+     "parents": []
+    },
+    {
+     "sha": "63492716a39dd16e90429d0b32cad7ec57511769",
+     "date": "2026-10-03T13:30:00Z",
+     "author": {
+      "login": "ben",
+      "name": "Ben",
+      "type": "User"
+     },
+     "message": "Transcription: move model loading into core (2)",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "7fd4b0deef4ca017eafcb089828710247ca6773d",
+    "source": "compare"
+   }
+  },
+  {
+   "number": 13,
+   "title": "Transcription accuracy evals",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "dana/evals",
+   "base": "main",
+   "author": {
+    "login": "dana",
+    "name": "Dana",
+    "type": "User"
+   },
+   "created_at": "2026-10-03T17:00:00Z",
+   "updated_at": "2026-10-03T19:00:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "evals/transcription/run.py",
+    "evals/transcription/clips.json"
+   ],
+   "commits": [
+    {
+     "sha": "429bb41b10f36ce025fca86fe7c8a53ffd2f169d",
+     "date": "2026-10-03T17:00:00Z",
+     "author": {
+      "login": "dana",
+      "name": "Dana",
+      "type": "User"
+     },
+     "message": "Transcription accuracy evals (1)",
+     "parents": []
+    },
+    {
+     "sha": "c14274d70c049993e652ec7165ef3a18f5f9f3bb",
+     "date": "2026-10-03T19:00:00Z",
+     "author": {
+      "login": "dana",
+      "name": "Dana",
+      "type": "User"
+     },
+     "message": "Transcription accuracy evals (2)",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "335a92f004efa31cbe9c8b072391c3c3dc7e5f16",
+    "source": "compare"
+   }
+  }
+ ],
+ "branches": [],
+ "issues": [],
+ "meta": {
+  "source": "synthetic (Demo Lab)",
+  "api_calls": 0,
+  "rate_limit_remaining": null,
+  "degraded": []
+ }
+}

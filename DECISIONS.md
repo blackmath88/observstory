@@ -132,3 +132,31 @@ event-triggered runs plus in-flight evidence, and both work inside an Action.
 **Decision.** Synthetic observation bundles (`fixtures/demo_lab.py`: one fictional repo over about a week, stable people and PR numbers) are rendered into one real Project Map page per state. `demo/index.html` is a small shell (tabs, caption, Prev/Next, hash URLs, arrow keys) that swaps those pages in an iframe.
 **Rejected.** Re-rendering the map in the browser from `scene.json`: that would need a JavaScript port of the renderer, which is a second implementation that could drift.
 **Details.** The renderer gained `time_label` (a fixed "story time" instead of "snapshot N h old") and `data_href` (per-state JSON links). Synthetic data carries no URLs, so an invented repository name can never link to a real account. The inspector hides "Open on GitHub" when there's no URL.
+
+## ADR-027: Observstory adds declared collaboration state, narrowly (issue #7)
+**Decision.** The boundary is *repo observability + declared collaboration state*: sessions, gates, commitments and decisions confirmed by people and compared with repository evidence. Observstory doesn't become a project-operating surface, task manager, meeting recorder or calendar.
+**Evidence.** Discovery Q1 (freeze or gate compared with activity: score 80, uncovered by any tool surveyed) and Q2 (commitments evaporate: 60). Trackers already solve PR ↔ task sync (Linear), and AI note-takers already solve drafting.
+**Rejected.** Option 3 (an operating surface): it duplicates trackers and calendars and adds upkeep.
+
+## ADR-028: Declared state lives in the repository as `.observstory/coordination.json`
+**Decision.** Confirmed declarations are committed to the observed repository. The Action reads the file next to its checkout. It's optional: no file means no rail.
+**Why.** The Action stays stateless. Declarations become versioned and reviewable in PRs, there's no second source of truth or hidden database, and agents can read them from the checkout.
+**Cost.** Visible to everyone who can read the repository, which matters for public repos (K12). Confirming requires a commit.
+
+## ADR-029: Extraction proposes; only a named human confirmation declares
+**Decision.** The extractor writes `status: proposed`, with the source line. `observstory checkin confirm --by NAME` promotes items to `declared`, recording `confirmed_by` and `confirmed_at`. Reconciliation, the rail and the map ignore proposed items. The default extractor is deterministic, using explicit markers. An LLM extractor may be added behind the same interface, and it still only proposes. There's no recording or transcription in v1.
+**Evidence.** Vendor-reported action-item hallucination above 35%; recording-consent law (D2, D3).
+
+## ADR-030: Reconciliation cues are separate from repository signals
+**Decision.** Rules C-linked, C-unlinked, G-freeze and G-open produce `snapshot.coordination` (commitment states plus cues). Nothing is added to `snapshot.signals`. Each cue carries a `declared` part (what was said, by which confirmed session) and an `observed` part (work items and commits).
+**Why.** Principle 1 (declared ≠ observed): mixing them would make a missed commitment look like an observed fact about the code.
+
+## ADR-031: The check-in review page stays a prototype until there is a write path
+**Context.** Develop built a browser review page (`prototypes/collaboration/checkin/`) where proposed items are edited and confirmed. The Action only produces static pages, which can't write to the repository.
+**Decision.** Confirmation ships as `observstory checkin confirm --by NAME` plus a commit. The review page stays a prototype until there's a safe write path (a GitHub App with repository-scoped auth, v2).
+**Rejected.** A page that asks for a personal access token, or a page that emits JSON to paste: the first handles credentials in a static page, and the second is the CLI with extra steps.
+
+## ADR-032: The mission rail sits above the Project Map, not in it, and not in a tab
+**Decision.** When declarations exist, a single rail (NOW, check-ins, gates, commitment due times) is drawn above the lanes. Declared cues are in their own "Declared vs observed" section of the attention column. Gates and commitments open in the same inspector, with the declared side above the observed side.
+**Why.** Next-gate awareness must be visible in under 10 seconds (Develop comparison), and a tab hides it. Drawing declarations inside lane cards would mix declared and observed (principle 1).
+**Details.** The rail only exists when `.observstory/coordination.json` does, so zero-config maps don't change. Only a count of proposed items is shown, with the command that confirms them. Label collisions near NOW or a gate are resolved in the renderer (the NOW label flips below the line; a check-in label near a gate is shown on hover only).

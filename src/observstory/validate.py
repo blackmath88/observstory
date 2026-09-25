@@ -108,7 +108,9 @@ def scene_errors(scene: dict) -> list[str]:
         for end in (e["from"], e["to"]):
             if end not in nodes:
                 errors.append(f"edge {e['id']}: unknown node {end}")
+    coord = scene.get("coordination") or {}
+    declared = {x["id"] for k in ("gates", "commitments") for x in coord.get(k, [])}
     for a in scene["attention"]:
-        if a["target"] not in edges and a["target"] not in nodes:
+        if a["target"] not in edges and a["target"] not in nodes and a["target"] not in declared:
             errors.append(f"attention {a['label']!r}: unknown target {a['target']}")
     return errors

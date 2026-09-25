@@ -108,6 +108,28 @@ The typed model ([`schema/snapshot-v1.json`](schema/snapshot-v1.json)):
 - **Actor**: an author, with no counts attached
 - **Commit** and **Issue**
 
+## Optional: declared collaboration state (check-ins, gates, commitments)
+
+For hackathons and fast teams: write check-in notes with a few markers, confirm them by name, and
+commit them. The Project Map then shows a **mission rail** (NOW, the next gate, check-ins,
+commitment due times) and **declared vs observed** cues next to the repository signals.
+
+```text
+- FREEZE src/core/ at Sat 12:00
+- @Dana: evaluation set (by Sat 16:00) [evals/]
+- DECISION: no cloud speech-to-text [src/transcribe/]
+```
+
+```bash
+python3 scripts/observstory.py checkin propose notes.md --label "Kickoff" --at 2026-10-02T18:30:00Z   # -> PROPOSED
+python3 scripts/observstory.py checkin confirm S1 --by Alice                                            # -> DECLARED
+git add .observstory/coordination.json && git commit -m "Kickoff declarations"
+```
+
+A cue such as *"Freeze src/core/ at 12:00: src/core/ changed afterwards in #12"* names work, never
+people. Nothing is recorded or transcribed, and nothing extracted counts until a person confirms
+it. Without the file, nothing changes. Guide: [docs/collaboration-delivery](docs/collaboration-delivery/README.md).
+
 ## For coding agents
 
 ```bash
@@ -115,7 +137,7 @@ python3 scripts/observstory.py query work-near src/conversation/store.py --snaps
 # -> in-flight work touching that path, overlap signals with evidence, coordination_needed: true|false
 ```
 
-The other queries are `changes-since <iso>`, `overlaps [path]`, `open-loops` and `handoff`.
+The other queries are `changes-since <iso>`, `overlaps [path]`, `open-loops`, `handoff` and `coordination` (declared gates and commitments against the repository).
 The contract is in [docs/demo/agent-contract.md](docs/demo/agent-contract.md).
 
 **MCP is a delivery channel, not the product.** An MCP server would expose these same queries
@@ -162,4 +184,5 @@ python3 -m unittest discover -s tests -t .      # stdlib only, no install
 | Define | [docs/definition](docs/definition/README.md): thesis, JTBD, boundary, v1 scope, signal specs, principles |
 | Develop | [docs/development](docs/development/): concept comparison, experiments, UI language · [prototypes/](prototypes/) |
 | UI | [docs/ui](docs/ui/project-map.md): Project Map, scene grammar, design language · [prototypes/project-map](prototypes/project-map/) · [Demo Lab](demo/README.md) |
+| Collaboration state (issue #7) | [discover](docs/collaboration-discovery/README.md) · [define](docs/collaboration-definition/README.md) · [develop](docs/collaboration-development/concept-comparison.md) · [deliver: guide](docs/collaboration-delivery/README.md) · [acceptance](docs/collaboration-delivery/acceptance.md) · [prototypes/collaboration](prototypes/collaboration/) |
 | Deliver | [docs/demo](docs/demo/README.md) · [acceptance map](docs/demo/acceptance.md) · [ARCHITECTURE.md](ARCHITECTURE.md) · [DECISIONS.md](DECISIONS.md) · [ROADMAP.md](ROADMAP.md) |

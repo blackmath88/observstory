@@ -1,0 +1,653 @@
+{
+ "schema": "observstory.scene/v1",
+ "source": {
+  "snapshot_schema": "observstory.snapshot/v1",
+  "generated_at": "2026-10-03T15:00:00Z",
+  "repository": "northstar/voice-notes",
+  "repository_url": null,
+  "default_branch": "main",
+  "window_hours": 48,
+  "title": "Voice notes hackathon (synthetic demo)",
+  "lanes_source": "config",
+  "degraded": []
+ },
+ "status": {
+  "in_flight": 2,
+  "overlaps": 1,
+  "waiting": 0,
+  "stale": 0,
+  "areas_active": 4
+ },
+ "zones": [
+  {
+   "id": "intent",
+   "label": "Intent",
+   "description": "Pitch and decisions",
+   "order": 0,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [
+    "README.md"
+   ],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "core",
+   "label": "Core",
+   "description": "Audio, transcription, core API",
+   "order": 1,
+   "state": "active",
+   "groups": [
+    "area:src/core",
+    "area:src/transcribe"
+   ],
+   "in_flight": 1,
+   "attention": true,
+   "recently_changed": [
+    "src/audio"
+   ],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "interface",
+   "label": "Interface",
+   "description": "Recorder UI",
+   "order": 2,
+   "state": "active",
+   "groups": [
+    "area:web"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "verify",
+   "label": "Verify",
+   "description": "Evaluation",
+   "order": 3,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  }
+ ],
+ "groups": [
+  {
+   "id": "area:src/core",
+   "zone": "core",
+   "path": "src/core",
+   "label": "core",
+   "parent": "src",
+   "attention": true,
+   "nodes": [
+    "pr:12",
+    "direct:alice"
+   ],
+   "also_active": [],
+   "recent_commits": 3,
+   "last_activity_at": "2026-10-03T13:30:00Z",
+   "age_hours": 1.5
+  },
+  {
+   "id": "area:src/transcribe",
+   "zone": "core",
+   "path": "src/transcribe",
+   "label": "transcribe",
+   "parent": "src",
+   "attention": false,
+   "nodes": [],
+   "also_active": [
+    "pr:12"
+   ],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-03T13:30:00Z",
+   "age_hours": 1.5
+  },
+  {
+   "id": "area:web",
+   "zone": "interface",
+   "path": "web",
+   "label": "web",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:11"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-03T14:00:00Z",
+   "age_hours": 1.0
+  }
+ ],
+ "nodes": [
+  {
+   "id": "pr:12",
+   "kind": "pull_request",
+   "group": "area:src/core",
+   "zone": "core",
+   "ref": "#12",
+   "label": "Transcription via the core API",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "ben"
+   ],
+   "last_activity_at": "2026-10-03T13:30:00Z",
+   "age_hours": 1.5,
+   "also_touches": [
+    "src/transcribe"
+   ],
+   "flags": [],
+   "attention": true
+  },
+  {
+   "id": "direct:alice",
+   "kind": "direct",
+   "group": "area:src/core",
+   "zone": "core",
+   "ref": "landed on main",
+   "label": "Direct pushes to main",
+   "url": null,
+   "status": "landed",
+   "review_state": null,
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-10-03T12:42:00Z",
+   "age_hours": 2.3,
+   "also_touches": [
+    "README.md"
+   ],
+   "flags": [],
+   "attention": true
+  },
+  {
+   "id": "pr:11",
+   "kind": "pull_request",
+   "group": "area:web",
+   "zone": "interface",
+   "ref": "#11",
+   "label": "Recorder UI",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "sofia"
+   ],
+   "last_activity_at": "2026-10-03T14:00:00Z",
+   "age_hours": 1.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  }
+ ],
+ "edges": [
+  {
+   "id": "overlap:direct:alice|pr:12",
+   "type": "overlap",
+   "from": "direct:alice",
+   "to": "pr:12",
+   "directed": false,
+   "basis": "derived",
+   "confidence": "high",
+   "attention": true,
+   "areas": [
+    "src/core"
+   ],
+   "files": [
+    "src/core/api.py"
+   ],
+   "signals": [
+    "overlap:src/core"
+   ]
+  }
+ ],
+ "attention": [
+  {
+   "kind": "overlap",
+   "target": "overlap:direct:alice|pr:12",
+   "confidence": "high",
+   "basis": "derived",
+   "label": "landed on main and #12 change src/core in parallel"
+  },
+  {
+   "kind": "declared",
+   "target": "C4",
+   "confidence": "high",
+   "basis": "declared",
+   "label": "\"evaluation set for transcription accuracy\" is due 16:00: no linked work yet"
+  },
+  {
+   "kind": "declared",
+   "target": "G2",
+   "confidence": "medium",
+   "basis": "declared",
+   "label": "Freeze src/core/ at 12:00: src/core/ changed afterwards in #12, a direct push"
+  }
+ ],
+ "details": {
+  "signals": {
+   "overlap:src/core": {
+    "type": "overlap",
+    "summary": "2 work items change src/core in parallel; 1 shared file",
+    "basis": "derived",
+    "confidence": "high",
+    "evidence": [
+     {
+      "kind": "file",
+      "ref": "src/core/api.py",
+      "url": null,
+      "work_items": [
+       "direct:alice",
+       "pr:12"
+      ],
+      "detail": "changed by 2 work items in parallel"
+     },
+     {
+      "kind": "base",
+      "ref": "pr:12 × direct:alice",
+      "url": null,
+      "work_items": [
+       "pr:12",
+       "direct:alice"
+      ],
+      "detail": "pr:12 diverged at 7fd4b0d (compare); 1 default-branch commit(s) made after that touch this area: 335a92f"
+     },
+     {
+      "kind": "work_item",
+      "ref": "direct:alice",
+      "url": null,
+      "detail": "Direct pushes to main (pushed)"
+     },
+     {
+      "kind": "work_item",
+      "ref": "pr:12",
+      "url": null,
+      "detail": "Transcription via the core API (open)"
+     }
+    ],
+    "rule": {
+     "name": "overlap.parallel_pairs",
+     "params": {
+      "min_work_items": 2,
+      "same_author": false,
+      "shared_files": 1,
+      "parallel_pairs": [
+       "pr:12|direct:alice"
+      ],
+      "baseline_pairs": [
+       "pr:12|direct:ben"
+      ],
+      "sequential_direct_pairs": 1,
+      "explained_by_waiting": [],
+      "excluded_stale": [],
+      "excluded_bot_only": [],
+      "area_only_pairs_skipped": 0,
+      "require_shared_file": true
+     }
+    },
+    "work_items": [
+     "direct:alice",
+     "pr:12"
+    ]
+   }
+  },
+  "work_items": {
+   "pr:11": {
+    "paths": [
+     "web/recorder/Recorder.tsx",
+     "web/recorder/Waveform.tsx"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "web"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "7fd4b0deef4ca017eafcb089828710247ca6773d",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:12": {
+    "paths": [
+     "src/core/api.py",
+     "src/transcribe/local.py"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "src/core",
+     "src/transcribe"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "7fd4b0deef4ca017eafcb089828710247ca6773d",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "direct:alice": {
+    "paths": [
+     "README.md",
+     "src/core/api.py"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "README.md",
+     "src/core"
+    ],
+    "state": "pushed",
+    "burst": null,
+    "merge_base": null,
+    "commit_count": 2,
+    "waiting_on": []
+   }
+  },
+  "areas": {
+   "src/core": {
+    "files": [
+     "src/core/api.py"
+    ],
+    "actors": [
+     "alice",
+     "ben"
+    ],
+    "recent_commits": 3
+   },
+   "src/transcribe": {
+    "files": [
+     "src/transcribe/local.py"
+    ],
+    "actors": [
+     "ben"
+    ],
+    "recent_commits": 0
+   },
+   "web": {
+    "files": [
+     "web/recorder/Recorder.tsx",
+     "web/recorder/Waveform.tsx"
+    ],
+    "actors": [
+     "sofia"
+    ],
+    "recent_commits": 0
+   }
+  }
+ },
+ "coordination": {
+  "source": ".observstory/coordination.json",
+  "now": "2026-10-03T15:00:00Z",
+  "span": [
+   "2026-10-02T18:30:00Z",
+   "2026-10-04T07:03:54Z"
+  ],
+  "next_gate": "G3",
+  "hours_to_next": 7.0,
+  "proposed_pending": 0,
+  "sessions": [
+   {
+    "id": "S1",
+    "kind": "kickoff",
+    "label": "Kickoff",
+    "at": "2026-10-02T18:30:00Z",
+    "open_questions": [
+     "do we need speaker labels for the demo"
+    ]
+   },
+   {
+    "id": "S2",
+    "kind": "check-in",
+    "label": "Saturday morning check-in",
+    "at": "2026-10-03T09:00:00Z",
+    "open_questions": [
+     "is the demo laptop's microphone good enough"
+    ]
+   }
+  ],
+  "gates": [
+   {
+    "id": "G1",
+    "kind": "checkpoint",
+    "label": "Skeleton demo",
+    "at": "2026-10-03T00:00:00Z",
+    "areas": [],
+    "passed": true,
+    "next": false,
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   },
+   {
+    "id": "G2",
+    "kind": "freeze",
+    "label": "Freeze src/core/",
+    "at": "2026-10-03T12:00:00Z",
+    "areas": [
+     "src/core/"
+    ],
+    "passed": true,
+    "next": false,
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": "gate:G2"
+   },
+   {
+    "id": "G3",
+    "kind": "freeze",
+    "label": "Freeze web/, src/",
+    "at": "2026-10-03T22:00:00Z",
+    "areas": [
+     "web/",
+     "src/"
+    ],
+    "passed": false,
+    "next": true,
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   },
+   {
+    "id": "G4",
+    "kind": "submission",
+    "label": "Submission",
+    "at": "2026-10-04T06:00:00Z",
+    "areas": [],
+    "passed": false,
+    "next": false,
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   }
+  ],
+  "commitments": [
+   {
+    "id": "C1",
+    "text": "audio capture pipeline",
+    "owner": "Alice",
+    "due": "2026-10-03T10:00:00Z",
+    "state": "landed",
+    "matched": [
+     "pr:10"
+    ],
+    "links": [
+     {
+      "kind": "path",
+      "ref": "src/audio/"
+     }
+    ],
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   },
+   {
+    "id": "C2",
+    "text": "transcription adapter",
+    "owner": "Ben",
+    "due": "2026-10-03T12:00:00Z",
+    "state": "in_progress",
+    "matched": [
+     "pr:12"
+    ],
+    "links": [
+     {
+      "kind": "path",
+      "ref": "src/transcribe/"
+     }
+    ],
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   },
+   {
+    "id": "C3",
+    "text": "recorder UI",
+    "owner": "Sofia",
+    "due": "2026-10-03T14:00:00Z",
+    "state": "in_progress",
+    "matched": [
+     "pr:11"
+    ],
+    "links": [
+     {
+      "kind": "path",
+      "ref": "web/recorder/"
+     }
+    ],
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   },
+   {
+    "id": "C4",
+    "text": "evaluation set for transcription accuracy",
+    "owner": "Dana",
+    "due": "2026-10-03T16:00:00Z",
+    "state": "not_started",
+    "matched": [],
+    "links": [
+     {
+      "kind": "path",
+      "ref": "evals/"
+     }
+    ],
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": "commitment:C4"
+   },
+   {
+    "id": "C5",
+    "text": "route transcription through the core API",
+    "owner": "Ben",
+    "due": "2026-10-03T11:30:00Z",
+    "state": "in_progress",
+    "matched": [
+     "pr:12"
+    ],
+    "links": [
+     {
+      "kind": "pr",
+      "ref": "12"
+     }
+    ],
+    "confirmed_by": "Ben",
+    "session": "S2",
+    "cue": null
+   }
+  ],
+  "decisions": [
+   {
+    "id": "D1",
+    "text": "everything runs locally, no cloud speech-to-text",
+    "areas": [
+     "src/transcribe/"
+    ],
+    "changed_after": [
+     "pr:12"
+    ],
+    "confirmed_by": "Alice",
+    "session": "S1"
+   },
+   {
+    "id": "D2",
+    "text": "core API is frozen at 12:00; only fixes after",
+    "areas": [
+     "src/core/"
+    ],
+    "changed_after": [
+     "direct:alice",
+     "pr:10",
+     "pr:12"
+    ],
+    "confirmed_by": "Ben",
+    "session": "S2"
+   }
+  ],
+  "cues": [
+   {
+    "id": "commitment:C4",
+    "rule": "commitment.unstarted",
+    "subject": {
+     "kind": "commitment",
+     "id": "C4"
+    },
+    "confidence": "high",
+    "summary": "\"evaluation set for transcription accuracy\" is due 16:00: no linked work yet",
+    "declared": {
+     "text": "evaluation set for transcription accuracy",
+     "owner": "Dana",
+     "due": "2026-10-03T16:00:00Z",
+     "links": [
+      {
+       "kind": "path",
+       "ref": "evals/"
+      }
+     ],
+     "session": "S1",
+     "confirmed_by": "Alice"
+    },
+    "observed": {
+     "work_items": [],
+     "detail": "no open, landed or recent work matches path evals/"
+    }
+   },
+   {
+    "id": "gate:G2",
+    "rule": "freeze.changed_after",
+    "subject": {
+     "kind": "gate",
+     "id": "G2"
+    },
+    "confidence": "medium",
+    "summary": "Freeze src/core/ at 12:00: src/core/ changed afterwards in #12, a direct push",
+    "declared": {
+     "text": "Freeze src/core/",
+     "at": "2026-10-03T12:00:00Z",
+     "areas": [
+      "src/core/"
+     ],
+     "session": "S1",
+     "confirmed_by": "Alice"
+    },
+    "observed": {
+     "work_items": [
+      "pr:12",
+      "direct:alice"
+     ],
+     "detail": "#12: 2 commit(s) after the freeze on work that touches src/core/api.py; a direct push: 1 commit(s) after the freeze touching src/core/api.py"
+    }
+   }
+  ]
+ }
+}

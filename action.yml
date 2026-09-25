@@ -14,6 +14,10 @@ inputs:
     description: Optional path to observstory.config.json. Missing file means zero-config defaults.
     required: false
     default: observstory.config.json
+  coordination:
+    description: Optional declared collaboration state (gates, commitments, decisions from check-ins). Missing file means no mission rail.
+    required: false
+    default: .observstory/coordination.json
   output:
     description: Output directory for index.html (Project Map), radar.html and data/{snapshot,scene,observations}.json.
     required: false
@@ -42,6 +46,7 @@ runs:
         OBSERVSTORY_RUN_ID: ${{ github.run_id }}
         OBSERVSTORY_CONFIG: ${{ inputs.config }}
         OBSERVSTORY_OUTPUT: ${{ inputs.output }}
+        OBSERVSTORY_COORDINATION: ${{ inputs.coordination }}
       run: |
         python3 "$GITHUB_ACTION_PATH/scripts/observstory.py" build
         echo "snapshot=$OBSERVSTORY_OUTPUT/data/snapshot.json" >> "$GITHUB_OUTPUT"

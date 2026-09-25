@@ -34,6 +34,7 @@ Every response has the same shape:
 | What overlaps my proposed task? | `observstory query work-near src/conversation/store.py src/conversation/export.py` | [`03-proposed-task.json`](../../prototypes/agent-surface/examples/03-proposed-task.json) |
 | What open loops exist? | `observstory query open-loops` | [`04-open-loops.json`](../../prototypes/agent-surface/examples/04-open-loops.json) |
 | What is ready for handoff? | `observstory query handoff` | [`05-handoff.json`](../../prototypes/agent-surface/examples/05-handoff.json) |
+| What did the team declare, and does the repo agree? | `observstory query coordination` | [`06-coordination.json`](../../prototypes/agent-surface/examples/06-coordination.json) |
 
 "Who is active" is answered as `authors_of_active_work`: the authors of in-flight work items,
 so the agent knows who to coordinate with. There is no query that returns what one person has

@@ -1,0 +1,39 @@
+{
+  "title": "Voice notes hackathon (synthetic demo)",
+  "lanes": [
+    {
+      "id": "intent",
+      "label": "Intent",
+      "description": "Pitch and decisions",
+      "paths": [
+        "README",
+        "docs/"
+      ]
+    },
+    {
+      "id": "core",
+      "label": "Core",
+      "description": "Audio, transcription, core API",
+      "paths": [
+        "src/"
+      ]
+    },
+    {
+      "id": "interface",
+      "label": "Interface",
+      "description": "Recorder UI",
+      "paths": [
+        "web/"
+      ]
+    },
+    {
+      "id": "verify",
+      "label": "Verify",
+      "description": "Evaluation",
+      "paths": [
+        "evals/",
+        "tests/"
+      ]
+    }
+  ]
+}

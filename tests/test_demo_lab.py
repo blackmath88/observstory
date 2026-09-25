@@ -21,6 +21,7 @@ EXPECTED = {
     "crowded": (5, 3, 0, 0, 0), "resolved": (4, 0, 2, 0, 0), "calm": (2, 0, 0, 0, 0),
     "burst": (3, 0, 0, 0, 1), "stale": (3, 0, 0, 2, 0), "other-project": (4, 1, 1, 0, 0),
 }
+HACKATHON = ["kickoff", "saturday-morning", "after-core-freeze", "feature-freeze"]  # issue #7 act, fixtures/collab-lab
 
 
 def state(sid):
@@ -100,7 +101,7 @@ class DemoLab(unittest.TestCase):
 class BuiltDemo(unittest.TestCase):
     def test_pages_are_static_and_offline(self):
         pages = [ROOT / "demo/index.html"] + sorted((ROOT / "demo/states").glob("*.html"))
-        self.assertEqual(len(pages), 1 + len(EXPECTED))
+        self.assertEqual(len(pages), 1 + len(EXPECTED) + len(HACKATHON))
         for page in pages:
             text = page.read_text()
             with self.subTest(page=page.name):
@@ -108,9 +109,20 @@ class BuiltDemo(unittest.TestCase):
 
     def test_shell_lists_every_state_and_says_it_is_synthetic(self):
         text = (ROOT / "demo/index.html").read_text()
-        for sid in EXPECTED:
+        for sid in [*EXPECTED, *HACKATHON]:
             self.assertIn(f'id="tab-{sid}"', text)
         self.assertIn("Synthetic data", text)
+
+    def test_hackathon_act_shows_declared_state_as_it_stood(self):
+        for sid in HACKATHON:
+            with self.subTest(state=sid):
+                scene = json.loads((ROOT / "demo/states" / f"{sid}.scene.json").read_text())
+                self.assertEqual(scene_errors(scene), [])
+                self.assertIsNotNone(scene.get("coordination"))
+        cues = lambda sid: sorted(a["rule"] for a in json.loads(  # noqa: E731
+            (ROOT / "demo/states" / f"{sid}.snapshot.json").read_text())["coordination"]["cues"])
+        self.assertEqual(cues("kickoff"), [])
+        self.assertEqual(cues("after-core-freeze"), ["commitment.unstarted", "freeze.changed_after"])
 
 
 if __name__ == "__main__":
