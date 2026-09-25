@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Project Map · blackmath88/observstory</title>
+<style>
+:root{--bg:#f6f5f1;--surface:#fdfcfa;--ink:#1d1d1f;--ink2:#515154;--ink3:#8a8a8e;--hair:#e4e2dc;--hair2:#d6d4cd;
+--accent:#b4530a;--accent-t:#fbefe4;--select:#0a66d6;--wire:#6e6e73;
+--t0:#f1efe8;--t1:#ecf1ec;--t2:#ecf0f5;--t3:#f2eef4;--t4:#f4efe7;--t5:#eef1f0;
+--sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161617;--surface:#1e1e20;--ink:#f2f2f4;--ink2:#b8b8bd;
+--ink3:#85858b;--hair:#2e2e31;--hair2:#3a3a3e;--accent:#f09a45;--accent-t:#3a2716;--select:#4c9bff;--wire:#9a9aa0;
+--t0:#1f1e1b;--t1:#1b201c;--t2:#1b1e23;--t3:#211d23;--t4:#221f1a;--t5:#1d2120}}
+:root[data-theme="dark"]{--bg:#161617;--surface:#1e1e20;--ink:#f2f2f4;--ink2:#b8b8bd;--ink3:#85858b;--hair:#2e2e31;--hair2:#3a3a3e;
+--accent:#f09a45;--accent-t:#3a2716;--select:#4c9bff;--wire:#9a9aa0;--t0:#1f1e1b;--t1:#1b201c;--t2:#1b1e23;--t3:#211d23;--t4:#221f1a;--t5:#1d2120}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:13px/1.45 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:underline;text-decoration-color:var(--hair2);text-underline-offset:2px}
+a:hover{text-decoration-color:currentColor}
+code,.ref,.mono{font-family:var(--mono);font-size:11.5px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;text-align:left;cursor:pointer}
+:focus-visible{outline:2px solid var(--select);outline-offset:2px;border-radius:6px}
+.muted{color:var(--ink3)}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 32px;flex-wrap:wrap;padding:22px 28px 14px;border-bottom:1px solid var(--hair)}
+.mark{display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+h1{margin:2px 0 0;font-size:21px;font-weight:600;letter-spacing:-.01em}
+h1 a{text-decoration:none}
+.sub{color:var(--ink3);font-size:12px}
+.status{margin:0;color:var(--ink2);font-size:12.5px}
+.status b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.status b.hot{color:var(--accent)}
+.fresh{display:block;text-align:right;color:var(--ink3);font-size:11.5px;margin-top:2px}
+.degraded{margin:10px 28px 0;color:var(--accent);font-size:12px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;padding:22px 28px 40px;align-items:start}
+.mapwrap{min-width:0}
+.map{position:relative;display:flex;flex-wrap:wrap;gap:30px 30px;align-items:stretch}
+.wires{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:2}
+.zone{position:relative;z-index:1;flex:3 1 240px;min-width:220px;max-width:560px;border-radius:12px;padding:12px 12px 14px;display:flex;flex-direction:column;gap:10px}
+.zone.quiet{flex:0 0 132px;min-width:132px}
+.t0{background:var(--t0)}.t1{background:var(--t1)}.t2{background:var(--t2)}.t3{background:var(--t3)}.t4{background:var(--t4)}.t5{background:var(--t5)}
+.zh{display:flex;align-items:baseline;gap:8px}
+.zh h2{margin:0;font-size:11.5px;font-weight:650;letter-spacing:.09em;text-transform:uppercase;color:var(--ink2)}
+.zo{font:500 10.5px var(--mono);color:var(--ink3)}
+.zc{margin-left:auto;font:500 11px var(--mono);color:var(--ink3)}
+.zd{margin:-6px 0 0;color:var(--ink3);font-size:11.5px}
+.zq{margin:0;color:var(--ink3);font-size:12px}
+.recent{margin:0;color:var(--ink3);font-size:11px;line-height:1.6}
+.recent code{font-size:10.5px;word-break:break-all}
+.group{background:var(--surface);border:1px solid var(--hair);border-radius:10px;padding:2px 4px 4px}
+.group.att{border-color:color-mix(in srgb,var(--accent) 55%,var(--hair))}
+.thins{display:flex;flex-direction:column;gap:4px}
+.tl{margin:2px 2px 0;color:var(--ink3);font-size:11px}
+.group.thin{display:flex;align-items:center;gap:6px;padding:0 8px 0 0;min-height:30px}
+.group.thin .gh{flex:1;min-width:0;padding:5px 8px}
+.group.thin .path{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}
+.group.thin .chips{display:flex;gap:4px;min-width:0;max-width:48%;justify-content:flex-end}
+.group.thin .ref-chip{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gh{display:flex;align-items:baseline;gap:8px;width:100%;padding:7px 8px 5px;border-radius:7px}
+.gh:hover{background:color-mix(in srgb,var(--ink) 4%,transparent)}
+.path{min-width:0;flex:1;font-family:var(--mono);font-size:11.5px;overflow-wrap:anywhere}
+.par{color:var(--ink3)}
+.leaf{color:var(--ink);font-weight:600}
+.pill{font-size:10.5px;font-weight:600;color:var(--accent);background:var(--accent-t);border-radius:999px;padding:0 7px;line-height:17px}
+.gage{font:10.5px var(--mono);color:var(--ink3)}
+.node{display:flex;flex-direction:column;gap:1px;width:100%;padding:6px 8px;border-radius:7px;position:relative}
+.node:hover{background:color-mix(in srgb,var(--ink) 4%,transparent)}
+.nl{display:flex;gap:7px;align-items:baseline;min-width:0}
+.ref{color:var(--ink2);flex:none;max-width:45%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.node[data-id^="branch:"] .ref{font-family:var(--sans);font-size:10.5px;border:1px solid var(--hair);border-radius:4px;padding:0 4px;line-height:16px;align-self:center}
+.lbl{min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.nm{color:var(--ink3);font-size:11.5px;display:flex;flex-wrap:wrap;gap:0 6px;align-items:baseline}
+.flag{color:var(--ink2);font-size:11px}
+.also{color:var(--ink3)}
+.node.s-stale,.node.s-landed{opacity:.62}
+.node.s-landed .ref{font-family:var(--sans);font-size:11.5px}
+.node.att.s-in_flight .ref,.node.att.s-draft .ref{color:var(--accent)}
+.more summary{cursor:pointer;color:var(--ink3);font-size:11.5px;padding:4px 8px;list-style:none}
+.more summary::-webkit-details-marker{display:none}
+.more summary::before{content:"+ "}
+.more[open] summary::before{content:"− "}
+.alsohere{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:baseline;padding:2px 8px 5px;color:var(--ink3);font-size:11px}
+.ref-chip{font:11px var(--mono);color:var(--ink2);border:1px solid var(--hair);border-radius:5px;padding:0 5px}
+.ref-chip:hover{border-color:var(--hair2);color:var(--ink)}
+.is-selected{box-shadow:inset 0 0 0 1.5px var(--select);background:color-mix(in srgb,var(--select) 7%,transparent)!important}
+.dimmed .node:not(.is-related):not(.is-selected){opacity:.35}
+.dimmed .node.s-stale.is-related,.dimmed .node.s-landed.is-related{opacity:.8}
+.wire{fill:none;stroke-linecap:round}
+.wire.k-ov,.k-ov{stroke:var(--accent);stroke-width:1.6;fill:none}
+.wire.k-wt,.k-wt{stroke:var(--wire);stroke-width:1.3;fill:none}
+.wire.c-medium{stroke-dasharray:5 4}.wire.c-low{stroke-dasharray:1.5 4}
+.wire.flow{stroke:var(--hair2);stroke-width:1.2}
+.hit{fill:none;stroke:transparent;stroke-width:14;pointer-events:stroke;cursor:pointer}
+.hit:focus-visible{outline:none}
+.hit:focus-visible+.wire,.wires g.is-selected .wire{stroke-width:3}
+.wires g.dim .wire{opacity:.25}
+.wlabel{font:600 10px var(--sans);fill:var(--accent);paint-order:stroke;stroke:var(--bg);stroke-width:4px;letter-spacing:.02em}
+.wlabel.k-wt{fill:var(--ink2);stroke:var(--bg);stroke-width:4px}
+.side{position:sticky;top:16px;display:flex;flex-direction:column;gap:14px}
+.sh{margin:0;font-size:12px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+.sh span{font:500 11px var(--mono);color:var(--ink3);margin-left:4px}
+.attention{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+.attention li{border-bottom:1px solid var(--hair)}
+.att-item{display:grid;grid-template-columns:16px 1fr;gap:1px 8px;width:100%;padding:9px 4px}
+.att-item:hover{background:color-mix(in srgb,var(--ink) 4%,transparent)}
+.att-item .g{grid-row:span 2;color:var(--ink3);font-size:11px;line-height:19px}
+.att-item.k-overlap .g{color:var(--accent)}
+.att-item .b{color:var(--ink3);font-size:11px}
+.calm{color:var(--ink3);margin:0}
+.legend{color:var(--ink2);font-size:11.5px;border-top:1px solid var(--hair);padding-top:12px}
+.legend p{margin:0 0 6px;display:flex;align-items:center;flex-wrap:wrap;gap:4px 6px}
+.legend svg{vertical-align:middle}
+.lz,.lg,.ln{display:inline-block;width:14px;height:10px;border-radius:3px}
+.lz{background:var(--t1)}.lg{background:var(--surface);border:1px solid var(--hair2);margin-left:6px}.ln{border-bottom:2px solid var(--ink3);width:12px;height:6px;margin-left:6px}
+.foot{margin:0;color:var(--ink3);font-size:11.5px}
+.nojs{color:var(--ink3);font-size:12px}
+.inspector{position:fixed;top:0;right:0;bottom:0;width:min(400px,100vw);background:var(--surface);border-left:1px solid var(--hair);
+  overflow:auto;padding:22px 22px 40px;z-index:10;box-shadow:-8px 0 24px rgba(0,0,0,.04);transition:transform .16s ease}
+.inspector[hidden]{display:block;transform:translateX(102%);visibility:hidden}
+.close{position:absolute;top:12px;right:14px;font-size:20px;line-height:1;color:var(--ink3);padding:4px 8px;border-radius:6px}
+.close:hover{background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.ins-k{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin:0 30px 4px 0}
+.ins-k.hot{color:var(--accent)}
+.ins h3{margin:0 0 6px;font-size:17px;font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+.ins .open{display:inline-block;margin:2px 0 12px;font-size:12.5px}
+.ins dl{display:grid;grid-template-columns:96px 1fr;gap:5px 10px;margin:8px 0 14px;font-size:12.5px}
+.ins dt{color:var(--ink3)} .ins dd{margin:0;overflow-wrap:anywhere}
+.ins h4{margin:16px 0 6px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.ins ul{list-style:none;margin:0;padding:0}
+.ins li{padding:5px 0;border-top:1px solid var(--hair);font-size:12.5px;overflow-wrap:anywhere}
+.ins li .d{display:block;color:var(--ink3);font-size:11.5px}
+.ins .tag{font:10.5px var(--mono);color:var(--ink2);border:1px solid var(--hair);border-radius:4px;padding:0 4px;margin-right:4px}
+.ins .jump{color:var(--ink);text-decoration:underline;text-decoration-color:var(--hair2);text-underline-offset:2px}
+.ins .files code{display:block;padding:2px 0;word-break:break-all}
+.ins .rule{color:var(--ink3);font-size:11.5px}
+@media (prefers-reduced-motion:reduce){.inspector{transition:none}}
+@media (max-width:1100px){.layout{grid-template-columns:1fr}.side{position:static}}
+@media (max-width:760px){
+  .top{padding:16px 16px 12px}.layout{padding:16px;gap:20px}.degraded{margin:8px 16px 0}
+  .map{flex-direction:column;gap:22px}.zone,.zone.quiet{flex:1 1 auto;max-width:none;min-width:0}
+  .zone.quiet{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+  .zone.quiet .recent br{display:none}.zone.quiet .recent code{margin-right:6px}
+  .fresh{text-align:left}
+  .inspector{top:auto;left:0;width:100%;max-height:72vh;border-left:0;border-top:1px solid var(--hair);border-radius:14px 14px 0 0}
+  .inspector[hidden]{transform:translateY(102%)}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="id"><span class="mark">Observstory</span><h1><a href="https://github.com/blackmath88/observstory">blackmath88/observstory</a></h1>
+    <span class="sub">Observstory / self-observation</span></div>
+  <p class="status"><b>1</b> in flight · <b class="">0</b> overlaps · <b>0</b> waiting · <b>0</b> stale<span class="fresh" data-generated="2026-09-25T01:26:43Z">snapshot 2026-09-25T01:26:43Z</span></p>
+</header>
+
+<main class="layout">
+  <div class="mapwrap">
+    <div class="map" id="map" aria-label="Project map: lanes, areas and work in flight">
+      <svg class="wires" id="wires" aria-hidden="false" role="group" aria-label="Relationships"></svg>
+      <article class="zone t0" id="z-model" data-id="model"><header class="zh"><span class="zo">01</span><h2>Model</h2><span class=zc>1</span></header><p class="zd">Problem, product boundary and decisions</p><div class="thins"><p class="tl">changed</p><section class="group thin" id="g-area:ARCHITECTURE.md" data-id="area:ARCHITECTURE.md"><button type="button" class="gh" data-kind="group" data-id="area:ARCHITECTURE.md" title="ARCHITECTURE.md"><span class="path"><span class="leaf">ARCHITECTURE.md</span></span></button><span class="chips"><button type="button" class="ref-chip" data-kind="node" data-id="branch:claude/blissful-brahmagupta-xtddua" title="claude/blissful-brahmagupta-xtddua">claude/blissful-brahmagupta-xtddua</button></span></section><section class="group thin" id="g-area:DECISIONS.md" data-id="area:DECISIONS.md"><button type="button" class="gh" data-kind="group" data-id="area:DECISIONS.md" title="DECISIONS.md"><span class="path"><span class="leaf">DECISIONS.md</span></span></button><span class="chips"><button type="button" class="ref-chip" data-kind="node" data-id="branch:claude/blissful-brahmagupta-xtddua" title="claude/blissful-brahmagupta-xtddua">claude/blissful-brahmagupta-xtddua</button></span></section><section class="group thin" id="g-area:README.md" data-id="area:README.md"><button type="button" class="gh" data-kind="group" data-id="area:README.md" title="README.md"><span class="path"><span class="leaf">README.md</span></span></button><span class="chips"><button type="button" class="ref-chip" data-kind="node" data-id="branch:claude/blissful-brahmagupta-xtddua" title="claude/blissful-brahmagupta-xtddua">claude/blissful-brahmagupta-xtddua</button></span></section><section class="group thin" id="g-area:ROADMAP.md" data-id="area:ROADMAP.md"><button type="button" class="gh" data-kind="group" data-id="area:ROADMAP.md" title="ROADMAP.md"><span class="path"><span class="leaf">ROADMAP.md</span></span></button><span class="chips"><button type="button" class="ref-chip" data-kind="node" data-id="branch:claude/blissful-brahmagupta-xtddua" title="claude/blissful-brahmagupta-xtddua">claude/blissful-brahmagupta-xtddua</button></span></section><details class="more"><summary>1 more areas</summary><section class="group thin" id="g-area:docs" data-id="area:docs"><button type="button" class="gh" data-kind="group" data-id="area:docs" title="docs"><span class="path"><span class="leaf">docs</span></span></button><span class="chips"><button type="button" class="ref-chip" data-kind="node" data-id="branch:claude/blissful-brahmagupta-xtddua" title="claude/blissful-brahmagupta-xtddua">claude/blissful-brahmagupta-xtddua</button></span></section></details></div></article><article class="zone t1" id="z-engine" data-id="engine"><header class="zh"><span class="zo">02</span><h2>Engine</h2><span class=zc>1</span></header><p class="zd">Collection, derivation and signals</p><div class="thins"><p class="tl">changed</p><section class="group thin" id="g-area:src/observstory" data-id="area:src/observstory"><button type="button" class="gh" data-kind="group" data-id="area:src/observstory" title="src/observstory"><span class="path"><span class="par">src/</span><span class="leaf">observstory</span></span></button><span class="chips"><button type="button" class="ref-chip" data-kind="node" data-id="branch:claude/blissful-brahmagupta-xtddua" title="claude/blissful-brahmagupta-xtddua">claude/blissful-brahmagupta-xtddua</button></span></section></div></article><article class="zone t2" id="z-evidence" data-id="evidence"><header class="zh"><span class="zo">03</span><h2>Evidence</h2><span class=zc>1</span></header><p class="zd">Tests, fixtures and prototypes that prove or falsify signals</p><section class="group" id="g-area:prototypes" data-id="area:prototypes"><button type="button" class="gh" data-kind="group" data-id="area:prototypes" title="prototypes"><span class="path"><span class="leaf">prototypes</span></span><span class="gage">1m</span></button><button type="button" class="node s-in_flight" id="n-branch:claude/blissful-brahmagupta-xtddua" data-kind="node" data-id="branch:claude/blissful-brahmagupta-xtddua" title="claude/blissful-brahmagupta-xtddua"><span class="nl"><span class="ref">branch</span><span class="lbl">claude/blissful-brahmagupta-xtddua</span></span><span class="nm">claude · 1m ago<span class="flag" title="agent-assisted (declared)" aria-label="agent-assisted (declared)">⌁</span><span class="flag" title="no pull request yet" aria-label="no pull request yet">◌</span><span class="also">+10 areas</span></span></button></section><div class="thins"><p class="tl">also changed</p><section class="group thin" id="g-area:fixtures" data-id="area:fixtures"><button type="button" class="gh" data-kind="group" data-id="area:fixtures" title="fixtures"><span class="path"><span class="leaf">fixtures</span></span></button><span class="chips"><button type="button" class="ref-chip" data-kind="node" data-id="branch:claude/blissful-brahmagupta-xtddua" title="claude/blissful-brahmagupta-xtddua">claude/blissful-brahmagupta-xtddua</button></span></section><section class="group thin" id="g-area:tests" data-id="area:tests"><button type="button" class="gh" data-kind="group" data-id="area:tests" title="tests"><span class="path"><span class="leaf">tests</span></span></button><span class="chips"><button type="button" class="ref-chip" data-kind="node" data-id="branch:claude/blissful-brahmagupta-xtddua" title="claude/blissful-brahmagupta-xtddua">claude/blissful-brahmagupta-xtddua</button></span></section></div></article><article class="zone t3" id="z-integration" data-id="integration"><header class="zh"><span class="zo">04</span><h2>Integration</h2><span class=zc>1</span></header><p class="zd">Install surface and repository automation</p><div class="thins"><p class="tl">changed</p><section class="group thin" id="g-area:action.yml" data-id="area:action.yml"><button type="button" class="gh" data-kind="group" data-id="area:action.yml" title="action.yml"><span class="path"><span class="leaf">action.yml</span></span></button><span class="chips"><button type="button" class="ref-chip" data-kind="node" data-id="branch:claude/blissful-brahmagupta-xtddua" title="claude/blissful-brahmagupta-xtddua">claude/blissful-brahmagupta-xtddua</button></span></section></div></article><article class="zone t4" id="z-contract" data-id="contract"><header class="zh"><span class="zo">05</span><h2>Contract</h2><span class=zc>1</span></header><p class="zd">Configuration and typed state contracts</p><div class="thins"><p class="tl">changed</p><section class="group thin" id="g-area:schema" data-id="area:schema"><button type="button" class="gh" data-kind="group" data-id="area:schema" title="schema"><span class="path"><span class="leaf">schema</span></span></button><span class="chips"><button type="button" class="ref-chip" data-kind="node" data-id="branch:claude/blissful-brahmagupta-xtddua" title="claude/blissful-brahmagupta-xtddua">claude/blissful-brahmagupta-xtddua</button></span></section></div></article><article class="zone quiet t5" id="z-other" data-id="other"><header class="zh"><span class="zo">06</span><h2>Other</h2></header><p class="zq">quiet</p><p class="recent">recently changed<br><code>.gitignore</code><br><code>evals</code></p></article>
+    </div>
+    <noscript><p class="nojs">Connectors and the evidence inspector need JavaScript. Everything else is plain HTML.</p></noscript>
+  </div>
+  <aside class="side">
+    <h2 class="sh">Needs attention <span>0</span></h2>
+    <p class="calm">Nothing needs a conversation right now.</p>
+    <div class="legend">
+      <p><span class="lz"></span>lane<span class="lg"></span>area<span class="ln"></span>work item</p>
+      <p><svg width="28" height="8" aria-hidden="true"><path d="M2 4H26" class="k-ov"/></svg>parallel change
+         <svg width="28" height="8" aria-hidden="true"><path d="M2 4H22" class="k-wt"/><path d="M20 1l4 3-4 3" class="k-wt"/></svg>waits on</p>
+      <p class="muted">faded = stale or already landed · newest work first in each area</p>
+    </div>
+    <p class="foot">Last 72 h of blackmath88/observstory · main ·
+      <a href="data/scene.json">scene.json</a> · <a href="data/snapshot.json">snapshot.json</a></p>
+    <p class="foot muted">Observstory describes work, not people.</p>
+  </aside>
+</main>
+<aside class="inspector" id="inspector" aria-label="Inspector" hidden>
+  <button type="button" class="close" id="close" aria-label="Close inspector">×</button>
+  <div id="ins"></div>
+</aside>
+<script type="application/json" id="scene">{"schema": "observstory.scene/v1", "source": {"snapshot_schema": "observstory.snapshot/v1", "generated_at": "2026-09-25T01:26:43Z", "repository": "blackmath88/observstory", "repository_url": "https://github.com/blackmath88/observstory", "default_branch": "main", "window_hours": 72.0, "title": "Observstory / self-observation", "lanes_source": "config", "degraded": []}, "status": {"in_flight": 1, "overlaps": 0, "waiting": 0, "stale": 0, "areas_active": 18}, "zones": [{"id": "model", "label": "Model", "description": "Problem, product boundary and decisions", "order": 0, "state": "active", "groups": ["area:ARCHITECTURE.md", "area:DECISIONS.md", "area:README.md", "area:ROADMAP.md", "area:docs"], "in_flight": 1, "attention": false, "recently_changed": ["CLAUDE_DOUBLE_DIAMOND.md"], "recently_changed_more": 0}, {"id": "engine", "label": "Engine", "description": "Collection, derivation and signals", "order": 1, "state": "active", "groups": ["area:src/observstory"], "in_flight": 1, "attention": false, "recently_changed": ["scripts"], "recently_changed_more": 0}, {"id": "evidence", "label": "Evidence", "description": "Tests, fixtures and prototypes that prove or falsify signals", "order": 2, "state": "active", "groups": ["area:prototypes", "area:fixtures", "area:tests"], "in_flight": 1, "attention": false, "recently_changed": [], "recently_changed_more": 0}, {"id": "integration", "label": "Integration", "description": "Install surface and repository automation", "order": 3, "state": "active", "groups": ["area:action.yml"], "in_flight": 1, "attention": false, "recently_changed": [".github"], "recently_changed_more": 0}, {"id": "contract", "label": "Contract", "description": "Configuration and typed state contracts", "order": 4, "state": "active", "groups": ["area:schema"], "in_flight": 1, "attention": false, "recently_changed": ["observstory.config.example.json", "observstory.config.json"], "recently_changed_more": 0}, {"id": "other", "label": "Other", "description": "Paths no lane claims", "order": 5, "state": "quiet", "groups": [], "in_flight": 0, "attention": false, "recently_changed": [".gitignore", "evals"], "recently_changed_more": 0}], "groups": [{"id": "area:ARCHITECTURE.md", "zone": "model", "path": "ARCHITECTURE.md", "label": "ARCHITECTURE.md", "parent": "", "attention": false, "nodes": [], "also_active": ["branch:claude/blissful-brahmagupta-xtddua"], "recent_commits": 3, "last_activity_at": "2026-09-25T01:26:09Z", "age_hours": 0.0}, {"id": "area:DECISIONS.md", "zone": "model", "path": "DECISIONS.md", "label": "DECISIONS.md", "parent": "", "attention": false, "nodes": [], "also_active": ["branch:claude/blissful-brahmagupta-xtddua"], "recent_commits": 6, "last_activity_at": "2026-09-25T01:26:09Z", "age_hours": 0.0}, {"id": "area:README.md", "zone": "model", "path": "README.md", "label": "README.md", "parent": "", "attention": false, "nodes": [], "also_active": ["branch:claude/blissful-brahmagupta-xtddua"], "recent_commits": 6, "last_activity_at": "2026-09-25T01:26:09Z", "age_hours": 0.0}, {"id": "area:ROADMAP.md", "zone": "model", "path": "ROADMAP.md", "label": "ROADMAP.md", "parent": "", "attention": false, "nodes": [], "also_active": ["branch:claude/blissful-brahmagupta-xtddua"], "recent_commits": 5, "last_activity_at": "2026-09-25T01:26:09Z", "age_hours": 0.0}, {"id": "area:docs", "zone": "model", "path": "docs", "label": "docs", "parent": "", "attention": false, "nodes": [], "also_active": ["branch:claude/blissful-brahmagupta-xtddua"], "recent_commits": 9, "last_activity_at": "2026-09-25T01:26:09Z", "age_hours": 0.0}, {"id": "area:src/observstory", "zone": "engine", "path": "src/observstory", "label": "observstory", "parent": "src", "attention": false, "nodes": [], "also_active": ["branch:claude/blissful-brahmagupta-xtddua"], "recent_commits": 8, "last_activity_at": "2026-09-25T01:26:09Z", "age_hours": 0.0}, {"id": "area:prototypes", "zone": "evidence", "path": "prototypes", "label": "prototypes", "parent": "", "attention": false, "nodes": ["branch:claude/blissful-brahmagupta-xtddua"], "also_active": [], "recent_commits": 7, "last_activity_at": "2026-09-25T01:26:09Z", "age_hours": 0.0}, {"id": "area:fixtures", "zone": "evidence", "path": "fixtures", "label": "fixtures", "parent": "", "attention": false, "nodes": [], "also_active": ["branch:claude/blissful-brahmagupta-xtddua"], "recent_commits": 5, "last_activity_at": "2026-09-25T01:26:09Z", "age_hours": 0.0}, {"id": "area:tests", "zone": "evidence", "path": "tests", "label": "tests", "parent": "", "attention": false, "nodes": [], "also_active": ["branch:claude/blissful-brahmagupta-xtddua"], "recent_commits": 8, "last_activity_at": "2026-09-25T01:26:09Z", "age_hours": 0.0}, {"id": "area:action.yml", "zone": "integration", "path": "action.yml", "label": "action.yml", "parent": "", "attention": false, "nodes": [], "also_active": ["branch:claude/blissful-brahmagupta-xtddua"], "recent_commits": 3, "last_activity_at": "2026-09-25T01:26:09Z", "age_hours": 0.0}, {"id": "area:schema", "zone": "contract", "path": "schema", "label": "schema", "parent": "", "attention": false, "nodes": [], "also_active": ["branch:claude/blissful-brahmagupta-xtddua"], "recent_commits": 6, "last_activity_at": "2026-09-25T01:26:09Z", "age_hours": 0.0}], "nodes": [{"id": "branch:claude/blissful-brahmagupta-xtddua", "kind": "branch", "group": "area:prototypes", "zone": "evidence", "ref": "claude/blissful-brahmagupta-xtddua", "label": "claude/blissful-brahmagupta-xtddua", "url": "https://github.com/blackmath88/observstory/tree/claude/blissful-brahmagupta-xtddua", "status": "in_flight", "review_state": null, "actors": ["claude"], "last_activity_at": "2026-09-25T01:26:09Z", "age_hours": 0.0, "also_touches": ["ARCHITECTURE.md", "DECISIONS.md", "README.md", "ROADMAP.md", "action.yml", "docs", "fixtures", "schema", "src/observstory", "tests"], "flags": ["agent", "unproposed"], "attention": false}], "edges": [], "attention": [], "details": {"signals": {}, "work_items": {"branch:claude/blissful-brahmagupta-xtddua": {"paths": ["ARCHITECTURE.md", "DECISIONS.md", "README.md", "ROADMAP.md", "action.yml", "docs/ui/design-language.md", "docs/ui/project-map.md", "docs/ui/scene-grammar.md", "fixtures/configs/ml-project.json", "fixtures/make_fixtures.py", "fixtures/observations/m1-empty.json", "fixtures/observations/m2-crowded-area.json", "fixtures/observations/m3-ml-project.json", "fixtures/observations/m4-long-labels.json", "prototypes/project-map/build.py", "prototypes/project-map/crowded-area.html", "prototypes/project-map/demo-t0.html", "prototypes/project-map/demo-t1.html", "prototypes/project-map/demo-t2.html", "prototypes/project-map/demo-t3.html", "prototypes/project-map/long-labels.html", "prototypes/project-map/ml-project.html", "prototypes/project-map/quiet.html", "prototypes/project-map/shot.js", "prototypes/project-map/stale.html", "schema/scene-v1.json", "src/observstory/cli.py", "src/observstory/map_compiler.py", "src/observstory/map_render.py", "src/observstory/render.py", "src/observstory/validate.py", "tests/test_map.py"], "paths_total": 32, "areas": ["ARCHITECTURE.md", "DECISIONS.md", "README.md", "ROADMAP.md", "action.yml", "docs", "fixtures", "prototypes", "schema", "src/observstory", "tests"], "state": "unproposed", "burst": null, "merge_base": {"sha": "daf7895da66d32975204e65d4b26d308f06184fb", "source": "compare"}, "commit_count": 2, "waiting_on": []}}, "areas": {"ARCHITECTURE.md": {"files": ["ARCHITECTURE.md"], "actors": ["blackmath88", "claude"], "recent_commits": 3}, "DECISIONS.md": {"files": ["DECISIONS.md"], "actors": ["blackmath88", "claude"], "recent_commits": 6}, "README.md": {"files": ["README.md"], "actors": ["blackmath88", "claude"], "recent_commits": 6}, "ROADMAP.md": {"files": ["ROADMAP.md"], "actors": ["blackmath88", "claude"], "recent_commits": 5}, "docs": {"files": ["docs/definition/README.md", "docs/definition/design-principles.md", "docs/definition/jobs-to-be-done.md", "docs/definition/product-thesis.md", "docs/definition/signal-specs.md", "docs/definition/system-boundary.md", "docs/definition/v1-scope.md", "docs/demo/README.md", "docs/demo/acceptance.md", "docs/demo/agent-contract.md", "docs/demo/img/demo-t1.png", "docs/demo/img/demo-t2.png", "docs/demo/img/demo-t3.png", "docs/demo/img/self.png", "docs/demo/img/timeline.png", "docs/demo/self-observation.md", "docs/demo/self/data/observations.json", "docs/demo/self/data/snapshot.json", "docs/demo/self/index.html", "docs/development/concept-comparison.md", "docs/development/experiment-results.md", "docs/development/precision-report.md", "docs/development/ui-language.md", "docs/discovery/README.md", "docs/discovery/ai-collaboration-failures.md", "docs/discovery/competitive-landscape.md", "docs/discovery/observable-signals.md", "docs/discovery/opportunity-map.json", "docs/discovery/problem-space.md", "docs/discovery/risks.md", "docs/discovery/scenarios.md", "docs/ui/design-language.md", "docs/ui/project-map.md", "docs/ui/scene-grammar.md"], "actors": ["blackmath88", "claude"], "recent_commits": 9}, "src/observstory": {"files": ["src/observstory/__init__.py", "src/observstory/cli.py", "src/observstory/collect.py", "src/observstory/config.py", "src/observstory/derive.py", "src/observstory/github.py", "src/observstory/map_compiler.py", "src/observstory/map_render.py", "src/observstory/query.py", "src/observstory/render.py", "src/observstory/signals.py", "src/observstory/validate.py"], "actors": ["blackmath88", "claude"], "recent_commits": 8}, "prototypes": {"files": ["prototypes/README.md", "prototypes/agent-surface/build.py", "prototypes/agent-surface/examples/01-changes-since.json", "prototypes/agent-surface/examples/02-work-near.json", "prototypes/agent-surface/examples/03-proposed-task.json", "prototypes/agent-surface/examples/04-open-loops.json", "prototypes/agent-surface/examples/05-handoff.json", "prototypes/agent-surface/mcp-tools.json", "prototypes/project-map/build.py", "prototypes/project-map/crowded-area.html", "prototypes/project-map/demo-t0.html", "prototypes/project-map/demo-t1.html", "prototypes/project-map/demo-t2.html", "prototypes/project-map/demo-t3.html", "prototypes/project-map/long-labels.html", "prototypes/project-map/ml-project.html", "prototypes/project-map/quiet.html", "prototypes/project-map/shot.js", "prototypes/project-map/stale.html", "prototypes/radar/build.py", "prototypes/radar/demo-t0.html", "prototypes/radar/demo-t1.html", "prototypes/radar/demo-t2.html", "prototypes/radar/demo-t3.html", "prototypes/timeline/build.py", "prototypes/timeline/index.html", "prototypes/timeline/timeline.json"], "actors": ["blackmath88", "claude"], "recent_commits": 7}, "fixtures": {"files": ["fixtures/configs/ml-project.json", "fixtures/make_fixtures.py", "fixtures/observations/b1-baseline.json", "fixtures/observations/b2-after-divergence.json", "fixtures/observations/b3-rebased.json", "fixtures/observations/b4-merged-main-in-first-parent.json", "fixtures/observations/b4-merged-main-in.json", "fixtures/observations/b5-squash-merged.json", "fixtures/observations/b6-base-before-window.json", "fixtures/observations/b7-base-unresolved.json", "fixtures/observations/demo-t0.json", "fixtures/observations/demo-t1.json", "fixtures/observations/demo-t2.json", "fixtures/observations/demo-t3.json", "fixtures/observations/e1-same-subsystem.json", "fixtures/observations/e2-parallel.json", "fixtures/observations/e3-stale.json", "fixtures/observations/e4-waiting.json", "fixtures/observations/e5-burst.json", "fixtures/observations/e6-direct-pushes.json", "fixtures/observations/m1-empty.json", "fixtures/observations/m2-crowded-area.json", "fixtures/observations/m3-ml-project.json", "fixtures/observations/m4-long-labels.json", "fixtures/observations/p1-stale-excluded.json", "fixtures/observations/p2-transitive-stack.json"], "actors": ["blackmath88", "claude"], "recent_commits": 5}, "tests": {"files": ["tests/__init__.py", "tests/helpers.py", "tests/test_base_aware.py", "tests/test_collect.py", "tests/test_derive.py", "tests/test_map.py", "tests/test_principles.py", "tests/test_query.py", "tests/test_signals.py"], "actors": ["blackmath88", "claude"], "recent_commits": 8}, "action.yml": {"files": ["action.yml"], "actors": ["blackmath88", "claude"], "recent_commits": 3}, "schema": {"files": ["schema/scene-v1.json", "schema/snapshot-v0.json", "schema/snapshot-v1.json"], "actors": ["blackmath88", "claude"], "recent_commits": 6}}}}</script>
+<script>
+(function(){
+const scene = JSON.parse(document.getElementById('scene').textContent);
+const map = document.getElementById('map'), svg = document.getElementById('wires');
+const ins = document.getElementById('inspector'), body = document.getElementById('ins');
+const NS = 'http://www.w3.org/2000/svg';
+const nodes = Object.fromEntries(scene.nodes.map(n => [n.id, n]));
+const groups = Object.fromEntries(scene.groups.map(g => [g.id, g]));
+const edges = Object.fromEntries(scene.edges.map(e => [e.id, e]));
+const zones = Object.fromEntries(scene.zones.map(z => [z.id, z]));
+const D = scene.details;
+let selected = null, lastFocus = null;
+
+// freshness, relative to the viewer's clock
+const fresh = document.querySelector('.fresh');
+if (fresh) { const h = (Date.now() - Date.parse(fresh.dataset.generated)) / 36e5;
+  if (isFinite(h) && h >= 0) fresh.textContent = 'snapshot ' + (h < 1 ? Math.max(1, Math.round(h*60)) + ' min' : h < 48 ? Math.round(h) + ' h' : Math.round(h/24) + ' days') + ' old'; }
+
+function el(tag, attrs, ...kids){ const e = document.createElement(tag);
+  for (const [k,v] of Object.entries(attrs||{})) { if (v == null) continue; if (k === 'text') e.textContent = v; else e.setAttribute(k, v); }
+  for (const k of kids) if (k != null) e.append(k.nodeType ? k : document.createTextNode(k)); return e; }
+function age(h){ if (h == null) return ''; return h < 1 ? Math.max(1, Math.round(h*60)) + 'm' : h < 48 ? Math.round(h) + 'h' : Math.round(h/24) + 'd'; }
+function link(url, text, cls){ return url ? el('a', {href: url, class: cls, target: '_blank', rel: 'noopener'}, text) : el('span', {class: cls}, text); }
+function jump(kind, id, text){ const b = el('button', {type: 'button', class: 'jump', 'data-kind': kind, 'data-id': id}, text); return b; }
+
+// ---------------------------------------------------------------- geometry
+function anchor(id){
+  let e = document.getElementById('n-' + id);
+  if (!e || !e.offsetParent || e.getBoundingClientRect().height === 0) {
+    const d = e && e.closest('details'); e = d ? d.querySelector('summary') : e; }
+  if (!e) return null;
+  const m = map.getBoundingClientRect(), r = e.getBoundingClientRect();
+  return {l: r.left - m.left, r: r.right - m.left, t: r.top - m.top, b: r.bottom - m.top, cy: r.top - m.top + Math.min(14, r.height/2), cx: (r.left + r.right)/2 - m.left};
+}
+// Paths always run from a to b, so a directed edge's arrowhead lands on b.
+function pathBetween(a, b){
+  const W = map.clientWidth, sameCol = Math.abs(a.cx - b.cx) < 40 || (a.l < b.r && b.l < a.r);
+  if (sameCol) { const bulge = Math.min(64, 18 + Math.abs(b.cy - a.cy) / 6);
+    if (Math.max(a.r, b.r) + bulge + 56 <= W) { const x = Math.max(a.r, b.r) - 6;
+      return {d: `M${a.r-6},${a.cy} C${x+bulge},${a.cy} ${x+bulge},${b.cy} ${b.r-6},${b.cy}`, mx: x + bulge*0.75, my: (a.cy+b.cy)/2, side: 'r'}; }
+    const x = Math.min(a.l, b.l) + 6;   // no room on the right (narrow screens): bracket on the left
+    return {d: `M${a.l+6},${a.cy} C${x-bulge},${a.cy} ${x-bulge},${b.cy} ${b.l+6},${b.cy}`, mx: x - bulge*0.75, my: (a.cy+b.cy)/2, side: 'l'}; }
+  if (Math.abs(a.t - b.t) > 20 && !(a.r < b.l - 20 || b.r < a.l - 20)) { // stacked rows: vertical tangents
+    const down = a.t < b.t, ya = down ? a.b : a.t, yb = down ? b.t : b.b, dy = (yb - ya) / 2;
+    return {d: `M${a.cx},${ya} C${a.cx},${ya+dy} ${b.cx},${yb-dy} ${b.cx},${yb}`, mx: (a.cx+b.cx)/2, my: (ya+yb)/2, side: 'r'}; }
+  const right = a.cx < b.cx, xa = right ? a.r : a.l, xb = right ? b.l : b.r, dx = Math.max(24, Math.abs(xb - xa) / 2) * (right ? 1 : -1);
+  return {d: `M${xa},${a.cy} C${xa+dx},${a.cy} ${xb-dx},${b.cy} ${xb},${b.cy}`, mx: (xa+xb)/2, my: (a.cy+b.cy)/2, side: 'c'};
+}
+function draw(){
+  svg.replaceChildren();
+  const defs = document.createElementNS(NS, 'defs');
+  defs.innerHTML = '<marker id="arw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L7 4L1 7" fill="none" stroke="var(--wire)" stroke-width="1.3"/></marker>' +
+                   '<marker id="flow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1L7 4L1 7" fill="none" stroke="var(--hair2)" stroke-width="1.3"/></marker>';
+  svg.append(defs);
+  // flow arrows between consecutive zones on the same row
+  const zs = [...map.querySelectorAll('.zone')], m = map.getBoundingClientRect();
+  for (let i = 0; i + 1 < zs.length; i++) {
+    const a = zs[i].getBoundingClientRect(), b = zs[i+1].getBoundingClientRect();
+    if (Math.abs(a.top - b.top) > 4 || b.left < a.right) continue;
+    const y = a.top - m.top + 19, p = document.createElementNS(NS, 'path');
+    p.setAttribute('d', `M${a.right - m.left + 6},${y} H${b.left - m.left - 6}`); p.setAttribute('class', 'wire flow'); p.setAttribute('marker-end', 'url(#flow)');
+    svg.append(p);
+  }
+  const labelled = scene.edges.length <= 6, said = new Set();  // label each kind of relationship once per area
+  for (const e of scene.edges) {
+    const a = anchor(e.from), b = anchor(e.to); if (!a || !b) continue;
+    const geo = pathBetween(a, b), g = document.createElementNS(NS, 'g');
+    g.dataset.id = e.id; if (selected && selected.id === e.id) g.classList.add('is-selected');
+    const hit = document.createElementNS(NS, 'path'), line = document.createElementNS(NS, 'path');
+    hit.setAttribute('d', geo.d); hit.setAttribute('class', 'hit'); hit.setAttribute('tabindex', '0'); hit.setAttribute('role', 'button');
+    hit.setAttribute('aria-label', (e.type === 'overlap' ? 'Overlap: ' : 'Waiting: ') + nodes[e.from].ref + (e.type === 'overlap' ? ' and ' : ' waits on ') + nodes[e.to].ref);
+    hit.dataset.kind = 'edge'; hit.dataset.id = e.id;
+    const t = document.createElementNS(NS, 'title'); t.textContent = hit.getAttribute('aria-label'); hit.append(t);
+    line.setAttribute('d', geo.d); line.setAttribute('class', `wire ${e.type === 'overlap' ? 'k-ov' : 'k-wt'} c-${e.confidence}`);
+    if (e.directed) line.setAttribute('marker-end', 'url(#arw)');
+    g.append(hit, line);
+    const fits = geo.side === 'l' ? geo.mx - 56 >= 0 : geo.side === 'r' ? geo.mx + 56 <= map.clientWidth + 24 : true;
+    const key = e.type + '|' + (geo.side === 'c' ? e.id : nodes[e.from].group);
+    if (labelled && fits && !said.has(key)) { said.add(key); const tx = document.createElementNS(NS, 'text');
+      tx.setAttribute('x', geo.side === 'l' ? geo.mx - 4 : geo.side === 'c' ? geo.mx : geo.mx + 4); tx.setAttribute('y', geo.side === 'c' ? geo.my - 7 : geo.my + 3);
+      tx.setAttribute('text-anchor', geo.side === 'l' ? 'end' : geo.side === 'c' ? 'middle' : 'start');
+      tx.setAttribute('class', 'wlabel ' + (e.type === 'overlap' ? '' : 'k-wt')); tx.textContent = e.type === 'overlap' ? 'overlap' : 'waits on'; g.append(tx); }
+    svg.append(g);
+  }
+  applyDim();
+}
+
+// ---------------------------------------------------------------- selection
+function related(sel){
+  const r = new Set();
+  if (!sel) return r;
+  if (sel.kind === 'node') { r.add(sel.id); for (const e of scene.edges) if (e.from === sel.id || e.to === sel.id) { r.add(e.from); r.add(e.to); r.add(e.id); } }
+  if (sel.kind === 'edge') { const e = edges[sel.id]; r.add(e.from); r.add(e.to); r.add(e.id); }
+  if (sel.kind === 'group') { const g = groups[sel.id]; for (const n of [...g.nodes, ...g.also_active]) r.add(n);
+    for (const e of scene.edges) if (e.areas.includes(g.path)) { r.add(e.id); r.add(e.from); r.add(e.to); } }
+  return r;
+}
+function applyDim(){
+  const r = related(selected);
+  map.classList.toggle('dimmed', !!selected);
+  document.querySelectorAll('.node').forEach(n => n.classList.toggle('is-related', r.has(n.dataset.id)));
+  svg.querySelectorAll('g[data-id]').forEach(g => { g.classList.toggle('dim', !!selected && !r.has(g.dataset.id)); g.classList.toggle('is-selected', !!selected && selected.id === g.dataset.id); });
+}
+function select(kind, id, from){
+  document.querySelectorAll('.is-selected').forEach(x => x.classList.remove('is-selected'));
+  selected = {kind, id}; lastFocus = from || document.activeElement;
+  const target = kind === 'node' ? document.getElementById('n-' + id) : kind === 'group' ? document.querySelector(`#g-${CSS.escape(id)} > .gh`) : null;
+  if (target) { target.classList.add('is-selected'); const d = target.closest('details'); if (d && !d.open) { d.open = true; draw(); } }
+  body.replaceChildren(kind === 'node' ? nodeView(id) : kind === 'group' ? groupView(id) : edgeView(id));
+  ins.hidden = false; applyDim(); draw();
+  document.getElementById('close').focus({preventScroll: true});
+}
+function close(){
+  ins.hidden = true; selected = null; document.querySelectorAll('.is-selected').forEach(x => x.classList.remove('is-selected'));
+  map.classList.remove('dimmed'); applyDim(); if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+document.addEventListener('click', ev => {
+  const t = ev.target.closest('[data-kind][data-id]'); if (!t) return;
+  if (t.tagName === 'A') return; ev.preventDefault(); select(t.dataset.kind, t.dataset.id, t);
+});
+document.addEventListener('keydown', ev => {
+  if (ev.key === 'Escape' && !ins.hidden) close();
+  if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.classList && ev.target.classList.contains('hit')) { ev.preventDefault(); select('edge', ev.target.dataset.id, ev.target); }
+});
+document.getElementById('close').addEventListener('click', close);
+
+// ---------------------------------------------------------------- inspector views
+function evidenceList(signalIds){
+  const ul = el('ul');
+  for (const sid of signalIds) { const s = D.signals[sid]; if (!s) continue;
+    ul.append(el('li', {}, el('span', {class: 'tag'}, s.basis), el('span', {class: 'tag'}, s.confidence), s.summary));
+    for (const e of s.evidence) {
+      if (e.kind === 'work_item') continue;
+      ul.append(el('li', {}, el('span', {class: 'tag'}, e.kind), e.kind === 'file' ? el('code', {}, e.ref) : link(e.url, e.ref, 'mono'),
+                   e.detail ? el('span', {class: 'd'}, e.detail) : null)); }
+    const params = Object.entries(s.rule.params).filter(([k, v]) => v !== null && v !== 0 && v !== false && !(Array.isArray(v) && (v.length === 0 || v.length > 6)))
+                         .map(([k, v]) => k + '=' + (Array.isArray(v) ? v.join(', ') : v)).join(' · ');
+    ul.append(el('li', {class: 'rule'}, 'rule ', el('code', {}, s.rule.name), params ? ' · ' + params : ''));
+  }
+  return ul;
+}
+function dl(rows){ const d = el('dl'); for (const [k, v] of rows) if (v != null && v !== '') d.append(el('dt', {}, k), el('dd', {}, v)); return d; }
+function nodeView(id){
+  const n = nodes[id], w = D.work_items[id] || {}, f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k' + (n.attention ? ' hot' : '')}, (n.kind === 'pull_request' ? 'Pull request' : n.kind === 'branch' ? 'Branch without a pull request' : 'Landed on the default branch')));
+  f.append(el('h3', {}, n.label), link(n.url, n.kind === 'direct' ? 'Open a landed commit ↗' : 'Open ' + n.ref + ' on GitHub ↗', 'open'));
+  const g = groups[n.group];
+  f.append(dl([['State', [n.status.replace('_', ' '), n.review_state && n.review_state !== 'draft' ? n.review_state.replace('_', ' ') : ''].filter(Boolean).join(' · ')],
+               ['Authors', n.actors.join(', ')], ['Last activity', n.age_hours == null ? '' : age(n.age_hours) + ' ago'],
+               ['Lane', zones[n.zone].label], ['Area', el('code', {}, g.path)],
+               ['Also touches', n.also_touches.length ? n.also_touches.join(', ') : ''],
+               ['Commits', w.commit_count], ['Diverged at', w.merge_base ? (w.merge_base.sha || '').slice(0, 7) + ' (' + w.merge_base.source + ')' : ''],
+               ['Burst', w.burst ? w.burst.commits + ' commits in ' + w.burst.minutes + ' min' : '']]));
+  const rel = scene.edges.filter(e => e.from === id || e.to === id);
+  if (rel.length) { f.append(el('h4', {}, 'Relationships')); const ul = el('ul');
+    for (const e of rel) { const other = nodes[e.from === id ? e.to : e.from];
+      const txt = e.type === 'overlap' ? 'changes ' + (e.files.length ? e.files.length + ' shared file' + (e.files.length > 1 ? 's' : '') : e.areas.join(', ')) + ' in parallel with ' + other.ref
+                : (e.from === id ? 'waits on ' : 'is waited on by ') + other.ref;
+      ul.append(el('li', {}, jump('edge', e.id, txt), el('span', {class: 'd'}, other.label))); }
+    f.append(ul); }
+  const sig = Object.keys(D.signals).filter(s => D.signals[s].work_items.includes(id) && D.signals[s].type !== 'overlap' && D.signals[s].type !== 'waiting');
+  if (sig.length) { f.append(el('h4', {}, 'Signals'), evidenceList(sig)); }
+  if (w.paths && w.paths.length) { f.append(el('h4', {}, 'Files changed' + (w.paths_total > w.paths.length ? ` (first ${w.paths.length} of ${w.paths_total})` : ` (${w.paths_total})`)));
+    const d = el('div', {class: 'files'}); w.paths.slice(0, 16).forEach(p => d.append(el('code', {}, p))); if (w.paths.length > 16) d.append(el('span', {class: 'muted'}, '+' + (w.paths.length - 16) + ' more')); f.append(d); }
+  return el('div', {class: 'ins'}, f);
+}
+function groupView(id){
+  const g = groups[id], a = D.areas[g.path] || {}, f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k' + (g.attention ? ' hot' : '')}, 'Area · ' + zones[g.zone].label), el('h3', {}, g.path));
+  const items = [...g.nodes, ...g.also_active];
+  f.append(dl([['Work here', items.length + ' work item' + (items.length !== 1 ? 's' : '')], ['Last activity', g.age_hours == null ? '' : age(g.age_hours) + ' ago'],
+               ['Commits', a.recent_commits ? a.recent_commits + ' on the default branch in the window' : '']]));
+  if (items.length) { f.append(el('h4', {}, 'Work items')); const ul = el('ul');
+    for (const i of items) ul.append(el('li', {}, jump('node', i, nodes[i].ref + '  ' + nodes[i].label), el('span', {class: 'd'}, nodes[i].actors.join(', ') + (nodes[i].age_hours != null ? ' · ' + age(nodes[i].age_hours) + ' ago' : '') + (g.nodes.includes(i) ? '' : ' · drawn in ' + groups[nodes[i].group].path))));
+    f.append(ul); }
+  const ov = scene.edges.filter(e => e.areas.includes(g.path));
+  if (ov.length) { f.append(el('h4', {}, 'Parallel changes here')); const ul = el('ul');
+    for (const e of ov) ul.append(el('li', {}, jump('edge', e.id, nodes[e.from].ref + ' and ' + nodes[e.to].ref), el('span', {class: 'd'}, e.files.filter(x => x === g.path || x.startsWith(g.path + '/')).join(', '))));
+    f.append(ul, el('h4', {}, 'Evidence'), evidenceList(D.signals['overlap:' + g.path] ? ['overlap:' + g.path] : [])); }
+  if (a.files && a.files.length) { f.append(el('h4', {}, 'Files in flight')); const d = el('div', {class: 'files'}); a.files.slice(0, 16).forEach(p => d.append(el('code', {}, p))); f.append(d); }
+  return el('div', {class: 'ins'}, f);
+}
+function edgeView(id){
+  const e = edges[id], A = nodes[e.from], B = nodes[e.to], f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k hot'}, e.type === 'overlap' ? 'Parallel change' : 'Waiting'));
+  f.append(el('h3', {}, e.type === 'overlap' ? `${A.ref} and ${B.ref} change the same ${e.files.length ? 'files' : 'area'}` : `${A.ref} waits on ${B.ref}`));
+  f.append(dl([['Basis', e.basis], ['Confidence', e.confidence], ['Areas', e.areas.join(', ')]]));
+  f.append(el('h4', {}, 'Work items')); const ul = el('ul');
+  for (const n of [A, B]) ul.append(el('li', {}, jump('node', n.id, n.ref + '  ' + n.label), el('span', {class: 'd'}, n.actors.join(', ') + (n.age_hours != null ? ' · ' + age(n.age_hours) + ' ago' : '') + ' · ', link(n.url, 'open ↗'))));
+  f.append(ul);
+  if (e.files.length) { f.append(el('h4', {}, 'Shared files')); const d = el('div', {class: 'files'}); e.files.forEach(p => d.append(el('code', {}, p))); f.append(d); }
+  f.append(el('h4', {}, 'Evidence'), evidenceList(e.signals));
+  return el('div', {class: 'ins'}, f);
+}
+
+// ---------------------------------------------------------------- lifecycle
+draw();
+new ResizeObserver(() => requestAnimationFrame(draw)).observe(map);
+map.addEventListener('toggle', () => requestAnimationFrame(draw), true);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+})();
+</script>
+</body>
+</html>

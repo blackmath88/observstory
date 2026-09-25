@@ -121,3 +121,8 @@ event-triggered runs plus in-flight evidence, and both work inside an Action.
 ## ADR-024: A work item is drawn once, in its primary area
 **Decision.** A node goes in the area where the work item changes the most files (ties go to the earlier lane, then the path). Every other area it touches shows a compact reference. Landed changes appear only where they take part in a relationship.
 **Why.** Drawing a work item in every area it touches multiplied a 97-file PR into 20 cards. Drawing it only once made the lanes it also changes look quiet. Self-observation showed both failures.
+
+## ADR-025: A branch that moved past its merged PR is work in flight again
+**Context.** Self-observation during issue #3: this repo's working branch was reused after PR #4 merged, and its new commits were invisible. The collector skipped every branch that had ever been a PR head, to avoid reporting squash-merged branches left behind.
+**Decision.** Skip a branch while it has an **open** PR, or while it still points at the last commit of a closed or merged PR. Once it moves on, it's new work.
+**Test.** `tests/test_collect.py::test_branch_reused_after_its_pr_merged_is_new_work`.
