@@ -1,0 +1,422 @@
+{
+ "annotator": "single annotator (the implementing agent)",
+ "model": "final (base-aware, stale/bot excluded, shared file required, transitive stacks)",
+ "signals": [
+  {
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "confidence": "high",
+   "work_items": [
+    "direct:Charlie Marsh",
+    "direct:Tomasz Kramkowski",
+    "pr:18881",
+    "pr:21304",
+    "pr:21314",
+    "pr:21758",
+    "pr:21930",
+    "pr:21942",
+    "pr:21944",
+    "pr:21951",
+    "pr:21952",
+    "pr:21961",
+    "pr:21962",
+    "pr:21963",
+    "pr:21973",
+    "pr:21974"
+   ],
+   "parallel_pairs": 45,
+   "label": "U",
+   "rationale": "hash/constraint PRs and URL-validation PRs share command files; 9 same-line pairs (cluttered: many pairs)"
+  },
+  {
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-configuration",
+   "confidence": "high",
+   "work_items": [
+    "direct:Charlie Marsh",
+    "pr:21930",
+    "pr:21951",
+    "pr:21961",
+    "pr:21962",
+    "pr:21963",
+    "pr:21973",
+    "pr:21974"
+   ],
+   "parallel_pairs": 11,
+   "label": "U",
+   "rationale": "URL/proxy and lock-handling work in the same config modules"
+  },
+  {
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-lock",
+   "confidence": "high",
+   "work_items": [
+    "direct:Charlie Marsh",
+    "pr:21951",
+    "pr:21961",
+    "pr:21962",
+    "pr:21963",
+    "pr:21973",
+    "pr:21974"
+   ],
+   "parallel_pairs": 15,
+   "label": "U",
+   "rationale": "pylock_toml.rs export changed by the lock-export stack and URL validation"
+  },
+  {
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-distribution-types",
+   "confidence": "high",
+   "work_items": [
+    "direct:Charlie Marsh",
+    "pr:21961",
+    "pr:21962",
+    "pr:21963",
+    "pr:21973",
+    "pr:21974"
+   ],
+   "parallel_pairs": 9,
+   "label": "U",
+   "rationale": "index.rs changed by lock-export and URL persistence work"
+  },
+  {
+   "repo": "astral-sh/uv",
+   "area": "uv.schema.json",
+   "confidence": "high",
+   "work_items": [
+    "pr:21314",
+    "pr:21951",
+    "pr:21961",
+    "pr:21962",
+    "pr:21973",
+    "pr:21974"
+   ],
+   "parallel_pairs": 13,
+   "label": "N",
+   "rationale": "generated schema"
+  },
+  {
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-client",
+   "confidence": "high",
+   "work_items": [
+    "pr:21961",
+    "pr:21962",
+    "pr:21963",
+    "pr:21973",
+    "pr:21974"
+   ],
+   "parallel_pairs": 6,
+   "label": "U",
+   "rationale": "base_client.rs: client split vs URL validation"
+  },
+  {
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-dev",
+   "confidence": "high",
+   "work_items": [
+    "direct:Charlie Marsh",
+    "pr:21314",
+    "pr:21951",
+    "pr:21961",
+    "pr:21962"
+   ],
+   "parallel_pairs": 9,
+   "label": "N",
+   "rationale": "generated preview-feature reference"
+  },
+  {
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-preview",
+   "confidence": "high",
+   "work_items": [
+    "direct:Charlie Marsh",
+    "pr:21314",
+    "pr:21951",
+    "pr:21961",
+    "pr:21962"
+   ],
+   "parallel_pairs": 9,
+   "label": "N",
+   "rationale": "preview-flag registry list"
+  },
+  {
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-cli",
+   "confidence": "high",
+   "work_items": [
+    "pr:18881",
+    "pr:21314",
+    "pr:21962",
+    "pr:21977"
+   ],
+   "parallel_pairs": 6,
+   "label": "N",
+   "rationale": "independent flags in the CLI definition"
+  },
+  {
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-tool",
+   "confidence": "high",
+   "work_items": [
+    "pr:21304",
+    "pr:21930",
+    "pr:21951",
+    "pr:21962"
+   ],
+   "parallel_pairs": 4,
+   "label": "U",
+   "rationale": "tool.rs: constraint normalisation vs packaged tool locks"
+  },
+  {
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-workspace",
+   "confidence": "high",
+   "work_items": [
+    "pr:21961",
+    "pr:21962",
+    "pr:21973",
+    "pr:21974"
+   ],
+   "parallel_pairs": 4,
+   "label": "U",
+   "rationale": "pyproject.rs URL validation in both"
+  },
+  {
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-static",
+   "confidence": "high",
+   "work_items": [
+    "pr:21314",
+    "pr:21961",
+    "pr:21962"
+   ],
+   "parallel_pairs": 2,
+   "label": "N",
+   "rationale": "env-var registry list"
+  },
+  {
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-types",
+   "confidence": "high",
+   "work_items": [
+    "pr:21314",
+    "pr:21930",
+    "pr:21951"
+   ],
+   "parallel_pairs": 2,
+   "label": "U",
+   "rationale": "hash.rs: MD5 rejection vs build-constraint hash precedence"
+  },
+  {
+   "repo": "astral-sh/uv",
+   "area": ".github",
+   "confidence": "high",
+   "work_items": [
+    "direct:Zsolt Dollenstein",
+    "pr:21778"
+   ],
+   "parallel_pairs": 1,
+   "label": "U",
+   "rationale": "PR edits the security-review workflow that just changed on main"
+  },
+  {
+   "repo": "tldraw/tldraw",
+   "area": "packages/tldraw",
+   "confidence": "high",
+   "work_items": [
+    "direct:Steve Ruiz",
+    "pr:10071",
+    "pr:10181",
+    "pr:10865",
+    "pr:10866",
+    "pr:10873",
+    "pr:10874",
+    "pr:10924",
+    "pr:9396"
+   ],
+   "parallel_pairs": 12,
+   "label": "U",
+   "rationale": "select-tool states and paste handling changed by several PRs, 8 same-line pairs"
+  },
+  {
+   "repo": "tldraw/tldraw",
+   "area": "packages/editor",
+   "confidence": "high",
+   "work_items": [
+    "direct:Steve Ruiz",
+    "pr:10069",
+    "pr:10864",
+    "pr:10892",
+    "pr:10924"
+   ],
+   "parallel_pairs": 4,
+   "label": "U",
+   "rationale": "Editor.ts refactor vs behaviour restore"
+  },
+  {
+   "repo": "tldraw/tldraw",
+   "area": "apps/dotcom",
+   "confidence": "high",
+   "work_items": [
+    "direct:Mitja Bezen\u0161ek",
+    "pr:10880",
+    "pr:10885",
+    "pr:10921"
+   ],
+   "parallel_pairs": 4,
+   "label": "N",
+   "rationale": "comment/format churn in shared app files"
+  },
+  {
+   "repo": "tldraw/tldraw",
+   "area": "internal/scripts",
+   "confidence": "high",
+   "work_items": [
+    "direct:Kevin Ingersoll",
+    "direct:Mime \u010cuvalo",
+    "pr:10720"
+   ],
+   "parallel_pairs": 2,
+   "label": "U",
+   "rationale": "deploy script changed on main and in the deploy-gate PR"
+  },
+  {
+   "repo": "tldraw/tldraw",
+   "area": ".github",
+   "confidence": "high",
+   "work_items": [
+    "direct:Kevin Ingersoll",
+    "pr:10720"
+   ],
+   "parallel_pairs": 1,
+   "label": "U",
+   "rationale": "deploy workflow changed on main and in the deploy-gate PR"
+  },
+  {
+   "repo": "tldraw/tldraw",
+   "area": "packages/store",
+   "confidence": "high",
+   "work_items": [
+    "direct:Mitja Bezen\u0161ek",
+    "pr:10225"
+   ],
+   "parallel_pairs": 1,
+   "label": "N",
+   "rationale": "spec wording; same people on both sides"
+  },
+  {
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "confidence": "high",
+   "work_items": [
+    "direct:Murugappan M",
+    "direct:Vijay Misal",
+    "direct:\u7fe0",
+    "pr:22645",
+    "pr:23484",
+    "pr:23533",
+    "pr:23536",
+    "pr:23550",
+    "pr:23553",
+    "pr:23555",
+    "pr:23557",
+    "pr:23559",
+    "pr:23561",
+    "pr:23562",
+    "pr:23565",
+    "pr:23568",
+    "pr:23574",
+    "pr:23576"
+   ],
+   "parallel_pairs": 16,
+   "label": "U",
+   "rationale": "bundled-dev runtime PRs collide (#23559, #23562, #23568)"
+  },
+  {
+   "repo": "vitejs/vite",
+   "area": "playground",
+   "confidence": "high",
+   "work_items": [
+    "direct:andrew",
+    "pr:23562",
+    "pr:23565",
+    "pr:23568"
+   ],
+   "parallel_pairs": 2,
+   "label": "U",
+   "rationale": "same bundled-mode HMR spec in #23562 and #23568"
+  },
+  {
+   "repo": "vitejs/vite",
+   "area": "vitest.config.e2e.ts",
+   "confidence": "high",
+   "work_items": [
+    "direct:andrew",
+    "pr:23246"
+   ],
+   "parallel_pairs": 1,
+   "label": "U",
+   "rationale": "same lines of the e2e config; both bundled-dev tests"
+  },
+  {
+   "repo": "withastro/astro",
+   "area": "packages/astro",
+   "confidence": "high",
+   "work_items": [
+    "direct:Houston (Bot)",
+    "direct:Matthew Phillips",
+    "pr:18000",
+    "pr:18078",
+    "pr:18099",
+    "pr:18112",
+    "pr:18117",
+    "pr:18119",
+    "pr:18120",
+    "pr:18121"
+   ],
+   "parallel_pairs": 21,
+   "label": "N",
+   "rationale": "dominated by release-PR version lines"
+  },
+  {
+   "repo": "withastro/astro",
+   "area": "examples",
+   "confidence": "high",
+   "work_items": [
+    "direct:Houston (Bot)",
+    "pr:18112",
+    "pr:18117",
+    "pr:18119",
+    "pr:18120"
+   ],
+   "parallel_pairs": 8,
+   "label": "N",
+   "rationale": "release-PR version bumps"
+  },
+  {
+   "repo": "withastro/astro",
+   "area": "packages/integrations",
+   "confidence": "high",
+   "work_items": [
+    "pr:18117",
+    "pr:18119"
+   ],
+   "parallel_pairs": 1,
+   "label": "N",
+   "rationale": "release-PR version bump vs adapter update"
+  },
+  {
+   "repo": "withastro/astro",
+   "area": "pnpm-workspace.yaml",
+   "confidence": "high",
+   "work_items": [
+    "direct:Matthew Phillips",
+    "pr:18119"
+   ],
+   "parallel_pairs": 1,
+   "label": "N",
+   "rationale": "unrelated dependency lines"
+  }
+ ]
+}

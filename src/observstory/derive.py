@@ -98,6 +98,38 @@ def agent_declared(messages: list[str]) -> bool:
     return any(AGENT_TRAILER.search(m or "") for m in messages)
 
 
+# ---------------------------------------------------------------- baseline (issue #2)
+
+def baseline_resolver(obs: dict):
+    """Which observed default-branch commits are already in a work item's base?
+
+    Answered from the commit graph (merge-base SHA + parent links), not from timestamps.
+    Returns f(item) -> (set of baseline SHAs | None, status) where status is one of
+      resolved        merge base is an observed commit; baseline = its observed ancestors
+      before_window   merge base predates every observed commit; nothing observed is baseline
+      unresolved      merge base unknown, or outside a truncated commit list
+    """
+    parents = {c["sha"]: c.get("parents", []) for c in obs.get("commits", [])}
+    truncated = bool(obs.get("meta", {}).get("commits_truncated"))
+
+    def resolve(item):
+        mb = (item.get("merge_base") or {}).get("sha")
+        if not mb:
+            return None, "unresolved"
+        if mb in parents:
+            seen, stack = set(), [mb]
+            while stack:
+                sha = stack.pop()
+                if sha in seen or sha not in parents:
+                    continue
+                seen.add(sha)
+                stack.extend(parents[sha])
+            return seen, "resolved"
+        return (None, "unresolved") if truncated else (set(), "before_window")
+
+    return resolve
+
+
 # ---------------------------------------------------------------- derivation
 
 def derive(obs: dict, cfg: dict, now: dt.datetime) -> dict:
@@ -159,7 +191,7 @@ def derive(obs: dict, cfg: dict, now: dt.datetime) -> dict:
             "paths": paths, "areas": areas_for(paths), "lanes": [], "commit_count": len(commits),
             "review_state": review_state, "waiting_on": [],
             "agent_declared": agent_declared([c.get("message", "") for c in commits] + [pr.get("body") or ""]),
-            "burst": None, "_body": pr.get("body") or "", "_commits": commits,
+            "burst": None, "merge_base": pr.get("merge_base"), "_body": pr.get("body") or "", "_commits": commits,
         }
         work_items.append(item)
         by_id[wid] = item
@@ -181,7 +213,7 @@ def derive(obs: dict, cfg: dict, now: dt.datetime) -> dict:
             "paths": paths, "areas": areas_for(paths), "lanes": [], "commit_count": len(commits),
             "review_state": None, "waiting_on": [],
             "agent_declared": agent_declared([c.get("message", "") for c in commits]),
-            "burst": None, "_body": "", "_commits": commits,
+            "burst": None, "merge_base": br.get("merge_base"), "_body": "", "_commits": commits,
         }
         work_items.append(item)
         by_id[wid] = item
@@ -220,7 +252,7 @@ def derive(obs: dict, cfg: dict, now: dt.datetime) -> dict:
             "paths": paths, "areas": areas_for(paths), "lanes": [], "commit_count": len(commits),
             "review_state": None, "waiting_on": [],
             "agent_declared": agent_declared([c.get("message", "") for c in commits]),
-            "burst": None, "_body": "", "_commits": commits,
+            "burst": None, "merge_base": None, "_body": "", "_commits": commits,
         }
         work_items.append(item)
         by_id[wid] = item
@@ -256,8 +288,11 @@ def derive(obs: dict, cfg: dict, now: dt.datetime) -> dict:
     # Signals ----------------------------------------------------------------------
     thresholds = cfg["signals"]
     signals = []
+    for item in work_items:
+        item["_bot_only"] = bool(item["actors"]) and all(actors[a]["kind"] == "bot" for a in item["actors"])
     waits = sig.waiting(work_items, by_id, open_heads)  # first: overlap uses waiting_on
-    signals += sig.overlap(work_items, area_rows, thresholds, lambda p: area_of(p, depth, containers))
+    signals += sig.overlap(work_items, area_rows, thresholds, lambda p: area_of(p, depth, containers),
+                           baseline_resolver(obs), now)
     signals += sig.stale(work_items, now, thresholds)
     signals += waits
     signals += sig.burst(work_items, thresholds)
@@ -279,6 +314,7 @@ def derive(obs: dict, cfg: dict, now: dt.datetime) -> dict:
     for item in work_items:
         item.pop("_body", None)
         item.pop("_commits", None)
+        item.pop("_bot_only", None)
 
     areas_out = []
     for a, row in area_rows.items():

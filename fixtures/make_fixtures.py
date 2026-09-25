@@ -132,6 +132,71 @@ FIXTURES["e6-direct-pushes"] = bundle(
             direct_commit("ben", 4, ["pitch.md"])],
 )
 
+# Issue #2: base-aware overlap -------------------------------------------------------
+# main history (newest last): m1 -> m2 -> m3 ; each is a direct push by alice.
+
+
+def main_commit(sha, parent, hours_ago, paths, msg="direct change", login="alice"):
+    return {"sha": sha, "url": f"{BASE}/commit/{sha}", "date": t(hours_ago), "author": who(login),
+            "message": msg, "paths": paths, "parents": [parent] if parent else []}
+
+
+MAIN = [main_commit("m3" + "0" * 38, "m2" + "0" * 38, 6, ["README.md"], "Tighten README intro"),
+        main_commit("m2" + "0" * 38, "m1" + "0" * 38, 20, ["docs/guide.md"], "Guide"),
+        main_commit("m1" + "0" * 38, "m0" + "0" * 38, 30, ["README.md"], "README first draft")]
+M = {k: k + "0" * 38 for k in ("m0", "m1", "m2", "m3")}
+
+
+def bob_branch(merge_base, source="compare", paths=("README.md",)):
+    return {**branch("bob/readme", list(paths), commits("bob", [3, 2])),
+            "merge_base": {"sha": merge_base, "source": source} if merge_base else None}
+
+
+FIXTURES["b1-baseline"] = bundle(
+    "b1", note="bob branched from m3; every README change on main is already in his base -> no overlap",
+    branches=[bob_branch(M["m3"])], direct=MAIN)
+FIXTURES["b2-after-divergence"] = bundle(
+    "b2", note="bob branched from m2; m3 changed README after divergence -> overlap citing m3 only (m1 is baseline)",
+    branches=[bob_branch(M["m2"])], direct=MAIN)
+FIXTURES["b3-rebased"] = bundle(
+    "b3", note="same as b2 after bob rebased onto m3 -> the merge base moves, overlap disappears",
+    branches=[bob_branch(M["m3"])], direct=MAIN)
+FIXTURES["b4-merged-main-in"] = bundle(
+    "b4", note="bob's first commit sits on m1 but he later merged main into his branch; compare reports merge base m3",
+    branches=[bob_branch(M["m3"])], direct=MAIN)
+FIXTURES["b4-merged-main-in-first-parent"] = bundle(
+    "b4fp", note="as b4, but the budget fallback (first-commit parent = m1) is used -> overlap, labelled first_parent",
+    branches=[bob_branch(M["m1"], "first_parent")], direct=MAIN)
+FIXTURES["b5-squash-merged"] = bundle(
+    "b5", note="PR #12 was squash-merged as m4; bob branched afterwards. The squash commit belongs to pr:12, not a direct push",
+    prs=[pr(12, "README restructure", "carol", ["README.md"], [], state="closed", merged=True, updated=4)],
+    branches=[bob_branch("m4" + "0" * 38)],
+    direct=[main_commit("m4" + "0" * 38, M["m3"], 4, ["README.md"], "README restructure (#12)", "carol")] + MAIN)
+FIXTURES["b6-base-before-window"] = bundle(
+    "b6", note="bob's merge base (m0) predates every observed commit -> all README pushes on main are after divergence",
+    branches=[bob_branch(M["m0"])], direct=MAIN)
+_b7 = bundle("b7", note="merge base unknown and the commit list was truncated -> treated as parallel, lower confidence",
+             branches=[bob_branch("zz" + "0" * 38)], direct=MAIN)
+_b7["meta"]["commits_truncated"] = True
+FIXTURES["b7-base-unresolved"] = _b7
+
+# Precision study: stale work does not take part in overlap ------------------------------
+FIXTURES["p1-stale-excluded"] = bundle(
+    "p1", note="an active PR and a branch idle for 10 days both change src/parser/core.py -> stale signal, no overlap",
+    prs=[pr(50, "Parser speedup", "alice", ["src/parser/core.py"], commits("alice", [5, 2]), updated=2)],
+    branches=[branch("ben/old-parser", ["src/parser/core.py"], commits("ben", [260, 240]))],
+)
+
+FIXTURES["p2-transitive-stack"] = bundle(
+    "p2", note="#62 is stacked on #61, which is stacked on #60; all three touch src/lock/export.py -> waiting, no overlap",
+    prs=[pr(60, "Offline lock parsing", "konsti", ["src/lock/export.py"], commits("konsti", [9]), head="k/offline", updated=9),
+         pr(61, "Export locks from build", "konsti", ["src/lock/export.py"], commits("konsti", [6]), head="k/export",
+            base="k/offline", updated=6),
+         pr(62, "Install tools from locks", "konsti", ["src/lock/export.py"], commits("konsti", [3]), head="k/tools",
+            base="k/export", updated=3),
+         pr(63, "Lock export docs fix", "ben", ["src/lock/export.py"], commits("ben", [2]), updated=2)],
+)
+
 # Demo scenario: four moments in one project ----------------------------------------
 D0 = dt.datetime(2026, 9, 21, 9, 0, tzinfo=dt.timezone.utc)
 moments = {
@@ -173,6 +238,7 @@ def demo(stage, now):
                         "Resolution: sofia moves to evaluation work that depends on #41"][stage])
 
 
+_sha[0] = 0x100000  # fixed start so fixtures added above never renumber the demo's SHAs
 for stage, (name, when) in enumerate(moments.items()):
     FIXTURES[name] = demo(stage, when)
 

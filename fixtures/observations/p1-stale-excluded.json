@@ -1,0 +1,106 @@
+{
+  "schema": "observstory.observations/v1",
+  "note": "an active PR and a branch idle for 10 days both change src/parser/core.py -> stale signal, no overlap",
+  "fetched_at": "2026-09-21T12:00:00Z",
+  "repository": {
+    "full_name": "example/chat-app",
+    "url": "https://github.com/example/chat-app",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": "Fictional fixture repository"
+  },
+  "window": {
+    "hours": 48
+  },
+  "trigger": {
+    "event": "fixture",
+    "run_id": "p1",
+    "sha": ""
+  },
+  "commits": [],
+  "pull_requests": [
+    {
+      "number": 50,
+      "title": "Parser speedup",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "alice/pr-50",
+      "base": "main",
+      "author": {
+        "login": "alice",
+        "name": "Alice",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T10:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/50",
+      "requested_reviewers": [],
+      "paths": [
+        "src/parser/core.py"
+      ],
+      "commits": [
+        {
+          "sha": "0000046000000000000000000000000000000000",
+          "date": "2026-09-21T07:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "work 0"
+        },
+        {
+          "sha": "0000047000000000000000000000000000000000",
+          "date": "2026-09-21T10:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "work 1"
+        }
+      ]
+    }
+  ],
+  "branches": [
+    {
+      "name": "ben/old-parser",
+      "url": "https://github.com/example/chat-app/tree/ben/old-parser",
+      "ahead_by": 2,
+      "paths": [
+        "src/parser/core.py"
+      ],
+      "commits": [
+        {
+          "sha": "0000048000000000000000000000000000000000",
+          "date": "2026-09-10T16:00:00Z",
+          "author": {
+            "login": "ben",
+            "name": "Ben",
+            "type": "User"
+          },
+          "message": "work 0"
+        },
+        {
+          "sha": "0000049000000000000000000000000000000000",
+          "date": "2026-09-11T12:00:00Z",
+          "author": {
+            "login": "ben",
+            "name": "Ben",
+            "type": "User"
+          },
+          "message": "work 1"
+        }
+      ]
+    }
+  ],
+  "issues": [],
+  "meta": {
+    "source": "fixture",
+    "api_calls": 0,
+    "rate_limit_remaining": null,
+    "degraded": []
+  }
+}

@@ -32,6 +32,9 @@ class Paths(unittest.TestCase):
         self.assertTrue(is_ignored("web/dist/app.js", ignore))
         self.assertTrue(is_ignored("static/app.min.js", ignore))
         self.assertFalse(is_ignored("src/distance.py", ignore))
+        self.assertTrue(is_ignored("packages/astro/CHANGELOG.md", ignore))
+        self.assertTrue(is_ignored(".changeset/olive-queens-enjoy.md", ignore))
+        self.assertTrue(is_ignored("packages/tldraw/api-report.api.md", ignore))
 
     def test_anchored_ignore_does_not_hide_nested_dirs(self):
         """Dogfood finding: the output dir 'observstory/' was hiding src/observstory/."""
@@ -55,6 +58,10 @@ class Config(unittest.TestCase):
             config.normalise({"signals": {"stale_hours": -1}})
         with self.assertRaises(config.ConfigError):
             config.normalise({"signals": {"made_up": 1}})
+        with self.assertRaises(config.ConfigError):
+            config.normalise({"signals": {"overlap_require_shared_file": 1}})
+        with self.assertRaises(config.ConfigError):
+            config.normalise({"signals": {"stale_hours": True}})
 
     def test_custom_lanes(self):
         snap = snapshot("e1-same-subsystem", {"lanes": [{"id": "chat", "label": "Chat", "paths": ["src/conversation/"]}]})

@@ -25,7 +25,12 @@ def _commit_row(c: dict) -> dict:
     return {"sha": c["sha"], "url": c.get("html_url"),
             "date": c.get("commit", {}).get("author", {}).get("date"),
             "author": _author(c.get("author"), c.get("commit", {}).get("author")),
-            "message": c.get("commit", {}).get("message", "")}
+            "message": c.get("commit", {}).get("message", ""),
+            "parents": [x.get("sha") for x in c.get("parents", []) if x.get("sha")]}
+
+
+def _q(ref: str) -> str:
+    return urllib.parse.quote(ref, safe="/")
 
 
 def collect(client: Client, repository: str, cfg: dict, now: dt.datetime, trigger: dict | None = None) -> dict:
@@ -69,7 +74,7 @@ def collect(client: Client, repository: str, cfg: dict, now: dt.datetime, trigge
             "url": pr.get("html_url"),
             "requested_reviewers": [u.get("login") for u in pr.get("requested_reviewers", [])]
                                    + [t.get("slug") for t in pr.get("requested_teams", [])],
-            "paths": [], "commits": [],
+            "paths": [], "commits": [], "merge_base": None,
         }
         if pr.get("state") == "open" and open_budget > 0:
             open_budget -= 1
@@ -85,6 +90,17 @@ def collect(client: Client, repository: str, cfg: dict, now: dt.datetime, trigge
                                                                      {"per_page": 100})]
             except BudgetExhausted:
                 degraded.append(f"pr:{pr['number']} commit list skipped (API budget)")
+            # Where did this PR diverge from its base? Prefer compare (merge-base SHA); fall back to the
+            # first commit's parent, which is wrong only if the branch merged its base back in (issue #2).
+            head_sha = (pr.get("head") or {}).get("sha")
+            try:
+                cmp = client.get(f"{base}/compare/{_q(row['base'])}...{head_sha or _q(row['head'])}")
+                sha = (cmp.get("merge_base_commit") or {}).get("sha")
+                row["merge_base"] = {"sha": sha, "source": "compare"} if sha else None
+            except BudgetExhausted:
+                first = row["commits"][0]["parents"][0] if row["commits"] and row["commits"][0]["parents"] else None
+                row["merge_base"] = {"sha": first, "source": "first_parent"} if first else None
+                degraded.append(f"pr:{pr['number']} merge base from first-commit parent (API budget)")
         elif pr.get("state") == "open":
             degraded.append(f"pr:{pr['number']} not inspected (max_open_pull_requests reached)")
         prs.append(row)
@@ -101,7 +117,7 @@ def collect(client: Client, repository: str, cfg: dict, now: dt.datetime, trigge
         degraded.append(f"{len(candidates) - int(cfg['max_branches'])} branches without PRs not inspected (max_branches)")
     for name in candidates[: int(cfg["max_branches"])]:
         try:
-            cmp = client.get(f"{base}/compare/{urllib.parse.quote(default_branch, safe='/')}...{urllib.parse.quote(name, safe='/')}")
+            cmp = client.get(f"{base}/compare/{_q(default_branch)}...{_q(name)}")
         except BudgetExhausted:
             degraded.append(f"branch {name} not compared (API budget)")
             continue
@@ -109,6 +125,8 @@ def collect(client: Client, repository: str, cfg: dict, now: dt.datetime, trigge
             "name": name, "url": f"{repo_data.get('html_url')}/tree/{name}", "ahead_by": cmp.get("ahead_by", 0),
             "paths": [f["filename"] for f in cmp.get("files", [])],
             "commits": [_commit_row(c) for c in cmp.get("commits", [])],
+            "merge_base": ({"sha": cmp["merge_base_commit"]["sha"], "source": "compare"}
+                           if (cmp.get("merge_base_commit") or {}).get("sha") else None),
         })
 
     # Issues: open, or updated in the window
@@ -135,5 +153,6 @@ def collect(client: Client, repository: str, cfg: dict, now: dt.datetime, trigge
         "trigger": trigger or {},
         "commits": commits, "pull_requests": prs, "branches": branches, "issues": issues,
         "meta": {"source": "GitHub REST API", "api_calls": client.calls,
-                 "rate_limit_remaining": client.remaining, "degraded": degraded},
+                 "rate_limit_remaining": client.remaining, "degraded": degraded,
+                 "commits_truncated": len(raw_commits) >= min(int(cfg["max_commits"]), 100)},
     }

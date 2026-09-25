@@ -1,0 +1,5639 @@
+{
+ "schema": "observstory.observations/v1",
+ "fetched_at": "2026-09-25T00:42:56Z",
+ "repository": {
+  "full_name": "vitejs/vite",
+  "url": "https://github.com/vitejs/vite",
+  "default_branch": "main",
+  "visibility": "public",
+  "description": null
+ },
+ "window": {
+  "hours": 48.0,
+  "since": "2026-09-23T00:42:56Z"
+ },
+ "trigger": {
+  "event": "precision-study-git"
+ },
+ "commits": [
+  {
+   "sha": "39ddf7ccf7e7469ff6a3ba37bca38c32ea804d6e",
+   "parents": [
+    "931ad65735d73e7a765baec59a69501109d50f61"
+   ],
+   "date": "2026-09-24T21:21:04+09:00",
+   "author": {
+    "login": null,
+    "name": "github-actions[bot]",
+    "type": "Bot"
+   },
+   "message": "release: v8.3.1 (#23573)",
+   "paths": [
+    "packages/vite/CHANGELOG.md",
+    "packages/vite/package.json"
+   ],
+   "url": "https://github.com/vitejs/vite/commit/39ddf7ccf7e7469ff6a3ba37bca38c32ea804d6e"
+  },
+  {
+   "sha": "931ad65735d73e7a765baec59a69501109d50f61",
+   "parents": [
+    "f68c0d5a28c96555431413e3e2cbe644337b087f"
+   ],
+   "date": "2026-09-24T21:17:41+09:00",
+   "author": {
+    "login": null,
+    "name": "\u7fe0",
+    "type": "User"
+   },
+   "message": "docs: update viteconf link on the sidebar to 2026 and add banner (#23569)",
+   "paths": [
+    "docs/.vitepress/config.ts",
+    "docs/.vitepress/theme/components/AsideSponsors.vue",
+    "docs/.vitepress/theme/components/TopBanner.vue"
+   ],
+   "url": "https://github.com/vitejs/vite/commit/931ad65735d73e7a765baec59a69501109d50f61"
+  },
+  {
+   "sha": "f68c0d5a28c96555431413e3e2cbe644337b087f",
+   "parents": [
+    "6f831f9b58ebda77638b514042ad8d160edfb928"
+   ],
+   "date": "2026-09-24T20:30:50+09:00",
+   "author": {
+    "login": null,
+    "name": "Vijay Misal",
+    "type": "User"
+   },
+   "message": "fix: handle `server.ws: false` in mergeConfig (#23511)",
+   "paths": [
+    "packages/vite/src/node/__tests__/config.spec.ts",
+    "packages/vite/src/node/utils.ts"
+   ],
+   "url": "https://github.com/vitejs/vite/commit/f68c0d5a28c96555431413e3e2cbe644337b087f"
+  },
+  {
+   "sha": "6f831f9b58ebda77638b514042ad8d160edfb928",
+   "parents": [
+    "e5d9af29a3571f388c4bc2a8d4c3387e46ff1da0"
+   ],
+   "date": "2026-09-24T20:19:39+09:00",
+   "author": {
+    "login": null,
+    "name": "\u7fe0",
+    "type": "User"
+   },
+   "message": "fix(server): avoid reinitializing watcher when adding file after server close (#23572)",
+   "paths": [
+    "packages/vite/src/node/server/__tests__/watcher.spec.ts",
+    "packages/vite/src/node/server/index.ts",
+    "packages/vite/src/node/watch.ts"
+   ],
+   "url": "https://github.com/vitejs/vite/commit/6f831f9b58ebda77638b514042ad8d160edfb928"
+  },
+  {
+   "sha": "e5d9af29a3571f388c4bc2a8d4c3387e46ff1da0",
+   "parents": [
+    "04fc30a4b91870e65a436b3420620a2e02a94a41"
+   ],
+   "date": "2026-09-24T20:00:05+09:00",
+   "author": {
+    "login": null,
+    "name": "btea",
+    "type": "User"
+   },
+   "message": "refactor(create-vite): use `tinyexec` instead of `cross-spawn` (#23541)",
+   "paths": [
+    "packages/create-vite/LICENSE",
+    "packages/create-vite/package.json",
+    "packages/create-vite/src/index.ts",
+    "packages/create-vite/tsconfig.json",
+    "packages/create-vite/tsdown.config.ts",
+    "pnpm-lock.yaml"
+   ],
+   "url": "https://github.com/vitejs/vite/commit/e5d9af29a3571f388c4bc2a8d4c3387e46ff1da0"
+  },
+  {
+   "sha": "04fc30a4b91870e65a436b3420620a2e02a94a41",
+   "parents": [
+    "5f894339d27882fedc86bf6b1076fa6d92e404f3"
+   ],
+   "date": "2026-09-24T19:11:36+09:00",
+   "author": {
+    "login": null,
+    "name": "Murugappan M",
+    "type": "User"
+   },
+   "message": "fix(sourcemap): skip URL source roots when injecting sources content (#23519)",
+   "paths": [
+    "packages/vite/src/node/server/__tests__/sourcemap.spec.ts",
+    "packages/vite/src/node/server/sourcemap.ts"
+   ],
+   "url": "https://github.com/vitejs/vite/commit/04fc30a4b91870e65a436b3420620a2e02a94a41"
+  },
+  {
+   "sha": "5f894339d27882fedc86bf6b1076fa6d92e404f3",
+   "parents": [
+    "6e09961181a1047ef78d37b1a23fb0e7488c8980"
+   ],
+   "date": "2026-09-24T18:04:05+09:00",
+   "author": {
+    "login": null,
+    "name": "\u7fe0",
+    "type": "User"
+   },
+   "message": "fix(optimizer): resolve pending discovered dep processing on close before init (#23567)",
+   "paths": [
+    "packages/vite/src/node/__tests__/optimizer/discoverBeforeListen.spec.ts",
+    "packages/vite/src/node/optimizer/optimizer.ts"
+   ],
+   "url": "https://github.com/vitejs/vite/commit/5f894339d27882fedc86bf6b1076fa6d92e404f3"
+  },
+  {
+   "sha": "6e09961181a1047ef78d37b1a23fb0e7488c8980",
+   "parents": [
+    "63567c73ac132e6384fef384e6b9f7e8d5a37fff"
+   ],
+   "date": "2026-09-24T17:54:44+09:00",
+   "author": {
+    "login": null,
+    "name": "andrew",
+    "type": "User"
+   },
+   "message": "test(bundled-dev): enable passing cases in more playgrounds (#23552)",
+   "paths": [
+    "playground/assets/__tests__/runtime-base/assets-runtime-base.spec.ts",
+    "playground/backend-integration/__tests__/backend-integration.spec.ts",
+    "playground/csp/__tests__/csp.spec.ts",
+    "playground/extensions/__tests__/extensions.spec.ts",
+    "playground/forward-console/__test__/forward-console.spec.ts",
+    "playground/tailwind-v3/__test__/tailwind-v3.spec.ts",
+    "playground/tailwind/__test__/tailwind.spec.ts",
+    "playground/tsconfig-json/__tests__/tsconfig-json.spec.ts",
+    "vitest.config.e2e.ts"
+   ],
+   "url": "https://github.com/vitejs/vite/commit/6e09961181a1047ef78d37b1a23fb0e7488c8980"
+  },
+  {
+   "sha": "63567c73ac132e6384fef384e6b9f7e8d5a37fff",
+   "parents": [
+    "e8990c4d6101dfaca2654ed8ab4d0574ee920248"
+   ],
+   "date": "2026-09-24T17:17:31+09:00",
+   "author": {
+    "login": null,
+    "name": "\u7fe0",
+    "type": "User"
+   },
+   "message": "chore(optimizer): add debug log when waiting for dep before init (#23566)",
+   "paths": [
+    "packages/vite/src/node/optimizer/index.ts",
+    "packages/vite/src/node/optimizer/optimizer.ts",
+    "packages/vite/src/node/plugins/optimizedDeps.ts"
+   ],
+   "url": "https://github.com/vitejs/vite/commit/63567c73ac132e6384fef384e6b9f7e8d5a37fff"
+  },
+  {
+   "sha": "e8990c4d6101dfaca2654ed8ab4d0574ee920248",
+   "parents": [
+    "f155b62ceabbaaf71abbf59933968787e3961c56"
+   ],
+   "date": "2026-09-24T17:05:03+09:00",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "message": "fix(deps): update all non-major dependencies (#23537)",
+   "paths": [
+    ".github/workflows/semgrep.yml",
+    "docs/package.json",
+    "package.json",
+    "packages/create-vite/src/index.ts",
+    "packages/create-vite/template-preact-ts/package.json",
+    "packages/create-vite/template-qwik-ts/package.json",
+    "packages/create-vite/template-react-ts/package.json",
+    "packages/create-vite/template-react/package.json",
+    "packages/create-vite/template-solid-ts/package.json",
+    "packages/create-vite/template-svelte-ts/package.json",
+    "packages/create-vite/template-svelte/package.json",
+    "packages/create-vite/template-vue-ts/package.json",
+    "packages/create-vite/template-vue/package.json",
+    "packages/vite/package.json",
+    "playground/alias/package.json",
+    "playground/backend-integration/package.json",
+    "playground/css-sourcemap/package.json",
+    "playground/css/package.json",
+    "playground/devtools/package.json",
+    "playground/extensions/package.json",
+    "playground/external/dep-that-imports/package.json",
+    "playground/external/dep-that-requires/package.json",
+    "playground/external/package.json",
+    "playground/json/package.json",
+    "playground/multiple-entrypoints/package.json",
+    "playground/optimize-deps-no-discovery/package.json",
+    "playground/optimize-deps/package.json",
+    "playground/resolve-tsconfig-paths/package.json",
+    "playground/tailwind-v3/package.json",
+    "playground/tailwind/package.json",
+    "pnpm-lock.yaml"
+   ],
+   "url": "https://github.com/vitejs/vite/commit/e8990c4d6101dfaca2654ed8ab4d0574ee920248"
+  },
+  {
+   "sha": "f155b62ceabbaaf71abbf59933968787e3961c56",
+   "parents": [
+    "af7cdf6964f124f58d66037e808fe687654948e2"
+   ],
+   "date": "2026-09-23T14:52:57+08:00",
+   "author": {
+    "login": null,
+    "name": "Ciar\u00e1n Curley",
+    "type": "User"
+   },
+   "message": "fix(create-vite): add router only options for tanstack router/start (#23543)",
+   "paths": [
+    "packages/create-vite/src/index.ts"
+   ],
+   "url": "https://github.com/vitejs/vite/commit/f155b62ceabbaaf71abbf59933968787e3961c56"
+  },
+  {
+   "sha": "af7cdf6964f124f58d66037e808fe687654948e2",
+   "parents": [
+    "1544bb1b7ac92f775e9d0dea97954c99cc6cbd43"
+   ],
+   "date": "2026-09-23T14:51:13+08:00",
+   "author": {
+    "login": null,
+    "name": "btea",
+    "type": "User"
+   },
+   "message": "refactor: replace `find` with `some` (#23554)",
+   "paths": [
+    "packages/vite/src/node/plugins/preAlias.ts"
+   ],
+   "url": "https://github.com/vitejs/vite/commit/af7cdf6964f124f58d66037e808fe687654948e2"
+  }
+ ],
+ "pull_requests": [
+  {
+   "number": 23576,
+   "title": "fix(config): avoid mutating hmr defaults",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23576",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Januth Nimnal",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T22:38:30+05:30",
+   "updated_at": "2026-09-24T22:38:30+05:30",
+   "url": "https://github.com/vitejs/vite/pull/23576",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/__tests__/config.spec.ts",
+    "packages/vite/src/node/utils.ts"
+   ],
+   "commits": [
+    {
+     "sha": "7c416a58b3b9792eeaaa749571966f0b4e123901",
+     "date": "2026-09-24T22:38:30+05:30",
+     "author": {
+      "login": null,
+      "name": "Januth Nimnal",
+      "type": "User"
+     },
+     "message": "fix(config): avoid mutating hmr defaults",
+     "parents": [
+      "39ddf7ccf7e7469ff6a3ba37bca38c32ea804d6e"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "39ddf7ccf7e7469ff6a3ba37bca38c32ea804d6e",
+    "source": "compare"
+   },
+   "_head_sha": "7c416a58b3b9792eeaaa749571966f0b4e123901"
+  },
+  {
+   "number": 23574,
+   "title": "fix(dev): close replacement when restart cleanup fails",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23574",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "dvcolomban",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T22:20:18+09:00",
+   "updated_at": "2026-09-24T22:20:18+09:00",
+   "url": "https://github.com/vitejs/vite/pull/23574",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/__tests__/plugins/hooks.spec.ts",
+    "packages/vite/src/node/server/index.ts"
+   ],
+   "commits": [
+    {
+     "sha": "301d422cd05e2f4ce4a29fc6d01de39936c282f2",
+     "date": "2026-09-24T22:20:18+09:00",
+     "author": {
+      "login": null,
+      "name": "dvcolomban",
+      "type": "User"
+     },
+     "message": "fix(dev): close replacement when restart cleanup fails",
+     "parents": [
+      "39ddf7ccf7e7469ff6a3ba37bca38c32ea804d6e"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "39ddf7ccf7e7469ff6a3ba37bca38c32ea804d6e",
+    "source": "compare"
+   },
+   "_head_sha": "301d422cd05e2f4ce4a29fc6d01de39936c282f2"
+  },
+  {
+   "number": 23568,
+   "title": "test(bundled-dev): cover the served rolldown runtime",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23568",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Hana",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T17:24:05+08:00",
+   "updated_at": "2026-09-24T17:49:01+08:00",
+   "url": "https://github.com/vitejs/vite/pull/23568",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/rolldown.config.ts",
+    "packages/vite/src/node/__tests__/plugins/clientInjections.spec.ts",
+    "packages/vite/src/node/constants.ts",
+    "packages/vite/src/node/plugins/clientInjections.ts",
+    "packages/vite/src/node/server/bundledDev.ts",
+    "playground/hmr-full-bundle-mode/__tests__/hmr-full-bundle-mode.spec.ts"
+   ],
+   "commits": [
+    {
+     "sha": "e8829abbf3e02012e13b1e8e4f194318a21e2889",
+     "date": "2026-09-24T17:49:01+08:00",
+     "author": {
+      "login": null,
+      "name": "Hana",
+      "type": "User"
+     },
+     "message": "test(bundled-dev): cover the served rolldown runtime",
+     "parents": [
+      "c2173d404199da61dcaa66d9277f2ba9893d2c6c"
+     ]
+    },
+    {
+     "sha": "c2173d404199da61dcaa66d9277f2ba9893d2c6c",
+     "date": "2026-09-24T17:24:05+08:00",
+     "author": {
+      "login": null,
+      "name": "Hana",
+      "type": "User"
+     },
+     "message": "fix(bundled-dev): serve the rolldown runtime from the installed rolldown",
+     "parents": [
+      "5f894339d27882fedc86bf6b1076fa6d92e404f3"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "5f894339d27882fedc86bf6b1076fa6d92e404f3",
+    "source": "compare"
+   },
+   "_head_sha": "e8829abbf3e02012e13b1e8e4f194318a21e2889"
+  },
+  {
+   "number": 23565,
+   "title": "test: assert wide object output boundaries",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23565",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Hiroshi Ogawa",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T15:54:22+09:00",
+   "updated_at": "2026-09-24T17:00:41+09:00",
+   "url": "https://github.com/vitejs/vite/pull/23565",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/shared/__tests__/forwardConsole.spec.ts",
+    "packages/vite/src/shared/__tests__/pretty-format.spec.ts",
+    "packages/vite/src/shared/forwardConsole.ts",
+    "packages/vite/src/shared/pretty-format.ts",
+    "playground/forward-console/__test__/forward-console.spec.ts"
+   ],
+   "commits": [
+    {
+     "sha": "fc829065633bc7036c82fc1e45d2443d6523e27f",
+     "date": "2026-09-24T17:00:41+09:00",
+     "author": {
+      "login": null,
+      "name": "Hiroshi Ogawa",
+      "type": "User"
+     },
+     "message": "test: assert wide object output boundaries",
+     "parents": [
+      "0b7a79086119b0e82ce2a53b75bf84cdc354111f"
+     ]
+    },
+    {
+     "sha": "0b7a79086119b0e82ce2a53b75bf84cdc354111f",
+     "date": "2026-09-24T17:00:04+09:00",
+     "author": {
+      "login": null,
+      "name": "Hiroshi Ogawa",
+      "type": "User"
+     },
+     "message": "test: remove redundant large object case",
+     "parents": [
+      "6de0a2a71b2b20f0df995f6869e701b4137c5234"
+     ]
+    },
+    {
+     "sha": "6de0a2a71b2b20f0df995f6869e701b4137c5234",
+     "date": "2026-09-24T16:29:45+09:00",
+     "author": {
+      "login": null,
+      "name": "Hiroshi Ogawa",
+      "type": "User"
+     },
+     "message": "test: remove redundant JSON format case",
+     "parents": [
+      "d7c288101f46bee7f7537d5a31e2db455d344eea"
+     ]
+    },
+    {
+     "sha": "d7c288101f46bee7f7537d5a31e2db455d344eea",
+     "date": "2026-09-24T16:28:45+09:00",
+     "author": {
+      "login": null,
+      "name": "Hiroshi Ogawa",
+      "type": "User"
+     },
+     "message": "refactor: delegate primitive console formatting",
+     "parents": [
+      "3f0e49ca4bc24a9c9daed43832bcb6e5e772f0be"
+     ]
+    },
+    {
+     "sha": "3f0e49ca4bc24a9c9daed43832bcb6e5e772f0be",
+     "date": "2026-09-24T16:26:40+09:00",
+     "author": {
+      "login": null,
+      "name": "Hiroshi Ogawa",
+      "type": "User"
+     },
+     "message": "nit",
+     "parents": [
+      "a05dd9f23dcb000b9548d47e215439755cc44f84"
+     ]
+    },
+    {
+     "sha": "a05dd9f23dcb000b9548d47e215439755cc44f84",
+     "date": "2026-09-24T16:23:21+09:00",
+     "author": {
+      "login": null,
+      "name": "Hiroshi Ogawa",
+      "type": "User"
+     },
+     "message": "comment",
+     "parents": [
+      "7df9a5c6862ab0263179944542d3150fa1bd3b9d"
+     ]
+    },
+    {
+     "sha": "7df9a5c6862ab0263179944542d3150fa1bd3b9d",
+     "date": "2026-09-24T16:11:29+09:00",
+     "author": {
+      "login": null,
+      "name": "Hiroshi Ogawa",
+      "type": "User"
+     },
+     "message": "refactor: truncate forwarded console payloads",
+     "parents": [
+      "5bbdd68ae74f7afbc77d29774542d779cc24f3b1"
+     ]
+    },
+    {
+     "sha": "5bbdd68ae74f7afbc77d29774542d779cc24f3b1",
+     "date": "2026-09-24T16:07:56+09:00",
+     "author": {
+      "login": null,
+      "name": "Hiroshi Ogawa",
+      "type": "User"
+     },
+     "message": "refactor: derive pretty format options from config",
+     "parents": [
+      "b2a57c21db02cfc8defe6209c04c8179b6672247"
+     ]
+    },
+    {
+     "sha": "b2a57c21db02cfc8defe6209c04c8179b6672247",
+     "date": "2026-09-24T16:03:23+09:00",
+     "author": {
+      "login": null,
+      "name": "Hiroshi Ogawa",
+      "type": "User"
+     },
+     "message": "test: update forwarded console output",
+     "parents": [
+      "9dc99396cef0cbf77ea9321c4552166291e53d23"
+     ]
+    },
+    {
+     "sha": "9dc99396cef0cbf77ea9321c4552166291e53d23",
+     "date": "2026-09-24T15:56:34+09:00",
+     "author": {
+      "login": null,
+      "name": "Hiroshi Ogawa",
+      "type": "User"
+     },
+     "message": "docs: compare pretty formatter bundle cost",
+     "parents": [
+      "82d0e844651c90c15b5495afe0ffd4969d55dad9"
+     ]
+    },
+    {
+     "sha": "82d0e844651c90c15b5495afe0ffd4969d55dad9",
+     "date": "2026-09-24T15:55:51+09:00",
+     "author": {
+      "login": null,
+      "name": "Hiroshi Ogawa",
+      "type": "User"
+     },
+     "message": "docs: describe minimal pretty formatter",
+     "parents": [
+      "7d46579b24d825599db23105d87feb4f4ed5b3bc"
+     ]
+    },
+    {
+     "sha": "7d46579b24d825599db23105d87feb4f4ed5b3bc",
+     "date": "2026-09-24T15:54:57+09:00",
+     "author": {
+      "login": null,
+      "name": "Hiroshi Ogawa",
+      "type": "User"
+     },
+     "message": "refactor: export prettyFormat directly",
+     "parents": [
+      "e85511977a0158e42ad6971cf57eae0fc0057967"
+     ]
+    },
+    {
+     "sha": "e85511977a0158e42ad6971cf57eae0fc0057967",
+     "date": "2026-09-24T15:54:22+09:00",
+     "author": {
+      "login": null,
+      "name": "Hiroshi Ogawa",
+      "type": "User"
+     },
+     "message": "fix: limit forwarded console object formatting",
+     "parents": [
+      "f155b62ceabbaaf71abbf59933968787e3961c56"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "f155b62ceabbaaf71abbf59933968787e3961c56",
+    "source": "compare"
+   },
+   "_head_sha": "fc829065633bc7036c82fc1e45d2443d6523e27f"
+  },
+  {
+   "number": 23563,
+   "title": "feat(cli): add `-e` shorthand for `--experimentalBundle` and `-F` for `--force`",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23563",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "btea",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T10:12:35+08:00",
+   "updated_at": "2026-09-24T10:12:35+08:00",
+   "url": "https://github.com/vitejs/vite/pull/23563",
+   "requested_reviewers": [],
+   "paths": [
+    "docs/guide/cli.md",
+    "packages/vite/src/node/cli.ts"
+   ],
+   "commits": [
+    {
+     "sha": "6815501ae3c9dc380cdbf541586eb479106f558a",
+     "date": "2026-09-24T10:12:35+08:00",
+     "author": {
+      "login": null,
+      "name": "btea",
+      "type": "User"
+     },
+     "message": "feat(cli): add `-e` shorthand for `--experimentalBundle` and `-F` for `--force`",
+     "parents": [
+      "f155b62ceabbaaf71abbf59933968787e3961c56"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "f155b62ceabbaaf71abbf59933968787e3961c56",
+    "source": "compare"
+   },
+   "_head_sha": "6815501ae3c9dc380cdbf541586eb479106f558a"
+  },
+  {
+   "number": 21880,
+   "title": "chore(deps): update eslint monorepo to v10",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21880",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-24T09:10:05Z",
+   "updated_at": "2026-09-24T09:10:05Z",
+   "url": "https://github.com/vitejs/vite/pull/21880",
+   "requested_reviewers": [],
+   "paths": [
+    "package.json",
+    "pnpm-lock.yaml"
+   ],
+   "commits": [
+    {
+     "sha": "834e97a658cbc2ba70655f5e0c7cacc081f16319",
+     "date": "2026-09-24T09:10:05Z",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "chore(deps): update eslint monorepo to v10",
+     "parents": [
+      "5f894339d27882fedc86bf6b1076fa6d92e404f3"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "5f894339d27882fedc86bf6b1076fa6d92e404f3",
+    "source": "compare"
+   },
+   "_head_sha": "834e97a658cbc2ba70655f5e0c7cacc081f16319"
+  },
+  {
+   "number": 21492,
+   "title": "chore(deps): update dependency open to v11",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21492",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-24T09:09:47Z",
+   "updated_at": "2026-09-24T09:09:47Z",
+   "url": "https://github.com/vitejs/vite/pull/21492",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/package.json",
+    "pnpm-lock.yaml"
+   ],
+   "commits": [
+    {
+     "sha": "d56fe35c6673b7af8cd33273f78e5bc65a401ba3",
+     "date": "2026-09-24T09:09:47Z",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "chore(deps): update dependency open to v11",
+     "parents": [
+      "5f894339d27882fedc86bf6b1076fa6d92e404f3"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "5f894339d27882fedc86bf6b1076fa6d92e404f3",
+    "source": "compare"
+   },
+   "_head_sha": "d56fe35c6673b7af8cd33273f78e5bc65a401ba3"
+  },
+  {
+   "number": 23561,
+   "title": "fix(server): serve optimized dep sourcemaps as external files",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23561",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "btea",
+    "type": "User"
+   },
+   "created_at": "2026-09-23T23:51:01+08:00",
+   "updated_at": "2026-09-23T23:51:01+08:00",
+   "url": "https://github.com/vitejs/vite/pull/23561",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/server/middlewares/transform.ts",
+    "packages/vite/src/node/server/send.ts",
+    "packages/vite/src/node/server/sourcemap.ts",
+    "playground/js-sourcemap/__tests__/js-sourcemap.spec.ts"
+   ],
+   "commits": [
+    {
+     "sha": "0d7cdc77e016859d5afb1de2fefe1f31f2c81b7b",
+     "date": "2026-09-23T23:51:01+08:00",
+     "author": {
+      "login": null,
+      "name": "btea",
+      "type": "User"
+     },
+     "message": "fix(server): serve optimized dep sourcemaps as external files",
+     "parents": [
+      "f155b62ceabbaaf71abbf59933968787e3961c56"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "f155b62ceabbaaf71abbf59933968787e3961c56",
+    "source": "compare"
+   },
+   "_head_sha": "0d7cdc77e016859d5afb1de2fefe1f31f2c81b7b"
+  },
+  {
+   "number": 23550,
+   "title": "fix(css): split srcset candidates at depth so image-set gradients survive",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23550",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "scs0209",
+    "type": "User"
+   },
+   "created_at": "2026-09-12T09:20:59+09:00",
+   "updated_at": "2026-09-23T17:48:10+09:00",
+   "url": "https://github.com/vitejs/vite/pull/23550",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/__tests__/plugins/css.spec.ts",
+    "packages/vite/src/node/__tests__/utils.spec.ts",
+    "packages/vite/src/node/plugins/css.ts",
+    "packages/vite/src/node/utils.ts"
+   ],
+   "commits": [
+    {
+     "sha": "8e1d9e664ab6d8b8f2c9488bd42fddf03223fa32",
+     "date": "2026-09-23T17:48:10+09:00",
+     "author": {
+      "login": null,
+      "name": "scs0209",
+      "type": "User"
+     },
+     "message": "fix(css): split srcset candidates at depth so image-set gradients survive",
+     "parents": [
+      "080ffae3c3c215df77978925f9860d01170cccb5"
+     ]
+    },
+    {
+     "sha": "080ffae3c3c215df77978925f9860d01170cccb5",
+     "date": "2026-09-12T09:20:59+09:00",
+     "author": {
+      "login": null,
+      "name": "scs0209",
+      "type": "User"
+     },
+     "message": "fix(css): parse image-set() with nested parentheses",
+     "parents": [
+      "99bd9d1d46153fa939f4a304cc0177db42e28776"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "99bd9d1d46153fa939f4a304cc0177db42e28776",
+    "source": "compare"
+   },
+   "_head_sha": "8e1d9e664ab6d8b8f2c9488bd42fddf03223fa32"
+  },
+  {
+   "number": 23559,
+   "title": "fix(dev): warn when the bundled dev runtime and the installed rolldown version mismatch",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23559",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "btea",
+    "type": "User"
+   },
+   "created_at": "2026-09-23T17:10:21+08:00",
+   "updated_at": "2026-09-23T17:10:21+08:00",
+   "url": "https://github.com/vitejs/vite/pull/23559",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/rolldown.config.ts",
+    "packages/vite/src/client/bundledDevClient.ts",
+    "packages/vite/src/node/constants.ts",
+    "packages/vite/src/node/plugins/clientInjections.ts",
+    "packages/vite/src/node/server/bundledDev.ts"
+   ],
+   "commits": [
+    {
+     "sha": "6993cd58d59fa2f7d27d7ef62a51820b7286d5cb",
+     "date": "2026-09-23T17:10:21+08:00",
+     "author": {
+      "login": null,
+      "name": "btea",
+      "type": "User"
+     },
+     "message": "fix(dev): warn when the bundled dev runtime and the installed rolldown version mismatch",
+     "parents": [
+      "e9078f865cdff6bed77cd729214a7e2868f126b5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "e9078f865cdff6bed77cd729214a7e2868f126b5",
+    "source": "compare"
+   },
+   "_head_sha": "6993cd58d59fa2f7d27d7ef62a51820b7286d5cb"
+  },
+  {
+   "number": 22645,
+   "title": "Merge upstream main into fix/css-minify-warning-sources",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/22645",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "\u738b\u80dc",
+    "type": "User"
+   },
+   "created_at": "2026-06-08T20:36:43+08:00",
+   "updated_at": "2026-09-23T17:02:55+08:00",
+   "url": "https://github.com/vitejs/vite/pull/22645",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/__tests__/plugins/css.spec.ts",
+    "packages/vite/src/node/plugins/css.ts",
+    "playground/minify/__tests__/minify.spec.ts",
+    "playground/minify/test.css",
+    "playground/minify/vite.config.js"
+   ],
+   "commits": [
+    {
+     "sha": "67ee8edd19dcd5b20144b4c3f9b8ef4707766e1c",
+     "date": "2026-09-23T17:02:55+08:00",
+     "author": {
+      "login": null,
+      "name": "pupuking723",
+      "type": "User"
+     },
+     "message": "Merge upstream main into fix/css-minify-warning-sources",
+     "parents": [
+      "9448ae9ab6ced26062b65121804a9480eb654ea8",
+      "f155b62ceabbaaf71abbf59933968787e3961c56"
+     ]
+    },
+    {
+     "sha": "9448ae9ab6ced26062b65121804a9480eb654ea8",
+     "date": "2026-06-08T20:36:43+08:00",
+     "author": {
+      "login": null,
+      "name": "\u738b\u80dc",
+      "type": "User"
+     },
+     "message": "fix: map css minify warnings to source files",
+     "parents": [
+      "01337adca3e588a88ec47ab1736e18db14d38237"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "f155b62ceabbaaf71abbf59933968787e3961c56",
+    "source": "compare"
+   },
+   "_head_sha": "67ee8edd19dcd5b20144b4c3f9b8ef4707766e1c"
+  },
+  {
+   "number": 23562,
+   "title": "feat: support HMR for mixed bundled environments",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23562",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Melissa Liu",
+    "type": "User"
+   },
+   "created_at": "2026-09-23T13:34:35-04:00",
+   "updated_at": "2026-09-23T13:34:35-04:00",
+   "url": "https://github.com/vitejs/vite/pull/23562",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/client/bundledDevHmrClient.ts",
+    "packages/vite/src/client/client.ts",
+    "packages/vite/src/node/server/__tests__/hmr.spec.ts",
+    "packages/vite/src/node/server/__tests__/watcher.spec.ts",
+    "packages/vite/src/node/server/bundledDev.ts",
+    "packages/vite/src/node/server/hmr.ts",
+    "packages/vite/src/node/server/index.ts",
+    "playground/hmr-full-bundle-mode/__tests__/hmr-full-bundle-mode.spec.ts",
+    "playground/hmr-full-bundle-mode/index.html",
+    "playground/hmr-full-bundle-mode/main.js",
+    "playground/hmr-full-bundle-mode/vite.config.ts"
+   ],
+   "commits": [
+    {
+     "sha": "05742d7cdef7cb954aea995879821f091f961b06",
+     "date": "2026-09-23T13:34:35-04:00",
+     "author": {
+      "login": null,
+      "name": "Melissa Liu",
+      "type": "User"
+     },
+     "message": "feat: support HMR for mixed bundled environments",
+     "parents": [
+      "f155b62ceabbaaf71abbf59933968787e3961c56"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "f155b62ceabbaaf71abbf59933968787e3961c56",
+    "source": "compare"
+   },
+   "_head_sha": "05742d7cdef7cb954aea995879821f091f961b06"
+  },
+  {
+   "number": 23557,
+   "title": "fix(optimizer): handle errors in the post-scan optimize run",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23557",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "koreahghg",
+    "type": "User"
+   },
+   "created_at": "2026-09-23T08:37:14+09:00",
+   "updated_at": "2026-09-23T08:37:14+09:00",
+   "url": "https://github.com/vitejs/vite/pull/23557",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/__tests__/fixtures/optimizer-post-scan-error/entry.js",
+    "packages/vite/src/node/__tests__/fixtures/optimizer-post-scan-error/index.html",
+    "packages/vite/src/node/__tests__/optimizer/postScanError.spec.ts",
+    "packages/vite/src/node/optimizer/optimizer.ts"
+   ],
+   "commits": [
+    {
+     "sha": "e8eef11add84e055fcae165586309c8041883065",
+     "date": "2026-09-23T08:37:14+09:00",
+     "author": {
+      "login": null,
+      "name": "koreahghg",
+      "type": "User"
+     },
+     "message": "fix(optimizer): handle errors in the post-scan optimize run",
+     "parents": [
+      "1544bb1b7ac92f775e9d0dea97954c99cc6cbd43"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "1544bb1b7ac92f775e9d0dea97954c99cc6cbd43",
+    "source": "compare"
+   },
+   "_head_sha": "e8eef11add84e055fcae165586309c8041883065"
+  },
+  {
+   "number": 23533,
+   "title": "Merge branch 'main' into fix/hard-invalidate-importers-on-delete",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23533",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Paul Cameron",
+    "type": "User"
+   },
+   "created_at": "2026-09-19T22:49:04-04:00",
+   "updated_at": "2026-09-23T06:35:07-04:00",
+   "url": "https://github.com/vitejs/vite/pull/23533",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/server/__tests__/moduleGraph.spec.ts",
+    "packages/vite/src/node/server/hmr.ts",
+    "packages/vite/src/node/server/mixedModuleGraph.ts",
+    "packages/vite/src/node/server/moduleGraph.ts"
+   ],
+   "commits": [
+    {
+     "sha": "efdc74ce5a78a2d9ab4e1789fb75a4db478fd320",
+     "date": "2026-09-23T06:35:07-04:00",
+     "author": {
+      "login": null,
+      "name": "Paul C.",
+      "type": "User"
+     },
+     "message": "Merge branch 'main' into fix/hard-invalidate-importers-on-delete",
+     "parents": [
+      "01a4ca1c9b9ae03eb297ffaedf87efff1670d410",
+      "f155b62ceabbaaf71abbf59933968787e3961c56"
+     ]
+    },
+    {
+     "sha": "01a4ca1c9b9ae03eb297ffaedf87efff1670d410",
+     "date": "2026-09-22T13:20:19-04:00",
+     "author": {
+      "login": null,
+      "name": "Paul C.",
+      "type": "User"
+     },
+     "message": "Merge branch 'main' into fix/hard-invalidate-importers-on-delete",
+     "parents": [
+      "74cdee698004eb2b3420ecf74b39ed8160f292db",
+      "1544bb1b7ac92f775e9d0dea97954c99cc6cbd43"
+     ]
+    },
+    {
+     "sha": "74cdee698004eb2b3420ecf74b39ed8160f292db",
+     "date": "2026-09-21T15:03:03-04:00",
+     "author": {
+      "login": null,
+      "name": "Paul C.",
+      "type": "User"
+     },
+     "message": "Merge branch 'main' into fix/hard-invalidate-importers-on-delete",
+     "parents": [
+      "5e07fb03f48e8b1c3107be305cf6967fcdb34bf1",
+      "9abd99bfdd3117149d6faf87fc37bc9899b1c998"
+     ]
+    },
+    {
+     "sha": "5e07fb03f48e8b1c3107be305cf6967fcdb34bf1",
+     "date": "2026-09-19T23:06:19-04:00",
+     "author": {
+      "login": null,
+      "name": "Paul Cameron",
+      "type": "User"
+     },
+     "message": "chore: trigger ci",
+     "parents": [
+      "bd5b015bf60f861eb7fa8b4236020d5a478b9384"
+     ]
+    },
+    {
+     "sha": "bd5b015bf60f861eb7fa8b4236020d5a478b9384",
+     "date": "2026-09-19T22:49:04-04:00",
+     "author": {
+      "login": null,
+      "name": "Paul Cameron",
+      "type": "User"
+     },
+     "message": "fix: hard-invalidate importers when dependency is deleted (#23527)",
+     "parents": [
+      "e9078f865cdff6bed77cd729214a7e2868f126b5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "f155b62ceabbaaf71abbf59933968787e3961c56",
+    "source": "compare"
+   },
+   "_head_sha": "efdc74ce5a78a2d9ab4e1789fb75a4db478fd320"
+  },
+  {
+   "number": 23484,
+   "title": "fix(dev): run a follow-up restart when restart is requested during a restart (fix #23392)",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23484",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Jason Smathers",
+    "type": "User"
+   },
+   "created_at": "2026-09-23T01:02:05-06:00",
+   "updated_at": "2026-09-23T01:02:05-06:00",
+   "url": "https://github.com/vitejs/vite/pull/23484",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/__tests__/dev.spec.ts",
+    "packages/vite/src/node/server/index.ts"
+   ],
+   "commits": [
+    {
+     "sha": "a4ad15e4bdb0bb60743934090b5418c3e092d73d",
+     "date": "2026-09-23T01:02:05-06:00",
+     "author": {
+      "login": null,
+      "name": "Jason Smathers",
+      "type": "User"
+     },
+     "message": "fix(dev): run a follow-up restart when restart is requested during a restart (fix #23392)",
+     "parents": [
+      "f155b62ceabbaaf71abbf59933968787e3961c56"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "f155b62ceabbaaf71abbf59933968787e3961c56",
+    "source": "compare"
+   },
+   "_head_sha": "a4ad15e4bdb0bb60743934090b5418c3e092d73d"
+  },
+  {
+   "number": 23553,
+   "title": "fix: limit forwarded console argument size",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23553",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "irontaek",
+    "type": "User"
+   },
+   "created_at": "2026-09-23T00:24:38+09:00",
+   "updated_at": "2026-09-23T00:24:38+09:00",
+   "url": "https://github.com/vitejs/vite/pull/23553",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/shared/__tests__/forwardConsole.spec.ts",
+    "packages/vite/src/shared/forwardConsole.ts"
+   ],
+   "commits": [
+    {
+     "sha": "084728646d418a3934281a7d9e6fec0b0e14fe05",
+     "date": "2026-09-23T00:24:38+09:00",
+     "author": {
+      "login": null,
+      "name": "irontaek",
+      "type": "User"
+     },
+     "message": "fix: limit forwarded console argument size",
+     "parents": [
+      "1544bb1b7ac92f775e9d0dea97954c99cc6cbd43"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "1544bb1b7ac92f775e9d0dea97954c99cc6cbd43",
+    "source": "compare"
+   },
+   "_head_sha": "084728646d418a3934281a7d9e6fec0b0e14fe05"
+  },
+  {
+   "number": 23556,
+   "title": "fix(preview): skip compression wrapping for HTTP/2",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23556",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "vjymisal0",
+    "type": "User"
+   },
+   "created_at": "2026-09-22T21:36:01+05:30",
+   "updated_at": "2026-09-22T21:36:01+05:30",
+   "url": "https://github.com/vitejs/vite/pull/23556",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/preview.ts"
+   ],
+   "commits": [
+    {
+     "sha": "7773530f286c07b7949bce3e4372e70e01b2f216",
+     "date": "2026-09-22T21:36:01+05:30",
+     "author": {
+      "login": null,
+      "name": "vjymisal0",
+      "type": "User"
+     },
+     "message": "fix(preview): skip compression wrapping for HTTP/2",
+     "parents": [
+      "1544bb1b7ac92f775e9d0dea97954c99cc6cbd43"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "1544bb1b7ac92f775e9d0dea97954c99cc6cbd43",
+    "source": "compare"
+   },
+   "_head_sha": "7773530f286c07b7949bce3e4372e70e01b2f216"
+  },
+  {
+   "number": 23555,
+   "title": "fix(asset): rewrite references in SVG assets",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23555",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "vjymisal0",
+    "type": "User"
+   },
+   "created_at": "2026-09-22T21:22:24+05:30",
+   "updated_at": "2026-09-22T21:22:24+05:30",
+   "url": "https://github.com/vitejs/vite/pull/23555",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/__tests__/build.spec.ts",
+    "packages/vite/src/node/__tests__/fixtures/svg-asset-refs/img.png",
+    "packages/vite/src/node/__tests__/fixtures/svg-asset-refs/index.html",
+    "packages/vite/src/node/__tests__/fixtures/svg-asset-refs/logo.svg",
+    "packages/vite/src/node/plugins/asset.ts"
+   ],
+   "commits": [
+    {
+     "sha": "e2a02b1493a1e0e1148c6c9c26435e7dfafce727",
+     "date": "2026-09-22T21:22:24+05:30",
+     "author": {
+      "login": null,
+      "name": "vjymisal0",
+      "type": "User"
+     },
+     "message": "fix(asset): rewrite references in SVG assets",
+     "parents": [
+      "1544bb1b7ac92f775e9d0dea97954c99cc6cbd43"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "1544bb1b7ac92f775e9d0dea97954c99cc6cbd43",
+    "source": "compare"
+   },
+   "_head_sha": "e2a02b1493a1e0e1148c6c9c26435e7dfafce727"
+  },
+  {
+   "number": 23246,
+   "title": "test(bundled-dev): expect bundle-only serving in fs-serve, resolve, dynamic-import",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23246",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Hana",
+    "type": "User"
+   },
+   "created_at": "2026-09-22T15:57:05+08:00",
+   "updated_at": "2026-09-22T16:10:47+08:00",
+   "url": "https://github.com/vitejs/vite/pull/23246",
+   "requested_reviewers": [],
+   "paths": [
+    "playground/assets-sanitize/__tests__/assets-sanitize.spec.ts",
+    "playground/dynamic-import/__tests__/dynamic-import.spec.ts",
+    "playground/dynamic-import/vite.config.js",
+    "playground/fs-serve/__tests__/commonTests.ts",
+    "playground/fs-serve/__tests__/deny/fs-serve-deny.spec.ts",
+    "playground/fs-serve/__tests__/fs-serve.spec.ts",
+    "playground/resolve/__tests__/resolve.spec.ts",
+    "vitest.config.e2e.ts"
+   ],
+   "commits": [
+    {
+     "sha": "fd2ec41647184e385c6f6fe06bce2fbe215cf998",
+     "date": "2026-09-22T16:10:47+08:00",
+     "author": {
+      "login": null,
+      "name": "Hana",
+      "type": "User"
+     },
+     "message": "test(bundled-dev): expect bundle-only serving in fs-serve, resolve, dynamic-import",
+     "parents": [
+      "dc780909227e1b57c3b5f7ef9014acc026228dc5"
+     ]
+    },
+    {
+     "sha": "dc780909227e1b57c3b5f7ef9014acc026228dc5",
+     "date": "2026-09-22T15:57:05+08:00",
+     "author": {
+      "login": null,
+      "name": "Hana",
+      "type": "User"
+     },
+     "message": "feat(bundled-dev): serve static files with fs checks after the bundle lookup",
+     "parents": [
+      "1544bb1b7ac92f775e9d0dea97954c99cc6cbd43"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "1544bb1b7ac92f775e9d0dea97954c99cc6cbd43",
+    "source": "compare"
+   },
+   "_head_sha": "fd2ec41647184e385c6f6fe06bce2fbe215cf998"
+  },
+  {
+   "number": 23536,
+   "title": "fix: merge `build.rolldownOptions.output.minify` correctly",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23536",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Abdel",
+    "type": "User"
+   },
+   "created_at": "2026-09-22T14:21:31Z",
+   "updated_at": "2026-09-22T14:21:31Z",
+   "url": "https://github.com/vitejs/vite/pull/23536",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/__tests__/build.spec.ts",
+    "packages/vite/src/node/build.ts"
+   ],
+   "commits": [
+    {
+     "sha": "a9764c24c8818e5ccfb2e28f8deffe8d0db57361",
+     "date": "2026-09-22T14:21:31Z",
+     "author": {
+      "login": null,
+      "name": "Abdel",
+      "type": "User"
+     },
+     "message": "fix: merge `build.rolldownOptions.output.minify` correctly",
+     "parents": [
+      "e9078f865cdff6bed77cd729214a7e2868f126b5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "e9078f865cdff6bed77cd729214a7e2868f126b5",
+    "source": "compare"
+   },
+   "_head_sha": "a9764c24c8818e5ccfb2e28f8deffe8d0db57361"
+  },
+  {
+   "number": 23544,
+   "title": "fix(config): fall back when node_modules is not writable",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23544",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Johannes Marbach",
+    "type": "User"
+   },
+   "created_at": "2026-09-21T19:26:27+02:00",
+   "updated_at": "2026-09-21T19:26:27+02:00",
+   "url": "https://github.com/vitejs/vite/pull/23544",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/__tests__/config.spec.ts",
+    "packages/vite/src/node/config.ts"
+   ],
+   "commits": [
+    {
+     "sha": "c2bf7bf749b2d5d0c1b18ec307bb3f98c20b215f",
+     "date": "2026-09-21T19:26:27+02:00",
+     "author": {
+      "login": null,
+      "name": "Johannes Marbach",
+      "type": "User"
+     },
+     "message": "fix(config): fall back when node_modules is not writable",
+     "parents": [
+      "9abd99bfdd3117149d6faf87fc37bc9899b1c998"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "9abd99bfdd3117149d6faf87fc37bc9899b1c998",
+    "source": "compare"
+   },
+   "_head_sha": "c2bf7bf749b2d5d0c1b18ec307bb3f98c20b215f"
+  },
+  {
+   "number": 23499,
+   "title": "test: fix dev spec import order",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23499",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Tiancheng Xu",
+    "type": "User"
+   },
+   "created_at": "2026-09-16T06:39:06-04:00",
+   "updated_at": "2026-09-19T10:43:16-04:00",
+   "url": "https://github.com/vitejs/vite/pull/23499",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/__tests__/dev.spec.ts",
+    "packages/vite/src/node/server/index.ts"
+   ],
+   "commits": [
+    {
+     "sha": "7d27dc56a1a9d18a740c2779e26f1b40e50ebbef",
+     "date": "2026-09-19T10:43:16-04:00",
+     "author": {
+      "login": null,
+      "name": "Tiancheng-Xu",
+      "type": "User"
+     },
+     "message": "test: fix dev spec import order",
+     "parents": [
+      "3defa496547b5dd2e212a8ad750e0d694abc74aa"
+     ]
+    },
+    {
+     "sha": "3defa496547b5dd2e212a8ad750e0d694abc74aa",
+     "date": "2026-09-16T06:39:06-04:00",
+     "author": {
+      "login": null,
+      "name": "Tiancheng Xu",
+      "type": "User"
+     },
+     "message": "fix(server): release previous environments after init",
+     "parents": [
+      "99bd9d1d46153fa939f4a304cc0177db42e28776"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "99bd9d1d46153fa939f4a304cc0177db42e28776",
+    "source": "compare"
+   },
+   "_head_sha": "7d27dc56a1a9d18a740c2779e26f1b40e50ebbef"
+  },
+  {
+   "number": 23521,
+   "title": "fix(css): don't truncate image-set() candidates with nested parentheses",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23521",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Vinicius",
+    "type": "User"
+   },
+   "created_at": "2026-09-19T05:09:47-03:00",
+   "updated_at": "2026-09-19T05:09:47-03:00",
+   "url": "https://github.com/vitejs/vite/pull/23521",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/__tests__/plugins/css.spec.ts",
+    "packages/vite/src/node/__tests__/utils.spec.ts",
+    "packages/vite/src/node/plugins/css.ts",
+    "packages/vite/src/node/utils.ts"
+   ],
+   "commits": [
+    {
+     "sha": "9f4b8ae19fb693ffb161c894601d25fc4a01214e",
+     "date": "2026-09-19T05:09:47-03:00",
+     "author": {
+      "login": null,
+      "name": "Vinicius",
+      "type": "User"
+     },
+     "message": "fix(css): don't truncate image-set() candidates with nested parentheses",
+     "parents": [
+      "e9078f865cdff6bed77cd729214a7e2868f126b5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "e9078f865cdff6bed77cd729214a7e2868f126b5",
+    "source": "compare"
+   },
+   "_head_sha": "9f4b8ae19fb693ffb161c894601d25fc4a01214e"
+  },
+  {
+   "number": 23026,
+   "title": "fix(bundled-dev): serve lazy chunk sourcemaps",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23026",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "tbvjaos510",
+    "type": "User"
+   },
+   "created_at": "2026-09-18T22:03:20+09:00",
+   "updated_at": "2026-09-18T22:03:20+09:00",
+   "url": "https://github.com/vitejs/vite/pull/23026",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/server/bundledDev.ts",
+    "playground/hmr-full-bundle-mode/__tests__/hmr-full-bundle-mode.spec.ts"
+   ],
+   "commits": [
+    {
+     "sha": "0f70b4010836eb679389636a8dc8ee8b4a69773a",
+     "date": "2026-09-18T22:03:20+09:00",
+     "author": {
+      "login": null,
+      "name": "tbvjaos510",
+      "type": "User"
+     },
+     "message": "fix(bundled-dev): serve lazy chunk sourcemaps",
+     "parents": [
+      "3c752c8932bc0599465ba4a6d8f44aaf1e934c3d"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3c752c8932bc0599465ba4a6d8f44aaf1e934c3d",
+    "source": "compare"
+   },
+   "_head_sha": "0f70b4010836eb679389636a8dc8ee8b4a69773a"
+  },
+  {
+   "number": 22675,
+   "title": "feat(wasm): support source phase imports",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/22675",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Guy Bedford",
+    "type": "User"
+   },
+   "created_at": "2026-09-18T15:11:47-07:00",
+   "updated_at": "2026-09-18T15:11:47-07:00",
+   "url": "https://github.com/vitejs/vite/pull/22675",
+   "requested_reviewers": [],
+   "paths": [
+    "docs/guide/features.md",
+    "packages/vite/src/node/plugins/wasm.ts",
+    "playground/wasm/__tests__/wasm.spec.ts",
+    "playground/wasm/index.html"
+   ],
+   "commits": [
+    {
+     "sha": "61dc3bf3525eb1cdce3891189772ddf482c38290",
+     "date": "2026-09-18T15:11:47-07:00",
+     "author": {
+      "login": null,
+      "name": "Guy Bedford",
+      "type": "User"
+     },
+     "message": "feat(wasm): support source phase imports",
+     "parents": [
+      "e9078f865cdff6bed77cd729214a7e2868f126b5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "e9078f865cdff6bed77cd729214a7e2868f126b5",
+    "source": "compare"
+   },
+   "_head_sha": "61dc3bf3525eb1cdce3891189772ddf482c38290"
+  },
+  {
+   "number": 23502,
+   "title": "test(lazy-compilation): look up built chunks by normalized id",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23502",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Hana",
+    "type": "User"
+   },
+   "created_at": "2026-09-18T14:32:55+08:00",
+   "updated_at": "2026-09-18T14:56:20+08:00",
+   "url": "https://github.com/vitejs/vite/pull/23502",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/server/bundledDev.ts",
+    "packages/vite/src/node/server/middlewares/triggerLazyBundling.ts",
+    "playground/lazy-compilation/__tests__/lazy-compilation.spec.ts",
+    "playground/lazy-compilation/shared.js",
+    "playground/lazy-compilation/vite.config.ts"
+   ],
+   "commits": [
+    {
+     "sha": "4e220fbddf22acddf69f13cede1c07c9dfbd4698",
+     "date": "2026-09-18T14:56:20+08:00",
+     "author": {
+      "login": null,
+      "name": "Hana",
+      "type": "User"
+     },
+     "message": "test(lazy-compilation): look up built chunks by normalized id",
+     "parents": [
+      "ffd188bb87bf9020c92e2c32d3f4cf28a9cadb66"
+     ]
+    },
+    {
+     "sha": "ffd188bb87bf9020c92e2c32d3f4cf28a9cadb66",
+     "date": "2026-09-18T14:33:32+08:00",
+     "author": {
+      "login": null,
+      "name": "Hana",
+      "type": "User"
+     },
+     "message": "fix(bundled-dev): redirect a lazy request to the built chunk only when it is safe",
+     "parents": [
+      "4c46b5b642ea3790d01f9926a8e9aa0cc0207eb9"
+     ]
+    },
+    {
+     "sha": "4c46b5b642ea3790d01f9926a8e9aa0cc0207eb9",
+     "date": "2026-09-18T14:32:55+08:00",
+     "author": {
+      "login": null,
+      "name": "Hana",
+      "type": "User"
+     },
+     "message": "fix(bundled-dev): serve an already-built lazy route instead of recompiling it on reload",
+     "parents": [
+      "3c752c8932bc0599465ba4a6d8f44aaf1e934c3d"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3c752c8932bc0599465ba4a6d8f44aaf1e934c3d",
+    "source": "compare"
+   },
+   "_head_sha": "4e220fbddf22acddf69f13cede1c07c9dfbd4698"
+  },
+  {
+   "number": 23513,
+   "title": "test: normalise path separators for windows",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23513",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Daniel Roe",
+    "type": "User"
+   },
+   "created_at": "2026-09-17T20:07:58+01:00",
+   "updated_at": "2026-09-17T20:50:22+01:00",
+   "url": "https://github.com/vitejs/vite/pull/23513",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/module-runner/sourcemap/interceptor.ts",
+    "packages/vite/src/node/ssr/__tests__/fixtures/modules/with space/has-error.js",
+    "packages/vite/src/node/ssr/__tests__/ssrStacktrace.spec.ts",
+    "packages/vite/src/node/ssr/fetchModule.ts",
+    "packages/vite/src/node/ssr/runtime/__tests__/fixtures/with space/has-error-deep.ts",
+    "packages/vite/src/node/ssr/runtime/__tests__/server-source-maps.spec.ts",
+    "packages/vite/src/node/ssr/ssrStacktrace.ts",
+    "packages/vite/src/shared/utils.ts"
+   ],
+   "commits": [
+    {
+     "sha": "893a08eedf1cd84f6586df04c2603ac7cf906362",
+     "date": "2026-09-17T20:50:22+01:00",
+     "author": {
+      "login": null,
+      "name": "Daniel Roe",
+      "type": "User"
+     },
+     "message": "test: normalise path separators for windows",
+     "parents": [
+      "7e9b9cd1405f6a13646e3f25f14afd83b10cfdce"
+     ]
+    },
+    {
+     "sha": "7e9b9cd1405f6a13646e3f25f14afd83b10cfdce",
+     "date": "2026-09-17T20:07:58+01:00",
+     "author": {
+      "login": null,
+      "name": "Daniel Roe",
+      "type": "User"
+     },
+     "message": "fix(ssr): encode whitespace in module runner sourceURL",
+     "parents": [
+      "bd3a3a96552a900f31c56b0d8be229dcd20618f4"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "bd3a3a96552a900f31c56b0d8be229dcd20618f4",
+    "source": "compare"
+   },
+   "_head_sha": "893a08eedf1cd84f6586df04c2603ac7cf906362"
+  },
+  {
+   "number": 23510,
+   "title": "fix(js-sourcemap): adapt",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23510",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Andreas Turku",
+    "type": "User"
+   },
+   "created_at": "2026-09-15T13:31:54+02:00",
+   "updated_at": "2026-09-17T16:40:13+02:00",
+   "url": "https://github.com/vitejs/vite/pull/23510",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/plugins/importAnalysisBuild.ts",
+    "playground/js-sourcemap/__tests__/js-sourcemap.spec.ts",
+    "playground/preload/__tests__/preload.spec.ts",
+    "playground/preload/src/about.js",
+    "playground/preload/vite.config.ts"
+   ],
+   "commits": [
+    {
+     "sha": "b3115ece211f47c789c52bf4cc295d2c8c2f072c",
+     "date": "2026-09-17T16:40:13+02:00",
+     "author": {
+      "login": null,
+      "name": "Andreas Turku",
+      "type": "User"
+     },
+     "message": "fix(js-sourcemap): adapt",
+     "parents": [
+      "fbf82d5a42c756108fd4637b0de47f1ac18a212d"
+     ]
+    },
+    {
+     "sha": "fbf82d5a42c756108fd4637b0de47f1ac18a212d",
+     "date": "2026-09-15T13:31:54+02:00",
+     "author": {
+      "login": null,
+      "name": "Andreas Turku",
+      "type": "User"
+     },
+     "message": "perf(build): avoid quadratic link scan in the preload helper",
+     "parents": [
+      "bd3a3a96552a900f31c56b0d8be229dcd20618f4"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "bd3a3a96552a900f31c56b0d8be229dcd20618f4",
+    "source": "compare"
+   },
+   "_head_sha": "b3115ece211f47c789c52bf4cc295d2c8c2f072c"
+  },
+  {
+   "number": 23503,
+   "title": "fix(server): handle file watcher errors without crashing",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23503",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "kingmakeruix",
+    "type": "User"
+   },
+   "created_at": "2026-09-17T11:23:31+03:00",
+   "updated_at": "2026-09-17T11:23:31+03:00",
+   "url": "https://github.com/vitejs/vite/pull/23503",
+   "requested_reviewers": [],
+   "paths": [
+    "packages/vite/src/node/__tests__/plugins/hooks.spec.ts",
+    "packages/vite/src/node/server/index.ts"
+   ],
+   "commits": [
+    {
+     "sha": "c70a58ae482cc9086a1f0cba6f04ca9399ffcc32",
+     "date": "2026-09-17T11:23:31+03:00",
+     "author": {
+      "login": null,
+      "name": "kingmakeruix",
+      "type": "User"
+     },
+     "message": "fix(server): handle file watcher errors without crashing",
+     "parents": [
+      "bd3a3a96552a900f31c56b0d8be229dcd20618f4"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "bd3a3a96552a900f31c56b0d8be229dcd20618f4",
+    "source": "compare"
+   },
+   "_head_sha": "c70a58ae482cc9086a1f0cba6f04ca9399ffcc32"
+  },
+  {
+   "number": 23497,
+   "title": "test: update",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/23497",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "btea",
+    "type": "User"
+   },
+   "created_at": "2026-09-16T12:10:56+08:00",
+   "updated_at": "2026-09-16T13:56:44+08:00",
+   "url": "https://github.com/vitejs/vite/pull/23497",
+   "requested_reviewers": [],
+   "paths": [
+    "docs/config/server-options.md",
+    "packages/vite/LICENSE.md",
+    "packages/vite/package.json",
+    "packages/vite/src/node/__tests__/watch.spec.ts",
+    "packages/vite/src/node/server/index.ts",
+    "packages/vite/src/node/watch.ts",
+    "pnpm-lock.yaml"
+   ],
+   "commits": [
+    {
+     "sha": "f2a31c96010749b2e4c16b94859a16ae6c829a6e",
+     "date": "2026-09-16T13:56:44+08:00",
+     "author": {
+      "login": null,
+      "name": "btea",
+      "type": "User"
+     },
+     "message": "test: update",
+     "parents": [
+      "240f3bfb47bb23184efec54ff47f1268dcfd0298"
+     ]
+    },
+    {
+     "sha": "240f3bfb47bb23184efec54ff47f1268dcfd0298",
+     "date": "2026-09-16T13:28:57+08:00",
+     "author": {
+      "login": null,
+      "name": "btea",
+      "type": "User"
+     },
+     "message": "test: update",
+     "parents": [
+      "d581b749b94daf6d3a1ee8ae1b5cc51b9d27e506"
+     ]
+    },
+    {
+     "sha": "d581b749b94daf6d3a1ee8ae1b5cc51b9d27e506",
+     "date": "2026-09-16T13:17:09+08:00",
+     "author": {
+      "login": null,
+      "name": "btea",
+      "type": "User"
+     },
+     "message": "fix: test",
+     "parents": [
+      "f0bc1d736098d324c309aeec9de66449d7da8cbf"
+     ]
+    },
+    {
+     "sha": "f0bc1d736098d324c309aeec9de66449d7da8cbf",
+     "date": "2026-09-16T12:10:56+08:00",
+     "author": {
+      "login": null,
+      "name": "btea",
+      "type": "User"
+     },
+     "message": "feat: add opt-in `server.watch.ignoredFromGitignore` option",
+     "parents": [
+      "bd3a3a96552a900f31c56b0d8be229dcd20618f4"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "bd3a3a96552a900f31c56b0d8be229dcd20618f4",
+    "source": "compare"
+   },
+   "_head_sha": "f2a31c96010749b2e4c16b94859a16ae6c829a6e"
+  }
+ ],
+ "branches": [
+  {
+   "name": "bluwy-css-modules",
+   "url": "https://github.com/vitejs/vite/tree/bluwy-css-modules",
+   "ahead_by": 6,
+   "paths": [
+    "packages/css-modules/build.config.ts",
+    "packages/css-modules/package.json",
+    "packages/css-modules/src/css-module-to-esm.ts",
+    "packages/css-modules/src/index.ts",
+    "packages/css-modules/src/lightningcss/compile.ts",
+    "packages/css-modules/src/lightningcss/index.ts",
+    "packages/css-modules/src/postcss/compile.ts",
+    "packages/css-modules/src/postcss/index.ts",
+    "packages/css-modules/src/postcss/postcss-extract-icss.ts",
+    "packages/css-modules/src/types.ts",
+    "packages/css-modules/src/utils/generate-esm.ts",
+    "packages/css-modules/src/utils/locals-convention.ts",
+    "packages/css-modules/tsconfig.json",
+    "packages/vite/package.json",
+    "packages/vite/src/node/plugins/css.ts",
+    "packages/vite/src/node/plugins/cssModules.ts",
+    "packages/vite/src/node/plugins/index.ts",
+    "packages/vite/src/node/server/pluginContainer.ts",
+    "packages/vite/src/node/utils.ts",
+    "pnpm-lock.yaml"
+   ],
+   "commits": [
+    {
+     "sha": "7a39704540c0e400591e8371b28ec67b1f35c84c",
+     "parents": [
+      "67d2d695877fcad6322c01fe4f1d1fc62be3d024"
+     ],
+     "date": "2024-03-18T16:15:19+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "wip",
+     "paths": []
+    },
+    {
+     "sha": "67d2d695877fcad6322c01fe4f1d1fc62be3d024",
+     "parents": [
+      "63f21faf2f89a7f24aa28c7d72d2e209b28e67c3"
+     ],
+     "date": "2024-03-18T14:57:10+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "wip",
+     "paths": []
+    },
+    {
+     "sha": "63f21faf2f89a7f24aa28c7d72d2e209b28e67c3",
+     "parents": [
+      "4a9e890a81604f825128c3f4b9f617784b145040"
+     ],
+     "date": "2024-03-18T13:38:30+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "chore: remove remapping",
+     "paths": []
+    },
+    {
+     "sha": "4a9e890a81604f825128c3f4b9f617784b145040",
+     "parents": [
+      "80f04a773000872898597f242f095a0133451965",
+      "72104f6de5398a1a0511404e8485b3b7721be537"
+     ],
+     "date": "2024-03-18T13:30:56+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "Merge branch 'main' into bluwy-css-modules",
+     "paths": []
+    },
+    {
+     "sha": "80f04a773000872898597f242f095a0133451965",
+     "parents": [
+      "7c8111f0dc82d25835e7ee688b2faa5b1a83075c"
+     ],
+     "date": "2024-03-14T22:56:28+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "wip",
+     "paths": []
+    },
+    {
+     "sha": "7c8111f0dc82d25835e7ee688b2faa5b1a83075c",
+     "parents": [
+      "5aabad32b276ebc7940a8ce415243f5b526613db"
+     ],
+     "date": "2024-03-14T18:20:36+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "wip",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "72104f6de5398a1a0511404e8485b3b7721be537",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "bluwy-fs-watch",
+   "url": "https://github.com/vitejs/vite/tree/bluwy-fs-watch",
+   "ahead_by": 1,
+   "paths": [
+    "package.json",
+    "packages/vite/LICENSE.md",
+    "packages/vite/package.json",
+    "packages/vite/rollup.config.ts",
+    "packages/vite/src/node/build.ts",
+    "packages/vite/src/node/index.ts",
+    "packages/vite/src/node/plugins/esbuild.ts",
+    "packages/vite/src/node/server/index.ts",
+    "packages/vite/src/node/server/pluginContainer.ts",
+    "packages/vite/src/node/utils.ts",
+    "packages/vite/src/node/watch.ts",
+    "patches/chokidar@3.5.3.patch",
+    "pnpm-lock.yaml"
+   ],
+   "commits": [
+    {
+     "sha": "1eb2e065dd6c70ada9e9cc2297d175730b15d458",
+     "parents": [
+      "2d9008e81d0d835e10437a959fac12529f7823e1"
+     ],
+     "date": "2023-07-02T16:42:53+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "wip: use fs watch",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "2d9008e81d0d835e10437a959fac12529f7823e1",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "bluwy-parcel-watcher",
+   "url": "https://github.com/vitejs/vite/tree/bluwy-parcel-watcher",
+   "ahead_by": 3,
+   "paths": [
+    "package.json",
+    "packages/vite/LICENSE.md",
+    "packages/vite/package.json",
+    "packages/vite/rollup.config.ts",
+    "packages/vite/src/node/build.ts",
+    "packages/vite/src/node/index.ts",
+    "packages/vite/src/node/plugins/esbuild.ts",
+    "packages/vite/src/node/server/index.ts",
+    "packages/vite/src/node/server/pluginContainer.ts",
+    "packages/vite/src/node/utils.ts",
+    "packages/vite/src/node/watch.ts",
+    "packages/vite/src/types/chokidar.d.ts",
+    "patches/chokidar@3.5.3.patch",
+    "pnpm-lock.yaml"
+   ],
+   "commits": [
+    {
+     "sha": "f385f2025c63f8804795ee359e53e4e76fcc27d1",
+     "parents": [
+      "1be67603df6cd762137fd76b6332f16915948ac2"
+     ],
+     "date": "2023-07-06T00:21:37+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "wip: fix plugin-vue fail",
+     "paths": []
+    },
+    {
+     "sha": "1be67603df6cd762137fd76b6332f16915948ac2",
+     "parents": [
+      "47711184d48188d8014e642c4f66e96a7332781d",
+      "71516db3438c57643df80da687be57cf641b1762"
+     ],
+     "date": "2023-07-06T00:13:49+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "Merge branch 'main' into bluwy-parcel-watcher",
+     "paths": []
+    },
+    {
+     "sha": "47711184d48188d8014e642c4f66e96a7332781d",
+     "parents": [
+      "2d9008e81d0d835e10437a959fac12529f7823e1"
+     ],
+     "date": "2023-07-02T15:54:11+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "wip: use parcel watcher",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "71516db3438c57643df80da687be57cf641b1762",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "copilot/find-duplicate-issue-22388",
+   "url": "https://github.com/vitejs/vite/tree/copilot/find-duplicate-issue-22388",
+   "ahead_by": 0,
+   "paths": [],
+   "commits": [],
+   "merge_base": {
+    "sha": "8e59c97a44d923c4c06f67287a793c9aa5a4ebaa",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "copilot/fix-bf497b05-f6e2-40f5-828c-307e17ee98b3",
+   "url": "https://github.com/vitejs/vite/tree/copilot/fix-bf497b05-f6e2-40f5-828c-307e17ee98b3",
+   "ahead_by": 2,
+   "paths": [
+    "packages/vite/src/node/__tests__/oxc-api.spec.ts",
+    "packages/vite/src/node/__tests__/plugins/oxc.spec.ts",
+    "packages/vite/src/node/config.ts",
+    "packages/vite/src/node/index.ts",
+    "packages/vite/src/node/plugins/index.ts",
+    "packages/vite/src/node/plugins/oxc.ts",
+    "playground/oxc-demo/README.md",
+    "playground/oxc-demo/index.html",
+    "playground/oxc-demo/package.json",
+    "playground/oxc-demo/src/component.tsx",
+    "playground/oxc-demo/src/main.ts",
+    "playground/oxc-demo/src/simple.js",
+    "playground/oxc-demo/vite.config.ts"
+   ],
+   "commits": [
+    {
+     "sha": "3de0d1e24ad1ad9a2dfea44f2ba4396b82d78f0f",
+     "parents": [
+      "eafa8b856855de1e871a4d152430d06cbd4b38f9"
+     ],
+     "date": "2025-08-12T04:08:13Z",
+     "author": {
+      "login": null,
+      "name": "copilot-swe-agent[bot]",
+      "type": "Bot"
+     },
+     "message": "Changes before error encountered",
+     "paths": []
+    },
+    {
+     "sha": "eafa8b856855de1e871a4d152430d06cbd4b38f9",
+     "parents": [
+      "4e3448a7f100cd37f582850fc18b0f88d9b7f821"
+     ],
+     "date": "2025-08-12T03:43:47Z",
+     "author": {
+      "login": null,
+      "name": "Copilot",
+      "type": "User"
+     },
+     "message": "Initial plan",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "4e3448a7f100cd37f582850fc18b0f88d9b7f821",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "css-scope-to-ordering",
+   "url": "https://github.com/vitejs/vite/tree/css-scope-to-ordering",
+   "ahead_by": 1,
+   "paths": [
+    "playground/css/__tests__/css.spec.ts",
+    "playground/css/scoped-ordering/a.html",
+    "playground/css/scoped-ordering/b.html",
+    "playground/css/scoped-ordering/only-shared.html",
+    "playground/css/scoped-ordering/shared-global.css",
+    "playground/css/scoped-ordering/shared-scoped.css",
+    "playground/css/scoped-ordering/shared.js",
+    "playground/css/vite.config.js"
+   ],
+   "commits": [
+    {
+     "sha": "cf96b446afcf56454fc2849041880ae3cbd7fd27",
+     "parents": [
+      "98b3160fa5916189e756cd7c5aae87e0d8f1978e"
+     ],
+     "date": "2025-03-14T11:57:07+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "test: add scoped css ordering test",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "98b3160fa5916189e756cd7c5aae87e0d8f1978e",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "fbm/examine-non-js-modules",
+   "url": "https://github.com/vitejs/vite/tree/fbm/examine-non-js-modules",
+   "ahead_by": 7,
+   "paths": [
+    "package.json",
+    "packages/vite/LICENSE.md",
+    "packages/vite/package.json",
+    "packages/vite/src/node/server/bundledDev.ts",
+    "playground/FBM-ISSUES.md",
+    "playground/fbm-check-aac/__tests__/fbm-check-aac.spec.ts",
+    "playground/fbm-check-aac/index.html",
+    "playground/fbm-check-aac/main.js",
+    "playground/fbm-check-aac/package.json",
+    "playground/fbm-check-aac/sample.aac",
+    "playground/fbm-check-aac/vite.config.ts",
+    "playground/fbm-check-apng/__tests__/fbm-check-apng.spec.ts",
+    "playground/fbm-check-apng/index.html",
+    "playground/fbm-check-apng/main.js",
+    "playground/fbm-check-apng/package.json",
+    "playground/fbm-check-apng/sample.apng",
+    "playground/fbm-check-apng/vite.config.ts",
+    "playground/fbm-check-avif/__tests__/fbm-check-avif.spec.ts",
+    "playground/fbm-check-avif/index.html",
+    "playground/fbm-check-avif/main.js",
+    "playground/fbm-check-avif/package.json",
+    "playground/fbm-check-avif/sample.avif",
+    "playground/fbm-check-avif/vite.config.ts",
+    "playground/fbm-check-bmp/__tests__/fbm-check-bmp.spec.ts",
+    "playground/fbm-check-bmp/index.html",
+    "playground/fbm-check-bmp/main.js",
+    "playground/fbm-check-bmp/package.json",
+    "playground/fbm-check-bmp/sample.bmp",
+    "playground/fbm-check-bmp/vite.config.ts",
+    "playground/fbm-check-css-inline/__tests__/fbm-check-css-inline.spec.ts",
+    "playground/fbm-check-css-inline/index.html",
+    "playground/fbm-check-css-inline/inline.css",
+    "playground/fbm-check-css-inline/main.js",
+    "playground/fbm-check-css-inline/package.json",
+    "playground/fbm-check-css-inline/vite.config.ts",
+    "playground/fbm-check-css-modules/__tests__/fbm-check-css-modules.spec.ts",
+    "playground/fbm-check-css-modules/index.html",
+    "playground/fbm-check-css-modules/main.js",
+    "playground/fbm-check-css-modules/mod.module.css",
+    "playground/fbm-check-css-modules/package.json",
+    "playground/fbm-check-css-modules/vite.config.ts",
+    "playground/fbm-check-css-raw/__tests__/fbm-check-css-raw.spec.ts",
+    "playground/fbm-check-css-raw/index.html",
+    "playground/fbm-check-css-raw/main.js",
+    "playground/fbm-check-css-raw/package.json",
+    "playground/fbm-check-css-raw/raw.css",
+    "playground/fbm-check-css-raw/vite.config.ts",
+    "playground/fbm-check-css-url/__tests__/fbm-check-css-url.spec.ts",
+    "playground/fbm-check-css-url/index.html",
+    "playground/fbm-check-css-url/main.js",
+    "playground/fbm-check-css-url/package.json",
+    "playground/fbm-check-css-url/url.css",
+    "playground/fbm-check-css-url/vite.config.ts",
+    "playground/fbm-check-css/__tests__/fbm-check-css.spec.ts",
+    "playground/fbm-check-css/imported.css",
+    "playground/fbm-check-css/index.html",
+    "playground/fbm-check-css/main.js",
+    "playground/fbm-check-css/package.json",
+    "playground/fbm-check-css/vite.config.ts",
+    "playground/fbm-check-cur/__tests__/fbm-check-cur.spec.ts",
+    "playground/fbm-check-cur/index.html",
+    "playground/fbm-check-cur/main.js",
+    "playground/fbm-check-cur/package.json",
+    "playground/fbm-check-cur/sample.cur",
+    "playground/fbm-check-cur/vite.config.ts",
+    "playground/fbm-check-eot/__tests__/fbm-check-eot.spec.ts",
+    "playground/fbm-check-eot/index.html",
+    "playground/fbm-check-eot/main.js",
+    "playground/fbm-check-eot/package.json",
+    "playground/fbm-check-eot/sample.eot",
+    "playground/fbm-check-eot/vite.config.ts",
+    "playground/fbm-check-flac/__tests__/fbm-check-flac.spec.ts",
+    "playground/fbm-check-flac/index.html",
+    "playground/fbm-check-flac/main.js",
+    "playground/fbm-check-flac/package.json",
+    "playground/fbm-check-flac/sample.flac",
+    "playground/fbm-check-flac/vite.config.ts",
+    "playground/fbm-check-gif/__tests__/fbm-check-gif.spec.ts",
+    "playground/fbm-check-gif/index.html",
+    "playground/fbm-check-gif/main.js",
+    "playground/fbm-check-gif/package.json",
+    "playground/fbm-check-gif/sample.gif",
+    "playground/fbm-check-gif/vite.config.ts",
+    "playground/fbm-check-html/__tests__/fbm-check-html.spec.ts",
+    "playground/fbm-check-html/index.html",
+    "playground/fbm-check-html/main.js",
+    "playground/fbm-check-html/package.json",
+    "playground/fbm-check-html/vite.config.ts",
+    "playground/fbm-check-ico/__tests__/fbm-check-ico.spec.ts",
+    "playground/fbm-check-ico/index.html",
+    "playground/fbm-check-ico/main.js",
+    "playground/fbm-check-ico/package.json",
+    "playground/fbm-check-ico/sample.ico",
+    "playground/fbm-check-ico/vite.config.ts",
+    "playground/fbm-check-import-meta-glob/__tests__/fbm-check-import-meta-glob.spec.ts",
+    "playground/fbm-check-import-meta-glob/dir/a.txt",
+    "playground/fbm-check-import-meta-glob/dir/b.txt",
+    "playground/fbm-check-import-meta-glob/dir/bar.js",
+    "playground/fbm-check-import-meta-glob/dir/foo.js",
+    "playground/fbm-check-import-meta-glob/index.html",
+    "playground/fbm-check-import-meta-glob/package.json",
+    "playground/fbm-check-import-meta-glob/vite.config.ts",
+    "playground/fbm-check-jfif/__tests__/fbm-check-jfif.spec.ts",
+    "playground/fbm-check-jfif/index.html",
+    "playground/fbm-check-jfif/main.js",
+    "playground/fbm-check-jfif/package.json",
+    "playground/fbm-check-jfif/sample.jfif",
+    "playground/fbm-check-jfif/vite.config.ts",
+    "playground/fbm-check-jpg/__tests__/fbm-check-jpg.spec.ts",
+    "playground/fbm-check-jpg/index.html",
+    "playground/fbm-check-jpg/main.js",
+    "playground/fbm-check-jpg/package.json",
+    "playground/fbm-check-jpg/sample.jpeg",
+    "playground/fbm-check-jpg/sample.jpg",
+    "playground/fbm-check-jpg/vite.config.ts",
+    "playground/fbm-check-json/__tests__/fbm-check-json.spec.ts",
+    "playground/fbm-check-json/index.html",
+    "playground/fbm-check-json/main.js",
+    "playground/fbm-check-json/package.json",
+    "playground/fbm-check-json/test.json",
+    "playground/fbm-check-json/vite.config.ts",
+    "playground/fbm-check-json5/__tests__/fbm-check-json5.spec.ts",
+    "playground/fbm-check-json5/index.html",
+    "playground/fbm-check-json5/main.js",
+    "playground/fbm-check-json5/package.json",
+    "playground/fbm-check-json5/test.json5",
+    "playground/fbm-check-json5/vite.config.ts",
+    "playground/fbm-check-jxl/__tests__/fbm-check-jxl.spec.ts",
+    "playground/fbm-check-jxl/index.html",
+    "playground/fbm-check-jxl/main.js",
+    "playground/fbm-check-jxl/package.json",
+    "playground/fbm-check-jxl/sample.jxl",
+    "playground/fbm-check-jxl/vite.config.ts",
+    "playground/fbm-check-less/__tests__/fbm-check-less.spec.ts",
+    "playground/fbm-check-less/index.html",
+    "playground/fbm-check-less/less.less",
+    "playground/fbm-check-less/main.js",
+    "playground/fbm-check-less/package.json",
+    "playground/fbm-check-less/vite.config.ts",
+    "playground/fbm-check-m4a/__tests__/fbm-check-m4a.spec.ts",
+    "playground/fbm-check-m4a/index.html",
+    "playground/fbm-check-m4a/main.js",
+    "playground/fbm-check-m4a/package.json",
+    "playground/fbm-check-m4a/sample.m4a",
+    "playground/fbm-check-m4a/vite.config.ts",
+    "playground/fbm-check-mov/__tests__/fbm-check-mov.spec.ts",
+    "playground/fbm-check-mov/index.html",
+    "playground/fbm-check-mov/main.js",
+    "playground/fbm-check-mov/package.json",
+    "playground/fbm-check-mov/sample.mov",
+    "playground/fbm-check-mov/vite.config.ts",
+    "playground/fbm-check-mp3/__tests__/fbm-check-mp3.spec.ts",
+    "playground/fbm-check-mp3/index.html",
+    "playground/fbm-check-mp3/main.js",
+    "playground/fbm-check-mp3/package.json",
+    "playground/fbm-check-mp3/sample.mp3",
+    "playground/fbm-check-mp3/vite.config.ts",
+    "playground/fbm-check-mp4/__tests__/fbm-check-mp4.spec.ts",
+    "playground/fbm-check-mp4/index.html",
+    "playground/fbm-check-mp4/main.js",
+    "playground/fbm-check-mp4/package.json",
+    "playground/fbm-check-mp4/sample.mp4",
+    "playground/fbm-check-mp4/vite.config.ts",
+    "playground/fbm-check-ogg/__tests__/fbm-check-ogg.spec.ts",
+    "playground/fbm-check-ogg/index.html",
+    "playground/fbm-check-ogg/main.js",
+    "playground/fbm-check-ogg/package.json",
+    "playground/fbm-check-ogg/sample.ogg",
+    "playground/fbm-check-ogg/vite.config.ts",
+    "playground/fbm-check-opus/__tests__/fbm-check-opus.spec.ts",
+    "playground/fbm-check-opus/index.html",
+    "playground/fbm-check-opus/main.js",
+    "playground/fbm-check-opus/package.json",
+    "playground/fbm-check-opus/sample.opus",
+    "playground/fbm-check-opus/vite.config.ts",
+    "playground/fbm-check-otf/__tests__/fbm-check-otf.spec.ts",
+    "playground/fbm-check-otf/index.html",
+    "playground/fbm-check-otf/main.js",
+    "playground/fbm-check-otf/package.json",
+    "playground/fbm-check-otf/sample.otf",
+    "playground/fbm-check-otf/vite.config.ts",
+    "playground/fbm-check-pcss/__tests__/fbm-check-pcss.spec.ts",
+    "playground/fbm-check-pcss/index.html",
+    "playground/fbm-check-pcss/main.js",
+    "playground/fbm-check-pcss/nested.pcss",
+    "playground/fbm-check-pcss/package.json",
+    "playground/fbm-check-pcss/vite.config.ts",
+    "playground/fbm-check-pdf/__tests__/fbm-check-pdf.spec.ts",
+    "playground/fbm-check-pdf/index.html",
+    "playground/fbm-check-pdf/main.js",
+    "playground/fbm-check-pdf/package.json",
+    "playground/fbm-check-pdf/sample.pdf",
+    "playground/fbm-check-pdf/vite.config.ts",
+    "playground/fbm-check-pjp/__tests__/fbm-check-pjp.spec.ts",
+    "playground/fbm-check-pjp/index.html",
+    "playground/fbm-check-pjp/main.js",
+    "playground/fbm-check-pjp/package.json",
+    "playground/fbm-check-pjp/sample.pjp",
+    "playground/fbm-check-pjp/vite.config.ts",
+    "playground/fbm-check-pjpeg/__tests__/fbm-check-pjpeg.spec.ts",
+    "playground/fbm-check-pjpeg/index.html",
+    "playground/fbm-check-pjpeg/main.js",
+    "playground/fbm-check-pjpeg/package.json",
+    "playground/fbm-check-pjpeg/sample.pjpeg",
+    "playground/fbm-check-pjpeg/vite.config.ts",
+    "playground/fbm-check-png/__tests__/fbm-check-png.spec.ts",
+    "playground/fbm-check-png/index.html",
+    "playground/fbm-check-png/main.js",
+    "playground/fbm-check-png/package.json",
+    "playground/fbm-check-png/sample.png",
+    "playground/fbm-check-png/vite.config.ts",
+    "playground/fbm-check-query-inline/__tests__/fbm-check-query-inline.spec.ts",
+    "playground/fbm-check-query-inline/index.html",
+    "playground/fbm-check-query-inline/inline.svg",
+    "playground/fbm-check-query-inline/main.js",
+    "playground/fbm-check-query-inline/noinline.svg",
+    "playground/fbm-check-query-inline/package.json",
+    "playground/fbm-check-query-inline/vite.config.ts",
+    "playground/fbm-check-query-raw/__tests__/fbm-check-query-raw.spec.ts",
+    "playground/fbm-check-query-raw/fragment.svg",
+    "playground/fbm-check-query-raw/index.html",
+    "playground/fbm-check-query-raw/main.js",
+    "playground/fbm-check-query-raw/package.json",
+    "playground/fbm-check-query-raw/partial.html",
+    "playground/fbm-check-query-raw/vite.config.ts",
+    "playground/fbm-check-query-url-inline/__tests__/fbm-check-query-url-inline.spec.ts",
+    "playground/fbm-check-query-url-inline/index.html",
+    "playground/fbm-check-query-url-inline/main.js",
+    "playground/fbm-check-query-url-inline/package.json",
+    "playground/fbm-check-query-url-inline/urlinline.svg",
+    "playground/fbm-check-query-url-inline/urlnoinline.svg",
+    "playground/fbm-check-query-url-inline/vite.config.ts",
+    "playground/fbm-check-query-url/__tests__/fbm-check-query-url.spec.ts",
+    "playground/fbm-check-query-url/index.html",
+    "playground/fbm-check-query-url/main.js",
+    "playground/fbm-check-query-url/package.json",
+    "playground/fbm-check-query-url/sample.js",
+    "playground/fbm-check-query-url/vite.config.ts",
+    "playground/fbm-check-scss/__tests__/fbm-check-scss.spec.ts",
+    "playground/fbm-check-scss/index.html",
+    "playground/fbm-check-scss/main.js",
+    "playground/fbm-check-scss/package.json",
+    "playground/fbm-check-scss/sass.scss",
+    "playground/fbm-check-scss/vite.config.ts",
+    "playground/fbm-check-sharedworker/__tests__/fbm-check-sharedworker.spec.ts",
+    "playground/fbm-check-sharedworker/index.html",
+    "playground/fbm-check-sharedworker/main.js",
+    "playground/fbm-check-sharedworker/my-inline-shared-worker.js",
+    "playground/fbm-check-sharedworker/my-shared-worker.js",
+    "playground/fbm-check-sharedworker/package.json",
+    "playground/fbm-check-sharedworker/url-shared-worker.js",
+    "playground/fbm-check-sharedworker/vite.config.ts",
+    "playground/fbm-check-sss/__tests__/fbm-check-sss.spec.ts",
+    "playground/fbm-check-sss/index.html",
+    "playground/fbm-check-sss/main.js",
+    "playground/fbm-check-sss/package.json",
+    "playground/fbm-check-sss/sugarss.sss",
+    "playground/fbm-check-sss/vite.config.ts",
+    "playground/fbm-check-stylus/__tests__/fbm-check-stylus.spec.ts",
+    "playground/fbm-check-stylus/index.html",
+    "playground/fbm-check-stylus/main.js",
+    "playground/fbm-check-stylus/package.json",
+    "playground/fbm-check-stylus/stylus.styl",
+    "playground/fbm-check-stylus/vite.config.ts",
+    "playground/fbm-check-svg/__tests__/fbm-check-svg.spec.ts",
+    "playground/fbm-check-svg/index.html",
+    "playground/fbm-check-svg/main.js",
+    "playground/fbm-check-svg/package.json",
+    "playground/fbm-check-svg/sample.svg",
+    "playground/fbm-check-svg/vite.config.ts",
+    "playground/fbm-check-ttf/__tests__/fbm-check-ttf.spec.ts",
+    "playground/fbm-check-ttf/index.html",
+    "playground/fbm-check-ttf/main.js",
+    "playground/fbm-check-ttf/package.json",
+    "playground/fbm-check-ttf/sample.ttf",
+    "playground/fbm-check-ttf/vite.config.ts",
+    "playground/fbm-check-txt/__tests__/fbm-check-txt.spec.ts",
+    "playground/fbm-check-txt/index.html",
+    "playground/fbm-check-txt/main.js",
+    "playground/fbm-check-txt/package.json",
+    "playground/fbm-check-txt/sample.txt",
+    "playground/fbm-check-txt/vite.config.ts",
+    "playground/fbm-check-url-import-meta-url/__tests__/fbm-check-url-import-meta-url.spec.ts",
+    "playground/fbm-check-url-import-meta-url/index.html",
+    "playground/fbm-check-url-import-meta-url/main.js",
+    "playground/fbm-check-url-import-meta-url/package.json",
+    "playground/fbm-check-url-import-meta-url/sample.png",
+    "playground/fbm-check-url-import-meta-url/vite.config.ts",
+    "playground/fbm-check-vtt/__tests__/fbm-check-vtt.spec.ts",
+    "playground/fbm-check-vtt/index.html",
+    "playground/fbm-check-vtt/main.js",
+    "playground/fbm-check-vtt/package.json",
+    "playground/fbm-check-vtt/sample.vtt",
+    "playground/fbm-check-vtt/vite.config.ts",
+    "playground/fbm-check-wasm-init/__tests__/fbm-check-wasm-init.spec.ts",
+    "playground/fbm-check-wasm-init/heavy.wasm",
+    "playground/fbm-check-wasm-init/index.html",
+    "playground/fbm-check-wasm-init/light.wasm",
+    "playground/fbm-check-wasm-init/main.js",
+    "playground/fbm-check-wasm-init/package.json",
+    "playground/fbm-check-wasm-init/vite.config.ts",
+    "playground/fbm-check-wasm/__tests__/fbm-check-wasm.spec.ts",
+    "playground/fbm-check-wasm/add-padded.wasm",
+    "playground/fbm-check-wasm/add.wasm",
+    "playground/fbm-check-wasm/imports.js",
+    "playground/fbm-check-wasm/index.html",
+    "playground/fbm-check-wasm/light-with-imports.wasm",
+    "playground/fbm-check-wasm/main.js",
+    "playground/fbm-check-wasm/package.json",
+    "playground/fbm-check-wasm/vite.config.ts",
+    "playground/fbm-check-wav/__tests__/fbm-check-wav.spec.ts",
+    "playground/fbm-check-wav/index.html",
+    "playground/fbm-check-wav/main.js",
+    "playground/fbm-check-wav/package.json",
+    "playground/fbm-check-wav/sample.wav",
+    "playground/fbm-check-wav/vite.config.ts",
+    "playground/fbm-check-webm/__tests__/fbm-check-webm.spec.ts",
+    "playground/fbm-check-webm/index.html",
+    "playground/fbm-check-webm/main.js",
+    "playground/fbm-check-webm/package.json",
+    "playground/fbm-check-webm/sample.webm",
+    "playground/fbm-check-webm/vite.config.ts",
+    "playground/fbm-check-webmanifest/__tests__/fbm-check-webmanifest.spec.ts",
+    "playground/fbm-check-webmanifest/index.html",
+    "playground/fbm-check-webmanifest/main.js",
+    "playground/fbm-check-webmanifest/package.json",
+    "playground/fbm-check-webmanifest/sample.webmanifest",
+    "playground/fbm-check-webmanifest/vite.config.ts",
+    "playground/fbm-check-webp/__tests__/fbm-check-webp.spec.ts",
+    "playground/fbm-check-webp/index.html",
+    "playground/fbm-check-webp/main.js",
+    "playground/fbm-check-webp/package.json",
+    "playground/fbm-check-webp/sample.webp",
+    "playground/fbm-check-webp/vite.config.ts",
+    "playground/fbm-check-woff/__tests__/fbm-check-woff.spec.ts",
+    "playground/fbm-check-woff/index.html",
+    "playground/fbm-check-woff/main.js",
+    "playground/fbm-check-woff/package.json",
+    "playground/fbm-check-woff/sample.woff",
+    "playground/fbm-check-woff/vite.config.ts",
+    "playground/fbm-check-woff2/__tests__/fbm-check-woff2.spec.ts",
+    "playground/fbm-check-woff2/index.html",
+    "playground/fbm-check-woff2/main.js",
+    "playground/fbm-check-woff2/package.json",
+    "playground/fbm-check-woff2/sample.woff2",
+    "playground/fbm-check-woff2/vite.config.ts",
+    "playground/fbm-check-worker-new-url/__tests__/fbm-check-worker-new-url.spec.ts",
+    "playground/fbm-check-worker-new-url/index.html",
+    "playground/fbm-check-worker-new-url/main.js",
+    "playground/fbm-check-worker-new-url/my-worker.js",
+    "playground/fbm-check-worker-new-url/package.json",
+    "playground/fbm-check-worker-new-url/vite.config.ts",
+    "playground/fbm-check-worker/__tests__/fbm-check-worker.spec.ts",
+    "playground/fbm-check-worker/index.html",
+    "playground/fbm-check-worker/main.js",
+    "playground/fbm-check-worker/my-worker.js",
+    "playground/fbm-check-worker/package.json",
+    "playground/fbm-check-worker/vite.config.ts",
+    "playground/fbm-issue-1-asset-hmr-freeze/README.md",
+    "playground/fbm-issue-1-asset-hmr-freeze/__tests__/fbm-issue-1-asset-hmr-freeze.spec.ts",
+    "playground/fbm-issue-1-asset-hmr-freeze/index.html",
+    "playground/fbm-issue-1-asset-hmr-freeze/main.js",
+    "playground/fbm-issue-1-asset-hmr-freeze/package.json",
+    "playground/fbm-issue-1-asset-hmr-freeze/sample.png",
+    "playground/fbm-issue-1-asset-hmr-freeze/vite.config.ts",
+    "playground/fbm-issue-2-asset-no-watch/README.md",
+    "playground/fbm-issue-2-asset-no-watch/__tests__/fbm-issue-2-asset-no-watch.spec.ts",
+    "playground/fbm-issue-2-asset-no-watch/index.html",
+    "playground/fbm-issue-2-asset-no-watch/inline.svg",
+    "playground/fbm-issue-2-asset-no-watch/main.js",
+    "playground/fbm-issue-2-asset-no-watch/noinline.svg",
+    "playground/fbm-issue-2-asset-no-watch/package.json",
+    "playground/fbm-issue-2-asset-no-watch/vite.config.ts",
+    "playground/fbm-issue-4-html-stale-markup/README.md",
+    "playground/fbm-issue-4-html-stale-markup/__tests__/fbm-issue-4-html-stale-markup.spec.ts",
+    "playground/fbm-issue-4-html-stale-markup/index.html",
+    "playground/fbm-issue-4-html-stale-markup/main.js",
+    "playground/fbm-issue-4-html-stale-markup/package.json",
+    "playground/fbm-issue-4-html-stale-markup/vite.config.ts",
+    "playground/fbm-issue-5-glob-no-dir-watch/README.md",
+    "playground/fbm-issue-5-glob-no-dir-watch/__tests__/fbm-issue-5-glob-no-dir-watch.spec.ts",
+    "playground/fbm-issue-5-glob-no-dir-watch/dir/a.txt",
+    "playground/fbm-issue-5-glob-no-dir-watch/dir/b.txt",
+    "playground/fbm-issue-5-glob-no-dir-watch/dir/bar.js",
+    "playground/fbm-issue-5-glob-no-dir-watch/dir/foo.js",
+    "playground/fbm-issue-5-glob-no-dir-watch/index.html",
+    "playground/fbm-issue-5-glob-no-dir-watch/package.json",
+    "playground/fbm-issue-5-glob-no-dir-watch/vite.config.ts",
+    "playground/fbm-issue-6-json5-build-fail/README.md",
+    "playground/fbm-issue-6-json5-build-fail/__tests__/fbm-issue-6-json5-build-fail.spec.ts",
+    "playground/fbm-issue-6-json5-build-fail/index.html",
+    "playground/fbm-issue-6-json5-build-fail/main.js",
+    "playground/fbm-issue-6-json5-build-fail/package.json",
+    "playground/fbm-issue-6-json5-build-fail/test.json5",
+    "playground/fbm-issue-6-json5-build-fail/vite.config.ts",
+    "playground/js-sourcemap/__tests__/js-sourcemap.spec.ts",
+    "playground/package.json",
+    "playground/resolve-tsconfig-paths/tsconfig.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml"
+   ],
+   "commits": [
+    {
+     "sha": "a14cdea3a6791a26e72fb32bbebbf417e749fb48",
+     "parents": [
+      "63fb591d1f3b17750fdad553ce881670f4df6ad0"
+     ],
+     "date": "2026-06-23T15:18:45+08:00",
+     "author": {
+      "login": null,
+      "name": "hana",
+      "type": "User"
+     },
+     "message": "test(fbm): port Vite non-JS module tests to full-bundle mode",
+     "paths": []
+    },
+    {
+     "sha": "63fb591d1f3b17750fdad553ce881670f4df6ad0",
+     "parents": [
+      "8ab62c4b60cd642f812850130ffb96ce59736a30"
+     ],
+     "date": "2026-06-20T00:30:19+08:00",
+     "author": {
+      "login": null,
+      "name": "hana",
+      "type": "User"
+     },
+     "message": "fix",
+     "paths": []
+    },
+    {
+     "sha": "8ab62c4b60cd642f812850130ffb96ce59736a30",
+     "parents": [
+      "301712cb394b1fe153e6d3cac62822986993e8d9"
+     ],
+     "date": "2026-06-19T23:51:49+08:00",
+     "author": {
+      "login": null,
+      "name": "Hana",
+      "type": "User"
+     },
+     "message": "fix: fbm",
+     "paths": []
+    },
+    {
+     "sha": "301712cb394b1fe153e6d3cac62822986993e8d9",
+     "parents": [
+      "4b9d1d494051811ad86d7597e6c666657b35ffa2"
+     ],
+     "date": "2026-06-19T23:49:16+08:00",
+     "author": {
+      "login": null,
+      "name": "hana",
+      "type": "User"
+     },
+     "message": "revert bundledDev",
+     "paths": []
+    },
+    {
+     "sha": "4b9d1d494051811ad86d7597e6c666657b35ffa2",
+     "parents": [
+      "ba1b72fabb74169a6cfda721c96d343d8480e010"
+     ],
+     "date": "2026-06-19T18:36:02+08:00",
+     "author": {
+      "login": null,
+      "name": "shulaoda",
+      "type": "User"
+     },
+     "message": "u",
+     "paths": []
+    },
+    {
+     "sha": "ba1b72fabb74169a6cfda721c96d343d8480e010",
+     "parents": [
+      "531a842bf64d7ffc95c952d31c1a73fd671266e8"
+     ],
+     "date": "2026-06-19T18:28:17+08:00",
+     "author": {
+      "login": null,
+      "name": "shulaoda",
+      "type": "User"
+     },
+     "message": "feat: update rolldown to 1.1.2",
+     "paths": []
+    },
+    {
+     "sha": "531a842bf64d7ffc95c952d31c1a73fd671266e8",
+     "parents": [
+      "61ba8fdc6500e8aa668021833ae5e6ebd200466d"
+     ],
+     "date": "2026-06-19T18:28:17+08:00",
+     "author": {
+      "login": null,
+      "name": "shulaoda",
+      "type": "User"
+     },
+     "message": "u",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "61ba8fdc6500e8aa668021833ae5e6ebd200466d",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "fbm/verify-create-vite-templates",
+   "url": "https://github.com/vitejs/vite/tree/fbm/verify-create-vite-templates",
+   "ahead_by": 7,
+   "paths": [
+    "fbm-template-check/.gitignore",
+    "fbm-template-check/_repros/issue-1-hotupdate-bypass/.gitignore",
+    "fbm-template-check/_repros/issue-1-hotupdate-bypass/index.html",
+    "fbm-template-check/_repros/issue-1-hotupdate-bypass/package.json",
+    "fbm-template-check/_repros/issue-1-hotupdate-bypass/repro.mjs",
+    "fbm-template-check/_repros/issue-1-hotupdate-bypass/src/Counter.vue",
+    "fbm-template-check/_repros/issue-1-hotupdate-bypass/src/main.js",
+    "fbm-template-check/_repros/issue-1-hotupdate-bypass/vite.config.js",
+    "fbm-template-check/_repros/issue-3-fbm-virtual-id-404/.gitignore",
+    "fbm-template-check/_repros/issue-3-fbm-virtual-id-404/index.html",
+    "fbm-template-check/_repros/issue-3-fbm-virtual-id-404/package.json",
+    "fbm-template-check/_repros/issue-3-fbm-virtual-id-404/repro.mjs",
+    "fbm-template-check/_repros/issue-3-fbm-virtual-id-404/src/main.js",
+    "fbm-template-check/_repros/issue-3-fbm-virtual-id-404/vite.config.js",
+    "fbm-template-check/lit-ts/.gitignore",
+    "fbm-template-check/lit-ts/hmr-check.mjs",
+    "fbm-template-check/lit-ts/index.html",
+    "fbm-template-check/lit-ts/package.json",
+    "fbm-template-check/lit-ts/pnpm-lock.yaml",
+    "fbm-template-check/lit-ts/public/favicon.svg",
+    "fbm-template-check/lit-ts/public/icons.svg",
+    "fbm-template-check/lit-ts/src/assets/hero.png",
+    "fbm-template-check/lit-ts/src/assets/lit.svg",
+    "fbm-template-check/lit-ts/src/assets/vite.svg",
+    "fbm-template-check/lit-ts/src/index.css",
+    "fbm-template-check/lit-ts/src/my-element.ts",
+    "fbm-template-check/lit-ts/tsconfig.json",
+    "fbm-template-check/lit-ts/vite.config.ts",
+    "fbm-template-check/lit/.gitignore",
+    "fbm-template-check/lit/hmr-check.mjs",
+    "fbm-template-check/lit/index.html",
+    "fbm-template-check/lit/package.json",
+    "fbm-template-check/lit/pnpm-lock.yaml",
+    "fbm-template-check/lit/public/favicon.svg",
+    "fbm-template-check/lit/public/icons.svg",
+    "fbm-template-check/lit/src/assets/hero.png",
+    "fbm-template-check/lit/src/assets/lit.svg",
+    "fbm-template-check/lit/src/assets/vite.svg",
+    "fbm-template-check/lit/src/index.css",
+    "fbm-template-check/lit/src/my-element.js",
+    "fbm-template-check/lit/vite.config.js",
+    "fbm-template-check/preact-ts/.gitignore",
+    "fbm-template-check/preact-ts/hmr-check.mjs",
+    "fbm-template-check/preact-ts/index.html",
+    "fbm-template-check/preact-ts/package.json",
+    "fbm-template-check/preact-ts/pnpm-lock.yaml",
+    "fbm-template-check/preact-ts/public/favicon.svg",
+    "fbm-template-check/preact-ts/public/icons.svg",
+    "fbm-template-check/preact-ts/src/app.css",
+    "fbm-template-check/preact-ts/src/app.tsx",
+    "fbm-template-check/preact-ts/src/assets/hero.png",
+    "fbm-template-check/preact-ts/src/assets/preact.svg",
+    "fbm-template-check/preact-ts/src/assets/vite.svg",
+    "fbm-template-check/preact-ts/src/index.css",
+    "fbm-template-check/preact-ts/src/main.tsx",
+    "fbm-template-check/preact-ts/tsconfig.app.json",
+    "fbm-template-check/preact-ts/tsconfig.json",
+    "fbm-template-check/preact-ts/tsconfig.node.json",
+    "fbm-template-check/preact-ts/vite.config.ts",
+    "fbm-template-check/preact/.gitignore",
+    "fbm-template-check/preact/hmr-check.mjs",
+    "fbm-template-check/preact/index.html",
+    "fbm-template-check/preact/package.json",
+    "fbm-template-check/preact/pnpm-lock.yaml",
+    "fbm-template-check/preact/public/favicon.svg",
+    "fbm-template-check/preact/public/icons.svg",
+    "fbm-template-check/preact/src/app.css",
+    "fbm-template-check/preact/src/app.jsx",
+    "fbm-template-check/preact/src/assets/hero.png",
+    "fbm-template-check/preact/src/assets/preact.svg",
+    "fbm-template-check/preact/src/assets/vite.svg",
+    "fbm-template-check/preact/src/index.css",
+    "fbm-template-check/preact/src/main.jsx",
+    "fbm-template-check/preact/vite.config.js",
+    "fbm-template-check/qwik-ts/.gitignore",
+    "fbm-template-check/qwik-ts/README.md",
+    "fbm-template-check/qwik-ts/hmr-check.mjs",
+    "fbm-template-check/qwik-ts/index.html",
+    "fbm-template-check/qwik-ts/package.json",
+    "fbm-template-check/qwik-ts/pnpm-lock.yaml",
+    "fbm-template-check/qwik-ts/public/favicon.svg",
+    "fbm-template-check/qwik-ts/public/icons.svg",
+    "fbm-template-check/qwik-ts/src/app.css",
+    "fbm-template-check/qwik-ts/src/app.tsx",
+    "fbm-template-check/qwik-ts/src/assets/hero.png",
+    "fbm-template-check/qwik-ts/src/assets/qwik.svg",
+    "fbm-template-check/qwik-ts/src/assets/vite.svg",
+    "fbm-template-check/qwik-ts/src/index.css",
+    "fbm-template-check/qwik-ts/src/main.tsx",
+    "fbm-template-check/qwik-ts/tsconfig.app.json",
+    "fbm-template-check/qwik-ts/tsconfig.json",
+    "fbm-template-check/qwik-ts/tsconfig.node.json",
+    "fbm-template-check/qwik-ts/vite.config.ts",
+    "fbm-template-check/qwik/.gitignore",
+    "fbm-template-check/qwik/README.md",
+    "fbm-template-check/qwik/hmr-check.mjs",
+    "fbm-template-check/qwik/index.html",
+    "fbm-template-check/qwik/package.json",
+    "fbm-template-check/qwik/pnpm-lock.yaml",
+    "fbm-template-check/qwik/public/favicon.svg",
+    "fbm-template-check/qwik/public/icons.svg",
+    "fbm-template-check/qwik/src/app.css",
+    "fbm-template-check/qwik/src/app.jsx",
+    "fbm-template-check/qwik/src/assets/hero.png",
+    "fbm-template-check/qwik/src/assets/qwik.svg",
+    "fbm-template-check/qwik/src/assets/vite.svg",
+    "fbm-template-check/qwik/src/index.css",
+    "fbm-template-check/qwik/src/main.jsx",
+    "fbm-template-check/qwik/vite.config.js",
+    "fbm-template-check/react-compiler-ts/.gitignore",
+    "fbm-template-check/react-compiler-ts/.oxlintrc.json",
+    "fbm-template-check/react-compiler-ts/README.md",
+    "fbm-template-check/react-compiler-ts/hmr-check.mjs",
+    "fbm-template-check/react-compiler-ts/index.html",
+    "fbm-template-check/react-compiler-ts/package.json",
+    "fbm-template-check/react-compiler-ts/pnpm-lock.yaml",
+    "fbm-template-check/react-compiler-ts/public/favicon.svg",
+    "fbm-template-check/react-compiler-ts/public/icons.svg",
+    "fbm-template-check/react-compiler-ts/src/App.css",
+    "fbm-template-check/react-compiler-ts/src/App.tsx",
+    "fbm-template-check/react-compiler-ts/src/assets/hero.png",
+    "fbm-template-check/react-compiler-ts/src/assets/react.svg",
+    "fbm-template-check/react-compiler-ts/src/assets/vite.svg",
+    "fbm-template-check/react-compiler-ts/src/index.css",
+    "fbm-template-check/react-compiler-ts/src/main.tsx",
+    "fbm-template-check/react-compiler-ts/tsconfig.app.json",
+    "fbm-template-check/react-compiler-ts/tsconfig.json",
+    "fbm-template-check/react-compiler-ts/tsconfig.node.json",
+    "fbm-template-check/react-compiler-ts/vite.config.ts",
+    "fbm-template-check/react-compiler/.gitignore",
+    "fbm-template-check/react-compiler/.oxlintrc.json",
+    "fbm-template-check/react-compiler/README.md",
+    "fbm-template-check/react-compiler/hmr-check.mjs",
+    "fbm-template-check/react-compiler/index.html",
+    "fbm-template-check/react-compiler/package.json",
+    "fbm-template-check/react-compiler/pnpm-lock.yaml",
+    "fbm-template-check/react-compiler/public/favicon.svg",
+    "fbm-template-check/react-compiler/public/icons.svg",
+    "fbm-template-check/react-compiler/src/App.css",
+    "fbm-template-check/react-compiler/src/App.jsx",
+    "fbm-template-check/react-compiler/src/assets/hero.png",
+    "fbm-template-check/react-compiler/src/assets/react.svg",
+    "fbm-template-check/react-compiler/src/assets/vite.svg",
+    "fbm-template-check/react-compiler/src/index.css",
+    "fbm-template-check/react-compiler/src/main.jsx",
+    "fbm-template-check/react-compiler/vite.config.js",
+    "fbm-template-check/react-ts/.gitignore",
+    "fbm-template-check/react-ts/.oxlintrc.json",
+    "fbm-template-check/react-ts/README.md",
+    "fbm-template-check/react-ts/hmr-check.mjs",
+    "fbm-template-check/react-ts/index.html",
+    "fbm-template-check/react-ts/package.json",
+    "fbm-template-check/react-ts/pnpm-lock.yaml",
+    "fbm-template-check/react-ts/public/favicon.svg",
+    "fbm-template-check/react-ts/public/icons.svg",
+    "fbm-template-check/react-ts/src/App.css",
+    "fbm-template-check/react-ts/src/App.tsx",
+    "fbm-template-check/react-ts/src/assets/hero.png",
+    "fbm-template-check/react-ts/src/assets/react.svg",
+    "fbm-template-check/react-ts/src/assets/vite.svg",
+    "fbm-template-check/react-ts/src/index.css",
+    "fbm-template-check/react-ts/src/main.tsx",
+    "fbm-template-check/react-ts/tsconfig.app.json",
+    "fbm-template-check/react-ts/tsconfig.json",
+    "fbm-template-check/react-ts/tsconfig.node.json",
+    "fbm-template-check/react-ts/vite.config.ts",
+    "fbm-template-check/react/.gitignore",
+    "fbm-template-check/react/.oxlintrc.json",
+    "fbm-template-check/react/README.md",
+    "fbm-template-check/react/hmr-check.mjs",
+    "fbm-template-check/react/index.html",
+    "fbm-template-check/react/package.json",
+    "fbm-template-check/react/pnpm-lock.yaml",
+    "fbm-template-check/react/public/favicon.svg",
+    "fbm-template-check/react/public/icons.svg",
+    "fbm-template-check/react/src/App.css",
+    "fbm-template-check/react/src/App.jsx",
+    "fbm-template-check/react/src/assets/hero.png",
+    "fbm-template-check/react/src/assets/react.svg",
+    "fbm-template-check/react/src/assets/vite.svg",
+    "fbm-template-check/react/src/index.css",
+    "fbm-template-check/react/src/main.jsx",
+    "fbm-template-check/react/vite.config.js",
+    "fbm-template-check/solid-ts/.gitignore",
+    "fbm-template-check/solid-ts/README.md",
+    "fbm-template-check/solid-ts/hmr-check.mjs",
+    "fbm-template-check/solid-ts/index.html",
+    "fbm-template-check/solid-ts/package.json",
+    "fbm-template-check/solid-ts/pnpm-lock.yaml",
+    "fbm-template-check/solid-ts/public/favicon.svg",
+    "fbm-template-check/solid-ts/public/icons.svg",
+    "fbm-template-check/solid-ts/src/App.css",
+    "fbm-template-check/solid-ts/src/App.tsx",
+    "fbm-template-check/solid-ts/src/assets/hero.png",
+    "fbm-template-check/solid-ts/src/assets/solid.svg",
+    "fbm-template-check/solid-ts/src/assets/vite.svg",
+    "fbm-template-check/solid-ts/src/index.css",
+    "fbm-template-check/solid-ts/src/index.tsx",
+    "fbm-template-check/solid-ts/tsconfig.app.json",
+    "fbm-template-check/solid-ts/tsconfig.json",
+    "fbm-template-check/solid-ts/tsconfig.node.json",
+    "fbm-template-check/solid-ts/vite.config.ts",
+    "fbm-template-check/solid/.gitignore",
+    "fbm-template-check/solid/README.md",
+    "fbm-template-check/solid/hmr-check.mjs",
+    "fbm-template-check/solid/index.html",
+    "fbm-template-check/solid/package.json",
+    "fbm-template-check/solid/pnpm-lock.yaml",
+    "fbm-template-check/solid/public/favicon.svg",
+    "fbm-template-check/solid/public/icons.svg",
+    "fbm-template-check/solid/src/App.css",
+    "fbm-template-check/solid/src/App.jsx",
+    "fbm-template-check/solid/src/assets/hero.png",
+    "fbm-template-check/solid/src/assets/solid.svg",
+    "fbm-template-check/solid/src/assets/vite.svg",
+    "fbm-template-check/solid/src/index.css",
+    "fbm-template-check/solid/src/index.jsx",
+    "fbm-template-check/solid/vite.config.js",
+    "fbm-template-check/svelte-ts/.gitignore",
+    "fbm-template-check/svelte-ts/.vscode/extensions.json",
+    "fbm-template-check/svelte-ts/README.md",
+    "fbm-template-check/svelte-ts/hmr-check.mjs",
+    "fbm-template-check/svelte-ts/index.html",
+    "fbm-template-check/svelte-ts/package.json",
+    "fbm-template-check/svelte-ts/pnpm-lock.yaml",
+    "fbm-template-check/svelte-ts/public/favicon.svg",
+    "fbm-template-check/svelte-ts/public/icons.svg",
+    "fbm-template-check/svelte-ts/src/App.svelte",
+    "fbm-template-check/svelte-ts/src/app.css",
+    "fbm-template-check/svelte-ts/src/assets/hero.png",
+    "fbm-template-check/svelte-ts/src/assets/svelte.svg",
+    "fbm-template-check/svelte-ts/src/assets/vite.svg",
+    "fbm-template-check/svelte-ts/src/lib/Counter.svelte",
+    "fbm-template-check/svelte-ts/src/main.ts",
+    "fbm-template-check/svelte-ts/svelte.config.js",
+    "fbm-template-check/svelte-ts/tsconfig.app.json",
+    "fbm-template-check/svelte-ts/tsconfig.json",
+    "fbm-template-check/svelte-ts/tsconfig.node.json",
+    "fbm-template-check/svelte-ts/vite.config.ts",
+    "fbm-template-check/svelte/.gitignore",
+    "fbm-template-check/svelte/.vscode/extensions.json",
+    "fbm-template-check/svelte/README.md",
+    "fbm-template-check/svelte/hmr-check.mjs",
+    "fbm-template-check/svelte/index.html",
+    "fbm-template-check/svelte/jsconfig.json",
+    "fbm-template-check/svelte/package.json",
+    "fbm-template-check/svelte/pnpm-lock.yaml",
+    "fbm-template-check/svelte/public/favicon.svg",
+    "fbm-template-check/svelte/public/icons.svg",
+    "fbm-template-check/svelte/src/App.svelte",
+    "fbm-template-check/svelte/src/app.css",
+    "fbm-template-check/svelte/src/assets/hero.png",
+    "fbm-template-check/svelte/src/assets/svelte.svg",
+    "fbm-template-check/svelte/src/assets/vite.svg",
+    "fbm-template-check/svelte/src/lib/Counter.svelte",
+    "fbm-template-check/svelte/src/main.js",
+    "fbm-template-check/svelte/svelte.config.js",
+    "fbm-template-check/svelte/vite.config.js",
+    "fbm-template-check/tanstack-router-react/.cta.json",
+    "fbm-template-check/tanstack-router-react/.gitignore",
+    "fbm-template-check/tanstack-router-react/.vscode/settings.json",
+    "fbm-template-check/tanstack-router-react/README.md",
+    "fbm-template-check/tanstack-router-react/package.json",
+    "fbm-template-check/tanstack-router-react/public/favicon.ico",
+    "fbm-template-check/tanstack-router-react/public/logo192.png",
+    "fbm-template-check/tanstack-router-react/public/logo512.png",
+    "fbm-template-check/tanstack-router-react/public/manifest.json",
+    "fbm-template-check/tanstack-router-react/public/robots.txt",
+    "fbm-template-check/tanstack-router-react/src/components/Footer.tsx",
+    "fbm-template-check/tanstack-router-react/src/components/Header.tsx",
+    "fbm-template-check/tanstack-router-react/src/components/ThemeToggle.tsx",
+    "fbm-template-check/tanstack-router-react/src/router.tsx",
+    "fbm-template-check/tanstack-router-react/src/routes/__root.tsx",
+    "fbm-template-check/tanstack-router-react/src/routes/about.tsx",
+    "fbm-template-check/tanstack-router-react/src/routes/index.tsx",
+    "fbm-template-check/tanstack-router-react/src/styles.css",
+    "fbm-template-check/tanstack-router-react/tsconfig.json",
+    "fbm-template-check/tanstack-router-react/tsr.config.json",
+    "fbm-template-check/tanstack-router-react/vite.config.ts",
+    "fbm-template-check/tanstack-router-solid/.cta.json",
+    "fbm-template-check/tanstack-router-solid/.cursorrules",
+    "fbm-template-check/tanstack-router-solid/.gitignore",
+    "fbm-template-check/tanstack-router-solid/.vscode/settings.json",
+    "fbm-template-check/tanstack-router-solid/AGENTS.md",
+    "fbm-template-check/tanstack-router-solid/README.md",
+    "fbm-template-check/tanstack-router-solid/package-lock.json",
+    "fbm-template-check/tanstack-router-solid/package.json",
+    "fbm-template-check/tanstack-router-solid/public/favicon.ico",
+    "fbm-template-check/tanstack-router-solid/public/logo192.png",
+    "fbm-template-check/tanstack-router-solid/public/logo512.png",
+    "fbm-template-check/tanstack-router-solid/public/manifest.json",
+    "fbm-template-check/tanstack-router-solid/public/robots.txt",
+    "fbm-template-check/tanstack-router-solid/src/components/Header.tsx",
+    "fbm-template-check/tanstack-router-solid/src/routeTree.gen.ts",
+    "fbm-template-check/tanstack-router-solid/src/router.tsx",
+    "fbm-template-check/tanstack-router-solid/src/routes/__root.tsx",
+    "fbm-template-check/tanstack-router-solid/src/routes/about.tsx",
+    "fbm-template-check/tanstack-router-solid/src/routes/index.tsx",
+    "fbm-template-check/tanstack-router-solid/src/styles.css",
+    "fbm-template-check/tanstack-router-solid/tsconfig.json",
+    "fbm-template-check/tanstack-router-solid/tsr.config.json",
+    "fbm-template-check/tanstack-router-solid/vite.config.ts",
+    "fbm-template-check/vanilla-ts/.gitignore",
+    "fbm-template-check/vanilla-ts/hmr-check.mjs",
+    "fbm-template-check/vanilla-ts/index.html",
+    "fbm-template-check/vanilla-ts/package.json",
+    "fbm-template-check/vanilla-ts/public/favicon.svg",
+    "fbm-template-check/vanilla-ts/public/icons.svg",
+    "fbm-template-check/vanilla-ts/src/assets/hero.png",
+    "fbm-template-check/vanilla-ts/src/assets/typescript.svg",
+    "fbm-template-check/vanilla-ts/src/assets/vite.svg",
+    "fbm-template-check/vanilla-ts/src/counter.ts",
+    "fbm-template-check/vanilla-ts/src/main.ts",
+    "fbm-template-check/vanilla-ts/src/style.css",
+    "fbm-template-check/vanilla-ts/tsconfig.json",
+    "fbm-template-check/vanilla-ts/vite.config.ts",
+    "fbm-template-check/vanilla/.gitignore",
+    "fbm-template-check/vanilla/hmr-check.mjs",
+    "fbm-template-check/vanilla/index.html",
+    "fbm-template-check/vanilla/package.json",
+    "fbm-template-check/vanilla/public/favicon.svg",
+    "fbm-template-check/vanilla/public/icons.svg",
+    "fbm-template-check/vanilla/src/assets/hero.png",
+    "fbm-template-check/vanilla/src/assets/javascript.svg",
+    "fbm-template-check/vanilla/src/assets/vite.svg",
+    "fbm-template-check/vanilla/src/counter.js",
+    "fbm-template-check/vanilla/src/main.js",
+    "fbm-template-check/vanilla/src/style.css",
+    "fbm-template-check/vanilla/vite.config.js",
+    "fbm-template-check/vue-starter/.gitignore",
+    "fbm-template-check/vue-starter/.vscode/extensions.json",
+    "fbm-template-check/vue-starter/README.md",
+    "fbm-template-check/vue-starter/hmr-check.mjs",
+    "fbm-template-check/vue-starter/index.html",
+    "fbm-template-check/vue-starter/jsconfig.json",
+    "fbm-template-check/vue-starter/package.json",
+    "fbm-template-check/vue-starter/pnpm-lock.yaml",
+    "fbm-template-check/vue-starter/public/favicon.ico",
+    "fbm-template-check/vue-starter/src/App.vue",
+    "fbm-template-check/vue-starter/src/assets/base.css",
+    "fbm-template-check/vue-starter/src/assets/logo.svg",
+    "fbm-template-check/vue-starter/src/assets/main.css",
+    "fbm-template-check/vue-starter/src/components/HelloWorld.vue",
+    "fbm-template-check/vue-starter/src/components/TheWelcome.vue",
+    "fbm-template-check/vue-starter/src/components/WelcomeItem.vue",
+    "fbm-template-check/vue-starter/src/components/icons/IconCommunity.vue",
+    "fbm-template-check/vue-starter/src/components/icons/IconDocumentation.vue",
+    "fbm-template-check/vue-starter/src/components/icons/IconEcosystem.vue",
+    "fbm-template-check/vue-starter/src/components/icons/IconSupport.vue",
+    "fbm-template-check/vue-starter/src/components/icons/IconTooling.vue",
+    "fbm-template-check/vue-starter/src/main.js",
+    "fbm-template-check/vue-starter/vite.config.js",
+    "fbm-template-check/vue-ts/.gitignore",
+    "fbm-template-check/vue-ts/.vscode/extensions.json",
+    "fbm-template-check/vue-ts/README.md",
+    "fbm-template-check/vue-ts/hmr-check.mjs",
+    "fbm-template-check/vue-ts/index.html",
+    "fbm-template-check/vue-ts/package.json",
+    "fbm-template-check/vue-ts/pnpm-lock.yaml",
+    "fbm-template-check/vue-ts/public/favicon.svg",
+    "fbm-template-check/vue-ts/public/icons.svg",
+    "fbm-template-check/vue-ts/src/App.vue",
+    "fbm-template-check/vue-ts/src/assets/hero.png",
+    "fbm-template-check/vue-ts/src/assets/vite.svg",
+    "fbm-template-check/vue-ts/src/assets/vue.svg",
+    "fbm-template-check/vue-ts/src/components/HelloWorld.vue",
+    "fbm-template-check/vue-ts/src/main.ts",
+    "fbm-template-check/vue-ts/src/style.css",
+    "fbm-template-check/vue-ts/tsconfig.app.json",
+    "fbm-template-check/vue-ts/tsconfig.json",
+    "fbm-template-check/vue-ts/tsconfig.node.json",
+    "fbm-template-check/vue-ts/vite.config.ts",
+    "fbm-template-check/vue/.gitignore",
+    "fbm-template-check/vue/.vscode/extensions.json",
+    "fbm-template-check/vue/README.md",
+    "fbm-template-check/vue/hmr-check.mjs",
+    "fbm-template-check/vue/index.html",
+    "fbm-template-check/vue/package.json",
+    "fbm-template-check/vue/pnpm-lock.yaml",
+    "fbm-template-check/vue/public/favicon.svg",
+    "fbm-template-check/vue/public/icons.svg",
+    "fbm-template-check/vue/src/App.vue",
+    "fbm-template-check/vue/src/assets/hero.png",
+    "fbm-template-check/vue/src/assets/vite.svg",
+    "fbm-template-check/vue/src/assets/vue.svg",
+    "fbm-template-check/vue/src/components/HelloWorld.vue",
+    "fbm-template-check/vue/src/main.js",
+    "fbm-template-check/vue/src/style.css",
+    "fbm-template-check/vue/vite.config.js",
+    "package.json",
+    "packages/vite/package.json",
+    "packages/vite/src/node/server/bundledDev.ts",
+    "playground/js-sourcemap/__tests__/js-sourcemap.spec.ts",
+    "playground/package.json",
+    "playground/resolve-tsconfig-paths/tsconfig.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml"
+   ],
+   "commits": [
+    {
+     "sha": "6df42a1cd2625f3f08a31eb3f8fc11c2d5bac2c9",
+     "parents": [
+      "63fb591d1f3b17750fdad553ce881670f4df6ad0"
+     ],
+     "date": "2026-06-23T14:59:57+08:00",
+     "author": {
+      "login": null,
+      "name": "hana",
+      "type": "User"
+     },
+     "message": "test(fbm): scaffold create-vite templates + hand-written HMR drivers for full-bundle-mode coverage",
+     "paths": []
+    },
+    {
+     "sha": "63fb591d1f3b17750fdad553ce881670f4df6ad0",
+     "parents": [
+      "8ab62c4b60cd642f812850130ffb96ce59736a30"
+     ],
+     "date": "2026-06-20T00:30:19+08:00",
+     "author": {
+      "login": null,
+      "name": "hana",
+      "type": "User"
+     },
+     "message": "fix",
+     "paths": []
+    },
+    {
+     "sha": "8ab62c4b60cd642f812850130ffb96ce59736a30",
+     "parents": [
+      "301712cb394b1fe153e6d3cac62822986993e8d9"
+     ],
+     "date": "2026-06-19T23:51:49+08:00",
+     "author": {
+      "login": null,
+      "name": "Hana",
+      "type": "User"
+     },
+     "message": "fix: fbm",
+     "paths": []
+    },
+    {
+     "sha": "301712cb394b1fe153e6d3cac62822986993e8d9",
+     "parents": [
+      "4b9d1d494051811ad86d7597e6c666657b35ffa2"
+     ],
+     "date": "2026-06-19T23:49:16+08:00",
+     "author": {
+      "login": null,
+      "name": "hana",
+      "type": "User"
+     },
+     "message": "revert bundledDev",
+     "paths": []
+    },
+    {
+     "sha": "4b9d1d494051811ad86d7597e6c666657b35ffa2",
+     "parents": [
+      "ba1b72fabb74169a6cfda721c96d343d8480e010"
+     ],
+     "date": "2026-06-19T18:36:02+08:00",
+     "author": {
+      "login": null,
+      "name": "shulaoda",
+      "type": "User"
+     },
+     "message": "u",
+     "paths": []
+    },
+    {
+     "sha": "ba1b72fabb74169a6cfda721c96d343d8480e010",
+     "parents": [
+      "531a842bf64d7ffc95c952d31c1a73fd671266e8"
+     ],
+     "date": "2026-06-19T18:28:17+08:00",
+     "author": {
+      "login": null,
+      "name": "shulaoda",
+      "type": "User"
+     },
+     "message": "feat: update rolldown to 1.1.2",
+     "paths": []
+    },
+    {
+     "sha": "531a842bf64d7ffc95c952d31c1a73fd671266e8",
+     "parents": [
+      "61ba8fdc6500e8aa668021833ae5e6ebd200466d"
+     ],
+     "date": "2026-06-19T18:28:17+08:00",
+     "author": {
+      "login": null,
+      "name": "shulaoda",
+      "type": "User"
+     },
+     "message": "u",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "61ba8fdc6500e8aa668021833ae5e6ebd200466d",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "feat/revamped-css-modules",
+   "url": "https://github.com/vitejs/vite/tree/feat/revamped-css-modules",
+   "ahead_by": 3,
+   "paths": [
+    "packages/vite/LICENSE.md",
+    "packages/vite/package.json",
+    "packages/vite/src/node/__tests__/plugins/css.spec.ts",
+    "packages/vite/src/node/plugins/css.ts",
+    "packages/vite/src/node/plugins/index.ts",
+    "packages/vite/src/node/tsconfig.json",
+    "playground/css-modules/__tests__/css-modules.spec.ts",
+    "playground/css-modules/__tests__/lightningcss/css-modules-lightningcss.spec.ts",
+    "playground/css-modules/css-modules-value/index.js",
+    "playground/css-modules/css-modules-value/style.module.css",
+    "playground/css-modules/css-modules-value/utils1.css",
+    "playground/css-modules/css-modules-value/utils2.css",
+    "playground/css-modules/empty-css-module/index.js",
+    "playground/css-modules/empty-css-module/style.module.css",
+    "playground/css-modules/global-module/global.module.css",
+    "playground/css-modules/global-module/index.js",
+    "playground/css-modules/index.html",
+    "playground/css-modules/inline-query/index.js",
+    "playground/css-modules/inline-query/style.module.css",
+    "playground/css-modules/inline-query/utils.css",
+    "playground/css-modules/lightningcss-custom-properties-from/index.js",
+    "playground/css-modules/lightningcss-custom-properties-from/style1.module.css",
+    "playground/css-modules/lightningcss-custom-properties-from/style2.module.css",
+    "playground/css-modules/lightningcss-custom-properties-from/vars.module.css",
+    "playground/css-modules/lightningcss-features/index.js",
+    "playground/css-modules/lightningcss-features/style.module.css",
+    "playground/css-modules/lightningcss.html",
+    "playground/css-modules/missing-class-export/index.js",
+    "playground/css-modules/missing-class-export/style.module.css",
+    "playground/css-modules/missing-class-export/utils.css",
+    "playground/css-modules/module-namespace/index.js",
+    "playground/css-modules/module-namespace/style.module.css",
+    "playground/css-modules/multi-css-modules/index.js",
+    "playground/css-modules/multi-css-modules/style1.module.css",
+    "playground/css-modules/multi-css-modules/style2.module.css",
+    "playground/css-modules/multi-css-modules/utils1.css",
+    "playground/css-modules/multi-css-modules/utils2.css",
+    "playground/css-modules/package.json",
+    "playground/css-modules/postcss.config.js",
+    "playground/css-modules/reserved-keywords/index.js",
+    "playground/css-modules/reserved-keywords/style.module.css",
+    "playground/css-modules/reserved-keywords/utils.css",
+    "playground/css-modules/scss-modules-mixed/css.module.css",
+    "playground/css-modules/scss-modules-mixed/index.js",
+    "playground/css-modules/scss-modules-mixed/scss.module.scss",
+    "playground/css-modules/scss-modules/index.js",
+    "playground/css-modules/scss-modules/style.module.scss",
+    "playground/css-modules/vite.config-lightningcss.js",
+    "playground/css-modules/vite.config.js",
+    "playground/css-modules/vue/Comp.vue",
+    "playground/css-modules/vue/index.js",
+    "playground/css-modules/vue/utils.css",
+    "playground/css-sourcemap/__tests__/css-sourcemap.spec.ts",
+    "playground/css/__tests__/css.spec.ts",
+    "playground/test-utils.ts",
+    "pnpm-lock.yaml"
+   ],
+   "commits": [
+    {
+     "sha": "ece9f720fd7ae7aecdb61045480d62b499110933",
+     "parents": [
+      "0b13c294b69a5bd2d08fe515c7b0dd7fbce3a2dd"
+     ],
+     "date": "2024-03-21T16:35:55+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "chore: port tests over",
+     "paths": []
+    },
+    {
+     "sha": "0b13c294b69a5bd2d08fe515c7b0dd7fbce3a2dd",
+     "parents": [
+      "e00eb965f300204a43151fbc4786a4dda55a5752",
+      "d44342859a45a295b9497775f8716de83ca1c03d"
+     ],
+     "date": "2024-03-21T12:54:02+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "Merge branch 'main' into feat/revamped-css-modules",
+     "paths": []
+    },
+    {
+     "sha": "e00eb965f300204a43151fbc4786a4dda55a5752",
+     "parents": [
+      "72104f6de5398a1a0511404e8485b3b7721be537"
+     ],
+     "date": "2024-03-18T17:33:29+08:00",
+     "author": {
+      "login": null,
+      "name": "Hiroki Osame",
+      "type": "User"
+     },
+     "message": "chore: squash from #16018",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "d44342859a45a295b9497775f8716de83ca1c03d",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "improve-fs-access-check",
+   "url": "https://github.com/vitejs/vite/tree/improve-fs-access-check",
+   "ahead_by": 2,
+   "paths": [
+    "packages/vite/src/node/server/index.ts",
+    "packages/vite/src/node/server/middlewares/static.ts",
+    "packages/vite/src/node/server/middlewares/transform.ts"
+   ],
+   "commits": [
+    {
+     "sha": "4562bc18bc2a0a589be867b9df457059ca810e8d",
+     "parents": [
+      "4945f3cda67bcb69472c13db7c1018e0da8ad8dc"
+     ],
+     "date": "2025-03-28T18:26:31+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "chore: update comments",
+     "paths": []
+    },
+    {
+     "sha": "4945f3cda67bcb69472c13db7c1018e0da8ad8dc",
+     "parents": [
+      "35ee84808af3a5443019e36cba351af859113695"
+     ],
+     "date": "2025-03-28T18:17:08+08:00",
+     "author": {
+      "login": null,
+      "name": "bluwy",
+      "type": "User"
+     },
+     "message": "feat: improve fs access checks",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "35ee84808af3a5443019e36cba351af859113695",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "morethanwords/main",
+   "url": "https://github.com/vitejs/vite/tree/morethanwords/main",
+   "ahead_by": 4,
+   "paths": [
+    "packages/vite/src/node/plugins/importAnalysisBuild.ts"
+   ],
+   "commits": [
+    {
+     "sha": "cf39ab34063e13d35468b27c37e528ffa8388e60",
+     "parents": [
+      "4d569dca484ae55e6569bfab56ce35e01f7fca41"
+     ],
+     "date": "2024-03-04T20:05:55+01:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "fix: update to check chunk.type",
+     "paths": []
+    },
+    {
+     "sha": "4d569dca484ae55e6569bfab56ce35e01f7fca41",
+     "parents": [
+      "a4d9a59a9e88321820664edac2ed365883ededd3",
+      "ab823ab618c2036913076abe15c10fd7fbe4d6ba"
+     ],
+     "date": "2024-03-04T19:58:27+01:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "chore: merge main",
+     "paths": []
+    },
+    {
+     "sha": "a4d9a59a9e88321820664edac2ed365883ededd3",
+     "parents": [
+      "05dc837ab7dfeaeba268c63db5ae76a0f2777aac"
+     ],
+     "date": "2024-01-09T13:08:53+01:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "chore: format",
+     "paths": []
+    },
+    {
+     "sha": "05dc837ab7dfeaeba268c63db5ae76a0f2777aac",
+     "parents": [
+      "56ae92c33cba6c86ab5819877c19b9ea39f7121b"
+     ],
+     "date": "2023-12-30T15:43:49+04:00",
+     "author": {
+      "login": null,
+      "name": "Eduard Kuzmenko",
+      "type": "User"
+     },
+     "message": "Fix analysing build chunk without dependencies",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "ab823ab618c2036913076abe15c10fd7fbe4d6ba",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "plugin-cdn",
+   "url": "https://github.com/vitejs/vite/tree/plugin-cdn",
+   "ahead_by": 2,
+   "paths": [
+    "packages/plugin-cdn/README.md",
+    "packages/plugin-cdn/index.d.ts",
+    "packages/plugin-cdn/index.js",
+    "packages/plugin-cdn/package.json",
+    "yarn.lock"
+   ],
+   "commits": [
+    {
+     "sha": "050c7c995d5e81e8d754b2a464d079265fe51ab3",
+     "parents": [
+      "17c673f5f921b66fd3352e9384ecd41199c7e7f7"
+     ],
+     "date": "2021-01-12T22:34:46-05:00",
+     "author": {
+      "login": null,
+      "name": "Evan You",
+      "type": "User"
+     },
+     "message": "chore: readme [skip ci]",
+     "paths": []
+    },
+    {
+     "sha": "17c673f5f921b66fd3352e9384ecd41199c7e7f7",
+     "parents": [
+      "6cda88d882ffcd5b3fdaa005296bfe1f0991925c"
+     ],
+     "date": "2021-01-12T22:29:10-05:00",
+     "author": {
+      "login": null,
+      "name": "Evan You",
+      "type": "User"
+     },
+     "message": "wip: plugin-cdn",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "6cda88d882ffcd5b3fdaa005296bfe1f0991925c",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "rolldown-canary",
+   "url": "https://github.com/vitejs/vite/tree/rolldown-canary",
+   "ahead_by": 1,
+   "paths": [
+    "playground/environment-react-ssr/__tests__/environment-react-ssr.spec.ts",
+    "playground/hmr-ssr/__tests__/hmr-ssr.spec.ts",
+    "playground/test-utils.ts",
+    "vitest.config.e2e.ts"
+   ],
+   "commits": [
+    {
+     "sha": "08a70f0a9e3ef10dac3dd3ea3458e2662c81b8f0",
+     "parents": [
+      "9913672bee9c34a2df7fff4c2538783cd4f43b4e"
+     ],
+     "date": "2026-09-10T15:42:36+08:00",
+     "author": {
+      "login": null,
+      "name": "shulaoda",
+      "type": "User"
+     },
+     "message": "test: fix flaky playground tests on CI",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "9913672bee9c34a2df7fff4c2538783cd4f43b4e",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "test/css-sourcemap-sources-repro",
+   "url": "https://github.com/vitejs/vite/tree/test/css-sourcemap-sources-repro",
+   "ahead_by": 1,
+   "paths": [
+    "playground/css-sourcemap/__tests__/lightningcss/sources-resolution.spec.ts",
+    "playground/css-sourcemap/__tests__/sources-resolution.spec.ts",
+    "playground/css-sourcemap/admin/index.html",
+    "playground/css-sourcemap/index.html",
+    "playground/css-sourcemap/nested-entry.js",
+    "playground/css-sourcemap/nested/dir/dep.css",
+    "playground/css-sourcemap/nested/dir/from-js.css",
+    "playground/css-sourcemap/vite.config.js"
+   ],
+   "commits": [
+    {
+     "sha": "e26053b9cb51027592eb7f5d3d5d04d0e56a0b47",
+     "parents": [
+      "57fea001d154e7dd8d5d74d3082731f1dcfd31be"
+     ],
+     "date": "2026-08-07T20:52:10+08:00",
+     "author": {
+      "login": null,
+      "name": "Hana",
+      "type": "User"
+     },
+     "message": "test: repro for css sourcemap sources resolved against the wrong base",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "57fea001d154e7dd8d5d74d3082731f1dcfd31be",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "v1",
+   "url": "https://github.com/vitejs/vite/tree/v1",
+   "ahead_by": 8,
+   "paths": [
+    "README.md",
+    "src/node/build/index.ts",
+    "src/node/server/index.ts",
+    "src/node/server/serverPluginVue.ts",
+    "src/node/utils/fsUtils.ts"
+   ],
+   "commits": [
+    {
+     "sha": "68ddf6aa1fe6da5e7986cfcf38682e13f43b33a4",
+     "parents": [
+      "899ccfd7d0405c80ecada8b1c3d3482b575439aa"
+     ],
+     "date": "2020-12-26T19:52:35+08:00",
+     "author": {
+      "login": null,
+      "name": "Faizal Andyka",
+      "type": "User"
+     },
+     "message": "docs: update (#1250)",
+     "paths": []
+    },
+    {
+     "sha": "899ccfd7d0405c80ecada8b1c3d3482b575439aa",
+     "parents": [
+      "097504013146d5520281107732239cd96eba08c7"
+     ],
+     "date": "2020-12-16T11:31:39+08:00",
+     "author": {
+      "login": null,
+      "name": "Alex Kozack",
+      "type": "User"
+     },
+     "message": "docs: Fix typo in README.md (#1237)",
+     "paths": []
+    },
+    {
+     "sha": "097504013146d5520281107732239cd96eba08c7",
+     "parents": [
+      "f96b33c424d83e08efa69120e427dd03fd1f2145"
+     ],
+     "date": "2020-12-09T11:44:02-05:00",
+     "author": {
+      "login": null,
+      "name": "Alec Larson",
+      "type": "User"
+     },
+     "message": "fix(build): `emitIndex` option only affects indexPath",
+     "paths": []
+    },
+    {
+     "sha": "f96b33c424d83e08efa69120e427dd03fd1f2145",
+     "parents": [
+      "9c617b46fefe8010081fce128ee6187f033d8da9"
+     ],
+     "date": "2020-12-09T11:44:02-05:00",
+     "author": {
+      "login": null,
+      "name": "Alec Larson",
+      "type": "User"
+     },
+     "message": "fix(build): resolve `entry` relative to `root` option",
+     "paths": []
+    },
+    {
+     "sha": "9c617b46fefe8010081fce128ee6187f033d8da9",
+     "parents": [
+      "f28db69af531af33fbd6099d403f153f798b43fd"
+     ],
+     "date": "2020-12-09T11:44:02-05:00",
+     "author": {
+      "login": null,
+      "name": "underfin",
+      "type": "User"
+     },
+     "message": "feat(build): allow `php` as entry",
+     "paths": []
+    },
+    {
+     "sha": "f28db69af531af33fbd6099d403f153f798b43fd",
+     "parents": [
+      "98217e12f1b1c0591e8682f3895c8f5884e38fed"
+     ],
+     "date": "2020-12-09T11:44:02-05:00",
+     "author": {
+      "login": null,
+      "name": "underfin",
+      "type": "User"
+     },
+     "message": "fix(build): respect the `entry` of index path",
+     "paths": []
+    },
+    {
+     "sha": "98217e12f1b1c0591e8682f3895c8f5884e38fed",
+     "parents": [
+      "36340421f9ee808e4e08240e0b99ccfca1005117"
+     ],
+     "date": "2020-12-07T12:36:16-05:00",
+     "author": {
+      "login": null,
+      "name": "Jude",
+      "type": "User"
+     },
+     "message": "fix(build): let post-build hooks edit the html (#1211)",
+     "paths": []
+    },
+    {
+     "sha": "36340421f9ee808e4e08240e0b99ccfca1005117",
+     "parents": [
+      "4f7f51820cb627d3354c914b00e699ad2d5ad1c6"
+     ],
+     "date": "2020-12-06T16:35:02-05:00",
+     "author": {
+      "login": null,
+      "name": "Evan You",
+      "type": "User"
+     },
+     "message": "fix(hmr): better fix for #610",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "4f7f51820cb627d3354c914b00e699ad2d5ad1c6",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "v2",
+   "url": "https://github.com/vitejs/vite/tree/v2",
+   "ahead_by": 49,
+   "paths": [
+    ".eslintrc.cjs",
+    ".github/workflows/ci.yml",
+    "CONTRIBUTING.md",
+    "docs/.vitepress/theme/components/OldDocument.vue",
+    "docs/.vitepress/theme/components/WrappedLayout.vue",
+    "docs/.vitepress/theme/custom.css",
+    "docs/.vitepress/theme/index.js",
+    "docs/guide/api-plugin.md",
+    "docs/guide/ssr.md",
+    "package.json",
+    "packages/create-vite/CHANGELOG.md",
+    "packages/create-vite/package.json",
+    "packages/create-vite/template-lit-ts/package.json",
+    "packages/create-vite/template-lit/package.json",
+    "packages/create-vite/template-preact-ts/package.json",
+    "packages/create-vite/template-preact/package.json",
+    "packages/create-vite/template-react-ts/package.json",
+    "packages/create-vite/template-react/package.json",
+    "packages/create-vite/template-svelte-ts/package.json",
+    "packages/create-vite/template-svelte/package.json",
+    "packages/create-vite/template-vanilla-ts/package.json",
+    "packages/create-vite/template-vanilla/package.json",
+    "packages/create-vite/template-vue-ts/package.json",
+    "packages/create-vite/template-vue/package.json",
+    "packages/playground/assets/__tests__/assets.spec.ts",
+    "packages/playground/assets/css/css-url.css",
+    "packages/playground/assets/index.html",
+    "packages/playground/css-codesplit/__tests__/css-codesplit.spec.ts",
+    "packages/playground/css-codesplit/async.css",
+    "packages/playground/css-codesplit/index.html",
+    "packages/playground/css-codesplit/inline.css",
+    "packages/playground/css-codesplit/main.js",
+    "packages/playground/css-codesplit/mod.module.css",
+    "packages/playground/css-sourcemap/__tests__/serve.spec.ts",
+    "packages/playground/css/__tests__/css.spec.ts",
+    "packages/playground/css/aliased/bar.module.css",
+    "packages/playground/css/aliased/foo.css",
+    "packages/playground/css/css-js-dep/bar.module.css",
+    "packages/playground/css/css-js-dep/foo.css",
+    "packages/playground/css/css-js-dep/index.js",
+    "packages/playground/css/css-js-dep/package.json",
+    "packages/playground/css/index.html",
+    "packages/playground/css/main.js",
+    "packages/playground/css/package.json",
+    "packages/playground/css/vite.config.js",
+    "packages/playground/fs-serve/__tests__/deny/fs-serve-deny.spec.ts",
+    "packages/playground/fs-serve/__tests__/deny/vite.config.js",
+    "packages/playground/fs-serve/__tests__/fs-serve.spec.ts",
+    "packages/playground/fs-serve/package.json",
+    "packages/playground/fs-serve/root/src/deny/.deny",
+    "packages/playground/fs-serve/root/src/deny/deny.txt",
+    "packages/playground/fs-serve/root/src/index.html",
+    "packages/playground/fs-serve/root/vite.config-deny.js",
+    "packages/playground/hmr/__tests__/hmr.spec.ts",
+    "packages/playground/hmr/hmr.ts",
+    "packages/playground/hmr/index.html",
+    "packages/playground/optimize-deps/index.astro",
+    "packages/playground/optimize-deps/index.html",
+    "packages/playground/optimize-deps/vite.config.js",
+    "packages/plugin-react/src/fast-refresh.ts",
+    "packages/plugin-react/src/jsx-runtime/babel-import-to-require.ts",
+    "packages/plugin-react/src/jsx-runtime/babel-restore-jsx.spec.ts",
+    "packages/plugin-react/src/jsx-runtime/restore-jsx.spec.ts",
+    "packages/plugin-vue/CHANGELOG.md",
+    "packages/plugin-vue/package.json",
+    "packages/plugin-vue/src/handleHotUpdate.ts",
+    "packages/plugin-vue/src/main.ts",
+    "packages/plugin-vue/src/script.ts",
+    "packages/plugin-vue/src/style.ts",
+    "packages/plugin-vue/src/template.ts",
+    "packages/vite/CHANGELOG.md",
+    "packages/vite/LICENSE.md",
+    "packages/vite/package.json",
+    "packages/vite/src/client/client.ts",
+    "packages/vite/src/node/__tests__/build.spec.ts",
+    "packages/vite/src/node/__tests__/cleanString.spec.ts",
+    "packages/vite/src/node/__tests__/config.spec.ts",
+    "packages/vite/src/node/__tests__/plugins/css.spec.ts",
+    "packages/vite/src/node/__tests__/scan.spec.ts",
+    "packages/vite/src/node/build.ts",
+    "packages/vite/src/node/cleanString.ts",
+    "packages/vite/src/node/cli.ts",
+    "packages/vite/src/node/config.ts",
+    "packages/vite/src/node/http.ts",
+    "packages/vite/src/node/importGlob.ts",
+    "packages/vite/src/node/index.ts",
+    "packages/vite/src/node/logger.ts",
+    "packages/vite/src/node/optimizer/esbuildDepPlugin.ts",
+    "packages/vite/src/node/optimizer/index.ts",
+    "packages/vite/src/node/optimizer/registerMissing.ts",
+    "packages/vite/src/node/optimizer/scan.ts",
+    "packages/vite/src/node/plugin.ts",
+    "packages/vite/src/node/plugins/asset.ts",
+    "packages/vite/src/node/plugins/assetImportMetaUrl.ts",
+    "packages/vite/src/node/plugins/clientInjections.ts",
+    "packages/vite/src/node/plugins/css.ts",
+    "packages/vite/src/node/plugins/dataUri.ts",
+    "packages/vite/src/node/plugins/esbuild.ts",
+    "packages/vite/src/node/plugins/html.ts",
+    "packages/vite/src/node/plugins/importAnalysis.ts",
+    "packages/vite/src/node/plugins/importAnalysisBuild.ts",
+    "packages/vite/src/node/plugins/index.ts",
+    "packages/vite/src/node/plugins/optimizedDeps.ts",
+    "packages/vite/src/node/plugins/reporter.ts",
+    "packages/vite/src/node/plugins/resolve.ts",
+    "packages/vite/src/node/plugins/splitVendorChunk.ts",
+    "packages/vite/src/node/plugins/terser.ts",
+    "packages/vite/src/node/plugins/wasm.ts",
+    "packages/vite/src/node/plugins/worker.ts",
+    "packages/vite/src/node/plugins/workerImportMetaUrl.ts",
+    "packages/vite/src/node/preview.ts",
+    "packages/vite/src/node/server/__tests__/search-root.spec.ts",
+    "packages/vite/src/node/server/hmr.ts",
+    "packages/vite/src/node/server/index.ts",
+    "packages/vite/src/node/server/middlewares/base.ts",
+    "packages/vite/src/node/server/middlewares/error.ts",
+    "packages/vite/src/node/server/middlewares/indexHtml.ts",
+    "packages/vite/src/node/server/middlewares/proxy.ts",
+    "packages/vite/src/node/server/middlewares/spaFallback.ts",
+    "packages/vite/src/node/server/middlewares/static.ts",
+    "packages/vite/src/node/server/middlewares/transform.ts",
+    "packages/vite/src/node/server/moduleGraph.ts",
+    "packages/vite/src/node/server/openBrowser.ts",
+    "packages/vite/src/node/server/pluginContainer.ts",
+    "packages/vite/src/node/server/sourcemap.ts",
+    "packages/vite/src/node/server/transformRequest.ts",
+    "packages/vite/src/node/server/ws.ts",
+    "packages/vite/src/node/ssr/ssrExternal.ts",
+    "packages/vite/src/node/ssr/ssrManifestPlugin.ts",
+    "packages/vite/src/node/ssr/ssrModuleLoader.ts",
+    "packages/vite/src/node/ssr/ssrTransform.ts",
+    "packages/vite/src/node/utils.ts",
+    "packages/vite/types/shims.d.ts",
+    "packages/vite/types/ws.d.ts",
+    "pnpm-lock.yaml"
+   ],
+   "commits": [
+    {
+     "sha": "a821dfecbe9fe59f9981dcdf54d5e9689817bd6c",
+     "parents": [
+      "59363526015bcfc191d5839b5889d73df7f84373"
+     ],
+     "date": "2024-11-29T13:35:14+09:00",
+     "author": {
+      "login": null,
+      "name": "\u7fe0 / green",
+      "type": "User"
+     },
+     "message": "docs: v2 show old document warning (#18805) (#18831)",
+     "paths": []
+    },
+    {
+     "sha": "59363526015bcfc191d5839b5889d73df7f84373",
+     "parents": [
+      "011bbca350e447d1b499d242804ce62738c12bc0"
+     ],
+     "date": "2024-03-25T00:03:25+09:00",
+     "author": {
+      "login": null,
+      "name": "sapphi-red",
+      "type": "User"
+     },
+     "message": "release: v2.9.18",
+     "paths": []
+    },
+    {
+     "sha": "011bbca350e447d1b499d242804ce62738c12bc0",
+     "parents": [
+      "bfc5649b8d886ae82e42a49fc3a954535f767195"
+     ],
+     "date": "2024-03-25T00:00:45+09:00",
+     "author": {
+      "login": null,
+      "name": "\u7fe0 / green",
+      "type": "User"
+     },
+     "message": "fix: port #16250 to v2 (#16254)",
+     "paths": []
+    },
+    {
+     "sha": "bfc5649b8d886ae82e42a49fc3a954535f767195",
+     "parents": [
+      "1f855dceb334653dc29200a75f7dac6d92ecfd77"
+     ],
+     "date": "2024-01-19T15:01:35+01:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "release: v2.9.17",
+     "paths": []
+    },
+    {
+     "sha": "1f855dceb334653dc29200a75f7dac6d92ecfd77",
+     "parents": [
+      "ea814d7726fa95b7da175aae34903724fbd9c1ee"
+     ],
+     "date": "2024-01-19T14:44:22+01:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "fix: port #15653 to v2 (#15657)",
+     "paths": []
+    },
+    {
+     "sha": "ea814d7726fa95b7da175aae34903724fbd9c1ee",
+     "parents": [
+      "7d8100a9ac71794c5a1883583371b13f923869d9"
+     ],
+     "date": "2023-05-26T13:03:03+02:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "release: v2.9.16",
+     "paths": []
+    },
+    {
+     "sha": "7d8100a9ac71794c5a1883583371b13f923869d9",
+     "parents": [
+      "4f00f5835618a772a7ba599ba5e5f2a1fc10ef11"
+     ],
+     "date": "2023-05-26T13:02:11+02:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "fix: port #13348 to v2, fs.deny with leading double slash (#13350)",
+     "paths": []
+    },
+    {
+     "sha": "4f00f5835618a772a7ba599ba5e5f2a1fc10ef11",
+     "parents": [
+      "78ca0b04e0ad5f0fad9b105b6024df570bde28a7"
+     ],
+     "date": "2022-08-12T14:58:44+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: create-vite@2.9.5",
+     "paths": []
+    },
+    {
+     "sha": "78ca0b04e0ad5f0fad9b105b6024df570bde28a7",
+     "parents": [
+      "3a5543db215cedbcadcfa2e14a1c48b14acdd3c5"
+     ],
+     "date": "2022-08-12T14:58:01+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: plugin-vue@2.3.4",
+     "paths": []
+    },
+    {
+     "sha": "3a5543db215cedbcadcfa2e14a1c48b14acdd3c5",
+     "parents": [
+      "521bb390b4fd6320ce589b9a073dcbaad6291a3b"
+     ],
+     "date": "2022-08-12T14:56:59+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: v2.9.15",
+     "paths": []
+    },
+    {
+     "sha": "521bb390b4fd6320ce589b9a073dcbaad6291a3b",
+     "parents": [
+      "ed8d6a74e64b8dd539e2e3a68ed1248e1a42d6de"
+     ],
+     "date": "2022-08-12T14:49:47+02:00",
+     "author": {
+      "login": null,
+      "name": "\u7fe0 / green",
+      "type": "User"
+     },
+     "message": "fix: fs serve only edit pathname (fixes #9148) (#9654)",
+     "paths": []
+    },
+    {
+     "sha": "ed8d6a74e64b8dd539e2e3a68ed1248e1a42d6de",
+     "parents": [
+      "e361a807e58c6f836532c5fe98ba285272748fda"
+     ],
+     "date": "2022-08-12T13:32:47+02:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "chore: narrow down rollup version (#9651)",
+     "paths": []
+    },
+    {
+     "sha": "e361a807e58c6f836532c5fe98ba285272748fda",
+     "parents": [
+      "7f01a00a73cd3962fc468273156943a7fe0bc7f9"
+     ],
+     "date": "2022-08-12T11:47:11+02:00",
+     "author": {
+      "login": null,
+      "name": "Jambon",
+      "type": "User"
+     },
+     "message": "fix(ssr-manifest): check name before saving to ssrManifest (#9595)",
+     "paths": []
+    },
+    {
+     "sha": "7f01a00a73cd3962fc468273156943a7fe0bc7f9",
+     "parents": [
+      "0d1363005fa4ce5359be2f6f726a400daba7dcc2"
+     ],
+     "date": "2022-07-19T21:54:50+02:00",
+     "author": {
+      "login": null,
+      "name": "Rom",
+      "type": "User"
+     },
+     "message": "fix: backport make `resolveConfig()` concurrent safe (#9224) (#9229)",
+     "paths": []
+    },
+    {
+     "sha": "0d1363005fa4ce5359be2f6f726a400daba7dcc2",
+     "parents": [
+      "adb61c50c46fb789db43c4894ba0d0e8bb839b85"
+     ],
+     "date": "2022-07-08T11:27:07+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: v2.9.14",
+     "paths": []
+    },
+    {
+     "sha": "adb61c50c46fb789db43c4894ba0d0e8bb839b85",
+     "parents": [
+      "84ec02ae04bc12a2f41b69bb2615a0874a7667a3"
+     ],
+     "date": "2022-07-08T11:05:01+02:00",
+     "author": {
+      "login": null,
+      "name": "\u7fe0 / green",
+      "type": "User"
+     },
+     "message": "fix: backport #8979, re-encode url to prevent fs.allow bypass (fixes #8498) (#8990)",
+     "paths": []
+    },
+    {
+     "sha": "84ec02ae04bc12a2f41b69bb2615a0874a7667a3",
+     "parents": [
+      "194a265f53f9a4814c5ce2c1dbffce9c1dc38e96"
+     ],
+     "date": "2022-07-07T22:39:44+02:00",
+     "author": {
+      "login": null,
+      "name": "\u7fe0 / green",
+      "type": "User"
+     },
+     "message": "fix(css): backport #8936 (#8977)",
+     "paths": []
+    },
+    {
+     "sha": "194a265f53f9a4814c5ce2c1dbffce9c1dc38e96",
+     "parents": [
+      "7a3a9bdb467b8bfdbc67c1f45ae1c67eb943dee2"
+     ],
+     "date": "2022-07-03T18:54:18+02:00",
+     "author": {
+      "login": null,
+      "name": "Hung Viet Nguyen",
+      "type": "User"
+     },
+     "message": "docs: Update playground links for v2 in the v2 doccumentation (#8902)",
+     "paths": []
+    },
+    {
+     "sha": "7a3a9bdb467b8bfdbc67c1f45ae1c67eb943dee2",
+     "parents": [
+      "d4d89b9e1ee7db9718a1a117cde71204ed2e2673"
+     ],
+     "date": "2022-07-01T07:55:51+02:00",
+     "author": {
+      "login": null,
+      "name": "sapphi-red",
+      "type": "User"
+     },
+     "message": "test: skip failing test",
+     "paths": []
+    },
+    {
+     "sha": "d4d89b9e1ee7db9718a1a117cde71204ed2e2673",
+     "parents": [
+      "da77dee3b696d23d28122d21b65f6b2f3d74bfbe"
+     ],
+     "date": "2022-07-01T07:55:51+02:00",
+     "author": {
+      "login": null,
+      "name": "\u7fe0 / green",
+      "type": "User"
+     },
+     "message": "fix(css): backport #7746",
+     "paths": []
+    },
+    {
+     "sha": "da77dee3b696d23d28122d21b65f6b2f3d74bfbe",
+     "parents": [
+      "96c885a2703d877f048cf3860955a8bef5452f86"
+     ],
+     "date": "2022-07-01T07:55:51+02:00",
+     "author": {
+      "login": null,
+      "name": "sapphi-red",
+      "type": "User"
+     },
+     "message": "fix: reverts #8471",
+     "paths": []
+    },
+    {
+     "sha": "96c885a2703d877f048cf3860955a8bef5452f86",
+     "parents": [
+      "ac58a0427ba7c676d500e356df47c0e61c5892ab"
+     ],
+     "date": "2022-07-01T07:55:51+02:00",
+     "author": {
+      "login": null,
+      "name": "sapphi-red",
+      "type": "User"
+     },
+     "message": "test: add #8461 test case",
+     "paths": []
+    },
+    {
+     "sha": "ac58a0427ba7c676d500e356df47c0e61c5892ab",
+     "parents": [
+      "d93ac8eca16534eb5474c19899bc130019b30a71"
+     ],
+     "date": "2022-07-01T07:55:51+02:00",
+     "author": {
+      "login": null,
+      "name": "sapphi-red",
+      "type": "User"
+     },
+     "message": "test: add #8245 test case",
+     "paths": []
+    },
+    {
+     "sha": "d93ac8eca16534eb5474c19899bc130019b30a71",
+     "parents": [
+      "e109d64331d9fa57753832762c3573c3532a6947"
+     ],
+     "date": "2022-06-27T07:09:53+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: v2.9.13",
+     "paths": []
+    },
+    {
+     "sha": "e109d64331d9fa57753832762c3573c3532a6947",
+     "parents": [
+      "1afc1c2370e09998f800f9067491a25e9dd463a0"
+     ],
+     "date": "2022-06-27T06:59:29+02:00",
+     "author": {
+      "login": null,
+      "name": "\u7fe0 / green",
+      "type": "User"
+     },
+     "message": "fix: backport #8804, /@fs/ dir traversal with escaped chars (fixes #8498) (#8805)",
+     "paths": []
+    },
+    {
+     "sha": "1afc1c2370e09998f800f9067491a25e9dd463a0",
+     "parents": [
+      "86a55d3cc0668eca79a55f5cf8b6034b9e3bf835"
+     ],
+     "date": "2022-06-20T07:17:32+02:00",
+     "author": {
+      "login": null,
+      "name": "Yehyoung Kang",
+      "type": "User"
+     },
+     "message": "fix(wasm): support decoding data URL in Node < v16 (#8668)",
+     "paths": []
+    },
+    {
+     "sha": "86a55d3cc0668eca79a55f5cf8b6034b9e3bf835",
+     "parents": [
+      "c0d6c60b45d89e0995a5ea6bf74e9e3c023ae828"
+     ],
+     "date": "2022-06-10T16:10:13+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: v2.9.12",
+     "paths": []
+    },
+    {
+     "sha": "c0d6c60b45d89e0995a5ea6bf74e9e3c023ae828",
+     "parents": [
+      "078a7dcabc8ffc93a06c84063fba04e0e2157f3b"
+     ],
+     "date": "2022-06-10T15:48:59+02:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "fix: backport outdated optimized dep removed from module graph (#8534)",
+     "paths": []
+    },
+    {
+     "sha": "078a7dcabc8ffc93a06c84063fba04e0e2157f3b",
+     "parents": [
+      "01fa8070fab5faa590fbe312d2465897a0e6c6a2"
+     ],
+     "date": "2022-06-10T07:32:09+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: v2.9.11",
+     "paths": []
+    },
+    {
+     "sha": "01fa8070fab5faa590fbe312d2465897a0e6c6a2",
+     "parents": [
+      "ab7dc1c4405ce2814ccc38d5979b51ad2f37d4e6"
+     ],
+     "date": "2022-06-09T16:58:22+02:00",
+     "author": {
+      "login": null,
+      "name": "Tim MacDonald",
+      "type": "User"
+     },
+     "message": "fix(dev): avoid FOUC when swapping out link tag (fix #7973) (#8495)",
+     "paths": []
+    },
+    {
+     "sha": "ab7dc1c4405ce2814ccc38d5979b51ad2f37d4e6",
+     "parents": [
+      "ced0374b867db3c01b910275fda6b76548d72f47"
+     ],
+     "date": "2022-06-07T06:27:38+02:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "fix: backport respect server.headers in static middlewares (#8481)",
+     "paths": []
+    },
+    {
+     "sha": "ced0374b867db3c01b910275fda6b76548d72f47",
+     "parents": [
+      "9fdd0a3ae8caaf8a3633b9e2cc81a350ed5cef63"
+     ],
+     "date": "2022-06-06T19:14:41+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: v2.9.10",
+     "paths": []
+    },
+    {
+     "sha": "9fdd0a3ae8caaf8a3633b9e2cc81a350ed5cef63",
+     "parents": [
+      "9fbc1a901dae8389675671bd8e08ae440166c911"
+     ],
+     "date": "2022-06-06T18:57:35+02:00",
+     "author": {
+      "login": null,
+      "name": "Matthew Phillips",
+      "type": "User"
+     },
+     "message": "feat: backport treat Astro file scripts as TS (#8151)",
+     "paths": []
+    },
+    {
+     "sha": "9fbc1a901dae8389675671bd8e08ae440166c911",
+     "parents": [
+      "dfe4307b7677ad0a8e3e7d9a615428dc18908926"
+     ],
+     "date": "2022-06-06T18:49:14+02:00",
+     "author": {
+      "login": null,
+      "name": "Matthew Phillips",
+      "type": "User"
+     },
+     "message": "fix: backport remove empty chunk css imports when using esnext (#8345)",
+     "paths": []
+    },
+    {
+     "sha": "dfe4307b7677ad0a8e3e7d9a615428dc18908926",
+     "parents": [
+      "8d7bac416003cc0268a269cba6630162b1ac7412"
+     ],
+     "date": "2022-06-06T18:19:32+02:00",
+     "author": {
+      "login": null,
+      "name": "Matt Nathan",
+      "type": "User"
+     },
+     "message": "fix: EPERM error on Windows when processing dependencies (#8235)",
+     "paths": []
+    },
+    {
+     "sha": "8d7bac416003cc0268a269cba6630162b1ac7412",
+     "parents": [
+      "7b972bc6837106dec86f031ff4e3814b73607f5e"
+     ],
+     "date": "2022-06-05T08:58:04+02:00",
+     "author": {
+      "login": null,
+      "name": "\u7fe0 / green",
+      "type": "User"
+     },
+     "message": "fix(css): remove `?used` hack (fixes #6421, #8245) (#8278) (#8471)",
+     "paths": []
+    },
+    {
+     "sha": "7b972bc6837106dec86f031ff4e3814b73607f5e",
+     "parents": [
+      "4bd15314d376a7a4ae64b03090264739ff8c90ac"
+     ],
+     "date": "2022-06-02T08:45:23+02:00",
+     "author": {
+      "login": null,
+      "name": "Ben McCann",
+      "type": "User"
+     },
+     "message": "feat: new hook `configurePreviewServer` (#7658) (#8437)",
+     "paths": []
+    },
+    {
+     "sha": "4bd15314d376a7a4ae64b03090264739ff8c90ac",
+     "parents": [
+      "1c2aef013eb01cad6cb24d9bd56d5c0618004d24"
+     ],
+     "date": "2022-05-11T17:31:15+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "chore(lint): sort for imports (#8113)",
+     "paths": []
+    },
+    {
+     "sha": "1c2aef013eb01cad6cb24d9bd56d5c0618004d24",
+     "parents": [
+      "6dcdd104194b5fa9f3b0212db03e6a208bbe9534"
+     ],
+     "date": "2022-05-11T11:10:36+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: create-vite@2.9.4",
+     "paths": []
+    },
+    {
+     "sha": "6dcdd104194b5fa9f3b0212db03e6a208bbe9534",
+     "parents": [
+      "5af8e76c5d2b70ad1ac32f15f47769c98b6fef90"
+     ],
+     "date": "2022-05-11T11:10:04+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: plugin-vue@2.3.3",
+     "paths": []
+    },
+    {
+     "sha": "5af8e76c5d2b70ad1ac32f15f47769c98b6fef90",
+     "parents": [
+      "a24b5e3aa58c2ac3e43a78f6173d8a42e1437eee"
+     ],
+     "date": "2022-05-11T11:08:17+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: v2.9.9",
+     "paths": []
+    },
+    {
+     "sha": "a24b5e3aa58c2ac3e43a78f6173d8a42e1437eee",
+     "parents": [
+      "e5556ab6058710ed7ea12b3dd8ba86a7a036f60a"
+     ],
+     "date": "2022-05-11T10:29:05+02:00",
+     "author": {
+      "login": null,
+      "name": "\u7fe0 / green",
+      "type": "User"
+     },
+     "message": "fix: add direct query to html-proxy css (fixes #8091) (#8094)",
+     "paths": []
+    },
+    {
+     "sha": "e5556ab6058710ed7ea12b3dd8ba86a7a036f60a",
+     "parents": [
+      "992aee2313abd3faf1750559a1c57dedc9de09f9"
+     ],
+     "date": "2022-05-11T10:28:15+02:00",
+     "author": {
+      "login": null,
+      "name": "\u7fe0 / green",
+      "type": "User"
+     },
+     "message": "perf(lib): reduce backtrack when injecting esbuild helpers (#8110)",
+     "paths": []
+    },
+    {
+     "sha": "992aee2313abd3faf1750559a1c57dedc9de09f9",
+     "parents": [
+      "84496f8ac39476a28adba2fdceb182aa81a39129"
+     ],
+     "date": "2022-05-11T10:17:07+02:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "fix: image-set with base64 images (fix #8028) (#8035)",
+     "paths": []
+    },
+    {
+     "sha": "84496f8ac39476a28adba2fdceb182aa81a39129",
+     "parents": [
+      "22fa8823784f48a8a762798a64c50df383f8cfb5"
+     ],
+     "date": "2022-05-11T10:15:17+02:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "fix: graceful rename in windows (#8036)",
+     "paths": []
+    },
+    {
+     "sha": "22fa8823784f48a8a762798a64c50df383f8cfb5",
+     "parents": [
+      "443acf9851b42b55788410bebb22caea24f047e1"
+     ],
+     "date": "2022-05-11T10:13:04+02:00",
+     "author": {
+      "login": null,
+      "name": "Matthew Phillips",
+      "type": "User"
+     },
+     "message": "fix: invalidate ssrError when HMR update occurs (#8052)",
+     "paths": []
+    },
+    {
+     "sha": "443acf9851b42b55788410bebb22caea24f047e1",
+     "parents": [
+      "fbbdef7a4aaea4c8abf2ce3bcf36a0a778d03e4d"
+     ],
+     "date": "2022-05-11T10:12:27+02:00",
+     "author": {
+      "login": null,
+      "name": "Enzo Innocenzi",
+      "type": "User"
+     },
+     "message": "fix(plugin-vue): allow overwriting template.transformAssetUrls.includeAbsolute (fix #4836) (#6779)",
+     "paths": []
+    },
+    {
+     "sha": "fbbdef7a4aaea4c8abf2ce3bcf36a0a778d03e4d",
+     "parents": [
+      "b6fc3cdccfb3ed0d891d3c998f7db462bd814fd4"
+     ],
+     "date": "2022-05-08T13:14:16+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "chore: enable ci for v1 and v2 branch",
+     "paths": []
+    },
+    {
+     "sha": "b6fc3cdccfb3ed0d891d3c998f7db462bd814fd4",
+     "parents": [
+      "b0e9234251b723a3cfe37d9187dfd71c1a654e77"
+     ],
+     "date": "2022-05-08T12:39:34+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "fix: use `strip-literal` to strip string lterals (#8054)",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "b0e9234251b723a3cfe37d9187dfd71c1a654e77",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "v2.7",
+   "url": "https://github.com/vitejs/vite/tree/v2.7",
+   "ahead_by": 14,
+   "paths": [
+    "package.json",
+    "packages/vite/CHANGELOG.md",
+    "packages/vite/package.json",
+    "packages/vite/src/node/__tests__/config.spec.ts",
+    "packages/vite/src/node/config.ts",
+    "packages/vite/src/node/plugins/importAnalysis.ts",
+    "packages/vite/src/node/plugins/index.ts",
+    "packages/vite/src/node/plugins/ssrRequireHook.ts",
+    "packages/vite/src/node/server/index.ts",
+    "packages/vite/src/node/ssr/__tests__/ssrTransform.spec.ts",
+    "packages/vite/src/node/ssr/ssrModuleLoader.ts",
+    "packages/vite/src/node/ssr/ssrTransform.ts",
+    "pnpm-lock.yaml",
+    "scripts/verifyCommit.ts"
+   ],
+   "commits": [
+    {
+     "sha": "e9620af4fb7437d626fe8836f8858b02994ca18b",
+     "parents": [
+      "efcde73e9f9813b637c19754c413d09ac6e7cb3f"
+     ],
+     "date": "2022-01-18T22:44:34+01:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: v2.7.13",
+     "paths": []
+    },
+    {
+     "sha": "efcde73e9f9813b637c19754c413d09ac6e7cb3f",
+     "parents": [
+      "589a45699f93e34318600eac4f502a7955dcacaa"
+     ],
+     "date": "2022-01-18T22:21:03+01:00",
+     "author": {
+      "login": null,
+      "name": "Jeff Yang",
+      "type": "User"
+     },
+     "message": "workflow: switch to simple-git-hooks (#6219)",
+     "paths": []
+    },
+    {
+     "sha": "589a45699f93e34318600eac4f502a7955dcacaa",
+     "parents": [
+      "ed33f2ac16c5e1b13a43764c80da3e308007c095"
+     ],
+     "date": "2022-01-18T21:26:43+01:00",
+     "author": {
+      "login": null,
+      "name": "fishDog",
+      "type": "User"
+     },
+     "message": "fix(ssr): should correctly transfrom identifier in ssr (#6548)",
+     "paths": []
+    },
+    {
+     "sha": "ed33f2ac16c5e1b13a43764c80da3e308007c095",
+     "parents": [
+      "f014ca42621bc4c14764dfa8a91290e5feb34966"
+     ],
+     "date": "2022-01-18T21:26:10+01:00",
+     "author": {
+      "login": null,
+      "name": "Artem Khodyush",
+      "type": "User"
+     },
+     "message": "fix(ssr): fix resolution for nested ssr externals (#6080) (#6470)",
+     "paths": []
+    },
+    {
+     "sha": "f014ca42621bc4c14764dfa8a91290e5feb34966",
+     "parents": [
+      "8863fa2cc455641c297ff6742b9b757959b7a811"
+     ],
+     "date": "2022-01-14T03:49:12+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "release: v2.7.12",
+     "paths": []
+    },
+    {
+     "sha": "8863fa2cc455641c297ff6742b9b757959b7a811",
+     "parents": [
+      "23ec29d7ce56e79213f42ceb9313e49002a2664a"
+     ],
+     "date": "2022-01-14T03:33:56+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "fix(config): merge array correctly (#6499)",
+     "paths": []
+    },
+    {
+     "sha": "23ec29d7ce56e79213f42ceb9313e49002a2664a",
+     "parents": [
+      "94e08ac6045d1c262342ad7743e6bc2f9579ab71"
+     ],
+     "date": "2022-01-14T03:29:17+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "fix: improve alias merging (#6497)",
+     "paths": []
+    },
+    {
+     "sha": "94e08ac6045d1c262342ad7743e6bc2f9579ab71",
+     "parents": [
+      "631bf450065a1b5b1d1792a283a9e107b2ca08b2"
+     ],
+     "date": "2022-01-13T18:34:45+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "release: v2.7.11",
+     "paths": []
+    },
+    {
+     "sha": "631bf450065a1b5b1d1792a283a9e107b2ca08b2",
+     "parents": [
+      "dd4c111458f628a1e356e5e04b9c8e46d559ce1d"
+     ],
+     "date": "2022-01-13T18:30:46+08:00",
+     "author": {
+      "login": null,
+      "name": "Ben McCann",
+      "type": "User"
+     },
+     "message": "fix: improve array config merging (#6344)",
+     "paths": []
+    },
+    {
+     "sha": "dd4c111458f628a1e356e5e04b9c8e46d559ce1d",
+     "parents": [
+      "afde73c824bd63470967e5363f68fe9b27db32cf"
+     ],
+     "date": "2022-01-13T18:19:37+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "fix(ssr): handle nameless descture in function args (#6489)",
+     "paths": []
+    },
+    {
+     "sha": "afde73c824bd63470967e5363f68fe9b27db32cf",
+     "parents": [
+      "c338501bcdbf38f5fcf4a15bbac44c4c1d827ca8"
+     ],
+     "date": "2021-12-30T15:32:46+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "release: v2.7.10",
+     "paths": []
+    },
+    {
+     "sha": "c338501bcdbf38f5fcf4a15bbac44c4c1d827ca8",
+     "parents": [
+      "6231f9f871b43859022768de8a30d1fac4df2bc3"
+     ],
+     "date": "2021-12-30T15:23:24+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "feat: option to disable pre-transform (#6309)",
+     "paths": []
+    },
+    {
+     "sha": "6231f9f871b43859022768de8a30d1fac4df2bc3",
+     "parents": [
+      "9ccad0ea2a16d67d49823447b72a0ddced6da699"
+     ],
+     "date": "2021-12-30T15:23:16+08:00",
+     "author": {
+      "login": null,
+      "name": "Bri",
+      "type": "User"
+     },
+     "message": "fix: use `hires: true` for SSR require hook source map (#6310)",
+     "paths": []
+    },
+    {
+     "sha": "9ccad0ea2a16d67d49823447b72a0ddced6da699",
+     "parents": [
+      "7e3e84e1b733f4cb0cba3bd69f28a5671b52261c"
+     ],
+     "date": "2021-12-30T00:28:18+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "fix(ssr): move `vite:ssr-require-hook` after user plugins (#6306)",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "7e3e84e1b733f4cb0cba3bd69f28a5671b52261c",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "v3",
+   "url": "https://github.com/vitejs/vite/tree/v3",
+   "ahead_by": 26,
+   "paths": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/publish.yml",
+    ".tool-versions",
+    "docs/.vitepress/config.ts",
+    "docs/.vitepress/theme/components/OldDocument.vue",
+    "docs/.vitepress/theme/index.ts",
+    "package.json",
+    "packages/vite/CHANGELOG.md",
+    "packages/vite/LICENSE.md",
+    "packages/vite/index.cjs",
+    "packages/vite/package.json",
+    "packages/vite/src/client/overlay.ts",
+    "packages/vite/src/node/__tests__/config.spec.ts",
+    "packages/vite/src/node/__tests__/plugins/esbuild.spec.ts",
+    "packages/vite/src/node/__tests__/plugins/importGlob/__snapshots__/fixture.test.ts.snap",
+    "packages/vite/src/node/__tests__/plugins/importGlob/fixture.test.ts",
+    "packages/vite/src/node/build.ts",
+    "packages/vite/src/node/config.ts",
+    "packages/vite/src/node/optimizer/index.ts",
+    "packages/vite/src/node/optimizer/scan.ts",
+    "packages/vite/src/node/plugins/asset.ts",
+    "packages/vite/src/node/plugins/css.ts",
+    "packages/vite/src/node/plugins/define.ts",
+    "packages/vite/src/node/plugins/esbuild.ts",
+    "packages/vite/src/node/plugins/html.ts",
+    "packages/vite/src/node/plugins/importAnalysis.ts",
+    "packages/vite/src/node/plugins/importMetaGlob.ts",
+    "packages/vite/src/node/plugins/resolve.ts",
+    "packages/vite/src/node/plugins/worker.ts",
+    "packages/vite/src/node/server/index.ts",
+    "packages/vite/src/node/server/middlewares/htmlFallback.ts",
+    "packages/vite/src/node/server/middlewares/static.ts",
+    "packages/vite/src/node/server/middlewares/transform.ts",
+    "packages/vite/src/node/ssr/ssrModuleLoader.ts",
+    "packages/vite/src/node/utils.ts",
+    "playground/assets-sanitize/.env",
+    "playground/assets-sanitize/__tests__/assets-sanitize.spec.ts",
+    "playground/assets-sanitize/index.html",
+    "playground/define/__tests__/define.spec.ts",
+    "playground/define/commonjs-dep/index.js",
+    "playground/define/index.html",
+    "playground/fs-serve/__tests__/deny/fs-serve-deny.spec.ts",
+    "playground/fs-serve/__tests__/deny/vite.config.js",
+    "playground/fs-serve/__tests__/fs-serve.spec.ts",
+    "playground/fs-serve/package.json",
+    "playground/fs-serve/root/src/deny/.deny",
+    "playground/fs-serve/root/src/deny/deny.txt",
+    "playground/fs-serve/root/src/index.html",
+    "playground/fs-serve/root/vite.config-deny.js",
+    "pnpm-lock.yaml",
+    "scripts/publishCI.ts",
+    "scripts/release.ts",
+    "scripts/releaseUtils.ts"
+   ],
+   "commits": [
+    {
+     "sha": "0114c871a0b3f946267f878f166fded7e430e68a",
+     "parents": [
+      "c7bc8e701a946209d001d1a2734288cba64ebff7"
+     ],
+     "date": "2024-11-29T13:11:44+09:00",
+     "author": {
+      "login": null,
+      "name": "\u7fe0 / green",
+      "type": "User"
+     },
+     "message": "docs: v3 show old document warning (#18805) (#18830)",
+     "paths": []
+    },
+    {
+     "sha": "c7bc8e701a946209d001d1a2734288cba64ebff7",
+     "parents": [
+      "45b8644543f1adfb9c02bf88461278d9f7119642"
+     ],
+     "date": "2024-09-27T12:57:33+09:00",
+     "author": {
+      "login": null,
+      "name": "Evan You",
+      "type": "User"
+     },
+     "message": "docs: use search-only key",
+     "paths": []
+    },
+    {
+     "sha": "45b8644543f1adfb9c02bf88461278d9f7119642",
+     "parents": [
+      "5d1d81ec839bb7070c2b4c78ed2f42bb65ca88b4"
+     ],
+     "date": "2024-09-17T16:32:23+09:00",
+     "author": {
+      "login": null,
+      "name": "sapphi-red",
+      "type": "User"
+     },
+     "message": "release: v3.2.11",
+     "paths": []
+    },
+    {
+     "sha": "5d1d81ec839bb7070c2b4c78ed2f42bb65ca88b4",
+     "parents": [
+      "7d78ae7b535285f915b650d91f8ee61557cd704f"
+     ],
+     "date": "2024-09-17T09:17:14+02:00",
+     "author": {
+      "login": null,
+      "name": "sapphi-red",
+      "type": "User"
+     },
+     "message": "fix(importAnalysis): backport #13712, strip url base before passing as safeModulePaths",
+     "paths": []
+    },
+    {
+     "sha": "7d78ae7b535285f915b650d91f8ee61557cd704f",
+     "parents": [
+      "3192244ce0bd02839dd54b4935e89aa012a85d35"
+     ],
+     "date": "2024-09-17T09:17:14+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "test: avoid joinUrlSegments, align with prev test",
+     "paths": []
+    },
+    {
+     "sha": "3192244ce0bd02839dd54b4935e89aa012a85d35",
+     "parents": [
+      "2ddd8541ec3b2d2e5b698749e0f2362ef28056bd"
+     ],
+     "date": "2024-09-17T09:17:14+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "chore: update to pnpm/action-setup v4",
+     "paths": []
+    },
+    {
+     "sha": "2ddd8541ec3b2d2e5b698749e0f2362ef28056bd",
+     "parents": [
+      "a6da45082b6e73ddfdcdcc06bb5414f976a388d6"
+     ],
+     "date": "2024-09-17T09:17:14+02:00",
+     "author": {
+      "login": null,
+      "name": "jackfromeast",
+      "type": "User"
+     },
+     "message": "fix: backport #18115, DOM Clobbering in",
+     "paths": []
+    },
+    {
+     "sha": "a6da45082b6e73ddfdcdcc06bb5414f976a388d6",
+     "parents": [
+      "1a8728f8dfff9d62ebcd67d65ef1cc4b82042de4"
+     ],
+     "date": "2024-09-17T09:17:14+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "fix: backport #18112, fs raw query",
+     "paths": []
+    },
+    {
+     "sha": "1a8728f8dfff9d62ebcd67d65ef1cc4b82042de4",
+     "parents": [
+      "78467746c39424a88b131036e63f0d6c25f056e9"
+     ],
+     "date": "2024-03-24T23:56:02+09:00",
+     "author": {
+      "login": null,
+      "name": "sapphi-red",
+      "type": "User"
+     },
+     "message": "release: v3.2.10",
+     "paths": []
+    },
+    {
+     "sha": "78467746c39424a88b131036e63f0d6c25f056e9",
+     "parents": [
+      "5910f13ee2b6eac1d458f65d721c08ca600b18ab"
+     ],
+     "date": "2024-03-24T23:55:41+09:00",
+     "author": {
+      "login": null,
+      "name": "sapphi-red",
+      "type": "User"
+     },
+     "message": "chore: fix publish",
+     "paths": []
+    },
+    {
+     "sha": "5910f13ee2b6eac1d458f65d721c08ca600b18ab",
+     "parents": [
+      "eda4df3b0f71f00740b77371ebbea0acfb6066a7"
+     ],
+     "date": "2024-03-24T23:53:09+09:00",
+     "author": {
+      "login": null,
+      "name": "sapphi-red",
+      "type": "User"
+     },
+     "message": "release: v3.2.9",
+     "paths": []
+    },
+    {
+     "sha": "eda4df3b0f71f00740b77371ebbea0acfb6066a7",
+     "parents": [
+      "89c7c645f09d16a38f146ef4a1528f218e844d67"
+     ],
+     "date": "2024-03-24T23:41:50+09:00",
+     "author": {
+      "login": null,
+      "name": "\u7fe0 / green",
+      "type": "User"
+     },
+     "message": "chore: use @vitejs/release-scripts in v3 (#16255)",
+     "paths": []
+    },
+    {
+     "sha": "89c7c645f09d16a38f146ef4a1528f218e844d67",
+     "parents": [
+      "8352b7546369b6ec958fe0b828e86eaca4e5cf88"
+     ],
+     "date": "2024-03-24T23:41:19+09:00",
+     "author": {
+      "login": null,
+      "name": "\u7fe0 / green",
+      "type": "User"
+     },
+     "message": "fix: port #16250 to v3 (#16253)",
+     "paths": []
+    },
+    {
+     "sha": "8352b7546369b6ec958fe0b828e86eaca4e5cf88",
+     "parents": [
+      "99080ca3e6c2dcdc3c2d67bb2d143c59e0a329f2"
+     ],
+     "date": "2024-01-19T15:04:46+01:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "release: v3.2.8",
+     "paths": []
+    },
+    {
+     "sha": "99080ca3e6c2dcdc3c2d67bb2d143c59e0a329f2",
+     "parents": [
+      "494f36b6678d135b376a104ca0309dc75af4e2f2"
+     ],
+     "date": "2024-01-19T14:31:10+01:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "fix: port #15653 to v3 (#15655)",
+     "paths": []
+    },
+    {
+     "sha": "494f36b6678d135b376a104ca0309dc75af4e2f2",
+     "parents": [
+      "0574f80751aa5fb383930049a8c370e90db9c4c7"
+     ],
+     "date": "2023-05-26T13:05:22+02:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "release: v3.2.7",
+     "paths": []
+    },
+    {
+     "sha": "0574f80751aa5fb383930049a8c370e90db9c4c7",
+     "parents": [
+      "f4947603acf6e817d2618e9f0ebd0f120a2071bb"
+     ],
+     "date": "2023-05-26T12:58:38+02:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "fix: port #13348 to v3, fs.deny with leading double slash (#13349)",
+     "paths": []
+    },
+    {
+     "sha": "f4947603acf6e817d2618e9f0ebd0f120a2071bb",
+     "parents": [
+      "b48ac2a61891c3135639546708d65e5348c566fe"
+     ],
+     "date": "2023-04-18T11:33:22+02:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "release: v3.2.6",
+     "paths": []
+    },
+    {
+     "sha": "b48ac2a61891c3135639546708d65e5348c566fe",
+     "parents": [
+      "77ee19b7cc3cc40605ee85e4a60abf26d1f7b92a"
+     ],
+     "date": "2023-04-18T11:32:25+02:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "fix: escape msg in render restricted error html, backport (#12889) (#12892)",
+     "paths": []
+    },
+    {
+     "sha": "77ee19b7cc3cc40605ee85e4a60abf26d1f7b92a",
+     "parents": [
+      "eba9b423ff92c01e52b5e73a69eeded3b608293d"
+     ],
+     "date": "2022-12-05T09:38:32+01:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "release: v3.2.5",
+     "paths": []
+    },
+    {
+     "sha": "eba9b423ff92c01e52b5e73a69eeded3b608293d",
+     "parents": [
+      "c93a5269fb1dab4f9b72e1d6c40e406e5b6aeafd"
+     ],
+     "date": "2022-12-05T09:33:07+01:00",
+     "author": {
+      "login": null,
+      "name": "Bjorn Lu",
+      "type": "User"
+     },
+     "message": "chore: cherry pick more v4 bug fixes to v3 (#11189)",
+     "paths": []
+    },
+    {
+     "sha": "c93a5269fb1dab4f9b72e1d6c40e406e5b6aeafd",
+     "parents": [
+      "bc3b5a94499e99885eca5161d97a2eb2666221e0"
+     ],
+     "date": "2022-11-30T07:00:14+01:00",
+     "author": {
+      "login": null,
+      "name": "Bjorn Lu",
+      "type": "User"
+     },
+     "message": "chore: cherry pick v4 bug fix to v3 (#11110)",
+     "paths": []
+    },
+    {
+     "sha": "bc3b5a94499e99885eca5161d97a2eb2666221e0",
+     "parents": [
+      "970538c9ceaa6e01bb1f74d7de76a6b9246365d9"
+     ],
+     "date": "2022-11-17T13:00:50+01:00",
+     "author": {
+      "login": null,
+      "name": "Leon Heess",
+      "type": "User"
+     },
+     "message": "fix: relocated logger to respect config. (#10787) (#10967)",
+     "paths": []
+    },
+    {
+     "sha": "970538c9ceaa6e01bb1f74d7de76a6b9246365d9",
+     "parents": [
+      "7f59dcfae84905f24282329aa10988548c9b91d8"
+     ],
+     "date": "2022-11-15T14:52:02+01:00",
+     "author": {
+      "login": null,
+      "name": "patak",
+      "type": "User"
+     },
+     "message": "release: v3.2.4",
+     "paths": []
+    },
+    {
+     "sha": "7f59dcfae84905f24282329aa10988548c9b91d8",
+     "parents": [
+      "3ba45b9a19df434b2195e4d5574f80c7426a3ba1"
+     ],
+     "date": "2022-11-15T08:38:55+01:00",
+     "author": {
+      "login": null,
+      "name": "Bjorn Lu",
+      "type": "User"
+     },
+     "message": "fix(ssr): skip optional peer dep resolve (v3) (#10593) (#10931)",
+     "paths": []
+    },
+    {
+     "sha": "3ba45b9a19df434b2195e4d5574f80c7426a3ba1",
+     "parents": [
+      "d9f6dc0ecfc0f6a1c394c8645f474cb32a9e447a"
+     ],
+     "date": "2022-11-09T10:36:04+01:00",
+     "author": {
+      "login": null,
+      "name": "Bjorn Lu",
+      "type": "User"
+     },
+     "message": "fix: prevent cache on optional package resolve (v3) (#10812) (#10845)",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "d9f6dc0ecfc0f6a1c394c8645f474cb32a9e447a",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "v3.0",
+   "url": "https://github.com/vitejs/vite/tree/v3.0",
+   "ahead_by": 0,
+   "paths": [],
+   "commits": [],
+   "merge_base": {
+    "sha": "518bc6ce99aa89e1d4b1da9ffbe7c5a07ca8d799",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "v3.1",
+   "url": "https://github.com/vitejs/vite/tree/v3.1",
+   "ahead_by": 19,
+   "paths": [
+    ".github/workflows/ci.yml",
+    "packages/plugin-vue/CHANGELOG.md",
+    "packages/plugin-vue/package.json",
+    "packages/plugin-vue/src/main.ts",
+    "packages/vite/CHANGELOG.md",
+    "packages/vite/package.json",
+    "packages/vite/src/node/config.ts",
+    "packages/vite/src/node/plugins/css.ts",
+    "packages/vite/src/node/plugins/esbuild.ts",
+    "packages/vite/src/node/plugins/importAnalysis.ts",
+    "packages/vite/src/node/plugins/resolve.ts",
+    "packages/vite/src/node/server/hmr.ts",
+    "packages/vite/src/node/ssr/__tests__/ssrTransform.spec.ts",
+    "packages/vite/src/node/ssr/ssrTransform.ts",
+    "playground/cli-module/package.json",
+    "playground/cli-module/vite.config.js",
+    "playground/config/__tests__/load.spec.ts",
+    "playground/config/__tests__/serve.ts",
+    "playground/config/packages/entry/package.json",
+    "playground/config/packages/entry/vite.config.ts",
+    "playground/config/packages/siblings/foo.ts",
+    "playground/config/packages/siblings/package.json",
+    "playground/ssr-resolve/__tests__/ssr-resolve.spec.ts",
+    "playground/ssr-resolve/entries/dir/index.js",
+    "playground/ssr-resolve/entries/file.js",
+    "playground/ssr-resolve/entries/package.json",
+    "playground/ssr-resolve/main.js",
+    "playground/ssr-resolve/package.json",
+    "playground/ssr-resolve/pkg-exports/entry.js",
+    "playground/ssr-resolve/pkg-exports/index.js",
+    "playground/ssr-resolve/pkg-exports/package.json",
+    "playground/ssr-resolve/vite.config.js",
+    "playground/vue-lib/__tests__/vue-lib.spec.ts",
+    "playground/vue-lib/package.json",
+    "playground/vue-lib/src-lib-css/index.css",
+    "playground/vue-lib/src-lib-css/index.ts",
+    "playground/vue-lib/vite.config.lib-css.ts",
+    "playground/vue/tsconfig.json",
+    "pnpm-lock.yaml"
+   ],
+   "commits": [
+    {
+     "sha": "c9da59bda6e556f8d1c10afa8c5cc8d95d27ea12",
+     "parents": [
+      "8fbae69823b817d5cf4ae4a79b94dabdff6466fc"
+     ],
+     "date": "2022-10-13T10:50:04+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: v3.1.8",
+     "paths": []
+    },
+    {
+     "sha": "8fbae69823b817d5cf4ae4a79b94dabdff6466fc",
+     "parents": [
+      "94abccc20f672f57a672d2f2aea85bff080fe160"
+     ],
+     "date": "2022-10-13T10:18:13+02:00",
+     "author": {
+      "login": null,
+      "name": "Bjorn Lu",
+      "type": "User"
+     },
+     "message": "fix(config): support builtin modules and deno (#10457)",
+     "paths": []
+    },
+    {
+     "sha": "94abccc20f672f57a672d2f2aea85bff080fe160",
+     "parents": [
+      "a5143e9f0bd4bf832100c489ed244d7e03969d58"
+     ],
+     "date": "2022-10-10T09:51:35+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: v3.1.7",
+     "paths": []
+    },
+    {
+     "sha": "a5143e9f0bd4bf832100c489ed244d7e03969d58",
+     "parents": [
+      "d2af6d92fb45f1f21ac148ccbee29a033c4d1e73"
+     ],
+     "date": "2022-10-10T09:34:30+02:00",
+     "author": {
+      "login": null,
+      "name": "Bjorn Lu",
+      "type": "User"
+     },
+     "message": "fix(ssr): track var as function scope (#10397)",
+     "paths": []
+    },
+    {
+     "sha": "d2af6d92fb45f1f21ac148ccbee29a033c4d1e73",
+     "parents": [
+      "f756e84623953205c5007081dbd1da5832df3063"
+     ],
+     "date": "2022-10-06T15:50:54+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: v3.1.6",
+     "paths": []
+    },
+    {
+     "sha": "f756e84623953205c5007081dbd1da5832df3063",
+     "parents": [
+      "31f8ea6427dc541a8c207aed43c417b8408ae8a0"
+     ],
+     "date": "2022-10-06T15:30:27+02:00",
+     "author": {
+      "login": null,
+      "name": "Bjorn Lu",
+      "type": "User"
+     },
+     "message": "fix(config): don't resolve by module field (#10347) (#10360)",
+     "paths": []
+    },
+    {
+     "sha": "31f8ea6427dc541a8c207aed43c417b8408ae8a0",
+     "parents": [
+      "f20d2854be0f00fe1df196df0eb01a8e30f6b43e"
+     ],
+     "date": "2022-10-06T17:32:34+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "release: v3.1.5",
+     "paths": []
+    },
+    {
+     "sha": "f20d2854be0f00fe1df196df0eb01a8e30f6b43e",
+     "parents": [
+      "01aa22490fb9bd4ff9f56e835adb7f34a37dc16a"
+     ],
+     "date": "2022-10-06T16:24:19+08:00",
+     "author": {
+      "login": null,
+      "name": "Remus Mate",
+      "type": "User"
+     },
+     "message": "fix(build): fix resolution algorithm when `build.ssr` is true (#9989)",
+     "paths": []
+    },
+    {
+     "sha": "01aa22490fb9bd4ff9f56e835adb7f34a37dc16a",
+     "parents": [
+      "5b4ef7ebafdf9eed06d45c460867d7bae4816c84"
+     ],
+     "date": "2022-10-06T16:22:43+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "chore: fix build error",
+     "paths": []
+    },
+    {
+     "sha": "5b4ef7ebafdf9eed06d45c460867d7bae4816c84",
+     "parents": [
+      "14ebbc6a87a857d0885398f3b252d1c70a3227b3"
+     ],
+     "date": "2022-10-06T16:19:44+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "chore: ci check for minor branches",
+     "paths": []
+    },
+    {
+     "sha": "14ebbc6a87a857d0885398f3b252d1c70a3227b3",
+     "parents": [
+      "e2cdb2827f9a9cb5a192c41f686e66d09d638797"
+     ],
+     "date": "2022-10-06T16:07:18+08:00",
+     "author": {
+      "login": null,
+      "name": "Bjorn Lu",
+      "type": "User"
+     },
+     "message": "fix(hmr): handle virtual module update (#10324)",
+     "paths": []
+    },
+    {
+     "sha": "e2cdb2827f9a9cb5a192c41f686e66d09d638797",
+     "parents": [
+      "effb7c3fd5ecc2cc93928928adfc6f69bb1cd32e"
+     ],
+     "date": "2022-10-06T16:06:58+08:00",
+     "author": {
+      "login": null,
+      "name": "Dunqing",
+      "type": "User"
+     },
+     "message": "fix(css):  missing css in lib mode (#10185)",
+     "paths": []
+    },
+    {
+     "sha": "effb7c3fd5ecc2cc93928928adfc6f69bb1cd32e",
+     "parents": [
+      "dc140af8a9fb31ca5f2ba124afa8e910a23c1506"
+     ],
+     "date": "2022-10-03T15:04:10+08:00",
+     "author": {
+      "login": null,
+      "name": "Bjorn Lu",
+      "type": "User"
+     },
+     "message": "fix(ssr): correctly track scope (#10300)",
+     "paths": []
+    },
+    {
+     "sha": "dc140af8a9fb31ca5f2ba124afa8e910a23c1506",
+     "parents": [
+      "e42c7cda9353b9d46a489613d03ffe7e8eadd2fe"
+     ],
+     "date": "2022-10-03T15:03:48+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "fix(config): resolve implicit deps as absolute path (#10254)",
+     "paths": []
+    },
+    {
+     "sha": "e42c7cda9353b9d46a489613d03ffe7e8eadd2fe",
+     "parents": [
+      "abf2cfdef807edfbc0011496c82886dedf8196dc"
+     ],
+     "date": "2022-10-02T22:11:18+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "release: plugin-vue@3.1.2",
+     "paths": []
+    },
+    {
+     "sha": "abf2cfdef807edfbc0011496c82886dedf8196dc",
+     "parents": [
+      "d66bf66984132bc412392dff062e341f1876aaac"
+     ],
+     "date": "2022-10-02T22:09:37+08:00",
+     "author": {
+      "login": null,
+      "name": "Bjorn Lu",
+      "type": "User"
+     },
+     "message": "fix(esbuild): transpile with esnext in dev (#10207)",
+     "paths": []
+    },
+    {
+     "sha": "d66bf66984132bc412392dff062e341f1876aaac",
+     "parents": [
+      "0c3d819fd80214c5d9170278fa643a8104540c78"
+     ],
+     "date": "2022-10-02T22:08:13+08:00",
+     "author": {
+      "login": null,
+      "name": "Anthony Fu",
+      "type": "User"
+     },
+     "message": "release: plugin-vue@3.1.1",
+     "paths": []
+    },
+    {
+     "sha": "0c3d819fd80214c5d9170278fa643a8104540c78",
+     "parents": [
+      "4a0f2102e1c0ac291dcfdfdd507630698462daad"
+     ],
+     "date": "2022-09-28T14:16:43+02:00",
+     "author": {
+      "login": null,
+      "name": "patak-dev",
+      "type": "User"
+     },
+     "message": "release: v3.1.4",
+     "paths": []
+    },
+    {
+     "sha": "4a0f2102e1c0ac291dcfdfdd507630698462daad",
+     "parents": [
+      "dfa22ca52de8025c5590b05ecf28ef09b32e3afe"
+     ],
+     "date": "2022-09-23T10:14:23+02:00",
+     "author": {
+      "login": null,
+      "name": "Bjorn Lu",
+      "type": "User"
+     },
+     "message": "fix(esbuild): transpile with esnext in dev (#10215)",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "dfa22ca52de8025c5590b05ecf28ef09b32e3afe",
+    "source": "compare"
+   }
+  }
+ ],
+ "issues": [],
+ "meta": {
+  "source": "git (precision study adapter)",
+  "api_calls": 0,
+  "rate_limit_remaining": null,
+  "degraded": [],
+  "commits_truncated": false,
+  "open_prs_total": 330
+ }
+}

@@ -20,6 +20,8 @@ DEFAULT_IGNORE = [
     "package-lock.json", "yarn.lock", "pnpm-lock.yaml", "poetry.lock", "Cargo.lock", "go.sum",
     "uv.lock", "Gemfile.lock", "composer.lock",
     "dist/", "build/", "node_modules/", "vendor/", "*.min.js", "*.min.css", "*.map",
+    # Accumulation and generated files every change touches; precision study (ADR-020)
+    "CHANGELOG*", ".changeset/", "*.api.md",
     "/observstory/",  # the generated output; leading "/" anchors to the repo root (gitignore style)
 ]
 
@@ -30,6 +32,8 @@ DEFAULT_SIGNALS = {
     "stale_hours": 72,
     "burst_min_commits": 8,
     "burst_window_minutes": 30,
+    # Precision study: area-only pairs were useful in 4 of 39 labelled cases (ADR-019)
+    "overlap_require_shared_file": True,
 }
 
 DEFAULTS = {
@@ -80,7 +84,10 @@ def normalise(user: dict | None) -> dict:
     for key, value in (user.get("signals") or {}).items():
         if key not in DEFAULT_SIGNALS:
             raise ConfigError(f"unknown signal setting {key!r}")
-        if not isinstance(value, (int, float)) or value <= 0:
+        if isinstance(DEFAULT_SIGNALS[key], bool):
+            if not isinstance(value, bool):
+                raise ConfigError(f"signal setting {key!r} must be true or false")
+        elif isinstance(value, bool) or not isinstance(value, (int, float)) or value <= 0:
             raise ConfigError(f"signal setting {key!r} must be a positive number")
         signals[key] = value
     cfg["signals"] = signals

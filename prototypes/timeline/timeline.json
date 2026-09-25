@@ -40,13 +40,13 @@
       },
       {
         "kind": "signal_appeared",
-        "ref": "overlap:src/conversation",
-        "text": "overlap appeared: 2 work items touch src/conversation; 1 file changed in more than one"
+        "ref": "burst:branch:sofia/chat-history",
+        "text": "burst appeared: branch:sofia/chat-history: 12 commits within 20 min (machine-paced stream)"
       },
       {
         "kind": "signal_appeared",
-        "ref": "burst:branch:sofia/chat-history",
-        "text": "burst appeared: branch:sofia/chat-history: 12 commits within 20 min (machine-paced stream)"
+        "ref": "overlap:src/conversation",
+        "text": "overlap appeared: 2 work items change src/conversation in parallel; 1 shared file"
       }
     ]
   },
@@ -107,13 +107,13 @@
       },
       {
         "kind": "signal_resolved",
-        "ref": "burst:pr:43",
-        "text": "burst resolved: pr:43: 12 commits within 20 min (machine-paced stream)"
+        "ref": "overlap:src/conversation",
+        "text": "overlap resolved: 2 work items change src/conversation in parallel; 1 shared file"
       },
       {
         "kind": "signal_resolved",
-        "ref": "overlap:src/conversation",
-        "text": "overlap resolved: 2 work items touch src/conversation; 1 file changed in more than one"
+        "ref": "burst:pr:43",
+        "text": "burst resolved: pr:43: 12 commits within 20 min (machine-paced stream)"
       }
     ]
   }

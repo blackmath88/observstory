@@ -1,0 +1,1110 @@
+{
+ "annotator": "single annotator (the implementing agent); rubric in precision-report.md",
+ "labels": [
+  {
+   "index": 0,
+   "stratum": "A",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-distribution-types",
+   "pair": [
+    "pr:21961",
+    "pr:21973"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same lines in index.rs; both reshape index/URL types"
+  },
+  {
+   "index": 1,
+   "stratum": "A",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-configuration",
+   "pair": [
+    "pr:21962",
+    "pr:21974"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same lines in proxy_url.rs; both change URL validation"
+  },
+  {
+   "index": 2,
+   "stratum": "A",
+   "repo": "withastro/astro",
+   "area": ".changeset",
+   "pair": [
+    "pr:18117",
+    "pr:18119"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "release-bot prerelease config (.changeset/pre.json)"
+  },
+  {
+   "index": 3,
+   "stratum": "A",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-tool",
+   "pair": [
+    "pr:21951",
+    "pr:21962"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same lines in tool.rs; both change tool lock hashing"
+  },
+  {
+   "index": 4,
+   "stratum": "A",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-configuration",
+   "pair": [
+    "pr:21961",
+    "pr:21974"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same lines in proxy_url.rs"
+  },
+  {
+   "index": 5,
+   "stratum": "A",
+   "repo": "astral-sh/uv",
+   "area": "uv.schema.json",
+   "pair": [
+    "pr:21314",
+    "pr:21973"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "uv.schema.json is generated from code"
+  },
+  {
+   "index": 6,
+   "stratum": "A",
+   "repo": "tldraw/tldraw",
+   "area": "packages/tldraw",
+   "pair": [
+    "pr:10071",
+    "pr:10874"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same select-tool states; behaviour restore vs double-click deferral"
+  },
+  {
+   "index": 7,
+   "stratum": "A",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23559",
+    "pr:23568"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "both change how the bundled dev rolldown runtime is served/checked"
+  },
+  {
+   "index": 8,
+   "stratum": "A",
+   "repo": "withastro/astro",
+   "area": "packages/astro",
+   "pair": [
+    "pr:18112",
+    "pr:18117"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "CHANGELOG/package.json version lines touched by the release PR"
+  },
+  {
+   "index": 9,
+   "stratum": "A",
+   "repo": "tldraw/tldraw",
+   "area": "packages/editor",
+   "pair": [
+    "pr:10069",
+    "pr:10864"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same lines in Editor.ts; refactor vs behaviour restore"
+  },
+  {
+   "index": 10,
+   "stratum": "A",
+   "repo": "tldraw/tldraw",
+   "area": "packages/tldraw",
+   "pair": [
+    "pr:10873",
+    "pr:9396"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same lines in useClipboardEvents.ts; both change paste handling"
+  },
+  {
+   "index": 11,
+   "stratum": "A",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-lock",
+   "pair": [
+    "pr:21961",
+    "pr:21973"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same lines in pylock_toml.rs export"
+  },
+  {
+   "index": 12,
+   "stratum": "A",
+   "repo": "withastro/astro",
+   "area": "packages/astro",
+   "pair": [
+    "pr:18119",
+    "pr:18120"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "CHANGELOG/package.json version lines touched by the release PR"
+  },
+  {
+   "index": 13,
+   "stratum": "A",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-tool",
+   "pair": [
+    "pr:21930",
+    "pr:21962"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same lines in tool.rs"
+  },
+  {
+   "index": 14,
+   "stratum": "A",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-distribution-types",
+   "pair": [
+    "pr:21963",
+    "pr:21973"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same lines in index.rs"
+  },
+  {
+   "index": 15,
+   "stratum": "A",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-configuration",
+   "pair": [
+    "pr:21951",
+    "pr:21962"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "crate Cargo.toml deps + lib.rs module list: independent list appends"
+  },
+  {
+   "index": 16,
+   "stratum": "A",
+   "repo": "tldraw/tldraw",
+   "area": "packages/tldraw",
+   "pair": [
+    "pr:10071",
+    "pr:10181"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same resize/crop states; rotation fix vs behaviour restore"
+  },
+  {
+   "index": 17,
+   "stratum": "A",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-lock",
+   "pair": [
+    "pr:21961",
+    "pr:21974"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same lines in pylock_toml.rs"
+  },
+  {
+   "index": 18,
+   "stratum": "A",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:21930",
+    "pr:21952"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same hash-verification test snapshots"
+  },
+  {
+   "index": 19,
+   "stratum": "A",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-lock",
+   "pair": [
+    "pr:21962",
+    "pr:21974"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same lines in pylock_toml.rs"
+  },
+  {
+   "index": 20,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:18881",
+    "pr:21962"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "different features in central lib.rs/settings.rs"
+  },
+  {
+   "index": 21,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "uv.schema.json",
+   "pair": [
+    "pr:21951",
+    "pr:21974"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "generated schema"
+  },
+  {
+   "index": 22,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:21963",
+    "pr:21973"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "concurrent refactors of URL persistence and lock handling in sync.rs/publish.rs"
+  },
+  {
+   "index": 23,
+   "stratum": "B",
+   "repo": "tldraw/tldraw",
+   "area": "packages/tldraw",
+   "pair": [
+    "pr:10866",
+    "pr:10873"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "generated api-report + event-name registry"
+  },
+  {
+   "index": 24,
+   "stratum": "B",
+   "repo": "tldraw/tldraw",
+   "area": "packages/tldraw",
+   "pair": [
+    "pr:10071",
+    "pr:10924"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same resize state machine file"
+  },
+  {
+   "index": 25,
+   "stratum": "B",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23562",
+    "pr:23568"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "both change bundled-dev serving in bundledDev.ts"
+  },
+  {
+   "index": 26,
+   "stratum": "B",
+   "repo": "vitejs/vite",
+   "area": "playground",
+   "pair": [
+    "pr:23562",
+    "pr:23568"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same bundled-mode HMR spec"
+  },
+  {
+   "index": 27,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:21962",
+    "pr:21973"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "as #22"
+  },
+  {
+   "index": 28,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-preview",
+   "pair": [
+    "pr:21314",
+    "pr:21961"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "preview-flag registry list"
+  },
+  {
+   "index": 29,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-static",
+   "pair": [
+    "pr:21314",
+    "pr:21961"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "env-var registry list"
+  },
+  {
+   "index": 30,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:18881",
+    "pr:21314"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "different features in central lib.rs/settings.rs"
+  },
+  {
+   "index": 31,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:21314",
+    "pr:21973"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "independent cases in a large shared test file"
+  },
+  {
+   "index": 32,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:21952",
+    "pr:21973"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "independent cases in large shared test files"
+  },
+  {
+   "index": 33,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-cli",
+   "pair": [
+    "pr:18881",
+    "pr:21977"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "different flags' doc comments in the CLI definition"
+  },
+  {
+   "index": 34,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-configuration",
+   "pair": [
+    "pr:21961",
+    "pr:21973"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "both change proxy_url.rs URL handling"
+  },
+  {
+   "index": 35,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-workspace",
+   "pair": [
+    "pr:21962",
+    "pr:21974"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "both change URL validation in pyproject.rs"
+  },
+  {
+   "index": 36,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-client",
+   "pair": [
+    "pr:21963",
+    "pr:21974"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "client refactor vs URL validation in base_client.rs"
+  },
+  {
+   "index": 37,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "uv.schema.json",
+   "pair": [
+    "pr:21951",
+    "pr:21962"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "generated schema"
+  },
+  {
+   "index": 38,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:21952",
+    "pr:21974"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "independent cases in large shared test files"
+  },
+  {
+   "index": 39,
+   "stratum": "B",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:21962",
+    "pr:21974"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "as #22"
+  },
+  {
+   "index": 40,
+   "stratum": "C",
+   "repo": "tldraw/tldraw",
+   "area": "packages/tldraw",
+   "pair": [
+    "pr:10864",
+    "pr:10924"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "camera test vs resize fix"
+  },
+  {
+   "index": 41,
+   "stratum": "C",
+   "repo": "withastro/astro",
+   "area": "packages/astro",
+   "pair": [
+    "pr:18000",
+    "pr:18121"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "dev renderer loading vs Tailwind spike"
+  },
+  {
+   "index": 42,
+   "stratum": "C",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23536",
+    "pr:23574"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "minify merge vs restart cleanup"
+  },
+  {
+   "index": 43,
+   "stratum": "C",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23556",
+    "pr:23562"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "HTTP/2 preview vs bundled HMR"
+  },
+  {
+   "index": 44,
+   "stratum": "C",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23550",
+    "pr:23568"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "CSS srcset vs rolldown runtime"
+  },
+  {
+   "index": 45,
+   "stratum": "C",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:21304",
+    "pr:21973"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "Eq refactor vs URL persistence"
+  },
+  {
+   "index": 46,
+   "stratum": "C",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:21944",
+    "pr:21962"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "test fixture refactor vs artifact URL verification"
+  },
+  {
+   "index": 47,
+   "stratum": "C",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:21952",
+    "pr:21962"
+   ],
+   "shared_file": false,
+   "label": "U",
+   "rationale": "both about hash verification of packages"
+  },
+  {
+   "index": 48,
+   "stratum": "C",
+   "repo": "tldraw/tldraw",
+   "area": "apps/dotcom",
+   "pair": [
+    "pr:10899",
+    "pr:10923"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "snapshot re-bake vs MCP tool"
+  },
+  {
+   "index": 49,
+   "stratum": "C",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23553",
+    "pr:23561"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "console forwarding vs sourcemaps"
+  },
+  {
+   "index": 50,
+   "stratum": "C",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-auth",
+   "pair": [
+    "pr:21962",
+    "pr:21974"
+   ],
+   "shared_file": false,
+   "label": "U",
+   "rationale": "credential/keyring handling in both"
+  },
+  {
+   "index": 51,
+   "stratum": "C",
+   "repo": "tldraw/tldraw",
+   "area": "apps/dotcom",
+   "pair": [
+    "pr:10885",
+    "pr:10921"
+   ],
+   "shared_file": false,
+   "label": "U",
+   "rationale": "both change dotcom telemetry reporting"
+  },
+  {
+   "index": 52,
+   "stratum": "C",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-python",
+   "pair": [
+    "pr:18881",
+    "pr:21304"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "python list flag vs Eq refactor"
+  },
+  {
+   "index": 53,
+   "stratum": "C",
+   "repo": "withastro/astro",
+   "area": ".changeset",
+   "pair": [
+    "pr:18116",
+    "pr:18120"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "separate changeset files"
+  },
+  {
+   "index": 54,
+   "stratum": "C",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23536",
+    "pr:23568"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "minify merge vs rolldown runtime"
+  },
+  {
+   "index": 55,
+   "stratum": "C",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23484",
+    "pr:23553"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "restart vs console forwarding"
+  },
+  {
+   "index": 56,
+   "stratum": "C",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-types",
+   "pair": [
+    "pr:21930",
+    "pr:21961"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "hash normalisation vs lock export"
+  },
+  {
+   "index": 57,
+   "stratum": "C",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23550",
+    "pr:23556"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "CSS vs HTTP/2 preview"
+  },
+  {
+   "index": 58,
+   "stratum": "C",
+   "repo": "withastro/astro",
+   "area": "packages/astro",
+   "pair": [
+    "pr:18116",
+    "pr:18121"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "SVG check vs spike"
+  },
+  {
+   "index": 59,
+   "stratum": "C",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23533",
+    "pr:23568"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "module graph invalidation vs runtime serving"
+  },
+  {
+   "index": 60,
+   "stratum": "C",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23562",
+    "pr:23576"
+   ],
+   "shared_file": false,
+   "label": "U",
+   "rationale": "both change HMR configuration"
+  },
+  {
+   "index": 61,
+   "stratum": "C",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23484",
+    "pr:23555"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "restart vs SVG asset rewrite"
+  },
+  {
+   "index": 62,
+   "stratum": "C",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23555",
+    "pr:23576"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "SVG assets vs HMR defaults"
+  },
+  {
+   "index": 63,
+   "stratum": "C",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23559",
+    "pr:23576"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "runtime warning vs HMR defaults"
+  },
+  {
+   "index": 64,
+   "stratum": "C",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23561",
+    "pr:23576"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "sourcemaps vs HMR defaults"
+  },
+  {
+   "index": 65,
+   "stratum": "D",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:18881",
+    "direct:Tomasz Kramkowski"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "python list flag vs landed hash-filter tests"
+  },
+  {
+   "index": 66,
+   "stratum": "D",
+   "repo": "withastro/astro",
+   "area": "packages/astro",
+   "pair": [
+    "pr:18119",
+    "direct:Matthew Phillips"
+   ],
+   "shared_file": true,
+   "label": "N",
+   "rationale": "unrelated dependency lines in package.json"
+  },
+  {
+   "index": 67,
+   "stratum": "D",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:21961",
+    "direct:Charlie Marsh"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "landed lockfile change touches the same lock commands"
+  },
+  {
+   "index": 68,
+   "stratum": "D",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23561",
+    "direct:Murugappan M"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "landed sourcemap fix in the same sourcemap.ts"
+  },
+  {
+   "index": 69,
+   "stratum": "D",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23553",
+    "direct:btea"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "console forwarding vs landed refactor"
+  },
+  {
+   "index": 70,
+   "stratum": "D",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23562",
+    "direct:Murugappan M"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "HMR vs landed sourcemap fix"
+  },
+  {
+   "index": 71,
+   "stratum": "D",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-configuration",
+   "pair": [
+    "pr:21963",
+    "direct:Charlie Marsh"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "different config modules"
+  },
+  {
+   "index": 72,
+   "stratum": "D",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23557",
+    "direct:Vijay Misal"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "optimizer vs landed mergeConfig fix"
+  },
+  {
+   "index": 73,
+   "stratum": "D",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-resolver",
+   "pair": [
+    "pr:21961",
+    "direct:Charlie Marsh"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "different resolver files"
+  },
+  {
+   "index": 74,
+   "stratum": "D",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv",
+   "pair": [
+    "pr:21962",
+    "direct:Charlie Marsh"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "as #67"
+  },
+  {
+   "index": 75,
+   "stratum": "D",
+   "repo": "astral-sh/uv",
+   "area": "crates/uv-configuration",
+   "pair": [
+    "pr:21962",
+    "direct:Charlie Marsh"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "different config modules"
+  },
+  {
+   "index": 76,
+   "stratum": "D",
+   "repo": "vitejs/vite",
+   "area": "vitest.config.e2e.ts",
+   "pair": [
+    "pr:23246",
+    "direct:andrew"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same lines of the e2e config; both bundled-dev tests"
+  },
+  {
+   "index": 77,
+   "stratum": "D",
+   "repo": "tldraw/tldraw",
+   "area": "apps/dotcom",
+   "pair": [
+    "pr:10921",
+    "direct:Niall D"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "first-load reports vs landed MCP tool"
+  },
+  {
+   "index": 78,
+   "stratum": "D",
+   "repo": "tldraw/tldraw",
+   "area": "apps/dotcom",
+   "pair": [
+    "pr:10899",
+    "direct:Mime \u010cuvalo"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "snapshot vs landed auth"
+  },
+  {
+   "index": 79,
+   "stratum": "D",
+   "repo": "pydantic/pydantic",
+   "area": "pydantic",
+   "pair": [
+    "pr:13848",
+    "direct:Victorien"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "JSON schema vs landed config mutation"
+  },
+  {
+   "index": 80,
+   "stratum": "D",
+   "repo": "withastro/astro",
+   "area": ".changeset",
+   "pair": [
+    "pr:18071",
+    "direct:Emanuele Stoppa"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "separate changeset files"
+  },
+  {
+   "index": 81,
+   "stratum": "D",
+   "repo": "tldraw/tldraw",
+   "area": "internal/scripts",
+   "pair": [
+    "pr:10720",
+    "direct:Kevin Ingersoll"
+   ],
+   "shared_file": true,
+   "label": "U",
+   "rationale": "same deploy script and package.json"
+  },
+  {
+   "index": 82,
+   "stratum": "D",
+   "repo": "vitejs/vite",
+   "area": "playground",
+   "pair": [
+    "pr:23561",
+    "direct:andrew"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "different specs"
+  },
+  {
+   "index": 83,
+   "stratum": "D",
+   "repo": "tldraw/tldraw",
+   "area": "apps/dotcom",
+   "pair": [
+    "pr:10880",
+    "direct:Kevin Ingersoll"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "legal dialog vs landed docs deploy"
+  },
+  {
+   "index": 84,
+   "stratum": "D",
+   "repo": "vitejs/vite",
+   "area": "packages/vite",
+   "pair": [
+    "pr:23557",
+    "direct:Murugappan M"
+   ],
+   "shared_file": false,
+   "label": "N",
+   "rationale": "optimizer vs landed sourcemap"
+  }
+ ]
+}

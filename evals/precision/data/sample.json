@@ -1,0 +1,4605 @@
+[
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-distribution-types",
+  "pair": [
+   "pr:21961",
+   "pr:21973"
+  ],
+  "shared_files": [
+   "crates/uv-distribution-types/src/index.rs",
+   "crates/uv-distribution-types/src/index_url.rs"
+  ],
+  "same_line_files": [
+   "crates/uv-distribution-types/src/index.rs"
+  ],
+  "items": [
+   {
+    "id": "pr:21961",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 81,
+    "files_in_area": [
+     "crates/uv-distribution-types/Cargo.toml",
+     "crates/uv-distribution-types/src/index.rs",
+     "crates/uv-distribution-types/src/index_url.rs",
+     "crates/uv-distribution-types/src/lib.rs",
+     "crates/uv-distribution-types/src/metadata.rs",
+     "crates/uv-distribution-types/src/requires_dist.rs"
+    ],
+    "subjects": [
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots",
+     "Export packaged locks with uv_build",
+     "Separate lock handling from network clients"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 35,
+    "files_in_area": [
+     "crates/uv-distribution-types/src/index.rs",
+     "crates/uv-distribution-types/src/index_url.rs",
+     "crates/uv-distribution-types/src/installed.rs",
+     "crates/uv-distribution-types/src/requirement.rs"
+    ],
+    "subjects": [
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-configuration",
+  "pair": [
+   "pr:21962",
+   "pr:21974"
+  ],
+  "shared_files": [
+   "crates/uv-configuration/src/proxy_url.rs"
+  ],
+  "same_line_files": [
+   "crates/uv-configuration/src/proxy_url.rs"
+  ],
+  "items": [
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "crates/uv-configuration/Cargo.toml",
+     "crates/uv-configuration/src/authentication.rs",
+     "crates/uv-configuration/src/build_backend.rs",
+     "crates/uv-configuration/src/hash_strategy.rs",
+     "crates/uv-configuration/src/lib.rs",
+     "crates/uv-configuration/src/proxy_url.rs"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "authors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ],
+    "n_files": 37,
+    "files_in_area": [
+     "crates/uv-configuration/src/proxy_url.rs"
+    ],
+    "subjects": [
+     "Align URL validation across CLI and configuration",
+     "Redact query credentials in ambiguous URL errors",
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "withastro/astro",
+  "area": ".changeset",
+  "pair": [
+   "pr:18117",
+   "pr:18119"
+  ],
+  "shared_files": [
+   ".changeset/config.json",
+   ".changeset/pre.json"
+  ],
+  "same_line_files": [
+   ".changeset/config.json",
+   ".changeset/pre.json"
+  ],
+  "items": [
+   {
+    "id": "pr:18117",
+    "url": "https://github.com/withastro/astro/pull/18117",
+    "authors": [
+     "Houston (Bot)",
+     "ematipico"
+    ],
+    "n_files": 54,
+    "files_in_area": [
+     ".changeset/config.json",
+     ".changeset/pre.json",
+     ".changeset/pre/olive-queens-enjoy.md"
+    ],
+    "subjects": [
+     "[ci] release (beta)",
+     "chore: enter prerelease mode"
+    ]
+   },
+   {
+    "id": "pr:18119",
+    "url": "https://github.com/withastro/astro/pull/18119",
+    "authors": [
+     "Emanuele Stoppa",
+     "James Opstad",
+     "ematipico"
+    ],
+    "n_files": 133,
+    "files_in_area": [
+     ".changeset/calm-apes-build.md",
+     ".changeset/config.json",
+     ".changeset/curly-clouds-configure.md",
+     ".changeset/olive-queens-enjoy.md",
+     ".changeset/pre.json",
+     ".changeset/tidy-spiders-build.md"
+    ],
+    "subjects": [
+     "Update Cloudflare plugin",
+     "Update .gitignore files",
+     "Add changeset",
+     "Remove default compatibility date in customiser as it is no longer needed",
+     "Update Cloudflare adapter to support v2 of the Cloudflare plugin and cf"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-tool",
+  "pair": [
+   "pr:21951",
+   "pr:21962"
+  ],
+  "shared_files": [
+   "crates/uv-tool/src/tool.rs"
+  ],
+  "same_line_files": [
+   "crates/uv-tool/src/tool.rs"
+  ],
+  "items": [
+   {
+    "id": "pr:21951",
+    "url": "https://github.com/astral-sh/uv/pull/21951",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 36,
+    "files_in_area": [
+     "crates/uv-tool/Cargo.toml",
+     "crates/uv-tool/src/lib.rs",
+     "crates/uv-tool/src/tool.rs"
+    ],
+    "subjects": [
+     "Simplify build constraint comparison with intersected hashes",
+     "Preserve build hash precedence when reading preview locks",
+     "Update lockfile normalization preview snapshots",
+     "Gate normalized lockfile metadata behind preview",
+     "Add fast paths for requirement normalization"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "crates/uv-tool/src/tool.rs"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-configuration",
+  "pair": [
+   "pr:21961",
+   "pr:21974"
+  ],
+  "shared_files": [
+   "crates/uv-configuration/src/proxy_url.rs"
+  ],
+  "same_line_files": [
+   "crates/uv-configuration/src/proxy_url.rs"
+  ],
+  "items": [
+   {
+    "id": "pr:21961",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 81,
+    "files_in_area": [
+     "crates/uv-configuration/Cargo.toml",
+     "crates/uv-configuration/src/authentication.rs",
+     "crates/uv-configuration/src/build_backend.rs",
+     "crates/uv-configuration/src/hash_strategy.rs",
+     "crates/uv-configuration/src/lib.rs",
+     "crates/uv-configuration/src/proxy_url.rs"
+    ],
+    "subjects": [
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots",
+     "Export packaged locks with uv_build",
+     "Separate lock handling from network clients"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "authors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ],
+    "n_files": 37,
+    "files_in_area": [
+     "crates/uv-configuration/src/proxy_url.rs"
+    ],
+    "subjects": [
+     "Align URL validation across CLI and configuration",
+     "Redact query credentials in ambiguous URL errors",
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "astral-sh/uv",
+  "area": "uv.schema.json",
+  "pair": [
+   "pr:21314",
+   "pr:21973"
+  ],
+  "shared_files": [
+   "uv.schema.json"
+  ],
+  "same_line_files": [
+   "uv.schema.json"
+  ],
+  "items": [
+   {
+    "id": "pr:21314",
+    "url": "https://github.com/astral-sh/uv/pull/21314",
+    "authors": [
+     "Zanie Blue"
+    ],
+    "n_files": 13,
+    "files_in_area": [
+     "uv.schema.json"
+    ],
+    "subjects": [
+     "Reject MD5-only hashes added by build requirements",
+     "Update build dependency hash snapshots",
+     "Test successful build constraint hashes",
+     "Add inverse build hash flag",
+     "Add preview feature for build dependency hashes"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 35,
+    "files_in_area": [
+     "uv.schema.json"
+    ],
+    "subjects": [
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "tldraw/tldraw",
+  "area": "packages/tldraw",
+  "pair": [
+   "pr:10071",
+   "pr:10874"
+  ],
+  "shared_files": [
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/Crop/children/PointingCropHandle.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/Idle.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/PointingResizeHandle.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/PointingRotateHandle.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/selectHelpers.ts"
+  ],
+  "same_line_files": [
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/Crop/children/PointingCropHandle.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/Idle.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/PointingResizeHandle.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/PointingRotateHandle.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/selectHelpers.ts"
+  ],
+  "items": [
+   {
+    "id": "pr:10071",
+    "url": "https://github.com/tldraw/tldraw/pull/10071",
+    "authors": [
+     "Mitja Bezenšek",
+     "Steve Ruiz"
+    ],
+    "n_files": 100,
+    "files_in_area": [
+     "packages/tldraw/src/lib/Tldraw.tsx",
+     "packages/tldraw/src/lib/bindings/arrow/ArrowBindingUtil.ts",
+     "packages/tldraw/src/lib/defaultEmbedDefinitions.ts",
+     "packages/tldraw/src/lib/defaultExternalContentHandlers.ts",
+     "packages/tldraw/src/lib/defaultSideEffects.ts",
+     "packages/tldraw/src/lib/overlays/ArrowBindingHintOverlayUtil.ts"
+    ],
+    "subjects": [
+     "fix: restore pre-simplify behavior",
+     "restore original comments",
+     "refactor(tldraw): address code review findings",
+     "refactor(tldraw): simplify pass over shapes, tools, overlays, and utils"
+    ]
+   },
+   {
+    "id": "pr:10874",
+    "url": "https://github.com/tldraw/tldraw/pull/10874",
+    "authors": [
+     "Guillaume"
+    ],
+    "n_files": 13,
+    "files_in_area": [
+     "packages/tldraw/src/lib/tools/SelectTool/childStates/Crop/children/PointingCrop.ts",
+     "packages/tldraw/src/lib/tools/SelectTool/childStates/Crop/children/PointingCropHandle.ts",
+     "packages/tldraw/src/lib/tools/SelectTool/childStates/Idle.ts",
+     "packages/tldraw/src/lib/tools/SelectTool/childStates/PointingCanvas.ts",
+     "packages/tldraw/src/lib/tools/SelectTool/childStates/PointingHandle.ts",
+     "packages/tldraw/src/lib/tools/SelectTool/childStates/PointingResizeHandle.ts"
+    ],
+    "subjects": [
+     "refactor(select): share double-click deferral across pointing states"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23559",
+   "pr:23568"
+  ],
+  "shared_files": [
+   "packages/vite/rolldown.config.ts",
+   "packages/vite/src/node/constants.ts",
+   "packages/vite/src/node/plugins/clientInjections.ts",
+   "packages/vite/src/node/server/bundledDev.ts"
+  ],
+  "same_line_files": [
+   "packages/vite/src/node/plugins/clientInjections.ts",
+   "packages/vite/src/node/server/bundledDev.ts"
+  ],
+  "items": [
+   {
+    "id": "pr:23559",
+    "url": "https://github.com/vitejs/vite/pull/23559",
+    "authors": [
+     "btea"
+    ],
+    "n_files": 5,
+    "files_in_area": [
+     "packages/vite/rolldown.config.ts",
+     "packages/vite/src/client/bundledDevClient.ts",
+     "packages/vite/src/node/constants.ts",
+     "packages/vite/src/node/plugins/clientInjections.ts",
+     "packages/vite/src/node/server/bundledDev.ts"
+    ],
+    "subjects": [
+     "fix(dev): warn when the bundled dev runtime and the installed rolldown version mismatch"
+    ]
+   },
+   {
+    "id": "pr:23568",
+    "url": "https://github.com/vitejs/vite/pull/23568",
+    "authors": [
+     "Hana"
+    ],
+    "n_files": 6,
+    "files_in_area": [
+     "packages/vite/rolldown.config.ts",
+     "packages/vite/src/node/__tests__/plugins/clientInjections.spec.ts",
+     "packages/vite/src/node/constants.ts",
+     "packages/vite/src/node/plugins/clientInjections.ts",
+     "packages/vite/src/node/server/bundledDev.ts"
+    ],
+    "subjects": [
+     "test(bundled-dev): cover the served rolldown runtime",
+     "fix(bundled-dev): serve the rolldown runtime from the installed rolldown"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "withastro/astro",
+  "area": "packages/astro",
+  "pair": [
+   "pr:18112",
+   "pr:18117"
+  ],
+  "shared_files": [
+   "packages/astro/CHANGELOG.md",
+   "packages/astro/package.json"
+  ],
+  "same_line_files": [
+   "packages/astro/CHANGELOG.md",
+   "packages/astro/package.json"
+  ],
+  "items": [
+   {
+    "id": "pr:18112",
+    "url": "https://github.com/withastro/astro/pull/18112",
+    "authors": [
+     "Emanuele Stoppa",
+     "James Opstad",
+     "ematipico"
+    ],
+    "n_files": 43,
+    "files_in_area": [
+     "packages/astro/CHANGELOG.md",
+     "packages/astro/package.json",
+     "packages/astro/src/actions/vite-plugin-actions.ts",
+     "packages/astro/src/assets/fonts/vite-plugin-fonts.ts",
+     "packages/astro/src/assets/vite-plugin-assets.ts",
+     "packages/astro/src/core/app/types.ts"
+    ],
+    "subjects": [
+     "Update the incremental cache test to use client-root-relative paths",
+     "Fix virtual manifest so it returns config inputs rather than resolved paths",
+     "Add changeset",
+     "Defer Vite manifest cleanup",
+     "Expose resolved output directories to prerenderer factories"
+    ]
+   },
+   {
+    "id": "pr:18117",
+    "url": "https://github.com/withastro/astro/pull/18117",
+    "authors": [
+     "Houston (Bot)",
+     "ematipico"
+    ],
+    "n_files": 54,
+    "files_in_area": [
+     "packages/astro/CHANGELOG.md",
+     "packages/astro/package.json",
+     "packages/astro/test/fixtures/reexport-astro-containing-client-component/package.json"
+    ],
+    "subjects": [
+     "[ci] release (beta)",
+     "chore: enter prerelease mode"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "tldraw/tldraw",
+  "area": "packages/editor",
+  "pair": [
+   "pr:10069",
+   "pr:10864"
+  ],
+  "shared_files": [
+   "packages/editor/src/lib/editor/Editor.ts"
+  ],
+  "same_line_files": [
+   "packages/editor/src/lib/editor/Editor.ts"
+  ],
+  "items": [
+   {
+    "id": "pr:10069",
+    "url": "https://github.com/tldraw/tldraw/pull/10069",
+    "authors": [
+     "Mitja Bezenšek",
+     "Steve Ruiz"
+    ],
+    "n_files": 60,
+    "files_in_area": [
+     "packages/editor/api-report.api.md",
+     "packages/editor/src/index.ts",
+     "packages/editor/src/lib/TldrawEditor.tsx",
+     "packages/editor/src/lib/components/Shape.tsx",
+     "packages/editor/src/lib/components/default-components/CanvasOverlays.tsx",
+     "packages/editor/src/lib/components/default-components/DefaultErrorFallback.tsx"
+    ],
+    "subjects": [
+     "fix: restore pre-simplify behavior",
+     "restore original comments",
+     "refactor(editor): address code review findings",
+     "refactor(editor): simplify pass over the editor package"
+    ]
+   },
+   {
+    "id": "pr:10864",
+    "url": "https://github.com/tldraw/tldraw/pull/10864",
+    "authors": [
+     "Kevin Ingersoll"
+    ],
+    "n_files": 16,
+    "files_in_area": [
+     "packages/editor/src/lib/editor/Editor.ts",
+     "packages/editor/src/lib/editor/derivations/notVisibleShapes.ts",
+     "packages/editor/src/lib/editor/kernels/README.md",
+     "packages/editor/src/lib/editor/kernels/camera.test.ts",
+     "packages/editor/src/lib/editor/kernels/camera.ts",
+     "packages/editor/src/lib/editor/kernels/culling.test.ts"
+    ],
+    "subjects": [
+     "refactor(editor): collapse repeated modifier, camera and zoom blocks",
+     "refactor(editor): prefer shared helpers over single-use extractions",
+     "refactor(editor): move hit test ranking into a pure kernel",
+     "refactor(editor): move culling set math into a pure kernel",
+     "refactor(editor): move layout math into a pure kernel"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "tldraw/tldraw",
+  "area": "packages/tldraw",
+  "pair": [
+   "pr:10873",
+   "pr:9396"
+  ],
+  "shared_files": [
+   "packages/tldraw/src/lib/ui/hooks/useClipboardEvents.ts"
+  ],
+  "same_line_files": [
+   "packages/tldraw/src/lib/ui/hooks/useClipboardEvents.ts"
+  ],
+  "items": [
+   {
+    "id": "pr:10873",
+    "url": "https://github.com/tldraw/tldraw/pull/10873",
+    "authors": [
+     "Mime Čuvalo"
+    ],
+    "n_files": 5,
+    "files_in_area": [
+     "packages/tldraw/api-report.api.md",
+     "packages/tldraw/src/lib/ui/context/events.tsx",
+     "packages/tldraw/src/lib/ui/hooks/clipboard/pasteUrl.ts",
+     "packages/tldraw/src/lib/ui/hooks/useClipboardEvents.ts",
+     "packages/tldraw/src/test/commands/clipboardPaste.test.ts"
+    ],
+    "subjects": [
+     "fix(tldraw): only count link pastes that target the rich text editor",
+     "feat(tldraw): track pasting a link onto a shape or a text selection"
+    ]
+   },
+   {
+    "id": "pr:9396",
+    "url": "https://github.com/tldraw/tldraw/pull/9396",
+    "authors": [
+     "Andromeda"
+    ],
+    "n_files": 5,
+    "files_in_area": [
+     "packages/tldraw/src/lib/ui/hooks/clipboard/pasteFiles.ts",
+     "packages/tldraw/src/lib/ui/hooks/clipboard/putPastedContent.ts",
+     "packages/tldraw/src/lib/ui/hooks/useClipboardEvents.ts",
+     "packages/tldraw/src/test/cropping.test.ts",
+     "packages/tldraw/src/test/ui/ImageToolbar.test.tsx"
+    ],
+    "subjects": [
+     "fix(tldraw): run onBeforePasteFromClipboard before replacing a cropping image",
+     "fix(tldraw): only bypass the paste focus guard for the crop zoom slider",
+     "feat(tldraw): replace a cropping image by pasting a new image"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-lock",
+  "pair": [
+   "pr:21961",
+   "pr:21973"
+  ],
+  "shared_files": [
+   "crates/uv-lock/src/lock/export/pylock_toml.rs",
+   "crates/uv-lock/src/lock/mod.rs"
+  ],
+  "same_line_files": [
+   "crates/uv-lock/src/lock/export/pylock_toml.rs"
+  ],
+  "items": [
+   {
+    "id": "pr:21961",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 81,
+    "files_in_area": [
+     "crates/uv-lock/Cargo.toml",
+     "crates/uv-lock/src/lib.rs",
+     "crates/uv-lock/src/lock/export/metadata.rs",
+     "crates/uv-lock/src/lock/export/pylock_toml.rs",
+     "crates/uv-lock/src/lock/mod.rs",
+     "crates/uv-lock/src/metadata.rs"
+    ],
+    "subjects": [
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots",
+     "Export packaged locks with uv_build",
+     "Separate lock handling from network clients"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 35,
+    "files_in_area": [
+     "crates/uv-lock/src/lock/export/pylock_toml.rs",
+     "crates/uv-lock/src/lock/mod.rs"
+    ],
+    "subjects": [
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "withastro/astro",
+  "area": "packages/astro",
+  "pair": [
+   "pr:18119",
+   "pr:18120"
+  ],
+  "shared_files": [
+   "packages/astro/CHANGELOG.md",
+   "packages/astro/package.json"
+  ],
+  "same_line_files": [
+   "packages/astro/CHANGELOG.md",
+   "packages/astro/package.json"
+  ],
+  "items": [
+   {
+    "id": "pr:18119",
+    "url": "https://github.com/withastro/astro/pull/18119",
+    "authors": [
+     "Emanuele Stoppa",
+     "James Opstad",
+     "ematipico"
+    ],
+    "n_files": 133,
+    "files_in_area": [
+     "packages/astro/CHANGELOG.md",
+     "packages/astro/e2e/fixtures/cloudflare/.gitignore",
+     "packages/astro/e2e/fixtures/cloudflare/cloudflare.config.ts",
+     "packages/astro/e2e/fixtures/cloudflare/package.json",
+     "packages/astro/e2e/fixtures/cloudflare/wrangler.jsonc",
+     "packages/astro/package.json"
+    ],
+    "subjects": [
+     "Update Cloudflare plugin",
+     "Update .gitignore files",
+     "Add changeset",
+     "Remove default compatibility date in customiser as it is no longer needed",
+     "Update Cloudflare adapter to support v2 of the Cloudflare plugin and cf"
+    ]
+   },
+   {
+    "id": "pr:18120",
+    "url": "https://github.com/withastro/astro/pull/18120",
+    "authors": [
+     "Houston (Bot)"
+    ],
+    "n_files": 27,
+    "files_in_area": [
+     "packages/astro/CHANGELOG.md",
+     "packages/astro/package.json"
+    ],
+    "subjects": [
+     "[ci] release"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-tool",
+  "pair": [
+   "pr:21930",
+   "pr:21962"
+  ],
+  "shared_files": [
+   "crates/uv-tool/src/tool.rs"
+  ],
+  "same_line_files": [
+   "crates/uv-tool/src/tool.rs"
+  ],
+  "items": [
+   {
+    "id": "pr:21930",
+    "url": "https://github.com/astral-sh/uv/pull/21930",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 15,
+    "files_in_area": [
+     "crates/uv-tool/Cargo.toml",
+     "crates/uv-tool/src/lib.rs",
+     "crates/uv-tool/src/requirements.rs",
+     "crates/uv-tool/src/tool.rs"
+    ],
+    "subjects": [
+     "Normalize build constraints without hash precedence",
+     "Preserve false requirements for overrides",
+     "Limit normalized input conversion visibility",
+     "Simplify normalized tool input conversions",
+     "Use explicit fixtures and snapshots in tool tests"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "crates/uv-tool/src/tool.rs"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-distribution-types",
+  "pair": [
+   "pr:21963",
+   "pr:21973"
+  ],
+  "shared_files": [
+   "crates/uv-distribution-types/src/index.rs",
+   "crates/uv-distribution-types/src/index_url.rs"
+  ],
+  "same_line_files": [
+   "crates/uv-distribution-types/src/index.rs"
+  ],
+  "items": [
+   {
+    "id": "pr:21963",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 67,
+    "files_in_area": [
+     "crates/uv-distribution-types/Cargo.toml",
+     "crates/uv-distribution-types/src/index.rs",
+     "crates/uv-distribution-types/src/index_url.rs",
+     "crates/uv-distribution-types/src/lib.rs",
+     "crates/uv-distribution-types/src/metadata.rs",
+     "crates/uv-distribution-types/src/requires_dist.rs"
+    ],
+    "subjects": [
+     "Separate lock handling from network clients"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 35,
+    "files_in_area": [
+     "crates/uv-distribution-types/src/index.rs",
+     "crates/uv-distribution-types/src/index_url.rs",
+     "crates/uv-distribution-types/src/installed.rs",
+     "crates/uv-distribution-types/src/requirement.rs"
+    ],
+    "subjects": [
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-configuration",
+  "pair": [
+   "pr:21951",
+   "pr:21962"
+  ],
+  "shared_files": [
+   "crates/uv-configuration/Cargo.toml",
+   "crates/uv-configuration/src/lib.rs"
+  ],
+  "same_line_files": [
+   "crates/uv-configuration/Cargo.toml",
+   "crates/uv-configuration/src/lib.rs"
+  ],
+  "items": [
+   {
+    "id": "pr:21951",
+    "url": "https://github.com/astral-sh/uv/pull/21951",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 36,
+    "files_in_area": [
+     "crates/uv-configuration/Cargo.toml",
+     "crates/uv-configuration/src/excludes.rs",
+     "crates/uv-configuration/src/lib.rs",
+     "crates/uv-configuration/src/normalized_requirements.rs"
+    ],
+    "subjects": [
+     "Simplify build constraint comparison with intersected hashes",
+     "Preserve build hash precedence when reading preview locks",
+     "Update lockfile normalization preview snapshots",
+     "Gate normalized lockfile metadata behind preview",
+     "Add fast paths for requirement normalization"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "crates/uv-configuration/Cargo.toml",
+     "crates/uv-configuration/src/authentication.rs",
+     "crates/uv-configuration/src/build_backend.rs",
+     "crates/uv-configuration/src/hash_strategy.rs",
+     "crates/uv-configuration/src/lib.rs",
+     "crates/uv-configuration/src/proxy_url.rs"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "tldraw/tldraw",
+  "area": "packages/tldraw",
+  "pair": [
+   "pr:10071",
+   "pr:10181"
+  ],
+  "shared_files": [
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/Crop/children/Cropping.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/Resizing.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/selectHelpers.ts"
+  ],
+  "same_line_files": [
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/Crop/children/Cropping.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/Resizing.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/selectHelpers.ts"
+  ],
+  "items": [
+   {
+    "id": "pr:10071",
+    "url": "https://github.com/tldraw/tldraw/pull/10071",
+    "authors": [
+     "Mitja Bezenšek",
+     "Steve Ruiz"
+    ],
+    "n_files": 100,
+    "files_in_area": [
+     "packages/tldraw/src/lib/Tldraw.tsx",
+     "packages/tldraw/src/lib/bindings/arrow/ArrowBindingUtil.ts",
+     "packages/tldraw/src/lib/defaultEmbedDefinitions.ts",
+     "packages/tldraw/src/lib/defaultExternalContentHandlers.ts",
+     "packages/tldraw/src/lib/defaultSideEffects.ts",
+     "packages/tldraw/src/lib/overlays/ArrowBindingHintOverlayUtil.ts"
+    ],
+    "subjects": [
+     "fix: restore pre-simplify behavior",
+     "restore original comments",
+     "refactor(tldraw): address code review findings",
+     "refactor(tldraw): simplify pass over shapes, tools, overlays, and utils"
+    ]
+   },
+   {
+    "id": "pr:10181",
+    "url": "https://github.com/tldraw/tldraw/pull/10181",
+    "authors": [
+     "Mitja Bezenšek",
+     "Steve Ruiz"
+    ],
+    "n_files": 3,
+    "files_in_area": [
+     "packages/tldraw/src/lib/tools/SelectTool/childStates/Crop/children/Cropping.ts",
+     "packages/tldraw/src/lib/tools/SelectTool/childStates/Resizing.ts",
+     "packages/tldraw/src/lib/tools/SelectTool/selectHelpers.ts"
+    ],
+    "subjects": [
+     "fix(select): treat near-right-angle page rotations as right angles for bounds snapping"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-lock",
+  "pair": [
+   "pr:21961",
+   "pr:21974"
+  ],
+  "shared_files": [
+   "crates/uv-lock/src/lock/export/pylock_toml.rs",
+   "crates/uv-lock/src/lock/mod.rs"
+  ],
+  "same_line_files": [
+   "crates/uv-lock/src/lock/export/pylock_toml.rs"
+  ],
+  "items": [
+   {
+    "id": "pr:21961",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 81,
+    "files_in_area": [
+     "crates/uv-lock/Cargo.toml",
+     "crates/uv-lock/src/lib.rs",
+     "crates/uv-lock/src/lock/export/metadata.rs",
+     "crates/uv-lock/src/lock/export/pylock_toml.rs",
+     "crates/uv-lock/src/lock/mod.rs",
+     "crates/uv-lock/src/metadata.rs"
+    ],
+    "subjects": [
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots",
+     "Export packaged locks with uv_build",
+     "Separate lock handling from network clients"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "authors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ],
+    "n_files": 37,
+    "files_in_area": [
+     "crates/uv-lock/src/lock/export/pylock_toml.rs",
+     "crates/uv-lock/src/lock/mod.rs"
+    ],
+    "subjects": [
+     "Align URL validation across CLI and configuration",
+     "Redact query credentials in ambiguous URL errors",
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:21930",
+   "pr:21952"
+  ],
+  "shared_files": [
+   "crates/uv/tests/pip_install/pip_install.rs",
+   "crates/uv/tests/sync/sync.rs",
+   "crates/uv/tests/tool/tool_upgrade.rs"
+  ],
+  "same_line_files": [
+   "crates/uv/tests/tool/tool_upgrade.rs"
+  ],
+  "items": [
+   {
+    "id": "pr:21930",
+    "url": "https://github.com/astral-sh/uv/pull/21930",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 15,
+    "files_in_area": [
+     "crates/uv-configuration/src/excludes.rs",
+     "crates/uv-tool/Cargo.toml",
+     "crates/uv-tool/src/lib.rs",
+     "crates/uv-tool/src/requirements.rs",
+     "crates/uv-tool/src/tool.rs",
+     "crates/uv-types/src/hash.rs"
+    ],
+    "subjects": [
+     "Normalize build constraints without hash precedence",
+     "Preserve false requirements for overrides",
+     "Limit normalized input conversion visibility",
+     "Simplify normalized tool input conversions",
+     "Use explicit fixtures and snapshots in tool tests"
+    ]
+   },
+   {
+    "id": "pr:21952",
+    "url": "https://github.com/astral-sh/uv/pull/21952",
+    "authors": [
+     "Tomasz (Tom) Kramkowski"
+    ],
+    "n_files": 10,
+    "files_in_area": [
+     "crates/uv-test/src/archive.rs",
+     "crates/uv-test/src/lib.rs",
+     "crates/uv-test/src/package_server.rs",
+     "crates/uv/tests/lock/lock.rs",
+     "crates/uv/tests/pip_compile/pip_compile.rs",
+     "crates/uv/tests/pip_install/direct_url_hashes.rs"
+    ],
+    "subjects": [
+     "Allow custom file metadata in package test fixtures",
+     "Share a package server across hash verification tests",
+     "use generate_wheel_with_files for locked_build_dependency_wheel",
+     "unify generation of sdists with backends with side-effects"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "A",
+  "pool_size": 61,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-lock",
+  "pair": [
+   "pr:21962",
+   "pr:21974"
+  ],
+  "shared_files": [
+   "crates/uv-lock/src/lock/export/pylock_toml.rs",
+   "crates/uv-lock/src/lock/mod.rs"
+  ],
+  "same_line_files": [
+   "crates/uv-lock/src/lock/export/pylock_toml.rs"
+  ],
+  "items": [
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "crates/uv-lock/Cargo.toml",
+     "crates/uv-lock/src/lib.rs",
+     "crates/uv-lock/src/lock/export/metadata.rs",
+     "crates/uv-lock/src/lock/export/pylock_toml.rs",
+     "crates/uv-lock/src/lock/mod.rs",
+     "crates/uv-lock/src/metadata.rs"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "authors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ],
+    "n_files": 37,
+    "files_in_area": [
+     "crates/uv-lock/src/lock/export/pylock_toml.rs",
+     "crates/uv-lock/src/lock/mod.rs"
+    ],
+    "subjects": [
+     "Align URL validation across CLI and configuration",
+     "Redact query credentials in ambiguous URL errors",
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:18881",
+   "pr:21962"
+  ],
+  "shared_files": [
+   "crates/uv/src/lib.rs",
+   "crates/uv/src/settings.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:18881",
+    "url": "https://github.com/astral-sh/uv/pull/18881",
+    "authors": [
+     "Rene Zander"
+    ],
+    "n_files": 6,
+    "files_in_area": [
+     "crates/uv-cli/src/lib.rs",
+     "crates/uv-python/src/downloads.rs",
+     "crates/uv/src/commands/python/list.rs",
+     "crates/uv/src/lib.rs",
+     "crates/uv/src/settings.rs",
+     "crates/uv/tests/python/python_list.rs"
+    ],
+    "subjects": [
+     "fix: resolve borrow-after-move in python list filter",
+     "feat(python): add --all-variants flag to python list"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "crates/uv-auth-types/Cargo.toml",
+     "crates/uv-auth-types/src/credentials.rs",
+     "crates/uv-auth-types/src/index.rs",
+     "crates/uv-auth-types/src/lib.rs",
+     "crates/uv-auth-types/src/realm.rs",
+     "crates/uv-auth/Cargo.toml"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "uv.schema.json",
+  "pair": [
+   "pr:21951",
+   "pr:21974"
+  ],
+  "shared_files": [
+   "uv.schema.json"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21951",
+    "url": "https://github.com/astral-sh/uv/pull/21951",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 36,
+    "files_in_area": [
+     "uv.schema.json"
+    ],
+    "subjects": [
+     "Simplify build constraint comparison with intersected hashes",
+     "Preserve build hash precedence when reading preview locks",
+     "Update lockfile normalization preview snapshots",
+     "Gate normalized lockfile metadata behind preview",
+     "Add fast paths for requirement normalization"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "authors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ],
+    "n_files": 37,
+    "files_in_area": [
+     "uv.schema.json"
+    ],
+    "subjects": [
+     "Align URL validation across CLI and configuration",
+     "Redact query credentials in ambiguous URL errors",
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:21963",
+   "pr:21973"
+  ],
+  "shared_files": [
+   "crates/uv/src/commands/project/sync.rs",
+   "crates/uv/src/commands/publish.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21963",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 67,
+    "files_in_area": [
+     "crates/uv-auth-types/Cargo.toml",
+     "crates/uv-auth-types/src/credentials.rs",
+     "crates/uv-auth-types/src/index.rs",
+     "crates/uv-auth-types/src/lib.rs",
+     "crates/uv-auth-types/src/realm.rs",
+     "crates/uv-auth/Cargo.toml"
+    ],
+    "subjects": [
+     "Separate lock handling from network clients"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 35,
+    "files_in_area": [
+     "crates/uv-audit/src/service/osv.rs",
+     "crates/uv-auth/src/keyring.rs",
+     "crates/uv-auth/src/service.rs",
+     "crates/uv-client/src/base_client.rs",
+     "crates/uv-configuration/src/proxy_url.rs",
+     "crates/uv-distribution-types/src/index.rs"
+    ],
+    "subjects": [
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "tldraw/tldraw",
+  "area": "packages/tldraw",
+  "pair": [
+   "pr:10866",
+   "pr:10873"
+  ],
+  "shared_files": [
+   "packages/tldraw/api-report.api.md",
+   "packages/tldraw/src/lib/ui/context/events.tsx"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:10866",
+    "url": "https://github.com/tldraw/tldraw/pull/10866",
+    "authors": [
+     "Jessica Claire Edwards",
+     "Mime Čuvalo"
+    ],
+    "n_files": 30,
+    "files_in_area": [
+     "packages/tldraw/api-report.api.md",
+     "packages/tldraw/src/index.ts",
+     "packages/tldraw/src/lib/shapes/note/NoteShapeUtil.tsx",
+     "packages/tldraw/src/lib/shapes/shared/RichTextLabel.tsx",
+     "packages/tldraw/src/lib/shapes/shared/useEditableRichText.ts",
+     "packages/tldraw/src/lib/shapes/text/TextShapeUtil.tsx"
+    ],
+    "subjects": [
+     "improvement(editor): use a drawn tick for the checkbox, sized against the box",
+     "improvement(editor): draw the checkbox tick as a freehand stroke so it tapers",
+     "improvement(editor): cycle six checkbox outlines so a list doesn't repeat one box",
+     "improvement(editor): use a draw-dash rectangle for the checkbox, and cross the tick through its bottom edge",
+     "chore(editor): drop a dead property and tighten the checkbox comment"
+    ]
+   },
+   {
+    "id": "pr:10873",
+    "url": "https://github.com/tldraw/tldraw/pull/10873",
+    "authors": [
+     "Mime Čuvalo"
+    ],
+    "n_files": 5,
+    "files_in_area": [
+     "packages/tldraw/api-report.api.md",
+     "packages/tldraw/src/lib/ui/context/events.tsx",
+     "packages/tldraw/src/lib/ui/hooks/clipboard/pasteUrl.ts",
+     "packages/tldraw/src/lib/ui/hooks/useClipboardEvents.ts",
+     "packages/tldraw/src/test/commands/clipboardPaste.test.ts"
+    ],
+    "subjects": [
+     "fix(tldraw): only count link pastes that target the rich text editor",
+     "feat(tldraw): track pasting a link onto a shape or a text selection"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "tldraw/tldraw",
+  "area": "packages/tldraw",
+  "pair": [
+   "pr:10071",
+   "pr:10924"
+  ],
+  "shared_files": [
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/Resizing.ts"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:10071",
+    "url": "https://github.com/tldraw/tldraw/pull/10071",
+    "authors": [
+     "Mitja Bezenšek",
+     "Steve Ruiz"
+    ],
+    "n_files": 100,
+    "files_in_area": [
+     "packages/tldraw/src/lib/Tldraw.tsx",
+     "packages/tldraw/src/lib/bindings/arrow/ArrowBindingUtil.ts",
+     "packages/tldraw/src/lib/defaultEmbedDefinitions.ts",
+     "packages/tldraw/src/lib/defaultExternalContentHandlers.ts",
+     "packages/tldraw/src/lib/defaultSideEffects.ts",
+     "packages/tldraw/src/lib/overlays/ArrowBindingHintOverlayUtil.ts"
+    ],
+    "subjects": [
+     "fix: restore pre-simplify behavior",
+     "restore original comments",
+     "refactor(tldraw): address code review findings",
+     "refactor(tldraw): simplify pass over shapes, tools, overlays, and utils"
+    ]
+   },
+   {
+    "id": "pr:10924",
+    "url": "https://github.com/tldraw/tldraw/pull/10924",
+    "authors": [
+     "Andromeda"
+    ],
+    "n_files": 3,
+    "files_in_area": [
+     "packages/tldraw/src/lib/tools/SelectTool/childStates/Resizing.ts",
+     "packages/tldraw/src/test/frames.test.ts"
+    ],
+    "subjects": [
+     "fix(select): roll back the resize kickout preview exactly",
+     "fix(select): unparent shapes resized out of a frame during the resize"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23562",
+   "pr:23568"
+  ],
+  "shared_files": [
+   "packages/vite/src/node/server/bundledDev.ts"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23562",
+    "url": "https://github.com/vitejs/vite/pull/23562",
+    "authors": [
+     "Melissa Liu"
+    ],
+    "n_files": 11,
+    "files_in_area": [
+     "packages/vite/src/client/bundledDevHmrClient.ts",
+     "packages/vite/src/client/client.ts",
+     "packages/vite/src/node/server/__tests__/hmr.spec.ts",
+     "packages/vite/src/node/server/__tests__/watcher.spec.ts",
+     "packages/vite/src/node/server/bundledDev.ts",
+     "packages/vite/src/node/server/hmr.ts"
+    ],
+    "subjects": [
+     "feat: support HMR for mixed bundled environments"
+    ]
+   },
+   {
+    "id": "pr:23568",
+    "url": "https://github.com/vitejs/vite/pull/23568",
+    "authors": [
+     "Hana"
+    ],
+    "n_files": 6,
+    "files_in_area": [
+     "packages/vite/rolldown.config.ts",
+     "packages/vite/src/node/__tests__/plugins/clientInjections.spec.ts",
+     "packages/vite/src/node/constants.ts",
+     "packages/vite/src/node/plugins/clientInjections.ts",
+     "packages/vite/src/node/server/bundledDev.ts"
+    ],
+    "subjects": [
+     "test(bundled-dev): cover the served rolldown runtime",
+     "fix(bundled-dev): serve the rolldown runtime from the installed rolldown"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "vitejs/vite",
+  "area": "playground",
+  "pair": [
+   "pr:23562",
+   "pr:23568"
+  ],
+  "shared_files": [
+   "playground/hmr-full-bundle-mode/__tests__/hmr-full-bundle-mode.spec.ts"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23562",
+    "url": "https://github.com/vitejs/vite/pull/23562",
+    "authors": [
+     "Melissa Liu"
+    ],
+    "n_files": 11,
+    "files_in_area": [
+     "playground/hmr-full-bundle-mode/__tests__/hmr-full-bundle-mode.spec.ts",
+     "playground/hmr-full-bundle-mode/index.html",
+     "playground/hmr-full-bundle-mode/main.js",
+     "playground/hmr-full-bundle-mode/vite.config.ts"
+    ],
+    "subjects": [
+     "feat: support HMR for mixed bundled environments"
+    ]
+   },
+   {
+    "id": "pr:23568",
+    "url": "https://github.com/vitejs/vite/pull/23568",
+    "authors": [
+     "Hana"
+    ],
+    "n_files": 6,
+    "files_in_area": [
+     "playground/hmr-full-bundle-mode/__tests__/hmr-full-bundle-mode.spec.ts"
+    ],
+    "subjects": [
+     "test(bundled-dev): cover the served rolldown runtime",
+     "fix(bundled-dev): serve the rolldown runtime from the installed rolldown"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:21962",
+   "pr:21973"
+  ],
+  "shared_files": [
+   "crates/uv/src/commands/project/sync.rs",
+   "crates/uv/src/commands/publish.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "crates/uv-auth-types/Cargo.toml",
+     "crates/uv-auth-types/src/credentials.rs",
+     "crates/uv-auth-types/src/index.rs",
+     "crates/uv-auth-types/src/lib.rs",
+     "crates/uv-auth-types/src/realm.rs",
+     "crates/uv-auth/Cargo.toml"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 35,
+    "files_in_area": [
+     "crates/uv-audit/src/service/osv.rs",
+     "crates/uv-auth/src/keyring.rs",
+     "crates/uv-auth/src/service.rs",
+     "crates/uv-client/src/base_client.rs",
+     "crates/uv-configuration/src/proxy_url.rs",
+     "crates/uv-distribution-types/src/index.rs"
+    ],
+    "subjects": [
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-preview",
+  "pair": [
+   "pr:21314",
+   "pr:21961"
+  ],
+  "shared_files": [
+   "crates/uv-preview/src/lib.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21314",
+    "url": "https://github.com/astral-sh/uv/pull/21314",
+    "authors": [
+     "Zanie Blue"
+    ],
+    "n_files": 13,
+    "files_in_area": [
+     "crates/uv-preview/src/lib.rs"
+    ],
+    "subjects": [
+     "Reject MD5-only hashes added by build requirements",
+     "Update build dependency hash snapshots",
+     "Test successful build constraint hashes",
+     "Add inverse build hash flag",
+     "Add preview feature for build dependency hashes"
+    ]
+   },
+   {
+    "id": "pr:21961",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 81,
+    "files_in_area": [
+     "crates/uv-preview/src/lib.rs"
+    ],
+    "subjects": [
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots",
+     "Export packaged locks with uv_build",
+     "Separate lock handling from network clients"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-static",
+  "pair": [
+   "pr:21314",
+   "pr:21961"
+  ],
+  "shared_files": [
+   "crates/uv-static/src/env_vars.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21314",
+    "url": "https://github.com/astral-sh/uv/pull/21314",
+    "authors": [
+     "Zanie Blue"
+    ],
+    "n_files": 13,
+    "files_in_area": [
+     "crates/uv-static/src/env_vars.rs"
+    ],
+    "subjects": [
+     "Reject MD5-only hashes added by build requirements",
+     "Update build dependency hash snapshots",
+     "Test successful build constraint hashes",
+     "Add inverse build hash flag",
+     "Add preview feature for build dependency hashes"
+    ]
+   },
+   {
+    "id": "pr:21961",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 81,
+    "files_in_area": [
+     "crates/uv-static/src/env_vars.rs"
+    ],
+    "subjects": [
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots",
+     "Export packaged locks with uv_build",
+     "Separate lock handling from network clients"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:18881",
+   "pr:21314"
+  ],
+  "shared_files": [
+   "crates/uv/src/lib.rs",
+   "crates/uv/src/settings.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:18881",
+    "url": "https://github.com/astral-sh/uv/pull/18881",
+    "authors": [
+     "Rene Zander"
+    ],
+    "n_files": 6,
+    "files_in_area": [
+     "crates/uv-cli/src/lib.rs",
+     "crates/uv-python/src/downloads.rs",
+     "crates/uv/src/commands/python/list.rs",
+     "crates/uv/src/lib.rs",
+     "crates/uv/src/settings.rs",
+     "crates/uv/tests/python/python_list.rs"
+    ],
+    "subjects": [
+     "fix: resolve borrow-after-move in python list filter",
+     "feat(python): add --all-variants flag to python list"
+    ]
+   },
+   {
+    "id": "pr:21314",
+    "url": "https://github.com/astral-sh/uv/pull/21314",
+    "authors": [
+     "Zanie Blue"
+    ],
+    "n_files": 13,
+    "files_in_area": [
+     "crates/uv-cli/src/lib.rs",
+     "crates/uv-dev/src/generate_preview_features_reference.rs",
+     "crates/uv-preview/src/lib.rs",
+     "crates/uv-static/src/env_vars.rs",
+     "crates/uv-types/src/hash.rs",
+     "crates/uv/src/commands/pip/install.rs"
+    ],
+    "subjects": [
+     "Reject MD5-only hashes added by build requirements",
+     "Update build dependency hash snapshots",
+     "Test successful build constraint hashes",
+     "Add inverse build hash flag",
+     "Add preview feature for build dependency hashes"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:21314",
+   "pr:21973"
+  ],
+  "shared_files": [
+   "crates/uv/tests/pip_install/pip_install.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21314",
+    "url": "https://github.com/astral-sh/uv/pull/21314",
+    "authors": [
+     "Zanie Blue"
+    ],
+    "n_files": 13,
+    "files_in_area": [
+     "crates/uv-cli/src/lib.rs",
+     "crates/uv-dev/src/generate_preview_features_reference.rs",
+     "crates/uv-preview/src/lib.rs",
+     "crates/uv-static/src/env_vars.rs",
+     "crates/uv-types/src/hash.rs",
+     "crates/uv/src/commands/pip/install.rs"
+    ],
+    "subjects": [
+     "Reject MD5-only hashes added by build requirements",
+     "Update build dependency hash snapshots",
+     "Test successful build constraint hashes",
+     "Add inverse build hash flag",
+     "Add preview feature for build dependency hashes"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 35,
+    "files_in_area": [
+     "crates/uv-audit/src/service/osv.rs",
+     "crates/uv-auth/src/keyring.rs",
+     "crates/uv-auth/src/service.rs",
+     "crates/uv-client/src/base_client.rs",
+     "crates/uv-configuration/src/proxy_url.rs",
+     "crates/uv-distribution-types/src/index.rs"
+    ],
+    "subjects": [
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:21952",
+   "pr:21973"
+  ],
+  "shared_files": [
+   "crates/uv/tests/pip_install/pip_install.rs",
+   "crates/uv/tests/project/edit.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21952",
+    "url": "https://github.com/astral-sh/uv/pull/21952",
+    "authors": [
+     "Tomasz (Tom) Kramkowski"
+    ],
+    "n_files": 10,
+    "files_in_area": [
+     "crates/uv-test/src/archive.rs",
+     "crates/uv-test/src/lib.rs",
+     "crates/uv-test/src/package_server.rs",
+     "crates/uv/tests/lock/lock.rs",
+     "crates/uv/tests/pip_compile/pip_compile.rs",
+     "crates/uv/tests/pip_install/direct_url_hashes.rs"
+    ],
+    "subjects": [
+     "Allow custom file metadata in package test fixtures",
+     "Share a package server across hash verification tests",
+     "use generate_wheel_with_files for locked_build_dependency_wheel",
+     "unify generation of sdists with backends with side-effects"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 35,
+    "files_in_area": [
+     "crates/uv-audit/src/service/osv.rs",
+     "crates/uv-auth/src/keyring.rs",
+     "crates/uv-auth/src/service.rs",
+     "crates/uv-client/src/base_client.rs",
+     "crates/uv-configuration/src/proxy_url.rs",
+     "crates/uv-distribution-types/src/index.rs"
+    ],
+    "subjects": [
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-cli",
+  "pair": [
+   "pr:18881",
+   "pr:21977"
+  ],
+  "shared_files": [
+   "crates/uv-cli/src/lib.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:18881",
+    "url": "https://github.com/astral-sh/uv/pull/18881",
+    "authors": [
+     "Rene Zander"
+    ],
+    "n_files": 6,
+    "files_in_area": [
+     "crates/uv-cli/src/lib.rs"
+    ],
+    "subjects": [
+     "fix: resolve borrow-after-move in python list filter",
+     "feat(python): add --all-variants flag to python list"
+    ]
+   },
+   {
+    "id": "pr:21977",
+    "url": "https://github.com/astral-sh/uv/pull/21977",
+    "authors": [
+     "GreedyC"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "crates/uv-cli/src/lib.rs"
+    ],
+    "subjects": [
+     "docs: clarify group flags with --no-sync"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-configuration",
+  "pair": [
+   "pr:21961",
+   "pr:21973"
+  ],
+  "shared_files": [
+   "crates/uv-configuration/src/proxy_url.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21961",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 81,
+    "files_in_area": [
+     "crates/uv-configuration/Cargo.toml",
+     "crates/uv-configuration/src/authentication.rs",
+     "crates/uv-configuration/src/build_backend.rs",
+     "crates/uv-configuration/src/hash_strategy.rs",
+     "crates/uv-configuration/src/lib.rs",
+     "crates/uv-configuration/src/proxy_url.rs"
+    ],
+    "subjects": [
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots",
+     "Export packaged locks with uv_build",
+     "Separate lock handling from network clients"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 35,
+    "files_in_area": [
+     "crates/uv-configuration/src/proxy_url.rs"
+    ],
+    "subjects": [
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-workspace",
+  "pair": [
+   "pr:21962",
+   "pr:21974"
+  ],
+  "shared_files": [
+   "crates/uv-workspace/src/pyproject.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "crates/uv-workspace/Cargo.toml",
+     "crates/uv-workspace/src/pyproject.rs"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "authors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ],
+    "n_files": 37,
+    "files_in_area": [
+     "crates/uv-workspace/src/pyproject.rs",
+     "crates/uv-workspace/src/pyproject_mut.rs"
+    ],
+    "subjects": [
+     "Align URL validation across CLI and configuration",
+     "Redact query credentials in ambiguous URL errors",
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-client",
+  "pair": [
+   "pr:21963",
+   "pr:21974"
+  ],
+  "shared_files": [
+   "crates/uv-client/src/base_client.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21963",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 67,
+    "files_in_area": [
+     "crates/uv-client/src/base_client.rs",
+     "crates/uv-client/src/lib.rs"
+    ],
+    "subjects": [
+     "Separate lock handling from network clients"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "authors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ],
+    "n_files": 37,
+    "files_in_area": [
+     "crates/uv-client/src/base_client.rs"
+    ],
+    "subjects": [
+     "Align URL validation across CLI and configuration",
+     "Redact query credentials in ambiguous URL errors",
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "uv.schema.json",
+  "pair": [
+   "pr:21951",
+   "pr:21962"
+  ],
+  "shared_files": [
+   "uv.schema.json"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21951",
+    "url": "https://github.com/astral-sh/uv/pull/21951",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 36,
+    "files_in_area": [
+     "uv.schema.json"
+    ],
+    "subjects": [
+     "Simplify build constraint comparison with intersected hashes",
+     "Preserve build hash precedence when reading preview locks",
+     "Update lockfile normalization preview snapshots",
+     "Gate normalized lockfile metadata behind preview",
+     "Add fast paths for requirement normalization"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "uv.schema.json"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:21952",
+   "pr:21974"
+  ],
+  "shared_files": [
+   "crates/uv/tests/pip_install/pip_install.rs",
+   "crates/uv/tests/project/edit.rs",
+   "crates/uv/tests/sync/sync.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21952",
+    "url": "https://github.com/astral-sh/uv/pull/21952",
+    "authors": [
+     "Tomasz (Tom) Kramkowski"
+    ],
+    "n_files": 10,
+    "files_in_area": [
+     "crates/uv-test/src/archive.rs",
+     "crates/uv-test/src/lib.rs",
+     "crates/uv-test/src/package_server.rs",
+     "crates/uv/tests/lock/lock.rs",
+     "crates/uv/tests/pip_compile/pip_compile.rs",
+     "crates/uv/tests/pip_install/direct_url_hashes.rs"
+    ],
+    "subjects": [
+     "Allow custom file metadata in package test fixtures",
+     "Share a package server across hash verification tests",
+     "use generate_wheel_with_files for locked_build_dependency_wheel",
+     "unify generation of sdists with backends with side-effects"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "authors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ],
+    "n_files": 37,
+    "files_in_area": [
+     "crates/uv-audit/src/service/osv.rs",
+     "crates/uv-auth/src/keyring.rs",
+     "crates/uv-auth/src/service.rs",
+     "crates/uv-client/src/base_client.rs",
+     "crates/uv-configuration/src/proxy_url.rs",
+     "crates/uv-distribution-types/src/index.rs"
+    ],
+    "subjects": [
+     "Align URL validation across CLI and configuration",
+     "Redact query credentials in ambiguous URL errors",
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "B",
+  "pool_size": 94,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:21962",
+   "pr:21974"
+  ],
+  "shared_files": [
+   "crates/uv/src/commands/project/sync.rs",
+   "crates/uv/src/commands/publish.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "crates/uv-auth-types/Cargo.toml",
+     "crates/uv-auth-types/src/credentials.rs",
+     "crates/uv-auth-types/src/index.rs",
+     "crates/uv-auth-types/src/lib.rs",
+     "crates/uv-auth-types/src/realm.rs",
+     "crates/uv-auth/Cargo.toml"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "authors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ],
+    "n_files": 37,
+    "files_in_area": [
+     "crates/uv-audit/src/service/osv.rs",
+     "crates/uv-auth/src/keyring.rs",
+     "crates/uv-auth/src/service.rs",
+     "crates/uv-client/src/base_client.rs",
+     "crates/uv-configuration/src/proxy_url.rs",
+     "crates/uv-distribution-types/src/index.rs"
+    ],
+    "subjects": [
+     "Align URL validation across CLI and configuration",
+     "Redact query credentials in ambiguous URL errors",
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "tldraw/tldraw",
+  "area": "packages/tldraw",
+  "pair": [
+   "pr:10864",
+   "pr:10924"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:10864",
+    "url": "https://github.com/tldraw/tldraw/pull/10864",
+    "authors": [
+     "Kevin Ingersoll"
+    ],
+    "n_files": 16,
+    "files_in_area": [
+     "packages/tldraw/src/test/cameraConstraintReads.test.ts"
+    ],
+    "subjects": [
+     "refactor(editor): collapse repeated modifier, camera and zoom blocks",
+     "refactor(editor): prefer shared helpers over single-use extractions",
+     "refactor(editor): move hit test ranking into a pure kernel",
+     "refactor(editor): move culling set math into a pure kernel",
+     "refactor(editor): move layout math into a pure kernel"
+    ]
+   },
+   {
+    "id": "pr:10924",
+    "url": "https://github.com/tldraw/tldraw/pull/10924",
+    "authors": [
+     "Andromeda"
+    ],
+    "n_files": 3,
+    "files_in_area": [
+     "packages/tldraw/src/lib/tools/SelectTool/childStates/Resizing.ts",
+     "packages/tldraw/src/test/frames.test.ts"
+    ],
+    "subjects": [
+     "fix(select): roll back the resize kickout preview exactly",
+     "fix(select): unparent shapes resized out of a frame during the resize"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "withastro/astro",
+  "area": "packages/astro",
+  "pair": [
+   "pr:18000",
+   "pr:18121"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:18000",
+    "url": "https://github.com/withastro/astro/pull/18000",
+    "authors": [
+     "Dan Barclay"
+    ],
+    "n_files": 9,
+    "files_in_area": [
+     "packages/astro/src/vite-plugin-app/environment.ts",
+     "packages/astro/test/fixtures/server-islands/custom-fetch/astro.config.mjs",
+     "packages/astro/test/fixtures/server-islands/custom-fetch/package.json",
+     "packages/astro/test/fixtures/server-islands/custom-fetch/src/components/Island.astro",
+     "packages/astro/test/fixtures/server-islands/custom-fetch/src/components/Message.svelte",
+     "packages/astro/test/fixtures/server-islands/custom-fetch/src/fetch.ts"
+    ],
+    "subjects": [
+     "chore: reword changeset per contribution guide",
+     "fix(dev): load renderers before resolving built-in routes"
+    ]
+   },
+   {
+    "id": "pr:18121",
+    "url": "https://github.com/withastro/astro/pull/18121",
+    "authors": [
+     "Matthew Phillips"
+    ],
+    "n_files": 31,
+    "files_in_area": [
+     "packages/astro/package.json",
+     "packages/astro/src/content/dev-setup.ts",
+     "packages/astro/src/core/create-vite.ts",
+     "packages/astro/src/core/dev/dev.ts",
+     "packages/astro/src/env/env-loader.ts",
+     "packages/astro/src/events/session.ts"
+    ],
+    "subjects": [
+     "Add changeset",
+     "spike: Tailwind and a nicer design for the vite-plugin-react example",
+     "spike: telemetry for astro/vite sessions, tagged with source",
+     "spike: content collections and type generation in astro/vite",
+     "spike: astro(config) takes an inline Astro config and runs integrations"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23536",
+   "pr:23574"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23536",
+    "url": "https://github.com/vitejs/vite/pull/23536",
+    "authors": [
+     "Abdel"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/build.spec.ts",
+     "packages/vite/src/node/build.ts"
+    ],
+    "subjects": [
+     "fix: merge `build.rolldownOptions.output.minify` correctly"
+    ]
+   },
+   {
+    "id": "pr:23574",
+    "url": "https://github.com/vitejs/vite/pull/23574",
+    "authors": [
+     "dvcolomban"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/plugins/hooks.spec.ts",
+     "packages/vite/src/node/server/index.ts"
+    ],
+    "subjects": [
+     "fix(dev): close replacement when restart cleanup fails"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23556",
+   "pr:23562"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23556",
+    "url": "https://github.com/vitejs/vite/pull/23556",
+    "authors": [
+     "vjymisal0"
+    ],
+    "n_files": 1,
+    "files_in_area": [
+     "packages/vite/src/node/preview.ts"
+    ],
+    "subjects": [
+     "fix(preview): skip compression wrapping for HTTP/2"
+    ]
+   },
+   {
+    "id": "pr:23562",
+    "url": "https://github.com/vitejs/vite/pull/23562",
+    "authors": [
+     "Melissa Liu"
+    ],
+    "n_files": 11,
+    "files_in_area": [
+     "packages/vite/src/client/bundledDevHmrClient.ts",
+     "packages/vite/src/client/client.ts",
+     "packages/vite/src/node/server/__tests__/hmr.spec.ts",
+     "packages/vite/src/node/server/__tests__/watcher.spec.ts",
+     "packages/vite/src/node/server/bundledDev.ts",
+     "packages/vite/src/node/server/hmr.ts"
+    ],
+    "subjects": [
+     "feat: support HMR for mixed bundled environments"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23550",
+   "pr:23568"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23550",
+    "url": "https://github.com/vitejs/vite/pull/23550",
+    "authors": [
+     "scs0209"
+    ],
+    "n_files": 4,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/plugins/css.spec.ts",
+     "packages/vite/src/node/__tests__/utils.spec.ts",
+     "packages/vite/src/node/plugins/css.ts",
+     "packages/vite/src/node/utils.ts"
+    ],
+    "subjects": [
+     "fix(css): split srcset candidates at depth so image-set gradients survive",
+     "fix(css): parse image-set() with nested parentheses"
+    ]
+   },
+   {
+    "id": "pr:23568",
+    "url": "https://github.com/vitejs/vite/pull/23568",
+    "authors": [
+     "Hana"
+    ],
+    "n_files": 6,
+    "files_in_area": [
+     "packages/vite/rolldown.config.ts",
+     "packages/vite/src/node/__tests__/plugins/clientInjections.spec.ts",
+     "packages/vite/src/node/constants.ts",
+     "packages/vite/src/node/plugins/clientInjections.ts",
+     "packages/vite/src/node/server/bundledDev.ts"
+    ],
+    "subjects": [
+     "test(bundled-dev): cover the served rolldown runtime",
+     "fix(bundled-dev): serve the rolldown runtime from the installed rolldown"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:21304",
+   "pr:21973"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21304",
+    "url": "https://github.com/astral-sh/uv/pull/21304",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 15,
+    "files_in_area": [
+     "crates/uv-platform-tags/src/tags.rs",
+     "crates/uv-pypi-types/src/scheme.rs",
+     "crates/uv-python/src/environment.rs",
+     "crates/uv-python/src/interpreter.rs",
+     "crates/uv-python/src/pointer_size.rs",
+     "crates/uv-python/src/prefix.rs"
+    ],
+    "subjects": [
+     "Use `Eq`",
+     "style",
+     "Cache all venv creation",
+     "Warm interpreter caches during project and script initialization",
+     "Explain interpreter cache and launcher override regression tests"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 35,
+    "files_in_area": [
+     "crates/uv-audit/src/service/osv.rs",
+     "crates/uv-auth/src/keyring.rs",
+     "crates/uv-auth/src/service.rs",
+     "crates/uv-client/src/base_client.rs",
+     "crates/uv-configuration/src/proxy_url.rs",
+     "crates/uv-distribution-types/src/index.rs"
+    ],
+    "subjects": [
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:21944",
+   "pr:21962"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21944",
+    "url": "https://github.com/astral-sh/uv/pull/21944",
+    "authors": [
+     "Tomasz (Tom) Kramkowski"
+    ],
+    "n_files": 4,
+    "files_in_area": [
+     "crates/uv-test/src/archive.rs",
+     "crates/uv/tests/lock/lock.rs",
+     "crates/uv/tests/pip_compile/pip_compile.rs",
+     "crates/uv/tests/pip_install/direct_url_hashes.rs"
+    ],
+    "subjects": [
+     "use generate_wheel_with_files for locked_build_dependency_wheel",
+     "unify generation of sdists with backends with side-effects"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "crates/uv-auth-types/Cargo.toml",
+     "crates/uv-auth-types/src/credentials.rs",
+     "crates/uv-auth-types/src/index.rs",
+     "crates/uv-auth-types/src/lib.rs",
+     "crates/uv-auth-types/src/realm.rs",
+     "crates/uv-auth/Cargo.toml"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:21952",
+   "pr:21962"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21952",
+    "url": "https://github.com/astral-sh/uv/pull/21952",
+    "authors": [
+     "Tomasz (Tom) Kramkowski"
+    ],
+    "n_files": 10,
+    "files_in_area": [
+     "crates/uv-test/src/archive.rs",
+     "crates/uv-test/src/lib.rs",
+     "crates/uv-test/src/package_server.rs",
+     "crates/uv/tests/lock/lock.rs",
+     "crates/uv/tests/pip_compile/pip_compile.rs",
+     "crates/uv/tests/pip_install/direct_url_hashes.rs"
+    ],
+    "subjects": [
+     "Allow custom file metadata in package test fixtures",
+     "Share a package server across hash verification tests",
+     "use generate_wheel_with_files for locked_build_dependency_wheel",
+     "unify generation of sdists with backends with side-effects"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "crates/uv-auth-types/Cargo.toml",
+     "crates/uv-auth-types/src/credentials.rs",
+     "crates/uv-auth-types/src/index.rs",
+     "crates/uv-auth-types/src/lib.rs",
+     "crates/uv-auth-types/src/realm.rs",
+     "crates/uv-auth/Cargo.toml"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "tldraw/tldraw",
+  "area": "apps/dotcom",
+  "pair": [
+   "pr:10899",
+   "pr:10923"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:10899",
+    "url": "https://github.com/tldraw/tldraw/pull/10899",
+    "authors": [
+     "Max Drake"
+    ],
+    "n_files": 11,
+    "files_in_area": [
+     "apps/dotcom/sync-worker/assets/welcome-snapshot.json"
+    ],
+    "subjects": [
+     "chore(dotcom): re-bake the welcome snapshot at the new shape schema versions",
+     "feat(tlschema): migrate shape urls down for clients without deep link support",
+     "feat(validate): accept app deep links in linkUrl"
+    ]
+   },
+   {
+    "id": "pr:10923",
+    "url": "https://github.com/tldraw/tldraw/pull/10923",
+    "authors": [
+     "Claude"
+    ],
+    "n_files": 11,
+    "files_in_area": [
+     "apps/dotcom/sync-worker/src/config.ts",
+     "apps/dotcom/sync-worker/src/routes/tla/boardTools.test.ts",
+     "apps/dotcom/sync-worker/src/routes/tla/boardTools.ts",
+     "apps/dotcom/sync-worker/src/routes/tla/evalsLocalMcp.ts",
+     "apps/dotcom/sync-worker/src/routes/tla/mcpServer.test.ts",
+     "apps/dotcom/sync-worker/src/routes/tla/mcpServer.ts"
+    ],
+    "subjects": [
+     "refactor(dotcom): tighten rename_board refusals and comments",
+     "feat(dotcom): add a rename_board MCP tool"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23553",
+   "pr:23561"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23553",
+    "url": "https://github.com/vitejs/vite/pull/23553",
+    "authors": [
+     "irontaek"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/shared/__tests__/forwardConsole.spec.ts",
+     "packages/vite/src/shared/forwardConsole.ts"
+    ],
+    "subjects": [
+     "fix: limit forwarded console argument size"
+    ]
+   },
+   {
+    "id": "pr:23561",
+    "url": "https://github.com/vitejs/vite/pull/23561",
+    "authors": [
+     "btea"
+    ],
+    "n_files": 4,
+    "files_in_area": [
+     "packages/vite/src/node/server/middlewares/transform.ts",
+     "packages/vite/src/node/server/send.ts",
+     "packages/vite/src/node/server/sourcemap.ts"
+    ],
+    "subjects": [
+     "fix(server): serve optimized dep sourcemaps as external files"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-auth",
+  "pair": [
+   "pr:21962",
+   "pr:21974"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "crates/uv-auth-types/Cargo.toml",
+     "crates/uv-auth-types/src/credentials.rs",
+     "crates/uv-auth-types/src/index.rs",
+     "crates/uv-auth-types/src/lib.rs",
+     "crates/uv-auth-types/src/realm.rs",
+     "crates/uv-auth/Cargo.toml"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "authors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ],
+    "n_files": 37,
+    "files_in_area": [
+     "crates/uv-auth/src/keyring.rs",
+     "crates/uv-auth/src/service.rs"
+    ],
+    "subjects": [
+     "Align URL validation across CLI and configuration",
+     "Redact query credentials in ambiguous URL errors",
+     "Remove unused URL persistence methods",
+     "Make URL persistence policies explicit"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "tldraw/tldraw",
+  "area": "apps/dotcom",
+  "pair": [
+   "pr:10885",
+   "pr:10921"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:10885",
+    "url": "https://github.com/tldraw/tldraw/pull/10885",
+    "authors": [
+     "angrycaptain19"
+    ],
+    "n_files": 7,
+    "files_in_area": [
+     "apps/dotcom/client/src/tla/app/TldrawApp.ts",
+     "apps/dotcom/client/src/tla/components/dialogs/WorkspaceSettingsDialog.tsx",
+     "apps/dotcom/client/src/tla/hooks/useActiveWorkspaceId.ts",
+     "apps/dotcom/client/src/tla/utils/app-ui-events.tsx",
+     "apps/dotcom/client/src/utils/analytics.tsx",
+     "apps/dotcom/client/src/utils/analyticsWorkspace.test.ts"
+    ],
+    "subjects": [
+     "chore(dotcom): format workspace analytics files",
+     "feat(dotcom): add workspace_id to PostHog events"
+    ]
+   },
+   {
+    "id": "pr:10921",
+    "url": "https://github.com/tldraw/tldraw/pull/10921",
+    "authors": [
+     "Mitja Bezenšek"
+    ],
+    "n_files": 4,
+    "files_in_area": [
+     "apps/dotcom/client/src/tla/components/TlaEditor/TlaEditor.tsx",
+     "apps/dotcom/client/src/tla/hooks/useAppState.tsx",
+     "apps/dotcom/client/src/utils/firstLoad.test.ts",
+     "apps/dotcom/client/src/utils/firstLoad.ts"
+    ],
+    "subjects": [
+     "fix(dotcom): don't send first-load reports from loads that were hidden",
+     "fix(dotcom): keep tldraw out of the entry chunk for the first-load debug flag",
+     "chore(dotcom): put the first-load toggle under debug flags",
+     "chore(dotcom): print first-load report only behind a debug flag",
+     "chore(dotcom): collapse first-load console report, explain fields for staff"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-python",
+  "pair": [
+   "pr:18881",
+   "pr:21304"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:18881",
+    "url": "https://github.com/astral-sh/uv/pull/18881",
+    "authors": [
+     "Rene Zander"
+    ],
+    "n_files": 6,
+    "files_in_area": [
+     "crates/uv-python/src/downloads.rs"
+    ],
+    "subjects": [
+     "fix: resolve borrow-after-move in python list filter",
+     "feat(python): add --all-variants flag to python list"
+    ]
+   },
+   {
+    "id": "pr:21304",
+    "url": "https://github.com/astral-sh/uv/pull/21304",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 15,
+    "files_in_area": [
+     "crates/uv-python/src/environment.rs",
+     "crates/uv-python/src/interpreter.rs",
+     "crates/uv-python/src/pointer_size.rs",
+     "crates/uv-python/src/prefix.rs",
+     "crates/uv-python/src/target.rs"
+    ],
+    "subjects": [
+     "Use `Eq`",
+     "style",
+     "Cache all venv creation",
+     "Warm interpreter caches during project and script initialization",
+     "Explain interpreter cache and launcher override regression tests"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "withastro/astro",
+  "area": ".changeset",
+  "pair": [
+   "pr:18116",
+   "pr:18120"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:18116",
+    "url": "https://github.com/withastro/astro/pull/18116",
+    "authors": [
+     "Xinhe Wang"
+    ],
+    "n_files": 8,
+    "files_in_area": [
+     ".changeset/image-endpoint-svg-byte-check.md"
+    ],
+    "subjects": [
+     "fix(assets): apply the SVG output check to the generic image endpoint",
+     "fix(assets): check f=svg against output bytes, not the source extension"
+    ]
+   },
+   {
+    "id": "pr:18120",
+    "url": "https://github.com/withastro/astro/pull/18120",
+    "authors": [
+     "Houston (Bot)"
+    ],
+    "n_files": 27,
+    "files_in_area": [
+     ".changeset/stackblitz-rolldown-wasm-binding.md"
+    ],
+    "subjects": [
+     "[ci] release"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23536",
+   "pr:23568"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23536",
+    "url": "https://github.com/vitejs/vite/pull/23536",
+    "authors": [
+     "Abdel"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/build.spec.ts",
+     "packages/vite/src/node/build.ts"
+    ],
+    "subjects": [
+     "fix: merge `build.rolldownOptions.output.minify` correctly"
+    ]
+   },
+   {
+    "id": "pr:23568",
+    "url": "https://github.com/vitejs/vite/pull/23568",
+    "authors": [
+     "Hana"
+    ],
+    "n_files": 6,
+    "files_in_area": [
+     "packages/vite/rolldown.config.ts",
+     "packages/vite/src/node/__tests__/plugins/clientInjections.spec.ts",
+     "packages/vite/src/node/constants.ts",
+     "packages/vite/src/node/plugins/clientInjections.ts",
+     "packages/vite/src/node/server/bundledDev.ts"
+    ],
+    "subjects": [
+     "test(bundled-dev): cover the served rolldown runtime",
+     "fix(bundled-dev): serve the rolldown runtime from the installed rolldown"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23484",
+   "pr:23553"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23484",
+    "url": "https://github.com/vitejs/vite/pull/23484",
+    "authors": [
+     "Jason Smathers"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/dev.spec.ts",
+     "packages/vite/src/node/server/index.ts"
+    ],
+    "subjects": [
+     "fix(dev): run a follow-up restart when restart is requested during a restart (fix #23392)"
+    ]
+   },
+   {
+    "id": "pr:23553",
+    "url": "https://github.com/vitejs/vite/pull/23553",
+    "authors": [
+     "irontaek"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/shared/__tests__/forwardConsole.spec.ts",
+     "packages/vite/src/shared/forwardConsole.ts"
+    ],
+    "subjects": [
+     "fix: limit forwarded console argument size"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-types",
+  "pair": [
+   "pr:21930",
+   "pr:21961"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21930",
+    "url": "https://github.com/astral-sh/uv/pull/21930",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 15,
+    "files_in_area": [
+     "crates/uv-types/src/hash.rs"
+    ],
+    "subjects": [
+     "Normalize build constraints without hash precedence",
+     "Preserve false requirements for overrides",
+     "Limit normalized input conversion visibility",
+     "Simplify normalized tool input conversions",
+     "Use explicit fixtures and snapshots in tool tests"
+    ]
+   },
+   {
+    "id": "pr:21961",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 81,
+    "files_in_area": [
+     "crates/uv-types/Cargo.toml",
+     "crates/uv-types/src/lib.rs"
+    ],
+    "subjects": [
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots",
+     "Export packaged locks with uv_build",
+     "Separate lock handling from network clients"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23550",
+   "pr:23556"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23550",
+    "url": "https://github.com/vitejs/vite/pull/23550",
+    "authors": [
+     "scs0209"
+    ],
+    "n_files": 4,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/plugins/css.spec.ts",
+     "packages/vite/src/node/__tests__/utils.spec.ts",
+     "packages/vite/src/node/plugins/css.ts",
+     "packages/vite/src/node/utils.ts"
+    ],
+    "subjects": [
+     "fix(css): split srcset candidates at depth so image-set gradients survive",
+     "fix(css): parse image-set() with nested parentheses"
+    ]
+   },
+   {
+    "id": "pr:23556",
+    "url": "https://github.com/vitejs/vite/pull/23556",
+    "authors": [
+     "vjymisal0"
+    ],
+    "n_files": 1,
+    "files_in_area": [
+     "packages/vite/src/node/preview.ts"
+    ],
+    "subjects": [
+     "fix(preview): skip compression wrapping for HTTP/2"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "withastro/astro",
+  "area": "packages/astro",
+  "pair": [
+   "pr:18116",
+   "pr:18121"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:18116",
+    "url": "https://github.com/withastro/astro/pull/18116",
+    "authors": [
+     "Xinhe Wang"
+    ],
+    "n_files": 8,
+    "files_in_area": [
+     "packages/astro/src/assets/endpoint/generic.ts",
+     "packages/astro/src/assets/endpoint/response.ts",
+     "packages/astro/src/assets/endpoint/shared.ts",
+     "packages/astro/test/core-image.test.ts",
+     "packages/astro/test/fixtures/core-image-ssr/public/png-bytes.svg",
+     "packages/astro/test/fixtures/core-image-ssr/public/svg-without-extension"
+    ],
+    "subjects": [
+     "fix(assets): apply the SVG output check to the generic image endpoint",
+     "fix(assets): check f=svg against output bytes, not the source extension"
+    ]
+   },
+   {
+    "id": "pr:18121",
+    "url": "https://github.com/withastro/astro/pull/18121",
+    "authors": [
+     "Matthew Phillips"
+    ],
+    "n_files": 31,
+    "files_in_area": [
+     "packages/astro/package.json",
+     "packages/astro/src/content/dev-setup.ts",
+     "packages/astro/src/core/create-vite.ts",
+     "packages/astro/src/core/dev/dev.ts",
+     "packages/astro/src/env/env-loader.ts",
+     "packages/astro/src/events/session.ts"
+    ],
+    "subjects": [
+     "Add changeset",
+     "spike: Tailwind and a nicer design for the vite-plugin-react example",
+     "spike: telemetry for astro/vite sessions, tagged with source",
+     "spike: content collections and type generation in astro/vite",
+     "spike: astro(config) takes an inline Astro config and runs integrations"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23533",
+   "pr:23568"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23533",
+    "url": "https://github.com/vitejs/vite/pull/23533",
+    "authors": [
+     "Paul C.",
+     "Paul Cameron"
+    ],
+    "n_files": 4,
+    "files_in_area": [
+     "packages/vite/src/node/server/__tests__/moduleGraph.spec.ts",
+     "packages/vite/src/node/server/hmr.ts",
+     "packages/vite/src/node/server/mixedModuleGraph.ts",
+     "packages/vite/src/node/server/moduleGraph.ts"
+    ],
+    "subjects": [
+     "chore: trigger ci",
+     "fix: hard-invalidate importers when dependency is deleted (#23527)"
+    ]
+   },
+   {
+    "id": "pr:23568",
+    "url": "https://github.com/vitejs/vite/pull/23568",
+    "authors": [
+     "Hana"
+    ],
+    "n_files": 6,
+    "files_in_area": [
+     "packages/vite/rolldown.config.ts",
+     "packages/vite/src/node/__tests__/plugins/clientInjections.spec.ts",
+     "packages/vite/src/node/constants.ts",
+     "packages/vite/src/node/plugins/clientInjections.ts",
+     "packages/vite/src/node/server/bundledDev.ts"
+    ],
+    "subjects": [
+     "test(bundled-dev): cover the served rolldown runtime",
+     "fix(bundled-dev): serve the rolldown runtime from the installed rolldown"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23562",
+   "pr:23576"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23562",
+    "url": "https://github.com/vitejs/vite/pull/23562",
+    "authors": [
+     "Melissa Liu"
+    ],
+    "n_files": 11,
+    "files_in_area": [
+     "packages/vite/src/client/bundledDevHmrClient.ts",
+     "packages/vite/src/client/client.ts",
+     "packages/vite/src/node/server/__tests__/hmr.spec.ts",
+     "packages/vite/src/node/server/__tests__/watcher.spec.ts",
+     "packages/vite/src/node/server/bundledDev.ts",
+     "packages/vite/src/node/server/hmr.ts"
+    ],
+    "subjects": [
+     "feat: support HMR for mixed bundled environments"
+    ]
+   },
+   {
+    "id": "pr:23576",
+    "url": "https://github.com/vitejs/vite/pull/23576",
+    "authors": [
+     "Januth Nimnal"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/config.spec.ts",
+     "packages/vite/src/node/utils.ts"
+    ],
+    "subjects": [
+     "fix(config): avoid mutating hmr defaults"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23484",
+   "pr:23555"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23484",
+    "url": "https://github.com/vitejs/vite/pull/23484",
+    "authors": [
+     "Jason Smathers"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/dev.spec.ts",
+     "packages/vite/src/node/server/index.ts"
+    ],
+    "subjects": [
+     "fix(dev): run a follow-up restart when restart is requested during a restart (fix #23392)"
+    ]
+   },
+   {
+    "id": "pr:23555",
+    "url": "https://github.com/vitejs/vite/pull/23555",
+    "authors": [
+     "vjymisal0"
+    ],
+    "n_files": 5,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/build.spec.ts",
+     "packages/vite/src/node/__tests__/fixtures/svg-asset-refs/img.png",
+     "packages/vite/src/node/__tests__/fixtures/svg-asset-refs/index.html",
+     "packages/vite/src/node/__tests__/fixtures/svg-asset-refs/logo.svg",
+     "packages/vite/src/node/plugins/asset.ts"
+    ],
+    "subjects": [
+     "fix(asset): rewrite references in SVG assets"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23555",
+   "pr:23576"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23555",
+    "url": "https://github.com/vitejs/vite/pull/23555",
+    "authors": [
+     "vjymisal0"
+    ],
+    "n_files": 5,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/build.spec.ts",
+     "packages/vite/src/node/__tests__/fixtures/svg-asset-refs/img.png",
+     "packages/vite/src/node/__tests__/fixtures/svg-asset-refs/index.html",
+     "packages/vite/src/node/__tests__/fixtures/svg-asset-refs/logo.svg",
+     "packages/vite/src/node/plugins/asset.ts"
+    ],
+    "subjects": [
+     "fix(asset): rewrite references in SVG assets"
+    ]
+   },
+   {
+    "id": "pr:23576",
+    "url": "https://github.com/vitejs/vite/pull/23576",
+    "authors": [
+     "Januth Nimnal"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/config.spec.ts",
+     "packages/vite/src/node/utils.ts"
+    ],
+    "subjects": [
+     "fix(config): avoid mutating hmr defaults"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23559",
+   "pr:23576"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23559",
+    "url": "https://github.com/vitejs/vite/pull/23559",
+    "authors": [
+     "btea"
+    ],
+    "n_files": 5,
+    "files_in_area": [
+     "packages/vite/rolldown.config.ts",
+     "packages/vite/src/client/bundledDevClient.ts",
+     "packages/vite/src/node/constants.ts",
+     "packages/vite/src/node/plugins/clientInjections.ts",
+     "packages/vite/src/node/server/bundledDev.ts"
+    ],
+    "subjects": [
+     "fix(dev): warn when the bundled dev runtime and the installed rolldown version mismatch"
+    ]
+   },
+   {
+    "id": "pr:23576",
+    "url": "https://github.com/vitejs/vite/pull/23576",
+    "authors": [
+     "Januth Nimnal"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/config.spec.ts",
+     "packages/vite/src/node/utils.ts"
+    ],
+    "subjects": [
+     "fix(config): avoid mutating hmr defaults"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "C",
+  "pool_size": 379,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23561",
+   "pr:23576"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23561",
+    "url": "https://github.com/vitejs/vite/pull/23561",
+    "authors": [
+     "btea"
+    ],
+    "n_files": 4,
+    "files_in_area": [
+     "packages/vite/src/node/server/middlewares/transform.ts",
+     "packages/vite/src/node/server/send.ts",
+     "packages/vite/src/node/server/sourcemap.ts"
+    ],
+    "subjects": [
+     "fix(server): serve optimized dep sourcemaps as external files"
+    ]
+   },
+   {
+    "id": "pr:23576",
+    "url": "https://github.com/vitejs/vite/pull/23576",
+    "authors": [
+     "Januth Nimnal"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/config.spec.ts",
+     "packages/vite/src/node/utils.ts"
+    ],
+    "subjects": [
+     "fix(config): avoid mutating hmr defaults"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:18881",
+   "direct:Tomasz Kramkowski"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:18881",
+    "url": "https://github.com/astral-sh/uv/pull/18881",
+    "authors": [
+     "Rene Zander"
+    ],
+    "n_files": 6,
+    "files_in_area": [
+     "crates/uv-cli/src/lib.rs",
+     "crates/uv-python/src/downloads.rs",
+     "crates/uv/src/commands/python/list.rs",
+     "crates/uv/src/lib.rs",
+     "crates/uv/src/settings.rs",
+     "crates/uv/tests/python/python_list.rs"
+    ],
+    "subjects": [
+     "fix: resolve borrow-after-move in python list filter",
+     "feat(python): add --all-variants flag to python list"
+    ]
+   },
+   {
+    "id": "direct:Tomasz Kramkowski",
+    "url": "https://github.com/astral-sh/uv/commit/0e7433eee906fe81709c95c5bde556263367f21f",
+    "authors": [
+     "Tomasz Kramkowski"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "crates/uv/tests/lock/lock.rs",
+     "crates/uv/tests/pip_compile/pip_compile.rs"
+    ],
+    "subjects": [
+     "Filter distribution hashes in tests (#21941)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "withastro/astro",
+  "area": "packages/astro",
+  "pair": [
+   "pr:18119",
+   "direct:Matthew Phillips"
+  ],
+  "shared_files": [
+   "packages/astro/package.json"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:18119",
+    "url": "https://github.com/withastro/astro/pull/18119",
+    "authors": [
+     "Emanuele Stoppa",
+     "James Opstad",
+     "ematipico"
+    ],
+    "n_files": 133,
+    "files_in_area": [
+     "packages/astro/CHANGELOG.md",
+     "packages/astro/e2e/fixtures/cloudflare/.gitignore",
+     "packages/astro/e2e/fixtures/cloudflare/cloudflare.config.ts",
+     "packages/astro/e2e/fixtures/cloudflare/package.json",
+     "packages/astro/e2e/fixtures/cloudflare/wrangler.jsonc",
+     "packages/astro/package.json"
+    ],
+    "subjects": [
+     "Update Cloudflare plugin",
+     "Update .gitignore files",
+     "Add changeset",
+     "Remove default compatibility date in customiser as it is no longer needed",
+     "Update Cloudflare adapter to support v2 of the Cloudflare plugin and cf"
+    ]
+   },
+   {
+    "id": "direct:Matthew Phillips",
+    "url": "https://github.com/withastro/astro/commit/c17d9209bef385ea88b6fee36e91ad4e635f4a86",
+    "authors": [
+     "Matthew Phillips"
+    ],
+    "n_files": 4,
+    "files_in_area": [
+     "packages/astro/package.json"
+    ],
+    "subjects": [
+     "Fix Astro 7 on StackBlitz by requiring rolldown 1.2.10 (#18114)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:21961",
+   "direct:Charlie Marsh"
+  ],
+  "shared_files": [
+   "crates/uv/src/commands/pip/compile.rs",
+   "crates/uv/src/commands/project/lock.rs",
+   "crates/uv/src/commands/project/mod.rs",
+   "crates/uv/tests/sync/show_settings.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21961",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 81,
+    "files_in_area": [
+     "crates/uv-auth-types/Cargo.toml",
+     "crates/uv-auth-types/src/credentials.rs",
+     "crates/uv-auth-types/src/index.rs",
+     "crates/uv-auth-types/src/lib.rs",
+     "crates/uv-auth-types/src/realm.rs",
+     "crates/uv-auth/Cargo.toml"
+    ],
+    "subjects": [
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots",
+     "Export packaged locks with uv_build",
+     "Separate lock handling from network clients"
+    ]
+   },
+   {
+    "id": "direct:Charlie Marsh",
+    "url": "https://github.com/astral-sh/uv/commit/30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 36,
+    "files_in_area": [
+     "crates/uv-configuration/src/constraints.rs",
+     "crates/uv-configuration/src/excludes.rs",
+     "crates/uv-configuration/src/overrides.rs",
+     "crates/uv-dev/src/generate_preview_features_reference.rs",
+     "crates/uv-dispatch/src/lib.rs",
+     "crates/uv-distribution-types/src/lib.rs"
+    ],
+    "subjects": [
+     "Preserve query parameters in direct URL metadata (#21971)",
+     "Omit unused runtime settings from lockfiles (#21913)",
+     "Disable incremental compilation when publishing docs (#21955)",
+     "Round-trip always-false environment markers (#21939)",
+     "Align arbitrary equality satisfaction with resolution (#21931)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23561",
+   "direct:Murugappan M"
+  ],
+  "shared_files": [
+   "packages/vite/src/node/server/sourcemap.ts"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23561",
+    "url": "https://github.com/vitejs/vite/pull/23561",
+    "authors": [
+     "btea"
+    ],
+    "n_files": 4,
+    "files_in_area": [
+     "packages/vite/src/node/server/middlewares/transform.ts",
+     "packages/vite/src/node/server/send.ts",
+     "packages/vite/src/node/server/sourcemap.ts"
+    ],
+    "subjects": [
+     "fix(server): serve optimized dep sourcemaps as external files"
+    ]
+   },
+   {
+    "id": "direct:Murugappan M",
+    "url": "https://github.com/vitejs/vite/commit/04fc30a4b91870e65a436b3420620a2e02a94a41",
+    "authors": [
+     "Murugappan M"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/node/server/__tests__/sourcemap.spec.ts",
+     "packages/vite/src/node/server/sourcemap.ts"
+    ],
+    "subjects": [
+     "fix(sourcemap): skip URL source roots when injecting sources content (#23519)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23553",
+   "direct:btea"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23553",
+    "url": "https://github.com/vitejs/vite/pull/23553",
+    "authors": [
+     "irontaek"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/shared/__tests__/forwardConsole.spec.ts",
+     "packages/vite/src/shared/forwardConsole.ts"
+    ],
+    "subjects": [
+     "fix: limit forwarded console argument size"
+    ]
+   },
+   {
+    "id": "direct:btea",
+    "url": "https://github.com/vitejs/vite/commit/e5d9af29a3571f388c4bc2a8d4c3387e46ff1da0",
+    "authors": [
+     "btea"
+    ],
+    "n_files": 6,
+    "files_in_area": [
+     "packages/vite/src/node/plugins/preAlias.ts"
+    ],
+    "subjects": [
+     "refactor(create-vite): use `tinyexec` instead of `cross-spawn` (#23541)",
+     "refactor: replace `find` with `some` (#23554)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23562",
+   "direct:Murugappan M"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23562",
+    "url": "https://github.com/vitejs/vite/pull/23562",
+    "authors": [
+     "Melissa Liu"
+    ],
+    "n_files": 11,
+    "files_in_area": [
+     "packages/vite/src/client/bundledDevHmrClient.ts",
+     "packages/vite/src/client/client.ts",
+     "packages/vite/src/node/server/__tests__/hmr.spec.ts",
+     "packages/vite/src/node/server/__tests__/watcher.spec.ts",
+     "packages/vite/src/node/server/bundledDev.ts",
+     "packages/vite/src/node/server/hmr.ts"
+    ],
+    "subjects": [
+     "feat: support HMR for mixed bundled environments"
+    ]
+   },
+   {
+    "id": "direct:Murugappan M",
+    "url": "https://github.com/vitejs/vite/commit/04fc30a4b91870e65a436b3420620a2e02a94a41",
+    "authors": [
+     "Murugappan M"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/node/server/__tests__/sourcemap.spec.ts",
+     "packages/vite/src/node/server/sourcemap.ts"
+    ],
+    "subjects": [
+     "fix(sourcemap): skip URL source roots when injecting sources content (#23519)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-configuration",
+  "pair": [
+   "pr:21963",
+   "direct:Charlie Marsh"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21963",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 67,
+    "files_in_area": [
+     "crates/uv-configuration/Cargo.toml",
+     "crates/uv-configuration/src/authentication.rs",
+     "crates/uv-configuration/src/hash_strategy.rs",
+     "crates/uv-configuration/src/lib.rs",
+     "crates/uv-configuration/src/proxy_url.rs",
+     "crates/uv-configuration/src/vcs.rs"
+    ],
+    "subjects": [
+     "Separate lock handling from network clients"
+    ]
+   },
+   {
+    "id": "direct:Charlie Marsh",
+    "url": "https://github.com/astral-sh/uv/commit/30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 36,
+    "files_in_area": [
+     "crates/uv-configuration/src/constraints.rs",
+     "crates/uv-configuration/src/excludes.rs",
+     "crates/uv-configuration/src/overrides.rs"
+    ],
+    "subjects": [
+     "Preserve query parameters in direct URL metadata (#21971)",
+     "Omit unused runtime settings from lockfiles (#21913)",
+     "Disable incremental compilation when publishing docs (#21955)",
+     "Round-trip always-false environment markers (#21939)",
+     "Align arbitrary equality satisfaction with resolution (#21931)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23557",
+   "direct:Vijay Misal"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23557",
+    "url": "https://github.com/vitejs/vite/pull/23557",
+    "authors": [
+     "koreahghg"
+    ],
+    "n_files": 4,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/fixtures/optimizer-post-scan-error/entry.js",
+     "packages/vite/src/node/__tests__/fixtures/optimizer-post-scan-error/index.html",
+     "packages/vite/src/node/__tests__/optimizer/postScanError.spec.ts",
+     "packages/vite/src/node/optimizer/optimizer.ts"
+    ],
+    "subjects": [
+     "fix(optimizer): handle errors in the post-scan optimize run"
+    ]
+   },
+   {
+    "id": "direct:Vijay Misal",
+    "url": "https://github.com/vitejs/vite/commit/f68c0d5a28c96555431413e3e2cbe644337b087f",
+    "authors": [
+     "Vijay Misal"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/config.spec.ts",
+     "packages/vite/src/node/utils.ts"
+    ],
+    "subjects": [
+     "fix: handle `server.ws: false` in mergeConfig (#23511)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-resolver",
+  "pair": [
+   "pr:21961",
+   "direct:Charlie Marsh"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21961",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 81,
+    "files_in_area": [
+     "crates/uv-resolver-types/Cargo.toml",
+     "crates/uv-resolver-types/src/distribution.rs",
+     "crates/uv-resolver-types/src/lib.rs",
+     "crates/uv-resolver-types/src/output.rs",
+     "crates/uv-resolver/src/lib.rs",
+     "crates/uv-resolver/src/resolution/markers.rs"
+    ],
+    "subjects": [
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots",
+     "Export packaged locks with uv_build",
+     "Separate lock handling from network clients"
+    ]
+   },
+   {
+    "id": "direct:Charlie Marsh",
+    "url": "https://github.com/astral-sh/uv/commit/30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 36,
+    "files_in_area": [
+     "crates/uv-resolver/src/candidate_selector.rs",
+     "crates/uv-resolver/src/manifest.rs",
+     "crates/uv-resolver/src/resolver/indexes.rs",
+     "crates/uv-resolver/src/resolver/mod.rs",
+     "crates/uv-resolver/src/resolver/requests.rs",
+     "crates/uv-resolver/src/resolver/urls.rs"
+    ],
+    "subjects": [
+     "Preserve query parameters in direct URL metadata (#21971)",
+     "Omit unused runtime settings from lockfiles (#21913)",
+     "Disable incremental compilation when publishing docs (#21955)",
+     "Round-trip always-false environment markers (#21939)",
+     "Align arbitrary equality satisfaction with resolution (#21931)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv",
+  "pair": [
+   "pr:21962",
+   "direct:Charlie Marsh"
+  ],
+  "shared_files": [
+   "crates/uv/src/commands/pip/compile.rs",
+   "crates/uv/src/commands/project/lock.rs",
+   "crates/uv/src/commands/project/mod.rs",
+   "crates/uv/tests/sync/show_settings.rs"
+  ],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "crates/uv-auth-types/Cargo.toml",
+     "crates/uv-auth-types/src/credentials.rs",
+     "crates/uv-auth-types/src/index.rs",
+     "crates/uv-auth-types/src/lib.rs",
+     "crates/uv-auth-types/src/realm.rs",
+     "crates/uv-auth/Cargo.toml"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   },
+   {
+    "id": "direct:Charlie Marsh",
+    "url": "https://github.com/astral-sh/uv/commit/30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 36,
+    "files_in_area": [
+     "crates/uv-configuration/src/constraints.rs",
+     "crates/uv-configuration/src/excludes.rs",
+     "crates/uv-configuration/src/overrides.rs",
+     "crates/uv-dev/src/generate_preview_features_reference.rs",
+     "crates/uv-dispatch/src/lib.rs",
+     "crates/uv-distribution-types/src/lib.rs"
+    ],
+    "subjects": [
+     "Preserve query parameters in direct URL metadata (#21971)",
+     "Omit unused runtime settings from lockfiles (#21913)",
+     "Disable incremental compilation when publishing docs (#21955)",
+     "Round-trip always-false environment markers (#21939)",
+     "Align arbitrary equality satisfaction with resolution (#21931)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "astral-sh/uv",
+  "area": "crates/uv-configuration",
+  "pair": [
+   "pr:21962",
+   "direct:Charlie Marsh"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:21962",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "authors": [
+     "konstin"
+    ],
+    "n_files": 97,
+    "files_in_area": [
+     "crates/uv-configuration/Cargo.toml",
+     "crates/uv-configuration/src/authentication.rs",
+     "crates/uv-configuration/src/build_backend.rs",
+     "crates/uv-configuration/src/hash_strategy.rs",
+     "crates/uv-configuration/src/lib.rs",
+     "crates/uv-configuration/src/proxy_url.rs"
+    ],
+    "subjects": [
+     "Verify packaged tool artifact URLs against PyPI",
+     "Require artifact hashes in packaged tool locks",
+     "Install tools from their packaged pylock.toml",
+     "Reject unusable packaged lock exports",
+     "Update preview snapshots"
+    ]
+   },
+   {
+    "id": "direct:Charlie Marsh",
+    "url": "https://github.com/astral-sh/uv/commit/30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+    "authors": [
+     "Charlie Marsh"
+    ],
+    "n_files": 36,
+    "files_in_area": [
+     "crates/uv-configuration/src/constraints.rs",
+     "crates/uv-configuration/src/excludes.rs",
+     "crates/uv-configuration/src/overrides.rs"
+    ],
+    "subjects": [
+     "Preserve query parameters in direct URL metadata (#21971)",
+     "Omit unused runtime settings from lockfiles (#21913)",
+     "Disable incremental compilation when publishing docs (#21955)",
+     "Round-trip always-false environment markers (#21939)",
+     "Align arbitrary equality satisfaction with resolution (#21931)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "vitejs/vite",
+  "area": "vitest.config.e2e.ts",
+  "pair": [
+   "pr:23246",
+   "direct:andrew"
+  ],
+  "shared_files": [
+   "vitest.config.e2e.ts"
+  ],
+  "same_line_files": [
+   "vitest.config.e2e.ts"
+  ],
+  "items": [
+   {
+    "id": "pr:23246",
+    "url": "https://github.com/vitejs/vite/pull/23246",
+    "authors": [
+     "Hana"
+    ],
+    "n_files": 8,
+    "files_in_area": [
+     "vitest.config.e2e.ts"
+    ],
+    "subjects": [
+     "test(bundled-dev): expect bundle-only serving in fs-serve, resolve, dynamic-import",
+     "feat(bundled-dev): serve static files with fs checks after the bundle lookup"
+    ]
+   },
+   {
+    "id": "direct:andrew",
+    "url": "https://github.com/vitejs/vite/commit/6e09961181a1047ef78d37b1a23fb0e7488c8980",
+    "authors": [
+     "andrew"
+    ],
+    "n_files": 9,
+    "files_in_area": [
+     "vitest.config.e2e.ts"
+    ],
+    "subjects": [
+     "test(bundled-dev): enable passing cases in more playgrounds (#23552)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "tldraw/tldraw",
+  "area": "apps/dotcom",
+  "pair": [
+   "pr:10921",
+   "direct:Niall D"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:10921",
+    "url": "https://github.com/tldraw/tldraw/pull/10921",
+    "authors": [
+     "Mitja Bezenšek"
+    ],
+    "n_files": 4,
+    "files_in_area": [
+     "apps/dotcom/client/src/tla/components/TlaEditor/TlaEditor.tsx",
+     "apps/dotcom/client/src/tla/hooks/useAppState.tsx",
+     "apps/dotcom/client/src/utils/firstLoad.test.ts",
+     "apps/dotcom/client/src/utils/firstLoad.ts"
+    ],
+    "subjects": [
+     "fix(dotcom): don't send first-load reports from loads that were hidden",
+     "fix(dotcom): keep tldraw out of the entry chunk for the first-load debug flag",
+     "chore(dotcom): put the first-load toggle under debug flags",
+     "chore(dotcom): print first-load report only behind a debug flag",
+     "chore(dotcom): collapse first-load console report, explain fields for staff"
+    ]
+   },
+   {
+    "id": "direct:Niall D",
+    "url": "https://github.com/tldraw/tldraw/commit/e8e194c3a55af60d1f6da86ce842de38784d07e1",
+    "authors": [
+     "Niall D"
+    ],
+    "n_files": 44,
+    "files_in_area": [
+     "apps/dotcom/browser-run-thumbnails.md",
+     "apps/dotcom/client/src/pages/admin/FlagsSection.tsx",
+     "apps/dotcom/client/src/pages/admin/admin.module.css",
+     "apps/dotcom/client/src/tla/utils/FeatureFlagPoller.test.ts",
+     "apps/dotcom/client/src/tla/utils/FeatureFlagPoller.tsx",
+     "apps/dotcom/mcp-server-auth.md"
+    ],
+    "subjects": [
+     "feat(dotcom): add a create_board MCP tool (#10898)",
+     "fix(dotcom): write versions only to the chain bucket, retry chain writes, and bound chain index reads (#10897)",
+     "feat(dotcom): an access-gated board thumbnail endpoint (#10884)",
+     "feat(dotcom): open MCP server access to staff and an allowlist (#10877)",
+     "feat(dotcom): accept an MCP access token when downloading or syncing a board (#10858)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "tldraw/tldraw",
+  "area": "apps/dotcom",
+  "pair": [
+   "pr:10899",
+   "direct:Mime Čuvalo"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:10899",
+    "url": "https://github.com/tldraw/tldraw/pull/10899",
+    "authors": [
+     "Max Drake"
+    ],
+    "n_files": 11,
+    "files_in_area": [
+     "apps/dotcom/sync-worker/assets/welcome-snapshot.json"
+    ],
+    "subjects": [
+     "chore(dotcom): re-bake the welcome snapshot at the new shape schema versions",
+     "feat(tlschema): migrate shape urls down for clients without deep link support",
+     "feat(validate): accept app deep links in linkUrl"
+    ]
+   },
+   {
+    "id": "direct:Mime Čuvalo",
+    "url": "https://github.com/tldraw/tldraw/commit/b531b9297f655f282e0f88aaa763739fc5bfd04b",
+    "authors": [
+     "Mime Čuvalo"
+    ],
+    "n_files": 9,
+    "files_in_area": [
+     "apps/dotcom/sync-worker/src/TLFileDurableObject.ts",
+     "apps/dotcom/sync-worker/src/types.ts",
+     "apps/dotcom/sync-worker/src/utils/tla/getAuth.test.ts",
+     "apps/dotcom/sync-worker/src/utils/tla/getAuth.ts",
+     "apps/dotcom/sync-worker/src/utils/tla/mcpMutators.test.ts",
+     "apps/dotcom/sync-worker/src/utils/tla/mcpMutators.ts"
+    ],
+    "subjects": [
+     "feat(dotcom): Zero accepts an MCP access token, with the board mutators only (#10896)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "pydantic/pydantic",
+  "area": "pydantic",
+  "pair": [
+   "pr:13848",
+   "direct:Victorien"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:13848",
+    "url": "https://github.com/pydantic/pydantic/pull/13848",
+    "authors": [
+     "Kropiunig"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "pydantic/json_schema.py"
+    ],
+    "subjects": [
+     "Include `null` in serialization JSON Schema for `unless-none` field serializers"
+    ]
+   },
+   {
+    "id": "direct:Victorien",
+    "url": "https://github.com/pydantic/pydantic/commit/5da36b5de4f44a572ca5c12104fd2f8669dfeaca",
+    "authors": [
+     "Victorien"
+    ],
+    "n_files": 11,
+    "files_in_area": [
+     "pydantic/_internal/_config.py",
+     "pydantic/_internal/_dataclasses.py",
+     "pydantic/_internal/_model_construction.py",
+     "pydantic/_internal/_signature.py",
+     "pydantic/config.py",
+     "pydantic/deprecated/decorator.py"
+    ],
+    "subjects": [
+     "Do not mutate `model_config` attribute (#13825)",
+     "Do not mutate `model_config` attribute (#13825)",
+     "Catch `OverflowError` during `ByteSize` validation (#13850)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "withastro/astro",
+  "area": ".changeset",
+  "pair": [
+   "pr:18071",
+   "direct:Emanuele Stoppa"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:18071",
+    "url": "https://github.com/withastro/astro/pull/18071",
+    "authors": [
+     "okxint"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     ".changeset/fix-run-scripts-live-collection.md"
+    ],
+    "subjects": [
+     "chore: add changeset for runScripts live-collection fix",
+     "fix(transitions): snapshot script collection before iterating in runScripts"
+    ]
+   },
+   {
+    "id": "direct:Emanuele Stoppa",
+    "url": "https://github.com/withastro/astro/commit/2b8b2e80169da0ab19055166438291c46fcfe320",
+    "authors": [
+     "Emanuele Stoppa"
+    ],
+    "n_files": 13,
+    "files_in_area": [
+     ".changeset/olive-queens-enjoy.md"
+    ],
+    "subjects": [
+     "feat: add render component (#17736)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "tldraw/tldraw",
+  "area": "internal/scripts",
+  "pair": [
+   "pr:10720",
+   "direct:Kevin Ingersoll"
+  ],
+  "shared_files": [
+   "internal/scripts/deploy-dotcom.ts",
+   "internal/scripts/package.json"
+  ],
+  "same_line_files": [
+   "internal/scripts/package.json"
+  ],
+  "items": [
+   {
+    "id": "pr:10720",
+    "url": "https://github.com/tldraw/tldraw/pull/10720",
+    "authors": [
+     "Claude",
+     "driev"
+    ],
+    "n_files": 10,
+    "files_in_area": [
+     "internal/scripts/deploy-dotcom.ts",
+     "internal/scripts/lib/flyDeployGate.test.ts",
+     "internal/scripts/lib/flyDeployGate.ts",
+     "internal/scripts/package.json",
+     "internal/scripts/vitest.config.ts"
+    ],
+    "subjects": [
+     "ci(dotcom): reject the spaced JSON-array COPY too",
+     "ci(dotcom): describe what parseDeployedInputHash returns now",
+     "ci(dotcom): correct what a deploy does to the machines",
+     "ci(dotcom): say why the gate couldn't read a stamp",
+     "ci(dotcom): assert ZERO_FORCE_DEPLOY is true or false"
+    ]
+   },
+   {
+    "id": "direct:Kevin Ingersoll",
+    "url": "https://github.com/tldraw/tldraw/commit/293312bb79be0d4e9d05da79b0e95d0d2266c605",
+    "authors": [
+     "Kevin Ingersoll"
+    ],
+    "n_files": 207,
+    "files_in_area": [
+     "internal/scripts/api-check.ts",
+     "internal/scripts/benchmark-dict-validator.ts",
+     "internal/scripts/benchmark-validators.ts",
+     "internal/scripts/build-api.ts",
+     "internal/scripts/check-packages.ts",
+     "internal/scripts/check-worker-bundle.ts"
+    ],
+    "subjects": [
+     "chore(examples): move the Vercel ignore step into vercel.json (#10911)",
+     "fix(docs): build the docs deploy from apps/docs (#10906)",
+     "chore: tell Yarn checkouts exactly how to switch to pnpm (#10905)",
+     "chore: switch pnpm to the isolated node linker (#10901)",
+     "chore: migrate from Yarn to pnpm (#10841)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "vitejs/vite",
+  "area": "playground",
+  "pair": [
+   "pr:23561",
+   "direct:andrew"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23561",
+    "url": "https://github.com/vitejs/vite/pull/23561",
+    "authors": [
+     "btea"
+    ],
+    "n_files": 4,
+    "files_in_area": [
+     "playground/js-sourcemap/__tests__/js-sourcemap.spec.ts"
+    ],
+    "subjects": [
+     "fix(server): serve optimized dep sourcemaps as external files"
+    ]
+   },
+   {
+    "id": "direct:andrew",
+    "url": "https://github.com/vitejs/vite/commit/6e09961181a1047ef78d37b1a23fb0e7488c8980",
+    "authors": [
+     "andrew"
+    ],
+    "n_files": 9,
+    "files_in_area": [
+     "playground/assets/__tests__/runtime-base/assets-runtime-base.spec.ts",
+     "playground/backend-integration/__tests__/backend-integration.spec.ts",
+     "playground/csp/__tests__/csp.spec.ts",
+     "playground/extensions/__tests__/extensions.spec.ts",
+     "playground/forward-console/__test__/forward-console.spec.ts",
+     "playground/tailwind-v3/__test__/tailwind-v3.spec.ts"
+    ],
+    "subjects": [
+     "test(bundled-dev): enable passing cases in more playgrounds (#23552)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "tldraw/tldraw",
+  "area": "apps/dotcom",
+  "pair": [
+   "pr:10880",
+   "direct:Kevin Ingersoll"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:10880",
+    "url": "https://github.com/tldraw/tldraw/pull/10880",
+    "authors": [
+     "Mitja Bezenšek"
+    ],
+    "n_files": 16,
+    "files_in_area": [
+     "apps/dotcom/client/src/routeDefs.ts",
+     "apps/dotcom/client/src/routes.tsx",
+     "apps/dotcom/client/src/tla/app/TldrawApp.ts",
+     "apps/dotcom/client/src/tla/app/getMostRecentFileId.test.ts",
+     "apps/dotcom/client/src/tla/components/TlaEditor/TlaEditor.tsx",
+     "apps/dotcom/client/src/tla/components/TlaEditor/TlaFileSyncHost.tsx"
+    ],
+    "subjects": [
+     "chore(dotcom): say why the legal dialog waits for the app",
+     "chore(dotcom): spell the cached-visit outcome fallback as one word",
+     "fix(dotcom): judge a cached visit by the same rule as getMostRecentFileId",
+     "fix(dotcom): keep the sidebar mounted across file switches",
+     "chore(dotcom): trim the resolveCachedFileVisit doc block"
+    ]
+   },
+   {
+    "id": "direct:Kevin Ingersoll",
+    "url": "https://github.com/tldraw/tldraw/commit/293312bb79be0d4e9d05da79b0e95d0d2266c605",
+    "authors": [
+     "Kevin Ingersoll"
+    ],
+    "n_files": 207,
+    "files_in_area": [
+     "apps/dotcom/README.md",
+     "apps/dotcom/asset-upload-worker/package.json",
+     "apps/dotcom/browser-run-thumbnails.md",
+     "apps/dotcom/client/.gitignore",
+     "apps/dotcom/client/e2e/README.md",
+     "apps/dotcom/client/e2e/global.teardown.ts"
+    ],
+    "subjects": [
+     "chore(examples): move the Vercel ignore step into vercel.json (#10911)",
+     "fix(docs): build the docs deploy from apps/docs (#10906)",
+     "chore: tell Yarn checkouts exactly how to switch to pnpm (#10905)",
+     "chore: switch pnpm to the isolated node linker (#10901)",
+     "chore: migrate from Yarn to pnpm (#10841)"
+    ]
+   }
+  ]
+ },
+ {
+  "stratum": "D",
+  "pool_size": 214,
+  "repo": "vitejs/vite",
+  "area": "packages/vite",
+  "pair": [
+   "pr:23557",
+   "direct:Murugappan M"
+  ],
+  "shared_files": [],
+  "same_line_files": [],
+  "items": [
+   {
+    "id": "pr:23557",
+    "url": "https://github.com/vitejs/vite/pull/23557",
+    "authors": [
+     "koreahghg"
+    ],
+    "n_files": 4,
+    "files_in_area": [
+     "packages/vite/src/node/__tests__/fixtures/optimizer-post-scan-error/entry.js",
+     "packages/vite/src/node/__tests__/fixtures/optimizer-post-scan-error/index.html",
+     "packages/vite/src/node/__tests__/optimizer/postScanError.spec.ts",
+     "packages/vite/src/node/optimizer/optimizer.ts"
+    ],
+    "subjects": [
+     "fix(optimizer): handle errors in the post-scan optimize run"
+    ]
+   },
+   {
+    "id": "direct:Murugappan M",
+    "url": "https://github.com/vitejs/vite/commit/04fc30a4b91870e65a436b3420620a2e02a94a41",
+    "authors": [
+     "Murugappan M"
+    ],
+    "n_files": 2,
+    "files_in_area": [
+     "packages/vite/src/node/server/__tests__/sourcemap.spec.ts",
+     "packages/vite/src/node/server/sourcemap.ts"
+    ],
+    "subjects": [
+     "fix(sourcemap): skip URL source roots when injecting sources content (#23519)"
+    ]
+   }
+  ]
+ }
+]

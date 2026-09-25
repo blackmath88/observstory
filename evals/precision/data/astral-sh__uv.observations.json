@@ -1,0 +1,5141 @@
+{
+ "schema": "observstory.observations/v1",
+ "fetched_at": "2026-09-25T00:42:48Z",
+ "repository": {
+  "full_name": "astral-sh/uv",
+  "url": "https://github.com/astral-sh/uv",
+  "default_branch": "main",
+  "visibility": "public",
+  "description": null
+ },
+ "window": {
+  "hours": 48.0,
+  "since": "2026-09-23T00:42:48Z"
+ },
+ "trigger": {
+  "event": "precision-study-git"
+ },
+ "commits": [
+  {
+   "sha": "bea138450f0e620a4ce5765b0e38cff7b9f0799f",
+   "parents": [
+    "299a93de4b94e754f260c673d2de456afbdd4fb7"
+   ],
+   "date": "2026-09-24T17:28:49-04:00",
+   "author": {
+    "login": null,
+    "name": "astral-automations-bot[bot]",
+    "type": "Bot"
+   },
+   "message": "Bump version to 0.12.19 (#21975)",
+   "paths": [
+    "CHANGELOG.md",
+    "Cargo.lock",
+    "Cargo.toml",
+    "crates/uv-audit/Cargo.toml",
+    "crates/uv-audit/README.md",
+    "crates/uv-auth/Cargo.toml",
+    "crates/uv-auth/README.md",
+    "crates/uv-bench/Cargo.toml",
+    "crates/uv-bench/README.md",
+    "crates/uv-bin-install/Cargo.toml",
+    "crates/uv-bin-install/README.md",
+    "crates/uv-build-backend/Cargo.toml",
+    "crates/uv-build-backend/README.md",
+    "crates/uv-build-frontend/Cargo.toml",
+    "crates/uv-build-frontend/README.md",
+    "crates/uv-build/Cargo.toml",
+    "crates/uv-build/pyproject.toml",
+    "crates/uv-cache-info/Cargo.toml",
+    "crates/uv-cache-info/README.md",
+    "crates/uv-cache-key/Cargo.toml",
+    "crates/uv-cache-key/README.md",
+    "crates/uv-cache/Cargo.toml",
+    "crates/uv-cache/README.md",
+    "crates/uv-cli/Cargo.toml",
+    "crates/uv-cli/README.md",
+    "crates/uv-client/Cargo.toml",
+    "crates/uv-client/README.md",
+    "crates/uv-configuration/Cargo.toml",
+    "crates/uv-configuration/README.md",
+    "crates/uv-console/Cargo.toml",
+    "crates/uv-console/README.md",
+    "crates/uv-dev/Cargo.toml",
+    "crates/uv-dev/README.md",
+    "crates/uv-dirs/Cargo.toml",
+    "crates/uv-dirs/README.md",
+    "crates/uv-dispatch/Cargo.toml",
+    "crates/uv-dispatch/README.md",
+    "crates/uv-distribution-filename/Cargo.toml",
+    "crates/uv-distribution-filename/README.md",
+    "crates/uv-distribution-types/Cargo.toml",
+    "crates/uv-distribution-types/README.md",
+    "crates/uv-distribution/Cargo.toml",
+    "crates/uv-distribution/README.md",
+    "crates/uv-errors/Cargo.toml",
+    "crates/uv-errors/README.md",
+    "crates/uv-extract/Cargo.toml",
+    "crates/uv-extract/README.md",
+    "crates/uv-fastid/Cargo.toml",
+    "crates/uv-fastid/README.md",
+    "crates/uv-flags/Cargo.toml",
+    "crates/uv-flags/README.md",
+    "crates/uv-fs/Cargo.toml",
+    "crates/uv-fs/README.md",
+    "crates/uv-git-types/Cargo.toml",
+    "crates/uv-git-types/README.md",
+    "crates/uv-git/Cargo.toml",
+    "crates/uv-git/README.md",
+    "crates/uv-globfilter/Cargo.toml",
+    "crates/uv-install-wheel/Cargo.toml",
+    "crates/uv-install-wheel/README.md",
+    "crates/uv-installer/Cargo.toml",
+    "crates/uv-installer/README.md",
+    "crates/uv-keyring/Cargo.toml",
+    "crates/uv-lock/Cargo.toml",
+    "crates/uv-logging/Cargo.toml",
+    "crates/uv-logging/README.md",
+    "crates/uv-macros/Cargo.toml",
+    "crates/uv-macros/README.md",
+    "crates/uv-metadata/Cargo.toml",
+    "crates/uv-metadata/README.md",
+    "crates/uv-netrc/Cargo.toml",
+    "crates/uv-normalize/Cargo.toml",
+    "crates/uv-normalize/README.md",
+    "crates/uv-once-map/Cargo.toml",
+    "crates/uv-once-map/README.md",
+    "crates/uv-options-metadata/Cargo.toml",
+    "crates/uv-options-metadata/README.md",
+    "crates/uv-pep440/Cargo.toml",
+    "crates/uv-pep440/README.md",
+    "crates/uv-pep508/Cargo.toml",
+    "crates/uv-pep508/README.md",
+    "crates/uv-performance-memory-allocator/Cargo.toml",
+    "crates/uv-performance-memory-allocator/README.md",
+    "crates/uv-platform-tags/Cargo.toml",
+    "crates/uv-platform-tags/README.md",
+    "crates/uv-platform/Cargo.toml",
+    "crates/uv-platform/README.md",
+    "crates/uv-preview/Cargo.toml",
+    "crates/uv-preview/README.md",
+    "crates/uv-publish/Cargo.toml",
+    "crates/uv-publish/README.md",
+    "crates/uv-pypi-types/Cargo.toml",
+    "crates/uv-pypi-types/README.md",
+    "crates/uv-python/Cargo.toml",
+    "crates/uv-python/README.md",
+    "crates/uv-redacted/Cargo.toml",
+    "crates/uv-redacted/README.md",
+    "crates/uv-requirements-txt/Cargo.toml",
+    "crates/uv-requirements-txt/README.md",
+    "crates/uv-requirements/Cargo.toml",
+    "crates/uv-requirements/README.md",
+    "crates/uv-resolver-types/Cargo.toml",
+    "crates/uv-resolver/Cargo.toml",
+    "crates/uv-resolver/README.md",
+    "crates/uv-scripts/Cargo.toml",
+    "crates/uv-scripts/README.md",
+    "crates/uv-settings/Cargo.toml",
+    "crates/uv-settings/README.md",
+    "crates/uv-shell/Cargo.toml",
+    "crates/uv-shell/README.md",
+    "crates/uv-small-str/Cargo.toml",
+    "crates/uv-small-str/README.md",
+    "crates/uv-state/Cargo.toml",
+    "crates/uv-state/README.md",
+    "crates/uv-static/Cargo.toml",
+    "crates/uv-static/README.md",
+    "crates/uv-test/Cargo.toml",
+    "crates/uv-test/README.md",
+    "crates/uv-threads/Cargo.toml",
+    "crates/uv-toml/Cargo.toml",
+    "crates/uv-toml/README.md",
+    "crates/uv-tool/Cargo.toml",
+    "crates/uv-tool/README.md",
+    "crates/uv-torch/Cargo.toml",
+    "crates/uv-torch/README.md",
+    "crates/uv-trampoline-builder/Cargo.toml",
+    "crates/uv-trampoline-builder/README.md",
+    "crates/uv-trampoline/Cargo.lock",
+    "crates/uv-types/Cargo.toml",
+    "crates/uv-types/README.md",
+    "crates/uv-unix/Cargo.toml",
+    "crates/uv-unix/README.md",
+    "crates/uv-version/Cargo.toml",
+    "crates/uv-version/README.md",
+    "crates/uv-virtualenv/Cargo.toml",
+    "crates/uv-warnings/Cargo.toml",
+    "crates/uv-warnings/README.md",
+    "crates/uv-windows/Cargo.toml",
+    "crates/uv-windows/README.md",
+    "crates/uv-workspace/Cargo.toml",
+    "crates/uv-workspace/README.md",
+    "crates/uv/Cargo.toml",
+    "crates/uv/README.md",
+    "docs/concepts/build-backend.md",
+    "docs/concepts/projects/init.md",
+    "docs/concepts/projects/workspaces.md",
+    "docs/getting-started/installation.md",
+    "docs/guides/integration/aws-lambda.md",
+    "docs/guides/integration/docker.md",
+    "docs/guides/integration/github.md",
+    "docs/guides/integration/gitlab.md",
+    "docs/guides/integration/pre-commit.md",
+    "docs/guides/projects.md",
+    "pyproject.toml",
+    "uv.lock",
+    "uv.schema.json"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/bea138450f0e620a4ce5765b0e38cff7b9f0799f"
+  },
+  {
+   "sha": "299a93de4b94e754f260c673d2de456afbdd4fb7",
+   "parents": [
+    "30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff"
+   ],
+   "date": "2026-09-24T16:28:08-05:00",
+   "author": {
+    "login": null,
+    "name": "astral-automations-bot[bot]",
+    "type": "Bot"
+   },
+   "message": "Sync latest Python releases (#21970)",
+   "paths": [
+    "crates/uv-dev/src/generate_sysconfig_mappings.rs",
+    "crates/uv-python/download-metadata.json",
+    "crates/uv-python/src/sysconfig/generated_mappings.rs"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/299a93de4b94e754f260c673d2de456afbdd4fb7"
+  },
+  {
+   "sha": "30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+   "parents": [
+    "0e7433eee906fe81709c95c5bde556263367f21f"
+   ],
+   "date": "2026-09-24T16:33:37-04:00",
+   "author": {
+    "login": null,
+    "name": "Charlie Marsh",
+    "type": "User"
+   },
+   "message": "Preserve query parameters in direct URL metadata (#21971)",
+   "paths": [
+    "crates/uv-pypi-types/src/parsed_url.rs",
+    "crates/uv/tests/pip_install/pip_install.rs"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff"
+  },
+  {
+   "sha": "0e7433eee906fe81709c95c5bde556263367f21f",
+   "parents": [
+    "c73db78f0b00580b3c67279b59b85153a9d0264d"
+   ],
+   "date": "2026-09-24T16:00:11-04:00",
+   "author": {
+    "login": null,
+    "name": "Tomasz Kramkowski",
+    "type": "User"
+   },
+   "message": "Filter distribution hashes in tests (#21941)",
+   "paths": [
+    "crates/uv/tests/lock/lock.rs",
+    "crates/uv/tests/pip_compile/pip_compile.rs"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/0e7433eee906fe81709c95c5bde556263367f21f"
+  },
+  {
+   "sha": "c73db78f0b00580b3c67279b59b85153a9d0264d",
+   "parents": [
+    "ad123420aaa75b3bdbccf81496aaece8b9045b30"
+   ],
+   "date": "2026-09-24T12:13:32-04:00",
+   "author": {
+    "login": null,
+    "name": "Charlie Marsh",
+    "type": "User"
+   },
+   "message": "Omit unused runtime settings from lockfiles (#21913)",
+   "paths": [
+    "crates/uv-configuration/src/constraints.rs",
+    "crates/uv-configuration/src/excludes.rs",
+    "crates/uv-configuration/src/overrides.rs",
+    "crates/uv-dev/src/generate_preview_features_reference.rs",
+    "crates/uv-dispatch/src/lib.rs",
+    "crates/uv-distribution-types/src/lib.rs",
+    "crates/uv-distribution-types/src/resolution_recorder.rs",
+    "crates/uv-distribution/src/distribution_database.rs",
+    "crates/uv-lock/src/lock/inputs.rs",
+    "crates/uv-lock/src/lock/mod.rs",
+    "crates/uv-preview/src/lib.rs",
+    "crates/uv-requirements/src/extras.rs",
+    "crates/uv-requirements/src/lookahead.rs",
+    "crates/uv-resolver/src/candidate_selector.rs",
+    "crates/uv-resolver/src/manifest.rs",
+    "crates/uv-resolver/src/resolver/indexes.rs",
+    "crates/uv-resolver/src/resolver/mod.rs",
+    "crates/uv-resolver/src/resolver/requests.rs",
+    "crates/uv-resolver/src/resolver/urls.rs",
+    "crates/uv-resolver/src/yanks.rs",
+    "crates/uv/src/commands/pip/compile.rs",
+    "crates/uv/src/commands/pip/install.rs",
+    "crates/uv/src/commands/pip/operations.rs",
+    "crates/uv/src/commands/pip/sync.rs",
+    "crates/uv/src/commands/project/lock.rs",
+    "crates/uv/src/commands/project/mod.rs",
+    "crates/uv/tests/lock/lock.rs",
+    "crates/uv/tests/project/check.rs",
+    "crates/uv/tests/sync/show_settings.rs"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/c73db78f0b00580b3c67279b59b85153a9d0264d"
+  },
+  {
+   "sha": "ad123420aaa75b3bdbccf81496aaece8b9045b30",
+   "parents": [
+    "dd965a276182e2d46d80439feecd03216cc6643a"
+   ],
+   "date": "2026-09-24T10:58:20-04:00",
+   "author": {
+    "login": null,
+    "name": "astral-automations-bot[bot]",
+    "type": "Bot"
+   },
+   "message": "Add a preview feature for lazy build backend imports (#21967)",
+   "paths": [
+    ".python-versions",
+    "Cargo.lock",
+    "crates/uv-build-frontend/Cargo.toml",
+    "crates/uv-build-frontend/src/lib.rs",
+    "crates/uv-dev/src/generate_preview_features_reference.rs",
+    "crates/uv-preview/src/lib.rs",
+    "crates/uv/tests/build/build.rs",
+    "crates/uv/tests/sync/show_settings.rs",
+    "uv.schema.json"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/ad123420aaa75b3bdbccf81496aaece8b9045b30"
+  },
+  {
+   "sha": "dd965a276182e2d46d80439feecd03216cc6643a",
+   "parents": [
+    "214d7f677585fbb0bb46fadef890335e388641c0"
+   ],
+   "date": "2026-09-24T13:32:41Z",
+   "author": {
+    "login": null,
+    "name": "astral-automations-bot[bot]",
+    "type": "Bot"
+   },
+   "message": "Restore `FlatDistributions` for downstream resolvers (#21965)",
+   "paths": [
+    "crates/uv-resolver/src/flat_index.rs",
+    "crates/uv-resolver/src/lib.rs",
+    "hawk.toml"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/dd965a276182e2d46d80439feecd03216cc6643a"
+  },
+  {
+   "sha": "214d7f677585fbb0bb46fadef890335e388641c0",
+   "parents": [
+    "3db665232544183edcb80dd7077b8051b365e236"
+   ],
+   "date": "2026-09-24T14:30:09+01:00",
+   "author": {
+    "login": null,
+    "name": "Zsolt Dollenstein",
+    "type": "User"
+   },
+   "message": "Use Astra for PR security reviews (#21959)",
+   "paths": [
+    ".github/workflows/pull-request-security-review.yml"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/214d7f677585fbb0bb46fadef890335e388641c0"
+  },
+  {
+   "sha": "3db665232544183edcb80dd7077b8051b365e236",
+   "parents": [
+    "e18f413b23bfe5f33bcc1a3a3de330e4716aedcf"
+   ],
+   "date": "2026-09-23T20:06:58-04:00",
+   "author": {
+    "login": null,
+    "name": "Charlie Marsh",
+    "type": "User"
+   },
+   "message": "Disable incremental compilation when publishing docs (#21955)",
+   "paths": [
+    ".github/workflows/publish-docs.yml"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/3db665232544183edcb80dd7077b8051b365e236"
+  },
+  {
+   "sha": "e18f413b23bfe5f33bcc1a3a3de330e4716aedcf",
+   "parents": [
+    "5d5483dee749a0261bcfcbf0295208f64e16a266"
+   ],
+   "date": "2026-09-23T13:47:09-04:00",
+   "author": {
+    "login": null,
+    "name": "astral-automations-bot[bot]",
+    "type": "Bot"
+   },
+   "message": "Reproduce editable project relocation failure (#21948)",
+   "paths": [
+    "crates/uv/tests/sync/sync.rs"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/e18f413b23bfe5f33bcc1a3a3de330e4716aedcf"
+  },
+  {
+   "sha": "5d5483dee749a0261bcfcbf0295208f64e16a266",
+   "parents": [
+    "40efebb459c21b1ecafe4787f84cb693e68a9802"
+   ],
+   "date": "2026-09-23T12:59:24-04:00",
+   "author": {
+    "login": null,
+    "name": "Ee Durbin",
+    "type": "User"
+   },
+   "message": "publish to astral-sh/versions via OIDC (#21953)",
+   "paths": [
+    ".github/workflows/publish-versions.yml",
+    ".github/workflows/release.yml"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/5d5483dee749a0261bcfcbf0295208f64e16a266"
+  },
+  {
+   "sha": "40efebb459c21b1ecafe4787f84cb693e68a9802",
+   "parents": [
+    "7c03ec2910ee29c285bc89928dbf44938263b9f3"
+   ],
+   "date": "2026-09-23T10:53:12-04:00",
+   "author": {
+    "login": null,
+    "name": "astral-automations-bot[bot]",
+    "type": "Bot"
+   },
+   "message": "Sync latest Python releases (#21847)",
+   "paths": [
+    "crates/uv-python/download-metadata.json",
+    "crates/uv/tests/python/python_install.rs"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/40efebb459c21b1ecafe4787f84cb693e68a9802"
+  },
+  {
+   "sha": "7c03ec2910ee29c285bc89928dbf44938263b9f3",
+   "parents": [
+    "03316c4aba46b1402983921fae54a7b818d6195f"
+   ],
+   "date": "2026-09-23T14:34:01Z",
+   "author": {
+    "login": null,
+    "name": "astral-automations-bot[bot]",
+    "type": "Bot"
+   },
+   "message": "Make preview feature references linkable (#21950)",
+   "paths": [
+    "crates/uv-dev/src/generate_preview_features_reference.rs"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/7c03ec2910ee29c285bc89928dbf44938263b9f3"
+  },
+  {
+   "sha": "03316c4aba46b1402983921fae54a7b818d6195f",
+   "parents": [
+    "99f2d862de59d41c056882b41f4ccb7619ecedbd"
+   ],
+   "date": "2026-09-23T14:29:01Z",
+   "author": {
+    "login": null,
+    "name": "William Woodruff",
+    "type": "User"
+   },
+   "message": "CHANGELOG: record GHSA (#21949)",
+   "paths": [
+    "CHANGELOG.md"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/03316c4aba46b1402983921fae54a7b818d6195f"
+  },
+  {
+   "sha": "99f2d862de59d41c056882b41f4ccb7619ecedbd",
+   "parents": [
+    "7df4041903b9f03251f09451696f47ab5e8806c7"
+   ],
+   "date": "2026-09-23T10:26:35-04:00",
+   "author": {
+    "login": null,
+    "name": "Charlie Marsh",
+    "type": "User"
+   },
+   "message": "Round-trip always-false environment markers (#21939)",
+   "paths": [
+    "crates/uv-pep508/src/marker/algebra.rs",
+    "crates/uv-pep508/src/marker/tree.rs",
+    "crates/uv/tests/lock/lock.rs"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/99f2d862de59d41c056882b41f4ccb7619ecedbd"
+  },
+  {
+   "sha": "7df4041903b9f03251f09451696f47ab5e8806c7",
+   "parents": [
+    "2593872346f4888fc7279ed9d030fc254a53aa19"
+   ],
+   "date": "2026-09-23T10:16:53-04:00",
+   "author": {
+    "login": null,
+    "name": "Ee Durbin",
+    "type": "User"
+   },
+   "message": "fixup handling of branch/version names in publish-docs workflow (#21947)",
+   "paths": [
+    ".github/workflows/publish-docs.yml"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/7df4041903b9f03251f09451696f47ab5e8806c7"
+  },
+  {
+   "sha": "2593872346f4888fc7279ed9d030fc254a53aa19",
+   "parents": [
+    "d05fa0807985d52380d6e958cf1c2892a03c686a"
+   ],
+   "date": "2026-09-23T16:11:02+02:00",
+   "author": {
+    "login": null,
+    "name": "konsti",
+    "type": "User"
+   },
+   "message": "Avoid empty-workdir warnings in PyPI publishing jobs (#21707)",
+   "paths": [
+    ".github/workflows/publish-pypi.yml"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/2593872346f4888fc7279ed9d030fc254a53aa19"
+  },
+  {
+   "sha": "d05fa0807985d52380d6e958cf1c2892a03c686a",
+   "parents": [
+    "e219c0527e1e9a5fd6e920029b928fcccd7f1d11"
+   ],
+   "date": "2026-09-23T10:07:02-04:00",
+   "author": {
+    "login": null,
+    "name": "astral-automations-bot[bot]",
+    "type": "Bot"
+   },
+   "message": "Promote pull requests with `bot:promote` (#21946)",
+   "paths": [
+    ".github/automations-dispatch.json",
+    ".github/workflows/promote-pull-request.yml"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/d05fa0807985d52380d6e958cf1c2892a03c686a"
+  },
+  {
+   "sha": "e219c0527e1e9a5fd6e920029b928fcccd7f1d11",
+   "parents": [
+    "5d74111c03fac62056f5dab8f3f4256a51eb0810"
+   ],
+   "date": "2026-09-23T06:57:10-04:00",
+   "author": {
+    "login": null,
+    "name": "Charlie Marsh",
+    "type": "User"
+   },
+   "message": "Align arbitrary equality satisfaction with resolution (#21931)",
+   "paths": [
+    "crates/uv-pep440/src/version_specifier.rs",
+    "crates/uv/tests/pip/pip_check.rs"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/e219c0527e1e9a5fd6e920029b928fcccd7f1d11"
+  },
+  {
+   "sha": "5d74111c03fac62056f5dab8f3f4256a51eb0810",
+   "parents": [
+    "8ca72555fff2d1d610b1128a4b7765eef50a13cc"
+   ],
+   "date": "2026-09-23T11:08:16+02:00",
+   "author": {
+    "login": null,
+    "name": "konsti",
+    "type": "User"
+   },
+   "message": "Add missing backticks in uv publish error (#21934)",
+   "paths": [
+    "crates/uv-publish/src/lib.rs",
+    "crates/uv/tests/it/publish.rs"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/5d74111c03fac62056f5dab8f3f4256a51eb0810"
+  },
+  {
+   "sha": "8ca72555fff2d1d610b1128a4b7765eef50a13cc",
+   "parents": [
+    "848bea465db3d13731e9ff63aaf6067c256144c0"
+   ],
+   "date": "2026-09-23T10:16:23+02:00",
+   "author": {
+    "login": null,
+    "name": "konsti",
+    "type": "User"
+   },
+   "message": "Store Git checkout markers outside working trees (#21891)",
+   "paths": [
+    "crates/uv-cache/src/lib.rs",
+    "crates/uv-git/src/git.rs",
+    "crates/uv/tests/pip_compile/pip_compile.rs",
+    "crates/uv/tests/pip_install/pip_install.rs",
+    "crates/uv/tests/project/edit.rs",
+    "crates/uv/tests/tool/tool_run.rs"
+   ],
+   "url": "https://github.com/astral-sh/uv/commit/8ca72555fff2d1d610b1128a4b7765eef50a13cc"
+  }
+ ],
+ "pull_requests": [
+  {
+   "number": 21758,
+   "title": "fix: use nix libc signal constants",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21758",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "TayfurYldz",
+    "type": "User"
+   },
+   "created_at": "2026-09-16T19:22:19+03:00",
+   "updated_at": "2026-09-25T01:39:13+03:00",
+   "url": "https://github.com/astral-sh/uv/pull/21758",
+   "requested_reviewers": [],
+   "paths": [
+    "crates/uv/src/child.rs",
+    "crates/uv/src/commands/project/check/ty.rs",
+    "crates/uv/src/commands/project/format.rs",
+    "crates/uv/src/commands/project/run.rs",
+    "crates/uv/src/commands/tool/run.rs",
+    "crates/uv/tests/project/run.rs"
+   ],
+   "commits": [
+    {
+     "sha": "006422ebf71ad50eb6f55a94e8c7e55c7de0069d",
+     "date": "2026-09-25T01:39:13+03:00",
+     "author": {
+      "login": null,
+      "name": "TayfurYldz",
+      "type": "User"
+     },
+     "message": "fix: use nix libc signal constants",
+     "parents": [
+      "57ede1c274562cc059e5c794a760ae453c84f9a3"
+     ]
+    },
+    {
+     "sha": "57ede1c274562cc059e5c794a760ae453c84f9a3",
+     "date": "2026-09-25T01:04:11+03:00",
+     "author": {
+      "login": null,
+      "name": "TayfurYldz",
+      "type": "User"
+     },
+     "message": "fix: match shell signal diagnostics",
+     "parents": [
+      "aa57148190c9411d38441a1e9b9f6c5a3ecce9dc"
+     ]
+    },
+    {
+     "sha": "aa57148190c9411d38441a1e9b9f6c5a3ecce9dc",
+     "date": "2026-09-16T19:22:19+03:00",
+     "author": {
+      "login": null,
+      "name": "TayfurYldz",
+      "type": "User"
+     },
+     "message": "Report signal-terminated child processes",
+     "parents": [
+      "044be3d231af6c940c01bc76dec6728b4bb5d4a6"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "044be3d231af6c940c01bc76dec6728b4bb5d4a6",
+    "source": "compare"
+   },
+   "_head_sha": "006422ebf71ad50eb6f55a94e8c7e55c7de0069d"
+  },
+  {
+   "number": 21778,
+   "title": "Use shared PR security review workflow",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21778",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Zsolt Dollenstein",
+    "type": "User"
+   },
+   "created_at": "2026-09-16T17:53:54+01:00",
+   "updated_at": "2026-09-25T01:23:25+01:00",
+   "url": "https://github.com/astral-sh/uv/pull/21778",
+   "requested_reviewers": [],
+   "paths": [
+    ".github/renovate.json5",
+    ".github/workflows/ci.yml",
+    ".github/workflows/pull-request-security-review.yml",
+    "agents/codex/config.toml",
+    "agents/prompts/pull-request-security-review.md",
+    "agents/schemas/pull-request-security-review.json",
+    "agents/scripts/agent-review-to-github-comments.py",
+    "agents/scripts/agent-review-to-github-comments.py.lock",
+    "agents/scripts/install-codex-security.sh"
+   ],
+   "commits": [
+    {
+     "sha": "f2d6cd3a12ba5dd2eca23c62966d7bf3378ee777",
+     "date": "2026-09-25T01:23:25+01:00",
+     "author": {
+      "login": null,
+      "name": "Tomasz (Tom) Kramkowski",
+      "type": "User"
+     },
+     "message": "Use shared PR security review workflow",
+     "parents": [
+      "1af955aceae2093a6aa26b75320b2dfce66dfe12"
+     ]
+    },
+    {
+     "sha": "1af955aceae2093a6aa26b75320b2dfce66dfe12",
+     "date": "2026-09-17T15:32:13+01:00",
+     "author": {
+      "login": null,
+      "name": "Zsolt Dollenstein",
+      "type": "User"
+     },
+     "message": "feat: make PR security review reusable across Astral repositories",
+     "parents": [
+      "3800cec7aa26a463b67966cc47c255b04b6c4bc3"
+     ]
+    },
+    {
+     "sha": "3800cec7aa26a463b67966cc47c255b04b6c4bc3",
+     "date": "2026-09-16T17:53:54+01:00",
+     "author": {
+      "login": null,
+      "name": "Zsolt Dollenstein",
+      "type": "User"
+     },
+     "message": "refactor: extract PR security review payload and helpers",
+     "parents": [
+      "540b3991bccabdb600cf73869705c915bb77cfcf"
+     ]
+    },
+    {
+     "sha": "540b3991bccabdb600cf73869705c915bb77cfcf",
+     "date": "2026-09-16T17:53:54+01:00",
+     "author": {
+      "login": null,
+      "name": "Zsolt Dollenstein",
+      "type": "User"
+     },
+     "message": "chore: generalize PR security review setup",
+     "parents": [
+      "044be3d231af6c940c01bc76dec6728b4bb5d4a6"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "044be3d231af6c940c01bc76dec6728b4bb5d4a6",
+    "source": "compare"
+   },
+   "_head_sha": "f2d6cd3a12ba5dd2eca23c62966d7bf3378ee777"
+  },
+  {
+   "number": 21977,
+   "title": "docs: clarify group flags with --no-sync",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21977",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "GreedyC",
+    "type": "User"
+   },
+   "created_at": "2026-09-25T00:28:02+03:00",
+   "updated_at": "2026-09-25T00:28:02+03:00",
+   "url": "https://github.com/astral-sh/uv/pull/21977",
+   "requested_reviewers": [],
+   "paths": [
+    "crates/uv-cli/src/lib.rs",
+    "docs/concepts/projects/sync.md"
+   ],
+   "commits": [
+    {
+     "sha": "29acf198dbfe9b697fa5558c071ecb9d72a022ea",
+     "date": "2026-09-25T00:28:02+03:00",
+     "author": {
+      "login": null,
+      "name": "GreedyC",
+      "type": "User"
+     },
+     "message": "docs: clarify group flags with --no-sync",
+     "parents": [
+      "30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+    "source": "compare"
+   },
+   "_head_sha": "29acf198dbfe9b697fa5558c071ecb9d72a022ea"
+  },
+  {
+   "number": 21974,
+   "title": "Align URL validation across CLI and configuration",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21974",
+   "base": "pull/21973",
+   "author": {
+    "login": null,
+    "name": "Charlie Marsh",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T16:47:47-04:00",
+   "updated_at": "2026-09-24T16:54:18-04:00",
+   "url": "https://github.com/astral-sh/uv/pull/21974",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock",
+    "crates/uv-audit/src/service/osv.rs",
+    "crates/uv-auth/src/keyring.rs",
+    "crates/uv-auth/src/service.rs",
+    "crates/uv-client/src/base_client.rs",
+    "crates/uv-configuration/src/proxy_url.rs",
+    "crates/uv-distribution-types/src/index.rs",
+    "crates/uv-distribution-types/src/index_url.rs",
+    "crates/uv-distribution-types/src/installed.rs",
+    "crates/uv-distribution-types/src/requirement.rs",
+    "crates/uv-distribution/src/metadata/lowering.rs",
+    "crates/uv-git/src/git.rs",
+    "crates/uv-lock/src/lock/export/pylock_toml.rs",
+    "crates/uv-lock/src/lock/mod.rs",
+    "crates/uv-pep508/src/verbatim_url.rs",
+    "crates/uv-pypi-types/src/direct_url.rs",
+    "crates/uv-pypi-types/src/parsed_url.rs",
+    "crates/uv-redacted/Cargo.toml",
+    "crates/uv-redacted/src/lib.rs",
+    "crates/uv-redacted/src/persistence.rs",
+    "crates/uv-resolver/src/preferences.rs",
+    "crates/uv-resolver/src/pubgrub/report.rs",
+    "crates/uv-resolver/src/resolution/display.rs",
+    "crates/uv-workspace/src/pyproject.rs",
+    "crates/uv-workspace/src/pyproject_mut.rs",
+    "crates/uv/src/commands/auth/helper.rs",
+    "crates/uv/src/commands/auth/login.rs",
+    "crates/uv/src/commands/auth/logout.rs",
+    "crates/uv/src/commands/auth/token.rs",
+    "crates/uv/src/commands/locked_requirements.rs",
+    "crates/uv/src/commands/project/add.rs",
+    "crates/uv/src/commands/project/sync.rs",
+    "crates/uv/src/commands/publish.rs",
+    "crates/uv/tests/pip_install/pip_install.rs",
+    "crates/uv/tests/project/edit.rs",
+    "crates/uv/tests/project/export.rs",
+    "crates/uv/tests/sync/sync.rs",
+    "uv.schema.json"
+   ],
+   "commits": [
+    {
+     "sha": "d085a94053aa5ec5fe9047106f624e387c103c91",
+     "date": "2026-09-24T16:54:18-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Align URL validation across CLI and configuration",
+     "parents": [
+      "7b6f56cb53b677c4dd21c0ae06b312354053ffc9"
+     ]
+    },
+    {
+     "sha": "7b6f56cb53b677c4dd21c0ae06b312354053ffc9",
+     "date": "2026-09-24T16:53:55-04:00",
+     "author": {
+      "login": null,
+      "name": "zaniebot",
+      "type": "User"
+     },
+     "message": "Redact query credentials in ambiguous URL errors",
+     "parents": [
+      "523dda18ac8be2bd4ce2f0d634502c7db514056b"
+     ]
+    },
+    {
+     "sha": "523dda18ac8be2bd4ce2f0d634502c7db514056b",
+     "date": "2026-09-24T16:53:53-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Remove unused URL persistence methods",
+     "parents": [
+      "14709d7eafd59ae6e9d81d0bba4c265e1b99aff9"
+     ]
+    },
+    {
+     "sha": "14709d7eafd59ae6e9d81d0bba4c265e1b99aff9",
+     "date": "2026-09-24T16:47:47-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Make URL persistence policies explicit",
+     "parents": [
+      "30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+    "source": "compare"
+   },
+   "_head_sha": "d085a94053aa5ec5fe9047106f624e387c103c91",
+   "_stacked_on": 21973
+  },
+  {
+   "number": 21973,
+   "title": "Remove unused URL persistence methods",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21973",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Charlie Marsh",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T16:47:47-04:00",
+   "updated_at": "2026-09-24T16:53:53-04:00",
+   "url": "https://github.com/astral-sh/uv/pull/21973",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock",
+    "crates/uv-audit/src/service/osv.rs",
+    "crates/uv-auth/src/keyring.rs",
+    "crates/uv-auth/src/service.rs",
+    "crates/uv-client/src/base_client.rs",
+    "crates/uv-configuration/src/proxy_url.rs",
+    "crates/uv-distribution-types/src/index.rs",
+    "crates/uv-distribution-types/src/index_url.rs",
+    "crates/uv-distribution-types/src/installed.rs",
+    "crates/uv-distribution-types/src/requirement.rs",
+    "crates/uv-distribution/src/metadata/lowering.rs",
+    "crates/uv-git/src/git.rs",
+    "crates/uv-lock/src/lock/export/pylock_toml.rs",
+    "crates/uv-lock/src/lock/mod.rs",
+    "crates/uv-pep508/src/verbatim_url.rs",
+    "crates/uv-pypi-types/src/direct_url.rs",
+    "crates/uv-pypi-types/src/parsed_url.rs",
+    "crates/uv-redacted/Cargo.toml",
+    "crates/uv-redacted/src/lib.rs",
+    "crates/uv-redacted/src/persistence.rs",
+    "crates/uv-resolver/src/preferences.rs",
+    "crates/uv-resolver/src/pubgrub/report.rs",
+    "crates/uv-resolver/src/resolution/display.rs",
+    "crates/uv-workspace/src/pyproject.rs",
+    "crates/uv-workspace/src/pyproject_mut.rs",
+    "crates/uv/src/commands/auth/login.rs",
+    "crates/uv/src/commands/auth/logout.rs",
+    "crates/uv/src/commands/auth/token.rs",
+    "crates/uv/src/commands/locked_requirements.rs",
+    "crates/uv/src/commands/project/add.rs",
+    "crates/uv/src/commands/project/sync.rs",
+    "crates/uv/src/commands/publish.rs",
+    "crates/uv/tests/pip_install/pip_install.rs",
+    "crates/uv/tests/project/edit.rs",
+    "crates/uv/tests/project/export.rs",
+    "uv.schema.json"
+   ],
+   "commits": [
+    {
+     "sha": "523dda18ac8be2bd4ce2f0d634502c7db514056b",
+     "date": "2026-09-24T16:53:53-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Remove unused URL persistence methods",
+     "parents": [
+      "14709d7eafd59ae6e9d81d0bba4c265e1b99aff9"
+     ]
+    },
+    {
+     "sha": "14709d7eafd59ae6e9d81d0bba4c265e1b99aff9",
+     "date": "2026-09-24T16:47:47-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Make URL persistence policies explicit",
+     "parents": [
+      "30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+    "source": "compare"
+   },
+   "_head_sha": "523dda18ac8be2bd4ce2f0d634502c7db514056b"
+  },
+  {
+   "number": 21962,
+   "title": "Verify packaged tool artifact URLs against PyPI",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21962",
+   "base": "pull/21961",
+   "author": {
+    "login": null,
+    "name": "konstin",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T14:48:50+02:00",
+   "updated_at": "2026-09-24T16:27:16+02:00",
+   "url": "https://github.com/astral-sh/uv/pull/21962",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock",
+    "Cargo.toml",
+    "crates/uv-auth-types/Cargo.toml",
+    "crates/uv-auth-types/src/credentials.rs",
+    "crates/uv-auth-types/src/index.rs",
+    "crates/uv-auth-types/src/lib.rs",
+    "crates/uv-auth-types/src/realm.rs",
+    "crates/uv-auth/Cargo.toml",
+    "crates/uv-auth/src/credentials.rs",
+    "crates/uv-auth/src/lib.rs",
+    "crates/uv-auth/src/middleware.rs",
+    "crates/uv-auth/src/providers.rs",
+    "crates/uv-auth/src/store.rs",
+    "crates/uv-build-backend/Cargo.toml",
+    "crates/uv-build-backend/src/lib.rs",
+    "crates/uv-build-backend/src/lock.rs",
+    "crates/uv-build-backend/src/source_dist.rs",
+    "crates/uv-build-backend/src/wheel.rs",
+    "crates/uv-cli/src/lib.rs",
+    "crates/uv-client/src/base_client.rs",
+    "crates/uv-client/src/lib.rs",
+    "crates/uv-configuration/Cargo.toml",
+    "crates/uv-configuration/src/authentication.rs",
+    "crates/uv-configuration/src/build_backend.rs",
+    "crates/uv-configuration/src/hash_strategy.rs",
+    "crates/uv-configuration/src/lib.rs",
+    "crates/uv-configuration/src/proxy_url.rs",
+    "crates/uv-configuration/src/vcs.rs",
+    "crates/uv-dev/src/generate_preview_features_reference.rs",
+    "crates/uv-distribution-types/Cargo.toml",
+    "crates/uv-distribution-types/src/index.rs",
+    "crates/uv-distribution-types/src/index_url.rs",
+    "crates/uv-distribution-types/src/lib.rs",
+    "crates/uv-distribution-types/src/metadata.rs",
+    "crates/uv-distribution-types/src/requires_dist.rs",
+    "crates/uv-distribution/Cargo.toml",
+    "crates/uv-distribution/src/lib.rs",
+    "crates/uv-distribution/src/metadata/mod.rs",
+    "crates/uv-distribution/src/metadata/requires_dist.rs",
+    "crates/uv-distribution/src/metadata_response.rs",
+    "crates/uv-distribution/src/source/mod.rs",
+    "crates/uv-git-types/src/lib.rs",
+    "crates/uv-git-types/src/repository.rs",
+    "crates/uv-git/src/lib.rs",
+    "crates/uv-git/src/resolver.rs",
+    "crates/uv-lock/Cargo.toml",
+    "crates/uv-lock/src/lib.rs",
+    "crates/uv-lock/src/lock/export/metadata.rs",
+    "crates/uv-lock/src/lock/export/pylock_toml.rs",
+    "crates/uv-lock/src/lock/mod.rs",
+    "crates/uv-lock/src/metadata.rs",
+    "crates/uv-metadata/src/lib.rs",
+    "crates/uv-preview/src/lib.rs",
+    "crates/uv-resolver-types/Cargo.toml",
+    "crates/uv-resolver-types/src/distribution.rs",
+    "crates/uv-resolver-types/src/lib.rs",
+    "crates/uv-resolver-types/src/output.rs",
+    "crates/uv-resolver/src/lib.rs",
+    "crates/uv-resolver/src/resolution/markers.rs",
+    "crates/uv-resolver/src/resolution/mod.rs",
+    "crates/uv-resolver/src/resolver/index.rs",
+    "crates/uv-resolver/src/resolver/provider.rs",
+    "crates/uv-resolver/tests/index.rs",
+    "crates/uv-static/src/env_vars.rs",
+    "crates/uv-tool/src/tool.rs",
+    "crates/uv-types/Cargo.toml",
+    "crates/uv-types/src/lib.rs",
+    "crates/uv-workspace/Cargo.toml",
+    "crates/uv-workspace/src/pyproject.rs",
+    "crates/uv/Cargo.toml",
+    "crates/uv/src/commands/pip/compile.rs",
+    "crates/uv/src/commands/project/environment.rs",
+    "crates/uv/src/commands/project/export.rs",
+    "crates/uv/src/commands/project/init.rs",
+    "crates/uv/src/commands/project/init_vcs.rs",
+    "crates/uv/src/commands/project/lock.rs",
+    "crates/uv/src/commands/project/lock/metadata.rs",
+    "crates/uv/src/commands/project/mod.rs",
+    "crates/uv/src/commands/project/sync.rs",
+    "crates/uv/src/commands/project/upgrade.rs",
+    "crates/uv/src/commands/publish.rs",
+    "crates/uv/src/commands/pylock.rs",
+    "crates/uv/src/commands/reporters.rs",
+    "crates/uv/src/commands/tool/common.rs",
+    "crates/uv/src/commands/tool/install.rs",
+    "crates/uv/src/commands/tool/locked.rs",
+    "crates/uv/src/commands/tool/mod.rs",
+    "crates/uv/src/commands/tool/run.rs",
+    "crates/uv/src/commands/tool/upgrade.rs",
+    "crates/uv/src/commands/workspace/metadata.rs",
+    "crates/uv/src/lib.rs",
+    "crates/uv/src/settings.rs",
+    "crates/uv/tests/build/build_backend.rs",
+    "crates/uv/tests/sync/show_settings.rs",
+    "crates/uv/tests/tool/main.rs",
+    "crates/uv/tests/tool/tool_locked.rs",
+    "docs/concepts/build-backend.md",
+    "docs/concepts/tools.md",
+    "uv.schema.json"
+   ],
+   "commits": [
+    {
+     "sha": "b9f3f4a7f051059201cd77e0ebc2bc87692084b8",
+     "date": "2026-09-24T16:27:16+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Verify packaged tool artifact URLs against PyPI",
+     "parents": [
+      "a7e1a19b436257e701d713faf23e5b29b5224dc6"
+     ]
+    },
+    {
+     "sha": "a7e1a19b436257e701d713faf23e5b29b5224dc6",
+     "date": "2026-09-24T14:48:51+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Require artifact hashes in packaged tool locks",
+     "parents": [
+      "2d4622726dc0e3f4e405c0a36366c24ca14e3d8e"
+     ]
+    },
+    {
+     "sha": "2d4622726dc0e3f4e405c0a36366c24ca14e3d8e",
+     "date": "2026-09-24T14:48:51+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Install tools from their packaged pylock.toml",
+     "parents": [
+      "9b923ba5b70bdea4cd37c913128751c09870859f"
+     ]
+    },
+    {
+     "sha": "9b923ba5b70bdea4cd37c913128751c09870859f",
+     "date": "2026-09-24T14:48:50+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Reject unusable packaged lock exports",
+     "parents": [
+      "5aa7fd88df240a1be716377f539ac2671072da4c"
+     ]
+    },
+    {
+     "sha": "5aa7fd88df240a1be716377f539ac2671072da4c",
+     "date": "2026-09-24T14:48:50+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Update preview snapshots",
+     "parents": [
+      "d95dfa76987653cae3f01c8ce25a491c808ce023"
+     ]
+    },
+    {
+     "sha": "d95dfa76987653cae3f01c8ce25a491c808ce023",
+     "date": "2026-09-24T14:48:50+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Export packaged locks with uv_build",
+     "parents": [
+      "ebd08c10eb9b0fc2f665b9584b791d89b524e1dc"
+     ]
+    },
+    {
+     "sha": "ebd08c10eb9b0fc2f665b9584b791d89b524e1dc",
+     "date": "2026-09-24T14:48:50+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Separate lock handling from network clients",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "b9f3f4a7f051059201cd77e0ebc2bc87692084b8",
+   "_stacked_on": 21961
+  },
+  {
+   "number": 21952,
+   "title": "Allow custom file metadata in package test fixtures",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21952",
+   "base": "pull/21944",
+   "author": {
+    "login": null,
+    "name": "Tomasz (Tom) Kramkowski",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T16:00:15-04:00",
+   "updated_at": "2026-09-24T16:00:17-04:00",
+   "url": "https://github.com/astral-sh/uv/pull/21952",
+   "requested_reviewers": [],
+   "paths": [
+    "crates/uv-test/src/archive.rs",
+    "crates/uv-test/src/lib.rs",
+    "crates/uv-test/src/package_server.rs",
+    "crates/uv/tests/build/build.rs",
+    "crates/uv/tests/build/cache.rs",
+    "crates/uv/tests/lock/lock.rs",
+    "crates/uv/tests/pip_compile/pip_compile.rs",
+    "crates/uv/tests/pip_install/direct_url_hashes.rs",
+    "crates/uv/tests/pip_install/pip_install.rs",
+    "crates/uv/tests/project/edit.rs",
+    "crates/uv/tests/sync/sync.rs",
+    "crates/uv/tests/tool/tool_upgrade.rs"
+   ],
+   "commits": [
+    {
+     "sha": "75e832616dfee3395cd61caca3de19cec25bf21e",
+     "date": "2026-09-24T16:00:17-04:00",
+     "author": {
+      "login": null,
+      "name": "Tomasz (Tom) Kramkowski",
+      "type": "User"
+     },
+     "message": "Allow custom file metadata in package test fixtures",
+     "parents": [
+      "70299f7d3409113b8edd2e1485721d8bb4441a98"
+     ]
+    },
+    {
+     "sha": "70299f7d3409113b8edd2e1485721d8bb4441a98",
+     "date": "2026-09-24T16:00:17-04:00",
+     "author": {
+      "login": null,
+      "name": "Tomasz (Tom) Kramkowski",
+      "type": "User"
+     },
+     "message": "Share a package server across hash verification tests",
+     "parents": [
+      "49e8f6f8e44dcc6461902a7f758055bcf7693054"
+     ]
+    },
+    {
+     "sha": "49e8f6f8e44dcc6461902a7f758055bcf7693054",
+     "date": "2026-09-24T16:00:16-04:00",
+     "author": {
+      "login": null,
+      "name": "Tomasz (Tom) Kramkowski",
+      "type": "User"
+     },
+     "message": "use generate_wheel_with_files for locked_build_dependency_wheel",
+     "parents": [
+      "7cb83ae4175591ae7712ec6caf32edd4f4b2cf37"
+     ]
+    },
+    {
+     "sha": "7cb83ae4175591ae7712ec6caf32edd4f4b2cf37",
+     "date": "2026-09-24T16:00:15-04:00",
+     "author": {
+      "login": null,
+      "name": "Tomasz (Tom) Kramkowski",
+      "type": "User"
+     },
+     "message": "unify generation of sdists with backends with side-effects",
+     "parents": [
+      "0e7433eee906fe81709c95c5bde556263367f21f"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "0e7433eee906fe81709c95c5bde556263367f21f",
+    "source": "compare"
+   },
+   "_head_sha": "75e832616dfee3395cd61caca3de19cec25bf21e",
+   "_stacked_on": 21944
+  },
+  {
+   "number": 21944,
+   "title": "use generate_wheel_with_files for locked_build_dependency_wheel",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21944",
+   "base": "pull/21942",
+   "author": {
+    "login": null,
+    "name": "Tomasz (Tom) Kramkowski",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T16:00:15-04:00",
+   "updated_at": "2026-09-24T16:00:16-04:00",
+   "url": "https://github.com/astral-sh/uv/pull/21944",
+   "requested_reviewers": [],
+   "paths": [
+    "crates/uv-test/src/archive.rs",
+    "crates/uv/tests/build/cache.rs",
+    "crates/uv/tests/lock/lock.rs",
+    "crates/uv/tests/pip_compile/pip_compile.rs",
+    "crates/uv/tests/pip_install/direct_url_hashes.rs"
+   ],
+   "commits": [
+    {
+     "sha": "49e8f6f8e44dcc6461902a7f758055bcf7693054",
+     "date": "2026-09-24T16:00:16-04:00",
+     "author": {
+      "login": null,
+      "name": "Tomasz (Tom) Kramkowski",
+      "type": "User"
+     },
+     "message": "use generate_wheel_with_files for locked_build_dependency_wheel",
+     "parents": [
+      "7cb83ae4175591ae7712ec6caf32edd4f4b2cf37"
+     ]
+    },
+    {
+     "sha": "7cb83ae4175591ae7712ec6caf32edd4f4b2cf37",
+     "date": "2026-09-24T16:00:15-04:00",
+     "author": {
+      "login": null,
+      "name": "Tomasz (Tom) Kramkowski",
+      "type": "User"
+     },
+     "message": "unify generation of sdists with backends with side-effects",
+     "parents": [
+      "0e7433eee906fe81709c95c5bde556263367f21f"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "0e7433eee906fe81709c95c5bde556263367f21f",
+    "source": "compare"
+   },
+   "_head_sha": "49e8f6f8e44dcc6461902a7f758055bcf7693054",
+   "_stacked_on": 21942
+  },
+  {
+   "number": 21942,
+   "title": "unify generation of sdists with backends with side-effects",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21942",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Tomasz (Tom) Kramkowski",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T16:00:15-04:00",
+   "updated_at": "2026-09-24T16:00:15-04:00",
+   "url": "https://github.com/astral-sh/uv/pull/21942",
+   "requested_reviewers": [],
+   "paths": [
+    "crates/uv-test/src/archive.rs",
+    "crates/uv/tests/build/cache.rs",
+    "crates/uv/tests/lock/lock.rs",
+    "crates/uv/tests/pip_compile/pip_compile.rs",
+    "crates/uv/tests/pip_install/direct_url_hashes.rs"
+   ],
+   "commits": [
+    {
+     "sha": "7cb83ae4175591ae7712ec6caf32edd4f4b2cf37",
+     "date": "2026-09-24T16:00:15-04:00",
+     "author": {
+      "login": null,
+      "name": "Tomasz (Tom) Kramkowski",
+      "type": "User"
+     },
+     "message": "unify generation of sdists with backends with side-effects",
+     "parents": [
+      "0e7433eee906fe81709c95c5bde556263367f21f"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "0e7433eee906fe81709c95c5bde556263367f21f",
+    "source": "compare"
+   },
+   "_head_sha": "7cb83ae4175591ae7712ec6caf32edd4f4b2cf37"
+  },
+  {
+   "number": 21314,
+   "title": "Reject MD5-only hashes added by build requirements",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21314",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Zanie Blue",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T15:00:01Z",
+   "updated_at": "2026-09-24T15:00:14Z",
+   "url": "https://github.com/astral-sh/uv/pull/21314",
+   "requested_reviewers": [],
+   "paths": [
+    "crates/uv-cli/src/lib.rs",
+    "crates/uv-dev/src/generate_preview_features_reference.rs",
+    "crates/uv-preview/src/lib.rs",
+    "crates/uv-static/src/env_vars.rs",
+    "crates/uv-types/src/hash.rs",
+    "crates/uv/src/commands/pip/install.rs",
+    "crates/uv/src/commands/pip/sync.rs",
+    "crates/uv/src/lib.rs",
+    "crates/uv/src/settings.rs",
+    "crates/uv/tests/pip/pip_sync.rs",
+    "crates/uv/tests/pip_install/pip_install.rs",
+    "crates/uv/tests/sync/show_settings.rs",
+    "uv.schema.json"
+   ],
+   "commits": [
+    {
+     "sha": "5e0a611e6c9e3b20ab62b5e0848af83bda1f6502",
+     "date": "2026-09-24T15:00:14Z",
+     "author": {
+      "login": null,
+      "name": "Zanie Blue",
+      "type": "User"
+     },
+     "message": "Reject MD5-only hashes added by build requirements",
+     "parents": [
+      "3b995ac950d4d7229fda193d22f093482b160af3"
+     ]
+    },
+    {
+     "sha": "3b995ac950d4d7229fda193d22f093482b160af3",
+     "date": "2026-09-24T15:00:14Z",
+     "author": {
+      "login": null,
+      "name": "Zanie Blue",
+      "type": "User"
+     },
+     "message": "Update build dependency hash snapshots",
+     "parents": [
+      "54607113332d22e77452019be937fe96b1b75312"
+     ]
+    },
+    {
+     "sha": "54607113332d22e77452019be937fe96b1b75312",
+     "date": "2026-09-24T15:00:14Z",
+     "author": {
+      "login": null,
+      "name": "Zanie Blue",
+      "type": "User"
+     },
+     "message": "Test successful build constraint hashes",
+     "parents": [
+      "68313c349a0f52359fe0015866f128323ef6fd17"
+     ]
+    },
+    {
+     "sha": "68313c349a0f52359fe0015866f128323ef6fd17",
+     "date": "2026-09-24T15:00:14Z",
+     "author": {
+      "login": null,
+      "name": "Zanie Blue",
+      "type": "User"
+     },
+     "message": "Add inverse build hash flag",
+     "parents": [
+      "17ad7b7d979499ccd2694e5eaa6509b4eaf3ff5b"
+     ]
+    },
+    {
+     "sha": "17ad7b7d979499ccd2694e5eaa6509b4eaf3ff5b",
+     "date": "2026-09-24T15:00:14Z",
+     "author": {
+      "login": null,
+      "name": "Zanie Blue",
+      "type": "User"
+     },
+     "message": "Add preview feature for build dependency hashes",
+     "parents": [
+      "4cbef5cc9fe6ccb5c11a1200a78871af873dd1d5"
+     ]
+    },
+    {
+     "sha": "4cbef5cc9fe6ccb5c11a1200a78871af873dd1d5",
+     "date": "2026-09-24T15:00:01Z",
+     "author": {
+      "login": null,
+      "name": "Zanie Blue",
+      "type": "User"
+     },
+     "message": "Use pip-specific build hash environment variable",
+     "parents": [
+      "e1bdaaa82cedd89cfc24ff929da18915f1ac61cd"
+     ]
+    },
+    {
+     "sha": "e1bdaaa82cedd89cfc24ff929da18915f1ac61cd",
+     "date": "2026-09-24T15:00:01Z",
+     "author": {
+      "login": null,
+      "name": "Zanie Blue",
+      "type": "User"
+     },
+     "message": "Update build hash settings snapshot",
+     "parents": [
+      "9e65d2133ff90576c0bc3e0f4370e6f959ea8f82"
+     ]
+    },
+    {
+     "sha": "9e65d2133ff90576c0bc3e0f4370e6f959ea8f82",
+     "date": "2026-09-24T15:00:01Z",
+     "author": {
+      "login": null,
+      "name": "Zanie Blue",
+      "type": "User"
+     },
+     "message": "Require hashes for build dependencies",
+     "parents": [
+      "ad123420aaa75b3bdbccf81496aaece8b9045b30"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "ad123420aaa75b3bdbccf81496aaece8b9045b30",
+    "source": "compare"
+   },
+   "_head_sha": "5e0a611e6c9e3b20ab62b5e0848af83bda1f6502"
+  },
+  {
+   "number": 21961,
+   "title": "Reject unusable packaged lock exports",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21961",
+   "base": "pull/21963",
+   "author": {
+    "login": null,
+    "name": "konstin",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T14:48:50+02:00",
+   "updated_at": "2026-09-24T14:48:50+02:00",
+   "url": "https://github.com/astral-sh/uv/pull/21961",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock",
+    "Cargo.toml",
+    "crates/uv-auth-types/Cargo.toml",
+    "crates/uv-auth-types/src/credentials.rs",
+    "crates/uv-auth-types/src/index.rs",
+    "crates/uv-auth-types/src/lib.rs",
+    "crates/uv-auth-types/src/realm.rs",
+    "crates/uv-auth/Cargo.toml",
+    "crates/uv-auth/src/credentials.rs",
+    "crates/uv-auth/src/lib.rs",
+    "crates/uv-auth/src/middleware.rs",
+    "crates/uv-auth/src/providers.rs",
+    "crates/uv-auth/src/store.rs",
+    "crates/uv-build-backend/Cargo.toml",
+    "crates/uv-build-backend/src/lib.rs",
+    "crates/uv-build-backend/src/lock.rs",
+    "crates/uv-build-backend/src/source_dist.rs",
+    "crates/uv-build-backend/src/wheel.rs",
+    "crates/uv-client/src/base_client.rs",
+    "crates/uv-client/src/lib.rs",
+    "crates/uv-configuration/Cargo.toml",
+    "crates/uv-configuration/src/authentication.rs",
+    "crates/uv-configuration/src/build_backend.rs",
+    "crates/uv-configuration/src/hash_strategy.rs",
+    "crates/uv-configuration/src/lib.rs",
+    "crates/uv-configuration/src/proxy_url.rs",
+    "crates/uv-configuration/src/vcs.rs",
+    "crates/uv-dev/src/generate_preview_features_reference.rs",
+    "crates/uv-distribution-types/Cargo.toml",
+    "crates/uv-distribution-types/src/index.rs",
+    "crates/uv-distribution-types/src/index_url.rs",
+    "crates/uv-distribution-types/src/lib.rs",
+    "crates/uv-distribution-types/src/metadata.rs",
+    "crates/uv-distribution-types/src/requires_dist.rs",
+    "crates/uv-distribution/Cargo.toml",
+    "crates/uv-distribution/src/lib.rs",
+    "crates/uv-distribution/src/metadata/mod.rs",
+    "crates/uv-distribution/src/metadata/requires_dist.rs",
+    "crates/uv-distribution/src/metadata_response.rs",
+    "crates/uv-distribution/src/source/mod.rs",
+    "crates/uv-git-types/src/lib.rs",
+    "crates/uv-git-types/src/repository.rs",
+    "crates/uv-git/src/lib.rs",
+    "crates/uv-git/src/resolver.rs",
+    "crates/uv-lock/Cargo.toml",
+    "crates/uv-lock/src/lib.rs",
+    "crates/uv-lock/src/lock/export/metadata.rs",
+    "crates/uv-lock/src/lock/export/pylock_toml.rs",
+    "crates/uv-lock/src/lock/mod.rs",
+    "crates/uv-lock/src/metadata.rs",
+    "crates/uv-preview/src/lib.rs",
+    "crates/uv-resolver-types/Cargo.toml",
+    "crates/uv-resolver-types/src/distribution.rs",
+    "crates/uv-resolver-types/src/lib.rs",
+    "crates/uv-resolver-types/src/output.rs",
+    "crates/uv-resolver/src/lib.rs",
+    "crates/uv-resolver/src/resolution/markers.rs",
+    "crates/uv-resolver/src/resolution/mod.rs",
+    "crates/uv-resolver/src/resolver/index.rs",
+    "crates/uv-resolver/src/resolver/provider.rs",
+    "crates/uv-resolver/tests/index.rs",
+    "crates/uv-static/src/env_vars.rs",
+    "crates/uv-types/Cargo.toml",
+    "crates/uv-types/src/lib.rs",
+    "crates/uv-workspace/Cargo.toml",
+    "crates/uv-workspace/src/pyproject.rs",
+    "crates/uv/src/commands/pip/compile.rs",
+    "crates/uv/src/commands/project/export.rs",
+    "crates/uv/src/commands/project/init.rs",
+    "crates/uv/src/commands/project/init_vcs.rs",
+    "crates/uv/src/commands/project/lock.rs",
+    "crates/uv/src/commands/project/lock/metadata.rs",
+    "crates/uv/src/commands/project/mod.rs",
+    "crates/uv/src/commands/project/sync.rs",
+    "crates/uv/src/commands/project/upgrade.rs",
+    "crates/uv/src/commands/publish.rs",
+    "crates/uv/src/commands/pylock.rs",
+    "crates/uv/src/commands/reporters.rs",
+    "crates/uv/src/commands/workspace/metadata.rs",
+    "crates/uv/tests/build/build_backend.rs",
+    "crates/uv/tests/sync/show_settings.rs",
+    "docs/concepts/build-backend.md",
+    "uv.schema.json"
+   ],
+   "commits": [
+    {
+     "sha": "9b923ba5b70bdea4cd37c913128751c09870859f",
+     "date": "2026-09-24T14:48:50+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Reject unusable packaged lock exports",
+     "parents": [
+      "5aa7fd88df240a1be716377f539ac2671072da4c"
+     ]
+    },
+    {
+     "sha": "5aa7fd88df240a1be716377f539ac2671072da4c",
+     "date": "2026-09-24T14:48:50+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Update preview snapshots",
+     "parents": [
+      "d95dfa76987653cae3f01c8ce25a491c808ce023"
+     ]
+    },
+    {
+     "sha": "d95dfa76987653cae3f01c8ce25a491c808ce023",
+     "date": "2026-09-24T14:48:50+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Export packaged locks with uv_build",
+     "parents": [
+      "ebd08c10eb9b0fc2f665b9584b791d89b524e1dc"
+     ]
+    },
+    {
+     "sha": "ebd08c10eb9b0fc2f665b9584b791d89b524e1dc",
+     "date": "2026-09-24T14:48:50+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Separate lock handling from network clients",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "9b923ba5b70bdea4cd37c913128751c09870859f",
+   "_stacked_on": 21963
+  },
+  {
+   "number": 21963,
+   "title": "Separate lock handling from network clients",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21963",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "konstin",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T14:48:50+02:00",
+   "updated_at": "2026-09-24T14:48:50+02:00",
+   "url": "https://github.com/astral-sh/uv/pull/21963",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock",
+    "Cargo.toml",
+    "crates/uv-auth-types/Cargo.toml",
+    "crates/uv-auth-types/src/credentials.rs",
+    "crates/uv-auth-types/src/index.rs",
+    "crates/uv-auth-types/src/lib.rs",
+    "crates/uv-auth-types/src/realm.rs",
+    "crates/uv-auth/Cargo.toml",
+    "crates/uv-auth/src/credentials.rs",
+    "crates/uv-auth/src/lib.rs",
+    "crates/uv-auth/src/middleware.rs",
+    "crates/uv-auth/src/providers.rs",
+    "crates/uv-auth/src/store.rs",
+    "crates/uv-client/src/base_client.rs",
+    "crates/uv-client/src/lib.rs",
+    "crates/uv-configuration/Cargo.toml",
+    "crates/uv-configuration/src/authentication.rs",
+    "crates/uv-configuration/src/hash_strategy.rs",
+    "crates/uv-configuration/src/lib.rs",
+    "crates/uv-configuration/src/proxy_url.rs",
+    "crates/uv-configuration/src/vcs.rs",
+    "crates/uv-distribution-types/Cargo.toml",
+    "crates/uv-distribution-types/src/index.rs",
+    "crates/uv-distribution-types/src/index_url.rs",
+    "crates/uv-distribution-types/src/lib.rs",
+    "crates/uv-distribution-types/src/metadata.rs",
+    "crates/uv-distribution-types/src/requires_dist.rs",
+    "crates/uv-distribution/Cargo.toml",
+    "crates/uv-distribution/src/lib.rs",
+    "crates/uv-distribution/src/metadata/mod.rs",
+    "crates/uv-distribution/src/metadata/requires_dist.rs",
+    "crates/uv-distribution/src/metadata_response.rs",
+    "crates/uv-distribution/src/source/mod.rs",
+    "crates/uv-git-types/src/lib.rs",
+    "crates/uv-git-types/src/repository.rs",
+    "crates/uv-git/src/lib.rs",
+    "crates/uv-git/src/resolver.rs",
+    "crates/uv-lock/Cargo.toml",
+    "crates/uv-lock/src/lib.rs",
+    "crates/uv-lock/src/lock/export/metadata.rs",
+    "crates/uv-lock/src/lock/export/pylock_toml.rs",
+    "crates/uv-lock/src/lock/mod.rs",
+    "crates/uv-lock/src/metadata.rs",
+    "crates/uv-resolver-types/Cargo.toml",
+    "crates/uv-resolver-types/src/distribution.rs",
+    "crates/uv-resolver-types/src/lib.rs",
+    "crates/uv-resolver-types/src/output.rs",
+    "crates/uv-resolver/src/lib.rs",
+    "crates/uv-resolver/src/resolution/markers.rs",
+    "crates/uv-resolver/src/resolution/mod.rs",
+    "crates/uv-resolver/src/resolver/index.rs",
+    "crates/uv-resolver/src/resolver/provider.rs",
+    "crates/uv-resolver/tests/index.rs",
+    "crates/uv-types/Cargo.toml",
+    "crates/uv-types/src/lib.rs",
+    "crates/uv/src/commands/pip/compile.rs",
+    "crates/uv/src/commands/project/export.rs",
+    "crates/uv/src/commands/project/init.rs",
+    "crates/uv/src/commands/project/init_vcs.rs",
+    "crates/uv/src/commands/project/lock.rs",
+    "crates/uv/src/commands/project/lock/metadata.rs",
+    "crates/uv/src/commands/project/mod.rs",
+    "crates/uv/src/commands/project/sync.rs",
+    "crates/uv/src/commands/project/upgrade.rs",
+    "crates/uv/src/commands/publish.rs",
+    "crates/uv/src/commands/pylock.rs",
+    "crates/uv/src/commands/reporters.rs",
+    "crates/uv/src/commands/workspace/metadata.rs"
+   ],
+   "commits": [
+    {
+     "sha": "ebd08c10eb9b0fc2f665b9584b791d89b524e1dc",
+     "date": "2026-09-24T14:48:50+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Separate lock handling from network clients",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "ebd08c10eb9b0fc2f665b9584b791d89b524e1dc"
+  },
+  {
+   "number": 21304,
+   "title": "Use `Eq`",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21304",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "konstin",
+    "type": "User"
+   },
+   "created_at": "2026-09-11T14:55:52+02:00",
+   "updated_at": "2026-09-24T14:41:50+02:00",
+   "url": "https://github.com/astral-sh/uv/pull/21304",
+   "requested_reviewers": [],
+   "paths": [
+    "crates/uv-platform-tags/src/tags.rs",
+    "crates/uv-pypi-types/src/scheme.rs",
+    "crates/uv-python/src/environment.rs",
+    "crates/uv-python/src/interpreter.rs",
+    "crates/uv-python/src/pointer_size.rs",
+    "crates/uv-python/src/prefix.rs",
+    "crates/uv-python/src/target.rs",
+    "crates/uv-tool/src/lib.rs",
+    "crates/uv/src/commands/project/mod.rs",
+    "crates/uv/src/commands/tool/install.rs",
+    "crates/uv/src/commands/tool/upgrade.rs",
+    "crates/uv/src/commands/venv.rs",
+    "crates/uv/tests/python/venv.rs",
+    "crates/uv/tests/sync/sync.rs",
+    "crates/uv/tests/workspace/workspace_metadata.rs"
+   ],
+   "commits": [
+    {
+     "sha": "7c026e551efaf4899c85643151572f5ca8c3ac55",
+     "date": "2026-09-24T14:41:50+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Use `Eq`",
+     "parents": [
+      "1d3a4941ffd7a8f53c6030571eda0a6867c7171c"
+     ]
+    },
+    {
+     "sha": "1d3a4941ffd7a8f53c6030571eda0a6867c7171c",
+     "date": "2026-09-24T14:25:31+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "style",
+     "parents": [
+      "23e30afc5508730ae69950a0bd2fbdf3f53032b6"
+     ]
+    },
+    {
+     "sha": "23e30afc5508730ae69950a0bd2fbdf3f53032b6",
+     "date": "2026-09-24T12:30:25+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Cache all venv creation",
+     "parents": [
+      "b1d3ce1f4b13052a87a7ce36ca481dddeef4e522"
+     ]
+    },
+    {
+     "sha": "b1d3ce1f4b13052a87a7ce36ca481dddeef4e522",
+     "date": "2026-09-23T15:50:01+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Warm interpreter caches during project and script initialization",
+     "parents": [
+      "6fc17bc82046e1d89b2845534e26392492eb872d"
+     ]
+    },
+    {
+     "sha": "6fc17bc82046e1d89b2845534e26392492eb872d",
+     "date": "2026-09-23T15:46:00+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Explain interpreter cache and launcher override regression tests",
+     "parents": [
+      "b27ef2531af92dcd369417156d7ddd61602e8d9c"
+     ]
+    },
+    {
+     "sha": "b27ef2531af92dcd369417156d7ddd61602e8d9c",
+     "date": "2026-09-11T15:22:18+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Remove unrelated executable normalization",
+     "parents": [
+      "8553cc273b4d67e34b00301e594e43a831540ab6"
+     ]
+    },
+    {
+     "sha": "8553cc273b4d67e34b00301e594e43a831540ab6",
+     "date": "2026-09-11T15:02:11+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Use the virtualenv executable when priming its cache",
+     "parents": [
+      "11deff65b6750c71e1f894020c757314a8df098e"
+     ]
+    },
+    {
+     "sha": "11deff65b6750c71e1f894020c757314a8df098e",
+     "date": "2026-09-11T14:55:52+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Remove unrelated change",
+     "parents": [
+      "590601f42cac69e7a0e9018d0665bbb7277a6273"
+     ]
+    },
+    {
+     "sha": "590601f42cac69e7a0e9018d0665bbb7277a6273",
+     "date": "2026-09-11T14:55:52+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Prime the cache only if the environment was created",
+     "parents": [
+      "657c4dcf57e84b93fb6f64849b44301bcbf31be4"
+     ]
+    },
+    {
+     "sha": "657c4dcf57e84b93fb6f64849b44301bcbf31be4",
+     "date": "2026-09-11T14:55:52+02:00",
+     "author": {
+      "login": null,
+      "name": "konstin",
+      "type": "User"
+     },
+     "message": "Warm the interpreter cache when syncing workspace metadata",
+     "parents": [
+      "fb1439e3f881f10ff338732fbd0aaca523c08005"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "fb1439e3f881f10ff338732fbd0aaca523c08005",
+    "source": "compare"
+   },
+   "_head_sha": "7c026e551efaf4899c85643151572f5ca8c3ac55"
+  },
+  {
+   "number": 21966,
+   "title": "Improve comment",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21966",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "William Woodruff",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T10:43:07-04:00",
+   "updated_at": "2026-09-24T10:47:09-04:00",
+   "url": "https://github.com/astral-sh/uv/pull/21966",
+   "requested_reviewers": [],
+   "paths": [
+    "crates/uv-bench/benches/uv_pypi_types.rs"
+   ],
+   "commits": [
+    {
+     "sha": "4eae0a92d622bcd563d0fbddcdcdb1c8db6e830f",
+     "date": "2026-09-24T10:47:09-04:00",
+     "author": {
+      "login": null,
+      "name": "William Woodruff",
+      "type": "User"
+     },
+     "message": "Improve comment",
+     "parents": [
+      "098f7759b09223a2060adfc467f0c1dd3c9f1463"
+     ]
+    },
+    {
+     "sha": "098f7759b09223a2060adfc467f0c1dd3c9f1463",
+     "date": "2026-09-24T10:43:07-04:00",
+     "author": {
+      "login": null,
+      "name": "William Woodruff",
+      "type": "User"
+     },
+     "message": "bench: attempt to stabilize digest benchmarks",
+     "parents": [
+      "dd965a276182e2d46d80439feecd03216cc6643a"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "dd965a276182e2d46d80439feecd03216cc6643a",
+    "source": "compare"
+   },
+   "_head_sha": "4eae0a92d622bcd563d0fbddcdcdb1c8db6e830f"
+  },
+  {
+   "number": 20903,
+   "title": "Update Rust crate hyper to v1.11.0",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/20903",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-24T09:13:45Z",
+   "updated_at": "2026-09-24T09:13:45Z",
+   "url": "https://github.com/astral-sh/uv/pull/20903",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock"
+   ],
+   "commits": [
+    {
+     "sha": "2e210b7bd64c89b72fb985d71af91bac9fe72d1e",
+     "date": "2026-09-24T09:13:45Z",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "Update Rust crate hyper to v1.11.0",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "2e210b7bd64c89b72fb985d71af91bac9fe72d1e"
+  },
+  {
+   "number": 20901,
+   "title": "Update Rust crate base64 to 0.23.0",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/20901",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-24T09:13:32Z",
+   "updated_at": "2026-09-24T09:13:32Z",
+   "url": "https://github.com/astral-sh/uv/pull/20901",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock",
+    "Cargo.toml"
+   ],
+   "commits": [
+    {
+     "sha": "97c5339c752a9838e87b676b35a429ed5129131b",
+     "date": "2026-09-24T09:13:32Z",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "Update Rust crate base64 to 0.23.0",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "97c5339c752a9838e87b676b35a429ed5129131b"
+  },
+  {
+   "number": 21667,
+   "title": "Update dependency buildx to v0.36.1",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21667",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-24T09:13:20Z",
+   "updated_at": "2026-09-24T09:13:20Z",
+   "url": "https://github.com/astral-sh/uv/pull/21667",
+   "requested_reviewers": [],
+   "paths": [
+    ".github/workflows/publish-docker-image.yml"
+   ],
+   "commits": [
+    {
+     "sha": "3b46f4753f89edfd47f922a5ed554609dd933f22",
+     "date": "2026-09-24T09:13:20Z",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "Update dependency buildx to v0.36.1",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "3b46f4753f89edfd47f922a5ed554609dd933f22"
+  },
+  {
+   "number": 21876,
+   "title": "Update Codex automation dependencies",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21876",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-24T09:13:09Z",
+   "updated_at": "2026-09-24T09:13:09Z",
+   "url": "https://github.com/astral-sh/uv/pull/21876",
+   "requested_reviewers": [],
+   "paths": [
+    ".github/workflows/diagnose-workflow-failure.yml",
+    ".github/workflows/fix-bug.yml",
+    ".github/workflows/issue-triage.yml",
+    ".github/workflows/pull-request-labels.yml",
+    ".github/workflows/pull-request-security-review.yml",
+    ".github/workflows/rebase-conflicted-pull-request.yml",
+    ".github/workflows/release-prepare.yml",
+    ".github/workflows/reproduce-bug.yml",
+    ".github/workflows/update-issue-context.yml"
+   ],
+   "commits": [
+    {
+     "sha": "93251b73fcbeba093711ea8556c98a75c02aaf47",
+     "date": "2026-09-24T09:13:09Z",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "Update Codex automation dependencies",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "93251b73fcbeba093711ea8556c98a75c02aaf47"
+  },
+  {
+   "number": 21875,
+   "title": "Update Rust crate webpki to v0.103.15",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21875",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-24T09:12:56Z",
+   "updated_at": "2026-09-24T09:12:56Z",
+   "url": "https://github.com/astral-sh/uv/pull/21875",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock"
+   ],
+   "commits": [
+    {
+     "sha": "82e550bb97b62cfe941c1d29be330fc504ba613f",
+     "date": "2026-09-24T09:12:56Z",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "Update Rust crate webpki to v0.103.15",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "82e550bb97b62cfe941c1d29be330fc504ba613f"
+  },
+  {
+   "number": 21029,
+   "title": "Update Rust crate toml_parser to v1.1.3",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21029",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-24T09:12:44Z",
+   "updated_at": "2026-09-24T09:12:44Z",
+   "url": "https://github.com/astral-sh/uv/pull/21029",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock"
+   ],
+   "commits": [
+    {
+     "sha": "5bbe326090c2719fc80f074750cbe37aae725eaf",
+     "date": "2026-09-24T09:12:44Z",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "Update Rust crate toml_parser to v1.1.3",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "5bbe326090c2719fc80f074750cbe37aae725eaf"
+  },
+  {
+   "number": 21028,
+   "title": "Update Rust crate toml to v1.1.4",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21028",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-24T09:12:32Z",
+   "updated_at": "2026-09-24T09:12:32Z",
+   "url": "https://github.com/astral-sh/uv/pull/21028",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock"
+   ],
+   "commits": [
+    {
+     "sha": "000c1c6cd2d10755b6584564940956bdb3475df1",
+     "date": "2026-09-24T09:12:32Z",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "Update Rust crate toml to v1.1.4",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "000c1c6cd2d10755b6584564940956bdb3475df1"
+  },
+  {
+   "number": 19721,
+   "title": "Update Rust crate test-log to v0.2.21",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/19721",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-24T09:12:19Z",
+   "updated_at": "2026-09-24T09:12:19Z",
+   "url": "https://github.com/astral-sh/uv/pull/19721",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock"
+   ],
+   "commits": [
+    {
+     "sha": "794f69abeff4490c8aa1d86b630c731e78c4effd",
+     "date": "2026-09-24T09:12:19Z",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "Update Rust crate test-log to v0.2.21",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "794f69abeff4490c8aa1d86b630c731e78c4effd"
+  },
+  {
+   "number": 21873,
+   "title": "Update Rust crate h2 to v0.4.19",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21873",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-24T09:12:06Z",
+   "updated_at": "2026-09-24T09:12:06Z",
+   "url": "https://github.com/astral-sh/uv/pull/21873",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock"
+   ],
+   "commits": [
+    {
+     "sha": "c9dcb2dd1f3954b517f1610d4bf0aae366931f5e",
+     "date": "2026-09-24T09:12:06Z",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "Update Rust crate h2 to v0.4.19",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "c9dcb2dd1f3954b517f1610d4bf0aae366931f5e"
+  },
+  {
+   "number": 21872,
+   "title": "Update Rust crate cargo-util to v0.2.31",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21872",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-24T09:11:51Z",
+   "updated_at": "2026-09-24T09:11:51Z",
+   "url": "https://github.com/astral-sh/uv/pull/21872",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock"
+   ],
+   "commits": [
+    {
+     "sha": "79ed9d25f9e9bb5e1398845c4a651c836a557491",
+     "date": "2026-09-24T09:11:51Z",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "Update Rust crate cargo-util to v0.2.31",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "79ed9d25f9e9bb5e1398845c4a651c836a557491"
+  },
+  {
+   "number": 20888,
+   "title": "Update Rust crate async-compression to v0.4.43",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/20888",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-24T09:11:38Z",
+   "updated_at": "2026-09-24T09:11:38Z",
+   "url": "https://github.com/astral-sh/uv/pull/20888",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock"
+   ],
+   "commits": [
+    {
+     "sha": "d30fe197e5d3d9800c416a573a1cf2d6ad512fb3",
+     "date": "2026-09-24T09:11:38Z",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "Update Rust crate async-compression to v0.4.43",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "d30fe197e5d3d9800c416a573a1cf2d6ad512fb3"
+  },
+  {
+   "number": 20886,
+   "title": "Update digital-blueprint/gitlab-pipeline-trigger-action action to v1.4.3",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/20886",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "renovate[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-24T09:10:49Z",
+   "updated_at": "2026-09-24T09:10:49Z",
+   "url": "https://github.com/astral-sh/uv/pull/20886",
+   "requested_reviewers": [],
+   "paths": [
+    ".github/workflows/ci.yml"
+   ],
+   "commits": [
+    {
+     "sha": "c235c240e4c0010abf58460ab717fd1319f2448c",
+     "date": "2026-09-24T09:10:49Z",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "Update digital-blueprint/gitlab-pipeline-trigger-action action to v1.4.3",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "c235c240e4c0010abf58460ab717fd1319f2448c"
+  },
+  {
+   "number": 18881,
+   "title": "Merge upstream main; add python list --all-variants test",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/18881",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Rene Zander",
+    "type": "User"
+   },
+   "created_at": "2026-04-06T14:50:24Z",
+   "updated_at": "2026-09-24T08:44:32Z",
+   "url": "https://github.com/astral-sh/uv/pull/18881",
+   "requested_reviewers": [],
+   "paths": [
+    "crates/uv-cli/src/lib.rs",
+    "crates/uv-python/src/downloads.rs",
+    "crates/uv/src/commands/python/list.rs",
+    "crates/uv/src/lib.rs",
+    "crates/uv/src/settings.rs",
+    "crates/uv/tests/python/python_list.rs"
+   ],
+   "commits": [
+    {
+     "sha": "1999d1c1c882b1c8d5c389f1174db5ea0b217061",
+     "date": "2026-09-24T08:44:32Z",
+     "author": {
+      "login": null,
+      "name": "Rene Zander",
+      "type": "User"
+     },
+     "message": "Merge upstream main; add python list --all-variants test",
+     "parents": [
+      "16597b7acf03c3114783627aa230e402a533fb2a",
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    },
+    {
+     "sha": "16597b7acf03c3114783627aa230e402a533fb2a",
+     "date": "2026-04-06T14:59:27Z",
+     "author": {
+      "login": null,
+      "name": "Rene Zander",
+      "type": "User"
+     },
+     "message": "fix: resolve borrow-after-move in python list filter",
+     "parents": [
+      "4dbfb65c27652de1e9b34baf019d2ed35970d2f3"
+     ]
+    },
+    {
+     "sha": "4dbfb65c27652de1e9b34baf019d2ed35970d2f3",
+     "date": "2026-04-06T14:50:24Z",
+     "author": {
+      "login": null,
+      "name": "Rene Zander",
+      "type": "User"
+     },
+     "message": "feat(python): add --all-variants flag to python list",
+     "parents": [
+      "d1db4ef72f6bbccca92213ee4f9a044b656777e8"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "1999d1c1c882b1c8d5c389f1174db5ea0b217061"
+  },
+  {
+   "number": 21958,
+   "title": "docs(pip): document `--universal` flag for cross-platform requirements locking (#11305)",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21958",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Abhinav Prakash",
+    "type": "User"
+   },
+   "created_at": "2026-09-24T08:32:01+05:30",
+   "updated_at": "2026-09-24T08:32:01+05:30",
+   "url": "https://github.com/astral-sh/uv/pull/21958",
+   "requested_reviewers": [],
+   "paths": [
+    "docs/pip/compile.md"
+   ],
+   "commits": [
+    {
+     "sha": "89dad56831419aa331f93f70c6ba696560ad89ea",
+     "date": "2026-09-24T08:32:01+05:30",
+     "author": {
+      "login": null,
+      "name": "Abhinav Prakash",
+      "type": "User"
+     },
+     "message": "docs(pip): document `--universal` flag for cross-platform requirements locking (#11305)",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "89dad56831419aa331f93f70c6ba696560ad89ea"
+  },
+  {
+   "number": 21951,
+   "title": "Simplify build constraint comparison with intersected hashes",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21951",
+   "base": "pull/21930",
+   "author": {
+    "login": null,
+    "name": "Charlie Marsh",
+    "type": "User"
+   },
+   "created_at": "2026-09-23T21:28:17-04:00",
+   "updated_at": "2026-09-23T21:37:42-04:00",
+   "url": "https://github.com/astral-sh/uv/pull/21951",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock",
+    "crates/uv-configuration/Cargo.toml",
+    "crates/uv-configuration/src/excludes.rs",
+    "crates/uv-configuration/src/lib.rs",
+    "crates/uv-configuration/src/normalized_requirements.rs",
+    "crates/uv-dev/src/generate_preview_features_reference.rs",
+    "crates/uv-lock/src/lock/mod.rs",
+    "crates/uv-lock/src/lock/requirements.rs",
+    "crates/uv-lock/src/lock/serialize.rs",
+    "crates/uv-lock/src/lock/snapshots/uv_lock__lock__tests__hash_optional_missing.snap",
+    "crates/uv-lock/src/lock/snapshots/uv_lock__lock__tests__hash_optional_present.snap",
+    "crates/uv-lock/src/lock/snapshots/uv_lock__lock__tests__hash_required_present.snap",
+    "crates/uv-lock/src/lock/snapshots/uv_lock__lock__tests__missing_dependency_source_unambiguous.snap",
+    "crates/uv-lock/src/lock/snapshots/uv_lock__lock__tests__missing_dependency_source_version_unambiguous.snap",
+    "crates/uv-lock/src/lock/snapshots/uv_lock__lock__tests__missing_dependency_version_dynamic.snap",
+    "crates/uv-lock/src/lock/snapshots/uv_lock__lock__tests__missing_dependency_version_unambiguous.snap",
+    "crates/uv-lock/src/lock/snapshots/uv_lock__lock__tests__source_direct_has_subdir.snap",
+    "crates/uv-lock/src/lock/snapshots/uv_lock__lock__tests__source_direct_no_subdir.snap",
+    "crates/uv-lock/src/lock/snapshots/uv_lock__lock__tests__source_directory.snap",
+    "crates/uv-lock/src/lock/snapshots/uv_lock__lock__tests__source_editable.snap",
+    "crates/uv-preview/src/lib.rs",
+    "crates/uv-tool/Cargo.toml",
+    "crates/uv-tool/src/lib.rs",
+    "crates/uv-tool/src/tool.rs",
+    "crates/uv-types/src/hash.rs",
+    "crates/uv/src/commands/tool/common.rs",
+    "crates/uv/src/commands/tool/install.rs",
+    "crates/uv/src/commands/tool/list.rs",
+    "crates/uv/src/commands/tool/upgrade.rs",
+    "crates/uv/tests/build/build.rs",
+    "crates/uv/tests/lock/lock.rs",
+    "crates/uv/tests/pip_install/pip_install.rs",
+    "crates/uv/tests/sync/show_settings.rs",
+    "crates/uv/tests/sync/sync.rs",
+    "crates/uv/tests/tool/tool_install.rs",
+    "crates/uv/tests/tool/tool_list.rs",
+    "crates/uv/tests/tool/tool_upgrade.rs",
+    "uv.schema.json"
+   ],
+   "commits": [
+    {
+     "sha": "aca148a0486834251f2c48dceef034ed25a6e238",
+     "date": "2026-09-23T21:37:42-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Simplify build constraint comparison with intersected hashes",
+     "parents": [
+      "8fd3bbd1e88c8bdccc29dc88349291c97d23e9b8"
+     ]
+    },
+    {
+     "sha": "8fd3bbd1e88c8bdccc29dc88349291c97d23e9b8",
+     "date": "2026-09-23T21:37:41-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Preserve build hash precedence when reading preview locks",
+     "parents": [
+      "bae81d12b99a46cadb1304e7e164a718b87d168f"
+     ]
+    },
+    {
+     "sha": "bae81d12b99a46cadb1304e7e164a718b87d168f",
+     "date": "2026-09-23T21:37:41-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Update lockfile normalization preview snapshots",
+     "parents": [
+      "eebdd0fa1c153da32d862413046051a4206241ad"
+     ]
+    },
+    {
+     "sha": "eebdd0fa1c153da32d862413046051a4206241ad",
+     "date": "2026-09-23T21:37:41-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Gate normalized lockfile metadata behind preview",
+     "parents": [
+      "b779a9d49aae07c0a7ab832b284e628503d1a912"
+     ]
+    },
+    {
+     "sha": "b779a9d49aae07c0a7ab832b284e628503d1a912",
+     "date": "2026-09-23T21:37:41-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Add fast paths for requirement normalization",
+     "parents": [
+      "fab1211ceb22295dd28e05c69008b90f34d4940a"
+     ]
+    },
+    {
+     "sha": "fab1211ceb22295dd28e05c69008b90f34d4940a",
+     "date": "2026-09-23T21:37:41-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Revert \"Drop always-false requirements during normalization\"",
+     "parents": [
+      "8810c92fbe0a1b0a1e805bf1d777658ebf3b72c0"
+     ]
+    },
+    {
+     "sha": "8810c92fbe0a1b0a1e805bf1d777658ebf3b72c0",
+     "date": "2026-09-23T21:37:41-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Drop always-false requirements during normalization",
+     "parents": [
+      "ff9ea528194585f67172e8c4e89ee5494952affa"
+     ]
+    },
+    {
+     "sha": "ff9ea528194585f67172e8c4e89ee5494952affa",
+     "date": "2026-09-23T21:37:40-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Simplify and document lock requirement normalization",
+     "parents": [
+      "555b6e078b8074f38967b488f2c0222421521ae2"
+     ]
+    },
+    {
+     "sha": "555b6e078b8074f38967b488f2c0222421521ae2",
+     "date": "2026-09-23T21:37:40-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Update remaining normalized lockfile snapshots",
+     "parents": [
+      "667a9bf7e454ce97fbeb27dfaea6d964a71ce25b"
+     ]
+    },
+    {
+     "sha": "667a9bf7e454ce97fbeb27dfaea6d964a71ce25b",
+     "date": "2026-09-23T21:37:40-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Remove unused normalization dependencies and visibility",
+     "parents": [
+      "944929ed8b298243a53dba8e7edf2dbac052bafd"
+     ]
+    },
+    {
+     "sha": "944929ed8b298243a53dba8e7edf2dbac052bafd",
+     "date": "2026-09-23T21:37:40-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Normalize requirement declarations in lockfiles",
+     "parents": [
+      "7829a18a830b0f9ab7eda378fb8eff1a4cdc4dcf"
+     ]
+    },
+    {
+     "sha": "7829a18a830b0f9ab7eda378fb8eff1a4cdc4dcf",
+     "date": "2026-09-23T21:37:37-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Normalize build constraints without hash precedence",
+     "parents": [
+      "c5ba47cd1261f044ddc9ceca0b2da7471fec3410"
+     ]
+    },
+    {
+     "sha": "c5ba47cd1261f044ddc9ceca0b2da7471fec3410",
+     "date": "2026-09-23T21:37:37-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Preserve false requirements for overrides",
+     "parents": [
+      "55a8335e5383f7d34420d8f69c370f1c2694d728"
+     ]
+    },
+    {
+     "sha": "55a8335e5383f7d34420d8f69c370f1c2694d728",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Limit normalized input conversion visibility",
+     "parents": [
+      "ce05be8f8aea042cb78ec0fb68dbac51937021e1"
+     ]
+    },
+    {
+     "sha": "ce05be8f8aea042cb78ec0fb68dbac51937021e1",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Simplify normalized tool input conversions",
+     "parents": [
+      "e731b4a179823a978fdd27afdc5360cf5b39a5a6"
+     ]
+    },
+    {
+     "sha": "e731b4a179823a978fdd27afdc5360cf5b39a5a6",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Use explicit fixtures and snapshots in tool tests",
+     "parents": [
+      "055ad2020b1b01e4ba6bbedc4542032a43ee25a9"
+     ]
+    },
+    {
+     "sha": "055ad2020b1b01e4ba6bbedc4542032a43ee25a9",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Normalize all dependency inputs in tool receipts",
+     "parents": [
+      "bdc34d5ca3d404ff9d4cb5a7b25c2ac138636561"
+     ]
+    },
+    {
+     "sha": "bdc34d5ca3d404ff9d4cb5a7b25c2ac138636561",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Simplify and document tool requirement normalization",
+     "parents": [
+      "9e6e7a2fdb7a3ef6aed54b3f0ddb339016bba320"
+     ]
+    },
+    {
+     "sha": "9e6e7a2fdb7a3ef6aed54b3f0ddb339016bba320",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Always write normalized tool receipts",
+     "parents": [
+      "989c081a02b35e3ef841a9a236707305acd44d12"
+     ]
+    },
+    {
+     "sha": "989c081a02b35e3ef841a9a236707305acd44d12",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Simplify tool requirement normalization",
+     "parents": [
+      "0699604c40f914dc1112f888431f48393f0ae3c1"
+     ]
+    },
+    {
+     "sha": "0699604c40f914dc1112f888431f48393f0ae3c1",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Normalize requirements in tool receipts",
+     "parents": [
+      "cee9ebf5f1532ab380f4b2332dc99d3ba0298305"
+     ]
+    },
+    {
+     "sha": "cee9ebf5f1532ab380f4b2332dc99d3ba0298305",
+     "date": "2026-09-23T21:37:35-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Update build hash tests for intersected constraints",
+     "parents": [
+      "d06329c660a6361cca4f31f13f9acbff73e9fd2c"
+     ]
+    },
+    {
+     "sha": "d06329c660a6361cca4f31f13f9acbff73e9fd2c",
+     "date": "2026-09-23T21:28:17-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Intersect hashes from repeated constraints",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "aca148a0486834251f2c48dceef034ed25a6e238",
+   "_stacked_on": 21930
+  },
+  {
+   "number": 21930,
+   "title": "Normalize build constraints without hash precedence",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/21930",
+   "base": "main",
+   "author": {
+    "login": null,
+    "name": "Charlie Marsh",
+    "type": "User"
+   },
+   "created_at": "2026-09-23T21:28:17-04:00",
+   "updated_at": "2026-09-23T21:37:37-04:00",
+   "url": "https://github.com/astral-sh/uv/pull/21930",
+   "requested_reviewers": [],
+   "paths": [
+    "Cargo.lock",
+    "crates/uv-configuration/src/excludes.rs",
+    "crates/uv-tool/Cargo.toml",
+    "crates/uv-tool/src/lib.rs",
+    "crates/uv-tool/src/requirements.rs",
+    "crates/uv-tool/src/tool.rs",
+    "crates/uv-types/src/hash.rs",
+    "crates/uv/src/commands/tool/common.rs",
+    "crates/uv/src/commands/tool/install.rs",
+    "crates/uv/src/commands/tool/list.rs",
+    "crates/uv/src/commands/tool/upgrade.rs",
+    "crates/uv/tests/build/build.rs",
+    "crates/uv/tests/pip_install/pip_install.rs",
+    "crates/uv/tests/sync/sync.rs",
+    "crates/uv/tests/tool/tool_install.rs",
+    "crates/uv/tests/tool/tool_list.rs",
+    "crates/uv/tests/tool/tool_upgrade.rs"
+   ],
+   "commits": [
+    {
+     "sha": "7829a18a830b0f9ab7eda378fb8eff1a4cdc4dcf",
+     "date": "2026-09-23T21:37:37-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Normalize build constraints without hash precedence",
+     "parents": [
+      "c5ba47cd1261f044ddc9ceca0b2da7471fec3410"
+     ]
+    },
+    {
+     "sha": "c5ba47cd1261f044ddc9ceca0b2da7471fec3410",
+     "date": "2026-09-23T21:37:37-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Preserve false requirements for overrides",
+     "parents": [
+      "55a8335e5383f7d34420d8f69c370f1c2694d728"
+     ]
+    },
+    {
+     "sha": "55a8335e5383f7d34420d8f69c370f1c2694d728",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Limit normalized input conversion visibility",
+     "parents": [
+      "ce05be8f8aea042cb78ec0fb68dbac51937021e1"
+     ]
+    },
+    {
+     "sha": "ce05be8f8aea042cb78ec0fb68dbac51937021e1",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Simplify normalized tool input conversions",
+     "parents": [
+      "e731b4a179823a978fdd27afdc5360cf5b39a5a6"
+     ]
+    },
+    {
+     "sha": "e731b4a179823a978fdd27afdc5360cf5b39a5a6",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Use explicit fixtures and snapshots in tool tests",
+     "parents": [
+      "055ad2020b1b01e4ba6bbedc4542032a43ee25a9"
+     ]
+    },
+    {
+     "sha": "055ad2020b1b01e4ba6bbedc4542032a43ee25a9",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Normalize all dependency inputs in tool receipts",
+     "parents": [
+      "bdc34d5ca3d404ff9d4cb5a7b25c2ac138636561"
+     ]
+    },
+    {
+     "sha": "bdc34d5ca3d404ff9d4cb5a7b25c2ac138636561",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Simplify and document tool requirement normalization",
+     "parents": [
+      "9e6e7a2fdb7a3ef6aed54b3f0ddb339016bba320"
+     ]
+    },
+    {
+     "sha": "9e6e7a2fdb7a3ef6aed54b3f0ddb339016bba320",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Always write normalized tool receipts",
+     "parents": [
+      "989c081a02b35e3ef841a9a236707305acd44d12"
+     ]
+    },
+    {
+     "sha": "989c081a02b35e3ef841a9a236707305acd44d12",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Simplify tool requirement normalization",
+     "parents": [
+      "0699604c40f914dc1112f888431f48393f0ae3c1"
+     ]
+    },
+    {
+     "sha": "0699604c40f914dc1112f888431f48393f0ae3c1",
+     "date": "2026-09-23T21:37:36-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Normalize requirements in tool receipts",
+     "parents": [
+      "cee9ebf5f1532ab380f4b2332dc99d3ba0298305"
+     ]
+    },
+    {
+     "sha": "cee9ebf5f1532ab380f4b2332dc99d3ba0298305",
+     "date": "2026-09-23T21:37:35-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Update build hash tests for intersected constraints",
+     "parents": [
+      "d06329c660a6361cca4f31f13f9acbff73e9fd2c"
+     ]
+    },
+    {
+     "sha": "d06329c660a6361cca4f31f13f9acbff73e9fd2c",
+     "date": "2026-09-23T21:28:17-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Intersect hashes from repeated constraints",
+     "parents": [
+      "3db665232544183edcb80dd7077b8051b365e236"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3db665232544183edcb80dd7077b8051b365e236",
+    "source": "compare"
+   },
+   "_head_sha": "7829a18a830b0f9ab7eda378fb8eff1a4cdc4dcf"
+  }
+ ],
+ "branches": [
+  {
+   "name": "17929-renovate-conda-incubator-setup-miniconda-3.x",
+   "url": "https://github.com/astral-sh/uv/tree/17929-renovate-conda-incubator-setup-miniconda-3.x",
+   "ahead_by": 1,
+   "paths": [
+    ".github/workflows/test-integration.yml",
+    ".github/workflows/test-system.yml"
+   ],
+   "commits": [
+    {
+     "sha": "9db849ebd8407814a75e0e1f87948a737bd85bde",
+     "parents": [
+      "f867af20072cd250ac67fb70d3d1f56238359b23"
+     ],
+     "date": "2026-02-11T19:00:31-05:00",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "Update conda-incubator/setup-miniconda action to v3.3.0",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "f867af20072cd250ac67fb70d3d1f56238359b23",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "18442-renovate-rust-1.x",
+   "url": "https://github.com/astral-sh/uv/tree/18442-renovate-rust-1.x",
+   "ahead_by": 2,
+   "paths": [
+    "crates/uv-build-frontend/src/error.rs",
+    "crates/uv-installer/src/preparer.rs",
+    "crates/uv-pep508/src/lib.rs",
+    "crates/uv-pep508/src/unnamed.rs",
+    "crates/uv-requirements/src/lib.rs",
+    "crates/uv-requirements/src/unnamed.rs",
+    "crates/uv/src/commands/diagnostics.rs",
+    "crates/uv/src/commands/pip/operations.rs",
+    "crates/uv/src/commands/project/add.rs",
+    "crates/uv/src/commands/project/environment.rs",
+    "crates/uv/src/commands/project/install_target.rs",
+    "crates/uv/src/commands/project/lock_target.rs",
+    "crates/uv/src/commands/project/mod.rs",
+    "crates/uv/src/commands/project/remove.rs",
+    "crates/uv/src/commands/python/install.rs",
+    "rust-toolchain.toml"
+   ],
+   "commits": [
+    {
+     "sha": "5eef9ae31156310b33e8e45be2304d61b4d596da",
+     "parents": [
+      "04f2e9e6790b79d80514733f9319bcf3aeca4342"
+     ],
+     "date": "2026-03-13T10:17:55-05:00",
+     "author": {
+      "login": null,
+      "name": "Zanie Blue",
+      "type": "User"
+     },
+     "message": "Lint",
+     "paths": []
+    },
+    {
+     "sha": "04f2e9e6790b79d80514733f9319bcf3aeca4342",
+     "parents": [
+      "9fa25fb25a7e71b2efe2eb425204798917345930"
+     ],
+     "date": "2026-03-13T10:17:55-05:00",
+     "author": {
+      "login": null,
+      "name": "renovate[bot]",
+      "type": "Bot"
+     },
+     "message": "Update Rust to v1.94.0",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "9fa25fb25a7e71b2efe2eb425204798917345930",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "20421-documentation-is-incorrect-regarding-workspace-members",
+   "url": "https://github.com/astral-sh/uv/tree/20421-documentation-is-incorrect-regarding-workspace-members",
+   "ahead_by": 0,
+   "paths": [],
+   "commits": [],
+   "merge_base": {
+    "sha": "b8d0ef3e1b2df9b01524a42b88c2fa7624d4172a",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "ag/benchmark-patch",
+   "url": "https://github.com/astral-sh/uv/tree/ag/benchmark-patch",
+   "ahead_by": 1,
+   "paths": [
+    "crates/puffin/src/commands/pip_compile.rs",
+    "crates/puffin/src/main.rs"
+   ],
+   "commits": [
+    {
+     "sha": "66085a7c652fd642accdb086f47473449a6b6858",
+     "parents": [
+      "c75eef28b5c45705d80395b0ee9d9a7273a7b2f6"
+     ],
+     "date": "2024-02-12T09:26:55-05:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "temporary patch for benchmarking",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "c75eef28b5c45705d80395b0ee9d9a7273a7b2f6",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "ag/change-global-allocator-and-smallvec",
+   "url": "https://github.com/astral-sh/uv/tree/ag/change-global-allocator-and-smallvec",
+   "ahead_by": 6,
+   "paths": [
+    "Cargo.lock",
+    "Cargo.toml",
+    "crates/pep440-rs/Cargo.toml",
+    "crates/pep440-rs/src/version.rs",
+    "crates/pep440-rs/src/version_specifier.rs",
+    "crates/pep508-rs/Cargo.toml",
+    "crates/pep508-rs/src/lib.rs",
+    "crates/puffin-cli/Cargo.toml",
+    "crates/puffin-cli/src/main.rs",
+    "crates/puffin-dev/Cargo.toml",
+    "crates/puffin-dev/src/main.rs",
+    "crates/puffin-resolver/src/pubgrub/specifier.rs",
+    "scripts/resolve/get_pypi_top_8k.sh"
+   ],
+   "commits": [
+    {
+     "sha": "f9528b4ecd1b0c260df7e8ad57b9ddc4da09d273",
+     "parents": [
+      "259a835ab6ea51ba03f1d37bef075920d06f3b2d"
+     ],
+     "date": "2023-11-10T14:30:26-05:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "pep440-rs: switch Version::release to smallvec",
+     "paths": []
+    },
+    {
+     "sha": "259a835ab6ea51ba03f1d37bef075920d06f3b2d",
+     "parents": [
+      "1deea745b51763705147f2dbec0c64d3cc483632"
+     ],
+     "date": "2023-11-10T14:30:26-05:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "pep440-rs: don't allocate when retrieving a version number",
+     "paths": []
+    },
+    {
+     "sha": "1deea745b51763705147f2dbec0c64d3cc483632",
+     "parents": [
+      "d0b21dcda461a30f8e5ac383715d4720d8023368"
+     ],
+     "date": "2023-11-10T14:30:10-05:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "pep440-rs: use u32 instead of usize in Version representation",
+     "paths": []
+    },
+    {
+     "sha": "d0b21dcda461a30f8e5ac383715d4720d8023368",
+     "parents": [
+      "819975ef6c0d4d818c4359ea6e264f835f2f0474"
+     ],
+     "date": "2023-11-10T14:30:09-05:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "puffin-{cli,dev}: switch to mimalloc and jemalloc",
+     "paths": []
+    },
+    {
+     "sha": "819975ef6c0d4d818c4359ea6e264f835f2f0474",
+     "parents": [
+      "79597abe69af2b2ea8bff1e39d59a3c86fee402f"
+     ],
+     "date": "2023-11-10T14:30:09-05:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "pep508-rs: make trailing whitespace explicit",
+     "paths": []
+    },
+    {
+     "sha": "79597abe69af2b2ea8bff1e39d59a3c86fee402f",
+     "parents": [
+      "b3edf7c2b2a19ed2330f3785b9aa97617ad6b073"
+     ],
+     "date": "2023-11-10T13:20:02-05:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "scripts: make pypi 8k fetch script executable",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "b3edf7c2b2a19ed2330f3785b9aa97617ad6b073",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "ag/prototype-universal-lock",
+   "url": "https://github.com/astral-sh/uv/tree/ag/prototype-universal-lock",
+   "ahead_by": 10,
+   "paths": [
+    "crates/pep508-rs/src/lib.rs",
+    "crates/pep508-rs/src/marker.rs",
+    "crates/pypi-types/src/lib.rs",
+    "crates/pypi-types/src/metadata.rs",
+    "crates/uv-requirements/src/lookahead.rs",
+    "crates/uv-resolver/src/dependency_provider.rs",
+    "crates/uv-resolver/src/error.rs",
+    "crates/uv-resolver/src/lib.rs",
+    "crates/uv-resolver/src/manifest.rs",
+    "crates/uv-resolver/src/pins.rs",
+    "crates/uv-resolver/src/preferences.rs",
+    "crates/uv-resolver/src/pubgrub/dependencies.rs",
+    "crates/uv-resolver/src/pubgrub/package.rs",
+    "crates/uv-resolver/src/pubgrub/priority.rs",
+    "crates/uv-resolver/src/pubgrub/report.rs",
+    "crates/uv-resolver/src/resolution.rs",
+    "crates/uv-resolver/src/resolver/mod.rs",
+    "scripts/packages/dependent_editables/second_editable/.gitignore"
+   ],
+   "commits": [
+    {
+     "sha": "7f2b401260e6231bebb867c034b27d2955210fe0",
+     "parents": [
+      "2cf788f96316343b692eafc77560ff7100ccdc10"
+     ],
+     "date": "2024-04-18T10:58:57-04:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "progress",
+     "paths": []
+    },
+    {
+     "sha": "2cf788f96316343b692eafc77560ff7100ccdc10",
+     "parents": [
+      "3523a004ab4f9fa274b3f666bf38757107eeb84b"
+     ],
+     "date": "2024-04-16T13:33:15-04:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "progress",
+     "paths": []
+    },
+    {
+     "sha": "3523a004ab4f9fa274b3f666bf38757107eeb84b",
+     "parents": [
+      "c1dc5901e4a60293f523f2b34455239cb510aac7"
+     ],
+     "date": "2024-04-16T10:47:13-04:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "progress",
+     "paths": []
+    },
+    {
+     "sha": "c1dc5901e4a60293f523f2b34455239cb510aac7",
+     "parents": [
+      "27cdeb7050157111ed18e7d114d3c82eb853c97e"
+     ],
+     "date": "2024-04-11T14:13:11-04:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "progress",
+     "paths": []
+    },
+    {
+     "sha": "27cdeb7050157111ed18e7d114d3c82eb853c97e",
+     "parents": [
+      "0246b22f043897f2201b78a18b6474b5cf9ab7dd"
+     ],
+     "date": "2024-04-10T09:46:44-04:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "progress",
+     "paths": []
+    },
+    {
+     "sha": "0246b22f043897f2201b78a18b6474b5cf9ab7dd",
+     "parents": [
+      "a73466c036881a7f48333e1769aab38da7c5c68e"
+     ],
+     "date": "2024-04-08T13:42:54-04:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "progress",
+     "paths": []
+    },
+    {
+     "sha": "a73466c036881a7f48333e1769aab38da7c5c68e",
+     "parents": [
+      "dba209e321a91006998955c0fd264fdfc25c393c"
+     ],
+     "date": "2024-04-01T22:10:54-04:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "HACK: drop optional deps completely",
+     "paths": []
+    },
+    {
+     "sha": "dba209e321a91006998955c0fd264fdfc25c393c",
+     "parents": [
+      "a831720f328e84ee2e3483881d2f4f7f96b13b4d"
+     ],
+     "date": "2024-04-01T13:42:41-04:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "gitignore: add /build to gitignore",
+     "paths": []
+    },
+    {
+     "sha": "a831720f328e84ee2e3483881d2f4f7f96b13b4d",
+     "parents": [
+      "ba8a98078284d77e6bce878d91a5338c5d57b2cb"
+     ],
+     "date": "2024-04-01T13:40:22-04:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "HACK: uv-resolver: skip marker evaluation",
+     "paths": []
+    },
+    {
+     "sha": "ba8a98078284d77e6bce878d91a5338c5d57b2cb",
+     "parents": [
+      "05ed7ac64bb5cf253bd58d66e5dbe12abec047b6"
+     ],
+     "date": "2024-04-01T13:26:13-04:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "uv-resolver: slightly simplify marker evaluation",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "05ed7ac64bb5cf253bd58d66e5dbe12abec047b6",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "ag/rkyv",
+   "url": "https://github.com/astral-sh/uv/tree/ag/rkyv",
+   "ahead_by": 2,
+   "paths": [
+    "crates/puffin-client/src/cached_client.rs",
+    "crates/puffin-client/src/lib.rs",
+    "crates/puffin-client/src/registry_client.rs",
+    "crates/puffin-dev/src/resolve_many.rs",
+    "crates/puffin-distribution/src/source/mod.rs",
+    "crates/puffin-resolver/src/finder.rs",
+    "crates/puffin-resolver/src/version_map.rs"
+   ],
+   "commits": [
+    {
+     "sha": "c7cafff4933e2337ffbc3ab1f55d5d2826707f80",
+     "parents": [
+      "8d70055140ed53df6b01234e857c3289f5c57516"
+     ],
+     "date": "2024-02-04T09:50:04-05:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "hack: make rkyv work by ignoring DataWithCachePolicy",
+     "paths": []
+    },
+    {
+     "sha": "8d70055140ed53df6b01234e857c3289f5c57516",
+     "parents": [
+      "586eeb6eca52fd2cde3d7093a3e752822f7d2c6e"
+     ],
+     "date": "2024-02-04T09:46:56-05:00",
+     "author": {
+      "login": null,
+      "name": "Andrew Gallant",
+      "type": "User"
+     },
+     "message": "puffin-client: actually use SimpleMetadataRaw",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "586eeb6eca52fd2cde3d7093a3e752822f7d2c6e",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "annotate-requirements-sources",
+   "url": "https://github.com/astral-sh/uv/tree/annotate-requirements-sources",
+   "ahead_by": 33,
+   "paths": [
+    "crates/distribution-types/src/annotation.rs",
+    "crates/distribution-types/src/lib.rs",
+    "crates/distribution-types/src/requirement.rs",
+    "crates/distribution-types/src/resolution.rs",
+    "crates/distribution-types/src/specified_requirement.rs",
+    "crates/pep508-rs/src/lib.rs",
+    "crates/pep508-rs/src/unnamed.rs",
+    "crates/requirements-txt/src/lib.rs",
+    "crates/requirements-txt/src/requirement.rs",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__line-endings-basic.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__line-endings-constraints-a.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__line-endings-constraints-b.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__line-endings-editable.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__line-endings-for-poetry.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__line-endings-include-a.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__line-endings-include-b.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__line-endings-poetry-with-hashes.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__line-endings-small.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__line-endings-whitespace.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__parse-basic.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__parse-constraints-a.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__parse-constraints-b.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__parse-for-poetry.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__parse-include-a.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__parse-include-b.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__parse-poetry-with-hashes.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__parse-small.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__parse-unix-bare-url.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__parse-whitespace.txt.snap",
+    "crates/requirements-txt/src/snapshots/requirements_txt__test__parse-windows-bare-url.txt.snap",
+    "crates/uv-dev/src/resolve_many.rs",
+    "crates/uv-fs/src/path.rs",
+    "crates/uv-installer/src/site_packages.rs",
+    "crates/uv-requirements/src/pyproject.rs",
+    "crates/uv-requirements/src/specification.rs",
+    "crates/uv-requirements/src/unnamed.rs",
+    "crates/uv-resolver/src/resolution.rs",
+    "crates/uv/src/commands/pip_compile.rs",
+    "crates/uv/src/commands/pip_install.rs",
+    "crates/uv/src/commands/pip_sync.rs",
+    "crates/uv/tests/pip_compile.rs",
+    "crates/uv/tests/pip_compile_scenarios.rs"
+   ],
+   "commits": [
+    {
+     "sha": "e09fe28e596938a17a987e46280749c4b6866793",
+     "parents": [
+      "0ebe5934254a7d61088689d5e1654aac88c21d05"
+     ],
+     "date": "2024-05-08T22:07:57-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Add debug logging",
+     "paths": []
+    },
+    {
+     "sha": "0ebe5934254a7d61088689d5e1654aac88c21d05",
+     "parents": [
+      "6bd18cea6e2a511daaa3aad88de35ddb23f6f18e"
+     ],
+     "date": "2024-05-08T21:44:56-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Strip UNC",
+     "paths": []
+    },
+    {
+     "sha": "6bd18cea6e2a511daaa3aad88de35ddb23f6f18e",
+     "parents": [
+      "eb3ea9856ddfceb2f41c4f775a5e5d9bef6a1b5c"
+     ],
+     "date": "2024-05-08T23:47:17+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Fix clippy issue (and some test results along the way)",
+     "paths": []
+    },
+    {
+     "sha": "eb3ea9856ddfceb2f41c4f775a5e5d9bef6a1b5c",
+     "parents": [
+      "b8decb4bb1ea3857f79d72f2d3d674f63a61f58f"
+     ],
+     "date": "2024-05-08T23:40:07+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Add sources for editables",
+     "paths": []
+    },
+    {
+     "sha": "b8decb4bb1ea3857f79d72f2d3d674f63a61f58f",
+     "parents": [
+      "e57ce3fc675930f708473429eaf99bcbafce6591"
+     ],
+     "date": "2024-05-08T17:46:20-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Fix Ubuntu and macOS test",
+     "paths": []
+    },
+    {
+     "sha": "e57ce3fc675930f708473429eaf99bcbafce6591",
+     "parents": [
+      "e8322623b9ff5b363cdcf5f061e8c30de8360ec7"
+     ],
+     "date": "2024-05-08T17:11:05-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Re-generate fixtures",
+     "paths": []
+    },
+    {
+     "sha": "e8322623b9ff5b363cdcf5f061e8c30de8360ec7",
+     "parents": [
+      "9f5fa04f2b2bb724816dc38b334a1ae15da93516"
+     ],
+     "date": "2024-05-08T17:03:27-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Change signature",
+     "paths": []
+    },
+    {
+     "sha": "9f5fa04f2b2bb724816dc38b334a1ae15da93516",
+     "parents": [
+      "76df774ed37b072f82b00fdb615bf712a3b0a1ba"
+     ],
+     "date": "2024-05-08T16:57:10-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Move sources to distribution-types",
+     "paths": []
+    },
+    {
+     "sha": "76df774ed37b072f82b00fdb615bf712a3b0a1ba",
+     "parents": [
+      "4da1f6532acf18cfd69efbf02931aaa0b30d873b",
+      "7d41e7d260b0681eea5c310f288ac43f331b4c8d"
+     ],
+     "date": "2024-05-08T16:38:34-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Merge branch 'main' into annotate-requirements-sources",
+     "paths": []
+    },
+    {
+     "sha": "4da1f6532acf18cfd69efbf02931aaa0b30d873b",
+     "parents": [
+      "6332d06bca6cd8a2e817f3f6cefc3d29e4fd1f77"
+     ],
+     "date": "2024-05-08T16:38:05-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Use with_source instead of TrackedFromStr",
+     "paths": []
+    },
+    {
+     "sha": "6332d06bca6cd8a2e817f3f6cefc3d29e4fd1f77",
+     "parents": [
+      "493cf85a76565284ebac1e963fff2ecc779fe5f2"
+     ],
+     "date": "2024-05-08T16:13:16-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Remove TrackedStr from other structs",
+     "paths": []
+    },
+    {
+     "sha": "493cf85a76565284ebac1e963fff2ecc779fe5f2",
+     "parents": [
+      "264cc3de8bf0c87a3a052231f34940691bfd9d1b"
+     ],
+     "date": "2024-05-06T00:18:51+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Fix requirements-txt snapshots",
+     "paths": []
+    },
+    {
+     "sha": "264cc3de8bf0c87a3a052231f34940691bfd9d1b",
+     "parents": [
+      "54064be10324c5daf61ac740bcd7074f4d7a96ce"
+     ],
+     "date": "2024-05-06T00:08:59+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Simplify expand_env_var_requirements_txt filters",
+     "paths": []
+    },
+    {
+     "sha": "54064be10324c5daf61ac740bcd7074f4d7a96ce",
+     "parents": [
+      "2c31ee655a2dc8a956ab04b0d89f33b52dff2081"
+     ],
+     "date": "2024-05-06T00:05:59+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Fix some remaining path regex errors",
+     "paths": []
+    },
+    {
+     "sha": "2c31ee655a2dc8a956ab04b0d89f33b52dff2081",
+     "parents": [
+      "cfba144979d467427f084b5d6ee5c5ee95f21b62"
+     ],
+     "date": "2024-05-05T23:37:31+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Attempt to unfudge the windows testing",
+     "paths": []
+    },
+    {
+     "sha": "cfba144979d467427f084b5d6ee5c5ee95f21b62",
+     "parents": [
+      "8512f8d697c45da29e93fe31b1a008fd444cd44f"
+     ],
+     "date": "2024-05-05T22:59:36+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "And reformat the windows-specific fix",
+     "paths": []
+    },
+    {
+     "sha": "8512f8d697c45da29e93fe31b1a008fd444cd44f",
+     "parents": [
+      "e15914d94be2f010569266c23a3efbf142ec37c3"
+     ],
+     "date": "2024-05-05T22:58:01+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Fix windows-specific test compile",
+     "paths": []
+    },
+    {
+     "sha": "e15914d94be2f010569266c23a3efbf142ec37c3",
+     "parents": [
+      "0ac36f7969d30c2c5209d00b36c13e37f13ea54e"
+     ],
+     "date": "2024-05-05T22:49:48+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Update to latest main",
+     "paths": []
+    },
+    {
+     "sha": "0ac36f7969d30c2c5209d00b36c13e37f13ea54e",
+     "parents": [
+      "cf56fc45c0348615a4bdff0205dbbc89ea6ef566",
+      "6d73db2b1eebbedb1298d60a11891a460f57243b"
+     ],
+     "date": "2024-05-05T12:14:27+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Merge branch 'main' into annotate-requirements-sources",
+     "paths": []
+    },
+    {
+     "sha": "cf56fc45c0348615a4bdff0205dbbc89ea6ef566",
+     "parents": [
+      "e005d96f3469abd07a3a5c65ca81833c0567b81d"
+     ],
+     "date": "2024-04-29T23:21:26+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Update newer tests",
+     "paths": []
+    },
+    {
+     "sha": "e005d96f3469abd07a3a5c65ca81833c0567b81d",
+     "parents": [
+      "3044fa8b86791369a3c468ced585753428e70b1b",
+      "c5cd8088760eaa739f2ede1e8274ea1f855f928f"
+     ],
+     "date": "2024-04-29T23:18:05+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Merge branch 'main' into annotate-requirements-sources",
+     "paths": []
+    },
+    {
+     "sha": "3044fa8b86791369a3c468ced585753428e70b1b",
+     "parents": [
+      "a53b968746e0e78b777a656607ab444a612265cd"
+     ],
+     "date": "2024-04-29T23:12:41+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Fix pyproject to not be a -r annotation",
+     "paths": []
+    },
+    {
+     "sha": "a53b968746e0e78b777a656607ab444a612265cd",
+     "parents": [
+      "c5b159b393e5f3807bea6424a25ae0b1cf76b4b1"
+     ],
+     "date": "2024-04-26T22:57:13+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Sort source annotations",
+     "paths": []
+    },
+    {
+     "sha": "c5b159b393e5f3807bea6424a25ae0b1cf76b4b1",
+     "parents": [
+      "5358db9c9227a228f0974580e1337babeee2f6a9"
+     ],
+     "date": "2024-04-26T22:07:40+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Fix various extra constraints test failures",
+     "paths": []
+    },
+    {
+     "sha": "5358db9c9227a228f0974580e1337babeee2f6a9",
+     "parents": [
+      "042432b200395d498b4517121a9fb25f1bbda8ca"
+     ],
+     "date": "2024-04-26T21:48:12+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Ignore too many args to DisplayResolutionGraph",
+     "paths": []
+    },
+    {
+     "sha": "042432b200395d498b4517121a9fb25f1bbda8ca",
+     "parents": [
+      "90966c7269da153d913646cd548d3d692f85a45e"
+     ],
+     "date": "2024-04-26T21:42:23+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Strip sources out of pubgrub",
+     "paths": []
+    },
+    {
+     "sha": "90966c7269da153d913646cd548d3d692f85a45e",
+     "parents": [
+      "9655e9139d7ea2ea02d979fcc255d45542aa287f",
+      "2af80c28a8e6a2da755ab78f3ea7b028e8b1510c"
+     ],
+     "date": "2024-04-26T16:48:23+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Merge branch 'main' into annotate-requirements-sources",
+     "paths": []
+    },
+    {
+     "sha": "9655e9139d7ea2ea02d979fcc255d45542aa287f",
+     "parents": [
+      "cf170e50cc28b7b3c0f66a08ccb85598cae39e30"
+     ],
+     "date": "2024-04-26T16:44:55+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Fix contraints output",
+     "paths": []
+    },
+    {
+     "sha": "cf170e50cc28b7b3c0f66a08ccb85598cae39e30",
+     "parents": [
+      "8cad31ddca875533900528a05b9ebe281a1ac686"
+     ],
+     "date": "2024-04-25T22:04:57+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "resolve_configuration has many snapshots",
+     "paths": []
+    },
+    {
+     "sha": "8cad31ddca875533900528a05b9ebe281a1ac686",
+     "parents": [
+      "5818459c2991a6c7a2bdc513bf77c6760a1be3da"
+     ],
+     "date": "2024-04-25T21:56:09+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Fix remaining \"missing via -r\" test fails",
+     "paths": []
+    },
+    {
+     "sha": "5818459c2991a6c7a2bdc513bf77c6760a1be3da",
+     "parents": [
+      "6db1eec1ab7d2129b569207d8a149202abe36803"
+     ],
+     "date": "2024-04-25T21:49:39+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Fix clippy, fmt and _most_ of the test failures",
+     "paths": []
+    },
+    {
+     "sha": "6db1eec1ab7d2129b569207d8a149202abe36803",
+     "parents": [
+      "8afbb25d7ccd1e23071f3923038f23ccaf152f6d",
+      "fab8d858b636fce9e841e0228a9ebd6b3ddcbe04"
+     ],
+     "date": "2024-04-25T21:23:26+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Merge branch 'main' into annotate-requirements-sources",
+     "paths": []
+    },
+    {
+     "sha": "8afbb25d7ccd1e23071f3923038f23ccaf152f6d",
+     "parents": [
+      "ab9cc78b7a2d58cc1a1ef1db09602dc0fa4dea64"
+     ],
+     "date": "2024-04-25T20:50:05+01:00",
+     "author": {
+      "login": null,
+      "name": "Tom Parker-Shemilt",
+      "type": "User"
+     },
+     "message": "Annotate packages that are from a requirements file",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "7d41e7d260b0681eea5c310f288ac43f331b4c8d",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "bojan/merge-steps",
+   "url": "https://github.com/astral-sh/uv/tree/bojan/merge-steps",
+   "ahead_by": 1,
+   "paths": [
+    "crates/puffin-cli/src/commands/pip_sync.rs",
+    "crates/puffin-installer/src/downloader.rs",
+    "crates/puffin-resolver/src/finder.rs"
+   ],
+   "commits": [
+    {
+     "sha": "864e4ed86084b4466a428295b76091e1a42f1d6e",
+     "parents": [
+      "4c047f858f65150abdc80017347e388f4161d375"
+     ],
+     "date": "2024-01-11T14:19:15-05:00",
+     "author": {
+      "login": null,
+      "name": "Bojan Serafimov",
+      "type": "User"
+     },
+     "message": "WIP",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "4c047f858f65150abdc80017347e388f4161d375",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "charlie/add-py",
+   "url": "https://github.com/astral-sh/uv/tree/charlie/add-py",
+   "ahead_by": 1,
+   "paths": [
+    "crates/uv/src/commands/project/add.rs",
+    "foo/README.md",
+    "foo/pyproject.toml",
+    "foo/src/foo/__init__.py",
+    "foo/uv.lock"
+   ],
+   "commits": [
+    {
+     "sha": "9fec29d152f25680008c3201e0a7c4330fb6a863",
+     "parents": [
+      "c703917d99e74fe005083e47a6980bae5e2a8745"
+     ],
+     "date": "2024-08-19T19:06:22-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Enable add -r pyproject.toml",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "c703917d99e74fe005083e47a6980bae5e2a8745",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "charlie/antithesis-testing",
+   "url": "https://github.com/astral-sh/uv/tree/charlie/antithesis-testing",
+   "ahead_by": 2,
+   "paths": [
+    "antithesis/Dockerfile",
+    "antithesis/README.md",
+    "antithesis/docker-compose.local.yaml",
+    "antithesis/docker-compose.yaml",
+    "antithesis/entrypoint.sh",
+    "antithesis/generate-packages.py",
+    "antithesis/index_server.py",
+    "antithesis/test/v1/interrupted-reinstall/first_initialize.py",
+    "antithesis/test/v1/interrupted-reinstall/singleton_driver_recover.py",
+    "antithesis/test/v1/interrupted-uninstall/first_initialize.py",
+    "antithesis/test/v1/interrupted-uninstall/singleton_driver_recover.py",
+    "antithesis/test/v1/resolver-installer/eventually_verify_install.py",
+    "antithesis/test/v1/resolver-installer/helper_install.py",
+    "antithesis/test/v1/resolver-installer/parallel_driver_install.py"
+   ],
+   "commits": [
+    {
+     "sha": "25a008dcfc2b871946dea99fabdb3cca804b759f",
+     "parents": [
+      "e5cc9b05dbfe6ba43982829077cb2002b6b9e131"
+     ],
+     "date": "2026-06-23T06:50:51-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Add interrupted uninstall Antithesis test",
+     "paths": []
+    },
+    {
+     "sha": "e5cc9b05dbfe6ba43982829077cb2002b6b9e131",
+     "parents": [
+      "9afffa9cea4766eed6e028f584a3162d89209294"
+     ],
+     "date": "2026-06-22T22:12:46-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Add Antithesis resolver and installer tests",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "9afffa9cea4766eed6e028f584a3162d89209294",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "charlie/cache-read-without-zero-fill",
+   "url": "https://github.com/astral-sh/uv/tree/charlie/cache-read-without-zero-fill",
+   "ahead_by": 2,
+   "paths": [
+    "Cargo.lock",
+    "crates/uv-client/Cargo.toml",
+    "crates/uv-client/src/cached_client.rs"
+   ],
+   "commits": [
+    {
+     "sha": "8638b73aba4a34fb1d19d87cb77a39ce290c2390",
+     "parents": [
+      "4858570aafa9eab0b867da621c5933aafefc8ce9"
+     ],
+     "date": "2026-07-05T07:51:10-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Avoid zero-filling cache read buffers",
+     "paths": []
+    },
+    {
+     "sha": "4858570aafa9eab0b867da621c5933aafefc8ce9",
+     "parents": [
+      "5cb184f67af47889f5d463797dcc34c761dfe5ac"
+     ],
+     "date": "2026-07-04T21:44:03-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Read cache entries into exact-sized buffers",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "5cb184f67af47889f5d463797dcc34c761dfe5ac",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "charlie/codex-archive-wheel-metadata",
+   "url": "https://github.com/astral-sh/uv/tree/charlie/codex-archive-wheel-metadata",
+   "ahead_by": 2,
+   "paths": [
+    "Cargo.lock",
+    "crates/uv-cache/src/lib.rs",
+    "crates/uv-client/src/registry_client.rs",
+    "crates/uv-distribution-filename/src/extension.rs",
+    "crates/uv-git-types/Cargo.toml",
+    "crates/uv-git-types/src/lib.rs",
+    "crates/uv-git-types/src/oid.rs",
+    "crates/uv-git-types/src/reference.rs",
+    "crates/uv-pep508/Cargo.toml",
+    "crates/uv-pep508/src/lib.rs",
+    "crates/uv-pep508/src/marker/lowering.rs",
+    "crates/uv-pep508/src/marker/tree.rs",
+    "crates/uv-pep508/src/rkyv_support.rs",
+    "crates/uv-pep508/src/verbatim_url.rs",
+    "crates/uv-pypi-types/Cargo.toml",
+    "crates/uv-pypi-types/src/lib.rs",
+    "crates/uv-pypi-types/src/metadata/metadata_resolver.rs",
+    "crates/uv-pypi-types/src/parsed_url.rs",
+    "crates/uv-pypi-types/src/rkyv_support.rs",
+    "crates/uv-redacted/Cargo.toml",
+    "crates/uv-redacted/src/lib.rs",
+    "crates/uv/tests/build/cache_clean.rs",
+    "crates/uv/tests/pip_compile/pip_compile.rs"
+   ],
+   "commits": [
+    {
+     "sha": "1a3601561fdc164a4cb4507c35d3e14f44d1f22a",
+     "parents": [
+      "a31ce95067084f127d1b4befe4cf6eee753d47b2"
+     ],
+     "date": "2026-07-01T22:08:24Z",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Archive wheel metadata structurally with rkyv",
+     "paths": []
+    },
+    {
+     "sha": "a31ce95067084f127d1b4befe4cf6eee753d47b2",
+     "parents": [
+      "6221f9d9a7d4d18151a8f42c3e8f5a4d77677ae1"
+     ],
+     "date": "2026-07-01T15:59:50-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Archive requirements structurally with rkyv",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "6221f9d9a7d4d18151a8f42c3e8f5a4d77677ae1",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "charlie/codex-multi-export",
+   "url": "https://github.com/astral-sh/uv/tree/charlie/codex-multi-export",
+   "ahead_by": 3,
+   "paths": [
+    "crates/uv-cli/src/lib.rs",
+    "crates/uv/src/commands/project/export.rs",
+    "crates/uv/src/lib.rs",
+    "crates/uv/src/settings.rs",
+    "crates/uv/tests/project/export.rs"
+   ],
+   "commits": [
+    {
+     "sha": "7279dc9264ec81fbd3be10b740ce1dd9ed098913",
+     "parents": [
+      "96f69b99779f2edd954de9ee4e68c00769ddc64f"
+     ],
+     "date": "2026-07-05T14:14:03-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Generalize multi-export projections with plans",
+     "paths": []
+    },
+    {
+     "sha": "96f69b99779f2edd954de9ee4e68c00769ddc64f",
+     "parents": [
+      "492b271bd972ad874789c687eae80ecf1e9bd142",
+      "32194f49ab65672f54e892192150d861a0569ce9"
+     ],
+     "date": "2026-07-05T14:13:53-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Merge branch 'main' into charlie/codex-multi-export-integrate",
+     "paths": []
+    },
+    {
+     "sha": "492b271bd972ad874789c687eae80ecf1e9bd142",
+     "parents": [
+      "5cb184f67af47889f5d463797dcc34c761dfe5ac"
+     ],
+     "date": "2026-07-05T16:45:46Z",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Prototype multi-export requirements projections",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "32194f49ab65672f54e892192150d861a0569ce9",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "charlie/codex-simd-normalize-version-fastpath",
+   "url": "https://github.com/astral-sh/uv/tree/charlie/codex-simd-normalize-version-fastpath",
+   "ahead_by": 1,
+   "paths": [
+    "crates/uv-normalize/src/lib.rs",
+    "crates/uv-pep440/src/version.rs"
+   ],
+   "commits": [
+    {
+     "sha": "b26fb948c67dc975383ec4682e0d8e5725a4b4ef",
+     "parents": [
+      "cfa5ca8122dbdf9cc3950724500a882823102435"
+     ],
+     "date": "2026-07-04T21:45:41Z",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Optimize package and version parsing fast paths",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "cfa5ca8122dbdf9cc3950724500a882823102435",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "charlie/countme",
+   "url": "https://github.com/astral-sh/uv/tree/charlie/countme",
+   "ahead_by": 1,
+   "paths": [
+    "Cargo.lock",
+    "crates/distribution-filename/Cargo.toml",
+    "crates/distribution-filename/src/wheel.rs",
+    "crates/distribution-types/Cargo.toml",
+    "crates/distribution-types/src/lib.rs",
+    "crates/distribution-types/src/prioritized_distribution.rs",
+    "crates/uv-dev/Cargo.toml",
+    "crates/uv-dev/src/wheel_metadata.rs",
+    "crates/uv-installer/Cargo.toml",
+    "crates/uv-installer/src/plan.rs",
+    "crates/uv-normalize/Cargo.toml",
+    "crates/uv-normalize/src/package_name.rs",
+    "crates/uv-requirements/Cargo.toml",
+    "crates/uv-requirements/src/lookahead.rs",
+    "crates/uv-resolver/Cargo.toml",
+    "crates/uv-resolver/src/flat_index.rs",
+    "crates/uv-resolver/src/lock.rs",
+    "crates/uv-resolver/src/version_map.rs",
+    "crates/uv/Cargo.toml",
+    "crates/uv/src/lib.rs",
+    "foo/pyproject.toml",
+    "foo/uv.lock"
+   ],
+   "commits": [
+    {
+     "sha": "459fc3dffd4e9aa164be47c42fcfa7421ea14016",
+     "parents": [
+      "41b699e7ac34e85d3515d91c43ace9e163dfe30d"
+     ],
+     "date": "2024-07-23T21:32:09-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Add countme annotations everywhere",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "41b699e7ac34e85d3515d91c43ace9e163dfe30d",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "charlie/derive",
+   "url": "https://github.com/astral-sh/uv/tree/charlie/derive",
+   "ahead_by": 1,
+   "paths": [
+    "crates/uv-audit/src/service/osv.rs",
+    "crates/uv-audit/src/types.rs",
+    "crates/uv-auth/src/access_token.rs",
+    "crates/uv-auth/src/cache.rs",
+    "crates/uv-auth/src/credentials.rs",
+    "crates/uv-auth/src/index.rs",
+    "crates/uv-auth/src/keyring.rs",
+    "crates/uv-auth/src/middleware.rs",
+    "crates/uv-auth/src/providers.rs",
+    "crates/uv-auth/src/pyx.rs",
+    "crates/uv-auth/src/realm.rs",
+    "crates/uv-auth/src/store.rs",
+    "crates/uv-bin-install/src/lib.rs",
+    "crates/uv-build-backend/src/lib.rs",
+    "crates/uv-build-backend/src/metadata.rs",
+    "crates/uv-build-backend/src/serde_verbatim.rs",
+    "crates/uv-build-backend/src/settings.rs",
+    "crates/uv-build-backend/src/wheel.rs",
+    "crates/uv-build-frontend/src/lib.rs",
+    "crates/uv-cache-info/src/cache_info.rs",
+    "crates/uv-cache-info/src/glob.rs",
+    "crates/uv-cache-key/src/cache_key.rs",
+    "crates/uv-cache/src/archive.rs",
+    "crates/uv-cache/src/cli.rs",
+    "crates/uv-cache/src/lib.rs",
+    "crates/uv-cache/src/removal.rs",
+    "crates/uv-cache/src/wheel.rs",
+    "crates/uv-cli/src/comma.rs",
+    "crates/uv-cli/src/compat.rs",
+    "crates/uv-cli/src/lib.rs",
+    "crates/uv-cli/src/options.rs",
+    "crates/uv-client/src/base_client.rs",
+    "crates/uv-client/src/cached_client.rs",
+    "crates/uv-client/src/error.rs",
+    "crates/uv-client/src/flat_index.rs",
+    "crates/uv-client/src/html.rs",
+    "crates/uv-client/src/httpcache/mod.rs",
+    "crates/uv-client/src/middleware.rs",
+    "crates/uv-client/src/registry_client.rs",
+    "crates/uv-client/src/tls.rs",
+    "crates/uv-configuration/src/authentication.rs",
+    "crates/uv-configuration/src/build_options.rs",
+    "crates/uv-configuration/src/constraints.rs",
+    "crates/uv-configuration/src/dependency_groups.rs",
+    "crates/uv-configuration/src/dry_run.rs",
+    "crates/uv-configuration/src/editable.rs",
+    "crates/uv-configuration/src/env_file.rs",
+    "crates/uv-configuration/src/export_format.rs",
+    "crates/uv-configuration/src/extras.rs",
+    "crates/uv-configuration/src/install_options.rs",
+    "crates/uv-configuration/src/name_specifiers.rs",
+    "crates/uv-configuration/src/overrides.rs",
+    "crates/uv-configuration/src/package_options.rs",
+    "crates/uv-configuration/src/proxy_url.rs",
+    "crates/uv-configuration/src/required_version.rs",
+    "crates/uv-configuration/src/target_triple.rs",
+    "crates/uv-configuration/src/trusted_publishing.rs",
+    "crates/uv-configuration/src/vcs.rs",
+    "crates/uv-dev/src/generate_all.rs",
+    "crates/uv-dev/src/generate_options_reference.rs",
+    "crates/uv-dev/src/generate_scenarios.rs",
+    "crates/uv-dev/src/generate_sysconfig_mappings.rs",
+    "crates/uv-dev/src/render_benchmarks.rs",
+    "crates/uv-distribution-filename/src/egg.rs",
+    "crates/uv-distribution-filename/src/expanded_tags.rs",
+    "crates/uv-distribution-filename/src/source_dist.rs",
+    "crates/uv-distribution-types/src/annotation.rs",
+    "crates/uv-distribution-types/src/any.rs",
+    "crates/uv-distribution-types/src/build_info.rs",
+    "crates/uv-distribution-types/src/build_requires.rs",
+    "crates/uv-distribution-types/src/buildable.rs",
+    "crates/uv-distribution-types/src/hash.rs",
+    "crates/uv-distribution-types/src/id.rs",
+    "crates/uv-distribution-types/src/index.rs",
+    "crates/uv-distribution-types/src/index_url.rs",
+    "crates/uv-distribution-types/src/installed.rs",
+    "crates/uv-distribution-types/src/known_platform.rs",
+    "crates/uv-distribution-types/src/lib.rs",
+    "crates/uv-distribution-types/src/origin.rs",
+    "crates/uv-distribution-types/src/prioritized_distribution.rs",
+    "crates/uv-distribution-types/src/requirement.rs",
+    "crates/uv-distribution-types/src/requires_python.rs",
+    "crates/uv-distribution-types/src/resolution.rs",
+    "crates/uv-distribution-types/src/resolved.rs",
+    "crates/uv-distribution-types/src/status_code_strategy.rs",
+    "crates/uv-distribution/src/archive.rs",
+    "crates/uv-distribution/src/distribution_database.rs",
+    "crates/uv-distribution/src/download.rs",
+    "crates/uv-distribution/src/index/built_wheel_index.rs",
+    "crates/uv-distribution/src/index/cached_wheel.rs",
+    "crates/uv-distribution/src/index/registry_wheel_index.rs",
+    "crates/uv-distribution/src/metadata/build_requires.rs",
+    "crates/uv-distribution/src/metadata/dependency_groups.rs",
+    "crates/uv-distribution/src/metadata/lowering.rs",
+    "crates/uv-distribution/src/metadata/mod.rs",
+    "crates/uv-distribution/src/metadata/requires_dist.rs",
+    "crates/uv-distribution/src/source/built_wheel_metadata.rs",
+    "crates/uv-distribution/src/source/mod.rs",
+    "crates/uv-distribution/src/source/revision.rs",
+    "crates/uv-errors/src/lib.rs",
+    "crates/uv-extract/src/hash.rs",
+    "crates/uv-extract/src/stream.rs",
+    "crates/uv-fastid/src/lib.rs",
+    "crates/uv-fs/src/link.rs",
+    "crates/uv-fs/src/locked_file.rs",
+    "crates/uv-fs/src/path.rs",
+    "crates/uv-git-types/src/github.rs",
+    "crates/uv-git/src/credentials.rs",
+    "crates/uv-git/src/git.rs",
+    "crates/uv-git/src/rate_limit.rs",
+    "crates/uv-git/src/resolver.rs",
+    "crates/uv-globfilter/src/portable_glob.rs",
+    "crates/uv-install-wheel/src/lib.rs",
+    "crates/uv-install-wheel/src/linker.rs",
+    "crates/uv-install-wheel/src/uninstall.rs",
+    "crates/uv-install-wheel/src/wheel.rs",
+    "crates/uv-installer/src/plan.rs",
+    "crates/uv-installer/src/satisfies.rs",
+    "crates/uv-installer/src/site_packages.rs",
+    "crates/uv-keyring/src/lib.rs",
+    "crates/uv-keyring/src/macos.rs",
+    "crates/uv-netrc/src/netrc.rs",
+    "crates/uv-normalize/src/dist_info_name.rs",
+    "crates/uv-normalize/src/extra_name.rs",
+    "crates/uv-normalize/src/group_name.rs",
+    "crates/uv-normalize/src/lib.rs",
+    "crates/uv-options-metadata/src/lib.rs",
+    "crates/uv-pep440/src/version.rs",
+    "crates/uv-pep440/src/version_specifier.rs",
+    "crates/uv-pep508/src/cursor.rs",
+    "crates/uv-pep508/src/lib.rs",
+    "crates/uv-pep508/src/marker/environment.rs",
+    "crates/uv-pep508/src/marker/tree.rs",
+    "crates/uv-pep508/src/verbatim_url.rs",
+    "crates/uv-platform-tags/src/abi_tag.rs",
+    "crates/uv-platform-tags/src/language_tag.rs",
+    "crates/uv-platform-tags/src/platform.rs",
+    "crates/uv-platform-tags/src/platform_tag.rs",
+    "crates/uv-platform-tags/src/tags.rs",
+    "crates/uv-platform/src/host.rs",
+    "crates/uv-platform/src/libc.rs",
+    "crates/uv-preview/src/lib.rs",
+    "crates/uv-publish/src/lib.rs",
+    "crates/uv-pypi-types/src/base_url.rs",
+    "crates/uv-pypi-types/src/conflicts.rs",
+    "crates/uv-pypi-types/src/direct_url.rs",
+    "crates/uv-pypi-types/src/identifier.rs",
+    "crates/uv-pypi-types/src/lenient_requirement.rs",
+    "crates/uv-pypi-types/src/marker_environment.rs",
+    "crates/uv-pypi-types/src/metadata/build_requires.rs",
+    "crates/uv-pypi-types/src/metadata/metadata10.rs",
+    "crates/uv-pypi-types/src/metadata/metadata23.rs",
+    "crates/uv-pypi-types/src/metadata/mod.rs",
+    "crates/uv-pypi-types/src/metadata/pyproject_toml.rs",
+    "crates/uv-pypi-types/src/metadata/requires_dist.rs",
+    "crates/uv-pypi-types/src/module_name.rs",
+    "crates/uv-pypi-types/src/project_status.rs",
+    "crates/uv-pypi-types/src/simple_json.rs",
+    "crates/uv-pypi-types/src/supported_environments.rs",
+    "crates/uv-python/src/discovery.rs",
+    "crates/uv-python/src/downloads.rs",
+    "crates/uv-python/src/environment.rs",
+    "crates/uv-python/src/installation.rs",
+    "crates/uv-python/src/interpreter.rs",
+    "crates/uv-python/src/managed.rs",
+    "crates/uv-python/src/sysconfig/cursor.rs",
+    "crates/uv-python/src/sysconfig/parser.rs",
+    "crates/uv-python/src/sysconfig/replacements.rs",
+    "crates/uv-python/src/version_files.rs",
+    "crates/uv-python/src/virtualenv.rs",
+    "crates/uv-requirements-txt/src/lib.rs",
+    "crates/uv-requirements-txt/src/requirement.rs",
+    "crates/uv-requirements-txt/src/shquote.rs",
+    "crates/uv-requirements/src/source_tree.rs",
+    "crates/uv-requirements/src/sources.rs",
+    "crates/uv-requirements/src/specification.rs",
+    "crates/uv-requirements/src/upgrade.rs",
+    "crates/uv-resolver/src/candidate_selector.rs",
+    "crates/uv-resolver/src/dependency_mode.rs",
+    "crates/uv-resolver/src/error.rs",
+    "crates/uv-resolver/src/exclude_newer.rs",
+    "crates/uv-resolver/src/exclusions.rs",
+    "crates/uv-resolver/src/flat_index.rs",
+    "crates/uv-resolver/src/fork_strategy.rs",
+    "crates/uv-resolver/src/lock/export/cyclonedx_json.rs",
+    "crates/uv-resolver/src/lock/export/metadata.rs",
+    "crates/uv-resolver/src/lock/export/mod.rs",
+    "crates/uv-resolver/src/lock/export/pylock_toml.rs",
+    "crates/uv-resolver/src/lock/export/requirements_txt.rs",
+    "crates/uv-resolver/src/lock/map.rs",
+    "crates/uv-resolver/src/lock/mod.rs",
+    "crates/uv-resolver/src/lock/tree.rs",
+    "crates/uv-resolver/src/manifest.rs",
+    "crates/uv-resolver/src/options.rs",
+    "crates/uv-resolver/src/pins.rs",
+    "crates/uv-resolver/src/preferences.rs",
+    "crates/uv-resolver/src/prerelease.rs",
+    "crates/uv-resolver/src/pubgrub/dependencies.rs",
+    "crates/uv-resolver/src/pubgrub/priority.rs",
+    "crates/uv-resolver/src/pubgrub/report.rs",
+    "crates/uv-resolver/src/python_requirement.rs",
+    "crates/uv-resolver/src/resolution/display.rs",
+    "crates/uv-resolver/src/resolution/mod.rs",
+    "crates/uv-resolver/src/resolution/output.rs",
+    "crates/uv-resolver/src/resolution/requirements_txt.rs",
+    "crates/uv-resolver/src/resolution_mode.rs",
+    "crates/uv-resolver/src/resolver/availability.rs",
+    "crates/uv-resolver/src/resolver/derivation.rs",
+    "crates/uv-resolver/src/resolver/environment.rs",
+    "crates/uv-resolver/src/resolver/fork_map.rs",
+    "crates/uv-resolver/src/resolver/indexes.rs",
+    "crates/uv-resolver/src/resolver/mod.rs",
+    "crates/uv-resolver/src/resolver/provider.rs",
+    "crates/uv-resolver/src/resolver/system.rs",
+    "crates/uv-resolver/src/resolver/urls.rs",
+    "crates/uv-resolver/src/universal_marker.rs",
+    "crates/uv-resolver/src/upgrade.rs",
+    "crates/uv-resolver/src/version_map.rs",
+    "crates/uv-resolver/src/yanks.rs",
+    "crates/uv-scripts/src/lib.rs",
+    "crates/uv-settings/src/lib.rs",
+    "crates/uv-settings/src/settings.rs",
+    "crates/uv-shell/src/lib.rs",
+    "crates/uv-shell/src/runnable.rs",
+    "crates/uv-state/src/lib.rs",
+    "crates/uv-test/src/lib.rs",
+    "crates/uv-test/src/packse/scenario.rs",
+    "crates/uv-toml/src/lib.rs",
+    "crates/uv-tool/src/lib.rs",
+    "crates/uv-tool/src/receipt.rs",
+    "crates/uv-tool/src/tool.rs",
+    "crates/uv-torch/src/accelerator.rs",
+    "crates/uv-torch/src/backend.rs",
+    "crates/uv-trampoline-builder/src/lib.rs",
+    "crates/uv-types/src/builds.rs",
+    "crates/uv-types/src/requirements.rs",
+    "crates/uv-types/src/traits.rs",
+    "crates/uv-virtualenv/src/lib.rs",
+    "crates/uv-virtualenv/src/virtualenv.rs",
+    "crates/uv-workspace/src/dependency_groups.rs",
+    "crates/uv-workspace/src/pyproject.rs",
+    "crates/uv-workspace/src/pyproject_mut.rs",
+    "crates/uv-workspace/src/workspace.rs",
+    "crates/uv/src/commands/auth/helper.rs",
+    "crates/uv/src/commands/build_frontend.rs",
+    "crates/uv/src/commands/diagnostics.rs",
+    "crates/uv/src/commands/help.rs",
+    "crates/uv/src/commands/mod.rs",
+    "crates/uv/src/commands/pip/latest.rs",
+    "crates/uv/src/commands/pip/list.rs",
+    "crates/uv/src/commands/pip/loggers.rs",
+    "crates/uv/src/commands/pip/operations.rs",
+    "crates/uv/src/commands/pip/tree.rs",
+    "crates/uv/src/commands/project/add.rs",
+    "crates/uv/src/commands/project/audit/json.rs",
+    "crates/uv/src/commands/project/audit/sarif.rs",
+    "crates/uv/src/commands/project/environment.rs",
+    "crates/uv/src/commands/project/export.rs",
+    "crates/uv/src/commands/project/init.rs",
+    "crates/uv/src/commands/project/install_target.rs",
+    "crates/uv/src/commands/project/lock.rs",
+    "crates/uv/src/commands/project/lock_target.rs",
+    "crates/uv/src/commands/project/mod.rs",
+    "crates/uv/src/commands/project/remove.rs",
+    "crates/uv/src/commands/project/run.rs",
+    "crates/uv/src/commands/project/sync.rs",
+    "crates/uv/src/commands/publish.rs",
+    "crates/uv/src/commands/python/install.rs",
+    "crates/uv/src/commands/python/list.rs",
+    "crates/uv/src/commands/python/mod.rs",
+    "crates/uv/src/commands/reporters.rs",
+    "crates/uv/src/commands/self_update.rs",
+    "crates/uv/src/commands/tool/common.rs",
+    "crates/uv/src/commands/tool/mod.rs",
+    "crates/uv/src/commands/tool/run.rs",
+    "crates/uv/src/commands/tool/upgrade.rs",
+    "crates/uv/src/logging.rs",
+    "crates/uv/src/printer.rs",
+    "crates/uv/src/settings.rs"
+   ],
+   "commits": [
+    {
+     "sha": "4dc647b6fded23cf0bd588346d502c5c5bc09a4e",
+     "parents": [
+      "6e928c0f3bff202a0e18a4c895b5037353e4489b"
+     ],
+     "date": "2026-06-22T07:51:30-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Remove unnecessary derives",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "6e928c0f3bff202a0e18a4c895b5037353e4489b",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "charlie/dirhash-content-address",
+   "url": "https://github.com/astral-sh/uv/tree/charlie/dirhash-content-address",
+   "ahead_by": 6,
+   "paths": [
+    "Cargo.lock",
+    "Cargo.toml",
+    "crates/uv-cache/src/archive.rs",
+    "crates/uv-cache/src/lib.rs",
+    "crates/uv-distribution/src/distribution_database.rs",
+    "crates/uv-extract/Cargo.toml",
+    "crates/uv-extract/src/hash.rs",
+    "crates/uv-extract/src/stream.rs",
+    "crates/uv-extract/src/sync.rs",
+    "crates/uv/tests/it/cache_prune.rs",
+    "crates/uv/tests/it/pip_install.rs"
+   ],
+   "commits": [
+    {
+     "sha": "a6c75bf8d0eea6b240bdc36ac55b6795195bb4e3",
+     "parents": [
+      "604c3faf5786f18ee4fc5e8eb821aee62bf33ced"
+     ],
+     "date": "2026-06-02T23:09:51-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Write out files",
+     "paths": []
+    },
+    {
+     "sha": "604c3faf5786f18ee4fc5e8eb821aee62bf33ced",
+     "parents": [
+      "2a4c8662a7118954b96eb4150f4b416a5d2da916"
+     ],
+     "date": "2026-06-02T23:03:51-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Include empty directories",
+     "paths": []
+    },
+    {
+     "sha": "2a4c8662a7118954b96eb4150f4b416a5d2da916",
+     "parents": [
+      "61d187b2da3484ef6e4ad683b6b11d4899374589"
+     ],
+     "date": "2026-06-02T19:51:37-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Optimize directory-hash extraction",
+     "paths": []
+    },
+    {
+     "sha": "61d187b2da3484ef6e4ad683b6b11d4899374589",
+     "parents": [
+      "4a08916b259affb447edad1775182f8aaa4f19e3"
+     ],
+     "date": "2026-06-02T18:37:32-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Revert \"Experiment with RECORD-backed directory digests\"",
+     "paths": []
+    },
+    {
+     "sha": "4a08916b259affb447edad1775182f8aaa4f19e3",
+     "parents": [
+      "5b26f59a4f3bce3ee56c6920c355c4152fdf01bf"
+     ],
+     "date": "2026-06-02T18:37:29-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Experiment with RECORD-backed directory digests",
+     "paths": []
+    },
+    {
+     "sha": "5b26f59a4f3bce3ee56c6920c355c4152fdf01bf",
+     "parents": [
+      "cfe5277bc4226da3a8cf51ad40b34f6a4e1746e5"
+     ],
+     "date": "2026-06-02T18:05:53-04:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Implement directory-hash archive IDs",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "cfe5277bc4226da3a8cf51ad40b34f6a4e1746e5",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "charlie/disjoint",
+   "url": "https://github.com/astral-sh/uv/tree/charlie/disjoint",
+   "ahead_by": 2,
+   "paths": [
+    "crates/uv-pep508/src/lib.rs",
+    "crates/uv-pep508/src/marker/algebra.rs",
+    "crates/uv-pep508/src/marker/environment.rs",
+    "crates/uv-pep508/src/marker/lowered.rs",
+    "crates/uv-pep508/src/marker/mod.rs",
+    "crates/uv-pep508/src/marker/simplify.rs",
+    "crates/uv-pep508/src/marker/tree.rs",
+    "crates/uv-resolver/src/marker.rs",
+    "crates/uv-resolver/src/resolution/output.rs",
+    "crates/uv/tests/it/lock.rs",
+    "crates/uv/tests/it/lock_scenarios.rs",
+    "foo/README.md",
+    "foo/hello.py",
+    "foo/pyproject.toml",
+    "foo/uv.lock"
+   ],
+   "commits": [
+    {
+     "sha": "23d3c734d87ab843a191c3fa56af244f677abb79",
+     "parents": [
+      "3a1ce74a6775735b1bf6209d548d0e52e7a23585"
+     ],
+     "date": "2024-11-20T23:26:15-05:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Add representation",
+     "paths": []
+    },
+    {
+     "sha": "3a1ce74a6775735b1bf6209d548d0e52e7a23585",
+     "parents": [
+      "c6482dd0383d37a8b3018f022abd582e12888526"
+     ],
+     "date": "2024-11-20T23:18:38-05:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Add lowering",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "c6482dd0383d37a8b3018f022abd582e12888526",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "charlie/dulwich",
+   "url": "https://github.com/astral-sh/uv/tree/charlie/dulwich",
+   "ahead_by": 3,
+   "paths": [
+    "crates/uv-distribution/src/distribution_database.rs",
+    "crates/uv-distribution/src/source/mod.rs"
+   ],
+   "commits": [
+    {
+     "sha": "908ce3a707c4642ca0e4580023044209161ef6e7",
+     "parents": [
+      "ee0e937b38a682bcbffa53d4052d0717c0b64ee1"
+     ],
+     "date": "2025-02-05T15:42:54-05:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Read link",
+     "paths": []
+    },
+    {
+     "sha": "ee0e937b38a682bcbffa53d4052d0717c0b64ee1",
+     "parents": [
+      "8fedddd363039dbc5c5f0ed62562b222c6b5951f"
+     ],
+     "date": "2025-02-05T15:41:50-05:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Add more",
+     "paths": []
+    },
+    {
+     "sha": "8fedddd363039dbc5c5f0ed62562b222c6b5951f",
+     "parents": [
+      "72d9361ce10c1a420b90af7b263eaf1b0561c321"
+     ],
+     "date": "2025-02-05T15:41:50-05:00",
+     "author": {
+      "login": null,
+      "name": "Charlie Marsh",
+      "type": "User"
+     },
+     "message": "Add logging",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "72d9361ce10c1a420b90af7b263eaf1b0561c321",
+    "source": "compare"
+   }
+  }
+ ],
+ "issues": [],
+ "meta": {
+  "source": "git (precision study adapter)",
+  "api_calls": 0,
+  "rate_limit_remaining": null,
+  "degraded": [],
+  "commits_truncated": false,
+  "open_prs_total": 584
+ }
+}
