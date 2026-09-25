@@ -1,0 +1,280 @@
+{
+ "schema": "observstory.coordination/v1",
+ "sessions": [
+  {
+   "id": "S1",
+   "kind": "kickoff",
+   "label": "Kickoff",
+   "at": "2026-10-02T18:30:00Z",
+   "recorded": false,
+   "open_questions": [
+    "do we need speaker labels for the demo"
+   ]
+  },
+  {
+   "id": "S2",
+   "kind": "check-in",
+   "label": "Saturday morning check-in",
+   "at": "2026-10-03T09:00:00Z",
+   "recorded": false,
+   "open_questions": [
+    "is the demo laptop's microphone good enough"
+   ]
+  },
+  {
+   "id": "S3",
+   "kind": "check-in",
+   "label": "Saturday evening check-in",
+   "at": "2026-10-03T19:00:00Z",
+   "recorded": false,
+   "open_questions": []
+  }
+ ],
+ "gates": [
+  {
+   "id": "G1",
+   "status": "declared",
+   "confirmed_by": "Alice",
+   "confirmed_at": "2026-10-02T18:48:00Z",
+   "kind": "checkpoint",
+   "label": "Skeleton demo",
+   "at": "2026-10-03T00:00:00Z",
+   "areas": [],
+   "source": {
+    "session": "S1",
+    "extractor": "markers/v1",
+    "line": 2,
+    "excerpt": "- CHECKPOINT Skeleton demo at 00:00"
+   }
+  },
+  {
+   "id": "G2",
+   "status": "declared",
+   "confirmed_by": "Alice",
+   "confirmed_at": "2026-10-02T18:48:00Z",
+   "kind": "freeze",
+   "label": "Freeze src/core/",
+   "at": "2026-10-03T12:00:00Z",
+   "areas": [
+    "src/core/"
+   ],
+   "source": {
+    "session": "S1",
+    "extractor": "markers/v1",
+    "line": 3,
+    "excerpt": "- FREEZE src/core/ at Sat 12:00"
+   }
+  },
+  {
+   "id": "G3",
+   "status": "declared",
+   "confirmed_by": "Alice",
+   "confirmed_at": "2026-10-02T18:48:00Z",
+   "kind": "freeze",
+   "label": "Freeze web/, src/",
+   "at": "2026-10-03T22:00:00Z",
+   "areas": [
+    "web/",
+    "src/"
+   ],
+   "source": {
+    "session": "S1",
+    "extractor": "markers/v1",
+    "line": 4,
+    "excerpt": "- FREEZE web/, src/ at Sat 22:00"
+   }
+  },
+  {
+   "id": "G4",
+   "status": "declared",
+   "confirmed_by": "Alice",
+   "confirmed_at": "2026-10-02T18:48:00Z",
+   "kind": "submission",
+   "label": "Submission",
+   "at": "2026-10-04T06:00:00Z",
+   "areas": [],
+   "source": {
+    "session": "S1",
+    "extractor": "markers/v1",
+    "line": 5,
+    "excerpt": "- SUBMISSION at Sun 06:00"
+   }
+  }
+ ],
+ "commitments": [
+  {
+   "id": "C1",
+   "status": "declared",
+   "confirmed_by": "Alice",
+   "confirmed_at": "2026-10-02T18:48:00Z",
+   "text": "audio capture pipeline",
+   "owner": "Alice",
+   "due": "2026-10-03T10:00:00Z",
+   "links": [
+    {
+     "kind": "path",
+     "ref": "src/audio/"
+    }
+   ],
+   "source": {
+    "session": "S1",
+    "extractor": "markers/v1",
+    "line": 6,
+    "excerpt": "- @Alice: audio capture pipeline (by Sat 10:00) [src/audio/]"
+   }
+  },
+  {
+   "id": "C2",
+   "status": "declared",
+   "confirmed_by": "Alice",
+   "confirmed_at": "2026-10-02T18:48:00Z",
+   "text": "transcription adapter",
+   "owner": "Ben",
+   "due": "2026-10-03T12:00:00Z",
+   "links": [
+    {
+     "kind": "path",
+     "ref": "src/transcribe/"
+    }
+   ],
+   "source": {
+    "session": "S1",
+    "extractor": "markers/v1",
+    "line": 7,
+    "excerpt": "- @Ben: transcription adapter (by Sat 12:00) [src/transcribe/]"
+   }
+  },
+  {
+   "id": "C3",
+   "status": "declared",
+   "confirmed_by": "Alice",
+   "confirmed_at": "2026-10-02T18:48:00Z",
+   "text": "recorder UI",
+   "owner": "Sofia",
+   "due": "2026-10-03T14:00:00Z",
+   "links": [
+    {
+     "kind": "path",
+     "ref": "web/recorder/"
+    }
+   ],
+   "source": {
+    "session": "S1",
+    "extractor": "markers/v1",
+    "line": 8,
+    "excerpt": "- @Sofia: recorder UI (by Sat 14:00) [web/recorder/]"
+   }
+  },
+  {
+   "id": "C4",
+   "status": "declared",
+   "confirmed_by": "Alice",
+   "confirmed_at": "2026-10-02T18:48:00Z",
+   "text": "evaluation set for transcription accuracy",
+   "owner": "Dana",
+   "due": "2026-10-03T16:00:00Z",
+   "links": [
+    {
+     "kind": "path",
+     "ref": "evals/"
+    }
+   ],
+   "source": {
+    "session": "S1",
+    "extractor": "markers/v1",
+    "line": 9,
+    "excerpt": "- @Dana: evaluation set for transcription accuracy (by Sat 16:00) [evals/]"
+   }
+  },
+  {
+   "id": "C5",
+   "status": "declared",
+   "confirmed_by": "Ben",
+   "confirmed_at": "2026-10-03T09:12:00Z",
+   "text": "route transcription through the core API",
+   "owner": "Ben",
+   "due": "2026-10-03T11:30:00Z",
+   "links": [
+    {
+     "kind": "pr",
+     "ref": "12"
+    }
+   ],
+   "source": {
+    "session": "S2",
+    "extractor": "markers/v1",
+    "line": 2,
+    "excerpt": "- @Ben: route transcription through the core API (by 11:30) [#12]"
+   }
+  },
+  {
+   "id": "C6",
+   "status": "proposed",
+   "confirmed_by": null,
+   "confirmed_at": null,
+   "text": "record the demo video",
+   "owner": "Sofia",
+   "due": "2026-10-04T04:00:00Z",
+   "links": [
+    {
+     "kind": "path",
+     "ref": "docs/demo/"
+    }
+   ],
+   "source": {
+    "session": "S3",
+    "extractor": "markers/v1",
+    "line": 2,
+    "excerpt": "- @Sofia: record the demo video (by Sun 04:00) [docs/demo/]"
+   }
+  }
+ ],
+ "decisions": [
+  {
+   "id": "D1",
+   "status": "declared",
+   "confirmed_by": "Alice",
+   "confirmed_at": "2026-10-02T18:48:00Z",
+   "text": "everything runs locally, no cloud speech-to-text",
+   "areas": [
+    "src/transcribe/"
+   ],
+   "source": {
+    "session": "S1",
+    "extractor": "markers/v1",
+    "line": 10,
+    "excerpt": "- DECISION: everything runs locally, no cloud speech-to-text [src/transcribe/]"
+   }
+  },
+  {
+   "id": "D2",
+   "status": "declared",
+   "confirmed_by": "Ben",
+   "confirmed_at": "2026-10-03T09:12:00Z",
+   "text": "core API is frozen at 12:00; only fixes after",
+   "areas": [
+    "src/core/"
+   ],
+   "source": {
+    "session": "S2",
+    "extractor": "markers/v1",
+    "line": 3,
+    "excerpt": "- DECISION: core API is frozen at 12:00; only fixes after [src/core/]"
+   }
+  },
+  {
+   "id": "D3",
+   "status": "proposed",
+   "confirmed_by": null,
+   "confirmed_at": null,
+   "text": "drop speaker labels for the demo",
+   "areas": [],
+   "source": {
+    "session": "S3",
+    "extractor": "markers/v1",
+    "line": 3,
+    "excerpt": "- DECISION: drop speaker labels for the demo"
+   }
+  }
+ ]
+}

@@ -208,6 +208,13 @@
           }
         }
       }
+    },
+    "coordination": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Declared collaboration state reconciled with observed work (issue #7): sessions, gates, commitments with observed state, decisions, cues. Null when the repository declares none."
     }
   },
   "$defs": {

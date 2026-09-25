@@ -1,0 +1,64 @@
+{
+ "schema": "observstory.observations/v1",
+ "note": "The kickoff check-in has just been confirmed; no work yet.",
+ "synthetic": true,
+ "fetched_at": "2026-10-02T19:00:00Z",
+ "repository": {
+  "full_name": "northstar/voice-notes",
+  "url": null,
+  "default_branch": "main",
+  "visibility": "public",
+  "description": "Synthetic demo repository"
+ },
+ "window": {
+  "hours": 48
+ },
+ "trigger": {
+  "event": "demo-lab"
+ },
+ "commits": [
+  {
+   "sha": "7fd4b0deef4ca017eafcb089828710247ca6773d",
+   "url": null,
+   "date": "2026-10-02T16:00:00Z",
+   "author": {
+    "login": "ben",
+    "name": "Ben",
+    "type": "User"
+   },
+   "message": "Core API skeleton",
+   "paths": [
+    "src/core/api.py"
+   ],
+   "parents": [
+    "72cc2bd91ad7b721c30bb8168b85de61b218c4ad"
+   ]
+  },
+  {
+   "sha": "72cc2bd91ad7b721c30bb8168b85de61b218c4ad",
+   "url": null,
+   "date": "2026-10-01T22:00:00Z",
+   "author": {
+    "login": "alice",
+    "name": "Alice",
+    "type": "User"
+   },
+   "message": "Pitch and plan",
+   "paths": [
+    "README.md"
+   ],
+   "parents": [
+    "c276345cbb42e82c89cd185e25ff0417f9227d96"
+   ]
+  }
+ ],
+ "pull_requests": [],
+ "branches": [],
+ "issues": [],
+ "meta": {
+  "source": "synthetic (Demo Lab)",
+  "api_calls": 0,
+  "rate_limit_remaining": null,
+  "degraded": []
+ }
+}

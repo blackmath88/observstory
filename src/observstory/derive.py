@@ -132,7 +132,9 @@ def baseline_resolver(obs: dict):
 
 # ---------------------------------------------------------------- derivation
 
-def derive(obs: dict, cfg: dict, now: dt.datetime) -> dict:
+def derive(obs: dict, cfg: dict, now: dt.datetime, coordination: dict | None = None,
+           coordination_source: str = ".observstory/coordination.json") -> dict:
+    """coordination: declared collaboration state (issue #7), reconciled here while raw commits are at hand."""
     repo = obs["repository"]
     default_branch = repo.get("default_branch") or "main"
     window_hours = obs.get("window", {}).get("hours", cfg["window_hours"])
@@ -311,6 +313,11 @@ def derive(obs: dict, cfg: dict, now: dt.datetime) -> dict:
             "recent_commits": sum(1 for c in commit_rows if any(area_lane[a] == lane["id"] for a in c["areas"])),
         })
 
+    reconciled = None
+    if coordination is not None:
+        from .coordination import reconcile
+        reconciled = reconcile(coordination, work_items, commit_rows, now, coordination_source)
+
     for item in work_items:
         item.pop("_body", None)
         item.pop("_commits", None)
@@ -354,6 +361,7 @@ def derive(obs: dict, cfg: dict, now: dt.datetime) -> dict:
         "issues": issue_rows,
         "actors": [{**a, "work_items": sorted(a["work_items"])} for _, a in sorted(actors.items())],
         "signals": signals,
+        "coordination": reconciled,
         "provenance": {
             "source": meta.get("source", "GitHub REST API"),
             "collector": "blackmath88/observstory",
