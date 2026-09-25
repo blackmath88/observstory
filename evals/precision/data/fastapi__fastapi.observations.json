@@ -1,0 +1,2487 @@
+{
+ "schema": "observstory.observations/v1",
+ "fetched_at": "2026-09-25T00:43:32Z",
+ "repository": {
+  "full_name": "fastapi/fastapi",
+  "url": "https://github.com/fastapi/fastapi",
+  "default_branch": "master",
+  "visibility": "public",
+  "description": null
+ },
+ "window": {
+  "hours": 48.0,
+  "since": "2026-09-23T00:43:32Z"
+ },
+ "trigger": {
+  "event": "precision-study-git"
+ },
+ "commits": [],
+ "pull_requests": [
+  {
+   "number": 16387,
+   "title": "\ud83d\udc1b Fix endpoint context shared and mutated across requests",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16387",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "hanjinpeng",
+    "type": "User"
+   },
+   "created_at": "2026-09-22T03:15:08-04:00",
+   "updated_at": "2026-09-22T03:15:08-04:00",
+   "url": "https://github.com/fastapi/fastapi/pull/16387",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/routing.py",
+    "tests/test_endpoint_context_shared_endpoint.py"
+   ],
+   "commits": [
+    {
+     "sha": "4c3c567ccc52494a51504ad8e13108dfaddeb7ec",
+     "date": "2026-09-22T03:15:08-04:00",
+     "author": {
+      "login": null,
+      "name": "hanjinpeng",
+      "type": "User"
+     },
+     "message": "\ud83d\udc1b Fix endpoint context shared and mutated across requests",
+     "parents": [
+      "50113da16fec53b66b80d75e80a89296de4fa5a5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "50113da16fec53b66b80d75e80a89296de4fa5a5",
+    "source": "compare"
+   },
+   "_head_sha": "4c3c567ccc52494a51504ad8e13108dfaddeb7ec"
+  },
+  {
+   "number": 16384,
+   "title": "\ud83d\udc1b Fix explicit response_model ignored on streaming generator endpoints",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16384",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "MayankSharma-2812",
+    "type": "User"
+   },
+   "created_at": "2026-09-21T12:31:24+05:30",
+   "updated_at": "2026-09-21T12:31:24+05:30",
+   "url": "https://github.com/fastapi/fastapi/pull/16384",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/routing.py",
+    "tests/test_stream_response_model.py"
+   ],
+   "commits": [
+    {
+     "sha": "fa5380b68ccb524afc4fd6cfb4834eaee306a220",
+     "date": "2026-09-21T12:31:24+05:30",
+     "author": {
+      "login": null,
+      "name": "MayankSharma-2812",
+      "type": "User"
+     },
+     "message": "\ud83d\udc1b Fix explicit response_model ignored on streaming generator endpoints",
+     "parents": [
+      "50113da16fec53b66b80d75e80a89296de4fa5a5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "50113da16fec53b66b80d75e80a89296de4fa5a5",
+    "source": "compare"
+   },
+   "_head_sha": "fa5380b68ccb524afc4fd6cfb4834eaee306a220"
+  },
+  {
+   "number": 16375,
+   "title": "\u2b06 Bump anyio from 4.12.1 to 4.14.2",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16375",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "dependabot[bot]",
+    "type": "Bot"
+   },
+   "created_at": "2026-09-18T21:24:36Z",
+   "updated_at": "2026-09-18T21:24:36Z",
+   "url": "https://github.com/fastapi/fastapi/pull/16375",
+   "requested_reviewers": [],
+   "paths": [
+    "uv.lock"
+   ],
+   "commits": [
+    {
+     "sha": "4ae21dc9ff01270631fe7bdacda7c1016122313d",
+     "date": "2026-09-18T21:24:36Z",
+     "author": {
+      "login": null,
+      "name": "dependabot[bot]",
+      "type": "Bot"
+     },
+     "message": "\u2b06 Bump anyio from 4.12.1 to 4.14.2",
+     "parents": [
+      "50113da16fec53b66b80d75e80a89296de4fa5a5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "50113da16fec53b66b80d75e80a89296de4fa5a5",
+    "source": "compare"
+   },
+   "_head_sha": "4ae21dc9ff01270631fe7bdacda7c1016122313d"
+  },
+  {
+   "number": 16351,
+   "title": "test(dependencies): cover AliasChoices validation aliases",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16351",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Luchang Jiang",
+    "type": "User"
+   },
+   "created_at": "2026-09-14T18:18:25+08:00",
+   "updated_at": "2026-09-18T19:02:22+08:00",
+   "url": "https://github.com/fastapi/fastapi/pull/16351",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/dependencies/utils.py",
+    "tests/test_query_cookie_header_model_extra_params.py"
+   ],
+   "commits": [
+    {
+     "sha": "68aa4751acd956a1e0f7cde6081b13a4d5c52e68",
+     "date": "2026-09-18T19:02:22+08:00",
+     "author": {
+      "login": null,
+      "name": "Luchang Jiang",
+      "type": "User"
+     },
+     "message": "test(dependencies): cover AliasChoices validation aliases",
+     "parents": [
+      "f70621fc88823ba16d67979af67d25a9a6fcd650"
+     ]
+    },
+    {
+     "sha": "f70621fc88823ba16d67979af67d25a9a6fcd650",
+     "date": "2026-09-18T10:19:11+08:00",
+     "author": {
+      "login": null,
+      "name": "Luchang Jiang",
+      "type": "User"
+     },
+     "message": "fix(dependencies): resolve aliased BaseModel annotations",
+     "parents": [
+      "3cf0adf556b13a390e69f099c2ed315ec82e4777"
+     ]
+    },
+    {
+     "sha": "3cf0adf556b13a390e69f099c2ed315ec82e4777",
+     "date": "2026-09-14T19:15:25+08:00",
+     "author": {
+      "login": null,
+      "name": "Luchang Jiang",
+      "type": "User"
+     },
+     "message": "test(dependencies): cover unresolved BaseModel type hints fallback",
+     "parents": [
+      "197114cbc78b45ca728b153376f96e61d00e6861"
+     ]
+    },
+    {
+     "sha": "197114cbc78b45ca728b153376f96e61d00e6861",
+     "date": "2026-09-14T18:51:43+08:00",
+     "author": {
+      "login": null,
+      "name": "Luchang Jiang",
+      "type": "User"
+     },
+     "message": "fix(dependencies): add defensive fallback for get_type_hints on BaseModel dependencies",
+     "parents": [
+      "669f9b18c872c9bb02bfd6367a3ef1a45fd8b102"
+     ]
+    },
+    {
+     "sha": "669f9b18c872c9bb02bfd6367a3ef1a45fd8b102",
+     "date": "2026-09-14T18:42:55+08:00",
+     "author": {
+      "login": null,
+      "name": "Luchang Jiang",
+      "type": "User"
+     },
+     "message": "fix(dependencies): add defensive fallback for get_type_hints on BaseModel dependencies",
+     "parents": [
+      "bfb81c5e590141bc18c4133de8dbc1db505ad0bc"
+     ]
+    },
+    {
+     "sha": "bfb81c5e590141bc18c4133de8dbc1db505ad0bc",
+     "date": "2026-09-14T18:18:25+08:00",
+     "author": {
+      "login": null,
+      "name": "Luchang Jiang",
+      "type": "User"
+     },
+     "message": "fix(dependencies): preserve Query metadata for complex fields in BaseModel dependencies",
+     "parents": [
+      "50113da16fec53b66b80d75e80a89296de4fa5a5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "50113da16fec53b66b80d75e80a89296de4fa5a5",
+    "source": "compare"
+   },
+   "_head_sha": "68aa4751acd956a1e0f7cde6081b13a4d5c52e68"
+  },
+  {
+   "number": 16368,
+   "title": "\u2705 Fix order-dependent tests in test_dependency_contextmanager.py",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16368",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Aswin Jose",
+    "type": "User"
+   },
+   "created_at": "2026-09-16T15:36:00+05:30",
+   "updated_at": "2026-09-16T15:36:00+05:30",
+   "url": "https://github.com/fastapi/fastapi/pull/16368",
+   "requested_reviewers": [],
+   "paths": [
+    "tests/test_dependency_contextmanager.py"
+   ],
+   "commits": [
+    {
+     "sha": "d7ab49ef1852cd5e2a92196f6320f3cd2841c787",
+     "date": "2026-09-16T15:36:00+05:30",
+     "author": {
+      "login": null,
+      "name": "Aswin Jose",
+      "type": "User"
+     },
+     "message": "\u2705 Fix order-dependent tests in test_dependency_contextmanager.py",
+     "parents": [
+      "50113da16fec53b66b80d75e80a89296de4fa5a5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "50113da16fec53b66b80d75e80a89296de4fa5a5",
+    "source": "compare"
+   },
+   "_head_sha": "d7ab49ef1852cd5e2a92196f6320f3cd2841c787"
+  },
+  {
+   "number": 16354,
+   "title": "Add test for empty SSE event",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16354",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Yurii Motov",
+    "type": "User"
+   },
+   "created_at": "2026-09-14T20:46:59+02:00",
+   "updated_at": "2026-09-14T20:49:05+02:00",
+   "url": "https://github.com/fastapi/fastapi/pull/16354",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/sse.py",
+    "tests/test_sse.py"
+   ],
+   "commits": [
+    {
+     "sha": "c97aa7e1752f3075b07baf41511a2e23358a4378",
+     "date": "2026-09-14T20:49:05+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Add test for empty SSE event",
+     "parents": [
+      "1a5d4bcedd7e4f204624df2fa069411012a5a4ab"
+     ]
+    },
+    {
+     "sha": "1a5d4bcedd7e4f204624df2fa069411012a5a4ab",
+     "date": "2026-09-14T20:46:59+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Fix comment about SSE event terminator",
+     "parents": [
+      "50113da16fec53b66b80d75e80a89296de4fa5a5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "50113da16fec53b66b80d75e80a89296de4fa5a5",
+    "source": "compare"
+   },
+   "_head_sha": "c97aa7e1752f3075b07baf41511a2e23358a4378"
+  },
+  {
+   "number": 16350,
+   "title": "Fix jsonable_encoder raising an unclear UnicodeDecodeError for non-UTF-8 bytes",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16350",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "usamabhatti1998",
+    "type": "User"
+   },
+   "created_at": "2026-09-14T10:06:00+05:00",
+   "updated_at": "2026-09-14T10:06:00+05:00",
+   "url": "https://github.com/fastapi/fastapi/pull/16350",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/encoders.py",
+    "tests/test_jsonable_encoder.py"
+   ],
+   "commits": [
+    {
+     "sha": "2106dbde3c4e5bd350eec07442f9599d0253a2a7",
+     "date": "2026-09-14T10:06:00+05:00",
+     "author": {
+      "login": null,
+      "name": "usamabhatti1998",
+      "type": "User"
+     },
+     "message": "Fix jsonable_encoder raising an unclear UnicodeDecodeError for non-UTF-8 bytes",
+     "parents": [
+      "50113da16fec53b66b80d75e80a89296de4fa5a5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "50113da16fec53b66b80d75e80a89296de4fa5a5",
+    "source": "compare"
+   },
+   "_head_sha": "2106dbde3c4e5bd350eec07442f9599d0253a2a7"
+  },
+  {
+   "number": 16348,
+   "title": "\u267b\ufe0f Remove unreachable branch in get_stream_item_type for 100% coverage",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16348",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Anurag Kumar Singh",
+    "type": "User"
+   },
+   "created_at": "2026-09-12T22:09:26+05:30",
+   "updated_at": "2026-09-12T22:31:03+05:30",
+   "url": "https://github.com/fastapi/fastapi/pull/16348",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/dependencies/utils.py",
+    "tests/test_stream_annotated.py"
+   ],
+   "commits": [
+    {
+     "sha": "08454a058d58b7d800ddc1d80d06df336ce8ffb6",
+     "date": "2026-09-12T22:31:03+05:30",
+     "author": {
+      "login": null,
+      "name": "Anurag Kumar Singh",
+      "type": "User"
+     },
+     "message": "\u267b\ufe0f Remove unreachable branch in get_stream_item_type for 100% coverage",
+     "parents": [
+      "34d0ded9b7556626f538d52324b7a8470d5be777"
+     ]
+    },
+    {
+     "sha": "34d0ded9b7556626f538d52324b7a8470d5be777",
+     "date": "2026-09-12T22:09:26+05:30",
+     "author": {
+      "login": null,
+      "name": "Anurag Kumar Singh",
+      "type": "User"
+     },
+     "message": "\ud83d\udc1b Support Annotated in stream return annotations for JSONL and SSE",
+     "parents": [
+      "50113da16fec53b66b80d75e80a89296de4fa5a5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "50113da16fec53b66b80d75e80a89296de4fa5a5",
+    "source": "compare"
+   },
+   "_head_sha": "08454a058d58b7d800ddc1d80d06df336ce8ffb6"
+  },
+  {
+   "number": 16328,
+   "title": "Fix Hindi translations and enhance tutorial clarity",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16328",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "ANUSHREE-CYBER",
+    "type": "User"
+   },
+   "created_at": "2026-09-06T19:19:28+05:30",
+   "updated_at": "2026-09-06T19:19:28+05:30",
+   "url": "https://github.com/fastapi/fastapi/pull/16328",
+   "requested_reviewers": [],
+   "paths": [
+    "docs/hi/docs/tutorial/first-steps.md"
+   ],
+   "commits": [
+    {
+     "sha": "fb39d3352034a93207d887788ec03914cd7691f2",
+     "date": "2026-09-06T19:19:28+05:30",
+     "author": {
+      "login": null,
+      "name": "ANUSHREE-CYBER",
+      "type": "User"
+     },
+     "message": "Fix Hindi translations and enhance tutorial clarity",
+     "parents": [
+      "50113da16fec53b66b80d75e80a89296de4fa5a5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "50113da16fec53b66b80d75e80a89296de4fa5a5",
+    "source": "compare"
+   },
+   "_head_sha": "fb39d3352034a93207d887788ec03914cd7691f2"
+  },
+  {
+   "number": 16299,
+   "title": "\ud83c\udfa8 Auto format",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16299",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Manindra Babu",
+    "type": "User"
+   },
+   "created_at": "2026-09-04T15:13:06+05:30",
+   "updated_at": "2026-09-04T09:44:01Z",
+   "url": "https://github.com/fastapi/fastapi/pull/16299",
+   "requested_reviewers": [],
+   "paths": [
+    "docs/CONTRIBUTING_GUIDE.md"
+   ],
+   "commits": [
+    {
+     "sha": "826762226cbde9938b34ab973bdd7cd62fafc58a",
+     "date": "2026-09-04T09:44:01Z",
+     "author": {
+      "login": null,
+      "name": "pre-commit-ci-lite[bot]",
+      "type": "Bot"
+     },
+     "message": "\ud83c\udfa8 Auto format",
+     "parents": [
+      "93ae350ad56c22d6baab3e5ef7bb60618af583c7"
+     ]
+    },
+    {
+     "sha": "93ae350ad56c22d6baab3e5ef7bb60618af583c7",
+     "date": "2026-09-04T15:13:06+05:30",
+     "author": {
+      "login": null,
+      "name": "Manindra Babu",
+      "type": "User"
+     },
+     "message": "docs: add comprehensive contribution guide for fastapi/fastapi",
+     "parents": [
+      "50113da16fec53b66b80d75e80a89296de4fa5a5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "50113da16fec53b66b80d75e80a89296de4fa5a5",
+    "source": "compare"
+   },
+   "_head_sha": "826762226cbde9938b34ab973bdd7cd62fafc58a"
+  },
+  {
+   "number": 16272,
+   "title": "docs: fix type annotation mismatch in sub-dependencies tutorial example",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16272",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "vaibhavmashal",
+    "type": "User"
+   },
+   "created_at": "2026-08-30T12:01:05+05:30",
+   "updated_at": "2026-08-30T12:01:05+05:30",
+   "url": "https://github.com/fastapi/fastapi/pull/16272",
+   "requested_reviewers": [],
+   "paths": [
+    "docs_src/dependencies/tutorial005_an_py310.py",
+    "docs_src/dependencies/tutorial005_py310.py"
+   ],
+   "commits": [
+    {
+     "sha": "9638eddb0ca0d2f6ab2e8ae9c1e9aed6d18f4298",
+     "date": "2026-08-30T12:01:05+05:30",
+     "author": {
+      "login": null,
+      "name": "vaibhavmashal",
+      "type": "User"
+     },
+     "message": "docs: fix type annotation mismatch in sub-dependencies tutorial example",
+     "parents": [
+      "49033471594ea5d99a80abdf1043231b7791ee49"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "49033471594ea5d99a80abdf1043231b7791ee49",
+    "source": "compare"
+   },
+   "_head_sha": "9638eddb0ca0d2f6ab2e8ae9c1e9aed6d18f4298"
+  },
+  {
+   "number": 16152,
+   "title": "Merge remote-tracking branch 'upstream/master' into optimize-workflow-cache",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16152",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Yurii Motov",
+    "type": "User"
+   },
+   "created_at": "2026-08-06T21:20:52+02:00",
+   "updated_at": "2026-08-26T19:54:38+02:00",
+   "url": "https://github.com/fastapi/fastapi/pull/16152",
+   "requested_reviewers": [],
+   "paths": [
+    ".github/workflows/build-docs.yml",
+    ".github/workflows/bump-pre-commit-hooks.yml",
+    ".github/workflows/create-draft-release.yml",
+    ".github/workflows/deploy-docs.yml",
+    ".github/workflows/label-approved.yml",
+    ".github/workflows/notify-translations.yml",
+    ".github/workflows/pre-commit.yml",
+    ".github/workflows/prepare-release.yml",
+    ".github/workflows/publish.yml",
+    ".github/workflows/smokeshow.yml",
+    ".github/workflows/sponsors.yml",
+    ".github/workflows/test.yml",
+    ".github/workflows/topic-repos.yml",
+    ".github/workflows/translate.yml",
+    ".github/workflows/warm-cache.yml"
+   ],
+   "commits": [
+    {
+     "sha": "ff6a7c0982c032d0dce82daa14461a8c89d6f77b",
+     "date": "2026-08-26T19:54:38+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Merge remote-tracking branch 'upstream/master' into optimize-workflow-cache",
+     "parents": [
+      "da3bf339214f95978687be89013ebb734a2fe4f6",
+      "49033471594ea5d99a80abdf1043231b7791ee49"
+     ]
+    },
+    {
+     "sha": "da3bf339214f95978687be89013ebb734a2fe4f6",
+     "date": "2026-08-26T18:44:18+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Bump `astral-sh/setup-uv` to 10.0.1 in `warm-cache`",
+     "parents": [
+      "4ebedc9a2a413cd74fff16f779a5cdd5acb746ed"
+     ]
+    },
+    {
+     "sha": "4ebedc9a2a413cd74fff16f779a5cdd5acb746ed",
+     "date": "2026-08-26T18:30:45+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "\ud83d\udc77 Give `translate` workflow its own uv cache suffix",
+     "parents": [
+      "e803afcafd18ea70ae23237faec7646802f47626"
+     ]
+    },
+    {
+     "sha": "e803afcafd18ea70ae23237faec7646802f47626",
+     "date": "2026-08-26T17:34:30+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Revert \"Add `.python-version` to `build-docs` workflow's filters\"",
+     "parents": [
+      "fcfe8825a9e728c426a611ded2d33e3d57999013"
+     ]
+    },
+    {
+     "sha": "fcfe8825a9e728c426a611ded2d33e3d57999013",
+     "date": "2026-08-26T17:04:59+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Merge remote-tracking branch 'upstream/master' into optimize-workflow-cache",
+     "parents": [
+      "10375c077c9f48b680b119017a0d84f8e1b89dd0",
+      "9a8a13f50f710c2f31845182a277a0b6dba8e146"
+     ]
+    },
+    {
+     "sha": "10375c077c9f48b680b119017a0d84f8e1b89dd0",
+     "date": "2026-08-10T09:23:10+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Merge remote-tracking branch 'upstream/master' into optimize-workflow-cache",
+     "parents": [
+      "91444904f09689e4718888b7cd6b8e0f21128f97",
+      "244d66308d6c525f394d0c2ce32dabceb2ed262b"
+     ]
+    },
+    {
+     "sha": "91444904f09689e4718888b7cd6b8e0f21128f97",
+     "date": "2026-08-07T12:49:19+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Specify `--group dev` explicitly in `warm-cache.yml`",
+     "parents": [
+      "79c30a9d8f68925c427d8c6f48f510137c55a193"
+     ]
+    },
+    {
+     "sha": "79c30a9d8f68925c427d8c6f48f510137c55a193",
+     "date": "2026-08-07T12:24:55+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Allow `pre-commit` save cache",
+     "parents": [
+      "472429bc757a39ed16ea2107cb9072ea473530e8"
+     ]
+    },
+    {
+     "sha": "472429bc757a39ed16ea2107cb9072ea473530e8",
+     "date": "2026-08-07T11:02:22+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Add path filters and if `org=fastapi` for `warm-cache` workflow",
+     "parents": [
+      "e7b707797dfd84726ca0edd054c9fb98a295d2e5"
+     ]
+    },
+    {
+     "sha": "e7b707797dfd84726ca0edd054c9fb98a295d2e5",
+     "date": "2026-08-07T08:47:45+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into optimize-workflow-cache",
+     "parents": [
+      "ac671da87c954fc29274cdecec412bb2234dc095",
+      "a375f6b948b99fa4260129856bbf11d037f363ef"
+     ]
+    },
+    {
+     "sha": "ac671da87c954fc29274cdecec412bb2234dc095",
+     "date": "2026-08-06T23:38:41+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Add `.python-version` to `build-docs` workflow's filters",
+     "parents": [
+      "fbaaa005c0ac0fe1caa394418acf685b3430465d"
+     ]
+    },
+    {
+     "sha": "fbaaa005c0ac0fe1caa394418acf685b3430465d",
+     "date": "2026-08-06T23:25:07+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Fix possible cache collision for highest and lowest uv resolutions",
+     "parents": [
+      "8806a3bb6133d5fb0b25801c33d250728c148f50"
+     ]
+    },
+    {
+     "sha": "8806a3bb6133d5fb0b25801c33d250728c148f50",
+     "date": "2026-08-06T21:50:38+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Bump uv version in workflows",
+     "parents": [
+      "ae8a2a7cd0fbebf0069c8bef3da57115d85715e5"
+     ]
+    },
+    {
+     "sha": "ae8a2a7cd0fbebf0069c8bef3da57115d85715e5",
+     "date": "2026-08-06T21:20:52+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Add `UV_NO_SYNC: true` in `publish` workflow",
+     "parents": [
+      "938d2e695f5d7deb89c14a8b98e7124e58311d52"
+     ]
+    },
+    {
+     "sha": "938d2e695f5d7deb89c14a8b98e7124e58311d52",
+     "date": "2026-08-06T21:20:52+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Optimize cache for GH-actions-related workflows",
+     "parents": [
+      "5d9a14e7be8391a63eef81f84cf1eee48842da8e"
+     ]
+    },
+    {
+     "sha": "5d9a14e7be8391a63eef81f84cf1eee48842da8e",
+     "date": "2026-08-06T21:20:52+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Optimize cache for 3 workflows by reading `dev-all` cache",
+     "parents": [
+      "64a149949380dc3ab0de3b35ae1f86705ef593e9"
+     ]
+    },
+    {
+     "sha": "64a149949380dc3ab0de3b35ae1f86705ef593e9",
+     "date": "2026-08-06T21:20:52+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Optimize cache for `build-docs` and `deploy-docs` workflows",
+     "parents": [
+      "546c1d0865b6cb58a2c650f24b17f289f67d7a15"
+     ]
+    },
+    {
+     "sha": "546c1d0865b6cb58a2c650f24b17f289f67d7a15",
+     "date": "2026-08-06T21:20:52+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Optimize cache for `test` workflow",
+     "parents": [
+      "a6d35b905248eed0941bb85a49f180eaa4e89afb"
+     ]
+    },
+    {
+     "sha": "a6d35b905248eed0941bb85a49f180eaa4e89afb",
+     "date": "2026-08-06T21:20:52+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Optimize cache for `pre-commit` workflow",
+     "parents": [
+      "0622a151c17180fa82ad58b2438c5c3d9574ad6d"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "49033471594ea5d99a80abdf1043231b7791ee49",
+    "source": "compare"
+   },
+   "_head_sha": "ff6a7c0982c032d0dce82daa14461a8c89d6f77b"
+  },
+  {
+   "number": 16251,
+   "title": "\ud83d\udc1b Fix response_model_* serialization flags ignored when response_field or stream_item_field is None",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16251",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Mahamed Mahamed",
+    "type": "User"
+   },
+   "created_at": "2026-08-25T21:47:24+01:00",
+   "updated_at": "2026-08-25T21:47:24+01:00",
+   "url": "https://github.com/fastapi/fastapi/pull/16251",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/routing.py",
+    "tests/test_serialize_response_without_field.py"
+   ],
+   "commits": [
+    {
+     "sha": "1c2a3e20d3ca2a9dd75f86e9da2c92e32e467d92",
+     "date": "2026-08-25T21:47:24+01:00",
+     "author": {
+      "login": null,
+      "name": "Mahamed Mahamed",
+      "type": "User"
+     },
+     "message": "\ud83d\udc1b Fix response_model_* serialization flags ignored when response_field or stream_item_field is None",
+     "parents": [
+      "9a8a13f50f710c2f31845182a277a0b6dba8e146"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "9a8a13f50f710c2f31845182a277a0b6dba8e146",
+    "source": "compare"
+   },
+   "_head_sha": "1c2a3e20d3ca2a9dd75f86e9da2c92e32e467d92"
+  },
+  {
+   "number": 16245,
+   "title": "\ud83d\udc1b Fix WebSocket paths in route contexts",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16245",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "nightcityblade",
+    "type": "User"
+   },
+   "created_at": "2026-08-25T11:28:54+08:00",
+   "updated_at": "2026-08-25T11:28:54+08:00",
+   "url": "https://github.com/fastapi/fastapi/pull/16245",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/routing.py",
+    "tests/test_router_include_context.py"
+   ],
+   "commits": [
+    {
+     "sha": "71f87d28c5bd88dc33e1fbc3b2843192befe263d",
+     "date": "2026-08-25T11:28:54+08:00",
+     "author": {
+      "login": null,
+      "name": "nightcityblade",
+      "type": "User"
+     },
+     "message": "\ud83d\udc1b Fix WebSocket paths in route contexts",
+     "parents": [
+      "c3f316b7e814667e8ee81e03a7330d00ee61e45c"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "c3f316b7e814667e8ee81e03a7330d00ee61e45c",
+    "source": "compare"
+   },
+   "_head_sha": "71f87d28c5bd88dc33e1fbc3b2843192befe263d"
+  },
+  {
+   "number": 16236,
+   "title": "Inherit Starlette router dispatch",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16236",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Marcelo Trylesinski",
+    "type": "User"
+   },
+   "created_at": "2026-08-22T21:54:28+02:00",
+   "updated_at": "2026-08-22T21:54:28+02:00",
+   "url": "https://github.com/fastapi/fastapi/pull/16236",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/routing.py"
+   ],
+   "commits": [
+    {
+     "sha": "4c60b992afddc106d25a2755d447e73fcd1e0f4f",
+     "date": "2026-08-22T21:54:28+02:00",
+     "author": {
+      "login": null,
+      "name": "Marcelo Trylesinski",
+      "type": "User"
+     },
+     "message": "Inherit Starlette router dispatch",
+     "parents": [
+      "c3f316b7e814667e8ee81e03a7330d00ee61e45c"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "c3f316b7e814667e8ee81e03a7330d00ee61e45c",
+    "source": "compare"
+   },
+   "_head_sha": "4c60b992afddc106d25a2755d447e73fcd1e0f4f"
+  },
+  {
+   "number": 11323,
+   "title": "\ud83c\udfa8 Auto format",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/11323",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Gustav Bylund",
+    "type": "User"
+   },
+   "created_at": "2026-08-19T13:12:25+02:00",
+   "updated_at": "2026-08-19T11:35:22Z",
+   "url": "https://github.com/fastapi/fastapi/pull/11323",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/dependencies/utils.py",
+    "tests/test_dependency_cache.py"
+   ],
+   "commits": [
+    {
+     "sha": "e2775a9bc3f5c33ac13a541b15963558436ab47e",
+     "date": "2026-08-19T11:35:22Z",
+     "author": {
+      "login": null,
+      "name": "pre-commit-ci-lite[bot]",
+      "type": "Bot"
+     },
+     "message": "\ud83c\udfa8 Auto format",
+     "parents": [
+      "0627c689bc2d4c79a5459d3cb189b5813283e0ef"
+     ]
+    },
+    {
+     "sha": "0627c689bc2d4c79a5459d3cb189b5813283e0ef",
+     "date": "2026-08-19T13:33:59+02:00",
+     "author": {
+      "login": null,
+      "name": "Gustav Bylund",
+      "type": "User"
+     },
+     "message": "perf(dependencies): skip doing any work when sub dependant is already cached",
+     "parents": [
+      "de861d115094cb3e53b33da65b951942b9cb9355"
+     ]
+    },
+    {
+     "sha": "de861d115094cb3e53b33da65b951942b9cb9355",
+     "date": "2026-08-19T13:12:25+02:00",
+     "author": {
+      "login": null,
+      "name": "Gustav Bylund",
+      "type": "User"
+     },
+     "message": "test(dependency_cache): add test for repeated parsing",
+     "parents": [
+      "c3f316b7e814667e8ee81e03a7330d00ee61e45c"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "c3f316b7e814667e8ee81e03a7330d00ee61e45c",
+    "source": "compare"
+   },
+   "_head_sha": "e2775a9bc3f5c33ac13a541b15963558436ab47e"
+  },
+  {
+   "number": 16188,
+   "title": "SEO auto-fixes for audit b6e3b724",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16188",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "SEO Agent",
+    "type": "User"
+   },
+   "created_at": "2026-08-12T16:29:21+05:30",
+   "updated_at": "2026-08-12T16:29:21+05:30",
+   "url": "https://github.com/fastapi/fastapi/pull/16188",
+   "requested_reviewers": [],
+   "paths": [],
+   "commits": [
+    {
+     "sha": "97efa838e8588103d419ab6c7d8c0a3eb8abb310",
+     "date": "2026-08-12T16:29:21+05:30",
+     "author": {
+      "login": null,
+      "name": "SEO Agent",
+      "type": "User"
+     },
+     "message": "SEO auto-fixes for audit b6e3b724",
+     "parents": [
+      "f336ff831c4af3d4f625c2593a27b1e0cae93eb7"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+    "source": "compare"
+   },
+   "_head_sha": "97efa838e8588103d419ab6c7d8c0a3eb8abb310"
+  },
+  {
+   "number": 16187,
+   "title": "SEO auto-fixes for audit 4eb8dad8",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16187",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "SEO Agent",
+    "type": "User"
+   },
+   "created_at": "2026-08-12T15:32:41+05:30",
+   "updated_at": "2026-08-12T15:32:41+05:30",
+   "url": "https://github.com/fastapi/fastapi/pull/16187",
+   "requested_reviewers": [],
+   "paths": [],
+   "commits": [
+    {
+     "sha": "b78ad24f9131ef8fc6df46138b2e1fb1bcf60134",
+     "date": "2026-08-12T15:32:41+05:30",
+     "author": {
+      "login": null,
+      "name": "SEO Agent",
+      "type": "User"
+     },
+     "message": "SEO auto-fixes for audit 4eb8dad8",
+     "parents": [
+      "0e6342d90e62e93d1082280dde87c322ecbc524e"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "0e6342d90e62e93d1082280dde87c322ecbc524e",
+    "source": "compare"
+   },
+   "_head_sha": "b78ad24f9131ef8fc6df46138b2e1fb1bcf60134"
+  },
+  {
+   "number": 16159,
+   "title": "Skip included routers whose prefix cannot match the request path",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/16159",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Marcelo Trylesinski",
+    "type": "User"
+   },
+   "created_at": "2026-08-08T10:37:30+02:00",
+   "updated_at": "2026-08-08T10:37:30+02:00",
+   "url": "https://github.com/fastapi/fastapi/pull/16159",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/routing.py"
+   ],
+   "commits": [
+    {
+     "sha": "ab6a38084a9416ca5f2438f69dedf6e54de39d51",
+     "date": "2026-08-08T10:37:30+02:00",
+     "author": {
+      "login": null,
+      "name": "Marcelo Trylesinski",
+      "type": "User"
+     },
+     "message": "Skip included routers whose prefix cannot match the request path",
+     "parents": [
+      "15410ee4bfd14e3e5048628a0a0b54b07ac9f553"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "15410ee4bfd14e3e5048628a0a0b54b07ac9f553",
+    "source": "compare"
+   },
+   "_head_sha": "ab6a38084a9416ca5f2438f69dedf6e54de39d51"
+  },
+  {
+   "number": 15813,
+   "title": "\ud83d\udc1b Let path operations override X-Accel-Buffering on JSONL streaming responses",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/15813",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Agustin Torres",
+    "type": "User"
+   },
+   "created_at": "2026-07-29T02:59:44Z",
+   "updated_at": "2026-07-29T02:59:58Z",
+   "url": "https://github.com/fastapi/fastapi/pull/15813",
+   "requested_reviewers": [],
+   "paths": [
+    "docs/en/docs/tutorial/stream-json-lines.md",
+    "fastapi/routing.py",
+    "tests/test_stream_json_lines_headers.py",
+    "tests/test_tutorial/test_stream_json_lines/test_tutorial001.py"
+   ],
+   "commits": [
+    {
+     "sha": "dcee75e7931ccee40977c07fe08d739bff28a485",
+     "date": "2026-07-29T02:59:58Z",
+     "author": {
+      "login": null,
+      "name": "Agustin Torres",
+      "type": "User"
+     },
+     "message": "\ud83d\udc1b Let path operations override X-Accel-Buffering on JSONL streaming responses",
+     "parents": [
+      "aa785a98131b78f3350832c7d9fda6b094378b3b"
+     ]
+    },
+    {
+     "sha": "aa785a98131b78f3350832c7d9fda6b094378b3b",
+     "date": "2026-07-29T02:59:44Z",
+     "author": {
+      "login": null,
+      "name": "Agustin Torres",
+      "type": "User"
+     },
+     "message": "\ud83d\udc1b Drop Cache-Control from JSONL streaming, keep only X-Accel-Buffering, document behavior",
+     "parents": [
+      "62fe5d77a10f04c3231684d625f96566de0c279a"
+     ]
+    },
+    {
+     "sha": "62fe5d77a10f04c3231684d625f96566de0c279a",
+     "date": "2026-07-29T02:59:44Z",
+     "author": {
+      "login": null,
+      "name": "Agustin Torres",
+      "type": "User"
+     },
+     "message": "\ud83d\udc1b Set anti-buffering headers on JSONL streaming responses",
+     "parents": [
+      "628663f4f899c465da423bce681c7adf9a218948"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "628663f4f899c465da423bce681c7adf9a218948",
+    "source": "compare"
+   },
+   "_head_sha": "dcee75e7931ccee40977c07fe08d739bff28a485"
+  },
+  {
+   "number": 14863,
+   "title": "feat: support starlette 0.52.0+ generic Request",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/14863",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "ollie-bell",
+    "type": "User"
+   },
+   "created_at": "2026-07-28T20:52:52+01:00",
+   "updated_at": "2026-07-28T20:52:52+01:00",
+   "url": "https://github.com/fastapi/fastapi/pull/14863",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/dependencies/utils.py",
+    "tests/test_router_events.py"
+   ],
+   "commits": [
+    {
+     "sha": "c87fcffc571397bf35a4d1d4661756f0f4905b8e",
+     "date": "2026-07-28T20:52:52+01:00",
+     "author": {
+      "login": null,
+      "name": "ollie-bell",
+      "type": "User"
+     },
+     "message": "feat: support starlette 0.52.0+ generic Request",
+     "parents": [
+      "628663f4f899c465da423bce681c7adf9a218948"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "628663f4f899c465da423bce681c7adf9a218948",
+    "source": "compare"
+   },
+   "_head_sha": "c87fcffc571397bf35a4d1d4661756f0f4905b8e"
+  },
+  {
+   "number": 14441,
+   "title": "\u26a1\ufe0fImprove caching of callable inspection result",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/14441",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Martynov Maxim",
+    "type": "User"
+   },
+   "created_at": "2026-07-28T11:18:31+03:00",
+   "updated_at": "2026-07-28T11:18:31+03:00",
+   "url": "https://github.com/fastapi/fastapi/pull/14441",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/dependencies/utils.py"
+   ],
+   "commits": [
+    {
+     "sha": "3f9c02bb80a988c8551b0c8ffdee1ed29e3f068f",
+     "date": "2026-07-28T11:18:31+03:00",
+     "author": {
+      "login": null,
+      "name": "Martynov Maxim",
+      "type": "User"
+     },
+     "message": "\u26a1\ufe0fImprove caching of callable inspection result",
+     "parents": [
+      "98b12fe56f97107e71a20fc1cf334ccfa590efb5"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "98b12fe56f97107e71a20fc1cf334ccfa590efb5",
+    "source": "compare"
+   },
+   "_head_sha": "3f9c02bb80a988c8551b0c8ffdee1ed29e3f068f"
+  },
+  {
+   "number": 13605,
+   "title": "Merge branch 'master' into fix/uploadfile-downcast",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/13605",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Matthew Batema",
+    "type": "User"
+   },
+   "created_at": "2025-09-26T13:19:06-07:00",
+   "updated_at": "2026-07-27T10:28:13+02:00",
+   "url": "https://github.com/fastapi/fastapi/pull/13605",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/datastructures.py",
+    "fastapi/dependencies/utils.py",
+    "tests/test_request_uploadfile_type.py"
+   ],
+   "commits": [
+    {
+     "sha": "ac5f82670a1fb4d6bb0b4dade7ccc7eefa3a7670",
+     "date": "2026-07-27T10:28:13+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into fix/uploadfile-downcast",
+     "parents": [
+      "bd640a74c066f32a96967ebc00ae612332ffcf50",
+      "255b912928904e3ba5980425a54d6837c8bd1a1c"
+     ]
+    },
+    {
+     "sha": "bd640a74c066f32a96967ebc00ae612332ffcf50",
+     "date": "2026-02-12T08:49:11+01:00",
+     "author": {
+      "login": null,
+      "name": "Motov Yurii",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into fix/uploadfile-downcast",
+     "parents": [
+      "27846b1b51a62df4728ab5f9593e2378322b0fce",
+      "d06ab3f5c7c1b6229e28af37905eb51ab4b4cdb7"
+     ]
+    },
+    {
+     "sha": "27846b1b51a62df4728ab5f9593e2378322b0fce",
+     "date": "2026-02-10T12:47:24+01:00",
+     "author": {
+      "login": null,
+      "name": "Motov Yurii",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into fix/uploadfile-downcast",
+     "parents": [
+      "3ebbc33d343bb2b63b2401f0004415e21a8a5b58",
+      "3f1cc8f8f5fabaf85a0c3d9428004001af2486a4"
+     ]
+    },
+    {
+     "sha": "3ebbc33d343bb2b63b2401f0004415e21a8a5b58",
+     "date": "2026-02-09T21:31:00+01:00",
+     "author": {
+      "login": null,
+      "name": "Motov Yurii",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into fix/uploadfile-downcast",
+     "parents": [
+      "8dd0d21aaddd067f98246f1275ab3ad8398a116f",
+      "e94028ab60d18080810910352bc9129e8046c92d"
+     ]
+    },
+    {
+     "sha": "8dd0d21aaddd067f98246f1275ab3ad8398a116f",
+     "date": "2026-01-08T14:07:30+01:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Fix syntax in test",
+     "parents": [
+      "2234be937249040609da042bb4c2ea84cf79683b"
+     ]
+    },
+    {
+     "sha": "2234be937249040609da042bb4c2ea84cf79683b",
+     "date": "2026-01-08T14:03:24+01:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Fix `Type` -> `type`",
+     "parents": [
+      "bf98335ae7e07219fb5bf2a24f23d24ebf3aaf95"
+     ]
+    },
+    {
+     "sha": "bf98335ae7e07219fb5bf2a24f23d24ebf3aaf95",
+     "date": "2026-01-08T14:00:47+01:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Remove `# fmt: skip` comments",
+     "parents": [
+      "bc3da685376b5dc97038018958df6cef8dbe0437"
+     ]
+    },
+    {
+     "sha": "bc3da685376b5dc97038018958df6cef8dbe0437",
+     "date": "2026-01-08T13:48:40+01:00",
+     "author": {
+      "login": null,
+      "name": "Motov Yurii",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into fix/uploadfile-downcast",
+     "parents": [
+      "38bf832c34f81e49a3dabe99d06c6098fbd95c9d",
+      "f2687dc1bb01f4cb62eee90e656b61c38c2aaf6a"
+     ]
+    },
+    {
+     "sha": "38bf832c34f81e49a3dabe99d06c6098fbd95c9d",
+     "date": "2025-12-05T07:41:06+01:00",
+     "author": {
+      "login": null,
+      "name": "Motov Yurii",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into fix/uploadfile-downcast",
+     "parents": [
+      "fcdad3a183ec42e149d0f29e5cb654081ea64714",
+      "f0dd1046a688935ffd23666b3d4164b838a4d8fe"
+     ]
+    },
+    {
+     "sha": "fcdad3a183ec42e149d0f29e5cb654081ea64714",
+     "date": "2025-11-24T14:15:36+01:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Moved conversion logic to `_extract_form_body`, added test to cover case with dependency",
+     "parents": [
+      "689c11b535d140560416544f2d410699f08320f9"
+     ]
+    },
+    {
+     "sha": "689c11b535d140560416544f2d410699f08320f9",
+     "date": "2025-11-24T14:10:19+01:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Merge remote-tracking branch 'upstream/master' into fix/uploadfile-downcast",
+     "parents": [
+      "68a9704b1a6dbabb1f2540d6714bec1ac0752339",
+      "5265c4f5cb4d8fb4fb5015bccf1a6de8f3fc6044"
+     ]
+    },
+    {
+     "sha": "68a9704b1a6dbabb1f2540d6714bec1ac0752339",
+     "date": "2025-10-07T10:47:23+02:00",
+     "author": {
+      "login": null,
+      "name": "Motov Yurii",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into fix/uploadfile-downcast",
+     "parents": [
+      "ecfbcc2b3d69fdb42e39b223399cb36b3548e06b",
+      "1cd8717818e886d54a275f78305b5d8b61a46309"
+     ]
+    },
+    {
+     "sha": "ecfbcc2b3d69fdb42e39b223399cb36b3548e06b",
+     "date": "2025-09-26T13:19:06-07:00",
+     "author": {
+      "login": null,
+      "name": "Matthew Batema",
+      "type": "User"
+     },
+     "message": "Use `Dict`/`List`/`Type` instead of `dict`/`list`/`type` for py38",
+     "parents": [
+      "59b5245ed406e0c37e14ff6b67286adf965bf3fd"
+     ]
+    },
+    {
+     "sha": "59b5245ed406e0c37e14ff6b67286adf965bf3fd",
+     "date": "2025-09-26T13:19:06-07:00",
+     "author": {
+      "login": null,
+      "name": "Matthew Batema",
+      "type": "User"
+     },
+     "message": "Use forward reference instead of py311+ `Self`",
+     "parents": [
+      "dd9ccda8419c9bf5fb31b34636c3b9b630a91903"
+     ]
+    },
+    {
+     "sha": "dd9ccda8419c9bf5fb31b34636c3b9b630a91903",
+     "date": "2025-09-26T13:19:06-07:00",
+     "author": {
+      "login": null,
+      "name": "Matthew Batema",
+      "type": "User"
+     },
+     "message": "Fix downcast from Starlette UploadFile to FastAPI UploadFile",
+     "parents": [
+      "450a334253b1426aab08b4dea17b16ba8b4c098c"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "255b912928904e3ba5980425a54d6837c8bd1a1c",
+    "source": "compare"
+   },
+   "_head_sha": "ac5f82670a1fb4d6bb0b4dade7ccc7eefa3a7670"
+  },
+  {
+   "number": 13264,
+   "title": "Merge branch 'master' into solve-dependencies-generator-didnt-yield",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/13264",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Jeremy Epstein",
+    "type": "User"
+   },
+   "created_at": "2025-11-11T10:41:54+11:00",
+   "updated_at": "2026-07-27T10:24:37+02:00",
+   "url": "https://github.com/fastapi/fastapi/pull/13264",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/dependencies/utils.py",
+    "tests/test_dependency_runtime_errors.py"
+   ],
+   "commits": [
+    {
+     "sha": "74e3026eb288c0f1b380e75df603c06b51b714c7",
+     "date": "2026-07-27T10:24:37+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into solve-dependencies-generator-didnt-yield",
+     "parents": [
+      "b3ee7593fc3d6b03f7b3965e8d13c0e70eaa1b54",
+      "255b912928904e3ba5980425a54d6837c8bd1a1c"
+     ]
+    },
+    {
+     "sha": "b3ee7593fc3d6b03f7b3965e8d13c0e70eaa1b54",
+     "date": "2026-02-10T02:55:26-08:00",
+     "author": {
+      "login": null,
+      "name": "Sebasti\u00e1n Ram\u00edrez",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into solve-dependencies-generator-didnt-yield",
+     "parents": [
+      "8aff9a617dddb6b8e994960d6dbacd2f7cd9047b",
+      "363aced75a26a5247855ea41b2bee53481be4d52"
+     ]
+    },
+    {
+     "sha": "8aff9a617dddb6b8e994960d6dbacd2f7cd9047b",
+     "date": "2026-01-07T23:32:26+01:00",
+     "author": {
+      "login": null,
+      "name": "Motov Yurii",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into solve-dependencies-generator-didnt-yield",
+     "parents": [
+      "bacd15d0ef0427e201ab2d378734d449dd7f568f",
+      "f2687dc1bb01f4cb62eee90e656b61c38c2aaf6a"
+     ]
+    },
+    {
+     "sha": "bacd15d0ef0427e201ab2d378734d449dd7f568f",
+     "date": "2025-12-26T12:52:08Z",
+     "author": {
+      "login": null,
+      "name": "pre-commit-ci-lite[bot]",
+      "type": "Bot"
+     },
+     "message": "\ud83c\udfa8 Auto format",
+     "parents": [
+      "a76f326de827da1d7d92e6b8024a6cd3cc51f54d"
+     ]
+    },
+    {
+     "sha": "a76f326de827da1d7d92e6b8024a6cd3cc51f54d",
+     "date": "2025-12-26T13:51:25+01:00",
+     "author": {
+      "login": null,
+      "name": "Motov Yurii",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into solve-dependencies-generator-didnt-yield",
+     "parents": [
+      "c3eca6b05cf97dce689ff88841c2a86621fcff2c",
+      "93f4dfd88b7d62bda89eb521ebd9322e357e6fff"
+     ]
+    },
+    {
+     "sha": "c3eca6b05cf97dce689ff88841c2a86621fcff2c",
+     "date": "2025-12-08T16:33:30+01:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Add tests with sync dependency",
+     "parents": [
+      "990301dc17476864d7ac17ad3c3f4a198c5a95ca"
+     ]
+    },
+    {
+     "sha": "990301dc17476864d7ac17ad3c3f4a198c5a95ca",
+     "date": "2025-12-08T15:22:51Z",
+     "author": {
+      "login": null,
+      "name": "pre-commit-ci-lite[bot]",
+      "type": "Bot"
+     },
+     "message": "\ud83c\udfa8 Auto format",
+     "parents": [
+      "8365c8345ccb72aaa399ea73e7d218bb5b8425d7"
+     ]
+    },
+    {
+     "sha": "8365c8345ccb72aaa399ea73e7d218bb5b8425d7",
+     "date": "2025-12-08T16:21:51+01:00",
+     "author": {
+      "login": null,
+      "name": "Motov Yurii",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into solve-dependencies-generator-didnt-yield",
+     "parents": [
+      "04eb1fb6d7cf846266446bcc4a6c4acc51ba2e69",
+      "320e7ce8fde2c22b5eef29229d49f4c4ac5b9d8b"
+     ]
+    },
+    {
+     "sha": "04eb1fb6d7cf846266446bcc4a6c4acc51ba2e69",
+     "date": "2025-11-25T09:51:18+11:00",
+     "author": {
+      "login": null,
+      "name": "Jeremy Epstein",
+      "type": "User"
+     },
+     "message": "Merge branch 'fastapi:master' into solve-dependencies-generator-didnt-yield",
+     "parents": [
+      "f4767e4854c4faf7200b97605017d0a56dd2338a",
+      "5b0625df96e4ea11b54fcb2a76f21f7ad94764fe"
+     ]
+    },
+    {
+     "sha": "f4767e4854c4faf7200b97605017d0a56dd2338a",
+     "date": "2025-11-25T09:50:14+11:00",
+     "author": {
+      "login": null,
+      "name": "Jeremy Epstein",
+      "type": "User"
+     },
+     "message": "single app object",
+     "parents": [
+      "1ea1ff58be0ad736be90e9cd64e7abce2f7b03dc"
+     ]
+    },
+    {
+     "sha": "1ea1ff58be0ad736be90e9cd64e7abce2f7b03dc",
+     "date": "2025-11-25T09:44:09+11:00",
+     "author": {
+      "login": null,
+      "name": "Jeremy Epstein",
+      "type": "User"
+     },
+     "message": "more neutral text",
+     "parents": [
+      "7dde3ee3463397a1adb21d0555f9b81979de42e2"
+     ]
+    },
+    {
+     "sha": "7dde3ee3463397a1adb21d0555f9b81979de42e2",
+     "date": "2025-11-25T09:43:55+11:00",
+     "author": {
+      "login": null,
+      "name": "Jeremy Epstein",
+      "type": "User"
+     },
+     "message": "self descriptive path",
+     "parents": [
+      "c5cb6df3155a20b06834d706f78188d649537218"
+     ]
+    },
+    {
+     "sha": "c5cb6df3155a20b06834d706f78188d649537218",
+     "date": "2025-11-11T11:14:21+11:00",
+     "author": {
+      "login": null,
+      "name": "Jeremy Epstein",
+      "type": "User"
+     },
+     "message": "Test for doesn't raise",
+     "parents": [
+      "ba5867afb21172be287f4fe6658def4d60bdbd4b"
+     ]
+    },
+    {
+     "sha": "ba5867afb21172be287f4fe6658def4d60bdbd4b",
+     "date": "2025-11-11T10:46:22+11:00",
+     "author": {
+      "login": null,
+      "name": "Jeremy Epstein",
+      "type": "User"
+     },
+     "message": "call should be dependant.call",
+     "parents": [
+      "e29fb2c08d148353cd0781c20a2af205b53bca63"
+     ]
+    },
+    {
+     "sha": "e29fb2c08d148353cd0781c20a2af205b53bca63",
+     "date": "2025-11-11T10:43:17+11:00",
+     "author": {
+      "login": null,
+      "name": "Jeremy Epstein",
+      "type": "User"
+     },
+     "message": "Tweak wording of dependency with yield exception message",
+     "parents": [
+      "8ffd22f890e450c616c8e6c4ab26af29833da1d9"
+     ]
+    },
+    {
+     "sha": "8ffd22f890e450c616c8e6c4ab26af29833da1d9",
+     "date": "2025-11-11T10:41:54+11:00",
+     "author": {
+      "login": null,
+      "name": "Jeremy Epstein",
+      "type": "User"
+     },
+     "message": "Fix: make solve_dependencies re-raise RuntimeError",
+     "parents": [
+      "6fae64ff49e8328048872714652a4dfa15406e41"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "255b912928904e3ba5980425a54d6837c8bd1a1c",
+    "source": "compare"
+   },
+   "_head_sha": "74e3026eb288c0f1b380e75df603c06b51b714c7"
+  },
+  {
+   "number": 14865,
+   "title": "Merge branch 'master' into remove-unnecessary-check",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/14865",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "artemkucher",
+    "type": "User"
+   },
+   "created_at": "2026-04-03T16:36:24+05:00",
+   "updated_at": "2026-07-27T10:23:05+02:00",
+   "url": "https://github.com/fastapi/fastapi/pull/14865",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/routing.py"
+   ],
+   "commits": [
+    {
+     "sha": "5315debd2a2b4d591517f24a7cdfbd691cf4137d",
+     "date": "2026-07-27T10:23:05+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into remove-unnecessary-check",
+     "parents": [
+      "e663094cf7cd01a38a35bb87208c0a40205ca87f",
+      "255b912928904e3ba5980425a54d6837c8bd1a1c"
+     ]
+    },
+    {
+     "sha": "e663094cf7cd01a38a35bb87208c0a40205ca87f",
+     "date": "2026-04-03T16:36:24+05:00",
+     "author": {
+      "login": null,
+      "name": "artemkucher",
+      "type": "User"
+     },
+     "message": "perf: Remove is_async_callable check in request_response",
+     "parents": [
+      "1f442c454f2f74c7419f83c203e6333955399528"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "255b912928904e3ba5980425a54d6837c8bd1a1c",
+    "source": "compare"
+   },
+   "_head_sha": "5315debd2a2b4d591517f24a7cdfbd691cf4137d"
+  },
+  {
+   "number": 14939,
+   "title": "Merge branch 'master' into update-extra-models-doc",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/14939",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "lkkmpn",
+    "type": "User"
+   },
+   "created_at": "2026-02-18T17:10:43+01:00",
+   "updated_at": "2026-07-27T09:12:51+02:00",
+   "url": "https://github.com/fastapi/fastapi/pull/14939",
+   "requested_reviewers": [],
+   "paths": [
+    "docs/en/docs/tutorial/extra-models.md"
+   ],
+   "commits": [
+    {
+     "sha": "07e050f3e13acbef694c6a6a6b873eba7100af1f",
+     "date": "2026-07-27T09:12:51+02:00",
+     "author": {
+      "login": null,
+      "name": "Yurii Motov",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into update-extra-models-doc",
+     "parents": [
+      "1eee9c096d23d9cf32974145b3e746735956b3e6",
+      "255b912928904e3ba5980425a54d6837c8bd1a1c"
+     ]
+    },
+    {
+     "sha": "1eee9c096d23d9cf32974145b3e746735956b3e6",
+     "date": "2026-03-09T10:03:13+01:00",
+     "author": {
+      "login": null,
+      "name": "lkkmpn",
+      "type": "User"
+     },
+     "message": "Update pydantic docs url",
+     "parents": [
+      "6132e9008232df033cddd03e2267c945b74e2592"
+     ]
+    },
+    {
+     "sha": "6132e9008232df033cddd03e2267c945b74e2592",
+     "date": "2026-03-09T09:58:27+01:00",
+     "author": {
+      "login": null,
+      "name": "Motov Yurii",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into update-extra-models-doc",
+     "parents": [
+      "55745554096561920736ce2c884d146457de4e40",
+      "11614be9021aa4ac078d4d0693a8b5250a1010d8"
+     ]
+    },
+    {
+     "sha": "55745554096561920736ce2c884d146457de4e40",
+     "date": "2026-02-18T18:42:34+01:00",
+     "author": {
+      "login": null,
+      "name": "lkkmpn",
+      "type": "User"
+     },
+     "message": "Small sentence update",
+     "parents": [
+      "5cee11f00aa49ea1ec0c9d2455f8112571328a31"
+     ]
+    },
+    {
+     "sha": "5cee11f00aa49ea1ec0c9d2455f8112571328a31",
+     "date": "2026-02-18T17:17:53+01:00",
+     "author": {
+      "login": null,
+      "name": "lkkmpn",
+      "type": "User"
+     },
+     "message": "Update highlighted source lines",
+     "parents": [
+      "412ba087271cf9a05dd6280470893e4953ff8767"
+     ]
+    },
+    {
+     "sha": "412ba087271cf9a05dd6280470893e4953ff8767",
+     "date": "2026-02-18T17:10:43+01:00",
+     "author": {
+      "login": null,
+      "name": "lkkmpn",
+      "type": "User"
+     },
+     "message": "\ud83d\udcdd Update doc to reflect source example",
+     "parents": [
+      "339f7028105fdca80296974aeafa7beee59f1f11"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "255b912928904e3ba5980425a54d6837c8bd1a1c",
+    "source": "compare"
+   },
+   "_head_sha": "07e050f3e13acbef694c6a6a6b873eba7100af1f"
+  },
+  {
+   "number": 15859,
+   "title": "Merge branch 'master' into pr-oauth2-authcode-optional",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/15859",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Eikentech",
+    "type": "User"
+   },
+   "created_at": "2026-06-28T19:57:20+02:00",
+   "updated_at": "2026-07-23T21:31:57+02:00",
+   "url": "https://github.com/fastapi/fastapi/pull/15859",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/security/oauth2.py",
+    "tests/test_security_oauth2_authorization_code_bearer_optional.py"
+   ],
+   "commits": [
+    {
+     "sha": "6235e0acb75ab4ecfa3c0d429fd4455872d72ae3",
+     "date": "2026-07-23T21:31:57+02:00",
+     "author": {
+      "login": null,
+      "name": "Eikentech",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into pr-oauth2-authcode-optional",
+     "parents": [
+      "2d6fc6f7e4451d39f3c9c2478414ee0acc90e6be",
+      "a64dfbbd21a445288ff583d58e1f646fe6baf3af"
+     ]
+    },
+    {
+     "sha": "2d6fc6f7e4451d39f3c9c2478414ee0acc90e6be",
+     "date": "2026-07-07T15:26:17+02:00",
+     "author": {
+      "login": null,
+      "name": "Eikentech",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into pr-oauth2-authcode-optional",
+     "parents": [
+      "d1c59f7aba92d711cff33e025d81353bd9d6af26",
+      "3f3354a94d7c8b496258d7b762070e46704e01c1"
+     ]
+    },
+    {
+     "sha": "d1c59f7aba92d711cff33e025d81353bd9d6af26",
+     "date": "2026-07-03T13:14:20+02:00",
+     "author": {
+      "login": null,
+      "name": "Eikentech",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into pr-oauth2-authcode-optional",
+     "parents": [
+      "6597a0050b2cfe97354b6b1270b190d6a015e254",
+      "cecd96d9c6c318e0df1c40cedbc2e953381ddfd3"
+     ]
+    },
+    {
+     "sha": "6597a0050b2cfe97354b6b1270b190d6a015e254",
+     "date": "2026-06-28T19:57:20+02:00",
+     "author": {
+      "login": null,
+      "name": "Eikentech",
+      "type": "User"
+     },
+     "message": "test: cover OAuth2AuthorizationCodeBearer auto_error=False branch",
+     "parents": [
+      "1929ac23195136e8616ed1b7c3fd84c65b26d234"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "a64dfbbd21a445288ff583d58e1f646fe6baf3af",
+    "source": "compare"
+   },
+   "_head_sha": "6235e0acb75ab4ecfa3c0d429fd4455872d72ae3"
+  },
+  {
+   "number": 15476,
+   "title": "Merge branch 'master' into fix/jsonable-encoder-lazy-allowed-keys",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/15476",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Vittoria",
+    "type": "User"
+   },
+   "created_at": "2026-05-06T15:06:34+02:00",
+   "updated_at": "2026-07-21T01:14:42+02:00",
+   "url": "https://github.com/fastapi/fastapi/pull/15476",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/encoders.py",
+    "tests/test_jsonable_encoder.py"
+   ],
+   "commits": [
+    {
+     "sha": "65147b6030cbcfce78b3d143f9c4f1da16cafd3a",
+     "date": "2026-07-21T01:14:42+02:00",
+     "author": {
+      "login": null,
+      "name": "Vittoria Lanzo",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into fix/jsonable-encoder-lazy-allowed-keys",
+     "parents": [
+      "27a3b0e4f3f0c29ea6d040b2d1db1271897f3dca",
+      "afe41126f624af30038cc8e17b2aaf60ebd4b838"
+     ]
+    },
+    {
+     "sha": "27a3b0e4f3f0c29ea6d040b2d1db1271897f3dca",
+     "date": "2026-07-07T22:21:04+02:00",
+     "author": {
+      "login": null,
+      "name": "Sofie Van Landeghem",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into fix/jsonable-encoder-lazy-allowed-keys",
+     "parents": [
+      "9ec5654d214295aabec3b799e7a79a7eafe696ce",
+      "7cb06f360dd44efac059848df1a9beee7643b018"
+     ]
+    },
+    {
+     "sha": "9ec5654d214295aabec3b799e7a79a7eafe696ce",
+     "date": "2026-05-06T15:06:34+02:00",
+     "author": {
+      "login": null,
+      "name": "Vittoria Lanzo",
+      "type": "User"
+     },
+     "message": "Delete scripts/bench_jsonable_encoder.py",
+     "parents": [
+      "4d688e726ac2b70ee205b2c9b7854ccbe69a171e"
+     ]
+    },
+    {
+     "sha": "4d688e726ac2b70ee205b2c9b7854ccbe69a171e",
+     "date": "2026-05-06T15:06:34+02:00",
+     "author": {
+      "login": null,
+      "name": "Vittoria",
+      "type": "User"
+     },
+     "message": "tests: fold jsonable_encoder dict filter cases into test_encode_dict",
+     "parents": [
+      "fecb50f22101f3bb12826d238f8f11ac424a6474"
+     ]
+    },
+    {
+     "sha": "fecb50f22101f3bb12826d238f8f11ac424a6474",
+     "date": "2026-05-06T15:06:34+02:00",
+     "author": {
+      "login": null,
+      "name": "Vittoria",
+      "type": "User"
+     },
+     "message": "add benchmark script for jsonable_encoder lazy allocation fix",
+     "parents": [
+      "e9cdebb73e38e4447160f28f6d76bfd092ed1aa4"
+     ]
+    },
+    {
+     "sha": "e9cdebb73e38e4447160f28f6d76bfd092ed1aa4",
+     "date": "2026-05-06T15:06:34+02:00",
+     "author": {
+      "login": null,
+      "name": "Vittoria",
+      "type": "User"
+     },
+     "message": "\u26a1 Skip set(obj.keys()) allocation in jsonable_encoder when include/exclude are not set",
+     "parents": [
+      "622b6356b5102113d0074083ac23c82367f4284b"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "afe41126f624af30038cc8e17b2aaf60ebd4b838",
+    "source": "compare"
+   },
+   "_head_sha": "65147b6030cbcfce78b3d143f9c4f1da16cafd3a"
+  },
+  {
+   "number": 12481,
+   "title": "Merge branch 'master' into bug/flat-fields-for-all-models",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/12481",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "JSCU-CNI",
+    "type": "User"
+   },
+   "created_at": "2026-01-07T14:56:51+01:00",
+   "updated_at": "2026-07-20T15:56:39+02:00",
+   "url": "https://github.com/fastapi/fastapi/pull/12481",
+   "requested_reviewers": [],
+   "paths": [
+    "fastapi/dependencies/utils.py",
+    "fastapi/openapi/utils.py",
+    "tests/test_multiple_parameter_models.py"
+   ],
+   "commits": [
+    {
+     "sha": "cff2221e003eca42bc9a8a3176f92c4796000d25",
+     "date": "2026-07-20T15:56:39+02:00",
+     "author": {
+      "login": null,
+      "name": "Computer Network Investigation",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into bug/flat-fields-for-all-models",
+     "parents": [
+      "959f944d2ea9fdacb1aefb90dd03ba6fef99a28b",
+      "afe41126f624af30038cc8e17b2aaf60ebd4b838"
+     ]
+    },
+    {
+     "sha": "959f944d2ea9fdacb1aefb90dd03ba6fef99a28b",
+     "date": "2026-04-22T13:10:05+02:00",
+     "author": {
+      "login": null,
+      "name": "Computer Network Investigation",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into bug/flat-fields-for-all-models",
+     "parents": [
+      "c839b886093b4ef88962871710feea80bf30ac42",
+      "c38782e0e806634e90a9861c0a59fb99828d5484"
+     ]
+    },
+    {
+     "sha": "c839b886093b4ef88962871710feea80bf30ac42",
+     "date": "2026-03-30T16:44:13+02:00",
+     "author": {
+      "login": null,
+      "name": "Computer Network Investigation",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into bug/flat-fields-for-all-models",
+     "parents": [
+      "d9b8f0b17a1fb42a05c67b9c06ea1e2fe2ec4d69",
+      "d128a7089a645466b789e32097de125a3b0f8979"
+     ]
+    },
+    {
+     "sha": "d9b8f0b17a1fb42a05c67b9c06ea1e2fe2ec4d69",
+     "date": "2026-03-03T13:50:21+01:00",
+     "author": {
+      "login": null,
+      "name": "Sofie Van Landeghem",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into bug/flat-fields-for-all-models",
+     "parents": [
+      "8ef0ae7b1e16ba3c8f9b78848d13d0d1beaa51a6",
+      "7a03018d6a880651d4fc2b5c79419eb233d7aee5"
+     ]
+    },
+    {
+     "sha": "8ef0ae7b1e16ba3c8f9b78848d13d0d1beaa51a6",
+     "date": "2026-02-09T08:47:26+01:00",
+     "author": {
+      "login": null,
+      "name": "svlandeg",
+      "type": "User"
+     },
+     "message": "leftover from merge conflict",
+     "parents": [
+      "f4436a34a66e3a1ac9b990cb6634956bf92bad45"
+     ]
+    },
+    {
+     "sha": "f4436a34a66e3a1ac9b990cb6634956bf92bad45",
+     "date": "2026-02-09T07:22:44Z",
+     "author": {
+      "login": null,
+      "name": "pre-commit-ci-lite[bot]",
+      "type": "Bot"
+     },
+     "message": "\ud83c\udfa8 Auto format",
+     "parents": [
+      "ba07a1127a2ca8a1f258c178630036f4b23f3824"
+     ]
+    },
+    {
+     "sha": "ba07a1127a2ca8a1f258c178630036f4b23f3824",
+     "date": "2026-02-09T08:21:50+01:00",
+     "author": {
+      "login": null,
+      "name": "svlandeg",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into bug/flat-fields-for-all-models",
+     "parents": [
+      "2c9c5a1dd2a7c2e3e3539293afcb33182eaf4710",
+      "cd31576d5704b6aef1bdadc43770238cd88aad2b"
+     ]
+    },
+    {
+     "sha": "2c9c5a1dd2a7c2e3e3539293afcb33182eaf4710",
+     "date": "2026-02-04T09:56:10+01:00",
+     "author": {
+      "login": null,
+      "name": "Computer Network Investigation",
+      "type": "User"
+     },
+     "message": "Merge branch 'master' into bug/flat-fields-for-all-models",
+     "parents": [
+      "6aa254619ff44b8689e30d02fbe118d1c8469c6b",
+      "eacbce24c9d299c6a28110d9fc8ac50f53cddb08"
+     ]
+    },
+    {
+     "sha": "6aa254619ff44b8689e30d02fbe118d1c8469c6b",
+     "date": "2026-01-07T14:56:51+01:00",
+     "author": {
+      "login": null,
+      "name": "JSCU-CNI",
+      "type": "User"
+     },
+     "message": " \u2728 Support for mixed and multiple Pydantic models for parameters using Query, Cookie and Header",
+     "parents": [
+      "f2687dc1bb01f4cb62eee90e656b61c38c2aaf6a"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "afe41126f624af30038cc8e17b2aaf60ebd4b838",
+    "source": "compare"
+   },
+   "_head_sha": "cff2221e003eca42bc9a8a3176f92c4796000d25"
+  },
+  {
+   "number": 15953,
+   "title": "\ud83d\udcdd Document stream response headers",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "pull/15953",
+   "base": "master",
+   "author": {
+    "login": null,
+    "name": "Manjari Yagnik",
+    "type": "User"
+   },
+   "created_at": "2026-07-08T00:33:20+05:30",
+   "updated_at": "2026-07-08T00:33:20+05:30",
+   "url": "https://github.com/fastapi/fastapi/pull/15953",
+   "requested_reviewers": [],
+   "paths": [
+    "docs/en/docs/tutorial/server-sent-events.md",
+    "docs/en/docs/tutorial/stream-json-lines.md",
+    "docs_src/server_sent_events/tutorial006_py310.py",
+    "docs_src/stream_json_lines/tutorial002_py310.py",
+    "tests/test_tutorial/test_server_sent_events/test_tutorial006.py",
+    "tests/test_tutorial/test_stream_json_lines/test_tutorial002.py"
+   ],
+   "commits": [
+    {
+     "sha": "a9b2d8721c6046bb84e68743f01a51616311072f",
+     "date": "2026-07-08T00:33:20+05:30",
+     "author": {
+      "login": null,
+      "name": "Manjari Yagnik",
+      "type": "User"
+     },
+     "message": "\ud83d\udcdd Document stream response headers",
+     "parents": [
+      "3f3354a94d7c8b496258d7b762070e46704e01c1"
+     ]
+    }
+   ],
+   "merge_base": {
+    "sha": "3f3354a94d7c8b496258d7b762070e46704e01c1",
+    "source": "compare"
+   },
+   "_head_sha": "a9b2d8721c6046bb84e68743f01a51616311072f"
+  }
+ ],
+ "branches": [
+  {
+   "name": "translate-es-update-outdated-9e0ec8ca",
+   "url": "https://github.com/fastapi/fastapi/tree/translate-es-update-outdated-9e0ec8ca",
+   "ahead_by": 1,
+   "paths": [
+    "docs/es/docs/alternatives.md",
+    "docs/es/docs/environment-variables.md",
+    "docs/es/docs/fastapi-cli.md",
+    "docs/es/docs/features.md",
+    "docs/es/docs/help-fastapi.md",
+    "docs/es/docs/history-design-future.md",
+    "docs/es/docs/index.md",
+    "docs/es/docs/project-generation.md",
+    "docs/es/docs/python-types.md",
+    "docs/es/docs/virtual-environments.md"
+   ],
+   "commits": [
+    {
+     "sha": "c3e3e1635e2ab5f33e8bf14b87ea9c6c19580d6c",
+     "parents": [
+      "95f8322ee1dcda7ceace7b1c4f6c9915b36d748f"
+     ],
+     "date": "2026-08-01T06:07:01Z",
+     "author": {
+      "login": null,
+      "name": "github-actions[bot]",
+      "type": "Bot"
+     },
+     "message": "\ud83c\udf10 Update translations for es (update-outdated)",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "95f8322ee1dcda7ceace7b1c4f6c9915b36d748f",
+    "source": "compare"
+   }
+  },
+  {
+   "name": "translate-ko-update-outdated-58f3b600",
+   "url": "https://github.com/fastapi/fastapi/tree/translate-ko-update-outdated-58f3b600",
+   "ahead_by": 1,
+   "paths": [
+    "docs/ko/docs/alternatives.md",
+    "docs/ko/docs/environment-variables.md",
+    "docs/ko/docs/fastapi-cli.md",
+    "docs/ko/docs/features.md",
+    "docs/ko/docs/help-fastapi.md",
+    "docs/ko/docs/history-design-future.md",
+    "docs/ko/docs/index.md",
+    "docs/ko/docs/project-generation.md",
+    "docs/ko/docs/python-types.md",
+    "docs/ko/docs/virtual-environments.md"
+   ],
+   "commits": [
+    {
+     "sha": "0df08458b8f953c8ff4a56e3d13c080e2e45bc82",
+     "parents": [
+      "95f8322ee1dcda7ceace7b1c4f6c9915b36d748f"
+     ],
+     "date": "2026-08-01T06:06:56Z",
+     "author": {
+      "login": null,
+      "name": "github-actions[bot]",
+      "type": "Bot"
+     },
+     "message": "\ud83c\udf10 Update translations for ko (update-outdated)",
+     "paths": []
+    }
+   ],
+   "merge_base": {
+    "sha": "95f8322ee1dcda7ceace7b1c4f6c9915b36d748f",
+    "source": "compare"
+   }
+  }
+ ],
+ "issues": [],
+ "meta": {
+  "source": "git (precision study adapter)",
+  "api_calls": 0,
+  "rate_limit_remaining": null,
+  "degraded": [],
+  "commits_truncated": false,
+  "open_prs_total": 178
+ }
+}
