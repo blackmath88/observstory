@@ -6,7 +6,7 @@ import sys
 import unittest
 
 from observstory import config
-from observstory.derive import derive
+from observstory.derive import derive, parse_time
 from observstory.map_compiler import compile_scene, explain_frame
 from observstory.validate import scene_errors, validate
 from tests.helpers import ROOT
@@ -15,10 +15,19 @@ sys.path.insert(0, str(ROOT / "fixtures"))
 import playground as pg  # noqa: E402
 
 OUT = ROOT / "demo/playground"
+REAL = sorted((ROOT / "evals/precision/data").glob("*.observations.json"))
 _cache = {}
 
 
+def real_id(path):
+    return "real." + json.loads(path.read_text())["repository"]["full_name"].split("/")[1]
+
+
 def run(sid):
+    if sid.startswith("real.") and sid not in _cache:
+        obs = json.loads(next(p for p in REAL if real_id(p) == sid).read_text())
+        snap = derive(obs, config.normalise(None), parse_time(obs["fetched_at"]))
+        _cache[sid] = (snap, compile_scene(snap))
     if sid not in _cache:
         spec = dict(zip(("shape", "relation", "volume", "collab"), sid.split(".")))
         snap = derive(pg.observations(spec), config.normalise(pg.config(spec)), pg.NOW,
@@ -97,6 +106,33 @@ class WhyThisFrame(unittest.TestCase):
             self.assertIsNone(re.search(r"\b(" + "|".join(pg.PEOPLE) + r")\b", text, re.I), pg.state_id(spec))
 
 
+class RealRepositories(unittest.TestCase):
+    def test_real_bundles_compile_cleanly_with_zero_config(self):
+        self.assertEqual(len(REAL), 6)
+        for path in REAL:
+            with self.subTest(repo=path.name):
+                snap, scene = run(real_id(path))
+                # regression: stale work that only changed ignored files (a changeset) has no card, so no attention
+                self.assertEqual(validate(snap) + scene_errors(scene), [])
+                self.assertEqual(scene["source"]["lanes_source"], "default")
+                self.assertTrue(explain_frame(scene)[0].startswith("No configuration, so the default lanes"))
+
+    def test_explanations_stay_short_on_busy_repositories(self):
+        for path in REAL:
+            why = explain_frame(run(real_id(path))[1])
+            self.assertLessEqual(len(why), 8, path.name)
+            self.assertTrue(all(len(line) < 360 for line in why), path.name)
+
+    def test_explanations_name_work_not_people_on_real_data(self):
+        for path in REAL:
+            scene = run(real_id(path))[1]
+            text = " ".join(explain_frame(scene))
+            for n in scene["nodes"]:          # a branch ref may contain its author's login; that is the work's name
+                text = text.replace(n["ref"], "")
+            actors = {a for n in scene["nodes"] for a in n["actors"]}
+            self.assertEqual([a for a in actors if re.search(rf"(?<![\w/-]){re.escape(a)}(?![\w/-])", text)], [], path.name)
+
+
 class BuiltPlayground(unittest.TestCase):
     def manifest(self):
         text = (ROOT / "demo/playground.html").read_text()
@@ -104,13 +140,21 @@ class BuiltPlayground(unittest.TestCase):
 
     def test_every_state_is_generated_and_current(self):
         _, manifest = self.manifest()
-        self.assertEqual([m["id"] for m in manifest], [pg.state_id(s) for s in pg.matrix()])
+        self.assertEqual([m["id"] for m in manifest], [pg.state_id(s) for s in pg.matrix()] + [real_id(p) for p in REAL])
         for m in manifest:
             with self.subTest(state=m["id"]):
                 stored = json.loads((OUT / f'{m["id"]}.scene.json').read_text())
                 self.assertEqual(stored, json.loads(json.dumps(run(m["id"])[1])))   # rebuild after engine changes
                 self.assertEqual(m["why"], explain_frame(stored))
                 self.assertTrue((OUT / f'{m["id"]}.snapshot.json').exists() and (OUT / f'{m["id"]}.html').exists())
+
+    def test_real_states_say_they_are_real(self):
+        _, manifest = self.manifest()
+        real = [m for m in manifest if m["spec"]["source"] == "real"]
+        self.assertEqual(len(real), 6)
+        for m in real:
+            self.assertEqual(m["observed"], "2026-09-25")
+            self.assertIn("Observed 2026-09-25", (OUT / f'{m["id"]}.html').read_text())
 
     def test_shell_is_static_offline_and_has_no_layout_controls(self):
         text, _ = self.manifest()

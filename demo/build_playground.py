@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT / "fixtures"))
 
 import playground as pg  # noqa: E402
 from observstory import config  # noqa: E402
-from observstory.derive import derive  # noqa: E402
+from observstory.derive import derive, parse_time  # noqa: E402
 from observstory.map_compiler import compile_scene, explain_frame  # noqa: E402
 from observstory.map_render import render_map  # noqa: E402
 from observstory.validate import scene_errors, validate  # noqa: E402
@@ -26,7 +26,11 @@ from observstory.validate import scene_errors, validate  # noqa: E402
 HERE = pathlib.Path(__file__).parent
 OUT = HERE / "playground"
 DEFAULT = "software.parallel.low.none"
+# Real repositories: observation bundles from the precision study (public metadata, collected 2026-09-25 with
+# git only), run through the same pipeline with zero configuration. Nothing here is invented or edited.
+REAL = ROOT / "evals/precision/data"
 SHOTS = [("software.overlap.high.none", "playground-software-overlap", 1440, 900),
+         ("real.vite", "playground-real-vite", 1440, 900),
          ("ml.parallel.high.none", "playground-ml-parallel", 1440, 900),
          ("hackathon.overlap.low.conflict", "playground-hackathon-conflict", 1440, 900),
          ("hackathon.parallel.high.freeze", "playground-narrow", 390, 844)]
@@ -60,7 +64,30 @@ def build_states() -> list[dict]:
         (OUT / f"{sid}.scene.json").write_text(json.dumps(scene, indent=1, ensure_ascii=False) + "\n")
         (OUT / f"{sid}.html").write_text(render_map(scene, radar_href=None, data_href=sid + ".{name}.json",
                                                     time_label="Playground · synthetic, Wednesday 15:00"))
-        manifest.append({"id": sid, "spec": spec, "why": explain_frame(scene), "scene": excerpt(scene)})
+        manifest.append({"id": sid, "spec": dict(spec, source="synthetic"), "why": explain_frame(scene), "scene": excerpt(scene)})
+    return manifest
+
+
+def real_states() -> list[dict]:
+    """One state per real repository bundle, derived at its own fetch time (the map says what was true then)."""
+    manifest = []
+    for path in sorted(REAL.glob("*.observations.json")):
+        obs = json.loads(path.read_text())
+        name = obs["repository"]["full_name"]
+        sid = "real." + name.split("/")[1]
+        snap = derive(obs, config.normalise(None), parse_time(obs["fetched_at"]))
+        scene = compile_scene(snap)
+        errors = validate(snap) + scene_errors(scene)
+        if errors:
+            raise SystemExit(f"{sid}: {errors[:3]}")
+        compact = dict(ensure_ascii=False, separators=(",", ":"))   # real snapshots are large; keep the repo lean
+        (OUT / f"{sid}.snapshot.json").write_text(json.dumps(snap, **compact) + "\n")
+        (OUT / f"{sid}.scene.json").write_text(json.dumps(scene, **compact) + "\n")
+        observed = obs["fetched_at"][:10]
+        (OUT / f"{sid}.html").write_text(render_map(scene, radar_href=None, data_href=sid + ".{name}.json",
+                                                    time_label=f"Observed {observed} · public metadata, zero config"))
+        manifest.append({"id": sid, "spec": {"source": "real", "repo": sid[5:]}, "label": name, "observed": observed,
+                         "origin": obs["meta"].get("source"), "why": explain_frame(scene), "scene": excerpt(scene)})
     return manifest
 
 
@@ -78,7 +105,10 @@ def rows(name: str, options: dict, legend: str, note: str) -> str:
 
 
 def shell(manifest: list[dict]) -> str:
-    controls = (seg("shape", {k: v["label"] for k, v in pg.SHAPES.items()}, "Project shape")
+    repos = {m["spec"]["repo"]: m["label"] for m in manifest if m["spec"]["source"] == "real"}
+    controls = (seg("source", {"synthetic": "Synthetic", "real": "Real repository"}, "Source")
+                + rows("repo", repos, "Repository", "Real public metadata from the precision study; no configuration.")
+                + seg("shape", {k: v["label"] for k, v in pg.SHAPES.items()}, "Project shape")
                 + seg("volume", {k: f"{n} in flight" for k, n in pg.VOLUMES.items()}, "Work")
                 + rows("relation", pg.RELATIONS, "Relation between work", "")
                 + rows("collab", pg.COLLAB, "Declared collaboration", ""))
@@ -130,6 +160,9 @@ label.off{opacity:.38;cursor:not-allowed}
 input:focus-visible+span{outline:2px solid var(--select);outline-offset:1px;border-radius:5px}
 .note{margin:3px 4px 0;color:var(--ink3);font-size:11px;min-height:0}
 .note:empty{display:none}
+.ctl[data-source=real] fieldset[data-axis=shape],.ctl[data-source=real] fieldset[data-axis=volume],
+.ctl[data-source=real] fieldset[data-axis=relation],.ctl[data-source=real] fieldset[data-axis=collab],
+.ctl[data-source=synthetic] fieldset[data-axis=repo]{display:none}
 .why{border-top:1px solid var(--hair);padding-top:12px;margin-top:4px}
 .why ul{margin:0;padding:0 0 0 14px;color:var(--ink2);font-size:12px}
 .why li{margin-bottom:4px}
@@ -156,8 +189,8 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
 <body>
 <header class="bar">
   <span class="brand">Observstory <span>Semantic UI Playground</span></span>
-  <span class="synthetic" title="The repositories and people are invented">Synthetic data</span>
-  <span class="claim">Change what the project <em>means</em>. The pipeline compiles the map; nothing is positioned by hand.</span>
+  <span class="synthetic" id="badge" title="The repositories and people are invented">Synthetic data</span>
+  <span class="claim" id="claim">Change what the project <em>means</em>. The pipeline compiles the map; nothing is positioned by hand.</span>
   <nav><a href="index.html">Demo Lab (the story) →</a><a href="../docs/ui/semantic-ui-playground.md">How it works</a></nav>
 </header>
 <div class="work">
@@ -171,7 +204,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
     </section>
     <section class="pipe">
       <h2>Compiled by</h2>
-      <div class="flow"><span>semantic state</span><i>→</i><span>observations</span><i>→</i><span>derive</span><i>→</i>
+      <div class="flow"><span id="origin">semantic state</span><i>→</i><span>observations</span><i>→</i><span>derive</span><i>→</i>
         <a id="snap" target="_blank">snapshot</a><i>→</i><a id="scene" target="_blank">scene</a><i>→</i><span>Project Map</span></div>
       <p class="files">State <code id="sid"></code>. Open the generated <a id="snap2" target="_blank">snapshot.json</a> and
         <a id="scene2" target="_blank">scene.json</a>; the map itself is <a id="page" target="_blank">a plain generated page</a>.</p>
@@ -185,14 +218,18 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
 (function(){
 const S = JSON.parse(document.getElementById('states').textContent);
 const byId = Object.fromEntries(S.map(s => [s.id, s]));
-const AXES = ['shape', 'relation', 'volume', 'collab'];
+const AXES = ['source', 'repo', 'shape', 'relation', 'volume', 'collab'];
+const firstReal = S.find(s => s.spec.source === 'real');
+let lastSynthetic = null;
 const form = document.getElementById('ctl'), stage = document.getElementById('stage');
 const $ = id => document.getElementById(id);
 let cur = null;
-const key = sp => [sp.shape, sp.relation, sp.volume, sp.collab].join('.');
+const key = sp => sp.source === 'real' ? 'real.' + sp.repo : [sp.shape, sp.relation, sp.volume, sp.collab].join('.');
 function read(){ const sp = {}; AXES.forEach(a => { const el = form.querySelector('input[name=' + a + ']:checked'); sp[a] = el && el.value; }); return sp; }
 function write(sp){ AXES.forEach(a => { const el = form.querySelector('input[name=' + a + '][value="' + sp[a] + '"]'); if (el) el.checked = true; }); }
 function resolve(sp, changed){
+  if (sp.source === 'real') return byId[key(sp)] ? sp : Object.assign({}, sp, firstReal.spec);
+  if (changed === 'source') return Object.assign({}, lastSynthetic || byId['{{DEFAULT}}'].spec);
   // Keep the axis the user just changed; reset others to their calm default until a prebuilt state exists.
   if (byId[key(sp)]) return sp;
   for (const [a, v] of [['collab', 'none'], ['relation', 'parallel']]) {
@@ -201,9 +238,11 @@ function resolve(sp, changed){
   return byId[key(sp)] ? sp : S[0].spec;
 }
 function availability(sp){
+  form.dataset.source = sp.source;
+  if (sp.source === 'real') return;
   // An option is off only when no prebuilt state has it for this project shape; otherwise choosing it
   // may reset another axis (resolve), and the note says which.
-  AXES.forEach(a => form.querySelectorAll('input[name=' + a + ']').forEach(el => {
+  ['shape', 'relation', 'volume', 'collab'].forEach(a => form.querySelectorAll('input[name=' + a + ']').forEach(el => {
     const ok = a === 'shape' || S.some(s => s.spec.shape === sp.shape && s.spec[a] === el.value);
     el.disabled = !ok; el.parentElement.classList.toggle('off', !ok);
     el.parentElement.title = ok ? '' : 'Declared collaboration is prebuilt for the hackathon project';
@@ -223,9 +262,16 @@ function deltaText(a, b){
 const LABEL = {relation: 'Relation', collab: 'Declared collaboration'};
 function show(sp, changed, push){
   const asked = sp; sp = resolve(sp, changed); write(sp); availability(sp);
-  const reset = ['relation', 'collab'].filter(a => a !== changed && asked[a] !== sp[a]);
+  const reset = sp.source === 'real' || changed === 'source' ? [] : ['relation', 'collab'].filter(a => a !== changed && asked[a] !== sp[a]);
   $('note-relation').textContent = reset.length ? LABEL[reset[0]] + ' reset: declared states are prebuilt with parallel or overlapping work.' : '';
   const st = byId[key(sp)], prev = cur; if (prev && prev.id === st.id) return; cur = st;
+  if (sp.source === 'synthetic') lastSynthetic = Object.assign({}, st.spec);
+  const real = sp.source === 'real';
+  $('badge').textContent = real ? 'Real repository · observed ' + st.observed : 'Synthetic data';
+  $('badge').title = real ? st.label + ': public GitHub metadata (' + st.origin + '), derived with zero configuration' : 'The repositories and people are invented';
+  $('claim').innerHTML = real ? 'A real project, observed once. The same pipeline compiles its map, with no configuration and nothing positioned by hand.'
+                              : 'Change what the project <em>means</em>. The pipeline compiles the map; nothing is positioned by hand.';
+  $('origin').textContent = real ? st.label + ' (observed ' + st.observed + ')' : 'semantic state';
   stage.src = 'playground/' + st.id + '.html';
   const before = new Set(prev ? prev.why : []);
   $('why').replaceChildren(...st.why.map(t => { const li = document.createElement('li'); li.textContent = t; if (prev && !before.has(t)) li.className = 'changed'; return li; }));
@@ -249,7 +295,7 @@ fromHash();
 
 
 def main() -> list[dict]:
-    manifest = build_states()
+    manifest = build_states() + real_states()
     (HERE / "playground.html").write_text(shell(manifest), encoding="utf-8")
     return manifest
 

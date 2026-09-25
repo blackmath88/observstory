@@ -9,7 +9,7 @@ Open [`demo/playground.html`](../../demo/playground.html). No server or network 
 ## 1. What it demonstrates
 
 The Demo Lab ([`demo/index.html`](../../demo/index.html)) is a **narrated sequence** of states.
-The playground is an **interactive proof** that semantic state drives composition. You choose
+The playground is an **interactive proof** that semantic state drives composition, and that the same compiler holds up on real repositories. You choose
 what the project *means*, and the real pipeline produces the map:
 
 | Control | Semantic meaning | What the compiled map does |
@@ -89,6 +89,51 @@ Rebuild with `python3 demo/build.py` (Demo Lab and playground) and check with
 `python3 -m unittest tests.test_playground`. The tests confirm that each relation produces its
 edge or card state in every shape and volume, that the rail appears exactly when something is
 declared, that the stored scenes match a fresh build, and that the explanations never name a person.
+
+## Real repositories
+
+**Source → Real repository** swaps the four semantic controls for a picker of six real public
+repositories (`astral-sh/uv`, `fastapi/fastapi`, `pydantic/pydantic`, `tldraw/tldraw`,
+`vitejs/vite`, `withastro/astro`). Their observation bundles are the ones collected with git
+only for the [precision study](../development/precision-report.md) (`evals/precision/data/`, 2026-09-25).
+Each goes through the same `derive` → `compile_scene` → `render_map` with **no configuration**,
+at its own fetch time, so the map shows what was true then, not today. The header, the map and
+"Compiled by" all say *Real repository · observed 2026-09-25*. Nothing is edited or invented.
+
+![vitejs/vite in the playground](../demo/img/playground-real-vite.png)
+
+This is the part synthetic states can't show: the compiler meeting paths nobody designed for it.
+What it showed:
+
+| Repository | In flight | Overlap pairs | Waiting | Stale | Busiest lane |
+|---|---|---|---|---|---|
+| astral-sh/uv | 49 | 50 | 6 | 19 | Other (36) |
+| fastapi/fastapi | 32 | 0 | 0 | 31 | Other (22) |
+| pydantic/pydantic | 48 | 0 | 1 | 43 | Other (39) |
+| tldraw/tldraw | 49 | 23 | 2 | 24 | Build (42) |
+| vitejs/vite | 48 | 18 | 0 | 28 | Build (43) |
+| withastro/astro | 47 | 21 | 1 | 31 | Build (39) |
+
+- **Default lanes fit JavaScript monorepos, not Python or Rust packages.** `packages/` lands in
+  Build, but `fastapi/`, `pydantic/` and `crates/` fall into Other, which then holds most of the
+  work. "Why this frame?" says so plainly ("No configuration, so the default lanes … paths that
+  match none land in Other"), and a one-line `observstory.config.json` fixes it. Whether the
+  defaults should learn a package's own top-level directory is an open question, not decided here.
+- **Connectors to collapsed cards don't scale.** When an area shows "+ 28 more", overlap
+  connectors to the hidden cards still fan out of the card edge (visible on vite). That is a
+  renderer limit at real volume and the next thing to fix.
+- **Fixed:** stale work that only changed ignored files (a changeset, an empty PR) has no card.
+  The compiler used to list it as attention pointing at nothing, which made fastapi and astro fail
+  scene validation. It now leaves it to the snapshot, where agents still see it.
+- **Fixed:** "Why this frame?" produced one sentence per relation (50 on uv). It now summarizes
+  when there are more than two relations or three stale items, and breaks ties by name so the
+  text is the same in every process.
+
+`blackmath88/observstory` itself isn't included: only a stored snapshot exists for it, with no
+observation bundle to derive from, and the playground only shows states that go through `derive`.
+
+Overlap pairs are edges on the map (two pieces of work sharing a file). The precision report
+counts overlap *signals* per area, so the two numbers differ.
 
 ## 4. Relation to the vision
 
