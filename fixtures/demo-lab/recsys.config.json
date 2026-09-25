@@ -1,0 +1,54 @@
+{
+  "title": "Northstar recommendations (synthetic demo)",
+  "lanes": [
+    {
+      "id": "data",
+      "label": "Data",
+      "description": "Sources and datasets",
+      "paths": [
+        "data/"
+      ]
+    },
+    {
+      "id": "pipeline",
+      "label": "Pipeline",
+      "description": "Ingestion and features",
+      "paths": [
+        "pipeline/"
+      ]
+    },
+    {
+      "id": "model",
+      "label": "Model",
+      "description": "Training and architecture",
+      "paths": [
+        "model/"
+      ]
+    },
+    {
+      "id": "eval",
+      "label": "Eval",
+      "description": "Benchmarks",
+      "paths": [
+        "eval/"
+      ]
+    },
+    {
+      "id": "api",
+      "label": "API",
+      "description": "Serving",
+      "paths": [
+        "api/"
+      ]
+    },
+    {
+      "id": "docs",
+      "label": "Docs",
+      "description": "Explaining it",
+      "paths": [
+        "docs/",
+        "README.md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,843 @@
+{
+ "schema": "observstory.observations/v1",
+ "note": "An agent-assisted change: 24 commits in under an hour.",
+ "synthetic": true,
+ "fetched_at": "2026-09-18T14:00:00Z",
+ "repository": {
+  "full_name": "northstar/chat-app",
+  "url": null,
+  "default_branch": "main",
+  "visibility": "public",
+  "description": "Synthetic demo repository"
+ },
+ "window": {
+  "hours": 48
+ },
+ "trigger": {
+  "event": "demo-lab"
+ },
+ "commits": [
+  {
+   "sha": "e070230531653120e45ee9b8a8753cc068d1be41",
+   "url": null,
+   "date": "2026-09-17T16:00:00Z",
+   "author": {
+    "login": "ben",
+    "name": "Ben",
+    "type": "User"
+   },
+   "message": "Conversation export (#47)",
+   "paths": [
+    "src/conversation/export.py"
+   ],
+   "parents": [
+    "1cda87b2b0ee0fe3614a581813d438f64bc5605d"
+   ]
+  },
+  {
+   "sha": "1cda87b2b0ee0fe3614a581813d438f64bc5605d",
+   "url": null,
+   "date": "2026-09-17T15:00:00Z",
+   "author": {
+    "login": "ben",
+    "name": "Ben",
+    "type": "User"
+   },
+   "message": "Store serialization refactor (#46)",
+   "paths": [
+    "src/conversation/store.py",
+    "src/conversation/serialize.py"
+   ],
+   "parents": [
+    "3f49d426ec18103d82ec1084ded0f832f5e3a162"
+   ]
+  },
+  {
+   "sha": "3f49d426ec18103d82ec1084ded0f832f5e3a162",
+   "url": null,
+   "date": "2026-09-17T10:00:00Z",
+   "author": {
+    "login": "alice",
+    "name": "Alice",
+    "type": "User"
+   },
+   "message": "Conversation memory (#41)",
+   "paths": [
+    "src/conversation/memory.py",
+    "src/conversation/store.py"
+   ],
+   "parents": [
+    "ab44d38a92171752c744dc6021d04dc4b198ab98"
+   ]
+  }
+ ],
+ "pull_requests": [
+  {
+   "number": 41,
+   "title": "Conversation memory",
+   "body": "",
+   "state": "closed",
+   "draft": false,
+   "merged": true,
+   "head": "alice/conversation-memory",
+   "base": "main",
+   "author": {
+    "login": "alice",
+    "name": "Alice",
+    "type": "User"
+   },
+   "created_at": "2026-09-14T09:00:00Z",
+   "updated_at": "2026-09-17T10:00:00Z",
+   "url": null,
+   "requested_reviewers": [
+    "ben"
+   ],
+   "paths": [
+    "src/conversation/memory.py",
+    "src/conversation/store.py"
+   ],
+   "commits": [
+    {
+     "sha": "d65b48694a253e18c50c3160985766e909711ced",
+     "date": "2026-09-14T09:00:00Z",
+     "author": {
+      "login": "alice",
+      "name": "Alice",
+      "type": "User"
+     },
+     "message": "Conversation memory (1)",
+     "parents": []
+    },
+    {
+     "sha": "8789e7d8d4ef67d477ce234ca7036f1f88f2eda3",
+     "date": "2026-09-14T12:00:00Z",
+     "author": {
+      "login": "alice",
+      "name": "Alice",
+      "type": "User"
+     },
+     "message": "Conversation memory (2)",
+     "parents": []
+    },
+    {
+     "sha": "e1a89217ed91a53809b657033cd846e3361dc22a",
+     "date": "2026-09-14T15:00:00Z",
+     "author": {
+      "login": "alice",
+      "name": "Alice",
+      "type": "User"
+     },
+     "message": "Conversation memory (3)",
+     "parents": []
+    },
+    {
+     "sha": "150bff91e0e67ae0b1c55b512309891e100e7e50",
+     "date": "2026-09-15T09:00:00Z",
+     "author": {
+      "login": "alice",
+      "name": "Alice",
+      "type": "User"
+     },
+     "message": "Conversation memory: eviction (1)",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "e9d03a99fea174c3dd53baed43383ee35683b49f",
+    "source": "compare"
+   }
+  },
+  {
+   "number": 42,
+   "title": "Search index",
+   "body": "",
+   "state": "closed",
+   "draft": false,
+   "merged": true,
+   "head": "ben/search-index",
+   "base": "main",
+   "author": {
+    "login": "ben",
+    "name": "Ben",
+    "type": "User"
+   },
+   "created_at": "2026-09-14T10:00:00Z",
+   "updated_at": "2026-09-16T11:00:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "src/search/index.py",
+    "src/search/query.py"
+   ],
+   "commits": [
+    {
+     "sha": "14f6d29a732fc66ba72500ce8fc8bcc3af68d8dc",
+     "date": "2026-09-14T10:00:00Z",
+     "author": {
+      "login": "ben",
+      "name": "Ben",
+      "type": "User"
+     },
+     "message": "Search index (1)",
+     "parents": []
+    },
+    {
+     "sha": "30733dbc034713b9d8d6ae5a78f88e137f1a3807",
+     "date": "2026-09-14T15:00:00Z",
+     "author": {
+      "login": "ben",
+      "name": "Ben",
+      "type": "User"
+     },
+     "message": "Search index (2)",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "e9d03a99fea174c3dd53baed43383ee35683b49f",
+    "source": "compare"
+   }
+  },
+  {
+   "number": 45,
+   "title": "Search relevance evals",
+   "body": "",
+   "state": "closed",
+   "draft": false,
+   "merged": true,
+   "head": "sofia/pr-45",
+   "base": "main",
+   "author": {
+    "login": "sofia",
+    "name": "Sofia",
+    "type": "User"
+   },
+   "created_at": "2026-09-14T11:00:00Z",
+   "updated_at": "2026-09-14T20:00:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "evals/search/run.py",
+    "evals/search/cases.json"
+   ],
+   "commits": [
+    {
+     "sha": "2e3e2f17e4ce25177d2e42bd5854bd29a05d246f",
+     "date": "2026-09-14T11:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Search relevance evals (1)",
+     "parents": []
+    },
+    {
+     "sha": "ecd956a80d633629caf01f8922eb78e7c5896bb5",
+     "date": "2026-09-14T15:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Search relevance evals (2)",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "e9d03a99fea174c3dd53baed43383ee35683b49f",
+    "source": "compare"
+   }
+  },
+  {
+   "number": 43,
+   "title": "Chat history persistence",
+   "body": "",
+   "state": "closed",
+   "draft": false,
+   "merged": false,
+   "head": "sofia/chat-history",
+   "base": "main",
+   "author": {
+    "login": "sofia",
+    "name": "Sofia",
+    "type": "User"
+   },
+   "created_at": "2026-09-15T13:00:00Z",
+   "updated_at": "2026-09-16T10:00:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "src/conversation/history.py",
+    "src/conversation/store.py"
+   ],
+   "commits": [
+    {
+     "sha": "de00f51674bcea6019895cd3abaabfe8441f6048",
+     "date": "2026-09-15T08:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Chat history persistence (1)",
+     "parents": []
+    },
+    {
+     "sha": "50a51c9562639dd4b187f361114b6ed01fcc5836",
+     "date": "2026-09-15T09:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Chat history persistence (2)",
+     "parents": []
+    },
+    {
+     "sha": "a609a8d4b476883cab40b6a906d96164cffca5c7",
+     "date": "2026-09-15T10:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Chat history persistence (3)",
+     "parents": []
+    },
+    {
+     "sha": "67562c68a89b429fe5078ba94b94902f2a65b3af",
+     "date": "2026-09-15T13:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Chat history persistence (4)",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "e02a034ede6ecbbfcf8f02558a25c889ef3363f9",
+    "source": "compare"
+   }
+  },
+  {
+   "number": 46,
+   "title": "Store serialization refactor",
+   "body": "",
+   "state": "closed",
+   "draft": false,
+   "merged": true,
+   "head": "ben/store-serialization",
+   "base": "alice/conversation-memory",
+   "author": {
+    "login": "ben",
+    "name": "Ben",
+    "type": "User"
+   },
+   "created_at": "2026-09-15T12:00:00Z",
+   "updated_at": "2026-09-17T15:00:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "src/conversation/store.py",
+    "src/conversation/serialize.py"
+   ],
+   "commits": [
+    {
+     "sha": "673f74a372e63580ffbccecf9b335c84fe705fad",
+     "date": "2026-09-15T12:00:00Z",
+     "author": {
+      "login": "ben",
+      "name": "Ben",
+      "type": "User"
+     },
+     "message": "Store serialization refactor (1)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "6cba266ccbdc5959dea214471e062fabd00c22fe",
+     "date": "2026-09-15T12:12:00Z",
+     "author": {
+      "login": "ben",
+      "name": "Ben",
+      "type": "User"
+     },
+     "message": "Store serialization refactor (2)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "cad81abc36c39b064cc834ec59e10e51d5cdb6b9",
+     "date": "2026-09-15T12:24:00Z",
+     "author": {
+      "login": "ben",
+      "name": "Ben",
+      "type": "User"
+     },
+     "message": "Store serialization refactor (3)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "460108376eef2da50dc26ff9d14d64e9eb02be3b",
+     "date": "2026-09-15T14:00:00Z",
+     "author": {
+      "login": "ben",
+      "name": "Ben",
+      "type": "User"
+     },
+     "message": "Store serialization refactor (4)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "e02a034ede6ecbbfcf8f02558a25c889ef3363f9",
+    "source": "compare"
+   }
+  },
+  {
+   "number": 47,
+   "title": "Conversation export",
+   "body": "",
+   "state": "closed",
+   "draft": false,
+   "merged": true,
+   "head": "ben/export",
+   "base": "main",
+   "author": {
+    "login": "ben",
+    "name": "Ben",
+    "type": "User"
+   },
+   "created_at": "2026-09-15T14:00:00Z",
+   "updated_at": "2026-09-17T16:00:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "src/conversation/export.py"
+   ],
+   "commits": [
+    {
+     "sha": "76da10a86685b52c4a117af5cca4146020803d70",
+     "date": "2026-09-15T14:00:00Z",
+     "author": {
+      "login": "ben",
+      "name": "Ben",
+      "type": "User"
+     },
+     "message": "Conversation export (1)",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "e02a034ede6ecbbfcf8f02558a25c889ef3363f9",
+    "source": "compare"
+   }
+  },
+  {
+   "number": 44,
+   "title": "Evaluation harness for conversation memory",
+   "body": "Evaluates the memory API.",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "sofia/pr-44",
+   "base": "main",
+   "author": {
+    "login": "sofia",
+    "name": "Sofia",
+    "type": "User"
+   },
+   "created_at": "2026-09-16T11:00:00Z",
+   "updated_at": "2026-09-18T09:00:00Z",
+   "url": null,
+   "requested_reviewers": [
+    "alice"
+   ],
+   "paths": [
+    "evals/conversation/test_memory.py",
+    "evals/conversation/cases.json"
+   ],
+   "commits": [
+    {
+     "sha": "b83325ed25aa7bede6b482b65af32d6821e81301",
+     "date": "2026-09-16T11:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Evaluation harness for conversation memory (1)",
+     "parents": []
+    },
+    {
+     "sha": "69182b9e6de979a18c80d6747cdc6ef7998c0d16",
+     "date": "2026-09-16T13:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Evaluation harness for conversation memory (2)",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "ab44d38a92171752c744dc6021d04dc4b198ab98",
+    "source": "compare"
+   }
+  },
+  {
+   "number": 48,
+   "title": "Composer keyboard shortcuts",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "alice/pr-48",
+   "base": "main",
+   "author": {
+    "login": "alice",
+    "name": "Alice",
+    "type": "User"
+   },
+   "created_at": "2026-09-18T08:00:00Z",
+   "updated_at": "2026-09-18T09:00:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "web/chat/Composer.tsx"
+   ],
+   "commits": [
+    {
+     "sha": "072fd5ee40ed6600ad331118d15f0c4b7265c360",
+     "date": "2026-09-18T08:00:00Z",
+     "author": {
+      "login": "alice",
+      "name": "Alice",
+      "type": "User"
+     },
+     "message": "Composer keyboard shortcuts (1)",
+     "parents": []
+    },
+    {
+     "sha": "c47bb4dfedb7ea755da65500f5ec033bc0d41489",
+     "date": "2026-09-18T09:00:00Z",
+     "author": {
+      "login": "alice",
+      "name": "Alice",
+      "type": "User"
+     },
+     "message": "Composer keyboard shortcuts (2)",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "e070230531653120e45ee9b8a8753cc068d1be41",
+    "source": "compare"
+   }
+  },
+  {
+   "number": 50,
+   "title": "Generate settings screens",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "sofia/settings-screens",
+   "base": "main",
+   "author": {
+    "login": "sofia",
+    "name": "Sofia",
+    "type": "User"
+   },
+   "created_at": "2026-09-18T13:00:00Z",
+   "updated_at": "2026-09-18T13:46:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "web/settings/Profile.tsx",
+    "web/settings/Privacy.tsx",
+    "web/settings/Notifications.tsx"
+   ],
+   "commits": [
+    {
+     "sha": "d8d5673e5a5c308245366fe323e3cfd02ffa2d1d",
+     "date": "2026-09-18T13:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (1)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "3855aa8946ae6376a49aff121cb07e93cb2fb269",
+     "date": "2026-09-18T13:02:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (2)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "b8d5543f9b71dd906496459856641ddba99528d1",
+     "date": "2026-09-18T13:04:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (3)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "390fce95401a1d3f5cd01cf2e1361a0dc061e620",
+     "date": "2026-09-18T13:06:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (4)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "1f1023d67617d54fb60e33a1b48f36e510f2d2ed",
+     "date": "2026-09-18T13:08:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (5)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "11e6b87630f2a077283a28a6b0ec0e9441acc62e",
+     "date": "2026-09-18T13:10:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (6)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "5e90c95d08261b5859a83c866059e70a98ded67f",
+     "date": "2026-09-18T13:12:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (7)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "c55857875080343b06db039c9ceaf6c3d8f11c5c",
+     "date": "2026-09-18T13:14:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (8)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "469b7cdf8f045f26c9310e8b8b406f883b52ee79",
+     "date": "2026-09-18T13:16:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (9)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "abcca4fefd2391c6b757341c14985eb55c32ed14",
+     "date": "2026-09-18T13:18:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (10)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "1db5852b9d6f3d4941f89fcd4fbd1f99de5814ea",
+     "date": "2026-09-18T13:20:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (11)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "1d23aa597870c629735d784fa0a34433cef6f5dc",
+     "date": "2026-09-18T13:22:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (12)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "9d608320236146a3100ffe9508489ca44a982159",
+     "date": "2026-09-18T13:24:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (13)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "06772b6fa18bfcd0b032c50f095b046190dd57b2",
+     "date": "2026-09-18T13:26:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (14)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "3ed9417f501a1b8182edb62b94805d23566aeb9c",
+     "date": "2026-09-18T13:28:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (15)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "675484c68368b0a3e83d81bd95d8f0aad22034c0",
+     "date": "2026-09-18T13:30:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (16)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "050b917b59ef632271a6c921ae9cb353ea9aedec",
+     "date": "2026-09-18T13:32:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (17)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "e8ddc9a3f51a83b6e8bfc5d6415adabc1e50bded",
+     "date": "2026-09-18T13:34:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (18)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "3436220868b3bac5be853863c9329ab1551889fe",
+     "date": "2026-09-18T13:36:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (19)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "8c1928b2955d46a51a1022f4f42a260412b891fd",
+     "date": "2026-09-18T13:38:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (20)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "e1b54cf57bddfa1abc521e28053efb90d72de512",
+     "date": "2026-09-18T13:40:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (21)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "490dc993f891884961f310df906193b2d727f00f",
+     "date": "2026-09-18T13:42:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (22)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "6c4498023cb21c6bedd3e20977880fa846efcf7d",
+     "date": "2026-09-18T13:44:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (23)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    },
+    {
+     "sha": "826f280956acc9e3d04626d438e140f5db7dd608",
+     "date": "2026-09-18T13:46:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Generate settings screens (24)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "e070230531653120e45ee9b8a8753cc068d1be41",
+    "source": "compare"
+   }
+  }
+ ],
+ "branches": [],
+ "issues": [],
+ "meta": {
+  "source": "synthetic (Demo Lab)",
+  "api_calls": 0,
+  "rate_limit_remaining": null,
+  "degraded": []
+ }
+}
