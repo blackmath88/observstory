@@ -30,6 +30,9 @@
       "message": "Add Double Diamond production brief for Claude",
       "paths": [
         "CLAUDE_DOUBLE_DIAMOND.md"
+      ],
+      "parents": [
+        "e56b289b71e1cf3dd3e3ecb4481f8e0d98b8e28d"
       ]
     },
     {
@@ -44,6 +47,9 @@
       "message": "Add versioned snapshot schema",
       "paths": [
         "schema/snapshot-v0.json"
+      ],
+      "parents": [
+        "5dcd463b7c25a89b0545d4064b9cc49050528a65"
       ]
     },
     {
@@ -58,6 +64,9 @@
       "message": "Configure Observstory self-observation lanes",
       "paths": [
         "observstory.config.json"
+      ],
+      "parents": [
+        "c63d3e7a55cfaa6eb17736c11a7f8ab9e77fea0b"
       ]
     },
     {
@@ -72,6 +81,9 @@
       "message": "Dogfood Observstory on its own repository",
       "paths": [
         ".github/workflows/observstory.yml"
+      ],
+      "parents": [
+        "845327c44af6d134ae19b8f0feebed1b96cd3388"
       ]
     },
     {
@@ -86,6 +98,9 @@
       "message": "Build typed GitHub snapshot and generated control center",
       "paths": [
         "scripts/observstory.py"
+      ],
+      "parents": [
+        "f93a4495c5f8780ff335f3b3b2bc28a61cae82c2"
       ]
     },
     {
@@ -100,6 +115,9 @@
       "message": "Add Observstory roadmap",
       "paths": [
         "ROADMAP.md"
+      ],
+      "parents": [
+        "d9ec3c920d7c00b9d075cb03843b1d10aa5fff11"
       ]
     },
     {
@@ -114,6 +132,9 @@
       "message": "Document Observstory system boundary and service architecture",
       "paths": [
         "ARCHITECTURE.md"
+      ],
+      "parents": [
+        "167c997c387f5398874ac547e8ec4d1ee96ce2d1"
       ]
     },
     {
@@ -128,6 +149,9 @@
       "message": "Add example typed lane configuration",
       "paths": [
         "observstory.config.example.json"
+      ],
+      "parents": [
+        "9a0c6701944c85231bde41c2b7a41473d4d5bb1e"
       ]
     },
     {
@@ -142,6 +166,9 @@
       "message": "Add reusable Observstory composite action",
       "paths": [
         "action.yml"
+      ],
+      "parents": [
+        "0157d860cc02ad69d6ea2c672787fb3748a28ba9"
       ]
     },
     {
@@ -156,7 +183,8 @@
       "message": "Initialize Observstory product README",
       "paths": [
         "README.md"
-      ]
+      ],
+      "parents": []
     }
   ],
   "pull_requests": [],
@@ -323,7 +351,11 @@
           },
           "message": "deliver: radar hardening, anchored ignore fix from dogfooding, demo, agent contract, README/ARCHITECTURE/ROADMAP\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01WjuUmMNNqin2MCfUuBhYGQ"
         }
-      ]
+      ],
+      "merge_base": {
+        "sha": "9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+        "source": "compare"
+      }
     }
   ],
   "issues": [],
@@ -331,6 +363,7 @@
     "source": "GitHub REST API",
     "api_calls": 16,
     "rate_limit_remaining": 14965,
-    "degraded": []
+    "degraded": [],
+    "retrofit": "Issue #2 re-derivation: commit parents and the branch merge base were added afterwards from local git (git rev-list --parents / git merge-base, which equals compare's merge_base_commit). Nothing else changed."
   }
 }

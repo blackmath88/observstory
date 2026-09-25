@@ -797,7 +797,7 @@
    "draft": false,
    "merged": false,
    "head": "pull/21974",
-   "base": "main",
+   "base": "pull/21973",
    "author": {
     "login": null,
     "name": "Charlie Marsh",
@@ -905,7 +905,8 @@
     "sha": "30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
     "source": "compare"
    },
-   "_head_sha": "d085a94053aa5ec5fe9047106f624e387c103c91"
+   "_head_sha": "d085a94053aa5ec5fe9047106f624e387c103c91",
+   "_stacked_on": 21973
   },
   {
    "number": 21973,
@@ -1005,7 +1006,7 @@
    "draft": false,
    "merged": false,
    "head": "pull/21962",
-   "base": "main",
+   "base": "pull/21961",
    "author": {
     "login": null,
     "name": "konstin",
@@ -1213,7 +1214,8 @@
     "sha": "3db665232544183edcb80dd7077b8051b365e236",
     "source": "compare"
    },
-   "_head_sha": "b9f3f4a7f051059201cd77e0ebc2bc87692084b8"
+   "_head_sha": "b9f3f4a7f051059201cd77e0ebc2bc87692084b8",
+   "_stacked_on": 21961
   },
   {
    "number": 21952,
@@ -1223,7 +1225,7 @@
    "draft": false,
    "merged": false,
    "head": "pull/21952",
-   "base": "main",
+   "base": "pull/21944",
    "author": {
     "login": null,
     "name": "Tomasz (Tom) Kramkowski",
@@ -1305,7 +1307,8 @@
     "sha": "0e7433eee906fe81709c95c5bde556263367f21f",
     "source": "compare"
    },
-   "_head_sha": "75e832616dfee3395cd61caca3de19cec25bf21e"
+   "_head_sha": "75e832616dfee3395cd61caca3de19cec25bf21e",
+   "_stacked_on": 21944
   },
   {
    "number": 21944,
@@ -1315,7 +1318,7 @@
    "draft": false,
    "merged": false,
    "head": "pull/21944",
-   "base": "main",
+   "base": "pull/21942",
    "author": {
     "login": null,
     "name": "Tomasz (Tom) Kramkowski",
@@ -1364,7 +1367,8 @@
     "sha": "0e7433eee906fe81709c95c5bde556263367f21f",
     "source": "compare"
    },
-   "_head_sha": "49e8f6f8e44dcc6461902a7f758055bcf7693054"
+   "_head_sha": "49e8f6f8e44dcc6461902a7f758055bcf7693054",
+   "_stacked_on": 21942
   },
   {
    "number": 21942,
@@ -1565,7 +1569,7 @@
    "draft": false,
    "merged": false,
    "head": "pull/21961",
-   "base": "main",
+   "base": "pull/21963",
    "author": {
     "login": null,
     "name": "konstin",
@@ -1718,7 +1722,8 @@
     "sha": "3db665232544183edcb80dd7077b8051b365e236",
     "source": "compare"
    },
-   "_head_sha": "9b923ba5b70bdea4cd37c913128751c09870859f"
+   "_head_sha": "9b923ba5b70bdea4cd37c913128751c09870859f",
+   "_stacked_on": 21963
   },
   {
    "number": 21963,
@@ -2694,7 +2699,7 @@
    "draft": false,
    "merged": false,
    "head": "pull/21951",
-   "base": "main",
+   "base": "pull/21930",
    "author": {
     "login": null,
     "name": "Charlie Marsh",
@@ -3049,7 +3054,8 @@
     "sha": "3db665232544183edcb80dd7077b8051b365e236",
     "source": "compare"
    },
-   "_head_sha": "aca148a0486834251f2c48dceef034ed25a6e238"
+   "_head_sha": "aca148a0486834251f2c48dceef034ed25a6e238",
+   "_stacked_on": 21930
   },
   {
    "number": 21930,

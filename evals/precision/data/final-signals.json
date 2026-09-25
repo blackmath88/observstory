@@ -1,0 +1,2227 @@
+[
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv",
+  "area": "crates/uv",
+  "confidence": "high",
+  "pairs": [
+   "pr:21304|direct:Charlie Marsh",
+   "pr:21314|direct:Charlie Marsh",
+   "pr:21930|direct:Charlie Marsh",
+   "pr:21951|direct:Charlie Marsh",
+   "pr:21952|direct:Charlie Marsh",
+   "pr:21961|direct:Charlie Marsh",
+   "pr:21962|direct:Charlie Marsh",
+   "pr:21963|direct:Charlie Marsh",
+   "pr:21951|direct:Tomasz Kramkowski",
+   "pr:18881|pr:21314",
+   "pr:18881|pr:21962",
+   "pr:21304|pr:21930",
+   "pr:21304|pr:21951",
+   "pr:21304|pr:21952",
+   "pr:21304|pr:21961",
+   "pr:21304|pr:21962",
+   "pr:21304|pr:21963",
+   "pr:21304|pr:21974",
+   "pr:21314|pr:21930",
+   "pr:21314|pr:21951",
+   "pr:21314|pr:21952",
+   "pr:21314|pr:21961",
+   "pr:21314|pr:21962",
+   "pr:21314|pr:21973",
+   "pr:21314|pr:21974",
+   "pr:21758|pr:21962",
+   "pr:21930|pr:21952",
+   "pr:21930|pr:21962",
+   "pr:21930|pr:21973",
+   "pr:21930|pr:21974",
+   "pr:21942|pr:21951",
+   "pr:21942|pr:21952",
+   "pr:21944|pr:21951",
+   "pr:21951|pr:21952",
+   "pr:21951|pr:21961",
+   "pr:21951|pr:21962",
+   "pr:21951|pr:21973",
+   "pr:21951|pr:21974",
+   "pr:21952|pr:21973",
+   "pr:21952|pr:21974",
+   "pr:21961|pr:21973",
+   "pr:21961|pr:21974",
+   "pr:21962|pr:21963",
+   "pr:21962|pr:21973",
+   "pr:21962|pr:21974",
+   "pr:21963|pr:21973",
+   "pr:21963|pr:21974"
+  ],
+  "same_line_pairs": 9,
+  "files": [
+   "crates/uv/src/commands/pip/compile.rs",
+   "crates/uv/src/commands/pip/install.rs",
+   "crates/uv/src/commands/pip/sync.rs",
+   "crates/uv/src/commands/project/export.rs",
+   "crates/uv/src/commands/project/init.rs",
+   "crates/uv/src/commands/project/init_vcs.rs",
+   "crates/uv/src/commands/project/lock.rs",
+   "crates/uv/src/commands/project/lock/metadata.rs",
+   "crates/uv/src/commands/project/mod.rs",
+   "crates/uv/src/commands/project/sync.rs",
+   "crates/uv/src/commands/project/upgrade.rs",
+   "crates/uv/src/commands/publish.rs",
+   "crates/uv/src/commands/pylock.rs",
+   "crates/uv/src/commands/reporters.rs",
+   "crates/uv/src/commands/tool/common.rs",
+   "crates/uv/src/commands/tool/install.rs",
+   "crates/uv/src/commands/tool/run.rs",
+   "crates/uv/src/commands/tool/upgrade.rs",
+   "crates/uv/src/commands/workspace/metadata.rs",
+   "crates/uv/src/lib.rs",
+   "crates/uv/src/settings.rs",
+   "crates/uv/tests/lock/lock.rs",
+   "crates/uv/tests/pip_compile/pip_compile.rs",
+   "crates/uv/tests/pip_install/direct_url_hashes.rs",
+   "crates/uv/tests/pip_install/pip_install.rs",
+   "crates/uv/tests/project/edit.rs",
+   "crates/uv/tests/sync/show_settings.rs",
+   "crates/uv/tests/sync/sync.rs",
+   "crates/uv/tests/tool/tool_upgrade.rs"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Charlie Marsh",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/astral-sh/uv/commit/30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "direct:Tomasz Kramkowski",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/astral-sh/uv/commit/0e7433eee906fe81709c95c5bde556263367f21f",
+    "actors": [
+     "Tomasz Kramkowski"
+    ]
+   },
+   {
+    "id": "pr:18881",
+    "title": "Merge upstream main; add python list --all-variants test",
+    "url": "https://github.com/astral-sh/uv/pull/18881",
+    "actors": [
+     "Rene Zander"
+    ]
+   },
+   {
+    "id": "pr:21304",
+    "title": "Use `Eq`",
+    "url": "https://github.com/astral-sh/uv/pull/21304",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21314",
+    "title": "Reject MD5-only hashes added by build requirements",
+    "url": "https://github.com/astral-sh/uv/pull/21314",
+    "actors": [
+     "Zanie Blue"
+    ]
+   },
+   {
+    "id": "pr:21758",
+    "title": "fix: use nix libc signal constants",
+    "url": "https://github.com/astral-sh/uv/pull/21758",
+    "actors": [
+     "TayfurYldz"
+    ]
+   },
+   {
+    "id": "pr:21930",
+    "title": "Normalize build constraints without hash precedence",
+    "url": "https://github.com/astral-sh/uv/pull/21930",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21942",
+    "title": "unify generation of sdists with backends with side-effects",
+    "url": "https://github.com/astral-sh/uv/pull/21942",
+    "actors": [
+     "Tomasz (Tom) Kramkowski"
+    ]
+   },
+   {
+    "id": "pr:21944",
+    "title": "use generate_wheel_with_files for locked_build_dependency_wheel",
+    "url": "https://github.com/astral-sh/uv/pull/21944",
+    "actors": [
+     "Tomasz (Tom) Kramkowski"
+    ]
+   },
+   {
+    "id": "pr:21951",
+    "title": "Simplify build constraint comparison with intersected hashes",
+    "url": "https://github.com/astral-sh/uv/pull/21951",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21952",
+    "title": "Allow custom file metadata in package test fixtures",
+    "url": "https://github.com/astral-sh/uv/pull/21952",
+    "actors": [
+     "Tomasz (Tom) Kramkowski"
+    ]
+   },
+   {
+    "id": "pr:21961",
+    "title": "Reject unusable packaged lock exports",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21963",
+    "title": "Separate lock handling from network clients",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "title": "Remove unused URL persistence methods",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "title": "Align URL validation across CLI and configuration",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "actors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-configuration",
+  "area": "crates/uv-configuration",
+  "confidence": "high",
+  "pairs": [
+   "pr:21930|direct:Charlie Marsh",
+   "pr:21951|direct:Charlie Marsh",
+   "pr:21951|pr:21961",
+   "pr:21951|pr:21962",
+   "pr:21951|pr:21963",
+   "pr:21961|pr:21973",
+   "pr:21961|pr:21974",
+   "pr:21962|pr:21963",
+   "pr:21962|pr:21973",
+   "pr:21962|pr:21974",
+   "pr:21963|pr:21973",
+   "pr:21963|pr:21974"
+  ],
+  "same_line_pairs": 3,
+  "files": [
+   "crates/uv-configuration/Cargo.toml",
+   "crates/uv-configuration/src/authentication.rs",
+   "crates/uv-configuration/src/excludes.rs",
+   "crates/uv-configuration/src/hash_strategy.rs",
+   "crates/uv-configuration/src/lib.rs",
+   "crates/uv-configuration/src/proxy_url.rs",
+   "crates/uv-configuration/src/vcs.rs"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Charlie Marsh",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/astral-sh/uv/commit/30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21930",
+    "title": "Normalize build constraints without hash precedence",
+    "url": "https://github.com/astral-sh/uv/pull/21930",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21951",
+    "title": "Simplify build constraint comparison with intersected hashes",
+    "url": "https://github.com/astral-sh/uv/pull/21951",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21961",
+    "title": "Reject unusable packaged lock exports",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21963",
+    "title": "Separate lock handling from network clients",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "title": "Remove unused URL persistence methods",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "title": "Align URL validation across CLI and configuration",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "actors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-lock",
+  "area": "crates/uv-lock",
+  "confidence": "high",
+  "pairs": [
+   "pr:21951|direct:Charlie Marsh",
+   "pr:21961|direct:Charlie Marsh",
+   "pr:21962|direct:Charlie Marsh",
+   "pr:21963|direct:Charlie Marsh",
+   "pr:21951|pr:21961",
+   "pr:21951|pr:21962",
+   "pr:21951|pr:21963",
+   "pr:21951|pr:21973",
+   "pr:21951|pr:21974",
+   "pr:21961|pr:21973",
+   "pr:21961|pr:21974",
+   "pr:21962|pr:21963",
+   "pr:21962|pr:21973",
+   "pr:21962|pr:21974",
+   "pr:21963|pr:21973",
+   "pr:21963|pr:21974"
+  ],
+  "same_line_pairs": 2,
+  "files": [
+   "crates/uv-lock/Cargo.toml",
+   "crates/uv-lock/src/lib.rs",
+   "crates/uv-lock/src/lock/export/metadata.rs",
+   "crates/uv-lock/src/lock/export/pylock_toml.rs",
+   "crates/uv-lock/src/lock/mod.rs",
+   "crates/uv-lock/src/metadata.rs"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Charlie Marsh",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/astral-sh/uv/commit/30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21951",
+    "title": "Simplify build constraint comparison with intersected hashes",
+    "url": "https://github.com/astral-sh/uv/pull/21951",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21961",
+    "title": "Reject unusable packaged lock exports",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21963",
+    "title": "Separate lock handling from network clients",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "title": "Remove unused URL persistence methods",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "title": "Align URL validation across CLI and configuration",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "actors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-distribution-types",
+  "area": "crates/uv-distribution-types",
+  "confidence": "high",
+  "pairs": [
+   "pr:21961|direct:Charlie Marsh",
+   "pr:21962|direct:Charlie Marsh",
+   "pr:21963|direct:Charlie Marsh",
+   "pr:21961|pr:21973",
+   "pr:21961|pr:21974",
+   "pr:21962|pr:21963",
+   "pr:21962|pr:21973",
+   "pr:21962|pr:21974",
+   "pr:21963|pr:21973",
+   "pr:21963|pr:21974"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "crates/uv-distribution-types/Cargo.toml",
+   "crates/uv-distribution-types/src/index.rs",
+   "crates/uv-distribution-types/src/index_url.rs",
+   "crates/uv-distribution-types/src/lib.rs",
+   "crates/uv-distribution-types/src/metadata.rs",
+   "crates/uv-distribution-types/src/requires_dist.rs"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Charlie Marsh",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/astral-sh/uv/commit/30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21961",
+    "title": "Reject unusable packaged lock exports",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21963",
+    "title": "Separate lock handling from network clients",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "title": "Remove unused URL persistence methods",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "title": "Align URL validation across CLI and configuration",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "actors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:uv.schema.json",
+  "area": "uv.schema.json",
+  "confidence": "high",
+  "pairs": [
+   "pr:21314|pr:21951",
+   "pr:21314|pr:21961",
+   "pr:21314|pr:21962",
+   "pr:21314|pr:21973",
+   "pr:21314|pr:21974",
+   "pr:21951|pr:21961",
+   "pr:21951|pr:21962",
+   "pr:21951|pr:21973",
+   "pr:21951|pr:21974",
+   "pr:21961|pr:21973",
+   "pr:21961|pr:21974",
+   "pr:21962|pr:21973",
+   "pr:21962|pr:21974"
+  ],
+  "same_line_pairs": 3,
+  "files": [
+   "uv.schema.json"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21314",
+    "title": "Reject MD5-only hashes added by build requirements",
+    "url": "https://github.com/astral-sh/uv/pull/21314",
+    "actors": [
+     "Zanie Blue"
+    ]
+   },
+   {
+    "id": "pr:21951",
+    "title": "Simplify build constraint comparison with intersected hashes",
+    "url": "https://github.com/astral-sh/uv/pull/21951",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21961",
+    "title": "Reject unusable packaged lock exports",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "title": "Remove unused URL persistence methods",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "title": "Align URL validation across CLI and configuration",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "actors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-client",
+  "area": "crates/uv-client",
+  "confidence": "high",
+  "pairs": [
+   "pr:21961|pr:21973",
+   "pr:21961|pr:21974",
+   "pr:21962|pr:21963",
+   "pr:21962|pr:21973",
+   "pr:21962|pr:21974",
+   "pr:21963|pr:21973",
+   "pr:21963|pr:21974"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "crates/uv-client/src/base_client.rs",
+   "crates/uv-client/src/lib.rs"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21961",
+    "title": "Reject unusable packaged lock exports",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21963",
+    "title": "Separate lock handling from network clients",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "title": "Remove unused URL persistence methods",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "title": "Align URL validation across CLI and configuration",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "actors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-dev",
+  "area": "crates/uv-dev",
+  "confidence": "high",
+  "pairs": [
+   "pr:21314|direct:Charlie Marsh",
+   "pr:21951|direct:Charlie Marsh",
+   "pr:21961|direct:Charlie Marsh",
+   "pr:21962|direct:Charlie Marsh",
+   "pr:21314|pr:21951",
+   "pr:21314|pr:21961",
+   "pr:21314|pr:21962",
+   "pr:21951|pr:21961",
+   "pr:21951|pr:21962"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "crates/uv-dev/src/generate_preview_features_reference.rs"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Charlie Marsh",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/astral-sh/uv/commit/30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21314",
+    "title": "Reject MD5-only hashes added by build requirements",
+    "url": "https://github.com/astral-sh/uv/pull/21314",
+    "actors": [
+     "Zanie Blue"
+    ]
+   },
+   {
+    "id": "pr:21951",
+    "title": "Simplify build constraint comparison with intersected hashes",
+    "url": "https://github.com/astral-sh/uv/pull/21951",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21961",
+    "title": "Reject unusable packaged lock exports",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-preview",
+  "area": "crates/uv-preview",
+  "confidence": "high",
+  "pairs": [
+   "pr:21314|direct:Charlie Marsh",
+   "pr:21951|direct:Charlie Marsh",
+   "pr:21961|direct:Charlie Marsh",
+   "pr:21962|direct:Charlie Marsh",
+   "pr:21314|pr:21951",
+   "pr:21314|pr:21961",
+   "pr:21314|pr:21962",
+   "pr:21951|pr:21961",
+   "pr:21951|pr:21962"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "crates/uv-preview/src/lib.rs"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Charlie Marsh",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/astral-sh/uv/commit/30de9e2cc92018c7c16a1ab66bb9b8341fbf0eff",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21314",
+    "title": "Reject MD5-only hashes added by build requirements",
+    "url": "https://github.com/astral-sh/uv/pull/21314",
+    "actors": [
+     "Zanie Blue"
+    ]
+   },
+   {
+    "id": "pr:21951",
+    "title": "Simplify build constraint comparison with intersected hashes",
+    "url": "https://github.com/astral-sh/uv/pull/21951",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21961",
+    "title": "Reject unusable packaged lock exports",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-types",
+  "area": "crates/uv-types",
+  "confidence": "high",
+  "pairs": [
+   "pr:21314|pr:21930",
+   "pr:21314|pr:21951",
+   "pr:21962|pr:21963"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "crates/uv-types/Cargo.toml",
+   "crates/uv-types/src/hash.rs",
+   "crates/uv-types/src/lib.rs"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21314",
+    "title": "Reject MD5-only hashes added by build requirements",
+    "url": "https://github.com/astral-sh/uv/pull/21314",
+    "actors": [
+     "Zanie Blue"
+    ]
+   },
+   {
+    "id": "pr:21930",
+    "title": "Normalize build constraints without hash precedence",
+    "url": "https://github.com/astral-sh/uv/pull/21930",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21951",
+    "title": "Simplify build constraint comparison with intersected hashes",
+    "url": "https://github.com/astral-sh/uv/pull/21951",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21963",
+    "title": "Separate lock handling from network clients",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "actors": [
+     "konstin"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-cli",
+  "area": "crates/uv-cli",
+  "confidence": "high",
+  "pairs": [
+   "pr:18881|pr:21314",
+   "pr:18881|pr:21962",
+   "pr:18881|pr:21977",
+   "pr:21314|pr:21962",
+   "pr:21314|pr:21977",
+   "pr:21962|pr:21977"
+  ],
+  "same_line_pairs": 0,
+  "files": [
+   "crates/uv-cli/src/lib.rs"
+  ],
+  "work_items": [
+   {
+    "id": "pr:18881",
+    "title": "Merge upstream main; add python list --all-variants test",
+    "url": "https://github.com/astral-sh/uv/pull/18881",
+    "actors": [
+     "Rene Zander"
+    ]
+   },
+   {
+    "id": "pr:21314",
+    "title": "Reject MD5-only hashes added by build requirements",
+    "url": "https://github.com/astral-sh/uv/pull/21314",
+    "actors": [
+     "Zanie Blue"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21977",
+    "title": "docs: clarify group flags with --no-sync",
+    "url": "https://github.com/astral-sh/uv/pull/21977",
+    "actors": [
+     "GreedyC"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-tool",
+  "area": "crates/uv-tool",
+  "confidence": "high",
+  "pairs": [
+   "pr:21304|pr:21930",
+   "pr:21304|pr:21951",
+   "pr:21930|pr:21962",
+   "pr:21951|pr:21962"
+  ],
+  "same_line_pairs": 2,
+  "files": [
+   "crates/uv-tool/src/lib.rs",
+   "crates/uv-tool/src/tool.rs"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21304",
+    "title": "Use `Eq`",
+    "url": "https://github.com/astral-sh/uv/pull/21304",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21930",
+    "title": "Normalize build constraints without hash precedence",
+    "url": "https://github.com/astral-sh/uv/pull/21930",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21951",
+    "title": "Simplify build constraint comparison with intersected hashes",
+    "url": "https://github.com/astral-sh/uv/pull/21951",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-workspace",
+  "area": "crates/uv-workspace",
+  "confidence": "high",
+  "pairs": [
+   "pr:21961|pr:21973",
+   "pr:21961|pr:21974",
+   "pr:21962|pr:21973",
+   "pr:21962|pr:21974"
+  ],
+  "same_line_pairs": 0,
+  "files": [
+   "crates/uv-workspace/src/pyproject.rs"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21961",
+    "title": "Reject unusable packaged lock exports",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21973",
+    "title": "Remove unused URL persistence methods",
+    "url": "https://github.com/astral-sh/uv/pull/21973",
+    "actors": [
+     "Charlie Marsh"
+    ]
+   },
+   {
+    "id": "pr:21974",
+    "title": "Align URL validation across CLI and configuration",
+    "url": "https://github.com/astral-sh/uv/pull/21974",
+    "actors": [
+     "Charlie Marsh",
+     "zaniebot"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-static",
+  "area": "crates/uv-static",
+  "confidence": "high",
+  "pairs": [
+   "pr:21314|pr:21961",
+   "pr:21314|pr:21962"
+  ],
+  "same_line_pairs": 0,
+  "files": [
+   "crates/uv-static/src/env_vars.rs"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21314",
+    "title": "Reject MD5-only hashes added by build requirements",
+    "url": "https://github.com/astral-sh/uv/pull/21314",
+    "actors": [
+     "Zanie Blue"
+    ]
+   },
+   {
+    "id": "pr:21961",
+    "title": "Reject unusable packaged lock exports",
+    "url": "https://github.com/astral-sh/uv/pull/21961",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:.github",
+  "area": ".github",
+  "confidence": "high",
+  "pairs": [
+   "pr:21778|direct:Zsolt Dollenstein"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   ".github/workflows/pull-request-security-review.yml"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Zsolt Dollenstein",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/astral-sh/uv/commit/214d7f677585fbb0bb46fadef890335e388641c0",
+    "actors": [
+     "Zsolt Dollenstein"
+    ]
+   },
+   {
+    "id": "pr:21778",
+    "title": "Use shared PR security review workflow",
+    "url": "https://github.com/astral-sh/uv/pull/21778",
+    "actors": [
+     "Tomasz (Tom) Kramkowski",
+     "Zsolt Dollenstein"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:Cargo.toml",
+  "area": "Cargo.toml",
+  "confidence": "medium",
+  "pairs": [
+   "pr:21962|pr:21963"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "Cargo.toml"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21963",
+    "title": "Separate lock handling from network clients",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "actors": [
+     "konstin"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-auth",
+  "area": "crates/uv-auth",
+  "confidence": "medium",
+  "pairs": [
+   "pr:21962|pr:21963"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "crates/uv-auth/Cargo.toml",
+   "crates/uv-auth/src/credentials.rs",
+   "crates/uv-auth/src/lib.rs",
+   "crates/uv-auth/src/middleware.rs",
+   "crates/uv-auth/src/providers.rs",
+   "crates/uv-auth/src/store.rs"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21963",
+    "title": "Separate lock handling from network clients",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "actors": [
+     "konstin"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-auth-types",
+  "area": "crates/uv-auth-types",
+  "confidence": "medium",
+  "pairs": [
+   "pr:21962|pr:21963"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "crates/uv-auth-types/Cargo.toml",
+   "crates/uv-auth-types/src/credentials.rs",
+   "crates/uv-auth-types/src/index.rs",
+   "crates/uv-auth-types/src/lib.rs",
+   "crates/uv-auth-types/src/realm.rs"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21963",
+    "title": "Separate lock handling from network clients",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "actors": [
+     "konstin"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-distribution",
+  "area": "crates/uv-distribution",
+  "confidence": "medium",
+  "pairs": [
+   "pr:21962|pr:21963"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "crates/uv-distribution/Cargo.toml",
+   "crates/uv-distribution/src/lib.rs",
+   "crates/uv-distribution/src/metadata/mod.rs",
+   "crates/uv-distribution/src/metadata/requires_dist.rs",
+   "crates/uv-distribution/src/metadata_response.rs",
+   "crates/uv-distribution/src/source/mod.rs"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21963",
+    "title": "Separate lock handling from network clients",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "actors": [
+     "konstin"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-git",
+  "area": "crates/uv-git",
+  "confidence": "medium",
+  "pairs": [
+   "pr:21962|pr:21963"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "crates/uv-git/src/lib.rs",
+   "crates/uv-git/src/resolver.rs"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21963",
+    "title": "Separate lock handling from network clients",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "actors": [
+     "konstin"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-git-types",
+  "area": "crates/uv-git-types",
+  "confidence": "medium",
+  "pairs": [
+   "pr:21962|pr:21963"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "crates/uv-git-types/src/lib.rs",
+   "crates/uv-git-types/src/repository.rs"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21963",
+    "title": "Separate lock handling from network clients",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "actors": [
+     "konstin"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-resolver",
+  "area": "crates/uv-resolver",
+  "confidence": "medium",
+  "pairs": [
+   "pr:21962|pr:21963"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "crates/uv-resolver/src/lib.rs",
+   "crates/uv-resolver/src/resolution/markers.rs",
+   "crates/uv-resolver/src/resolution/mod.rs",
+   "crates/uv-resolver/src/resolver/index.rs",
+   "crates/uv-resolver/src/resolver/provider.rs",
+   "crates/uv-resolver/tests/index.rs"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21963",
+    "title": "Separate lock handling from network clients",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "actors": [
+     "konstin"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-resolver-types",
+  "area": "crates/uv-resolver-types",
+  "confidence": "medium",
+  "pairs": [
+   "pr:21962|pr:21963"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "crates/uv-resolver-types/Cargo.toml",
+   "crates/uv-resolver-types/src/distribution.rs",
+   "crates/uv-resolver-types/src/lib.rs",
+   "crates/uv-resolver-types/src/output.rs"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21962",
+    "title": "Verify packaged tool artifact URLs against PyPI",
+    "url": "https://github.com/astral-sh/uv/pull/21962",
+    "actors": [
+     "konstin"
+    ]
+   },
+   {
+    "id": "pr:21963",
+    "title": "Separate lock handling from network clients",
+    "url": "https://github.com/astral-sh/uv/pull/21963",
+    "actors": [
+     "konstin"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "astral-sh/uv",
+  "id": "overlap:crates/uv-test",
+  "area": "crates/uv-test",
+  "confidence": "medium",
+  "pairs": [
+   "pr:21942|pr:21952"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "crates/uv-test/src/archive.rs"
+  ],
+  "work_items": [
+   {
+    "id": "pr:21942",
+    "title": "unify generation of sdists with backends with side-effects",
+    "url": "https://github.com/astral-sh/uv/pull/21942",
+    "actors": [
+     "Tomasz (Tom) Kramkowski"
+    ]
+   },
+   {
+    "id": "pr:21952",
+    "title": "Allow custom file metadata in package test fixtures",
+    "url": "https://github.com/astral-sh/uv/pull/21952",
+    "actors": [
+     "Tomasz (Tom) Kramkowski"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "tldraw/tldraw",
+  "id": "overlap:packages/tldraw",
+  "area": "packages/tldraw",
+  "confidence": "high",
+  "pairs": [
+   "pr:10874|direct:Steve Ruiz",
+   "pr:10071|pr:10181",
+   "pr:10071|pr:10865",
+   "pr:10071|pr:10866",
+   "pr:10071|pr:10874",
+   "pr:10071|pr:10924",
+   "pr:10181|pr:10874",
+   "pr:10181|pr:10924",
+   "pr:10865|pr:10873",
+   "pr:10866|pr:10873",
+   "pr:10873|pr:9396",
+   "pr:10874|pr:9396"
+  ],
+  "same_line_pairs": 8,
+  "files": [
+   "packages/tldraw/src/lib/shapes/note/NoteShapeUtil.tsx",
+   "packages/tldraw/src/lib/shapes/shared/RichTextLabel.tsx",
+   "packages/tldraw/src/lib/shapes/text/TextShapeUtil.tsx",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/Crop/children/Cropping.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/Crop/children/PointingCropHandle.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/Idle.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/PointingResizeHandle.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/PointingRotateHandle.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/PointingSelection.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/PointingShape.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/childStates/Resizing.ts",
+   "packages/tldraw/src/lib/tools/SelectTool/selectHelpers.ts",
+   "packages/tldraw/src/lib/ui/context/events.tsx",
+   "packages/tldraw/src/lib/ui/hooks/useClipboardEvents.ts",
+   "packages/tldraw/src/lib/utils/text/richText.ts",
+   "packages/tldraw/src/test/cropping.test.ts"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Steve Ruiz",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/tldraw/tldraw/commit/31510e72ab901b8eef952144e9efb885269c44b9",
+    "actors": [
+     "Steve Ruiz"
+    ]
+   },
+   {
+    "id": "pr:10071",
+    "title": "fix: restore pre-simplify behavior",
+    "url": "https://github.com/tldraw/tldraw/pull/10071",
+    "actors": [
+     "Mitja Bezen\u0161ek",
+     "Steve Ruiz"
+    ]
+   },
+   {
+    "id": "pr:10181",
+    "title": "Merge remote-tracking branch 'origin/main' into fix/right-angle-rotation-tolerance",
+    "url": "https://github.com/tldraw/tldraw/pull/10181",
+    "actors": [
+     "Mitja Bezen\u0161ek",
+     "Steve Ruiz"
+    ]
+   },
+   {
+    "id": "pr:10865",
+    "title": "chore(editor): drop a dead property and tighten the checkbox comment",
+    "url": "https://github.com/tldraw/tldraw/pull/10865",
+    "actors": [
+     "Jessica Claire Edwards",
+     "Mime \u010cuvalo"
+    ]
+   },
+   {
+    "id": "pr:10866",
+    "title": "improvement(editor): use a drawn tick for the checkbox, sized against the box",
+    "url": "https://github.com/tldraw/tldraw/pull/10866",
+    "actors": [
+     "Jessica Claire Edwards",
+     "Mime \u010cuvalo"
+    ]
+   },
+   {
+    "id": "pr:10873",
+    "title": "fix(tldraw): only count link pastes that target the rich text editor",
+    "url": "https://github.com/tldraw/tldraw/pull/10873",
+    "actors": [
+     "Mime \u010cuvalo"
+    ]
+   },
+   {
+    "id": "pr:10874",
+    "title": "refactor(select): share double-click deferral across pointing states",
+    "url": "https://github.com/tldraw/tldraw/pull/10874",
+    "actors": [
+     "Guillaume"
+    ]
+   },
+   {
+    "id": "pr:10924",
+    "title": "fix(select): roll back the resize kickout preview exactly",
+    "url": "https://github.com/tldraw/tldraw/pull/10924",
+    "actors": [
+     "Andromeda"
+    ]
+   },
+   {
+    "id": "pr:9396",
+    "title": "fix(tldraw): run onBeforePasteFromClipboard before replacing a cropping image",
+    "url": "https://github.com/tldraw/tldraw/pull/9396",
+    "actors": [
+     "Andromeda"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "tldraw/tldraw",
+  "id": "overlap:packages/editor",
+  "area": "packages/editor",
+  "confidence": "high",
+  "pairs": [
+   "pr:10864|direct:Steve Ruiz",
+   "pr:10069|pr:10864",
+   "pr:10069|pr:10892",
+   "pr:10069|pr:10924"
+  ],
+  "same_line_pairs": 4,
+  "files": [
+   "packages/editor/src/lib/editor/Editor.ts",
+   "packages/editor/src/lib/hooks/useDocumentEvents.ts",
+   "packages/editor/src/lib/utils/reparenting.ts"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Steve Ruiz",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/tldraw/tldraw/commit/31510e72ab901b8eef952144e9efb885269c44b9",
+    "actors": [
+     "Steve Ruiz"
+    ]
+   },
+   {
+    "id": "pr:10069",
+    "title": "fix: restore pre-simplify behavior",
+    "url": "https://github.com/tldraw/tldraw/pull/10069",
+    "actors": [
+     "Mitja Bezen\u0161ek",
+     "Steve Ruiz"
+    ]
+   },
+   {
+    "id": "pr:10864",
+    "title": "refactor(editor): collapse repeated modifier, camera and zoom blocks",
+    "url": "https://github.com/tldraw/tldraw/pull/10864",
+    "actors": [
+     "Kevin Ingersoll"
+    ]
+   },
+   {
+    "id": "pr:10892",
+    "title": "fix(editor): keep still-held modifiers on the synthetic key-ups",
+    "url": "https://github.com/tldraw/tldraw/pull/10892",
+    "actors": [
+     "Guillaume"
+    ]
+   },
+   {
+    "id": "pr:10924",
+    "title": "fix(select): roll back the resize kickout preview exactly",
+    "url": "https://github.com/tldraw/tldraw/pull/10924",
+    "actors": [
+     "Andromeda"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "tldraw/tldraw",
+  "id": "overlap:apps/dotcom",
+  "area": "apps/dotcom",
+  "confidence": "high",
+  "pairs": [
+   "pr:10880|direct:Mitja Bezen\u0161ek",
+   "pr:10885|direct:Mitja Bezen\u0161ek",
+   "pr:10880|pr:10885",
+   "pr:10880|pr:10921"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "apps/dotcom/client/src/routeDefs.ts",
+   "apps/dotcom/client/src/routes.tsx",
+   "apps/dotcom/client/src/tla/app/TldrawApp.ts",
+   "apps/dotcom/client/src/tla/components/TlaEditor/TlaEditor.tsx",
+   "apps/dotcom/client/src/tla/hooks/useAppState.tsx"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Mitja Bezen\u0161ek",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/tldraw/tldraw/commit/1ad0ff38e52e9175194b621715884da69eefe03a",
+    "actors": [
+     "Mitja Bezen\u0161ek"
+    ]
+   },
+   {
+    "id": "pr:10880",
+    "title": "chore(dotcom): say why the legal dialog waits for the app",
+    "url": "https://github.com/tldraw/tldraw/pull/10880",
+    "actors": [
+     "Mitja Bezen\u0161ek"
+    ]
+   },
+   {
+    "id": "pr:10885",
+    "title": "chore(dotcom): format workspace analytics files",
+    "url": "https://github.com/tldraw/tldraw/pull/10885",
+    "actors": [
+     "angrycaptain19"
+    ]
+   },
+   {
+    "id": "pr:10921",
+    "title": "fix(dotcom): don't send first-load reports from loads that were hidden",
+    "url": "https://github.com/tldraw/tldraw/pull/10921",
+    "actors": [
+     "Mitja Bezen\u0161ek"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "tldraw/tldraw",
+  "id": "overlap:internal/scripts",
+  "area": "internal/scripts",
+  "confidence": "high",
+  "pairs": [
+   "pr:10720|direct:Kevin Ingersoll",
+   "pr:10720|direct:Mime \u010cuvalo"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "internal/scripts/deploy-dotcom.ts",
+   "internal/scripts/package.json"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Kevin Ingersoll",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/tldraw/tldraw/commit/293312bb79be0d4e9d05da79b0e95d0d2266c605",
+    "actors": [
+     "Kevin Ingersoll"
+    ]
+   },
+   {
+    "id": "direct:Mime \u010cuvalo",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/tldraw/tldraw/commit/b531b9297f655f282e0f88aaa763739fc5bfd04b",
+    "actors": [
+     "Mime \u010cuvalo"
+    ]
+   },
+   {
+    "id": "pr:10720",
+    "title": "ci(dotcom): reject the spaced JSON-array COPY too",
+    "url": "https://github.com/tldraw/tldraw/pull/10720",
+    "actors": [
+     "Claude",
+     "driev"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "tldraw/tldraw",
+  "id": "overlap:.github",
+  "area": ".github",
+  "confidence": "high",
+  "pairs": [
+   "pr:10720|direct:Kevin Ingersoll"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   ".github/workflows/deploy-dotcom.yml"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Kevin Ingersoll",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/tldraw/tldraw/commit/293312bb79be0d4e9d05da79b0e95d0d2266c605",
+    "actors": [
+     "Kevin Ingersoll"
+    ]
+   },
+   {
+    "id": "pr:10720",
+    "title": "ci(dotcom): reject the spaced JSON-array COPY too",
+    "url": "https://github.com/tldraw/tldraw/pull/10720",
+    "actors": [
+     "Claude",
+     "driev"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "tldraw/tldraw",
+  "id": "overlap:packages/store",
+  "area": "packages/store",
+  "confidence": "high",
+  "pairs": [
+   "pr:10225|direct:Mitja Bezen\u0161ek"
+  ],
+  "same_line_pairs": 0,
+  "files": [
+   "packages/store/SPEC.md"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Mitja Bezen\u0161ek",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/tldraw/tldraw/commit/1ad0ff38e52e9175194b621715884da69eefe03a",
+    "actors": [
+     "Mitja Bezen\u0161ek"
+    ]
+   },
+   {
+    "id": "pr:10225",
+    "title": "test(store): make the CC6 re-creation test fail on main; say what createCache should return for a deleted record",
+    "url": "https://github.com/tldraw/tldraw/pull/10225",
+    "actors": [
+     "Mitja Bezen\u0161ek",
+     "Steve Ruiz"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "vitejs/vite",
+  "id": "overlap:packages/vite",
+  "area": "packages/vite",
+  "confidence": "high",
+  "pairs": [
+   "pr:23561|direct:Murugappan M",
+   "pr:23550|direct:Vijay Misal",
+   "pr:23484|direct:\u7fe0",
+   "pr:23557|direct:\u7fe0",
+   "pr:23562|direct:\u7fe0",
+   "pr:22645|pr:23550",
+   "pr:23484|pr:23562",
+   "pr:23484|pr:23574",
+   "pr:23533|pr:23562",
+   "pr:23536|pr:23555",
+   "pr:23550|pr:23576",
+   "pr:23553|pr:23565",
+   "pr:23559|pr:23562",
+   "pr:23559|pr:23568",
+   "pr:23562|pr:23568",
+   "pr:23562|pr:23574"
+  ],
+  "same_line_pairs": 4,
+  "files": [
+   "packages/vite/rolldown.config.ts",
+   "packages/vite/src/node/__tests__/build.spec.ts",
+   "packages/vite/src/node/__tests__/plugins/css.spec.ts",
+   "packages/vite/src/node/constants.ts",
+   "packages/vite/src/node/optimizer/optimizer.ts",
+   "packages/vite/src/node/plugins/clientInjections.ts",
+   "packages/vite/src/node/plugins/css.ts",
+   "packages/vite/src/node/server/__tests__/watcher.spec.ts",
+   "packages/vite/src/node/server/bundledDev.ts",
+   "packages/vite/src/node/server/hmr.ts",
+   "packages/vite/src/node/server/index.ts",
+   "packages/vite/src/node/server/sourcemap.ts",
+   "packages/vite/src/node/utils.ts",
+   "packages/vite/src/shared/__tests__/forwardConsole.spec.ts",
+   "packages/vite/src/shared/forwardConsole.ts"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Murugappan M",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/vitejs/vite/commit/04fc30a4b91870e65a436b3420620a2e02a94a41",
+    "actors": [
+     "Murugappan M"
+    ]
+   },
+   {
+    "id": "direct:Vijay Misal",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/vitejs/vite/commit/f68c0d5a28c96555431413e3e2cbe644337b087f",
+    "actors": [
+     "Vijay Misal"
+    ]
+   },
+   {
+    "id": "direct:\u7fe0",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/vitejs/vite/commit/931ad65735d73e7a765baec59a69501109d50f61",
+    "actors": [
+     "\u7fe0"
+    ]
+   },
+   {
+    "id": "pr:22645",
+    "title": "Merge upstream main into fix/css-minify-warning-sources",
+    "url": "https://github.com/vitejs/vite/pull/22645",
+    "actors": [
+     "pupuking723",
+     "\u738b\u80dc"
+    ]
+   },
+   {
+    "id": "pr:23484",
+    "title": "fix(dev): run a follow-up restart when restart is requested during a restart (fix #23392)",
+    "url": "https://github.com/vitejs/vite/pull/23484",
+    "actors": [
+     "Jason Smathers"
+    ]
+   },
+   {
+    "id": "pr:23533",
+    "title": "Merge branch 'main' into fix/hard-invalidate-importers-on-delete",
+    "url": "https://github.com/vitejs/vite/pull/23533",
+    "actors": [
+     "Paul C.",
+     "Paul Cameron"
+    ]
+   },
+   {
+    "id": "pr:23536",
+    "title": "fix: merge `build.rolldownOptions.output.minify` correctly",
+    "url": "https://github.com/vitejs/vite/pull/23536",
+    "actors": [
+     "Abdel"
+    ]
+   },
+   {
+    "id": "pr:23550",
+    "title": "fix(css): split srcset candidates at depth so image-set gradients survive",
+    "url": "https://github.com/vitejs/vite/pull/23550",
+    "actors": [
+     "scs0209"
+    ]
+   },
+   {
+    "id": "pr:23553",
+    "title": "fix: limit forwarded console argument size",
+    "url": "https://github.com/vitejs/vite/pull/23553",
+    "actors": [
+     "irontaek"
+    ]
+   },
+   {
+    "id": "pr:23555",
+    "title": "fix(asset): rewrite references in SVG assets",
+    "url": "https://github.com/vitejs/vite/pull/23555",
+    "actors": [
+     "vjymisal0"
+    ]
+   },
+   {
+    "id": "pr:23557",
+    "title": "fix(optimizer): handle errors in the post-scan optimize run",
+    "url": "https://github.com/vitejs/vite/pull/23557",
+    "actors": [
+     "koreahghg"
+    ]
+   },
+   {
+    "id": "pr:23559",
+    "title": "fix(dev): warn when the bundled dev runtime and the installed rolldown version mismatch",
+    "url": "https://github.com/vitejs/vite/pull/23559",
+    "actors": [
+     "btea"
+    ]
+   },
+   {
+    "id": "pr:23561",
+    "title": "fix(server): serve optimized dep sourcemaps as external files",
+    "url": "https://github.com/vitejs/vite/pull/23561",
+    "actors": [
+     "btea"
+    ]
+   },
+   {
+    "id": "pr:23562",
+    "title": "feat: support HMR for mixed bundled environments",
+    "url": "https://github.com/vitejs/vite/pull/23562",
+    "actors": [
+     "Melissa Liu"
+    ]
+   },
+   {
+    "id": "pr:23565",
+    "title": "test: assert wide object output boundaries",
+    "url": "https://github.com/vitejs/vite/pull/23565",
+    "actors": [
+     "Hiroshi Ogawa"
+    ]
+   },
+   {
+    "id": "pr:23568",
+    "title": "test(bundled-dev): cover the served rolldown runtime",
+    "url": "https://github.com/vitejs/vite/pull/23568",
+    "actors": [
+     "Hana"
+    ]
+   },
+   {
+    "id": "pr:23574",
+    "title": "fix(dev): close replacement when restart cleanup fails",
+    "url": "https://github.com/vitejs/vite/pull/23574",
+    "actors": [
+     "dvcolomban"
+    ]
+   },
+   {
+    "id": "pr:23576",
+    "title": "fix(config): avoid mutating hmr defaults",
+    "url": "https://github.com/vitejs/vite/pull/23576",
+    "actors": [
+     "Januth Nimnal"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "vitejs/vite",
+  "id": "overlap:playground",
+  "area": "playground",
+  "confidence": "high",
+  "pairs": [
+   "pr:23565|direct:andrew",
+   "pr:23562|pr:23568"
+  ],
+  "same_line_pairs": 0,
+  "files": [
+   "playground/forward-console/__test__/forward-console.spec.ts",
+   "playground/hmr-full-bundle-mode/__tests__/hmr-full-bundle-mode.spec.ts"
+  ],
+  "work_items": [
+   {
+    "id": "direct:andrew",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/vitejs/vite/commit/6e09961181a1047ef78d37b1a23fb0e7488c8980",
+    "actors": [
+     "andrew"
+    ]
+   },
+   {
+    "id": "pr:23562",
+    "title": "feat: support HMR for mixed bundled environments",
+    "url": "https://github.com/vitejs/vite/pull/23562",
+    "actors": [
+     "Melissa Liu"
+    ]
+   },
+   {
+    "id": "pr:23565",
+    "title": "test: assert wide object output boundaries",
+    "url": "https://github.com/vitejs/vite/pull/23565",
+    "actors": [
+     "Hiroshi Ogawa"
+    ]
+   },
+   {
+    "id": "pr:23568",
+    "title": "test(bundled-dev): cover the served rolldown runtime",
+    "url": "https://github.com/vitejs/vite/pull/23568",
+    "actors": [
+     "Hana"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "vitejs/vite",
+  "id": "overlap:vitest.config.e2e.ts",
+  "area": "vitest.config.e2e.ts",
+  "confidence": "high",
+  "pairs": [
+   "pr:23246|direct:andrew"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "vitest.config.e2e.ts"
+  ],
+  "work_items": [
+   {
+    "id": "direct:andrew",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/vitejs/vite/commit/6e09961181a1047ef78d37b1a23fb0e7488c8980",
+    "actors": [
+     "andrew"
+    ]
+   },
+   {
+    "id": "pr:23246",
+    "title": "test(bundled-dev): expect bundle-only serving in fs-serve, resolve, dynamic-import",
+    "url": "https://github.com/vitejs/vite/pull/23246",
+    "actors": [
+     "Hana"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "withastro/astro",
+  "id": "overlap:packages/astro",
+  "area": "packages/astro",
+  "confidence": "high",
+  "pairs": [
+   "pr:18112|direct:Houston (Bot)",
+   "pr:18117|direct:Houston (Bot)",
+   "pr:18119|direct:Houston (Bot)",
+   "pr:18112|direct:Matthew Phillips",
+   "pr:18117|direct:Matthew Phillips",
+   "pr:18119|direct:Matthew Phillips",
+   "pr:18000|pr:18078",
+   "pr:18099|pr:18112",
+   "pr:18099|pr:18117",
+   "pr:18099|pr:18119",
+   "pr:18099|pr:18120",
+   "pr:18099|pr:18121",
+   "pr:18112|pr:18117",
+   "pr:18112|pr:18120",
+   "pr:18112|pr:18121",
+   "pr:18117|pr:18119",
+   "pr:18117|pr:18120",
+   "pr:18117|pr:18121",
+   "pr:18119|pr:18120",
+   "pr:18119|pr:18121",
+   "pr:18120|pr:18121"
+  ],
+  "same_line_pairs": 8,
+  "files": [
+   "packages/astro/package.json",
+   "packages/astro/src/vite-plugin-app/environment.ts"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Houston (Bot)",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/withastro/astro/commit/c2e01642af5f3919e4951b277a01d2de0ba1322f",
+    "actors": [
+     "Houston (Bot)"
+    ]
+   },
+   {
+    "id": "direct:Matthew Phillips",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/withastro/astro/commit/c17d9209bef385ea88b6fee36e91ad4e635f4a86",
+    "actors": [
+     "Matthew Phillips"
+    ]
+   },
+   {
+    "id": "pr:18000",
+    "title": "chore: reword changeset per contribution guide",
+    "url": "https://github.com/withastro/astro/pull/18000",
+    "actors": [
+     "Dan Barclay"
+    ]
+   },
+   {
+    "id": "pr:18078",
+    "title": "Drop integration test and shorten changeset",
+    "url": "https://github.com/withastro/astro/pull/18078",
+    "actors": [
+     "Manuel"
+    ]
+   },
+   {
+    "id": "pr:18099",
+    "title": "fix: update merged js-yaml lock entry",
+    "url": "https://github.com/withastro/astro/pull/18099",
+    "actors": [
+     "Florian Lefebvre",
+     "renovate[bot]"
+    ]
+   },
+   {
+    "id": "pr:18112",
+    "title": "Update the incremental cache test to use client-root-relative paths",
+    "url": "https://github.com/withastro/astro/pull/18112",
+    "actors": [
+     "Emanuele Stoppa",
+     "James Opstad",
+     "ematipico"
+    ]
+   },
+   {
+    "id": "pr:18117",
+    "title": "[ci] release (beta)",
+    "url": "https://github.com/withastro/astro/pull/18117",
+    "actors": [
+     "Houston (Bot)",
+     "ematipico"
+    ]
+   },
+   {
+    "id": "pr:18119",
+    "title": "Update Cloudflare plugin",
+    "url": "https://github.com/withastro/astro/pull/18119",
+    "actors": [
+     "Emanuele Stoppa",
+     "James Opstad",
+     "ematipico"
+    ]
+   },
+   {
+    "id": "pr:18120",
+    "title": "[ci] release",
+    "url": "https://github.com/withastro/astro/pull/18120",
+    "actors": [
+     "Houston (Bot)"
+    ]
+   },
+   {
+    "id": "pr:18121",
+    "title": "Merge remote-tracking branch 'origin/main' into spike/astro-vite-plugin",
+    "url": "https://github.com/withastro/astro/pull/18121",
+    "actors": [
+     "Matthew Phillips"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "withastro/astro",
+  "id": "overlap:examples",
+  "area": "examples",
+  "confidence": "high",
+  "pairs": [
+   "pr:18112|direct:Houston (Bot)",
+   "pr:18117|direct:Houston (Bot)",
+   "pr:18119|direct:Houston (Bot)",
+   "pr:18112|pr:18117",
+   "pr:18112|pr:18120",
+   "pr:18117|pr:18119",
+   "pr:18117|pr:18120",
+   "pr:18119|pr:18120"
+  ],
+  "same_line_pairs": 8,
+  "files": [
+   "examples/advanced-routing/package.json",
+   "examples/basics/package.json",
+   "examples/blog/package.json",
+   "examples/component/package.json",
+   "examples/container-with-vitest/package.json",
+   "examples/framework-alpine/package.json",
+   "examples/framework-multiple/package.json",
+   "examples/framework-preact/package.json",
+   "examples/framework-react/package.json",
+   "examples/framework-solid/package.json",
+   "examples/framework-svelte/package.json",
+   "examples/framework-vue/package.json",
+   "examples/hackernews/package.json",
+   "examples/integration/package.json",
+   "examples/minimal/package.json",
+   "examples/portfolio/package.json",
+   "examples/ssr/package.json",
+   "examples/starlog/package.json",
+   "examples/toolbar-app/package.json",
+   "examples/with-markdoc/package.json",
+   "examples/with-mdx/package.json",
+   "examples/with-nanostores/package.json",
+   "examples/with-tailwindcss/package.json",
+   "examples/with-vitest/package.json"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Houston (Bot)",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/withastro/astro/commit/c2e01642af5f3919e4951b277a01d2de0ba1322f",
+    "actors": [
+     "Houston (Bot)"
+    ]
+   },
+   {
+    "id": "pr:18112",
+    "title": "Update the incremental cache test to use client-root-relative paths",
+    "url": "https://github.com/withastro/astro/pull/18112",
+    "actors": [
+     "Emanuele Stoppa",
+     "James Opstad",
+     "ematipico"
+    ]
+   },
+   {
+    "id": "pr:18117",
+    "title": "[ci] release (beta)",
+    "url": "https://github.com/withastro/astro/pull/18117",
+    "actors": [
+     "Houston (Bot)",
+     "ematipico"
+    ]
+   },
+   {
+    "id": "pr:18119",
+    "title": "Update Cloudflare plugin",
+    "url": "https://github.com/withastro/astro/pull/18119",
+    "actors": [
+     "Emanuele Stoppa",
+     "James Opstad",
+     "ematipico"
+    ]
+   },
+   {
+    "id": "pr:18120",
+    "title": "[ci] release",
+    "url": "https://github.com/withastro/astro/pull/18120",
+    "actors": [
+     "Houston (Bot)"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "withastro/astro",
+  "id": "overlap:packages/integrations",
+  "area": "packages/integrations",
+  "confidence": "high",
+  "pairs": [
+   "pr:18117|pr:18119"
+  ],
+  "same_line_pairs": 1,
+  "files": [
+   "packages/integrations/cloudflare/package.json"
+  ],
+  "work_items": [
+   {
+    "id": "pr:18117",
+    "title": "[ci] release (beta)",
+    "url": "https://github.com/withastro/astro/pull/18117",
+    "actors": [
+     "Houston (Bot)",
+     "ematipico"
+    ]
+   },
+   {
+    "id": "pr:18119",
+    "title": "Update Cloudflare plugin",
+    "url": "https://github.com/withastro/astro/pull/18119",
+    "actors": [
+     "Emanuele Stoppa",
+     "James Opstad",
+     "ematipico"
+    ]
+   }
+  ]
+ },
+ {
+  "repo": "withastro/astro",
+  "id": "overlap:pnpm-workspace.yaml",
+  "area": "pnpm-workspace.yaml",
+  "confidence": "high",
+  "pairs": [
+   "pr:18119|direct:Matthew Phillips"
+  ],
+  "same_line_pairs": 0,
+  "files": [
+   "pnpm-workspace.yaml"
+  ],
+  "work_items": [
+   {
+    "id": "direct:Matthew Phillips",
+    "title": "Direct pushes to main",
+    "url": "https://github.com/withastro/astro/commit/c17d9209bef385ea88b6fee36e91ad4e635f4a86",
+    "actors": [
+     "Matthew Phillips"
+    ]
+   },
+   {
+    "id": "pr:18119",
+    "title": "Update Cloudflare plugin",
+    "url": "https://github.com/withastro/astro/pull/18119",
+    "actors": [
+     "Emanuele Stoppa",
+     "James Opstad",
+     "ematipico"
+    ]
+   }
+  ]
+ }
+]

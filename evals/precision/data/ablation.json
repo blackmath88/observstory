@@ -1,0 +1,46 @@
+{
+ "final (all changes)": {
+  "total": 27,
+  "per_repo": {
+   "astral-sh/uv": 14,
+   "fastapi/fastapi": 0,
+   "pydantic/pydantic": 0,
+   "tldraw/tldraw": 6,
+   "vitejs/vite": 3,
+   "withastro/astro": 4
+  }
+ },
+ "final, but area-only pairs allowed": {
+  "total": 45,
+  "per_repo": {
+   "astral-sh/uv": 21,
+   "fastapi/fastapi": 0,
+   "pydantic/pydantic": 2,
+   "tldraw/tldraw": 13,
+   "vitejs/vite": 4,
+   "withastro/astro": 5
+  }
+ },
+ "final, but stale work allowed": {
+  "total": 97,
+  "per_repo": {
+   "astral-sh/uv": 40,
+   "fastapi/fastapi": 3,
+   "pydantic/pydantic": 13,
+   "tldraw/tldraw": 21,
+   "vitejs/vite": 10,
+   "withastro/astro": 10
+  }
+ },
+ "final, but both allowed": {
+  "total": 112,
+  "per_repo": {
+   "astral-sh/uv": 46,
+   "fastapi/fastapi": 4,
+   "pydantic/pydantic": 13,
+   "tldraw/tldraw": 27,
+   "vitejs/vite": 11,
+   "withastro/astro": 11
+  }
+ }
+}

@@ -1184,7 +1184,7 @@
    "draft": false,
    "merged": false,
    "head": "pull/13544",
-   "base": "main",
+   "base": "pull/13542",
    "author": {
     "login": null,
     "name": "David Montague",
@@ -1367,7 +1367,8 @@
     "sha": "57d0ad870110765089b6037313e8c4f507b7c4de",
     "source": "compare"
    },
-   "_head_sha": "a5e47b2bcd775bb032bc0be0e5fad37df5afd5bd"
+   "_head_sha": "a5e47b2bcd775bb032bc0be0e5fad37df5afd5bd",
+   "_stacked_on": 13542
   },
   {
    "number": 13542,

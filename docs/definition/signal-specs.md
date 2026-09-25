@@ -30,14 +30,15 @@ Thresholds are set in `observstory.config.json → signals` and echoed into
 
 | | |
 |---|---|
-| **Question answered** | "Is other unmerged work touching the same part of the project as mine?" |
-| **Input evidence** | Changed paths of every *in-flight work item*: open PRs (`/pulls/{n}/files`), branches ahead of default with no PR (`/compare`), and direct pushes to the default branch in the window, grouped per author into a `direct` work item |
-| **Logic** | For each area, collect the distinct in-flight work items that touch it. If there are ≥ `min_work_items` (default 2), emit an overlap. **Confidence:** `high` when ≥2 work items change the *same file*; `medium` for the same area only; drop one level when every item has the same single author (one person with parallel agents is still worth flagging, but lower). Basis is `derived` when files are shared and `heuristic` for area-only overlap |
-| **False-positive risk** | Medium. Broad areas (`src/`), lockfiles, generated files, formatting sweeps. Mitigated by: the ignore list, container-aware area depth, sorting by confidence, and showing shared files explicitly |
-| **False-negative risk** | Work not pushed yet (assumption A1); semantic coupling across areas |
-| **UI** | Radar: the area's sector is marked with a ring per overlapping work item. The Signals list shows the area, work items as links, and the shared files |
+| **Question answered** | "Is other unmerged work changing the same files as mine, in parallel?" |
+| **Input evidence** | Changed paths of each *active* work item: open PRs, unproposed branches, and default-branch commits grouped per author (`direct`). Each PR/branch's **merge base** (compare, or first-commit parent as a labelled fallback) and the parent links of default-branch commits |
+| **Logic** | Per area, form **pairs** (ADR-018). Unmerged × unmerged is parallel unless one waits on the other, **transitively** (ADR-022). Unmerged × landed counts only default-branch commits **not** in the item's merge base. Landed × landed is never parallel (sequential). A pair counts only if both sides change a **common file** (default, ADR-019). **Stale** work (ADR-021) and **bot-only** work (ADR-019) don't take part. Emit when ≥ `overlap_min_work_items` distinct items are in counted pairs. **Confidence:** `high` with a shared file (`medium` for area-only when enabled); one level lower if everyone is the same single author, or if every pair relies on an unknown or first-parent merge base |
+| **Evidence** | `file` (shared files and the pairs changing them), `base` (why a landed change counts: merge-base SHA, source, later commits), `work_item`; `rule.params` lists `parallel_pairs`, `baseline_pairs`, `explained_by_waiting`, `excluded_stale`, `excluded_bot_only`, `area_only_pairs_skipped` |
+| **Precision (6 OSS repos)** | 16 of 27 final signals useful (59%). Same-line pairs 75% useful, same-file pairs 45%, area-only 10%. See [precision-report.md](../development/precision-report.md) |
+| **False-positive risk** | Registry and list files, large shared test files, repo-specific generated files (configure `ignore`), release automation |
+| **UI** | Radar: the area's mark gets an accent ring. The signal list groups overlaps with the same work-item set and opens to files, base evidence and pairs |
 | **API** | `query overlaps [--path P]`, `query work-near P` |
-| **Test** | `tests/test_signals.py::test_two_contributors_same_subsystem`, `test_parallel_non_overlapping` |
+| **Test** | `tests/test_base_aware.py`, `tests/test_signals.py::OverlapExperiments` |
 
 ## S-2 Stale
 

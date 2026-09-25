@@ -87,3 +87,27 @@ event-triggered runs plus in-flight evidence, and both work inside an Action.
 ## ADR-017: Ignore patterns follow gitignore anchoring
 **Context.** Dogfooding: the unanchored `observstory/` output entry hid `src/observstory/`.
 **Decision.** A leading `/` anchors a pattern to the repo root. A trailing `/` matches directories at any depth. Globs match the path or the basename.
+
+## ADR-018: Overlap is base-aware and pairwise (issue #2)
+**Context.** v1 counted every active work item in an area. A branch created *after* a push to main was reported as overlapping that push. The self-observation's 9 overlaps were all of this kind.
+**Decision.** Overlap is computed from **parallel pairs**. The collector records each open PR's and branch's merge base: compare's `merge_base_commit`, or the first commit's parent when the budget runs out (labelled `first_parent`, confidence reduced). It also records parent links for default-branch commits. A default-branch commit counts against a work item only if it isn't an ancestor of that item's merge base, which is decided from the commit graph, not timestamps. Two unmerged items are parallel unless one waits on the other. Direct pushes are never parallel to each other, because pushes to one branch are sequential. Each pair involving a landed change gets `base` evidence naming the merge-base SHA, its source, and the later commits.
+**Evidence.** Fixtures b1–b7 (before/after divergence, mixed history on one file, rebase, merging main into the branch, squash merge, base before the window, unknown base). Self-observation 9 → 0.
+**Consequence.** E6 (two people pushing to main) no longer produces overlap.
+
+## ADR-019: Overlap requires a shared file by default; bot-only work doesn't take part
+**Context.** Precision study (docs/development/precision-report.md).
+**Decision.** A pair counts only if both sides change at least one common file (`signals.overlap_require_shared_file`, default `true`). Work items whose authors are all bots don't take part.
+**Evidence.** Area-only pairs were useful in 4 of 39 labelled cases; shared-file pairs in 29 of 46. Unmerged pairs involving a bot changed the same lines 1.1% of the time.
+**Cost.** About 50 useful area-only relations across six repos are given up. Area activity stays on the radar and in `work_near`.
+
+## ADR-020: Default ignores add `CHANGELOG*`, `.changeset/`, `*.api.md`
+**Evidence.** These files caused 6 of the 52 non-useful sampled pairs, including 3 of the 5 non-useful same-line pairs. Repo-specific generated files (e.g. `uv.schema.json`) belong in the repo's own `ignore` config.
+
+## ADR-021: Stale work doesn't take part in overlap
+**Decision.** Work idle for longer than `stale_hours` is left out of overlap. It's reported by the `stale` signal instead.
+**Evidence.** 81.4% of all overlap pairs on the six repos involved stale work, mostly old branches with no PR.
+**Cost.** 12% of those pairs changed the same lines. They're latent conflicts, now visible only as stale work.
+
+## ADR-022: A dependency chain explains shared ground transitively
+**Decision.** If A waits on B and B waits on C, A's shared ground with C is explained too.
+**Evidence.** 9 of the 20 non-useful final signals came from two-level stacks (uv#21962 → #21961 → #21963; uv#21952 → #21944 → #21942). Fixture p2.

@@ -66,7 +66,7 @@ To name your own lanes, thresholds or ignore globs, add `observstory.config.json
 
 | Signal | Question | Evidence | Basis |
 |---|---|---|---|
-| **overlap** | Is other unmerged work touching the same part of the project? | Changed files of each open PR, unproposed branch, or direct-push stream, grouped by area | derived when files are shared, heuristic when only the area is |
+| **overlap** | Is other unmerged work changing the same files as mine, in parallel? | Pairs of active work items (open PRs, branches without a PR, changes that landed on the default branch *after* the item diverged) that change a common file; merge-base evidence says why each pair counts as parallel | derived |
 | **stale** | What has stopped moving? | Last commit or update time; branches without a PR say so | heuristic (threshold, default 72 h) |
 | **waiting** | What can't land until something else lands? | PR stacked on another PR's branch; "Depends on #N" in the PR body | derived / declared |
 | **burst** | Is this a machine-paced change stream? | ≥8 commits within 30 min; agent trailers make it high confidence | heuristic, used to fold the commit list |
@@ -137,9 +137,11 @@ that humans and agents share. More in
 - **Experiments:** 5+ signal experiments with fixtures, including a found and fixed false
   positive → [experiment-results.md](docs/development/experiment-results.md).
 - **Demo:** the overlap emerges and then resolves → [docs/demo](docs/demo/README.md).
-- **Self-observation:** Observstory run against its own repo caught its own branch overlapping
-  the maintainer's recent pushes, and caught a real ignore-pattern bug →
+- **Self-observation:** running Observstory on its own repo caught a real ignore-pattern bug. It
+  also produced 9 false overlaps, which led to base-aware overlap (issue #2) →
   [self-observation.md](docs/demo/self-observation.md).
+- **Precision on real repositories:** 6 active OSS repos; 141 overlaps under v1 became 27, of which
+  16 (59%) were judged useful → [precision-report.md](docs/development/precision-report.md).
 
 ```bash
 python3 -m unittest discover -s tests -t .      # stdlib only, no install

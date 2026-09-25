@@ -17,12 +17,14 @@ Composite Action, typed lanes, JSON snapshot, static dashboard, path overlap on 
 - [ ] Publish a tagged `v1` release so installs can pin `@v1`
 
 ## Next: validate with real teams (before building more)
-- [ ] Run against 3–5 active public repos; hand-label 50 overlap signals for precision
+- [x] Run against active public repos and label overlaps → [precision-report.md](docs/development/precision-report.md) (6 repos, 27 signals, 59% useful)
+- [x] Base-aware overlap (issue #2)
+- [ ] Rerun the precision study in API mode (`evals/precision/run.py`) with a second annotator
 - [ ] One live hackathon team: do people act on overlaps? Does WIP get pushed early enough (assumption A1)?
 - [ ] Tune default thresholds from that data
 
 ## v1.x: cheap refinements
-- [ ] Hunk-level overlap (patch ranges) to raise overlap precision
+- [ ] Hunk-level overlap (patch ranges) to separate same-line pairs (75% useful) from same-file pairs (45%): the main remaining lever on overlap precision
 - [ ] CI state on work items
 - [ ] `CODEOWNERS` as *declared* ownership on areas
 - [ ] Optional snapshot history via the previous run's artifact (enables `changes-since` across runs)

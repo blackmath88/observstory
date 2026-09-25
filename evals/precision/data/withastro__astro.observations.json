@@ -293,7 +293,7 @@
    "draft": false,
    "merged": false,
    "head": "pull/18119",
-   "base": "main",
+   "base": "pull/18112",
    "author": {
     "login": null,
     "name": "ematipico",
@@ -632,7 +632,8 @@
     "sha": "b0d4ab45455a5e05344ffc66ed5fb1c5d999501c",
     "source": "compare"
    },
-   "_head_sha": "e8b4c3fec993188b5ab166c33da0a92aa5429cd3"
+   "_head_sha": "e8b4c3fec993188b5ab166c33da0a92aa5429cd3",
+   "_stacked_on": 18112
   },
   {
    "number": 18099,

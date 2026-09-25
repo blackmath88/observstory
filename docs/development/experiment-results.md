@@ -15,7 +15,9 @@ python3 -m unittest discover -s tests -t .
 | E3 | Stale work and branches without PRs are surfaced; recent work is not | `e3-stale` | **Supported.** `branch:old-spike` (6d, "no pull request"), `pr:9` draft (low confidence); `pr:10` not flagged | Draft PRs get low confidence, since they are often parked on purpose |
 | E4 | A PR waiting on another change is detected from stacking (derived) and from text (declared) | `e4-waiting` | **Supported**, and it found a **false positive in S-1**: the stacked PRs #20/#21 were also reported as an overlap in `src/api` | Overlap now discounts work items whose `waiting_on` target is in the same area (`explained_by_waiting`). Test `test_stacked_prs_are_not_overlap` |
 | E5 | Agent-paced commit activity is detected and folded; human-paced work is not | `e5-burst` | **Supported.** `pr:30`: 18 commits within 30 min (24 total), high confidence because of the declared agent trailer; `pr:31` not flagged | Burst is attached to the work item and used to fold the commit stream. It never names a person as subject |
-| E6 | Hackathon teams pushing straight to main still get a useful signal with zero config | `e6-direct-pushes` | **Supported**, with lower confidence (medium): the overlap is retrospective because the work already landed | Added the `direct:<actor>` work item kind |
+| E6 | Hackathon teams pushing straight to main still get a useful signal with zero config | `e6-direct-pushes` | Originally supported (medium confidence). **Revised by issue #2:** pushes to one branch are sequential, and each contains the last, so they aren't parallel. No overlap; the area still shows both streams as active | Added the `direct:<actor>` work item kind; ADR-018 removed direct × direct overlap |
+| B1–B7 | Overlap is base-aware (issue #2) | `b1-baseline` … `b7-base-unresolved` | **Supported.** No overlap for baseline changes; post-divergence changes still flagged; evidence names the merge base and the later commits; the first-parent fallback and unknown bases lower confidence | ADR-018; `tests/test_base_aware.py` |
+| P1–P2 | Precision-study rules | `p1-stale-excluded`, `p2-transitive-stack` | **Supported** | ADR-021, ADR-022 |
 | D | End to end: overlap emerges and resolves | `demo-t0…t3` | **Supported.** Overlap count per moment: 0 → 1 → 1 → 0. The resolution appears as a declared `waiting` (pr:44 → pr:41) | Found that a **closed** PR still showed a burst (fixed: bursts only on active work). The timeline found an **identity break** when a branch becomes a PR (handled in the timeline diff by matching the head branch; v2 needs this in the store) |
 
 ## Falsification attempts that did not break the thesis
@@ -26,9 +28,14 @@ python3 -m unittest discover -s tests -t .
   unproposed work. The collector excludes branches that are the head of *any* fetched PR,
   including closed ones. Residual risk: very old squash-merged branches beyond the PR page.
 
+## Real-repository precision
+
+The fixtures prove rules. Whether the rules are *useful* was measured on six active open-source
+repositories: [precision-report.md](precision-report.md). The final model surfaces 27 overlaps,
+16 of them useful (59%), down from 141 overlaps under v1.
+
 ## What the experiments do *not* prove
 
 - That real teams push work-in-progress early enough (assumption A1). Fixtures assume they do.
-- Precision on large real repositories. The next experiment is to run Observstory against 3–5
-  active public repos and hand-label 50 overlap signals.
+- Precision beyond one snapshot of six repositories, or with a second annotator (see precision-report.md, section 8).
 - That people act on the signal. This needs a live team.

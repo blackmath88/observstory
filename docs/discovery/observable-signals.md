@@ -22,6 +22,8 @@
 | PR state, draft, base/head, reviewers | OBSERVED | `GET /pulls` | `requested_reviewers` is cleared once they review |
 | Branch list, head sha | OBSERVED | `GET /branches` | No "created at"; there is no push timestamp without extra calls |
 | Branch divergence from default | OBSERVED | `GET /compare/{base}...{head}` | Returns ahead/behind counts and changed files; one call per branch |
+| Merge base of a PR or branch | OBSERVED | compare's `merge_base_commit` (fallback: first commit's parent, labelled) | Decides whether a default-branch change is baseline or parallel (issue #2) |
+| Commit ancestry on the default branch | OBSERVED | `parents` on each listed commit | Needed to test "is this commit in the item's base?" from the graph, not from timestamps |
 | Issue state, labels, assignees | OBSERVED | `GET /issues` | Includes PRs, which must be filtered out |
 | CI status | OBSERVED | `GET /commits/{sha}/check-runs` | One call per sha; deferred to v1.x |
 | Author login | OBSERVED | `.author.login` | `null` when the email isn't linked; fall back to the git name, marked `unlinked` |

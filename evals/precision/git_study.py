@@ -15,6 +15,7 @@ How git stands in for the API:
   titles, authors   head-commit subject and git author names (not GitHub logins)
 
   python3 evals/precision/git_study.py collect OWNER/REPO ...
+  python3 evals/precision/git_study.py stacks        # re-infer stacking on stored observations
   python3 evals/precision/git_study.py measure
 """
 
@@ -86,6 +87,24 @@ def commit_rows(repo: pathlib.Path, rev_range: list[str], with_paths: bool) -> l
     return rows
 
 
+def infer_stacks(path: pathlib.Path, prs: list[dict]) -> None:
+    """Git cannot see a PR's base branch. Emulate it: if another open PR's head is an ancestor of this PR's
+    head (and not already on the default branch), this PR is stacked on the nearest such PR, and its base is
+    that PR's head. Verified against GitHub for uv#21962 and uv#21974 (precision-report.md)."""
+    for b in prs:
+        below = []
+        for a in prs:
+            if a is b or a["_head_sha"] == b["_head_sha"]:
+                continue
+            anc = subprocess.run(["git", "-C", str(path), "merge-base", "--is-ancestor", a["_head_sha"], b["_head_sha"]])
+            if anc.returncode == 0 and a["merge_base"]["sha"] != a["_head_sha"]:
+                below.append(a)
+        if below:
+            nearest = max(below, key=lambda a: len(a["commits"]))
+            b["base"] = nearest["head"]
+            b["_stacked_on"] = nearest["number"]
+
+
 def cmd_collect(repos: list[str], max_prs=30, max_branches=20, window_hours=48):
     for repo in repos:
         path, default = ensure_clone(repo)
@@ -125,6 +144,7 @@ def cmd_collect(repos: list[str], max_prs=30, max_branches=20, window_hours=48):
                 "commits": [{k: c[k] for k in ("sha", "date", "author", "message", "parents")} for c in cs],
                 "merge_base": {"sha": mb, "source": "compare"}, "_head_sha": heads[n],
             })
+        infer_stacks(path, prs)
         pr_shas = {heads[n] for n in heads}
         candidates = sorted(b for b, sha in branches.items() if b != default and sha not in pr_shas)
         branch_rows = []
@@ -263,5 +283,12 @@ def cmd_measure(cfg_override: dict | None = None, out_name="measurements.json"):
 if __name__ == "__main__":
     if sys.argv[1] == "collect":
         cmd_collect(sys.argv[2:])
+    elif sys.argv[1] == "stacks":
+        for f in sorted(DATA.glob("*.observations.json")):
+            obs = json.loads(f.read_text())
+            repo_path, _ = ensure_clone(obs["repository"]["full_name"])
+            infer_stacks(repo_path, obs["pull_requests"])
+            f.write_text(json.dumps(obs, indent=1))
+            print(obs["repository"]["full_name"], {p["number"]: p["_stacked_on"] for p in obs["pull_requests"] if p.get("_stacked_on")})
     else:
         cmd_measure()

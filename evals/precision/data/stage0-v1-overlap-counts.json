@@ -1,0 +1,8 @@
+{
+ "astral-sh/uv": 72,
+ "fastapi/fastapi": 4,
+ "pydantic/pydantic": 13,
+ "tldraw/tldraw": 29,
+ "vitejs/vite": 11,
+ "withastro/astro": 12
+}

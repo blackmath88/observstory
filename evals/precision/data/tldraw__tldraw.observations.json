@@ -3608,7 +3608,7 @@
    "draft": false,
    "merged": false,
    "head": "pull/10866",
-   "base": "main",
+   "base": "pull/10865",
    "author": {
     "login": null,
     "name": "Mime \u010cuvalo",
@@ -3853,7 +3853,8 @@
     "sha": "22f1bd55d731b5c1b593a70f115216138dab3bd7",
     "source": "compare"
    },
-   "_head_sha": "8674fb40aaa8106d5c6d12b63495c3e7c16e8aaa"
+   "_head_sha": "8674fb40aaa8106d5c6d12b63495c3e7c16e8aaa",
+   "_stacked_on": 10865
   },
   {
    "number": 10865,
@@ -3863,7 +3864,7 @@
    "draft": false,
    "merged": false,
    "head": "pull/10865",
-   "base": "main",
+   "base": "pull/10778",
    "author": {
     "login": null,
     "name": "Mime \u010cuvalo",
@@ -4056,7 +4057,8 @@
     "sha": "22f1bd55d731b5c1b593a70f115216138dab3bd7",
     "source": "compare"
    },
-   "_head_sha": "ff5be3fed5b8d7a76bff99b5786123e8526561e3"
+   "_head_sha": "ff5be3fed5b8d7a76bff99b5786123e8526561e3",
+   "_stacked_on": 10778
   },
   {
    "number": 10778,
