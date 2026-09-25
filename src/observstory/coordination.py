@@ -276,6 +276,7 @@ def reconcile(data: dict, work_items: list[dict], commit_rows: list[dict], now: 
         commitment_rows.append(row)
 
     # G-freeze: frozen areas that changed after the freeze
+    frozen_hits: dict[str, set] = {}
     commit_by_item: dict[str, list] = {}
     for c in commit_rows:
         commit_by_item.setdefault(c["work_item"], []).append(c)
@@ -300,6 +301,7 @@ def reconcile(data: dict, work_items: list[dict], commit_rows: list[dict], now: 
             if later and touched and w["kind"] != "direct":
                 hits.append((w, "work-item", [c["sha"][:7] for c in later], touched))
         if hits:
+            frozen_hits[g["id"]] = {h[0]["id"] for h in hits}
             exact_only = all(h[1] == "exact" for h in hits)
             where = ", ".join(g.get("areas") or ["the repository"])
             cues.append({
@@ -310,7 +312,7 @@ def reconcile(data: dict, work_items: list[dict], commit_rows: list[dict], now: 
                 "declared": {"text": g["label"], "at": g["at"], "areas": g.get("areas", []),
                              "session": g.get("source", {}).get("session"), "confirmed_by": g["confirmed_by"]},
                 "observed": {"work_items": [h[0]["id"] for h in hits],
-                             "detail": "; ".join(f"{h[0]['id']}: {len(h[2])} commit(s) after the freeze "
+                             "detail": "; ".join(f"{_name(h[0])}: {len(h[2])} commit(s) after the freeze "
                                                  + ("touching " if h[1] == "exact" else "on work that touches ")
                                                  + ", ".join(h[3][:3]) for h in hits)},
             })
@@ -329,13 +331,17 @@ def reconcile(data: dict, work_items: list[dict], commit_rows: list[dict], now: 
             continue
         for row in commitment_rows:
             due = _t(row.get("due"))
+            open_work = [m for m in row["matched"] if items[m]["in_flight"]]
+            # the freeze cue already names this work (Develop finding F4: three cues about one PR)
+            if set(open_work) <= frozen_hits.get(g["id"], set()):
+                continue
             if due and due <= _t(g["at"]) and row["state"] == "in_progress" and in_scope(row, g):
                 cues.append({
                     "id": f"gate:{g['id']}:{row['id']}", "rule": "gate.passed_with_open_work",
                     "subject": {"kind": "commitment", "id": row["id"]}, "confidence": "high",
                     "summary": f"{g['label']} passed at {g['at'][11:16]}; \"{row['text']}\" still has open work",
                     "declared": {"text": row["text"], "due": row["due"], "gate": g["id"], "confirmed_by": row["confirmed_by"]},
-                    "observed": {"work_items": [m for m in row["matched"] if items[m]["in_flight"]],
+                    "observed": {"work_items": open_work,
                                  "detail": "linked work is still in flight"},
                 })
 

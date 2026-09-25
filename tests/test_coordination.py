@@ -111,6 +111,11 @@ class Reconciliation(unittest.TestCase):
         self.assertEqual(cue["confidence"], "medium")  # #12 is judged by its overall paths
         self.assertNotIn("alice", cue["summary"])      # names the change, not the person
 
+    def test_freeze_cue_is_not_repeated_as_open_work(self):
+        """Develop finding F4: the prototype showed three cues about one PR at Sat 15:00."""
+        _, c = moment("after-core-freeze")
+        self.assertEqual(rules(c), ["commitment.unstarted", "freeze.changed_after"])
+
     def test_scoped_freeze_ignores_commitments_outside_its_areas(self):
         _, c = moment("feature-freeze")
         open_work = [q["subject"]["id"] for q in c["cues"] if q["rule"] == "gate.passed_with_open_work"]
