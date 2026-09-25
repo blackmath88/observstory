@@ -1,0 +1,86 @@
+{
+  "schema": "observstory.observations/v1",
+  "note": "very long titles, a deep path and a long branch name must stay legible",
+  "fetched_at": "2026-09-21T12:00:00Z",
+  "repository": {
+    "full_name": "example/chat-app",
+    "url": "https://github.com/example/chat-app",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": "Fictional fixture repository"
+  },
+  "window": {
+    "hours": 48
+  },
+  "trigger": {
+    "event": "fixture",
+    "run_id": "m4",
+    "sha": ""
+  },
+  "commits": [],
+  "pull_requests": [
+    {
+      "number": 90,
+      "title": "Refactor the incremental compilation cache so that invalidation is driven by content hashes rather than timestamps, and document the migration path for plugin authors",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "alice/pr-90",
+      "base": "main",
+      "author": {
+        "login": "alice",
+        "name": "Alice",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T07:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/90",
+      "requested_reviewers": [],
+      "paths": [
+        "packages/compiler/src/incremental/cache/invalidation/content_hash_strategy.ts"
+      ],
+      "commits": [
+        {
+          "sha": "0000058000000000000000000000000000000000",
+          "date": "2026-09-21T07:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "work 0"
+        }
+      ]
+    }
+  ],
+  "branches": [
+    {
+      "name": "experiments/very-long-branch-name-for-content-addressed-cache-invalidation-prototype",
+      "url": "https://github.com/example/chat-app/tree/experiments/very-long-branch-name-for-content-addressed-cache-invalidation-prototype",
+      "ahead_by": 1,
+      "paths": [
+        "packages/compiler/src/incremental/cache/invalidation/content_hash_strategy.ts"
+      ],
+      "commits": [
+        {
+          "sha": "0000059000000000000000000000000000000000",
+          "date": "2026-09-21T10:00:00Z",
+          "author": {
+            "login": "ben",
+            "name": "Ben",
+            "type": "User"
+          },
+          "message": "work 0"
+        }
+      ]
+    }
+  ],
+  "issues": [],
+  "meta": {
+    "source": "fixture",
+    "api_calls": 0,
+    "rate_limit_remaining": null,
+    "degraded": []
+  }
+}

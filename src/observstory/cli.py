@@ -3,7 +3,8 @@
   observstory build                       collect from GitHub (env-driven, used by the Action)
   observstory derive OBS [--config C] [--now ISO] [--out DIR]
                                           offline: observations -> snapshot + dashboard
-  observstory render SNAPSHOT [--out F]   re-render a dashboard from a snapshot
+  observstory render SNAPSHOT [--out F] [--view map|radar]
+                                          re-render a view from a snapshot (default: Project Map)
   observstory query NAME [ARGS] [--snapshot F]
                                           agent surface: changes-since ISO | work-near PATH.. |
                                           overlaps [PATH] | open-loops | handoff
@@ -22,8 +23,10 @@ import sys
 from . import config as config_mod
 from . import query as query_mod
 from .derive import derive, parse_time
+from .map_compiler import compile_scene
+from .map_render import render_map
 from .render import render
-from .validate import validate
+from .validate import scene_errors, validate
 
 
 def _write_outputs(out: pathlib.Path, observations: dict | None, snapshot: dict) -> None:
@@ -32,7 +35,15 @@ def _write_outputs(out: pathlib.Path, observations: dict | None, snapshot: dict)
     if observations is not None:
         (data / "observations.json").write_text(json.dumps(observations, indent=2, ensure_ascii=False), encoding="utf-8")
     (data / "snapshot.json").write_text(json.dumps(snapshot, indent=2, ensure_ascii=False), encoding="utf-8")
-    (out / "index.html").write_text(render(snapshot), encoding="utf-8")
+    scene = compile_scene(snapshot)
+    errors = scene_errors(scene)
+    if errors:
+        for e in errors[:20]:
+            print(f"::error::scene validation: {e}", file=sys.stderr)
+        raise SystemExit(2)
+    (data / "scene.json").write_text(json.dumps(scene, indent=2, ensure_ascii=False), encoding="utf-8")
+    (out / "index.html").write_text(render_map(scene), encoding="utf-8")   # Project Map (default view)
+    (out / "radar.html").write_text(render(snapshot), encoding="utf-8")    # radar (alternative projection)
 
 
 def _check(snapshot: dict) -> None:
@@ -109,7 +120,8 @@ def cmd_derive(args) -> None:
 def cmd_render(args) -> None:
     snap = json.loads(pathlib.Path(args.snapshot).read_text(encoding="utf-8"))
     _check(snap)
-    pathlib.Path(args.out).write_text(render(snap), encoding="utf-8")
+    page = render(snap) if args.view == "radar" else render_map(compile_scene(snap))
+    pathlib.Path(args.out).write_text(page, encoding="utf-8")
 
 
 def cmd_query(args) -> None:
@@ -149,6 +161,7 @@ def main(argv=None) -> None:
     r = sub.add_parser("render")
     r.add_argument("snapshot")
     r.add_argument("--out", default="index.html")
+    r.add_argument("--view", choices=["map", "radar"], default="map")
     q = sub.add_parser("query")
     q.add_argument("name", choices=sorted(query_mod.QUERIES))
     q.add_argument("args", nargs="*")

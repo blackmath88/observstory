@@ -15,7 +15,7 @@ inputs:
     required: false
     default: observstory.config.json
   output:
-    description: Output directory for index.html and data/{snapshot,observations}.json.
+    description: Output directory for index.html (Project Map), radar.html and data/{snapshot,scene,observations}.json.
     required: false
     default: observstory
 

@@ -197,6 +197,43 @@ FIXTURES["p2-transitive-stack"] = bundle(
          pr(63, "Lock export docs fix", "ben", ["src/lock/export.py"], commits("ben", [2]), updated=2)],
 )
 
+# Project Map scenarios (issue #3) ---------------------------------------------------------
+FIXTURES["m1-empty"] = bundle("m1", note="nothing happened in the window: every lane is quiet")
+
+FIXTURES["m2-crowded-area"] = bundle(
+    "m2", note="three PRs change src/editor/state.ts pairwise, a fourth works elsewhere; one area, three overlaps",
+    prs=[pr(70, "Selection model rewrite", "alice", ["src/editor/state.ts", "src/editor/select.ts"], commits("alice", [6, 3]), updated=3),
+         pr(71, "Undo stack batching", "ben", ["src/editor/state.ts", "src/editor/history.ts"], commits("ben", [5]), updated=5),
+         pr(72, "Collaborative cursors", "sofia", ["src/editor/state.ts", "src/editor/presence.ts"], commits("sofia", [2]), updated=2),
+         pr(73, "Docs: keyboard shortcuts", "dana", ["docs/shortcuts.md"], commits("dana", [4]), updated=4)],
+)
+
+ML_LANES = [
+    {"id": "data", "label": "Data", "description": "Sources and datasets", "paths": ["data/", "datasets/"]},
+    {"id": "pipeline", "label": "Pipeline", "description": "Ingestion and features", "paths": ["pipeline/"]},
+    {"id": "model", "label": "Model", "description": "Training and architecture", "paths": ["model/", "train/"]},
+    {"id": "eval", "label": "Eval", "description": "Benchmarks and error analysis", "paths": ["eval/"]},
+    {"id": "api", "label": "API", "description": "Serving", "paths": ["api/", "serve/"]},
+    {"id": "docs", "label": "Docs", "description": "Explaining it", "paths": ["docs/", "README.md"]},
+]
+FIXTURES["m3-ml-project"] = bundle(
+    "m3", note="six custom lanes; a feature change crosses pipeline and model; eval waits on the model PR",
+    prs=[pr(80, "Tokenizer v2 features", "alice", ["pipeline/features/tokenize.py", "model/embed.py"], commits("alice", [8, 4]), updated=4),
+         pr(81, "Embedding dim 1024", "ben", ["model/embed.py", "model/config.yaml"], commits("ben", [6]), updated=6),
+         pr(82, "Eval set for multilingual", "sofia", ["eval/multilingual/run.py"], commits("sofia", [3]), updated=3,
+            body="Depends on #81 for the new embedding size."),
+         pr(83, "Serve batch endpoint", "dana", ["api/batch.py"], commits("dana", [2]), updated=2)],
+)
+
+FIXTURES["m4-long-labels"] = bundle(
+    "m4", note="very long titles, a deep path and a long branch name must stay legible",
+    prs=[pr(90, "Refactor the incremental compilation cache so that invalidation is driven by content hashes rather than "
+                "timestamps, and document the migration path for plugin authors", "alice",
+            ["packages/compiler/src/incremental/cache/invalidation/content_hash_strategy.ts"], commits("alice", [5]), updated=5)],
+    branches=[branch("experiments/very-long-branch-name-for-content-addressed-cache-invalidation-prototype",
+                     ["packages/compiler/src/incremental/cache/invalidation/content_hash_strategy.ts"], commits("ben", [2]))],
+)
+
 # Demo scenario: four moments in one project ----------------------------------------
 D0 = dt.datetime(2026, 9, 21, 9, 0, tzinfo=dt.timezone.utc)
 moments = {
