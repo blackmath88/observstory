@@ -1,0 +1,265 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/blackmath88/observstory/schema/coordination-v1.json",
+  "title": "Observstory coordination state v1",
+  "description": "Declared collaboration state, kept in the observed repository at .observstory/coordination.json. Only items with status 'declared' take part in reconciliation; 'proposed' items await human confirmation. No audio, no full transcripts, no statuses to maintain.",
+  "type": "object",
+  "required": [
+    "schema",
+    "sessions",
+    "gates",
+    "commitments",
+    "decisions"
+  ],
+  "properties": {
+    "schema": {
+      "const": "observstory.coordination/v1"
+    },
+    "sessions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/session"
+      }
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/gate"
+      }
+    },
+    "commitments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/commitment"
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/decision"
+      }
+    }
+  },
+  "$defs": {
+    "session": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "label",
+        "at"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "check-in",
+            "kickoff",
+            "review",
+            "other"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        },
+        "recorded": {
+          "type": "boolean",
+          "description": "Always false in v1: no recording."
+        },
+        "open_questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "gate": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "label",
+        "at",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "declared"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "description": "Where it came from: {session, extractor, line, excerpt}"
+        },
+        "confirmed_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confirmed_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "freeze",
+            "submission",
+            "demo",
+            "checkpoint"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        },
+        "areas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Path prefixes a freeze applies to; empty means the whole repository"
+        }
+      }
+    },
+    "commitment": {
+      "type": "object",
+      "required": [
+        "id",
+        "text",
+        "status",
+        "links"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "declared"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "description": "Where it came from: {session, extractor, line, excerpt}"
+        },
+        "confirmed_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confirmed_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "text": {
+          "type": "string"
+        },
+        "owner": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "As declared by the confirmer; never inferred"
+        },
+        "due": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/link"
+          }
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "required": [
+        "id",
+        "text",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "declared"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "description": "Where it came from: {session, extractor, line, excerpt}"
+        },
+        "confirmed_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confirmed_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "text": {
+          "type": "string"
+        },
+        "areas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "link": {
+      "type": "object",
+      "required": [
+        "kind",
+        "ref"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "pr",
+            "branch",
+            "path",
+            "url"
+          ]
+        },
+        "ref": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
