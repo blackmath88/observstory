@@ -1,0 +1,336 @@
+{
+  "schema": "observstory.observations/v1",
+  "fetched_at": "2026-09-25T00:08:04Z",
+  "repository": {
+    "full_name": "blackmath88/observstory",
+    "url": "https://github.com/blackmath88/observstory",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": null
+  },
+  "window": {
+    "hours": 72.0,
+    "since": "2026-09-22T00:08:04Z"
+  },
+  "trigger": {
+    "event": "local-dogfood",
+    "run_id": "",
+    "sha": ""
+  },
+  "commits": [
+    {
+      "sha": "9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+      "url": "https://github.com/blackmath88/observstory/commit/9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+      "date": "2026-09-24T23:27:18Z",
+      "author": {
+        "login": "blackmath88",
+        "name": null,
+        "type": "User"
+      },
+      "message": "Add Double Diamond production brief for Claude",
+      "paths": [
+        "CLAUDE_DOUBLE_DIAMOND.md"
+      ]
+    },
+    {
+      "sha": "e56b289b71e1cf3dd3e3ecb4481f8e0d98b8e28d",
+      "url": "https://github.com/blackmath88/observstory/commit/e56b289b71e1cf3dd3e3ecb4481f8e0d98b8e28d",
+      "date": "2026-09-24T23:18:42Z",
+      "author": {
+        "login": "blackmath88",
+        "name": null,
+        "type": "User"
+      },
+      "message": "Add versioned snapshot schema",
+      "paths": [
+        "schema/snapshot-v0.json"
+      ]
+    },
+    {
+      "sha": "5dcd463b7c25a89b0545d4064b9cc49050528a65",
+      "url": "https://github.com/blackmath88/observstory/commit/5dcd463b7c25a89b0545d4064b9cc49050528a65",
+      "date": "2026-09-24T23:18:40Z",
+      "author": {
+        "login": "blackmath88",
+        "name": null,
+        "type": "User"
+      },
+      "message": "Configure Observstory self-observation lanes",
+      "paths": [
+        "observstory.config.json"
+      ]
+    },
+    {
+      "sha": "c63d3e7a55cfaa6eb17736c11a7f8ab9e77fea0b",
+      "url": "https://github.com/blackmath88/observstory/commit/c63d3e7a55cfaa6eb17736c11a7f8ab9e77fea0b",
+      "date": "2026-09-24T23:18:39Z",
+      "author": {
+        "login": "blackmath88",
+        "name": null,
+        "type": "User"
+      },
+      "message": "Dogfood Observstory on its own repository",
+      "paths": [
+        ".github/workflows/observstory.yml"
+      ]
+    },
+    {
+      "sha": "845327c44af6d134ae19b8f0feebed1b96cd3388",
+      "url": "https://github.com/blackmath88/observstory/commit/845327c44af6d134ae19b8f0feebed1b96cd3388",
+      "date": "2026-09-24T23:18:18Z",
+      "author": {
+        "login": "blackmath88",
+        "name": null,
+        "type": "User"
+      },
+      "message": "Build typed GitHub snapshot and generated control center",
+      "paths": [
+        "scripts/observstory.py"
+      ]
+    },
+    {
+      "sha": "f93a4495c5f8780ff335f3b3b2bc28a61cae82c2",
+      "url": "https://github.com/blackmath88/observstory/commit/f93a4495c5f8780ff335f3b3b2bc28a61cae82c2",
+      "date": "2026-09-24T23:17:13Z",
+      "author": {
+        "login": "blackmath88",
+        "name": null,
+        "type": "User"
+      },
+      "message": "Add Observstory roadmap",
+      "paths": [
+        "ROADMAP.md"
+      ]
+    },
+    {
+      "sha": "d9ec3c920d7c00b9d075cb03843b1d10aa5fff11",
+      "url": "https://github.com/blackmath88/observstory/commit/d9ec3c920d7c00b9d075cb03843b1d10aa5fff11",
+      "date": "2026-09-24T23:17:11Z",
+      "author": {
+        "login": "blackmath88",
+        "name": null,
+        "type": "User"
+      },
+      "message": "Document Observstory system boundary and service architecture",
+      "paths": [
+        "ARCHITECTURE.md"
+      ]
+    },
+    {
+      "sha": "167c997c387f5398874ac547e8ec4d1ee96ce2d1",
+      "url": "https://github.com/blackmath88/observstory/commit/167c997c387f5398874ac547e8ec4d1ee96ce2d1",
+      "date": "2026-09-24T23:17:09Z",
+      "author": {
+        "login": "blackmath88",
+        "name": null,
+        "type": "User"
+      },
+      "message": "Add example typed lane configuration",
+      "paths": [
+        "observstory.config.example.json"
+      ]
+    },
+    {
+      "sha": "9a0c6701944c85231bde41c2b7a41473d4d5bb1e",
+      "url": "https://github.com/blackmath88/observstory/commit/9a0c6701944c85231bde41c2b7a41473d4d5bb1e",
+      "date": "2026-09-24T23:16:57Z",
+      "author": {
+        "login": "blackmath88",
+        "name": null,
+        "type": "User"
+      },
+      "message": "Add reusable Observstory composite action",
+      "paths": [
+        "action.yml"
+      ]
+    },
+    {
+      "sha": "0157d860cc02ad69d6ea2c672787fb3748a28ba9",
+      "url": "https://github.com/blackmath88/observstory/commit/0157d860cc02ad69d6ea2c672787fb3748a28ba9",
+      "date": "2026-09-24T23:16:55Z",
+      "author": {
+        "login": "blackmath88",
+        "name": null,
+        "type": "User"
+      },
+      "message": "Initialize Observstory product README",
+      "paths": [
+        "README.md"
+      ]
+    }
+  ],
+  "pull_requests": [],
+  "branches": [
+    {
+      "name": "claude/blissful-brahmagupta-xtddua",
+      "url": "https://github.com/blackmath88/observstory/tree/claude/blissful-brahmagupta-xtddua",
+      "ahead_by": 7,
+      "paths": [
+        ".github/workflows/observstory.yml",
+        ".gitignore",
+        "ARCHITECTURE.md",
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "action.yml",
+        "docs/definition/README.md",
+        "docs/definition/design-principles.md",
+        "docs/definition/jobs-to-be-done.md",
+        "docs/definition/product-thesis.md",
+        "docs/definition/signal-specs.md",
+        "docs/definition/system-boundary.md",
+        "docs/definition/v1-scope.md",
+        "docs/demo/README.md",
+        "docs/demo/agent-contract.md",
+        "docs/demo/img/demo-t1.png",
+        "docs/demo/img/demo-t2.png",
+        "docs/demo/img/demo-t3.png",
+        "docs/demo/img/timeline.png",
+        "docs/development/concept-comparison.md",
+        "docs/development/experiment-results.md",
+        "docs/development/ui-language.md",
+        "docs/discovery/README.md",
+        "docs/discovery/ai-collaboration-failures.md",
+        "docs/discovery/competitive-landscape.md",
+        "docs/discovery/observable-signals.md",
+        "docs/discovery/opportunity-map.json",
+        "docs/discovery/problem-space.md",
+        "docs/discovery/risks.md",
+        "docs/discovery/scenarios.md",
+        "fixtures/make_fixtures.py",
+        "fixtures/observations/demo-t0.json",
+        "fixtures/observations/demo-t1.json",
+        "fixtures/observations/demo-t2.json",
+        "fixtures/observations/demo-t3.json",
+        "fixtures/observations/e1-same-subsystem.json",
+        "fixtures/observations/e2-parallel.json",
+        "fixtures/observations/e3-stale.json",
+        "fixtures/observations/e4-waiting.json",
+        "fixtures/observations/e5-burst.json",
+        "fixtures/observations/e6-direct-pushes.json",
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "prototypes/README.md",
+        "prototypes/agent-surface/build.py",
+        "prototypes/agent-surface/examples/01-changes-since.json",
+        "prototypes/agent-surface/examples/02-work-near.json",
+        "prototypes/agent-surface/examples/03-proposed-task.json",
+        "prototypes/agent-surface/examples/04-open-loops.json",
+        "prototypes/agent-surface/examples/05-handoff.json",
+        "prototypes/agent-surface/mcp-tools.json",
+        "prototypes/radar/build.py",
+        "prototypes/radar/demo-t0.html",
+        "prototypes/radar/demo-t1.html",
+        "prototypes/radar/demo-t2.html",
+        "prototypes/radar/demo-t3.html",
+        "prototypes/timeline/build.py",
+        "prototypes/timeline/index.html",
+        "prototypes/timeline/timeline.json",
+        "schema/snapshot-v1.json",
+        "scripts/observstory.py",
+        "src/observstory/__init__.py",
+        "src/observstory/cli.py",
+        "src/observstory/collect.py",
+        "src/observstory/config.py",
+        "src/observstory/derive.py",
+        "src/observstory/github.py",
+        "src/observstory/query.py",
+        "src/observstory/render.py",
+        "src/observstory/signals.py",
+        "src/observstory/validate.py",
+        "tests/__init__.py",
+        "tests/helpers.py",
+        "tests/test_derive.py",
+        "tests/test_principles.py",
+        "tests/test_query.py",
+        "tests/test_signals.py"
+      ],
+      "commits": [
+        {
+          "sha": "3c620866f8431e6c484fd6863bae8ec996d65c6b",
+          "url": "https://github.com/blackmath88/observstory/commit/3c620866f8431e6c484fd6863bae8ec996d65c6b",
+          "date": "2026-09-24T23:51:47Z",
+          "author": {
+            "login": "claude",
+            "name": null,
+            "type": "User"
+          },
+          "message": "discover: map collaboration problem space, signals, scenarios and risks\n\nAdds docs/discovery (problem space, competitive landscape, AI collaboration\nfailure catalogue, observable-signal classification, six proxy scenarios,\nrisk register, ranked opportunity map). Key finding: v0 overlap reads only\ndefault-branch commits, so it detects collisions after merge.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01WjuUmMNNqin2MCfUuBhYGQ"
+        },
+        {
+          "sha": "a3ac3d3f1b2ffe2fa82b235b2801845fc845cad6",
+          "url": "https://github.com/blackmath88/observstory/commit/a3ac3d3f1b2ffe2fa82b235b2801845fc845cad6",
+          "date": "2026-09-24T23:54:46Z",
+          "author": {
+            "login": "claude",
+            "name": null,
+            "type": "User"
+          },
+          "message": "define: product thesis, JTBD, system boundary, v1 signal specs, snapshot v1 schema, ADRs\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01WjuUmMNNqin2MCfUuBhYGQ"
+        },
+        {
+          "sha": "7ff6a6a5f31554069f16b972cae68cd4c289bab2",
+          "url": "https://github.com/blackmath88/observstory/commit/7ff6a6a5f31554069f16b972cae68cd4c289bab2",
+          "date": "2026-09-25T00:03:30Z",
+          "author": {
+            "login": "claude",
+            "name": null,
+            "type": "User"
+          },
+          "message": "develop: pure derivation engine, v1 signals, fixtures and signal experiments\n\nSplits collection (collect.py, github.py) from pure derivation (derive.py,\nsignals.py). Adds overlap/stale/waiting/burst signals, a stdlib schema\nvalidator, agent query functions, the radar renderer and a CLI.\nFixtures are observation bundles; tests cover the five required\nexperiments, the demo scenario and the design principles.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01WjuUmMNNqin2MCfUuBhYGQ"
+        },
+        {
+          "sha": "bccb8d999d7c060d608e6158d6b9909375b713d6",
+          "url": "https://github.com/blackmath88/observstory/commit/bccb8d999d7c060d608e6158d6b9909375b713d6",
+          "date": "2026-09-25T00:03:30Z",
+          "author": {
+            "login": "claude",
+            "name": null,
+            "type": "User"
+          },
+          "message": "develop: radar, timeline and agent-surface prototypes\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01WjuUmMNNqin2MCfUuBhYGQ"
+        },
+        {
+          "sha": "9d6cfbddf213cd321a14ebf820ccab6fd948321c",
+          "url": "https://github.com/blackmath88/observstory/commit/9d6cfbddf213cd321a14ebf820ccab6fd948321c",
+          "date": "2026-09-25T00:04:26Z",
+          "author": {
+            "login": "claude",
+            "name": null,
+            "type": "User"
+          },
+          "message": "develop: concept comparison, experiment results, UI language; select radar + agent surface\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01WjuUmMNNqin2MCfUuBhYGQ"
+        },
+        {
+          "sha": "8bbc4f8bddee6f4854c2d03a6855689358063064",
+          "url": "https://github.com/blackmath88/observstory/commit/8bbc4f8bddee6f4854c2d03a6855689358063064",
+          "date": "2026-09-25T00:05:01Z",
+          "author": {
+            "login": "claude",
+            "name": null,
+            "type": "User"
+          },
+          "message": "deliver: zero-config action inputs, event-first dogfood workflow with tests, anonymous public reads\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01WjuUmMNNqin2MCfUuBhYGQ"
+        },
+        {
+          "sha": "b7d3bae68f4fecdb7215a9f877a693f6c599cd90",
+          "url": "https://github.com/blackmath88/observstory/commit/b7d3bae68f4fecdb7215a9f877a693f6c599cd90",
+          "date": "2026-09-25T00:07:59Z",
+          "author": {
+            "login": "claude",
+            "name": null,
+            "type": "User"
+          },
+          "message": "deliver: radar hardening, anchored ignore fix from dogfooding, demo, agent contract, README/ARCHITECTURE/ROADMAP\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01WjuUmMNNqin2MCfUuBhYGQ"
+        }
+      ]
+    }
+  ],
+  "issues": [],
+  "meta": {
+    "source": "GitHub REST API",
+    "api_calls": 16,
+    "rate_limit_remaining": 14965,
+    "degraded": []
+  }
+}

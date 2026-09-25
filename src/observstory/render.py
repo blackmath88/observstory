@@ -76,6 +76,16 @@ def radar_svg(snap: dict) -> str:
     parts.append(f'<circle class="now" cx="{cx}" cy="{cy}" r="3"/>')
     if not lanes:
         parts.append(f'<text class="empty" x="{cx}" y="{cy + 40}" text-anchor="middle">No activity in this window</text>')
+    placed: list[tuple[float, float, float]] = []  # (x_left, x_right, y) of labels already drawn
+
+    def free_y(x0: float, x1: float, y: float) -> float:
+        for _ in range(8):
+            if not any(a < x1 and x0 < b and abs(y - yy) < 13 for a, b, yy in placed):
+                break
+            y += 13
+        placed.append((x0, x1, y))
+        return y
+
     span = 2 * math.pi / max(1, len(lanes))
     for li, lane in enumerate(lanes):
         start = -math.pi / 2 + li * span
@@ -111,6 +121,9 @@ def radar_svg(snap: dict) -> str:
                 lr = r + dot + 8
                 tx, ty = cx + lr * math.cos(angle), cy + lr * math.sin(angle)
                 anchor = "middle" if abs(math.cos(angle)) < 0.25 else ("start" if math.cos(angle) > 0 else "end")
+                width = 6.7 * len(area_id)
+                x0 = {"start": tx, "end": tx - width, "middle": tx - width / 2}[anchor]
+                ty = free_y(x0, x0 + width, ty)
                 parts.append(f'<text class="area-label{" hot" if sig else ""}" x="{tx:.1f}" y="{ty + 4:.1f}" '
                              f'text-anchor="{anchor}">{esc(area_id)}</text>')
             parts.append("</g></a>")
@@ -120,7 +133,7 @@ def radar_svg(snap: dict) -> str:
 
 # ---------------------------------------------------------------- panels
 
-def signal_block(s: dict, items: dict) -> str:
+def signal_block(s: dict, items: dict, nested: bool = False) -> str:
     ev = []
     for e in s["evidence"]:
         if e["kind"] == "work_item":
@@ -134,7 +147,7 @@ def signal_block(s: dict, items: dict) -> str:
             ev.append(f'<li><span class="k">{esc(e["kind"])}</span>{link(e.get("url"), e["ref"], "mono")}'
                       f'<span class="d">{esc(e.get("detail", ""))}</span></li>')
     params = ", ".join(f"{k}={v}" for k, v in s["rule"]["params"].items() if v not in ([], None))
-    opened = " open" if s["type"] == "overlap" and s["confidence"] != "low" else ""
+    opened = " open" if s["type"] == "overlap" and s["confidence"] != "low" and not nested else ""
     return (f'<details class="signal {esc(s["type"])}" id="sig-{slug(s["id"])}"{opened}>'
             f'<summary><span class="conf c-{s["confidence"]}" title="confidence: {s["confidence"]}">'
             f'{CONF_GLYPH[s["confidence"]]}</span><span class="sum">{esc(s["summary"])}</span>'
@@ -142,6 +155,28 @@ def signal_block(s: dict, items: dict) -> str:
             f'<ul class="evidence">{"".join(ev)}</ul>'
             f'<p class="rule">rule <code>{esc(s["rule"]["name"])}</code>'
             f'{" · " + esc(params) if params else ""} · confidence {esc(s["confidence"])}</p></details>')
+
+
+def overlap_clusters(sigs: list[dict], items: dict) -> str:
+    """Overlaps between the same set of work items read as one relationship across several areas.
+    Dogfooding showed 9 per-area signals for one branch against one push stream (signal fatigue, R16).
+    The snapshot keeps one signal per area; only the presentation groups them."""
+    clusters: dict[tuple, list[dict]] = {}
+    for s in sigs:
+        clusters.setdefault(tuple(s["work_items"]), []).append(s)
+    out = []
+    for members, group in clusters.items():
+        if len(group) == 1:
+            out.append(signal_block(group[0], items))
+            continue
+        top = max(group, key=lambda s: ["low", "medium", "high"].index(s["confidence"]))
+        areas = ", ".join(s["subject"]["id"] for s in group)
+        inner = "".join(signal_block(s, items, nested=True) for s in group)
+        out.append(f'<details class="signal overlap cluster" open><summary><span class="conf c-{top["confidence"]}">'
+                   f'{CONF_GLYPH[top["confidence"]]}</span><span class="sum">{" × ".join(esc(m) for m in members)} '
+                   f'overlap in {len(group)} areas</span><span class="tag">{len(group)} signals</span></summary>'
+                   f'<p class="rule">{esc(areas)}</p><div class="nested">{inner}</div></details>')
+    return "".join(out)
 
 
 def render(snap: dict) -> str:
@@ -153,9 +188,12 @@ def render(snap: dict) -> str:
     groups = []
     for label, blurb, types in GROUPS:
         sigs = [s for s in snap["signals"] if s["type"] in types]
-        body = "".join(signal_block(s, items) for s in sigs) or '<p class="quiet">Nothing here.</p>'
+        if types == ("overlap",):
+            body = overlap_clusters(sigs, items)
+        else:
+            body = "".join(signal_block(s, items) for s in sigs)
         groups.append(f'<section class="group"><h3>{label} <span class="n">{len(sigs)}</span></h3>'
-                      f'<p class="blurb">{blurb}</p>{body}</section>')
+                      f'<p class="blurb">{blurb}</p>{body or "<p class=quiet>Nothing here.</p>"}</section>')
 
     overlap_areas = {s["subject"]["id"] for s in snap["signals"] if s["type"] == "overlap"}
     areas = {a["id"]: a for a in snap["areas"]}
@@ -265,6 +303,7 @@ h3{{font-size:14px;font-weight:600;margin:0}} h4{{margin:0;font-size:14px;font-w
 .evidence .d{{color:var(--muted);font-size:12px}}
 .rule{{margin:0 0 10px 22px;color:var(--faint);font-size:11px}}
 .quiet{{color:var(--muted);font-size:13px}}
+.nested{{margin-left:22px}} .nested .signal summary{{padding:6px 2px}} .nested .sum{{font-weight:400}}
 section.band{{margin-top:34px}}
 .lanes{{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}}
 .lane{{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}}

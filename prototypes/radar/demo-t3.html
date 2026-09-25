@@ -56,6 +56,7 @@ h3{font-size:14px;font-weight:600;margin:0} h4{margin:0;font-size:14px;font-weig
 .evidence .d{color:var(--muted);font-size:12px}
 .rule{margin:0 0 10px 22px;color:var(--faint);font-size:11px}
 .quiet{color:var(--muted);font-size:13px}
+.nested{margin-left:22px} .nested .signal summary{padding:6px 2px} .nested .sum{font-weight:400}
 section.band{margin-top:34px}
 .lanes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .lane{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
@@ -110,7 +111,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);color:v
   </section>
   <section>
     <h2 class="eyebrow">Signals · every line opens to its evidence</h2>
-    <section class="group"><h3>Coordination <span class="n">0</span></h3><p class="blurb">Areas touched by more than one work item that is in flight or recent</p><p class="quiet">Nothing here.</p></section><section class="group"><h3>Open loops <span class="n">1</span></h3><p class="blurb">Work that has stopped moving or is waiting on other work</p><details class="signal waiting" id="sig-waiting-pr-44-pr-41"><summary><span class="conf c-high" title="confidence: high">●</span><span class="sum">pr:44 waits on pr:41</span><span class="tag">declared</span></summary><ul class="evidence"><li><span class="k">text</span><a class="mono" href="https://github.com/example/chat-app/pull/44">Depends on #41</a><span class="d">pull request body declares &#x27;Depends on #41&#x27;</span></li><li><span class="k">work</span><a class="mono" href="https://github.com/example/chat-app/pull/41">pr:41</a><span class="d">Conversation memory · alice</span></li></ul><p class="rule">rule <code>waiting.declared</code> · confidence high</p></details></section><section class="group"><h3>Change streams <span class="n">0</span></h3><p class="blurb">Machine-paced commit streams, folded so they read as one unit</p><p class="quiet">Nothing here.</p></section>
+    <section class="group"><h3>Coordination <span class="n">0</span></h3><p class="blurb">Areas touched by more than one work item that is in flight or recent</p><p class=quiet>Nothing here.</p></section><section class="group"><h3>Open loops <span class="n">1</span></h3><p class="blurb">Work that has stopped moving or is waiting on other work</p><details class="signal waiting" id="sig-waiting-pr-44-pr-41"><summary><span class="conf c-high" title="confidence: high">●</span><span class="sum">pr:44 waits on pr:41</span><span class="tag">declared</span></summary><ul class="evidence"><li><span class="k">text</span><a class="mono" href="https://github.com/example/chat-app/pull/44">Depends on #41</a><span class="d">pull request body declares &#x27;Depends on #41&#x27;</span></li><li><span class="k">work</span><a class="mono" href="https://github.com/example/chat-app/pull/41">pr:41</a><span class="d">Conversation memory · alice</span></li></ul><p class="rule">rule <code>waiting.declared</code> · confidence high</p></details></section><section class="group"><h3>Change streams <span class="n">0</span></h3><p class="blurb">Machine-paced commit streams, folded so they read as one unit</p><p class=quiet>Nothing here.</p></section>
   </section>
 </div>
 
