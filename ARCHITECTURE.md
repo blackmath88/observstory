@@ -28,9 +28,11 @@ src/observstory/derive.py + signals.py          PURE: derive(observations, confi
         ▼
 observstory/data/snapshot.json                  typed state (schema/snapshot-v1.json), validated every run
         │
-   ┌────┴───────────────────────┐
-   ▼                            ▼
-render.py → index.html      query.py → `observstory query …` JSON  (MCP adapter: later, same functions)
+   ┌────┴──────────────────────────────────────────┐
+   ▼                                               ▼
+map_compiler.py → data/scene.json (scene v1)    query.py → `observstory query …` JSON  (MCP adapter: later)
+   ▼
+map_render.py → index.html  (Project Map, default)      render.py → radar.html (alternative projection)
 ```
 
 | Module | Role | Pure? |
@@ -41,7 +43,9 @@ render.py → index.html      query.py → `observstory query …` JSON  (MCP ad
 | `derive.py` | Observations → snapshot: areas, lanes, work items, actors | yes |
 | `signals.py` | The four v1 signals | yes |
 | `validate.py` | Stdlib JSON Schema subset, plus semantic rules (no per-person numbers) | yes |
-| `render.py` | Radar dashboard (projection only) | yes |
+| `map_compiler.py` | Snapshot → scene v1: zones, groups, nodes, edges, attention ([scene grammar](docs/ui/scene-grammar.md)) | yes |
+| `map_render.py` | Scene → Project Map page (HTML/CSS, SVG connectors, inspector) | yes |
+| `render.py` | Radar view (alternative projection) | yes |
 | `query.py` | Agent questions over the snapshot | yes |
 | `cli.py` | `build`, `derive`, `render`, `query`, `validate` | — |
 

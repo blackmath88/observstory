@@ -13,7 +13,9 @@ pushes) and builds a typed, evidence-backed model of it. That model shows:
 
 Humans get a dashboard. Coding agents query the same state before they act.
 
-![Radar: an overlap in src/conversation, with evidence](docs/demo/img/demo-t2.png)
+![Project Map: lanes, areas and work in flight; an overlap in src/conversation](docs/demo/img/map-demo-t2.png)
+
+*The Project Map: calm map → where should we talk? → click for the evidence. [How to read it](docs/ui/project-map.md).*
 
 ## Install (zero config)
 
@@ -46,14 +48,14 @@ jobs:
         with: { name: observstory, path: observstory, retention-days: 7 }
 ```
 
-Open the run's `observstory` artifact and load `index.html`. **Without any config file** you
-get:
+Open the run's `observstory` artifact and load `index.html` (the Project Map; `radar.html` is the
+radar view). **Without any config file** you get:
 
 - areas derived from your paths
 - default lanes (Intent, Build, Verify, Ship)
 - in-flight work items
 - the four signals below
-- `data/snapshot.json` for agents
+- `data/snapshot.json` for agents, and `data/scene.json` (the map's visual contract)
 
 The job summary lists the signals. For a hosted page, add the `configure-pages` /
 `upload-pages-artifact` / `deploy-pages` steps (see [ARCHITECTURE.md](ARCHITECTURE.md#publishing)).
@@ -88,8 +90,9 @@ GitHub events + hourly reconciliation
           │     (pure function; schema-validated every run)
      ┌────┴─────┐
      ▼          ▼
- index.html   observstory query …   (the MCP adapter wraps these same five queries)
- humans       agents
+ scene.json   observstory query …   (the MCP adapter wraps these same five queries)
+     │        agents
+ index.html  Project Map (humans) · radar.html (alternative view)
 ```
 
 The typed model ([`schema/snapshot-v1.json`](schema/snapshot-v1.json)):
@@ -154,4 +157,5 @@ python3 -m unittest discover -s tests -t .      # stdlib only, no install
 | Discover | [docs/discovery](docs/discovery/README.md): problem, landscape, failures, signals, scenarios, risks, opportunity map |
 | Define | [docs/definition](docs/definition/README.md): thesis, JTBD, boundary, v1 scope, signal specs, principles |
 | Develop | [docs/development](docs/development/): concept comparison, experiments, UI language · [prototypes/](prototypes/) |
+| UI | [docs/ui](docs/ui/project-map.md): Project Map, scene grammar, design language · [prototypes/project-map](prototypes/project-map/) |
 | Deliver | [docs/demo](docs/demo/README.md) · [acceptance map](docs/demo/acceptance.md) · [ARCHITECTURE.md](ARCHITECTURE.md) · [DECISIONS.md](DECISIONS.md) · [ROADMAP.md](ROADMAP.md) |
