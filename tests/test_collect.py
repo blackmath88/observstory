@@ -36,6 +36,7 @@ ROUTES = {
     ],
     f"{R}/pulls/8/files": [{"filename": "src/chat/memory.py"}, {"filename": "package-lock.json"}],
     f"{R}/pulls/8/commits": [commit("c3", "sofia", "2026-09-21T11:00:00Z")],
+    f"{R}/compare/main...sofia/store": {"merge_base_commit": {"sha": "b2"}},
     f"{R}/branches": [{"name": "main"}, {"name": "sofia/store"}, {"name": "alice/memory"}, {"name": "ben/spike"}],
     f"{R}/compare/main...ben/spike": {"ahead_by": 2, "files": [{"filename": "src/chat/ui.py"}],
                                       "commits": [commit("d4", "ben", "2026-09-20T12:00:00Z")]},
@@ -62,6 +63,7 @@ class Collector(unittest.TestCase):
         self.assertEqual([b["name"] for b in obs["branches"]], ["ben/spike"])  # merged PR's branch excluded
         self.assertEqual(obs["pull_requests"][0]["requested_reviewers"], ["alice"])
         self.assertEqual(obs["meta"]["degraded"], [])
+        self.assertEqual(obs["pull_requests"][0]["merge_base"], {"sha": "b2", "source": "compare"})
         snap = derive(obs, config.normalise(None), NOW)
         self.assertEqual(validate(snap), [])
         ids = {w["id"] for w in snap["work_items"]}

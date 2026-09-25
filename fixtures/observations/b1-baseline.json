@@ -1,0 +1,117 @@
+{
+  "schema": "observstory.observations/v1",
+  "note": "bob branched from m3; every README change on main is already in his base -> no overlap",
+  "fetched_at": "2026-09-21T12:00:00Z",
+  "repository": {
+    "full_name": "example/chat-app",
+    "url": "https://github.com/example/chat-app",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": "Fictional fixture repository"
+  },
+  "window": {
+    "hours": 48
+  },
+  "trigger": {
+    "event": "fixture",
+    "run_id": "b1",
+    "sha": ""
+  },
+  "commits": [
+    {
+      "sha": "m300000000000000000000000000000000000000",
+      "url": "https://github.com/example/chat-app/commit/m300000000000000000000000000000000000000",
+      "date": "2026-09-21T06:00:00Z",
+      "author": {
+        "login": "alice",
+        "name": "Alice",
+        "type": "User"
+      },
+      "message": "Tighten README intro",
+      "paths": [
+        "README.md"
+      ],
+      "parents": [
+        "m200000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "sha": "m200000000000000000000000000000000000000",
+      "url": "https://github.com/example/chat-app/commit/m200000000000000000000000000000000000000",
+      "date": "2026-09-20T16:00:00Z",
+      "author": {
+        "login": "alice",
+        "name": "Alice",
+        "type": "User"
+      },
+      "message": "Guide",
+      "paths": [
+        "docs/guide.md"
+      ],
+      "parents": [
+        "m100000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "sha": "m100000000000000000000000000000000000000",
+      "url": "https://github.com/example/chat-app/commit/m100000000000000000000000000000000000000",
+      "date": "2026-09-20T06:00:00Z",
+      "author": {
+        "login": "alice",
+        "name": "Alice",
+        "type": "User"
+      },
+      "message": "README first draft",
+      "paths": [
+        "README.md"
+      ],
+      "parents": [
+        "m000000000000000000000000000000000000000"
+      ]
+    }
+  ],
+  "pull_requests": [],
+  "branches": [
+    {
+      "name": "bob/readme",
+      "url": "https://github.com/example/chat-app/tree/bob/readme",
+      "ahead_by": 2,
+      "paths": [
+        "README.md"
+      ],
+      "commits": [
+        {
+          "sha": "0000036000000000000000000000000000000000",
+          "date": "2026-09-21T09:00:00Z",
+          "author": {
+            "login": "bob",
+            "name": "Bob",
+            "type": "User"
+          },
+          "message": "work 0"
+        },
+        {
+          "sha": "0000037000000000000000000000000000000000",
+          "date": "2026-09-21T10:00:00Z",
+          "author": {
+            "login": "bob",
+            "name": "Bob",
+            "type": "User"
+          },
+          "message": "work 1"
+        }
+      ],
+      "merge_base": {
+        "sha": "m300000000000000000000000000000000000000",
+        "source": "compare"
+      }
+    }
+  ],
+  "issues": [],
+  "meta": {
+    "source": "fixture",
+    "api_calls": 0,
+    "rate_limit_remaining": null,
+    "degraded": []
+  }
+}

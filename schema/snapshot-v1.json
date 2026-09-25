@@ -433,6 +433,13 @@
             "object",
             "null"
           ]
+        },
+        "merge_base": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Where the item diverged from its base: {sha, source: compare|first_parent}. Null for direct pushes or when unknown."
         }
       }
     },
@@ -663,7 +670,8 @@
             "work_item",
             "commit",
             "text",
-            "timestamp"
+            "timestamp",
+            "base"
           ]
         },
         "ref": {

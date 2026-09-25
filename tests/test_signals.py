@@ -29,11 +29,12 @@ class OverlapExperiments(unittest.TestCase):
         snap = snapshot("e2-parallel", {"containers": []})
         self.assertEqual([s["subject"]["id"] for s in of_type(snap, "overlap")], ["src"])
 
-    def test_direct_pushes_same_area(self):
-        """E6: hackathon-style direct pushes to main still show shared ground, at reduced confidence."""
-        [sig] = of_type(snapshot("e6-direct-pushes"), "overlap")
-        self.assertEqual(sig["subject"]["id"], "app/game")
-        self.assertEqual(sig["confidence"], "medium")  # shared file (high) minus one level: nothing in flight
+    def test_direct_pushes_are_sequential_not_parallel(self):
+        """E6, revised by issue #2: pushes to one branch are sequential; each contains the last. No overlap."""
+        snap = snapshot("e6-direct-pushes")
+        self.assertEqual(of_type(snap, "overlap"), [])
+        area = next(a for a in snap["areas"] if a["id"] == "app/game")
+        self.assertEqual(area["in_flight"], ["direct:alice", "direct:sofia"])  # activity is still visible
 
     def test_stacked_prs_are_not_overlap(self):
         """E4 finding: a stacked PR shares ground with its base by design; do not flag it."""
