@@ -24,6 +24,11 @@ class OverlapExperiments(unittest.TestCase):
         self.assertEqual(of_type(snap, "overlap"), [])
         self.assertEqual(snap["summary"]["areas_active"], 4)  # src/billing, src/search, docs, README.md
 
+    def test_without_container_awareness_parallel_work_falsely_overlaps(self):
+        """E2 control: collapsing src/* into one area creates the false overlap ADR-012 prevents."""
+        snap = snapshot("e2-parallel", {"containers": []})
+        self.assertEqual([s["subject"]["id"] for s in of_type(snap, "overlap")], ["src"])
+
     def test_direct_pushes_same_area(self):
         """E6: hackathon-style direct pushes to main still show shared ground, at reduced confidence."""
         [sig] = of_type(snapshot("e6-direct-pushes"), "overlap")

@@ -20,8 +20,7 @@ class BudgetExhausted(GitHubError):
 class Client:
     def __init__(self, token: str, api_url: str = "https://api.github.com", reserve: int = 25,
                  max_calls: int = 400, opener=None):
-        if not token:
-            raise GitHubError("github-token is required (pass secrets.GITHUB_TOKEN to the action)")
+        # An empty token means anonymous reads: public repositories only, 60 requests/hour.
         self.token, self.api_url = token, api_url.rstrip("/")
         self.reserve, self.max_calls = reserve, max_calls
         self.calls, self.remaining = 0, None
@@ -37,12 +36,11 @@ class Client:
         if not essential and not self.affordable():
             raise BudgetExhausted(path)
         url = f"{self.api_url}{path}" + ("?" + urllib.parse.urlencode(params) if params else "")
-        request = urllib.request.Request(url, headers={
-            "Authorization": f"Bearer {self.token}",
-            "Accept": "application/vnd.github+json",
-            "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "observstory-action",
-        })
+        headers = {"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
+                   "User-Agent": "observstory-action"}
+        if self.token:
+            headers["Authorization"] = f"Bearer {self.token}"
+        request = urllib.request.Request(url, headers=headers)
         for attempt in range(3):
             self.calls += 1
             try:
