@@ -1,0 +1,526 @@
+{
+ "schema": "observstory.snapshot/v1",
+ "generated_at": "2026-09-21T11:00:00Z",
+ "trigger": {
+  "event": "demo-lab"
+ },
+ "repository": {
+  "full_name": "northstar/chat-app",
+  "url": null,
+  "default_branch": "main",
+  "visibility": "public",
+  "description": "Synthetic demo repository"
+ },
+ "window": {
+  "hours": 48,
+  "since": "2026-09-19T11:00:00Z"
+ },
+ "config": {
+  "source": "file",
+  "lanes_source": "config",
+  "title": "Northstar chat (synthetic demo)",
+  "signals": {
+   "overlap_min_work_items": 2,
+   "stale_hours": 72,
+   "burst_min_commits": 8,
+   "burst_window_minutes": 30,
+   "overlap_require_shared_file": true
+  },
+  "ignore": [
+   "package-lock.json",
+   "yarn.lock",
+   "pnpm-lock.yaml",
+   "poetry.lock",
+   "Cargo.lock",
+   "go.sum",
+   "uv.lock",
+   "Gemfile.lock",
+   "composer.lock",
+   "dist/",
+   "build/",
+   "node_modules/",
+   "vendor/",
+   "*.min.js",
+   "*.min.css",
+   "*.map",
+   "CHANGELOG*",
+   ".changeset/",
+   "*.api.md",
+   "/observstory/"
+  ],
+  "containers": [
+   "src",
+   "packages",
+   "apps",
+   "services",
+   "lib",
+   "libs",
+   "app",
+   "modules",
+   "crates",
+   "internal",
+   "cmd"
+  ],
+  "area_depth": 1
+ },
+ "summary": {
+  "in_flight": 3,
+  "areas_active": 3,
+  "commits_in_window": 2,
+  "open_issues": 0,
+  "signals": {
+   "overlap": 0,
+   "stale": 2,
+   "waiting": 0,
+   "burst": 0
+  }
+ },
+ "lanes": [
+  {
+   "id": "intent",
+   "label": "Intent",
+   "description": "Why and what: docs and decisions",
+   "source": "config",
+   "areas": [],
+   "in_flight": [],
+   "recent_commits": 0
+  },
+  {
+   "id": "core",
+   "label": "Core",
+   "description": "Conversation and search engine",
+   "source": "config",
+   "areas": [
+    "src/conversation",
+    "src/search"
+   ],
+   "in_flight": [
+    "branch:ben/search-v2-spike",
+    "pr:40"
+   ],
+   "recent_commits": 0
+  },
+  {
+   "id": "interface",
+   "label": "Interface",
+   "description": "What people see",
+   "source": "config",
+   "areas": [
+    "web"
+   ],
+   "in_flight": [
+    "pr:40",
+    "pr:48"
+   ],
+   "recent_commits": 1
+  },
+  {
+   "id": "verify",
+   "label": "Verify",
+   "description": "Tests and evaluations",
+   "source": "config",
+   "areas": [
+    "evals"
+   ],
+   "in_flight": [],
+   "recent_commits": 1
+  },
+  {
+   "id": "ship",
+   "label": "Ship",
+   "description": "Build and deploy",
+   "source": "config",
+   "areas": [],
+   "in_flight": [],
+   "recent_commits": 0
+  }
+ ],
+ "areas": [
+  {
+   "id": "evals",
+   "lane": "verify",
+   "in_flight": [],
+   "files": [],
+   "recent_commits": 1,
+   "actors": [
+    "sofia"
+   ],
+   "last_activity_at": "2026-09-19T12:00:00Z"
+  },
+  {
+   "id": "src/conversation",
+   "lane": "core",
+   "in_flight": [
+    "pr:40"
+   ],
+   "files": [
+    "src/conversation/stream.py"
+   ],
+   "recent_commits": 0,
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-09-16T12:00:00Z"
+  },
+  {
+   "id": "src/search",
+   "lane": "core",
+   "in_flight": [
+    "branch:ben/search-v2-spike"
+   ],
+   "files": [
+    "src/search/ranker.py"
+   ],
+   "recent_commits": 0,
+   "actors": [
+    "ben"
+   ],
+   "last_activity_at": "2026-09-15T17:00:00Z"
+  },
+  {
+   "id": "web",
+   "lane": "interface",
+   "in_flight": [
+    "pr:40",
+    "pr:48"
+   ],
+   "files": [
+    "web/chat/Composer.tsx",
+    "web/chat/Thread.tsx"
+   ],
+   "recent_commits": 1,
+   "actors": [
+    "alice",
+    "sofia"
+   ],
+   "last_activity_at": "2026-09-21T09:00:00Z"
+  }
+ ],
+ "work_items": [
+  {
+   "id": "pr:48",
+   "kind": "pull_request",
+   "number": 48,
+   "title": "Composer keyboard shortcuts",
+   "url": null,
+   "state": "open",
+   "in_flight": true,
+   "head": "alice/pr-48",
+   "base": "main",
+   "actors": [
+    "alice"
+   ],
+   "created_at": "2026-09-18T08:00:00Z",
+   "last_activity_at": "2026-09-21T09:00:00Z",
+   "paths": [
+    "web/chat/Composer.tsx"
+   ],
+   "areas": [
+    "web"
+   ],
+   "lanes": [
+    "interface"
+   ],
+   "commit_count": 3,
+   "review_state": "no_reviewer",
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "e070230531653120e45ee9b8a8753cc068d1be41",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:40",
+   "kind": "pull_request",
+   "number": 40,
+   "title": "Streaming responses",
+   "url": null,
+   "state": "draft",
+   "in_flight": true,
+   "head": "alice/streaming",
+   "base": "main",
+   "actors": [
+    "alice"
+   ],
+   "created_at": "2026-09-16T09:00:00Z",
+   "last_activity_at": "2026-09-16T12:00:00Z",
+   "paths": [
+    "src/conversation/stream.py",
+    "web/chat/Thread.tsx"
+   ],
+   "areas": [
+    "src/conversation",
+    "web"
+   ],
+   "lanes": [
+    "core",
+    "interface"
+   ],
+   "commit_count": 2,
+   "review_state": "draft",
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "e02a034ede6ecbbfcf8f02558a25c889ef3363f9",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "branch:ben/search-v2-spike",
+   "kind": "branch",
+   "number": null,
+   "title": "ben/search-v2-spike",
+   "url": null,
+   "state": "unproposed",
+   "in_flight": true,
+   "head": "ben/search-v2-spike",
+   "base": "main",
+   "actors": [
+    "ben"
+   ],
+   "created_at": null,
+   "last_activity_at": "2026-09-15T17:00:00Z",
+   "paths": [
+    "src/search/ranker.py"
+   ],
+   "areas": [
+    "src/search"
+   ],
+   "lanes": [
+    "core"
+   ],
+   "commit_count": 2,
+   "review_state": null,
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "e02a034ede6ecbbfcf8f02558a25c889ef3363f9",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:50",
+   "kind": "pull_request",
+   "number": 50,
+   "title": "Generate settings screens",
+   "url": null,
+   "state": "merged",
+   "in_flight": false,
+   "head": "sofia/settings-screens",
+   "base": "main",
+   "actors": [
+    "sofia"
+   ],
+   "created_at": "2026-09-18T13:00:00Z",
+   "last_activity_at": "2026-09-19T15:00:00Z",
+   "paths": [
+    "web/settings/Notifications.tsx",
+    "web/settings/Privacy.tsx",
+    "web/settings/Profile.tsx"
+   ],
+   "areas": [
+    "web"
+   ],
+   "lanes": [
+    "interface"
+   ],
+   "commit_count": 24,
+   "review_state": null,
+   "waiting_on": [],
+   "agent_declared": true,
+   "burst": null,
+   "merge_base": {
+    "sha": "e070230531653120e45ee9b8a8753cc068d1be41",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:44",
+   "kind": "pull_request",
+   "number": 44,
+   "title": "Evaluation harness for conversation memory",
+   "url": null,
+   "state": "merged",
+   "in_flight": false,
+   "head": "sofia/pr-44",
+   "base": "main",
+   "actors": [
+    "sofia"
+   ],
+   "created_at": "2026-09-16T11:00:00Z",
+   "last_activity_at": "2026-09-19T12:00:00Z",
+   "paths": [
+    "evals/conversation/cases.json",
+    "evals/conversation/test_memory.py"
+   ],
+   "areas": [
+    "evals"
+   ],
+   "lanes": [
+    "verify"
+   ],
+   "commit_count": 2,
+   "review_state": null,
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "ab44d38a92171752c744dc6021d04dc4b198ab98",
+    "source": "compare"
+   }
+  }
+ ],
+ "commits": [
+  {
+   "sha": "4524b75caa77d7d23206a71367b8a26f65e6d669",
+   "url": null,
+   "message": "Generate settings screens (#50)",
+   "date": "2026-09-19T15:00:00Z",
+   "actor": "sofia",
+   "paths": [
+    "web/settings/Notifications.tsx",
+    "web/settings/Privacy.tsx",
+    "web/settings/Profile.tsx"
+   ],
+   "areas": [
+    "web"
+   ],
+   "work_item": "pr:50"
+  },
+  {
+   "sha": "fbc39fd78c07d08eca4cc8dba45be7dff7ef8a3f",
+   "url": null,
+   "message": "Evaluation harness for conversation memory (#44)",
+   "date": "2026-09-19T12:00:00Z",
+   "actor": "sofia",
+   "paths": [
+    "evals/conversation/cases.json",
+    "evals/conversation/test_memory.py"
+   ],
+   "areas": [
+    "evals"
+   ],
+   "work_item": "pr:44"
+  }
+ ],
+ "issues": [],
+ "actors": [
+  {
+   "id": "alice",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "pr:40",
+    "pr:48"
+   ]
+  },
+  {
+   "id": "ben",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "branch:ben/search-v2-spike"
+   ]
+  },
+  {
+   "id": "sofia",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "pr:44",
+    "pr:50"
+   ]
+  }
+ ],
+ "signals": [
+  {
+   "id": "stale:branch:ben/search-v2-spike",
+   "type": "stale",
+   "basis": "heuristic",
+   "confidence": "medium",
+   "subject": {
+    "kind": "work_item",
+    "id": "branch:ben/search-v2-spike"
+   },
+   "summary": "branch:ben/search-v2-spike idle for 6d (no pull request)",
+   "work_items": [
+    "branch:ben/search-v2-spike"
+   ],
+   "actors": [
+    "ben"
+   ],
+   "evidence": [
+    {
+     "kind": "timestamp",
+     "ref": "2026-09-15T17:00:00Z",
+     "url": null,
+     "detail": "no activity for 6d; no pull request"
+    },
+    {
+     "kind": "work_item",
+     "ref": "branch:ben/search-v2-spike",
+     "url": null,
+     "detail": "ben/search-v2-spike (unproposed)"
+    }
+   ],
+   "rule": {
+    "name": "stale.idle",
+    "params": {
+     "stale_hours": 72.0,
+     "idle_hours": 138.0
+    }
+   }
+  },
+  {
+   "id": "stale:pr:40",
+   "type": "stale",
+   "basis": "heuristic",
+   "confidence": "low",
+   "subject": {
+    "kind": "work_item",
+    "id": "pr:40"
+   },
+   "summary": "pr:40 idle for 5d",
+   "work_items": [
+    "pr:40"
+   ],
+   "actors": [
+    "alice"
+   ],
+   "evidence": [
+    {
+     "kind": "timestamp",
+     "ref": "2026-09-16T12:00:00Z",
+     "url": null,
+     "detail": "no activity for 5d"
+    },
+    {
+     "kind": "work_item",
+     "ref": "pr:40",
+     "url": null,
+     "detail": "Streaming responses (draft)"
+    }
+   ],
+   "rule": {
+    "name": "stale.idle",
+    "params": {
+     "stale_hours": 72.0,
+     "idle_hours": 119.0
+    }
+   }
+  }
+ ],
+ "provenance": {
+  "source": "synthetic (Demo Lab)",
+  "collector": "blackmath88/observstory",
+  "collector_version": "1.0.0",
+  "observations_fetched_at": "2026-09-21T11:00:00Z",
+  "api_calls": 0,
+  "rate_limit_remaining": null,
+  "degraded": []
+ }
+}

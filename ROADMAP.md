@@ -26,6 +26,7 @@ Composite Action, typed lanes, JSON snapshot, static dashboard, path overlap on 
 ## v1.1: Project Map ✅ (issue #3)
 - [x] Scene v1 contract and deterministic compiler
 - [x] Project Map as the default view (HTML/CSS + SVG connectors, inspector, responsive); radar kept as `radar.html`
+- [x] Demo Lab: one synthetic project at nine moments, through the real pipeline (issue #6)
 - [ ] Run it with a real team for a week and see whether the attention column is what people actually open
 
 ## v1.x: cheap refinements

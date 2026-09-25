@@ -17,6 +17,10 @@ Humans get a dashboard. Coding agents query the same state before they act.
 
 *The Project Map: calm map → where should we talk? → click for the evidence. [How to read it](docs/ui/project-map.md).*
 
+**▶ [Try the Demo Lab](demo/index.html)**: one fictional project at nine moments, from quiet to overlap
+to resolved, each rendered by the real pipeline. Open `demo/index.html` locally or on GitHub Pages.
+*All demo data is synthetic.*
+
 ## Install (zero config)
 
 ```yaml
@@ -157,5 +161,5 @@ python3 -m unittest discover -s tests -t .      # stdlib only, no install
 | Discover | [docs/discovery](docs/discovery/README.md): problem, landscape, failures, signals, scenarios, risks, opportunity map |
 | Define | [docs/definition](docs/definition/README.md): thesis, JTBD, boundary, v1 scope, signal specs, principles |
 | Develop | [docs/development](docs/development/): concept comparison, experiments, UI language · [prototypes/](prototypes/) |
-| UI | [docs/ui](docs/ui/project-map.md): Project Map, scene grammar, design language · [prototypes/project-map](prototypes/project-map/) |
+| UI | [docs/ui](docs/ui/project-map.md): Project Map, scene grammar, design language · [prototypes/project-map](prototypes/project-map/) · [Demo Lab](demo/README.md) |
 | Deliver | [docs/demo](docs/demo/README.md) · [acceptance map](docs/demo/acceptance.md) · [ARCHITECTURE.md](ARCHITECTURE.md) · [DECISIONS.md](DECISIONS.md) · [ROADMAP.md](ROADMAP.md) |

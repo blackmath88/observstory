@@ -1,0 +1,498 @@
+{
+ "schema": "observstory.snapshot/v1",
+ "generated_at": "2026-09-15T14:00:00Z",
+ "trigger": {
+  "event": "demo-lab"
+ },
+ "repository": {
+  "full_name": "northstar/recsys",
+  "url": null,
+  "default_branch": "main",
+  "visibility": "public",
+  "description": "Synthetic demo repository"
+ },
+ "window": {
+  "hours": 48,
+  "since": "2026-09-13T14:00:00Z"
+ },
+ "config": {
+  "source": "file",
+  "lanes_source": "config",
+  "title": "Northstar recommendations (synthetic demo)",
+  "signals": {
+   "overlap_min_work_items": 2,
+   "stale_hours": 72,
+   "burst_min_commits": 8,
+   "burst_window_minutes": 30,
+   "overlap_require_shared_file": true
+  },
+  "ignore": [
+   "package-lock.json",
+   "yarn.lock",
+   "pnpm-lock.yaml",
+   "poetry.lock",
+   "Cargo.lock",
+   "go.sum",
+   "uv.lock",
+   "Gemfile.lock",
+   "composer.lock",
+   "dist/",
+   "build/",
+   "node_modules/",
+   "vendor/",
+   "*.min.js",
+   "*.min.css",
+   "*.map",
+   "CHANGELOG*",
+   ".changeset/",
+   "*.api.md",
+   "/observstory/"
+  ],
+  "containers": [
+   "src",
+   "packages",
+   "apps",
+   "services",
+   "lib",
+   "libs",
+   "app",
+   "modules",
+   "crates",
+   "internal",
+   "cmd"
+  ],
+  "area_depth": 1
+ },
+ "summary": {
+  "in_flight": 4,
+  "areas_active": 4,
+  "commits_in_window": 0,
+  "open_issues": 0,
+  "signals": {
+   "overlap": 1,
+   "stale": 0,
+   "waiting": 1,
+   "burst": 0
+  }
+ },
+ "lanes": [
+  {
+   "id": "data",
+   "label": "Data",
+   "description": "Sources and datasets",
+   "source": "config",
+   "areas": [],
+   "in_flight": [],
+   "recent_commits": 0
+  },
+  {
+   "id": "pipeline",
+   "label": "Pipeline",
+   "description": "Ingestion and features",
+   "source": "config",
+   "areas": [
+    "pipeline"
+   ],
+   "in_flight": [
+    "pr:80"
+   ],
+   "recent_commits": 0
+  },
+  {
+   "id": "model",
+   "label": "Model",
+   "description": "Training and architecture",
+   "source": "config",
+   "areas": [
+    "model"
+   ],
+   "in_flight": [
+    "pr:80",
+    "pr:81"
+   ],
+   "recent_commits": 0
+  },
+  {
+   "id": "eval",
+   "label": "Eval",
+   "description": "Benchmarks",
+   "source": "config",
+   "areas": [
+    "eval"
+   ],
+   "in_flight": [
+    "pr:82"
+   ],
+   "recent_commits": 0
+  },
+  {
+   "id": "api",
+   "label": "API",
+   "description": "Serving",
+   "source": "config",
+   "areas": [
+    "api"
+   ],
+   "in_flight": [
+    "pr:83"
+   ],
+   "recent_commits": 0
+  },
+  {
+   "id": "docs",
+   "label": "Docs",
+   "description": "Explaining it",
+   "source": "config",
+   "areas": [],
+   "in_flight": [],
+   "recent_commits": 0
+  }
+ ],
+ "areas": [
+  {
+   "id": "api",
+   "lane": "api",
+   "in_flight": [
+    "pr:83"
+   ],
+   "files": [
+    "api/batch.py"
+   ],
+   "recent_commits": 0,
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-09-15T12:00:00Z"
+  },
+  {
+   "id": "eval",
+   "lane": "eval",
+   "in_flight": [
+    "pr:82"
+   ],
+   "files": [
+    "eval/multilingual/run.py"
+   ],
+   "recent_commits": 0,
+   "actors": [
+    "sofia"
+   ],
+   "last_activity_at": "2026-09-15T11:00:00Z"
+  },
+  {
+   "id": "model",
+   "lane": "model",
+   "in_flight": [
+    "pr:80",
+    "pr:81"
+   ],
+   "files": [
+    "model/config.yaml",
+    "model/embed.py"
+   ],
+   "recent_commits": 0,
+   "actors": [
+    "alice",
+    "ben"
+   ],
+   "last_activity_at": "2026-09-15T12:00:00Z"
+  },
+  {
+   "id": "pipeline",
+   "lane": "pipeline",
+   "in_flight": [
+    "pr:80"
+   ],
+   "files": [
+    "pipeline/features/tokenize.py"
+   ],
+   "recent_commits": 0,
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-09-15T12:00:00Z"
+  }
+ ],
+ "work_items": [
+  {
+   "id": "pr:80",
+   "kind": "pull_request",
+   "number": 80,
+   "title": "Tokenizer v2 features",
+   "url": null,
+   "state": "open",
+   "in_flight": true,
+   "head": "alice/pr-80",
+   "base": "main",
+   "actors": [
+    "alice"
+   ],
+   "created_at": "2026-09-15T08:00:00Z",
+   "last_activity_at": "2026-09-15T12:00:00Z",
+   "paths": [
+    "model/embed.py",
+    "pipeline/features/tokenize.py"
+   ],
+   "areas": [
+    "model",
+    "pipeline"
+   ],
+   "lanes": [
+    "model",
+    "pipeline"
+   ],
+   "commit_count": 2,
+   "review_state": "no_reviewer",
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "d32cccffdba2631b100333f117d7530b6d0146fe",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:83",
+   "kind": "pull_request",
+   "number": 83,
+   "title": "Batch scoring endpoint",
+   "url": null,
+   "state": "open",
+   "in_flight": true,
+   "head": "alice/pr-83",
+   "base": "main",
+   "actors": [
+    "alice"
+   ],
+   "created_at": "2026-09-15T12:00:00Z",
+   "last_activity_at": "2026-09-15T12:00:00Z",
+   "paths": [
+    "api/batch.py"
+   ],
+   "areas": [
+    "api"
+   ],
+   "lanes": [
+    "api"
+   ],
+   "commit_count": 1,
+   "review_state": "no_reviewer",
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "d32cccffdba2631b100333f117d7530b6d0146fe",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:81",
+   "kind": "pull_request",
+   "number": 81,
+   "title": "Embedding dim 1024",
+   "url": null,
+   "state": "open",
+   "in_flight": true,
+   "head": "ben/pr-81",
+   "base": "main",
+   "actors": [
+    "ben"
+   ],
+   "created_at": "2026-09-15T09:00:00Z",
+   "last_activity_at": "2026-09-15T11:00:00Z",
+   "paths": [
+    "model/config.yaml",
+    "model/embed.py"
+   ],
+   "areas": [
+    "model"
+   ],
+   "lanes": [
+    "model"
+   ],
+   "commit_count": 2,
+   "review_state": "no_reviewer",
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "d32cccffdba2631b100333f117d7530b6d0146fe",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:82",
+   "kind": "pull_request",
+   "number": 82,
+   "title": "Multilingual eval set",
+   "url": null,
+   "state": "open",
+   "in_flight": true,
+   "head": "sofia/pr-82",
+   "base": "main",
+   "actors": [
+    "sofia"
+   ],
+   "created_at": "2026-09-15T11:00:00Z",
+   "last_activity_at": "2026-09-15T11:00:00Z",
+   "paths": [
+    "eval/multilingual/run.py"
+   ],
+   "areas": [
+    "eval"
+   ],
+   "lanes": [
+    "eval"
+   ],
+   "commit_count": 1,
+   "review_state": "no_reviewer",
+   "waiting_on": [
+    "pr:81"
+   ],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "d32cccffdba2631b100333f117d7530b6d0146fe",
+    "source": "compare"
+   }
+  }
+ ],
+ "commits": [],
+ "issues": [],
+ "actors": [
+  {
+   "id": "alice",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "pr:80",
+    "pr:83"
+   ]
+  },
+  {
+   "id": "ben",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "pr:81"
+   ]
+  },
+  {
+   "id": "sofia",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "pr:82"
+   ]
+  }
+ ],
+ "signals": [
+  {
+   "id": "overlap:model",
+   "type": "overlap",
+   "basis": "derived",
+   "confidence": "high",
+   "subject": {
+    "kind": "area",
+    "id": "model"
+   },
+   "summary": "2 work items change model in parallel; 1 shared file",
+   "work_items": [
+    "pr:80",
+    "pr:81"
+   ],
+   "actors": [
+    "alice",
+    "ben"
+   ],
+   "evidence": [
+    {
+     "kind": "file",
+     "ref": "model/embed.py",
+     "url": null,
+     "work_items": [
+      "pr:80",
+      "pr:81"
+     ],
+     "detail": "changed by 2 work items in parallel"
+    },
+    {
+     "kind": "work_item",
+     "ref": "pr:80",
+     "url": null,
+     "detail": "Tokenizer v2 features (open)"
+    },
+    {
+     "kind": "work_item",
+     "ref": "pr:81",
+     "url": null,
+     "detail": "Embedding dim 1024 (open)"
+    }
+   ],
+   "rule": {
+    "name": "overlap.parallel_pairs",
+    "params": {
+     "min_work_items": 2,
+     "same_author": false,
+     "shared_files": 1,
+     "parallel_pairs": [
+      "pr:80|pr:81"
+     ],
+     "baseline_pairs": [],
+     "sequential_direct_pairs": 0,
+     "explained_by_waiting": [],
+     "excluded_stale": [],
+     "excluded_bot_only": [],
+     "area_only_pairs_skipped": 0,
+     "require_shared_file": true
+    }
+   }
+  },
+  {
+   "id": "waiting:pr:82:pr:81",
+   "type": "waiting",
+   "basis": "declared",
+   "confidence": "high",
+   "subject": {
+    "kind": "work_item",
+    "id": "pr:82"
+   },
+   "summary": "pr:82 waits on pr:81",
+   "work_items": [
+    "pr:82",
+    "pr:81"
+   ],
+   "actors": [
+    "ben",
+    "sofia"
+   ],
+   "evidence": [
+    {
+     "kind": "text",
+     "ref": "Depends on #81",
+     "url": null,
+     "detail": "pull request body declares 'Depends on #81'"
+    },
+    {
+     "kind": "work_item",
+     "ref": "pr:81",
+     "url": null,
+     "detail": "Embedding dim 1024 (open)"
+    }
+   ],
+   "rule": {
+    "name": "waiting.declared",
+    "params": {}
+   }
+  }
+ ],
+ "provenance": {
+  "source": "synthetic (Demo Lab)",
+  "collector": "blackmath88/observstory",
+  "collector_version": "1.0.0",
+  "observations_fetched_at": "2026-09-15T14:00:00Z",
+  "api_calls": 0,
+  "rate_limit_remaining": null,
+  "degraded": []
+ }
+}

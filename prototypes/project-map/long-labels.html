@@ -195,7 +195,7 @@ const D = scene.details;
 let selected = null, lastFocus = null;
 
 // freshness, relative to the viewer's clock
-const fresh = document.querySelector('.fresh');
+const fresh = document.querySelector('.fresh:not(.fixed)');
 if (fresh) { const h = (Date.now() - Date.parse(fresh.dataset.generated)) / 36e5;
   if (isFinite(h) && h >= 0) fresh.textContent = 'snapshot ' + (h < 1 ? Math.max(1, Math.round(h*60)) + ' min' : h < 48 ? Math.round(h) + ' h' : Math.round(h/24) + ' days') + ' old'; }
 
@@ -326,7 +326,8 @@ function dl(rows){ const d = el('dl'); for (const [k, v] of rows) if (v != null 
 function nodeView(id){
   const n = nodes[id], w = D.work_items[id] || {}, f = document.createDocumentFragment();
   f.append(el('p', {class: 'ins-k' + (n.attention ? ' hot' : '')}, (n.kind === 'pull_request' ? 'Pull request' : n.kind === 'branch' ? 'Branch without a pull request' : 'Landed on the default branch')));
-  f.append(el('h3', {}, n.label), link(n.url, n.kind === 'direct' ? 'Open a landed commit ↗' : 'Open ' + n.ref + ' on GitHub ↗', 'open'));
+  f.append(el('h3', {}, n.label));
+  if (n.url) f.append(link(n.url, n.kind === 'direct' ? 'Open a landed commit ↗' : 'Open ' + n.ref + ' on GitHub ↗', 'open'));
   const g = groups[n.group];
   f.append(dl([['State', [n.status.replace('_', ' '), n.review_state && n.review_state !== 'draft' ? n.review_state.replace('_', ' ') : ''].filter(Boolean).join(' · ')],
                ['Authors', n.actors.join(', ')], ['Last activity', n.age_hours == null ? '' : age(n.age_hours) + ' ago'],
@@ -369,7 +370,7 @@ function edgeView(id){
   f.append(el('h3', {}, e.type === 'overlap' ? `${A.ref} and ${B.ref} change the same ${e.files.length ? 'files' : 'area'}` : `${A.ref} waits on ${B.ref}`));
   f.append(dl([['Basis', e.basis], ['Confidence', e.confidence], ['Areas', e.areas.join(', ')]]));
   f.append(el('h4', {}, 'Work items')); const ul = el('ul');
-  for (const n of [A, B]) ul.append(el('li', {}, jump('node', n.id, n.ref + '  ' + n.label), el('span', {class: 'd'}, n.actors.join(', ') + (n.age_hours != null ? ' · ' + age(n.age_hours) + ' ago' : '') + ' · ', link(n.url, 'open ↗'))));
+  for (const n of [A, B]) ul.append(el('li', {}, jump('node', n.id, n.ref + '  ' + n.label), el('span', {class: 'd'}, n.actors.join(', ') + (n.age_hours != null ? ' · ' + age(n.age_hours) + ' ago' : '') + (n.url ? ' · ' : ''), n.url ? link(n.url, 'open ↗') : null)));
   f.append(ul);
   if (e.files.length) { f.append(el('h4', {}, 'Shared files')); const d = el('div', {class: 'files'}); e.files.forEach(p => d.append(el('code', {}, p))); f.append(d); }
   f.append(el('h4', {}, 'Evidence'), evidenceList(e.signals));

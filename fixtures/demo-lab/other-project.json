@@ -1,0 +1,210 @@
+{
+ "schema": "observstory.observations/v1",
+ "note": "A different project: the lanes come from its own configuration.",
+ "synthetic": true,
+ "fetched_at": "2026-09-15T14:00:00Z",
+ "repository": {
+  "full_name": "northstar/recsys",
+  "url": null,
+  "default_branch": "main",
+  "visibility": "public",
+  "description": "Synthetic demo repository"
+ },
+ "window": {
+  "hours": 48
+ },
+ "trigger": {
+  "event": "demo-lab"
+ },
+ "commits": [],
+ "pull_requests": [
+  {
+   "number": 80,
+   "title": "Tokenizer v2 features",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "alice/pr-80",
+   "base": "main",
+   "author": {
+    "login": "alice",
+    "name": "Alice",
+    "type": "User"
+   },
+   "created_at": "2026-09-15T08:00:00Z",
+   "updated_at": "2026-09-15T12:00:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "pipeline/features/tokenize.py",
+    "model/embed.py"
+   ],
+   "commits": [
+    {
+     "sha": "08832462865ec1d7707f5fb7d4c3931018361915",
+     "date": "2026-09-15T08:00:00Z",
+     "author": {
+      "login": "alice",
+      "name": "Alice",
+      "type": "User"
+     },
+     "message": "Tokenizer v2 features (1)",
+     "parents": []
+    },
+    {
+     "sha": "83a7257d77046b165dd1a50779dc36be64099c1e",
+     "date": "2026-09-15T12:00:00Z",
+     "author": {
+      "login": "alice",
+      "name": "Alice",
+      "type": "User"
+     },
+     "message": "Tokenizer v2 features (2)",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "d32cccffdba2631b100333f117d7530b6d0146fe",
+    "source": "compare"
+   }
+  },
+  {
+   "number": 81,
+   "title": "Embedding dim 1024",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "ben/pr-81",
+   "base": "main",
+   "author": {
+    "login": "ben",
+    "name": "Ben",
+    "type": "User"
+   },
+   "created_at": "2026-09-15T09:00:00Z",
+   "updated_at": "2026-09-15T11:00:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "model/embed.py",
+    "model/config.yaml"
+   ],
+   "commits": [
+    {
+     "sha": "f8a28264bf72712089cc9a7127f3f93310f9ece0",
+     "date": "2026-09-15T09:00:00Z",
+     "author": {
+      "login": "ben",
+      "name": "Ben",
+      "type": "User"
+     },
+     "message": "Embedding dim 1024 (1)",
+     "parents": []
+    },
+    {
+     "sha": "38a3deea0fde564371ebc29287e9654641dfc7e6",
+     "date": "2026-09-15T11:00:00Z",
+     "author": {
+      "login": "ben",
+      "name": "Ben",
+      "type": "User"
+     },
+     "message": "Embedding dim 1024 (2)",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "d32cccffdba2631b100333f117d7530b6d0146fe",
+    "source": "compare"
+   }
+  },
+  {
+   "number": 82,
+   "title": "Multilingual eval set",
+   "body": "Depends on #81 for the new embedding size.",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "sofia/pr-82",
+   "base": "main",
+   "author": {
+    "login": "sofia",
+    "name": "Sofia",
+    "type": "User"
+   },
+   "created_at": "2026-09-15T11:00:00Z",
+   "updated_at": "2026-09-15T11:00:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "eval/multilingual/run.py"
+   ],
+   "commits": [
+    {
+     "sha": "c18591531104514ce8d8b513d2ac1cb3cad20184",
+     "date": "2026-09-15T11:00:00Z",
+     "author": {
+      "login": "sofia",
+      "name": "Sofia",
+      "type": "User"
+     },
+     "message": "Multilingual eval set (1)",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "d32cccffdba2631b100333f117d7530b6d0146fe",
+    "source": "compare"
+   }
+  },
+  {
+   "number": 83,
+   "title": "Batch scoring endpoint",
+   "body": "",
+   "state": "open",
+   "draft": false,
+   "merged": false,
+   "head": "alice/pr-83",
+   "base": "main",
+   "author": {
+    "login": "alice",
+    "name": "Alice",
+    "type": "User"
+   },
+   "created_at": "2026-09-15T12:00:00Z",
+   "updated_at": "2026-09-15T12:00:00Z",
+   "url": null,
+   "requested_reviewers": [],
+   "paths": [
+    "api/batch.py"
+   ],
+   "commits": [
+    {
+     "sha": "41eb514ea82c8012784b1db826ef204230966b88",
+     "date": "2026-09-15T12:00:00Z",
+     "author": {
+      "login": "alice",
+      "name": "Alice",
+      "type": "User"
+     },
+     "message": "Batch scoring endpoint (1)",
+     "parents": []
+    }
+   ],
+   "merge_base": {
+    "sha": "d32cccffdba2631b100333f117d7530b6d0146fe",
+    "source": "compare"
+   }
+  }
+ ],
+ "branches": [],
+ "issues": [],
+ "meta": {
+  "source": "synthetic (Demo Lab)",
+  "api_calls": 0,
+  "rate_limit_remaining": null,
+  "degraded": []
+ }
+}

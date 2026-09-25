@@ -1,0 +1,49 @@
+{
+  "title": "Northstar chat (synthetic demo)",
+  "lanes": [
+    {
+      "id": "intent",
+      "label": "Intent",
+      "description": "Why and what: docs and decisions",
+      "paths": [
+        "README",
+        "docs/",
+        "DECISIONS"
+      ]
+    },
+    {
+      "id": "core",
+      "label": "Core",
+      "description": "Conversation and search engine",
+      "paths": [
+        "src/"
+      ]
+    },
+    {
+      "id": "interface",
+      "label": "Interface",
+      "description": "What people see",
+      "paths": [
+        "web/"
+      ]
+    },
+    {
+      "id": "verify",
+      "label": "Verify",
+      "description": "Tests and evaluations",
+      "paths": [
+        "tests/",
+        "evals/"
+      ]
+    },
+    {
+      "id": "ship",
+      "label": "Ship",
+      "description": "Build and deploy",
+      "paths": [
+        ".github/",
+        "deploy/"
+      ]
+    }
+  ]
+}

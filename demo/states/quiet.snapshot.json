@@ -1,0 +1,360 @@
+{
+ "schema": "observstory.snapshot/v1",
+ "generated_at": "2026-09-14T08:00:00Z",
+ "trigger": {
+  "event": "demo-lab"
+ },
+ "repository": {
+  "full_name": "northstar/chat-app",
+  "url": null,
+  "default_branch": "main",
+  "visibility": "public",
+  "description": "Synthetic demo repository"
+ },
+ "window": {
+  "hours": 48,
+  "since": "2026-09-12T08:00:00Z"
+ },
+ "config": {
+  "source": "file",
+  "lanes_source": "config",
+  "title": "Northstar chat (synthetic demo)",
+  "signals": {
+   "overlap_min_work_items": 2,
+   "stale_hours": 72,
+   "burst_min_commits": 8,
+   "burst_window_minutes": 30,
+   "overlap_require_shared_file": true
+  },
+  "ignore": [
+   "package-lock.json",
+   "yarn.lock",
+   "pnpm-lock.yaml",
+   "poetry.lock",
+   "Cargo.lock",
+   "go.sum",
+   "uv.lock",
+   "Gemfile.lock",
+   "composer.lock",
+   "dist/",
+   "build/",
+   "node_modules/",
+   "vendor/",
+   "*.min.js",
+   "*.min.css",
+   "*.map",
+   "CHANGELOG*",
+   ".changeset/",
+   "*.api.md",
+   "/observstory/"
+  ],
+  "containers": [
+   "src",
+   "packages",
+   "apps",
+   "services",
+   "lib",
+   "libs",
+   "app",
+   "modules",
+   "crates",
+   "internal",
+   "cmd"
+  ],
+  "area_depth": 1
+ },
+ "summary": {
+  "in_flight": 0,
+  "areas_active": 3,
+  "commits_in_window": 3,
+  "open_issues": 0,
+  "signals": {
+   "overlap": 0,
+   "stale": 0,
+   "waiting": 0,
+   "burst": 0
+  }
+ },
+ "lanes": [
+  {
+   "id": "intent",
+   "label": "Intent",
+   "description": "Why and what: docs and decisions",
+   "source": "config",
+   "areas": [
+    "docs"
+   ],
+   "in_flight": [
+    "direct:alice"
+   ],
+   "recent_commits": 1
+  },
+  {
+   "id": "core",
+   "label": "Core",
+   "description": "Conversation and search engine",
+   "source": "config",
+   "areas": [],
+   "in_flight": [],
+   "recent_commits": 0
+  },
+  {
+   "id": "interface",
+   "label": "Interface",
+   "description": "What people see",
+   "source": "config",
+   "areas": [
+    "web"
+   ],
+   "in_flight": [
+    "direct:sofia"
+   ],
+   "recent_commits": 1
+  },
+  {
+   "id": "verify",
+   "label": "Verify",
+   "description": "Tests and evaluations",
+   "source": "config",
+   "areas": [],
+   "in_flight": [],
+   "recent_commits": 0
+  },
+  {
+   "id": "ship",
+   "label": "Ship",
+   "description": "Build and deploy",
+   "source": "config",
+   "areas": [
+    ".github"
+   ],
+   "in_flight": [
+    "direct:ben"
+   ],
+   "recent_commits": 1
+  }
+ ],
+ "areas": [
+  {
+   "id": ".github",
+   "lane": "ship",
+   "in_flight": [
+    "direct:ben"
+   ],
+   "files": [
+    ".github/workflows/ci.yml"
+   ],
+   "recent_commits": 1,
+   "actors": [
+    "ben"
+   ],
+   "last_activity_at": "2026-09-13T15:00:00Z"
+  },
+  {
+   "id": "docs",
+   "lane": "intent",
+   "in_flight": [
+    "direct:alice"
+   ],
+   "files": [
+    "docs/architecture.md"
+   ],
+   "recent_commits": 1,
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-09-12T10:00:00Z"
+  },
+  {
+   "id": "web",
+   "lane": "interface",
+   "in_flight": [
+    "direct:sofia"
+   ],
+   "files": [
+    "web/chat/Thread.tsx"
+   ],
+   "recent_commits": 1,
+   "actors": [
+    "sofia"
+   ],
+   "last_activity_at": "2026-09-13T18:00:00Z"
+  }
+ ],
+ "work_items": [
+  {
+   "id": "direct:sofia",
+   "kind": "direct",
+   "number": null,
+   "title": "Direct pushes to main",
+   "url": null,
+   "state": "pushed",
+   "in_flight": false,
+   "head": "main",
+   "base": null,
+   "actors": [
+    "sofia"
+   ],
+   "created_at": null,
+   "last_activity_at": "2026-09-13T18:00:00Z",
+   "paths": [
+    "web/chat/Thread.tsx"
+   ],
+   "areas": [
+    "web"
+   ],
+   "lanes": [
+    "interface"
+   ],
+   "commit_count": 1,
+   "review_state": null,
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": null
+  },
+  {
+   "id": "direct:ben",
+   "kind": "direct",
+   "number": null,
+   "title": "Direct pushes to main",
+   "url": null,
+   "state": "pushed",
+   "in_flight": false,
+   "head": "main",
+   "base": null,
+   "actors": [
+    "ben"
+   ],
+   "created_at": null,
+   "last_activity_at": "2026-09-13T15:00:00Z",
+   "paths": [
+    ".github/workflows/ci.yml"
+   ],
+   "areas": [
+    ".github"
+   ],
+   "lanes": [
+    "ship"
+   ],
+   "commit_count": 1,
+   "review_state": null,
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": null
+  },
+  {
+   "id": "direct:alice",
+   "kind": "direct",
+   "number": null,
+   "title": "Direct pushes to main",
+   "url": null,
+   "state": "pushed",
+   "in_flight": false,
+   "head": "main",
+   "base": null,
+   "actors": [
+    "alice"
+   ],
+   "created_at": null,
+   "last_activity_at": "2026-09-12T10:00:00Z",
+   "paths": [
+    "docs/architecture.md"
+   ],
+   "areas": [
+    "docs"
+   ],
+   "lanes": [
+    "intent"
+   ],
+   "commit_count": 1,
+   "review_state": null,
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": null
+  }
+ ],
+ "commits": [
+  {
+   "sha": "e9d03a99fea174c3dd53baed43383ee35683b49f",
+   "url": null,
+   "message": "Tighten thread spacing",
+   "date": "2026-09-13T18:00:00Z",
+   "actor": "sofia",
+   "paths": [
+    "web/chat/Thread.tsx"
+   ],
+   "areas": [
+    "web"
+   ],
+   "work_item": "direct:sofia"
+  },
+  {
+   "sha": "5100097869de46da279d4c9bebebee7bfa195f75",
+   "url": null,
+   "message": "Cache dependencies in CI",
+   "date": "2026-09-13T15:00:00Z",
+   "actor": "ben",
+   "paths": [
+    ".github/workflows/ci.yml"
+   ],
+   "areas": [
+    ".github"
+   ],
+   "work_item": "direct:ben"
+  },
+  {
+   "sha": "62b59abed953caf9006004878fdf8d1f44bb1668",
+   "url": null,
+   "message": "Describe conversation storage",
+   "date": "2026-09-12T10:00:00Z",
+   "actor": "alice",
+   "paths": [
+    "docs/architecture.md"
+   ],
+   "areas": [
+    "docs"
+   ],
+   "work_item": "direct:alice"
+  }
+ ],
+ "issues": [],
+ "actors": [
+  {
+   "id": "alice",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "direct:alice"
+   ]
+  },
+  {
+   "id": "ben",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "direct:ben"
+   ]
+  },
+  {
+   "id": "sofia",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "direct:sofia"
+   ]
+  }
+ ],
+ "signals": [],
+ "provenance": {
+  "source": "synthetic (Demo Lab)",
+  "collector": "blackmath88/observstory",
+  "collector_version": "1.0.0",
+  "observations_fetched_at": "2026-09-14T08:00:00Z",
+  "api_calls": 0,
+  "rate_limit_remaining": null,
+  "degraded": []
+ }
+}

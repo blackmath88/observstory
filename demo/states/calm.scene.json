@@ -1,0 +1,225 @@
+{
+ "schema": "observstory.scene/v1",
+ "source": {
+  "snapshot_schema": "observstory.snapshot/v1",
+  "generated_at": "2026-09-18T10:00:00Z",
+  "repository": "northstar/chat-app",
+  "repository_url": null,
+  "default_branch": "main",
+  "window_hours": 48,
+  "title": "Northstar chat (synthetic demo)",
+  "lanes_source": "config",
+  "degraded": []
+ },
+ "status": {
+  "in_flight": 2,
+  "overlaps": 0,
+  "waiting": 0,
+  "stale": 0,
+  "areas_active": 2
+ },
+ "zones": [
+  {
+   "id": "intent",
+   "label": "Intent",
+   "description": "Why and what: docs and decisions",
+   "order": 0,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "core",
+   "label": "Core",
+   "description": "Conversation and search engine",
+   "order": 1,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [
+    "src/conversation",
+    "src/search"
+   ],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "interface",
+   "label": "Interface",
+   "description": "What people see",
+   "order": 2,
+   "state": "active",
+   "groups": [
+    "area:web"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "verify",
+   "label": "Verify",
+   "description": "Tests and evaluations",
+   "order": 3,
+   "state": "active",
+   "groups": [
+    "area:evals"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "ship",
+   "label": "Ship",
+   "description": "Build and deploy",
+   "order": 4,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  }
+ ],
+ "groups": [
+  {
+   "id": "area:web",
+   "zone": "interface",
+   "path": "web",
+   "label": "web",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:48"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-09-18T09:00:00Z",
+   "age_hours": 1.0
+  },
+  {
+   "id": "area:evals",
+   "zone": "verify",
+   "path": "evals",
+   "label": "evals",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:44"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-09-18T09:00:00Z",
+   "age_hours": 1.0
+  }
+ ],
+ "nodes": [
+  {
+   "id": "pr:44",
+   "kind": "pull_request",
+   "group": "area:evals",
+   "zone": "verify",
+   "ref": "#44",
+   "label": "Evaluation harness for conversation memory",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "review_requested",
+   "actors": [
+    "sofia"
+   ],
+   "last_activity_at": "2026-09-18T09:00:00Z",
+   "age_hours": 1.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:48",
+   "kind": "pull_request",
+   "group": "area:web",
+   "zone": "interface",
+   "ref": "#48",
+   "label": "Composer keyboard shortcuts",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-09-18T09:00:00Z",
+   "age_hours": 1.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  }
+ ],
+ "edges": [],
+ "attention": [],
+ "details": {
+  "signals": {},
+  "work_items": {
+   "pr:44": {
+    "paths": [
+     "evals/conversation/cases.json",
+     "evals/conversation/test_memory.py"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "evals"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "ab44d38a92171752c744dc6021d04dc4b198ab98",
+     "source": "compare"
+    },
+    "commit_count": 2,
+    "waiting_on": []
+   },
+   "pr:48": {
+    "paths": [
+     "web/chat/Composer.tsx"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "web"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "e070230531653120e45ee9b8a8753cc068d1be41",
+     "source": "compare"
+    },
+    "commit_count": 2,
+    "waiting_on": []
+   }
+  },
+  "areas": {
+   "web": {
+    "files": [
+     "web/chat/Composer.tsx"
+    ],
+    "actors": [
+     "alice"
+    ],
+    "recent_commits": 0
+   },
+   "evals": {
+    "files": [
+     "evals/conversation/cases.json",
+     "evals/conversation/test_memory.py"
+    ],
+    "actors": [
+     "sofia"
+    ],
+    "recent_commits": 0
+   }
+  }
+ }
+}

@@ -124,7 +124,10 @@ def attention_html(scene: dict) -> str:
     return f"<ul class=attention>{rows}</ul>"
 
 
-def render_map(scene: dict, radar_href: str | None = "radar.html") -> str:
+def render_map(scene: dict, radar_href: str | None = "radar.html", data_href: str = "data/{name}.json",
+               time_label: str | None = None) -> str:
+    """data_href: where the footer links to the scene and snapshot JSON ({name} is "scene" or "snapshot").
+    time_label: a fixed label instead of "snapshot N h old" (used by the synthetic Demo Lab)."""
     src, st = scene["source"], scene["status"]
     groups = {g["id"]: g for g in scene["groups"]}
     nodes = {n["id"]: n for n in scene["nodes"]}
@@ -148,7 +151,7 @@ def render_map(scene: dict, radar_href: str | None = "radar.html") -> str:
 <header class="top">
   <div class="id"><span class="mark">Observstory</span><h1>{repo_link}</h1>
     <span class="sub">{esc(src.get("title") or "")}</span></div>
-  <p class="status">{" · ".join(status_bits)}<span class="fresh" data-generated="{esc(src["generated_at"])}">snapshot {esc(src["generated_at"])}</span></p>
+  <p class="status">{" · ".join(status_bits)}{f'<span class="fresh fixed">{esc(time_label)}</span>' if time_label else f'<span class="fresh" data-generated="{esc(src["generated_at"])}">snapshot {esc(src["generated_at"])}</span>'}</p>
 </header>
 {degraded}
 <main class="layout">
@@ -169,7 +172,7 @@ def render_map(scene: dict, radar_href: str | None = "radar.html") -> str:
       <p class="muted">faded = stale or already landed · newest work first in each area</p>
     </div>
     <p class="foot">Last {src["window_hours"]:g} h of {esc(src["repository"])} · {esc(src["default_branch"])}{radar} ·
-      <a href="data/scene.json">scene.json</a> · <a href="data/snapshot.json">snapshot.json</a></p>
+      <a href="{esc(data_href.format(name="scene"))}">scene.json</a> · <a href="{esc(data_href.format(name="snapshot"))}">snapshot.json</a></p>
     <p class="foot muted">Observstory describes work, not people.</p>
   </aside>
 </main>
@@ -340,7 +343,7 @@ const D = scene.details;
 let selected = null, lastFocus = null;
 
 // freshness, relative to the viewer's clock
-const fresh = document.querySelector('.fresh');
+const fresh = document.querySelector('.fresh:not(.fixed)');
 if (fresh) { const h = (Date.now() - Date.parse(fresh.dataset.generated)) / 36e5;
   if (isFinite(h) && h >= 0) fresh.textContent = 'snapshot ' + (h < 1 ? Math.max(1, Math.round(h*60)) + ' min' : h < 48 ? Math.round(h) + ' h' : Math.round(h/24) + ' days') + ' old'; }
 
@@ -471,7 +474,8 @@ function dl(rows){ const d = el('dl'); for (const [k, v] of rows) if (v != null 
 function nodeView(id){
   const n = nodes[id], w = D.work_items[id] || {}, f = document.createDocumentFragment();
   f.append(el('p', {class: 'ins-k' + (n.attention ? ' hot' : '')}, (n.kind === 'pull_request' ? 'Pull request' : n.kind === 'branch' ? 'Branch without a pull request' : 'Landed on the default branch')));
-  f.append(el('h3', {}, n.label), link(n.url, n.kind === 'direct' ? 'Open a landed commit ↗' : 'Open ' + n.ref + ' on GitHub ↗', 'open'));
+  f.append(el('h3', {}, n.label));
+  if (n.url) f.append(link(n.url, n.kind === 'direct' ? 'Open a landed commit ↗' : 'Open ' + n.ref + ' on GitHub ↗', 'open'));
   const g = groups[n.group];
   f.append(dl([['State', [n.status.replace('_', ' '), n.review_state && n.review_state !== 'draft' ? n.review_state.replace('_', ' ') : ''].filter(Boolean).join(' · ')],
                ['Authors', n.actors.join(', ')], ['Last activity', n.age_hours == null ? '' : age(n.age_hours) + ' ago'],
@@ -514,7 +518,7 @@ function edgeView(id){
   f.append(el('h3', {}, e.type === 'overlap' ? `${A.ref} and ${B.ref} change the same ${e.files.length ? 'files' : 'area'}` : `${A.ref} waits on ${B.ref}`));
   f.append(dl([['Basis', e.basis], ['Confidence', e.confidence], ['Areas', e.areas.join(', ')]]));
   f.append(el('h4', {}, 'Work items')); const ul = el('ul');
-  for (const n of [A, B]) ul.append(el('li', {}, jump('node', n.id, n.ref + '  ' + n.label), el('span', {class: 'd'}, n.actors.join(', ') + (n.age_hours != null ? ' · ' + age(n.age_hours) + ' ago' : '') + ' · ', link(n.url, 'open ↗'))));
+  for (const n of [A, B]) ul.append(el('li', {}, jump('node', n.id, n.ref + '  ' + n.label), el('span', {class: 'd'}, n.actors.join(', ') + (n.age_hours != null ? ' · ' + age(n.age_hours) + ' ago' : '') + (n.url ? ' · ' : ''), n.url ? link(n.url, 'open ↗') : null)));
   f.append(ul);
   if (e.files.length) { f.append(el('h4', {}, 'Shared files')); const d = el('div', {class: 'files'}); e.files.forEach(p => d.append(el('code', {}, p))); f.append(d); }
   f.append(el('h4', {}, 'Evidence'), evidenceList(e.signals));

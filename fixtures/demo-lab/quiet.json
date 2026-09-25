@@ -1,0 +1,81 @@
+{
+ "schema": "observstory.observations/v1",
+ "note": "The project exists; recent work has landed; nothing is in flight.",
+ "synthetic": true,
+ "fetched_at": "2026-09-14T08:00:00Z",
+ "repository": {
+  "full_name": "northstar/chat-app",
+  "url": null,
+  "default_branch": "main",
+  "visibility": "public",
+  "description": "Synthetic demo repository"
+ },
+ "window": {
+  "hours": 48
+ },
+ "trigger": {
+  "event": "demo-lab"
+ },
+ "commits": [
+  {
+   "sha": "e9d03a99fea174c3dd53baed43383ee35683b49f",
+   "url": null,
+   "date": "2026-09-13T18:00:00Z",
+   "author": {
+    "login": "sofia",
+    "name": "Sofia",
+    "type": "User"
+   },
+   "message": "Tighten thread spacing",
+   "paths": [
+    "web/chat/Thread.tsx"
+   ],
+   "parents": [
+    "5100097869de46da279d4c9bebebee7bfa195f75"
+   ]
+  },
+  {
+   "sha": "5100097869de46da279d4c9bebebee7bfa195f75",
+   "url": null,
+   "date": "2026-09-13T15:00:00Z",
+   "author": {
+    "login": "ben",
+    "name": "Ben",
+    "type": "User"
+   },
+   "message": "Cache dependencies in CI",
+   "paths": [
+    ".github/workflows/ci.yml"
+   ],
+   "parents": [
+    "62b59abed953caf9006004878fdf8d1f44bb1668"
+   ]
+  },
+  {
+   "sha": "62b59abed953caf9006004878fdf8d1f44bb1668",
+   "url": null,
+   "date": "2026-09-12T10:00:00Z",
+   "author": {
+    "login": "alice",
+    "name": "Alice",
+    "type": "User"
+   },
+   "message": "Describe conversation storage",
+   "paths": [
+    "docs/architecture.md"
+   ],
+   "parents": [
+    "66241b2ae4d676aff05905276927961735030b30"
+   ]
+  }
+ ],
+ "pull_requests": [],
+ "branches": [],
+ "issues": [],
+ "meta": {
+  "source": "synthetic (Demo Lab)",
+  "api_calls": 0,
+  "rate_limit_remaining": null,
+  "degraded": []
+ }
+}
