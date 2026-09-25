@@ -288,9 +288,11 @@ def derive(obs: dict, cfg: dict, now: dt.datetime) -> dict:
     # Signals ----------------------------------------------------------------------
     thresholds = cfg["signals"]
     signals = []
+    for item in work_items:
+        item["_bot_only"] = bool(item["actors"]) and all(actors[a]["kind"] == "bot" for a in item["actors"])
     waits = sig.waiting(work_items, by_id, open_heads)  # first: overlap uses waiting_on
     signals += sig.overlap(work_items, area_rows, thresholds, lambda p: area_of(p, depth, containers),
-                           baseline_resolver(obs))
+                           baseline_resolver(obs), now)
     signals += sig.stale(work_items, now, thresholds)
     signals += waits
     signals += sig.burst(work_items, thresholds)
@@ -312,6 +314,7 @@ def derive(obs: dict, cfg: dict, now: dt.datetime) -> dict:
     for item in work_items:
         item.pop("_body", None)
         item.pop("_commits", None)
+        item.pop("_bot_only", None)
 
     areas_out = []
     for a, row in area_rows.items():

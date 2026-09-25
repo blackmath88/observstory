@@ -38,7 +38,7 @@ ROUTES = {
     f"{R}/pulls/8/commits": [commit("c3", "sofia", "2026-09-21T11:00:00Z")],
     f"{R}/compare/main...sofia/store": {"merge_base_commit": {"sha": "b2"}},
     f"{R}/branches": [{"name": "main"}, {"name": "sofia/store"}, {"name": "alice/memory"}, {"name": "ben/spike"}],
-    f"{R}/compare/main...ben/spike": {"ahead_by": 2, "files": [{"filename": "src/chat/ui.py"}],
+    f"{R}/compare/main...ben/spike": {"ahead_by": 2, "files": [{"filename": "src/chat/ui.py"}, {"filename": "src/chat/memory.py"}],
                                       "commits": [commit("d4", "ben", "2026-09-20T12:00:00Z")]},
     f"{R}/issues": [{"number": 3, "title": "Bug", "state": "open", "html_url": "u", "labels": [{"name": "bug"}]},
                     {"number": 8, "title": "PR as issue", "state": "open", "pull_request": {}}],

@@ -1,0 +1,167 @@
+{
+  "schema": "observstory.observations/v1",
+  "note": "#62 is stacked on #61, which is stacked on #60; all three touch src/lock/export.py -> waiting, no overlap",
+  "fetched_at": "2026-09-21T12:00:00Z",
+  "repository": {
+    "full_name": "example/chat-app",
+    "url": "https://github.com/example/chat-app",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": "Fictional fixture repository"
+  },
+  "window": {
+    "hours": 48
+  },
+  "trigger": {
+    "event": "fixture",
+    "run_id": "p2",
+    "sha": ""
+  },
+  "commits": [],
+  "pull_requests": [
+    {
+      "number": 60,
+      "title": "Offline lock parsing",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "k/offline",
+      "base": "main",
+      "author": {
+        "login": "konsti",
+        "name": "Konsti",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T03:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/60",
+      "requested_reviewers": [],
+      "paths": [
+        "src/lock/export.py"
+      ],
+      "commits": [
+        {
+          "sha": "000004a000000000000000000000000000000000",
+          "date": "2026-09-21T03:00:00Z",
+          "author": {
+            "login": "konsti",
+            "name": "Konsti",
+            "type": "User"
+          },
+          "message": "work 0"
+        }
+      ]
+    },
+    {
+      "number": 61,
+      "title": "Export locks from build",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "k/export",
+      "base": "k/offline",
+      "author": {
+        "login": "konsti",
+        "name": "Konsti",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T06:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/61",
+      "requested_reviewers": [],
+      "paths": [
+        "src/lock/export.py"
+      ],
+      "commits": [
+        {
+          "sha": "000004b000000000000000000000000000000000",
+          "date": "2026-09-21T06:00:00Z",
+          "author": {
+            "login": "konsti",
+            "name": "Konsti",
+            "type": "User"
+          },
+          "message": "work 0"
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "title": "Install tools from locks",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "k/tools",
+      "base": "k/export",
+      "author": {
+        "login": "konsti",
+        "name": "Konsti",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T09:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/62",
+      "requested_reviewers": [],
+      "paths": [
+        "src/lock/export.py"
+      ],
+      "commits": [
+        {
+          "sha": "000004c000000000000000000000000000000000",
+          "date": "2026-09-21T09:00:00Z",
+          "author": {
+            "login": "konsti",
+            "name": "Konsti",
+            "type": "User"
+          },
+          "message": "work 0"
+        }
+      ]
+    },
+    {
+      "number": 63,
+      "title": "Lock export docs fix",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "ben/pr-63",
+      "base": "main",
+      "author": {
+        "login": "ben",
+        "name": "Ben",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T10:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/63",
+      "requested_reviewers": [],
+      "paths": [
+        "src/lock/export.py"
+      ],
+      "commits": [
+        {
+          "sha": "000004d000000000000000000000000000000000",
+          "date": "2026-09-21T10:00:00Z",
+          "author": {
+            "login": "ben",
+            "name": "Ben",
+            "type": "User"
+          },
+          "message": "work 0"
+        }
+      ]
+    }
+  ],
+  "branches": [],
+  "issues": [],
+  "meta": {
+    "source": "fixture",
+    "api_calls": 0,
+    "rate_limit_remaining": null,
+    "degraded": []
+  }
+}

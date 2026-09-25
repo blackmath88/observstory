@@ -25,9 +25,28 @@ class OverlapExperiments(unittest.TestCase):
         self.assertEqual(snap["summary"]["areas_active"], 4)  # src/billing, src/search, docs, README.md
 
     def test_without_container_awareness_parallel_work_falsely_overlaps(self):
-        """E2 control: collapsing src/* into one area creates the false overlap ADR-012 prevents."""
-        snap = snapshot("e2-parallel", {"containers": []})
-        self.assertEqual([s["subject"]["id"] for s in of_type(snap, "overlap")], ["src"])
+        """E2 control: collapsing src/* into one area creates a false area-only overlap. Two safeguards
+        prevent it: container-aware areas (ADR-012) and, by default, the shared-file requirement (ADR-019)."""
+        area_mode = {"containers": [], "signals": {"overlap_require_shared_file": False}}
+        self.assertEqual([s["subject"]["id"] for s in of_type(snapshot("e2-parallel", area_mode), "overlap")], ["src"])
+        self.assertEqual(of_type(snapshot("e2-parallel", {"containers": []}), "overlap"), [])
+
+    def test_area_only_overlap_needs_opt_in(self):
+        """Precision study: area-only pairs were useful in 4 of 39 labelled cases."""
+        snap = snapshot("e1-same-subsystem")
+        [sig] = of_type(snap, "overlap")
+        self.assertTrue(sig["rule"]["params"]["require_shared_file"])
+        self.assertTrue(all(e["kind"] != "file" or e["ref"] == "src/conversation/store.py" for e in sig["evidence"]))
+
+    def test_bot_only_work_does_not_take_part(self):
+        from tests.helpers import observations
+        from observstory import config, derive
+        obs = observations("e1-same-subsystem")
+        for c in obs["pull_requests"][0]["commits"]:
+            c["author"] = {"login": "renovate[bot]", "type": "Bot"}
+        obs["pull_requests"][0]["author"] = {"login": "renovate[bot]", "type": "Bot"}
+        snap = derive.derive(obs, config.normalise(None), derive.parse_time(obs["fetched_at"]))
+        self.assertEqual(of_type(snap, "overlap"), [])
 
     def test_direct_pushes_are_sequential_not_parallel(self):
         """E6, revised by issue #2: pushes to one branch are sequential; each contains the last. No overlap."""
@@ -40,6 +59,24 @@ class OverlapExperiments(unittest.TestCase):
         """E4 finding: a stacked PR shares ground with its base by design; do not flag it."""
         snap = snapshot("e4-waiting")
         self.assertEqual(of_type(snap, "overlap"), [])
+
+    def test_stale_work_does_not_take_part_in_overlap(self):
+        """Precision study: 81% of overlap pairs on real repos involved work idle > stale_hours."""
+        snap = snapshot("p1-stale-excluded")
+        self.assertEqual(of_type(snap, "overlap"), [])
+        self.assertEqual([s["subject"]["id"] for s in of_type(snap, "stale")], ["branch:ben/old-parser"])
+        revived = snapshot("p1-stale-excluded", {"signals": {"stale_hours": 400}})
+        [sig] = of_type(revived, "overlap")
+        self.assertEqual(sig["rule"]["params"]["excluded_stale"], [])
+
+    def test_stack_explains_shared_ground_transitively(self):
+        """Precision study: #62 -> #61 -> #60 is one stack; only ben's unrelated PR #63 is parallel to it."""
+        snap = snapshot("p2-transitive-stack")
+        [sig] = of_type(snap, "overlap")
+        pairs = sig["rule"]["params"]["parallel_pairs"]
+        self.assertTrue(all("pr:63" in p for p in pairs))
+        self.assertEqual(sorted(sig["rule"]["params"]["explained_by_waiting"]), ["pr:61", "pr:62"])
+        self.assertEqual(len(of_type(snap, "waiting")), 2)
 
     def test_threshold_is_configurable_and_echoed(self):
         snap = snapshot("e1-same-subsystem", {"signals": {"overlap_min_work_items": 3}})

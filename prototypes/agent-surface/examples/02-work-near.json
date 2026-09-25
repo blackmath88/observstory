@@ -80,7 +80,7 @@
           "kind": "area",
           "id": "src/conversation"
         },
-        "summary": "2 work items touch src/conversation; 1 file changed in more than one",
+        "summary": "2 work items change src/conversation in parallel; 1 shared file",
         "work_items": [
           "pr:41",
           "pr:43"
@@ -98,7 +98,7 @@
               "pr:41",
               "pr:43"
             ],
-            "detail": "changed by 2 work items"
+            "detail": "changed by 2 work items in parallel"
           },
           {
             "kind": "work_item",
@@ -114,12 +114,18 @@
           }
         ],
         "rule": {
-          "name": "overlap.area",
+          "name": "overlap.parallel_pairs",
           "params": {
             "min_work_items": 2,
             "same_author": false,
             "shared_files": 1,
-            "explained_by_waiting": []
+            "parallel_pairs": [
+              "pr:41|pr:43"
+            ],
+            "baseline_pairs": [],
+            "sequential_direct_pairs": 0,
+            "explained_by_waiting": [],
+            "excluded_stale": []
           }
         }
       },

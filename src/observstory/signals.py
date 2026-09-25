@@ -33,7 +33,7 @@ def _short(sha):
     return (sha or "")[:7]
 
 
-def overlap(work_items, area_rows, thresholds, area_of, resolve_base=None):
+def overlap(work_items, area_rows, thresholds, area_of, resolve_base=None, now=None):
     """S-1: an area where at least two work items changed things *in parallel*.
 
     Pairs, not counts (issue #2). A pair is parallel in an area when both touch it and neither
@@ -42,29 +42,54 @@ def overlap(work_items, area_rows, thresholds, area_of, resolve_base=None):
       in-flight × direct      only default-branch commits made after the item diverged count;
                               commits already in its merge base are baseline
       direct × direct         never: pushes to one branch are sequential, each contains the last
+    Only pairs that change at least one common file count, unless overlap_require_shared_file is false;
+    work items authored only by bots do not take part (ADR-019).
+    Stale work (idle > stale_hours) does not take part: it is reported by the stale signal, and in the
+    precision study it made up 81% of all overlap pairs (docs/development/precision-report.md).
     """
     minimum = int(thresholds["overlap_min_work_items"])
     resolve_base = resolve_base or (lambda item: (None, "unresolved"))
     items = {w["id"]: w for w in work_items}
     bases = {w["id"]: resolve_base(w) for w in work_items if w["in_flight"]}
+
+    def upstream(wid, seen=None):
+        """Everything a work item waits on, transitively: a stack A -> B -> C explains A's shared ground
+        with C too (precision study: 9 of 20 non-useful signals came from two-level stacks)."""
+        seen = set() if seen is None else seen
+        for t in items.get(wid, {}).get("waiting_on", []):
+            if t not in seen:
+                seen.add(t)
+                upstream(t, seen)
+        return seen
+
+    idle_limit = float(thresholds["stale_hours"])
+    require_file = bool(thresholds.get("overlap_require_shared_file", True))
+
+    def is_stale(w):
+        if now is None or not w["in_flight"] or not w["last_activity_at"]:
+            return False
+        return (now - _parse(w["last_activity_at"])).total_seconds() / 3600 > idle_limit
     out = []
     for area_id, row in area_rows.items():
-        ids = sorted(set(row["in_flight"]))
+        all_ids = sorted(set(row["in_flight"]))
+        excluded_stale = [i for i in all_ids if is_stale(items[i])]
+        excluded_bots = [i for i in all_ids if items[i].get("_bot_only") and i not in excluded_stale]
+        ids = [i for i in all_ids if i not in excluded_stale and i not in excluded_bots]
         if len(ids) < 2:
             continue
 
         def touched(w):
             return {p for p in w["paths"] if area_of(p) == area_id}
 
-        pairs, explained, baseline_pairs, sequential, base_evidence = [], set(), [], 0, []
+        pairs, explained, baseline_pairs, sequential, base_evidence, area_only = [], set(), [], 0, [], 0
         for i, a_id in enumerate(ids):
             for b_id in ids[i + 1:]:
                 a, b = items[a_id], items[b_id]
                 if a["kind"] == "direct" and b["kind"] == "direct":
                     sequential += 1
                     continue
-                if b_id in a["waiting_on"] or a_id in b["waiting_on"]:
-                    explained.add(a_id if b_id in a["waiting_on"] else b_id)
+                if b_id in upstream(a_id) or a_id in upstream(b_id):
+                    explained.add(a_id if b_id in upstream(a_id) else b_id)
                     continue
                 if a["kind"] == "direct" or b["kind"] == "direct":
                     w, d = (b, a) if a["kind"] == "direct" else (a, b)
@@ -75,6 +100,9 @@ def overlap(work_items, area_rows, thresholds, area_of, resolve_base=None):
                         baseline_pairs.append(f"{w['id']}|{d['id']}")
                         continue
                     files = touched(w) & {p for c in later for p in c["paths"] if area_of(p) == area_id}
+                    if require_file and not files:
+                        area_only += 1
+                        continue
                     mb = (w.get("merge_base") or {})
                     shas_txt = ", ".join(_short(c["sha"]) for c in later[:4]) + (" …" if len(later) > 4 else "")
                     if status == "unresolved":
@@ -91,7 +119,11 @@ def overlap(work_items, area_rows, thresholds, area_of, resolve_base=None):
                     weak = status == "unresolved" or mb.get("source") != "compare"  # b4: first-parent can be wrong
                     pairs.append((w["id"], d["id"], files, weak))
                 else:
-                    pairs.append((a_id, b_id, touched(a) & touched(b), False))
+                    files = touched(a) & touched(b)
+                    if require_file and not files:
+                        area_only += 1
+                        continue
+                    pairs.append((a_id, b_id, files, False))
         participants = sorted({x for p in pairs for x in p[:2]})
         if not pairs or len(participants) < minimum:
             continue
@@ -124,7 +156,9 @@ def overlap(work_items, area_rows, thresholds, area_of, resolve_base=None):
                 "min_work_items": minimum, "same_author": same_author, "shared_files": len(file_owners),
                 "parallel_pairs": [f"{a}|{b}" for a, b, _, _ in pairs],
                 "baseline_pairs": baseline_pairs, "sequential_direct_pairs": sequential,
-                "explained_by_waiting": sorted(explained)}},
+                "explained_by_waiting": sorted(explained), "excluded_stale": excluded_stale,
+                "excluded_bot_only": excluded_bots, "area_only_pairs_skipped": area_only,
+                "require_shared_file": require_file}},
         })
     out.sort(key=lambda s: (LEVELS.index(s["confidence"]), len(s["work_items"])), reverse=True)
     return out

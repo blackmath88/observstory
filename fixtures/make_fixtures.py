@@ -180,6 +180,23 @@ _b7 = bundle("b7", note="merge base unknown and the commit list was truncated ->
 _b7["meta"]["commits_truncated"] = True
 FIXTURES["b7-base-unresolved"] = _b7
 
+# Precision study: stale work does not take part in overlap ------------------------------
+FIXTURES["p1-stale-excluded"] = bundle(
+    "p1", note="an active PR and a branch idle for 10 days both change src/parser/core.py -> stale signal, no overlap",
+    prs=[pr(50, "Parser speedup", "alice", ["src/parser/core.py"], commits("alice", [5, 2]), updated=2)],
+    branches=[branch("ben/old-parser", ["src/parser/core.py"], commits("ben", [260, 240]))],
+)
+
+FIXTURES["p2-transitive-stack"] = bundle(
+    "p2", note="#62 is stacked on #61, which is stacked on #60; all three touch src/lock/export.py -> waiting, no overlap",
+    prs=[pr(60, "Offline lock parsing", "konsti", ["src/lock/export.py"], commits("konsti", [9]), head="k/offline", updated=9),
+         pr(61, "Export locks from build", "konsti", ["src/lock/export.py"], commits("konsti", [6]), head="k/export",
+            base="k/offline", updated=6),
+         pr(62, "Install tools from locks", "konsti", ["src/lock/export.py"], commits("konsti", [3]), head="k/tools",
+            base="k/export", updated=3),
+         pr(63, "Lock export docs fix", "ben", ["src/lock/export.py"], commits("ben", [2]), updated=2)],
+)
+
 # Demo scenario: four moments in one project ----------------------------------------
 D0 = dt.datetime(2026, 9, 21, 9, 0, tzinfo=dt.timezone.utc)
 moments = {
@@ -221,6 +238,7 @@ def demo(stage, now):
                         "Resolution: sofia moves to evaluation work that depends on #41"][stage])
 
 
+_sha[0] = 0x100000  # fixed start so fixtures added above never renumber the demo's SHAs
 for stage, (name, when) in enumerate(moments.items()):
     FIXTURES[name] = demo(stage, when)
 
