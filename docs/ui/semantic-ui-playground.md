@@ -119,9 +119,12 @@ What it showed:
   work. "Why this frame?" says so plainly ("No configuration, so the default lanes … paths that
   match none land in Other"), and a one-line `observstory.config.json` fixes it. Whether the
   defaults should learn a package's own top-level directory is an open question, not decided here.
-- **Connectors to collapsed cards don't scale.** When an area shows "+ 28 more", overlap
-  connectors to the hidden cards still fan out of the card edge (visible on vite). That is a
-  renderer limit at real volume and the next thing to fix.
+- **Fixed: connectors fanned out of dense cards.** Two causes, measured with
+  `prototypes/project-map/measure-wires.js`. First, a card inside a closed "N more" still reports a
+  layout box in current Chromium, so lines were drawn to where nothing is shown (49 of uv's 56
+  overlaps end on a collapsed card). Second, hubs: one change overlapping many others (uv #21951: 13).
+  See ADR-033 and [project-map.md](project-map.md#dense-maps). Up to 13 connectors used to meet at
+  one point; now at most 3 do.
 - **Fixed:** stale work that only changed ignored files (a changeset, an empty PR) has no card.
   The compiler used to list it as attention pointing at nothing, which made fastapi and astro fail
   scene validation. It now leaves it to the snapshot, where agents still see it.

@@ -77,6 +77,9 @@ h1 a{text-decoration:none}
 .node.s-stale,.node.s-landed{opacity:.62}
 .node.s-landed .ref{font-family:var(--sans);font-size:11.5px}
 .node.att.s-in_flight .ref,.node.att.s-draft .ref{color:var(--accent)}
+.more summary .rel{color:var(--accent)}
+.wire.bundle{stroke-dasharray:4 3}
+.hub{margin-left:6px;color:var(--accent);font:600 10.5px var(--mono)}
 .more summary{cursor:pointer;color:var(--ink3);font-size:11.5px;padding:4px 8px;list-style:none}
 .more summary::-webkit-details-marker{display:none}
 .more summary::before{content:"+ "}
@@ -220,6 +223,12 @@ const edges = Object.fromEntries(scene.edges.map(e => [e.id, e]));
 const zones = Object.fromEntries(scene.zones.map(z => [z.id, z]));
 const D = scene.details;
 let selected = null, lastFocus = null;
+// A connector is drawn only when it can be read: both ends have at most HUB relations. A busier card (one change
+// overlapping many) gets a count instead, and its connectors are drawn when it or one of its relations is selected.
+const HUB = 3, degree = {};
+scene.edges.forEach(e => { degree[e.from] = (degree[e.from] || 0) + 1; degree[e.to] = (degree[e.to] || 0) + 1; });
+const busy = e => degree[e.from] > HUB || degree[e.to] > HUB;
+const shownNow = e => !busy(e) || (selected && [e.id, e.from, e.to].includes(selected.id));
 
 // freshness, relative to the viewer's clock
 const fresh = document.querySelector('.fresh:not(.fixed)');
@@ -236,9 +245,9 @@ function jump(kind, id, text){ const b = el('button', {type: 'button', class: 'j
 // ---------------------------------------------------------------- geometry
 function anchor(id){
   let e = document.getElementById('n-' + id);
-  if (!e || !e.offsetParent || e.getBoundingClientRect().height === 0) {
-    const d = e && e.closest('details'); e = d ? d.querySelector('summary') : e; }
-  if (!e) return null;
+  // inside a closed "N more": anchor on its summary (a closed <details> can still report a layout box)
+  const d = e && e.closest('details:not([open])'); if (d) e = d.querySelector('summary');
+  if (!e || !e.getClientRects().length) return null;
   const m = map.getBoundingClientRect(), r = e.getBoundingClientRect();
   return {l: r.left - m.left, r: r.right - m.left, t: r.top - m.top, b: r.bottom - m.top, cy: r.top - m.top + Math.min(14, r.height/2), cx: (r.left + r.right)/2 - m.left};
 }
@@ -272,7 +281,32 @@ function draw(){
     svg.append(p);
   }
   const labelled = scene.edges.length <= 6, said = new Set();  // label each kind of relationship once per area
+  // Relations with a collapsed end ("N more") are bundled: none inside one area (the summary counts them), and one
+  // line with a count per pair of visible anchors across areas. Opening "N more" draws the real lines.
+  const bundles = new Map(), folded = id => { const n = document.getElementById('n-' + id); return n && n.closest('details:not([open])'); };
   for (const e of scene.edges) {
+    const fa = folded(e.from), fb = folded(e.to);
+    if (!(fa || fb) || !shownNow(e) && !(fa && fb)) continue;
+    if (nodes[e.from].group === nodes[e.to].group) continue;
+    const ka = fa ? 'more:' + nodes[e.from].group : e.from, kb = fb ? 'more:' + nodes[e.to].group : e.to;
+    const k = [ka, kb].sort().join('|'); if (!bundles.has(k)) bundles.set(k, {from: e.from, to: e.to, type: e.type, n: 0, fold: fa || fb});
+    bundles.get(k).n++;
+  }
+  for (const bd of bundles.values()) {
+    const a = anchor(bd.from), b = anchor(bd.to); if (!a || !b) continue;
+    const geo = pathBetween(a, b), g = document.createElementNS(NS, 'g'); g.dataset.bundle = '1';
+    const hit = document.createElementNS(NS, 'path'), line = document.createElementNS(NS, 'path'), t = document.createElementNS(NS, 'title');
+    hit.setAttribute('d', geo.d); hit.setAttribute('class', 'hit'); hit.setAttribute('tabindex', '0'); hit.setAttribute('role', 'button');
+    t.textContent = bd.n + ' relation' + (bd.n > 1 ? 's' : '') + ' with collapsed work: open to draw them'; hit.append(t);
+    hit.setAttribute('aria-label', t.textContent); hit.addEventListener('click', ev => { ev.stopPropagation(); bd.fold.open = true; });
+    line.setAttribute('d', geo.d); line.setAttribute('class', 'wire bundle ' + (bd.type === 'overlap' ? 'k-ov' : 'k-wt'));
+    g.append(hit, line);
+    if (bd.n > 1) { const tx = document.createElementNS(NS, 'text'); tx.setAttribute('x', geo.mx + (geo.side === 'l' ? -4 : 4)); tx.setAttribute('y', geo.my + 3);
+      tx.setAttribute('text-anchor', geo.side === 'l' ? 'end' : 'start'); tx.setAttribute('class', 'wlabel'); tx.textContent = '×' + bd.n; g.append(tx); }
+    svg.append(g);
+  }
+  for (const e of scene.edges) {
+    if (!shownNow(e) || folded(e.from) || folded(e.to)) continue;
     const a = anchor(e.from), b = anchor(e.to); if (!a || !b) continue;
     const geo = pathBetween(a, b), g = document.createElementNS(NS, 'g');
     g.dataset.id = e.id; if (selected && selected.id === e.id) g.classList.add('is-selected');
@@ -318,7 +352,11 @@ function select(kind, id, from){
   selected = {kind, id}; lastFocus = from || document.activeElement;
   const target = kind === 'node' ? document.getElementById('n-' + id) : kind === 'group' ? document.querySelector(`#g-${CSS.escape(id)} > .gh`)
                : ['gate', 'commitment', 'session'].includes(kind) ? document.getElementById('m-' + id) : null;
-  if (target) { target.classList.add('is-selected'); const d = target.closest('details'); if (d && !d.open) { d.open = true; draw(); } }
+  if (target) target.classList.add('is-selected');
+  // make the selection drawable: open a collapsed "N more" holding the selected card or either end of the relation
+  const ends = kind === 'node' ? [id] : kind === 'edge' ? [edges[id].from, edges[id].to] : [];
+  ends.forEach(n => { const e = document.getElementById('n-' + n), d = e && e.closest('details:not([open])'); if (d) d.open = true; });
+  if (target && kind !== 'node') { const d = target.closest('details:not([open])'); if (d) d.open = true; }
   body.replaceChildren(kind === 'node' ? nodeView(id) : kind === 'group' ? groupView(id) : kind === 'edge' ? edgeView(id)
                        : kind === 'gate' ? gateView(id) : kind === 'commitment' ? commitmentView(id) : sessionView(id));
   ins.hidden = false; applyDim(); draw();
@@ -326,7 +364,7 @@ function select(kind, id, from){
 }
 function close(){
   ins.hidden = true; selected = null; document.querySelectorAll('.is-selected').forEach(x => x.classList.remove('is-selected'));
-  map.classList.remove('dimmed'); applyDim(); if (lastFocus && lastFocus.focus) lastFocus.focus();
+  map.classList.remove('dimmed'); draw(); if (lastFocus && lastFocus.focus) lastFocus.focus();
 }
 document.addEventListener('click', ev => {
   const t = ev.target.closest('[data-kind][data-id]'); if (!t) return;
@@ -460,6 +498,16 @@ function sessionView(id){
 }
 
 // ---------------------------------------------------------------- lifecycle
+map.querySelectorAll('details.more').forEach(d => {
+  const inside = new Set([...d.querySelectorAll('.node')].map(n => n.dataset.id));
+  const k = scene.edges.filter(e => inside.has(e.from) || inside.has(e.to)).length;
+  if (k) d.querySelector('summary').append(el('span', {class: 'rel'}, ' · ' + k + ' relation' + (k > 1 ? 's' : '')));
+});
+Object.entries(degree).filter(([, d]) => d > HUB).forEach(([id, d]) => {
+  const n = document.getElementById('n-' + id), nm = n && n.querySelector('.nm'); if (!nm) return;
+  const t = d + ' relations: select the card to draw them';
+  nm.append(el('span', {class: 'hub', title: t, 'aria-label': t}, '×' + d));
+});
 draw();
 new ResizeObserver(() => requestAnimationFrame(draw)).observe(map);
 map.addEventListener('toggle', () => requestAnimationFrame(draw), true);

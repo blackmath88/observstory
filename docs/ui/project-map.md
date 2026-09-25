@@ -52,6 +52,24 @@ still generated as an alternative projection (`observstory/radar.html`).
 - **Escape** closes the inspector and returns focus to where you were. Nothing animates except the panel sliding in, and that stops under `prefers-reduced-motion`.
 - **Without JavaScript** the map, the lanes, the cards and the attention list still render. Only the connectors and the inspector need the script.
 
+## Dense maps
+
+Real repositories have 50 items in flight, and one change can overlap a dozen others. A connector is
+drawn only when it can be read:
+
+- **Busy cards get a count, not a fan.** A card with more than 3 relations shows `×N` in accent.
+  Its connectors are drawn when the card, or one of its relations in "Needs attention", is selected.
+- **Collapsed work is bundled.** A relation with an end inside a closed "N more" is not drawn to a
+  hidden card. Within one area, the summary counts it ("28 more · 16 relations"). Across areas,
+  one dashed line per pair of visible anchors carries `×n`, and clicking it opens the group.
+  Selecting a relation opens whatever holds its ends.
+- **Nothing is dropped.** Every relation stays in "Needs attention" and in the inspector, and the
+  scene is unchanged: this is a renderer rule only.
+
+Measured with `node prototypes/project-map/measure-wires.js <pages>`: the most connectors meeting at
+one point went from 13 (uv), 7 (astro), 6 (vite) and 5 (tldraw) to at most 3. Designed states,
+where no card has more than 3 relations, draw exactly what they did before (a test holds that).
+
 ## Demo Lab
 
 [`demo/index.html`](../../demo/index.html) walks through one synthetic project, `northstar/chat-app`,
