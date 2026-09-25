@@ -1,0 +1,145 @@
+{
+  "schema": "observstory.observations/v1",
+  "note": "#21 is stacked on #20's branch; #22 declares 'Depends on #20'",
+  "fetched_at": "2026-09-21T12:00:00Z",
+  "repository": {
+    "full_name": "example/chat-app",
+    "url": "https://github.com/example/chat-app",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": "Fictional fixture repository"
+  },
+  "window": {
+    "hours": 48
+  },
+  "trigger": {
+    "event": "fixture",
+    "run_id": "e4",
+    "sha": ""
+  },
+  "commits": [],
+  "pull_requests": [
+    {
+      "number": 20,
+      "title": "API v2 routes",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "alice/api-v2",
+      "base": "main",
+      "author": {
+        "login": "alice",
+        "name": "Alice",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T08:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/20",
+      "requested_reviewers": [
+        "sofia"
+      ],
+      "paths": [
+        "src/api/routes.py"
+      ],
+      "commits": [
+        {
+          "sha": "0000012000000000000000000000000000000000",
+          "date": "2026-09-21T04:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "work 0"
+        },
+        {
+          "sha": "0000013000000000000000000000000000000000",
+          "date": "2026-09-21T08:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "work 1"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "title": "API v2 pagination",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "alice/api-v2-page",
+      "base": "alice/api-v2",
+      "author": {
+        "login": "alice",
+        "name": "Alice",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T09:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/21",
+      "requested_reviewers": [],
+      "paths": [
+        "src/api/paginate.py"
+      ],
+      "commits": [
+        {
+          "sha": "0000014000000000000000000000000000000000",
+          "date": "2026-09-21T09:00:00Z",
+          "author": {
+            "login": "alice",
+            "name": "Alice",
+            "type": "User"
+          },
+          "message": "work 0"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "title": "Client SDK for v2",
+      "body": "Adds the SDK.\n\nDepends on #20 for the new routes.",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "sofia/pr-22",
+      "base": "main",
+      "author": {
+        "login": "sofia",
+        "name": "Sofia",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T10:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/22",
+      "requested_reviewers": [],
+      "paths": [
+        "clients/sdk.ts"
+      ],
+      "commits": [
+        {
+          "sha": "0000015000000000000000000000000000000000",
+          "date": "2026-09-21T10:00:00Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "work 0"
+        }
+      ]
+    }
+  ],
+  "branches": [],
+  "issues": [],
+  "meta": {
+    "source": "fixture",
+    "api_calls": 0,
+    "rate_limit_remaining": null,
+    "degraded": []
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "agent_question": "What is ready for handoff?",
+  "request": {
+    "tool": "observstory.handoff",
+    "arguments": {}
+  },
+  "response": {
+    "query": "handoff",
+    "args": {},
+    "as_of": "2026-09-22T10:00:00Z",
+    "repository": "example/chat-app",
+    "answer": {
+      "ready_for_review": [
+        {
+          "id": "pr:41",
+          "kind": "pull_request",
+          "title": "Conversation memory",
+          "url": "https://github.com/example/chat-app/pull/41",
+          "state": "open",
+          "actors": [
+            "alice"
+          ],
+          "last_activity_at": "2026-09-21T14:00:00Z",
+          "review_state": "review_requested",
+          "waiting_on": [],
+          "areas": [
+            "src/conversation"
+          ]
+        }
+      ],
+      "open_without_reviewer": [
+        {
+          "id": "pr:43",
+          "kind": "pull_request",
+          "title": "Chat history persistence",
+          "url": "https://github.com/example/chat-app/pull/43",
+          "state": "open",
+          "actors": [
+            "sofia"
+          ],
+          "last_activity_at": "2026-09-22T09:30:00Z",
+          "review_state": "no_reviewer",
+          "waiting_on": [],
+          "areas": [
+            "src/conversation"
+          ]
+        },
+        {
+          "id": "pr:42",
+          "kind": "pull_request",
+          "title": "Search index",
+          "url": "https://github.com/example/chat-app/pull/42",
+          "state": "open",
+          "actors": [
+            "ben"
+          ],
+          "last_activity_at": "2026-09-21T09:00:00Z",
+          "review_state": "no_reviewer",
+          "waiting_on": [],
+          "areas": [
+            "src/search"
+          ]
+        }
+      ],
+      "draft": [],
+      "note": "Readiness is the author's declaration (draft flag, requested reviewers), not an inference."
+    },
+    "signals": [],
+    "evidence_note": "Derived from GitHub metadata. 'basis' says whether a signal is derived, heuristic or declared; follow evidence URLs before acting. Observstory describes work, not people."
+  }
+}

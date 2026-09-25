@@ -1,0 +1,120 @@
+[
+  {
+    "moment": "demo-t0",
+    "at": "2026-09-21T09:00:00Z",
+    "note": "Two contributors working normally",
+    "areas": {
+      "src/conversation": 1,
+      "src/search": 1
+    },
+    "overlaps": [],
+    "events": [
+      {
+        "kind": "work_started",
+        "ref": "pr:41",
+        "text": "pr:41 appears (open): Conversation memory"
+      },
+      {
+        "kind": "work_started",
+        "ref": "pr:42",
+        "text": "pr:42 appears (open): Search index"
+      }
+    ]
+  },
+  {
+    "moment": "demo-t1",
+    "at": "2026-09-21T15:00:00Z",
+    "note": "sofia's agent starts changing src/conversation",
+    "areas": {
+      "src/conversation": 2,
+      "src/search": 1
+    },
+    "overlaps": [
+      "src/conversation"
+    ],
+    "events": [
+      {
+        "kind": "work_started",
+        "ref": "branch:sofia/chat-history",
+        "text": "branch:sofia/chat-history appears (unproposed): sofia/chat-history"
+      },
+      {
+        "kind": "signal_appeared",
+        "ref": "overlap:src/conversation",
+        "text": "overlap appeared: 2 work items touch src/conversation; 1 file changed in more than one"
+      },
+      {
+        "kind": "signal_appeared",
+        "ref": "burst:branch:sofia/chat-history",
+        "text": "burst appeared: branch:sofia/chat-history: 12 commits within 20 min (machine-paced stream)"
+      }
+    ]
+  },
+  {
+    "moment": "demo-t2",
+    "at": "2026-09-22T10:00:00Z",
+    "note": "sofia opens a PR; the overlap is visible before either merges",
+    "areas": {
+      "src/conversation": 2,
+      "src/search": 1
+    },
+    "overlaps": [
+      "src/conversation"
+    ],
+    "events": [
+      {
+        "kind": "work_promoted",
+        "ref": "pr:43",
+        "text": "branch:sofia/chat-history opened as pr:43"
+      },
+      {
+        "kind": "signal_appeared",
+        "ref": "burst:pr:43",
+        "text": "burst appeared: pr:43: 12 commits within 20 min (machine-paced stream)"
+      },
+      {
+        "kind": "signal_resolved",
+        "ref": "burst:branch:sofia/chat-history",
+        "text": "burst resolved: branch:sofia/chat-history: 12 commits within 20 min (machine-paced stream)"
+      }
+    ]
+  },
+  {
+    "moment": "demo-t3",
+    "at": "2026-09-22T16:00:00Z",
+    "note": "Resolution: sofia moves to evaluation work that depends on #41",
+    "areas": {
+      "evals": 1,
+      "src/conversation": 1,
+      "src/search": 1
+    },
+    "overlaps": [],
+    "events": [
+      {
+        "kind": "work_started",
+        "ref": "pr:44",
+        "text": "pr:44 appears (open): Evaluation harness for conversation memory"
+      },
+      {
+        "kind": "work_state",
+        "ref": "pr:43",
+        "text": "pr:43: open \u2192 closed"
+      },
+      {
+        "kind": "signal_appeared",
+        "ref": "waiting:pr:44:pr:41",
+        "text": "waiting appeared: pr:44 waits on pr:41"
+      },
+      {
+        "kind": "signal_resolved",
+        "ref": "burst:pr:43",
+        "text": "burst resolved: pr:43: 12 commits within 20 min (machine-paced stream)"
+      },
+      {
+        "kind": "signal_resolved",
+        "ref": "overlap:src/conversation",
+        "text": "overlap resolved: 2 work items touch src/conversation; 1 file changed in more than one"
+      }
+    ]
+  }
+]

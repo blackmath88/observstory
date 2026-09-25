@@ -1,0 +1,369 @@
+{
+  "schema": "observstory.observations/v1",
+  "note": "PR #30: 24 commits in ~40 min with agent trailer; PR #31: 5 human-paced commits over 2 days",
+  "fetched_at": "2026-09-21T12:00:00Z",
+  "repository": {
+    "full_name": "example/chat-app",
+    "url": "https://github.com/example/chat-app",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": "Fictional fixture repository"
+  },
+  "window": {
+    "hours": 48
+  },
+  "trigger": {
+    "event": "fixture",
+    "run_id": "e5",
+    "sha": ""
+  },
+  "commits": [],
+  "pull_requests": [
+    {
+      "number": 30,
+      "title": "Generate settings screens",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "sofia/pr-30",
+      "base": "main",
+      "author": {
+        "login": "sofia",
+        "name": "Sofia",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T10:42:00Z",
+      "url": "https://github.com/example/chat-app/pull/30",
+      "requested_reviewers": [],
+      "paths": [
+        "src/settings/screen.tsx"
+      ],
+      "commits": [
+        {
+          "sha": "0000016000000000000000000000000000000000",
+          "date": "2026-09-21T10:00:00Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 0\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "0000017000000000000000000000000000000000",
+          "date": "2026-09-21T10:01:44Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 1\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "0000018000000000000000000000000000000000",
+          "date": "2026-09-21T10:03:28Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 2\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "0000019000000000000000000000000000000000",
+          "date": "2026-09-21T10:05:13Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 3\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "000001a000000000000000000000000000000000",
+          "date": "2026-09-21T10:06:57Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 4\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "000001b000000000000000000000000000000000",
+          "date": "2026-09-21T10:08:41Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 5\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "000001c000000000000000000000000000000000",
+          "date": "2026-09-21T10:10:26Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 6\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "000001d000000000000000000000000000000000",
+          "date": "2026-09-21T10:12:10Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 7\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "000001e000000000000000000000000000000000",
+          "date": "2026-09-21T10:13:54Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 8\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "000001f000000000000000000000000000000000",
+          "date": "2026-09-21T10:15:39Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 9\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "0000020000000000000000000000000000000000",
+          "date": "2026-09-21T10:17:23Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 10\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "0000021000000000000000000000000000000000",
+          "date": "2026-09-21T10:19:07Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 11\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "0000022000000000000000000000000000000000",
+          "date": "2026-09-21T10:20:52Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 12\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "0000023000000000000000000000000000000000",
+          "date": "2026-09-21T10:22:36Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 13\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "0000024000000000000000000000000000000000",
+          "date": "2026-09-21T10:24:20Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 14\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "0000025000000000000000000000000000000000",
+          "date": "2026-09-21T10:26:05Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 15\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "0000026000000000000000000000000000000000",
+          "date": "2026-09-21T10:27:49Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 16\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "0000027000000000000000000000000000000000",
+          "date": "2026-09-21T10:29:33Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 17\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "0000028000000000000000000000000000000000",
+          "date": "2026-09-21T10:31:18Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 18\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "0000029000000000000000000000000000000000",
+          "date": "2026-09-21T10:33:02Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 19\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "000002a000000000000000000000000000000000",
+          "date": "2026-09-21T10:34:46Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 20\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "000002b000000000000000000000000000000000",
+          "date": "2026-09-21T10:36:31Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 21\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "000002c000000000000000000000000000000000",
+          "date": "2026-09-21T10:38:15Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 22\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        },
+        {
+          "sha": "000002d000000000000000000000000000000000",
+          "date": "2026-09-21T10:40:00Z",
+          "author": {
+            "login": "sofia",
+            "name": "Sofia",
+            "type": "User"
+          },
+          "message": "step 23\n\nCo-Authored-By: Claude <noreply@anthropic.com>"
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "title": "Tidy logging",
+      "body": "",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "ben/pr-31",
+      "base": "main",
+      "author": {
+        "login": "ben",
+        "name": "Ben",
+        "type": "User"
+      },
+      "created_at": "2026-09-20T06:00:00Z",
+      "updated_at": "2026-09-21T10:00:00Z",
+      "url": "https://github.com/example/chat-app/pull/31",
+      "requested_reviewers": [],
+      "paths": [
+        "src/logging/setup.py"
+      ],
+      "commits": [
+        {
+          "sha": "000002e000000000000000000000000000000000",
+          "date": "2026-09-19T20:00:00Z",
+          "author": {
+            "login": "ben",
+            "name": "Ben",
+            "type": "User"
+          },
+          "message": "work 0"
+        },
+        {
+          "sha": "000002f000000000000000000000000000000000",
+          "date": "2026-09-20T06:00:00Z",
+          "author": {
+            "login": "ben",
+            "name": "Ben",
+            "type": "User"
+          },
+          "message": "work 1"
+        },
+        {
+          "sha": "0000030000000000000000000000000000000000",
+          "date": "2026-09-20T16:00:00Z",
+          "author": {
+            "login": "ben",
+            "name": "Ben",
+            "type": "User"
+          },
+          "message": "work 2"
+        },
+        {
+          "sha": "0000031000000000000000000000000000000000",
+          "date": "2026-09-21T02:00:00Z",
+          "author": {
+            "login": "ben",
+            "name": "Ben",
+            "type": "User"
+          },
+          "message": "work 3"
+        },
+        {
+          "sha": "0000032000000000000000000000000000000000",
+          "date": "2026-09-21T10:00:00Z",
+          "author": {
+            "login": "ben",
+            "name": "Ben",
+            "type": "User"
+          },
+          "message": "work 4"
+        }
+      ]
+    }
+  ],
+  "branches": [],
+  "issues": [],
+  "meta": {
+    "source": "fixture",
+    "api_calls": 0,
+    "rate_limit_remaining": null,
+    "degraded": []
+  }
+}

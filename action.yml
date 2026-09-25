@@ -1,33 +1,49 @@
 name: Observstory
-description: Build a living project-state dashboard from GitHub repository activity.
+description: Typed, evidence-backed state of in-flight work (overlap, open loops) for humans and coding agents.
 author: blackmath88
+branding:
+  icon: radio
+  color: orange
 
 inputs:
   github-token:
-    description: GitHub token used to read repository activity.
-    required: true
+    description: Token used to read repository activity. Defaults to the workflow token.
+    required: false
+    default: ${{ github.token }}
   config:
-    description: Optional path to observstory.config.json.
+    description: Optional path to observstory.config.json. Missing file means zero-config defaults.
     required: false
     default: observstory.config.json
   output:
-    description: Output directory for the generated dashboard and snapshot.
+    description: Output directory for index.html and data/{snapshot,observations}.json.
     required: false
     default: observstory
+
+outputs:
+  snapshot:
+    description: Path to the generated snapshot.json
+    value: ${{ steps.build.outputs.snapshot }}
+  overlaps:
+    description: Number of overlap signals
+    value: ${{ steps.build.outputs.overlaps }}
 
 runs:
   using: composite
   steps:
     - name: Build project snapshot and dashboard
+      id: build
       shell: bash
       env:
         OBSERVSTORY_TOKEN: ${{ inputs.github-token }}
         OBSERVSTORY_REPOSITORY: ${{ github.repository }}
+        OBSERVSTORY_API_URL: ${{ github.api_url }}
         OBSERVSTORY_SHA: ${{ github.sha }}
-        OBSERVSTORY_REF: ${{ github.ref }}
         OBSERVSTORY_EVENT: ${{ github.event_name }}
         OBSERVSTORY_RUN_ID: ${{ github.run_id }}
-        OBSERVSTORY_SERVER_URL: ${{ github.server_url }}
         OBSERVSTORY_CONFIG: ${{ inputs.config }}
         OBSERVSTORY_OUTPUT: ${{ inputs.output }}
-      run: python3 "$GITHUB_ACTION_PATH/scripts/observstory.py"
+      run: |
+        python3 "$GITHUB_ACTION_PATH/scripts/observstory.py" build
+        echo "snapshot=$OBSERVSTORY_OUTPUT/data/snapshot.json" >> "$GITHUB_OUTPUT"
+        python3 -c "import json,sys; print('overlaps=%d' % json.load(open(sys.argv[1]))['summary']['signals']['overlap'])" \
+          "$OBSERVSTORY_OUTPUT/data/snapshot.json" >> "$GITHUB_OUTPUT"

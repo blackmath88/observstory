@@ -1,0 +1,43 @@
+{
+  "note": "Proposed MCP tool contract (not yet served). Each tool is a thin adapter over `observstory query` and reads the same snapshot.json the dashboard renders. No tool calls GitHub itself.",
+  "resources": [
+    {"uri": "observstory://snapshot", "mimeType": "application/json", "description": "The full typed snapshot v1 (schema/snapshot-v1.json)."}
+  ],
+  "tools": [
+    {
+      "name": "observstory.changes_since",
+      "description": "Work items, default-branch commits and signals that changed after a timestamp. Use at the start of a run with the time of your previous run.",
+      "inputSchema": {"type": "object", "required": ["since"], "properties": {"since": {"type": "string", "format": "date-time"}}},
+      "cli": "observstory query changes-since <since>"
+    },
+    {
+      "name": "observstory.work_near",
+      "description": "In-flight work touching the given paths or areas, with overlap signals and evidence. Call before starting a task, passing the files you plan to change.",
+      "inputSchema": {"type": "object", "required": ["paths"], "properties": {"paths": {"type": "array", "items": {"type": "string"}}}},
+      "cli": "observstory query work-near <path> [<path> ...]"
+    },
+    {
+      "name": "observstory.overlaps",
+      "description": "Overlap signals, optionally limited to a path prefix.",
+      "inputSchema": {"type": "object", "properties": {"path": {"type": "string"}}},
+      "cli": "observstory query overlaps [path]"
+    },
+    {
+      "name": "observstory.open_loops",
+      "description": "Stale work, branches without PRs, PRs waiting on other PRs, open PRs with no reviewer.",
+      "inputSchema": {"type": "object", "properties": {}},
+      "cli": "observstory query open-loops"
+    },
+    {
+      "name": "observstory.handoff",
+      "description": "Open PRs grouped by the author's declared review state (review requested / no reviewer / draft).",
+      "inputSchema": {"type": "object", "properties": {}},
+      "cli": "observstory query handoff"
+    }
+  ],
+  "guarantees": [
+    "Every response carries as_of (snapshot time) so the agent knows how fresh it is.",
+    "Every signal carries basis (derived|heuristic|declared), confidence and evidence URLs.",
+    "Signals are about areas and work items. There is no tool that returns per-person activity."
+  ]
+}

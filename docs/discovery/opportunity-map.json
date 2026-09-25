@@ -1,0 +1,89 @@
+{
+  "schema": "observstory.opportunity-map/v1",
+  "note": "Ranks PROBLEMS, not features. score = severity * frequency * observability, each rated 1-5 (max 125). observability = how well GitHub metadata alone can evidence the problem early.",
+  "problems": [
+    {
+      "rank": 1,
+      "id": "P1",
+      "problem": "Overlapping in-flight work is discovered at merge time instead of at start time",
+      "failure_patterns": ["F1", "F4", "F6", "F11"],
+      "scenarios": ["S1", "S2", "S3", "S4", "S6"],
+      "severity": 5, "frequency": 4, "observability": 4, "score": 80,
+      "evidence": "external: agent-PR conflict-rate studies; practitioner hotspot-collision reports",
+      "existing_coverage": "IDE-local tools (GitKraken, GitLive) for your own branch vs target; nothing project-wide or agent-readable"
+    },
+    {
+      "rank": 2,
+      "id": "P2",
+      "problem": "Open loops (stale PRs, branches without a PR, work waiting on other work) accumulate without anyone owning them",
+      "failure_patterns": ["F8", "F9", "F10"],
+      "scenarios": ["S1", "S3", "S4", "S6"],
+      "severity": 3, "frequency": 5, "observability": 5, "score": 75,
+      "evidence": "well-known OSS maintenance burden; fully deterministic to detect",
+      "existing_coverage": "stale bots (close, not surface); PR lists per repo"
+    },
+    {
+      "rank": 3,
+      "id": "P3",
+      "problem": "Nobody has a zero-maintenance picture of which project areas are moving right now",
+      "failure_patterns": ["F6"],
+      "scenarios": ["S1", "S4", "S5", "S6"],
+      "severity": 3, "frequency": 5, "observability": 4, "score": 60,
+      "evidence": "boards need manual updates; Pulse is per person, not per area",
+      "existing_coverage": "Projects boards (manual), Insights (aggregate counts)"
+    },
+    {
+      "rank": 4,
+      "id": "P4",
+      "problem": "Coding agents start work with no awareness of other in-flight work",
+      "failure_patterns": ["F1", "F11"],
+      "scenarios": ["S2", "S6"],
+      "severity": 4, "frequency": 4, "observability": 3, "score": 48,
+      "evidence": "cross-agent conflict rates reported as roughly 2x intra-agent; worktree isolation hides collisions until merge",
+      "existing_coverage": "orchestrators see only their own sessions; the GitHub MCP gives raw data, not relations"
+    },
+    {
+      "rank": 5,
+      "id": "P5",
+      "problem": "Machine-generated commit bursts drown human-readable signal",
+      "failure_patterns": ["F13", "F2"],
+      "scenarios": ["S2"],
+      "severity": 2, "frequency": 4, "observability": 5, "score": 40,
+      "evidence": "plausible; distorts every count-based view",
+      "existing_coverage": "none"
+    },
+    {
+      "rank": 6,
+      "id": "P6",
+      "problem": "The project's trajectory ('how did we get here') cannot be reconstructed",
+      "failure_patterns": ["F12"],
+      "scenarios": ["S4", "S5"],
+      "severity": 3, "frequency": 3, "observability": 3, "score": 27,
+      "evidence": "hypothesis; needs persisted snapshots",
+      "existing_coverage": "commit log (unstructured)"
+    },
+    {
+      "rank": 7,
+      "id": "P7",
+      "problem": "Decisions made in private LLM conversations never reach the shared record",
+      "failure_patterns": ["F3", "F5"],
+      "scenarios": ["S5"],
+      "severity": 4, "frequency": 4, "observability": 1, "score": 16,
+      "evidence": "plausible; mostly unobservable without explicit input",
+      "existing_coverage": "ADR conventions (manual)"
+    },
+    {
+      "rank": 8,
+      "id": "P8",
+      "problem": "Ownership of subsystems is unclear",
+      "failure_patterns": ["F7"],
+      "scenarios": ["S3", "S5"],
+      "severity": 2, "frequency": 3, "observability": 2, "score": 12,
+      "evidence": "authorship is not ownership; inferring ownership risks surveillance",
+      "existing_coverage": "CODEOWNERS"
+    }
+  ],
+  "deprioritised_as_anti_goal": [
+    {"problem": "Managers cannot compare individual developer output", "reason": "Serving this need causes surveillance and gaming (R1, R2). Explicitly out of scope."}
+  ]
+}

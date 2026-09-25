@@ -1,0 +1,1355 @@
+{
+  "schema": "observstory.snapshot/v1",
+  "generated_at": "2026-09-25T00:08:04Z",
+  "trigger": {
+    "event": "local-dogfood",
+    "run_id": "",
+    "sha": ""
+  },
+  "repository": {
+    "full_name": "blackmath88/observstory",
+    "url": "https://github.com/blackmath88/observstory",
+    "default_branch": "main",
+    "visibility": "public",
+    "description": null
+  },
+  "window": {
+    "hours": 72.0,
+    "since": "2026-09-22T00:08:04Z"
+  },
+  "config": {
+    "source": "file",
+    "lanes_source": "config",
+    "title": "Observstory / self-observation",
+    "signals": {
+      "overlap_min_work_items": 2,
+      "stale_hours": 72,
+      "burst_min_commits": 8,
+      "burst_window_minutes": 30
+    },
+    "ignore": [
+      "package-lock.json",
+      "yarn.lock",
+      "pnpm-lock.yaml",
+      "poetry.lock",
+      "Cargo.lock",
+      "go.sum",
+      "uv.lock",
+      "Gemfile.lock",
+      "composer.lock",
+      "dist/",
+      "build/",
+      "node_modules/",
+      "vendor/",
+      "*.min.js",
+      "*.min.css",
+      "*.map",
+      "/observstory/"
+    ],
+    "containers": [
+      "src",
+      "packages",
+      "apps",
+      "services",
+      "lib",
+      "libs",
+      "app",
+      "modules",
+      "crates",
+      "internal",
+      "cmd"
+    ],
+    "area_depth": 1
+  },
+  "summary": {
+    "in_flight": 1,
+    "areas_active": 17,
+    "commits_in_window": 10,
+    "open_issues": 0,
+    "signals": {
+      "overlap": 9,
+      "stale": 0,
+      "waiting": 0,
+      "burst": 1
+    }
+  },
+  "lanes": [
+    {
+      "id": "model",
+      "label": "Model",
+      "description": "Problem, product boundary and decisions",
+      "source": "config",
+      "areas": [
+        "ARCHITECTURE.md",
+        "CLAUDE_DOUBLE_DIAMOND.md",
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "docs"
+      ],
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "recent_commits": 4
+    },
+    {
+      "id": "engine",
+      "label": "Engine",
+      "description": "Collection, derivation and signals",
+      "source": "config",
+      "areas": [
+        "scripts",
+        "src/observstory"
+      ],
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "recent_commits": 1
+    },
+    {
+      "id": "evidence",
+      "label": "Evidence",
+      "description": "Tests, fixtures and prototypes that prove or falsify signals",
+      "source": "config",
+      "areas": [
+        "fixtures",
+        "prototypes",
+        "tests"
+      ],
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua"
+      ],
+      "recent_commits": 0
+    },
+    {
+      "id": "integration",
+      "label": "Integration",
+      "description": "Install surface and repository automation",
+      "source": "config",
+      "areas": [
+        ".github",
+        "action.yml"
+      ],
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "recent_commits": 2
+    },
+    {
+      "id": "contract",
+      "label": "Contract",
+      "description": "Configuration and typed state contracts",
+      "source": "config",
+      "areas": [
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "schema"
+      ],
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "recent_commits": 3
+    },
+    {
+      "id": "other",
+      "label": "Other",
+      "description": "Paths no lane claims",
+      "source": "fallback",
+      "areas": [
+        ".gitignore"
+      ],
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua"
+      ],
+      "recent_commits": 0
+    }
+  ],
+  "areas": [
+    {
+      "id": ".github",
+      "lane": "integration",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "files": [
+        ".github/workflows/observstory.yml"
+      ],
+      "recent_commits": 1,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": ".gitignore",
+      "lane": "other",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua"
+      ],
+      "files": [
+        ".gitignore"
+      ],
+      "recent_commits": 0,
+      "actors": [
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": "ARCHITECTURE.md",
+      "lane": "model",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "files": [
+        "ARCHITECTURE.md"
+      ],
+      "recent_commits": 1,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": "CLAUDE_DOUBLE_DIAMOND.md",
+      "lane": "model",
+      "in_flight": [
+        "direct:blackmath88"
+      ],
+      "files": [
+        "CLAUDE_DOUBLE_DIAMOND.md"
+      ],
+      "recent_commits": 1,
+      "actors": [
+        "blackmath88"
+      ],
+      "last_activity_at": "2026-09-24T23:27:18Z"
+    },
+    {
+      "id": "DECISIONS.md",
+      "lane": "model",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua"
+      ],
+      "files": [
+        "DECISIONS.md"
+      ],
+      "recent_commits": 0,
+      "actors": [
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": "README.md",
+      "lane": "model",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "files": [
+        "README.md"
+      ],
+      "recent_commits": 1,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": "ROADMAP.md",
+      "lane": "model",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "files": [
+        "ROADMAP.md"
+      ],
+      "recent_commits": 1,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": "action.yml",
+      "lane": "integration",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "files": [
+        "action.yml"
+      ],
+      "recent_commits": 1,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": "docs",
+      "lane": "model",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua"
+      ],
+      "files": [
+        "docs/definition/README.md",
+        "docs/definition/design-principles.md",
+        "docs/definition/jobs-to-be-done.md",
+        "docs/definition/product-thesis.md",
+        "docs/definition/signal-specs.md",
+        "docs/definition/system-boundary.md",
+        "docs/definition/v1-scope.md",
+        "docs/demo/README.md",
+        "docs/demo/agent-contract.md",
+        "docs/demo/img/demo-t1.png",
+        "docs/demo/img/demo-t2.png",
+        "docs/demo/img/demo-t3.png",
+        "docs/demo/img/timeline.png",
+        "docs/development/concept-comparison.md",
+        "docs/development/experiment-results.md",
+        "docs/development/ui-language.md",
+        "docs/discovery/README.md",
+        "docs/discovery/ai-collaboration-failures.md",
+        "docs/discovery/competitive-landscape.md",
+        "docs/discovery/observable-signals.md",
+        "docs/discovery/opportunity-map.json",
+        "docs/discovery/problem-space.md",
+        "docs/discovery/risks.md",
+        "docs/discovery/scenarios.md"
+      ],
+      "recent_commits": 0,
+      "actors": [
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": "fixtures",
+      "lane": "evidence",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua"
+      ],
+      "files": [
+        "fixtures/make_fixtures.py",
+        "fixtures/observations/demo-t0.json",
+        "fixtures/observations/demo-t1.json",
+        "fixtures/observations/demo-t2.json",
+        "fixtures/observations/demo-t3.json",
+        "fixtures/observations/e1-same-subsystem.json",
+        "fixtures/observations/e2-parallel.json",
+        "fixtures/observations/e3-stale.json",
+        "fixtures/observations/e4-waiting.json",
+        "fixtures/observations/e5-burst.json",
+        "fixtures/observations/e6-direct-pushes.json"
+      ],
+      "recent_commits": 0,
+      "actors": [
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": "observstory.config.example.json",
+      "lane": "contract",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "files": [
+        "observstory.config.example.json"
+      ],
+      "recent_commits": 1,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": "observstory.config.json",
+      "lane": "contract",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "files": [
+        "observstory.config.json"
+      ],
+      "recent_commits": 1,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": "prototypes",
+      "lane": "evidence",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua"
+      ],
+      "files": [
+        "prototypes/README.md",
+        "prototypes/agent-surface/build.py",
+        "prototypes/agent-surface/examples/01-changes-since.json",
+        "prototypes/agent-surface/examples/02-work-near.json",
+        "prototypes/agent-surface/examples/03-proposed-task.json",
+        "prototypes/agent-surface/examples/04-open-loops.json",
+        "prototypes/agent-surface/examples/05-handoff.json",
+        "prototypes/agent-surface/mcp-tools.json",
+        "prototypes/radar/build.py",
+        "prototypes/radar/demo-t0.html",
+        "prototypes/radar/demo-t1.html",
+        "prototypes/radar/demo-t2.html",
+        "prototypes/radar/demo-t3.html",
+        "prototypes/timeline/build.py",
+        "prototypes/timeline/index.html",
+        "prototypes/timeline/timeline.json"
+      ],
+      "recent_commits": 0,
+      "actors": [
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": "schema",
+      "lane": "contract",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "files": [
+        "schema/snapshot-v0.json",
+        "schema/snapshot-v1.json"
+      ],
+      "recent_commits": 1,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": "scripts",
+      "lane": "engine",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "files": [
+        "scripts/observstory.py"
+      ],
+      "recent_commits": 1,
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": "src/observstory",
+      "lane": "engine",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua"
+      ],
+      "files": [
+        "src/observstory/__init__.py",
+        "src/observstory/cli.py",
+        "src/observstory/collect.py",
+        "src/observstory/config.py",
+        "src/observstory/derive.py",
+        "src/observstory/github.py",
+        "src/observstory/query.py",
+        "src/observstory/render.py",
+        "src/observstory/signals.py",
+        "src/observstory/validate.py"
+      ],
+      "recent_commits": 0,
+      "actors": [
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    },
+    {
+      "id": "tests",
+      "lane": "evidence",
+      "in_flight": [
+        "branch:claude/blissful-brahmagupta-xtddua"
+      ],
+      "files": [
+        "tests/__init__.py",
+        "tests/helpers.py",
+        "tests/test_derive.py",
+        "tests/test_principles.py",
+        "tests/test_query.py",
+        "tests/test_signals.py"
+      ],
+      "recent_commits": 0,
+      "actors": [
+        "claude"
+      ],
+      "last_activity_at": "2026-09-25T00:07:59Z"
+    }
+  ],
+  "work_items": [
+    {
+      "id": "branch:claude/blissful-brahmagupta-xtddua",
+      "kind": "branch",
+      "number": null,
+      "title": "claude/blissful-brahmagupta-xtddua",
+      "url": "https://github.com/blackmath88/observstory/tree/claude/blissful-brahmagupta-xtddua",
+      "state": "unproposed",
+      "in_flight": true,
+      "head": "claude/blissful-brahmagupta-xtddua",
+      "base": "main",
+      "actors": [
+        "claude"
+      ],
+      "created_at": null,
+      "last_activity_at": "2026-09-25T00:07:59Z",
+      "paths": [
+        ".github/workflows/observstory.yml",
+        ".gitignore",
+        "ARCHITECTURE.md",
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "action.yml",
+        "docs/definition/README.md",
+        "docs/definition/design-principles.md",
+        "docs/definition/jobs-to-be-done.md",
+        "docs/definition/product-thesis.md",
+        "docs/definition/signal-specs.md",
+        "docs/definition/system-boundary.md",
+        "docs/definition/v1-scope.md",
+        "docs/demo/README.md",
+        "docs/demo/agent-contract.md",
+        "docs/demo/img/demo-t1.png",
+        "docs/demo/img/demo-t2.png",
+        "docs/demo/img/demo-t3.png",
+        "docs/demo/img/timeline.png",
+        "docs/development/concept-comparison.md",
+        "docs/development/experiment-results.md",
+        "docs/development/ui-language.md",
+        "docs/discovery/README.md",
+        "docs/discovery/ai-collaboration-failures.md",
+        "docs/discovery/competitive-landscape.md",
+        "docs/discovery/observable-signals.md",
+        "docs/discovery/opportunity-map.json",
+        "docs/discovery/problem-space.md",
+        "docs/discovery/risks.md",
+        "docs/discovery/scenarios.md",
+        "fixtures/make_fixtures.py",
+        "fixtures/observations/demo-t0.json",
+        "fixtures/observations/demo-t1.json",
+        "fixtures/observations/demo-t2.json",
+        "fixtures/observations/demo-t3.json",
+        "fixtures/observations/e1-same-subsystem.json",
+        "fixtures/observations/e2-parallel.json",
+        "fixtures/observations/e3-stale.json",
+        "fixtures/observations/e4-waiting.json",
+        "fixtures/observations/e5-burst.json",
+        "fixtures/observations/e6-direct-pushes.json",
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "prototypes/README.md",
+        "prototypes/agent-surface/build.py",
+        "prototypes/agent-surface/examples/01-changes-since.json",
+        "prototypes/agent-surface/examples/02-work-near.json",
+        "prototypes/agent-surface/examples/03-proposed-task.json",
+        "prototypes/agent-surface/examples/04-open-loops.json",
+        "prototypes/agent-surface/examples/05-handoff.json",
+        "prototypes/agent-surface/mcp-tools.json",
+        "prototypes/radar/build.py",
+        "prototypes/radar/demo-t0.html",
+        "prototypes/radar/demo-t1.html",
+        "prototypes/radar/demo-t2.html",
+        "prototypes/radar/demo-t3.html",
+        "prototypes/timeline/build.py",
+        "prototypes/timeline/index.html",
+        "prototypes/timeline/timeline.json",
+        "schema/snapshot-v1.json",
+        "scripts/observstory.py",
+        "src/observstory/__init__.py",
+        "src/observstory/cli.py",
+        "src/observstory/collect.py",
+        "src/observstory/config.py",
+        "src/observstory/derive.py",
+        "src/observstory/github.py",
+        "src/observstory/query.py",
+        "src/observstory/render.py",
+        "src/observstory/signals.py",
+        "src/observstory/validate.py",
+        "tests/__init__.py",
+        "tests/helpers.py",
+        "tests/test_derive.py",
+        "tests/test_principles.py",
+        "tests/test_query.py",
+        "tests/test_signals.py"
+      ],
+      "areas": [
+        ".github",
+        ".gitignore",
+        "ARCHITECTURE.md",
+        "DECISIONS.md",
+        "README.md",
+        "ROADMAP.md",
+        "action.yml",
+        "docs",
+        "fixtures",
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "prototypes",
+        "schema",
+        "scripts",
+        "src/observstory",
+        "tests"
+      ],
+      "lanes": [
+        "contract",
+        "engine",
+        "evidence",
+        "integration",
+        "model",
+        "other"
+      ],
+      "commit_count": 7,
+      "review_state": null,
+      "waiting_on": [],
+      "agent_declared": true,
+      "burst": null
+    },
+    {
+      "id": "direct:blackmath88",
+      "kind": "direct",
+      "number": null,
+      "title": "Direct pushes to main",
+      "url": "https://github.com/blackmath88/observstory/commit/9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+      "state": "pushed",
+      "in_flight": false,
+      "head": "main",
+      "base": null,
+      "actors": [
+        "blackmath88"
+      ],
+      "created_at": null,
+      "last_activity_at": "2026-09-24T23:27:18Z",
+      "paths": [
+        ".github/workflows/observstory.yml",
+        "ARCHITECTURE.md",
+        "CLAUDE_DOUBLE_DIAMOND.md",
+        "README.md",
+        "ROADMAP.md",
+        "action.yml",
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "schema/snapshot-v0.json",
+        "scripts/observstory.py"
+      ],
+      "areas": [
+        ".github",
+        "ARCHITECTURE.md",
+        "CLAUDE_DOUBLE_DIAMOND.md",
+        "README.md",
+        "ROADMAP.md",
+        "action.yml",
+        "observstory.config.example.json",
+        "observstory.config.json",
+        "schema",
+        "scripts"
+      ],
+      "lanes": [
+        "contract",
+        "engine",
+        "integration",
+        "model"
+      ],
+      "commit_count": 10,
+      "review_state": null,
+      "waiting_on": [],
+      "agent_declared": false,
+      "burst": {
+        "commits": 10,
+        "minutes": 10,
+        "total_commits": 10
+      }
+    }
+  ],
+  "commits": [
+    {
+      "sha": "9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+      "url": "https://github.com/blackmath88/observstory/commit/9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+      "message": "Add Double Diamond production brief for Claude",
+      "date": "2026-09-24T23:27:18Z",
+      "actor": "blackmath88",
+      "paths": [
+        "CLAUDE_DOUBLE_DIAMOND.md"
+      ],
+      "areas": [
+        "CLAUDE_DOUBLE_DIAMOND.md"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "e56b289b71e1cf3dd3e3ecb4481f8e0d98b8e28d",
+      "url": "https://github.com/blackmath88/observstory/commit/e56b289b71e1cf3dd3e3ecb4481f8e0d98b8e28d",
+      "message": "Add versioned snapshot schema",
+      "date": "2026-09-24T23:18:42Z",
+      "actor": "blackmath88",
+      "paths": [
+        "schema/snapshot-v0.json"
+      ],
+      "areas": [
+        "schema"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "5dcd463b7c25a89b0545d4064b9cc49050528a65",
+      "url": "https://github.com/blackmath88/observstory/commit/5dcd463b7c25a89b0545d4064b9cc49050528a65",
+      "message": "Configure Observstory self-observation lanes",
+      "date": "2026-09-24T23:18:40Z",
+      "actor": "blackmath88",
+      "paths": [
+        "observstory.config.json"
+      ],
+      "areas": [
+        "observstory.config.json"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "c63d3e7a55cfaa6eb17736c11a7f8ab9e77fea0b",
+      "url": "https://github.com/blackmath88/observstory/commit/c63d3e7a55cfaa6eb17736c11a7f8ab9e77fea0b",
+      "message": "Dogfood Observstory on its own repository",
+      "date": "2026-09-24T23:18:39Z",
+      "actor": "blackmath88",
+      "paths": [
+        ".github/workflows/observstory.yml"
+      ],
+      "areas": [
+        ".github"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "845327c44af6d134ae19b8f0feebed1b96cd3388",
+      "url": "https://github.com/blackmath88/observstory/commit/845327c44af6d134ae19b8f0feebed1b96cd3388",
+      "message": "Build typed GitHub snapshot and generated control center",
+      "date": "2026-09-24T23:18:18Z",
+      "actor": "blackmath88",
+      "paths": [
+        "scripts/observstory.py"
+      ],
+      "areas": [
+        "scripts"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "f93a4495c5f8780ff335f3b3b2bc28a61cae82c2",
+      "url": "https://github.com/blackmath88/observstory/commit/f93a4495c5f8780ff335f3b3b2bc28a61cae82c2",
+      "message": "Add Observstory roadmap",
+      "date": "2026-09-24T23:17:13Z",
+      "actor": "blackmath88",
+      "paths": [
+        "ROADMAP.md"
+      ],
+      "areas": [
+        "ROADMAP.md"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "d9ec3c920d7c00b9d075cb03843b1d10aa5fff11",
+      "url": "https://github.com/blackmath88/observstory/commit/d9ec3c920d7c00b9d075cb03843b1d10aa5fff11",
+      "message": "Document Observstory system boundary and service architecture",
+      "date": "2026-09-24T23:17:11Z",
+      "actor": "blackmath88",
+      "paths": [
+        "ARCHITECTURE.md"
+      ],
+      "areas": [
+        "ARCHITECTURE.md"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "167c997c387f5398874ac547e8ec4d1ee96ce2d1",
+      "url": "https://github.com/blackmath88/observstory/commit/167c997c387f5398874ac547e8ec4d1ee96ce2d1",
+      "message": "Add example typed lane configuration",
+      "date": "2026-09-24T23:17:09Z",
+      "actor": "blackmath88",
+      "paths": [
+        "observstory.config.example.json"
+      ],
+      "areas": [
+        "observstory.config.example.json"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "9a0c6701944c85231bde41c2b7a41473d4d5bb1e",
+      "url": "https://github.com/blackmath88/observstory/commit/9a0c6701944c85231bde41c2b7a41473d4d5bb1e",
+      "message": "Add reusable Observstory composite action",
+      "date": "2026-09-24T23:16:57Z",
+      "actor": "blackmath88",
+      "paths": [
+        "action.yml"
+      ],
+      "areas": [
+        "action.yml"
+      ],
+      "work_item": "direct:blackmath88"
+    },
+    {
+      "sha": "0157d860cc02ad69d6ea2c672787fb3748a28ba9",
+      "url": "https://github.com/blackmath88/observstory/commit/0157d860cc02ad69d6ea2c672787fb3748a28ba9",
+      "message": "Initialize Observstory product README",
+      "date": "2026-09-24T23:16:55Z",
+      "actor": "blackmath88",
+      "paths": [
+        "README.md"
+      ],
+      "areas": [
+        "README.md"
+      ],
+      "work_item": "direct:blackmath88"
+    }
+  ],
+  "issues": [],
+  "actors": [
+    {
+      "id": "blackmath88",
+      "kind": "human",
+      "linked": true,
+      "work_items": [
+        "direct:blackmath88"
+      ]
+    },
+    {
+      "id": "claude",
+      "kind": "human",
+      "linked": true,
+      "work_items": [
+        "branch:claude/blissful-brahmagupta-xtddua"
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "id": "overlap:.github",
+      "type": "overlap",
+      "basis": "derived",
+      "confidence": "high",
+      "subject": {
+        "kind": "area",
+        "id": ".github"
+      },
+      "summary": "2 work items touch .github; 1 file changed in more than one",
+      "work_items": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": ".github/workflows/observstory.yml",
+          "url": null,
+          "work_items": [
+            "branch:claude/blissful-brahmagupta-xtddua",
+            "direct:blackmath88"
+          ],
+          "detail": "changed by 2 work items"
+        },
+        {
+          "kind": "work_item",
+          "ref": "branch:claude/blissful-brahmagupta-xtddua",
+          "url": "https://github.com/blackmath88/observstory/tree/claude/blissful-brahmagupta-xtddua",
+          "detail": "claude/blissful-brahmagupta-xtddua (unproposed)"
+        },
+        {
+          "kind": "work_item",
+          "ref": "direct:blackmath88",
+          "url": "https://github.com/blackmath88/observstory/commit/9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+          "detail": "Direct pushes to main (pushed)"
+        }
+      ],
+      "rule": {
+        "name": "overlap.area",
+        "params": {
+          "min_work_items": 2,
+          "same_author": false,
+          "shared_files": 1,
+          "explained_by_waiting": []
+        }
+      }
+    },
+    {
+      "id": "overlap:ARCHITECTURE.md",
+      "type": "overlap",
+      "basis": "derived",
+      "confidence": "high",
+      "subject": {
+        "kind": "area",
+        "id": "ARCHITECTURE.md"
+      },
+      "summary": "2 work items touch ARCHITECTURE.md; 1 file changed in more than one",
+      "work_items": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "ARCHITECTURE.md",
+          "url": null,
+          "work_items": [
+            "branch:claude/blissful-brahmagupta-xtddua",
+            "direct:blackmath88"
+          ],
+          "detail": "changed by 2 work items"
+        },
+        {
+          "kind": "work_item",
+          "ref": "branch:claude/blissful-brahmagupta-xtddua",
+          "url": "https://github.com/blackmath88/observstory/tree/claude/blissful-brahmagupta-xtddua",
+          "detail": "claude/blissful-brahmagupta-xtddua (unproposed)"
+        },
+        {
+          "kind": "work_item",
+          "ref": "direct:blackmath88",
+          "url": "https://github.com/blackmath88/observstory/commit/9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+          "detail": "Direct pushes to main (pushed)"
+        }
+      ],
+      "rule": {
+        "name": "overlap.area",
+        "params": {
+          "min_work_items": 2,
+          "same_author": false,
+          "shared_files": 1,
+          "explained_by_waiting": []
+        }
+      }
+    },
+    {
+      "id": "overlap:README.md",
+      "type": "overlap",
+      "basis": "derived",
+      "confidence": "high",
+      "subject": {
+        "kind": "area",
+        "id": "README.md"
+      },
+      "summary": "2 work items touch README.md; 1 file changed in more than one",
+      "work_items": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "README.md",
+          "url": null,
+          "work_items": [
+            "branch:claude/blissful-brahmagupta-xtddua",
+            "direct:blackmath88"
+          ],
+          "detail": "changed by 2 work items"
+        },
+        {
+          "kind": "work_item",
+          "ref": "branch:claude/blissful-brahmagupta-xtddua",
+          "url": "https://github.com/blackmath88/observstory/tree/claude/blissful-brahmagupta-xtddua",
+          "detail": "claude/blissful-brahmagupta-xtddua (unproposed)"
+        },
+        {
+          "kind": "work_item",
+          "ref": "direct:blackmath88",
+          "url": "https://github.com/blackmath88/observstory/commit/9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+          "detail": "Direct pushes to main (pushed)"
+        }
+      ],
+      "rule": {
+        "name": "overlap.area",
+        "params": {
+          "min_work_items": 2,
+          "same_author": false,
+          "shared_files": 1,
+          "explained_by_waiting": []
+        }
+      }
+    },
+    {
+      "id": "overlap:ROADMAP.md",
+      "type": "overlap",
+      "basis": "derived",
+      "confidence": "high",
+      "subject": {
+        "kind": "area",
+        "id": "ROADMAP.md"
+      },
+      "summary": "2 work items touch ROADMAP.md; 1 file changed in more than one",
+      "work_items": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "ROADMAP.md",
+          "url": null,
+          "work_items": [
+            "branch:claude/blissful-brahmagupta-xtddua",
+            "direct:blackmath88"
+          ],
+          "detail": "changed by 2 work items"
+        },
+        {
+          "kind": "work_item",
+          "ref": "branch:claude/blissful-brahmagupta-xtddua",
+          "url": "https://github.com/blackmath88/observstory/tree/claude/blissful-brahmagupta-xtddua",
+          "detail": "claude/blissful-brahmagupta-xtddua (unproposed)"
+        },
+        {
+          "kind": "work_item",
+          "ref": "direct:blackmath88",
+          "url": "https://github.com/blackmath88/observstory/commit/9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+          "detail": "Direct pushes to main (pushed)"
+        }
+      ],
+      "rule": {
+        "name": "overlap.area",
+        "params": {
+          "min_work_items": 2,
+          "same_author": false,
+          "shared_files": 1,
+          "explained_by_waiting": []
+        }
+      }
+    },
+    {
+      "id": "overlap:action.yml",
+      "type": "overlap",
+      "basis": "derived",
+      "confidence": "high",
+      "subject": {
+        "kind": "area",
+        "id": "action.yml"
+      },
+      "summary": "2 work items touch action.yml; 1 file changed in more than one",
+      "work_items": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "action.yml",
+          "url": null,
+          "work_items": [
+            "branch:claude/blissful-brahmagupta-xtddua",
+            "direct:blackmath88"
+          ],
+          "detail": "changed by 2 work items"
+        },
+        {
+          "kind": "work_item",
+          "ref": "branch:claude/blissful-brahmagupta-xtddua",
+          "url": "https://github.com/blackmath88/observstory/tree/claude/blissful-brahmagupta-xtddua",
+          "detail": "claude/blissful-brahmagupta-xtddua (unproposed)"
+        },
+        {
+          "kind": "work_item",
+          "ref": "direct:blackmath88",
+          "url": "https://github.com/blackmath88/observstory/commit/9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+          "detail": "Direct pushes to main (pushed)"
+        }
+      ],
+      "rule": {
+        "name": "overlap.area",
+        "params": {
+          "min_work_items": 2,
+          "same_author": false,
+          "shared_files": 1,
+          "explained_by_waiting": []
+        }
+      }
+    },
+    {
+      "id": "overlap:observstory.config.example.json",
+      "type": "overlap",
+      "basis": "derived",
+      "confidence": "high",
+      "subject": {
+        "kind": "area",
+        "id": "observstory.config.example.json"
+      },
+      "summary": "2 work items touch observstory.config.example.json; 1 file changed in more than one",
+      "work_items": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "observstory.config.example.json",
+          "url": null,
+          "work_items": [
+            "branch:claude/blissful-brahmagupta-xtddua",
+            "direct:blackmath88"
+          ],
+          "detail": "changed by 2 work items"
+        },
+        {
+          "kind": "work_item",
+          "ref": "branch:claude/blissful-brahmagupta-xtddua",
+          "url": "https://github.com/blackmath88/observstory/tree/claude/blissful-brahmagupta-xtddua",
+          "detail": "claude/blissful-brahmagupta-xtddua (unproposed)"
+        },
+        {
+          "kind": "work_item",
+          "ref": "direct:blackmath88",
+          "url": "https://github.com/blackmath88/observstory/commit/9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+          "detail": "Direct pushes to main (pushed)"
+        }
+      ],
+      "rule": {
+        "name": "overlap.area",
+        "params": {
+          "min_work_items": 2,
+          "same_author": false,
+          "shared_files": 1,
+          "explained_by_waiting": []
+        }
+      }
+    },
+    {
+      "id": "overlap:observstory.config.json",
+      "type": "overlap",
+      "basis": "derived",
+      "confidence": "high",
+      "subject": {
+        "kind": "area",
+        "id": "observstory.config.json"
+      },
+      "summary": "2 work items touch observstory.config.json; 1 file changed in more than one",
+      "work_items": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "observstory.config.json",
+          "url": null,
+          "work_items": [
+            "branch:claude/blissful-brahmagupta-xtddua",
+            "direct:blackmath88"
+          ],
+          "detail": "changed by 2 work items"
+        },
+        {
+          "kind": "work_item",
+          "ref": "branch:claude/blissful-brahmagupta-xtddua",
+          "url": "https://github.com/blackmath88/observstory/tree/claude/blissful-brahmagupta-xtddua",
+          "detail": "claude/blissful-brahmagupta-xtddua (unproposed)"
+        },
+        {
+          "kind": "work_item",
+          "ref": "direct:blackmath88",
+          "url": "https://github.com/blackmath88/observstory/commit/9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+          "detail": "Direct pushes to main (pushed)"
+        }
+      ],
+      "rule": {
+        "name": "overlap.area",
+        "params": {
+          "min_work_items": 2,
+          "same_author": false,
+          "shared_files": 1,
+          "explained_by_waiting": []
+        }
+      }
+    },
+    {
+      "id": "overlap:scripts",
+      "type": "overlap",
+      "basis": "derived",
+      "confidence": "high",
+      "subject": {
+        "kind": "area",
+        "id": "scripts"
+      },
+      "summary": "2 work items touch scripts; 1 file changed in more than one",
+      "work_items": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "scripts/observstory.py",
+          "url": null,
+          "work_items": [
+            "branch:claude/blissful-brahmagupta-xtddua",
+            "direct:blackmath88"
+          ],
+          "detail": "changed by 2 work items"
+        },
+        {
+          "kind": "work_item",
+          "ref": "branch:claude/blissful-brahmagupta-xtddua",
+          "url": "https://github.com/blackmath88/observstory/tree/claude/blissful-brahmagupta-xtddua",
+          "detail": "claude/blissful-brahmagupta-xtddua (unproposed)"
+        },
+        {
+          "kind": "work_item",
+          "ref": "direct:blackmath88",
+          "url": "https://github.com/blackmath88/observstory/commit/9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+          "detail": "Direct pushes to main (pushed)"
+        }
+      ],
+      "rule": {
+        "name": "overlap.area",
+        "params": {
+          "min_work_items": 2,
+          "same_author": false,
+          "shared_files": 1,
+          "explained_by_waiting": []
+        }
+      }
+    },
+    {
+      "id": "overlap:schema",
+      "type": "overlap",
+      "basis": "heuristic",
+      "confidence": "medium",
+      "subject": {
+        "kind": "area",
+        "id": "schema"
+      },
+      "summary": "2 work items touch schema",
+      "work_items": [
+        "branch:claude/blissful-brahmagupta-xtddua",
+        "direct:blackmath88"
+      ],
+      "actors": [
+        "blackmath88",
+        "claude"
+      ],
+      "evidence": [
+        {
+          "kind": "work_item",
+          "ref": "branch:claude/blissful-brahmagupta-xtddua",
+          "url": "https://github.com/blackmath88/observstory/tree/claude/blissful-brahmagupta-xtddua",
+          "detail": "claude/blissful-brahmagupta-xtddua (unproposed)"
+        },
+        {
+          "kind": "work_item",
+          "ref": "direct:blackmath88",
+          "url": "https://github.com/blackmath88/observstory/commit/9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+          "detail": "Direct pushes to main (pushed)"
+        }
+      ],
+      "rule": {
+        "name": "overlap.area",
+        "params": {
+          "min_work_items": 2,
+          "same_author": false,
+          "shared_files": 0,
+          "explained_by_waiting": []
+        }
+      }
+    },
+    {
+      "id": "burst:direct:blackmath88",
+      "type": "burst",
+      "basis": "heuristic",
+      "confidence": "medium",
+      "subject": {
+        "kind": "work_item",
+        "id": "direct:blackmath88"
+      },
+      "summary": "direct:blackmath88: 10 commits within 10 min (machine-paced stream)",
+      "work_items": [
+        "direct:blackmath88"
+      ],
+      "actors": [
+        "blackmath88"
+      ],
+      "evidence": [
+        {
+          "kind": "commit",
+          "ref": "10 commits",
+          "url": "https://github.com/blackmath88/observstory/commit/9cced7c9c55c841a59d4cdbfe0b93a63f7386756",
+          "detail": "from 2026-09-24T23:16:55+00:00 to 2026-09-24T23:27:18+00:00"
+        }
+      ],
+      "rule": {
+        "name": "burst.rate",
+        "params": {
+          "min_commits": 8,
+          "window_minutes": 30
+        }
+      }
+    }
+  ],
+  "provenance": {
+    "source": "GitHub REST API",
+    "collector": "blackmath88/observstory",
+    "collector_version": "1.0.0",
+    "observations_fetched_at": "2026-09-25T00:08:04Z",
+    "api_calls": 16,
+    "rate_limit_remaining": 14965,
+    "degraded": []
+  }
+}
