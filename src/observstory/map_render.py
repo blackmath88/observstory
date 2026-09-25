@@ -163,7 +163,9 @@ def mission_html(scene: dict) -> str:
     parts = [f'<div class="axis"></div><div class="past" style="width:{x(c["now"])}"></div>'
              f'<div class="nowm{" low" if near(c["now"]) else ""}" style="left:{x(c["now"])}"><span>NOW</span></div>']
     for sess in c["sessions"]:
-        parts.append(f'<button type="button" class="mk ses{" bare" if near(sess["at"]) else ""}" id="m-{esc(sess["id"])}" data-kind="session" data-id="{esc(sess["id"])}" '
+        pos = float(x(sess["at"])[:-1])
+        edge = " l" if pos < 8 else " r" if pos > 92 else ""   # anchor the label inward so it isn't clipped
+        parts.append(f'<button type="button" class="mk ses{" bare" if near(sess["at"]) else ""}{edge}" id="m-{esc(sess["id"])}" data-kind="session" data-id="{esc(sess["id"])}" '
                      f'style="left:{x(sess["at"])}" title="{esc(sess["label"])} · {_when(sess["at"], hours)}"><i></i>'
                      f'<span>{esc(sess["label"])}</span></button>')
     for g in c["gates"]:
@@ -401,7 +403,7 @@ h1 a{text-decoration:none}
 .mk.gate span{color:var(--ink3);font:10.5px var(--mono);background:var(--surface)}.mk.gate.passed{color:var(--ink3)}.mk.gate.passed i{background:var(--ink3)}
 .mk.gate.hot,.mk.gate.hot span{color:var(--accent)}.mk.gate.hot i{background:var(--accent)}
 .mk.ses{top:55px;z-index:1}.mk.ses i{display:block;margin:0 auto;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--ink2)}
-.mk.ses span{display:block;color:var(--ink3);font-size:10.5px;background:var(--surface);max-width:110px;overflow:hidden;text-overflow:ellipsis}.mk.ses.bare span{visibility:hidden}
+.mk.ses span{display:block;color:var(--ink3);font-size:10.5px;background:var(--surface);max-width:110px;overflow:hidden;text-overflow:ellipsis}.mk.ses.bare span{visibility:hidden}.mk.ses.l span,.mk.ses.r span{position:absolute;top:14px}.mk.ses.l span{left:-2px}.mk.ses.r span{right:-2px}
 .mk.due i,.lg-due{display:inline-block;width:9px;height:9px;transform:rotate(45deg);background:var(--ink3)}
 .mk.due i{display:block;margin:0 auto}.mk.due span{font:10px var(--mono);color:var(--ink3)}
 .s-in_progress i,.lg-due.s-in_progress{background:var(--select)!important}.s-landed i,.lg-due.s-landed{background:#2f6b4f!important}

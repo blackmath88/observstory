@@ -39,6 +39,15 @@ named confirmation (`fixtures/collab_lab.py`); each moment only sees check-ins t
 
 ![Demo Lab: declared vs observed](../docs/demo/img/demo-lab-declared.png)
 
+## Semantic UI Playground
+
+[`playground.html`](playground.html) is the interactive companion to the Demo Lab. Instead of
+stepping through a story, you choose the project's semantic state (shape, work in flight, how
+the work relates, what the team declared), and the real pipeline compiles the map for it. There
+are no layout controls. See [docs/ui/semantic-ui-playground.md](../docs/ui/semantic-ui-playground.md).
+
+![Semantic UI Playground](../docs/demo/img/playground-hackathon-conflict.png)
+
 ## How it's made
 
 ```text

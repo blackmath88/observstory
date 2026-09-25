@@ -187,6 +187,6 @@ python3 -m unittest discover -s tests -t .      # stdlib only, no install
 | Discover | [docs/discovery](docs/discovery/README.md): problem, landscape, failures, signals, scenarios, risks, opportunity map |
 | Define | [docs/definition](docs/definition/README.md): thesis, JTBD, boundary, v1 scope, signal specs, principles |
 | Develop | [docs/development](docs/development/): concept comparison, experiments, UI language · [prototypes/](prototypes/) |
-| UI | [docs/ui](docs/ui/project-map.md): Project Map, scene grammar, design language · [prototypes/project-map](prototypes/project-map/) · [Demo Lab](demo/README.md) |
+| UI | [docs/ui](docs/ui/project-map.md): Project Map, scene grammar, design language · [prototypes/project-map](prototypes/project-map/) · [Demo Lab](demo/README.md) · [Semantic UI Playground](docs/ui/semantic-ui-playground.md) |
 | Collaboration state (issue #7) | [discover](docs/collaboration-discovery/README.md) · [define](docs/collaboration-definition/README.md) · [develop](docs/collaboration-development/concept-comparison.md) · [deliver: guide](docs/collaboration-delivery/README.md) · [acceptance](docs/collaboration-delivery/acceptance.md) · [prototypes/collaboration](prototypes/collaboration/) |
 | Deliver | [docs/demo](docs/demo/README.md) · [acceptance map](docs/demo/acceptance.md) · [ARCHITECTURE.md](ARCHITECTURE.md) · [DECISIONS.md](DECISIONS.md) · [ROADMAP.md](ROADMAP.md) |

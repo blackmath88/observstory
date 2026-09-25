@@ -1,0 +1,249 @@
+{
+ "schema": "observstory.scene/v1",
+ "source": {
+  "snapshot_schema": "observstory.snapshot/v1",
+  "generated_at": "2026-10-07T15:00:00Z",
+  "repository": "northstar/billing",
+  "repository_url": null,
+  "default_branch": "main",
+  "window_hours": 48,
+  "title": "Northstar billing (synthetic playground)",
+  "lanes_source": "config",
+  "degraded": []
+ },
+ "status": {
+  "in_flight": 2,
+  "overlaps": 0,
+  "waiting": 0,
+  "stale": 1,
+  "areas_active": 2
+ },
+ "zones": [
+  {
+   "id": "intent",
+   "label": "Intent",
+   "description": "Docs and decisions",
+   "order": 0,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "build",
+   "label": "Build",
+   "description": "Application code",
+   "order": 1,
+   "state": "active",
+   "groups": [
+    "area:src/auth",
+    "area:src/billing"
+   ],
+   "in_flight": 2,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "verify",
+   "label": "Verify",
+   "description": "Tests",
+   "order": 2,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "ship",
+   "label": "Ship",
+   "description": "Build and deploy",
+   "order": 3,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  }
+ ],
+ "groups": [
+  {
+   "id": "area:src/auth",
+   "zone": "build",
+   "path": "src/auth",
+   "label": "auth",
+   "parent": "src",
+   "attention": false,
+   "nodes": [
+    "pr:10"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T12:30:00Z",
+   "age_hours": 2.5
+  },
+  {
+   "id": "area:src/billing",
+   "zone": "build",
+   "path": "src/billing",
+   "label": "billing",
+   "parent": "src",
+   "attention": false,
+   "nodes": [
+    "pr:11"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-02T16:00:00Z",
+   "age_hours": 119.0
+  }
+ ],
+ "nodes": [
+  {
+   "id": "pr:10",
+   "kind": "pull_request",
+   "group": "area:src/auth",
+   "zone": "build",
+   "ref": "#10",
+   "label": "Session tokens",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-10-07T12:30:00Z",
+   "age_hours": 2.5,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:11",
+   "kind": "pull_request",
+   "group": "area:src/billing",
+   "zone": "build",
+   "ref": "#11",
+   "label": "Invoice totals",
+   "url": null,
+   "status": "stale",
+   "review_state": "no_reviewer",
+   "actors": [
+    "ben"
+   ],
+   "last_activity_at": "2026-10-02T16:00:00Z",
+   "age_hours": 119.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": true
+  }
+ ],
+ "edges": [],
+ "attention": [
+  {
+   "kind": "stale",
+   "target": "pr:11",
+   "confidence": "medium",
+   "basis": "heuristic",
+   "label": "#11 idle for 5d"
+  }
+ ],
+ "details": {
+  "signals": {
+   "stale:pr:11": {
+    "type": "stale",
+    "summary": "pr:11 idle for 5d",
+    "basis": "heuristic",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "kind": "timestamp",
+      "ref": "2026-10-02T16:00:00Z",
+      "url": null,
+      "detail": "no activity for 5d"
+     },
+     {
+      "kind": "work_item",
+      "ref": "pr:11",
+      "url": null,
+      "detail": "Invoice totals (open)"
+     }
+    ],
+    "rule": {
+     "name": "stale.idle",
+     "params": {
+      "stale_hours": 72.0,
+      "idle_hours": 119.0
+     }
+    },
+    "work_items": [
+     "pr:11"
+    ]
+   }
+  },
+  "work_items": {
+   "pr:10": {
+    "paths": [
+     "src/auth/session.py",
+     "src/auth/tokens.py"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "src/auth"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "a44026fc5cd11d08e22cc74fd856bcd503d24999",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:11": {
+    "paths": [
+     "src/billing/invoice.py"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "src/billing"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "a44026fc5cd11d08e22cc74fd856bcd503d24999",
+     "source": "compare"
+    },
+    "commit_count": 2,
+    "waiting_on": []
+   }
+  },
+  "areas": {
+   "src/auth": {
+    "files": [
+     "src/auth/session.py",
+     "src/auth/tokens.py"
+    ],
+    "actors": [
+     "alice"
+    ],
+    "recent_commits": 0
+   },
+   "src/billing": {
+    "files": [
+     "src/billing/invoice.py"
+    ],
+    "actors": [
+     "ben"
+    ],
+    "recent_commits": 0
+   }
+  }
+ },
+ "coordination": null
+}

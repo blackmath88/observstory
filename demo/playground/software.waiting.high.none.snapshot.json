@@ -1,0 +1,526 @@
+{
+ "schema": "observstory.snapshot/v1",
+ "generated_at": "2026-10-07T15:00:00Z",
+ "trigger": {
+  "event": "demo-lab"
+ },
+ "repository": {
+  "full_name": "northstar/billing",
+  "url": null,
+  "default_branch": "main",
+  "visibility": "public",
+  "description": "Synthetic demo repository"
+ },
+ "window": {
+  "hours": 48,
+  "since": "2026-10-05T15:00:00Z"
+ },
+ "config": {
+  "source": "file",
+  "lanes_source": "config",
+  "title": "Northstar billing (synthetic playground)",
+  "signals": {
+   "overlap_min_work_items": 2,
+   "stale_hours": 72,
+   "burst_min_commits": 8,
+   "burst_window_minutes": 30,
+   "overlap_require_shared_file": true
+  },
+  "ignore": [
+   "package-lock.json",
+   "yarn.lock",
+   "pnpm-lock.yaml",
+   "poetry.lock",
+   "Cargo.lock",
+   "go.sum",
+   "uv.lock",
+   "Gemfile.lock",
+   "composer.lock",
+   "dist/",
+   "build/",
+   "node_modules/",
+   "vendor/",
+   "*.min.js",
+   "*.min.css",
+   "*.map",
+   "CHANGELOG*",
+   ".changeset/",
+   "*.api.md",
+   "/observstory/"
+  ],
+  "containers": [
+   "src",
+   "packages",
+   "apps",
+   "services",
+   "lib",
+   "libs",
+   "app",
+   "modules",
+   "crates",
+   "internal",
+   "cmd"
+  ],
+  "area_depth": 1
+ },
+ "summary": {
+  "in_flight": 6,
+  "areas_active": 5,
+  "commits_in_window": 0,
+  "open_issues": 0,
+  "signals": {
+   "overlap": 0,
+   "stale": 0,
+   "waiting": 1,
+   "burst": 0
+  }
+ },
+ "lanes": [
+  {
+   "id": "intent",
+   "label": "Intent",
+   "description": "Docs and decisions",
+   "source": "config",
+   "areas": [
+    "docs"
+   ],
+   "in_flight": [
+    "pr:14"
+   ],
+   "recent_commits": 0
+  },
+  {
+   "id": "build",
+   "label": "Build",
+   "description": "Application code",
+   "source": "config",
+   "areas": [
+    "src/auth",
+    "src/billing"
+   ],
+   "in_flight": [
+    "pr:10",
+    "pr:11",
+    "pr:15"
+   ],
+   "recent_commits": 0
+  },
+  {
+   "id": "verify",
+   "label": "Verify",
+   "description": "Tests",
+   "source": "config",
+   "areas": [
+    "tests"
+   ],
+   "in_flight": [
+    "pr:12"
+   ],
+   "recent_commits": 0
+  },
+  {
+   "id": "ship",
+   "label": "Ship",
+   "description": "Build and deploy",
+   "source": "config",
+   "areas": [
+    "deploy"
+   ],
+   "in_flight": [
+    "pr:13"
+   ],
+   "recent_commits": 0
+  }
+ ],
+ "areas": [
+  {
+   "id": "deploy",
+   "lane": "ship",
+   "in_flight": [
+    "pr:13"
+   ],
+   "files": [
+    "deploy/helm/values.yaml"
+   ],
+   "recent_commits": 0,
+   "actors": [
+    "dana"
+   ],
+   "last_activity_at": "2026-10-07T14:00:00Z"
+  },
+  {
+   "id": "docs",
+   "lane": "intent",
+   "in_flight": [
+    "pr:14"
+   ],
+   "files": [
+    "docs/api.md"
+   ],
+   "recent_commits": 0,
+   "actors": [
+    "emil"
+   ],
+   "last_activity_at": "2026-10-07T14:30:00Z"
+  },
+  {
+   "id": "src/auth",
+   "lane": "build",
+   "in_flight": [
+    "pr:10"
+   ],
+   "files": [
+    "src/auth/session.py",
+    "src/auth/tokens.py"
+   ],
+   "recent_commits": 0,
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-10-07T12:30:00Z"
+  },
+  {
+   "id": "src/billing",
+   "lane": "build",
+   "in_flight": [
+    "pr:11",
+    "pr:15"
+   ],
+   "files": [
+    "src/billing/invoice.py",
+    "src/billing/tax.py"
+   ],
+   "recent_commits": 0,
+   "actors": [
+    "ben",
+    "farah"
+   ],
+   "last_activity_at": "2026-10-07T15:00:00Z"
+  },
+  {
+   "id": "tests",
+   "lane": "verify",
+   "in_flight": [
+    "pr:12"
+   ],
+   "files": [
+    "tests/auth/test_session.py"
+   ],
+   "recent_commits": 0,
+   "actors": [
+    "sofia"
+   ],
+   "last_activity_at": "2026-10-07T13:30:00Z"
+  }
+ ],
+ "work_items": [
+  {
+   "id": "pr:15",
+   "kind": "pull_request",
+   "number": 15,
+   "title": "Tax rules",
+   "url": null,
+   "state": "open",
+   "in_flight": true,
+   "head": "farah/tax",
+   "base": "main",
+   "actors": [
+    "farah"
+   ],
+   "created_at": "2026-10-07T05:30:00Z",
+   "last_activity_at": "2026-10-07T15:00:00Z",
+   "paths": [
+    "src/billing/tax.py"
+   ],
+   "areas": [
+    "src/billing"
+   ],
+   "lanes": [
+    "build"
+   ],
+   "commit_count": 4,
+   "review_state": "no_reviewer",
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "a44026fc5cd11d08e22cc74fd856bcd503d24999",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:14",
+   "kind": "pull_request",
+   "number": 14,
+   "title": "API reference",
+   "url": null,
+   "state": "open",
+   "in_flight": true,
+   "head": "emil/api",
+   "base": "main",
+   "actors": [
+    "emil"
+   ],
+   "created_at": "2026-10-07T05:00:00Z",
+   "last_activity_at": "2026-10-07T14:30:00Z",
+   "paths": [
+    "docs/api.md"
+   ],
+   "areas": [
+    "docs"
+   ],
+   "lanes": [
+    "intent"
+   ],
+   "commit_count": 4,
+   "review_state": "no_reviewer",
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "a44026fc5cd11d08e22cc74fd856bcd503d24999",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:13",
+   "kind": "pull_request",
+   "number": 13,
+   "title": "Helm chart values",
+   "url": null,
+   "state": "open",
+   "in_flight": true,
+   "head": "dana/values",
+   "base": "main",
+   "actors": [
+    "dana"
+   ],
+   "created_at": "2026-10-07T04:30:00Z",
+   "last_activity_at": "2026-10-07T14:00:00Z",
+   "paths": [
+    "deploy/helm/values.yaml"
+   ],
+   "areas": [
+    "deploy"
+   ],
+   "lanes": [
+    "ship"
+   ],
+   "commit_count": 4,
+   "review_state": "no_reviewer",
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "a44026fc5cd11d08e22cc74fd856bcd503d24999",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:12",
+   "kind": "pull_request",
+   "number": 12,
+   "title": "Session test suite",
+   "url": null,
+   "state": "open",
+   "in_flight": true,
+   "head": "sofia/test_session",
+   "base": "main",
+   "actors": [
+    "sofia"
+   ],
+   "created_at": "2026-10-07T04:00:00Z",
+   "last_activity_at": "2026-10-07T13:30:00Z",
+   "paths": [
+    "tests/auth/test_session.py"
+   ],
+   "areas": [
+    "tests"
+   ],
+   "lanes": [
+    "verify"
+   ],
+   "commit_count": 4,
+   "review_state": "no_reviewer",
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "a44026fc5cd11d08e22cc74fd856bcd503d24999",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:11",
+   "kind": "pull_request",
+   "number": 11,
+   "title": "Invoice totals",
+   "url": null,
+   "state": "open",
+   "in_flight": true,
+   "head": "ben/invoice",
+   "base": "main",
+   "actors": [
+    "ben"
+   ],
+   "created_at": "2026-10-07T03:30:00Z",
+   "last_activity_at": "2026-10-07T13:00:00Z",
+   "paths": [
+    "src/billing/invoice.py"
+   ],
+   "areas": [
+    "src/billing"
+   ],
+   "lanes": [
+    "build"
+   ],
+   "commit_count": 4,
+   "review_state": "no_reviewer",
+   "waiting_on": [
+    "pr:10"
+   ],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "a44026fc5cd11d08e22cc74fd856bcd503d24999",
+    "source": "compare"
+   }
+  },
+  {
+   "id": "pr:10",
+   "kind": "pull_request",
+   "number": 10,
+   "title": "Session tokens",
+   "url": null,
+   "state": "open",
+   "in_flight": true,
+   "head": "alice/session",
+   "base": "main",
+   "actors": [
+    "alice"
+   ],
+   "created_at": "2026-10-07T03:00:00Z",
+   "last_activity_at": "2026-10-07T12:30:00Z",
+   "paths": [
+    "src/auth/session.py",
+    "src/auth/tokens.py"
+   ],
+   "areas": [
+    "src/auth"
+   ],
+   "lanes": [
+    "build"
+   ],
+   "commit_count": 4,
+   "review_state": "no_reviewer",
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": {
+    "sha": "a44026fc5cd11d08e22cc74fd856bcd503d24999",
+    "source": "compare"
+   }
+  }
+ ],
+ "commits": [],
+ "issues": [],
+ "actors": [
+  {
+   "id": "alice",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "pr:10"
+   ]
+  },
+  {
+   "id": "ben",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "pr:11"
+   ]
+  },
+  {
+   "id": "dana",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "pr:13"
+   ]
+  },
+  {
+   "id": "emil",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "pr:14"
+   ]
+  },
+  {
+   "id": "farah",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "pr:15"
+   ]
+  },
+  {
+   "id": "sofia",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "pr:12"
+   ]
+  }
+ ],
+ "signals": [
+  {
+   "id": "waiting:pr:11:pr:10",
+   "type": "waiting",
+   "basis": "declared",
+   "confidence": "high",
+   "subject": {
+    "kind": "work_item",
+    "id": "pr:11"
+   },
+   "summary": "pr:11 waits on pr:10",
+   "work_items": [
+    "pr:11",
+    "pr:10"
+   ],
+   "actors": [
+    "alice",
+    "ben"
+   ],
+   "evidence": [
+    {
+     "kind": "text",
+     "ref": "Depends on #10",
+     "url": null,
+     "detail": "pull request body declares 'Depends on #10'"
+    },
+    {
+     "kind": "work_item",
+     "ref": "pr:10",
+     "url": null,
+     "detail": "Session tokens (open)"
+    }
+   ],
+   "rule": {
+    "name": "waiting.declared",
+    "params": {}
+   }
+  }
+ ],
+ "coordination": null,
+ "provenance": {
+  "source": "synthetic (Semantic UI Playground)",
+  "collector": "blackmath88/observstory",
+  "collector_version": "1.0.0",
+  "observations_fetched_at": "2026-10-07T15:00:00Z",
+  "api_calls": 0,
+  "rate_limit_remaining": null,
+  "degraded": []
+ }
+}

@@ -240,3 +240,51 @@ def compile_coordination(c: dict | None) -> dict | None:
                            session=x.get("source", {}).get("session")) for x in c["decisions"]],
         "cues": c["cues"],
     }
+
+
+def explain_frame(scene: dict) -> list[str]:
+    """Why the map looks the way it does, in a few sentences read only from the scene (no second
+    semantics). Used by the Semantic UI Playground; deterministic, so the same scene explains the same way."""
+    zones = sorted(scene["zones"], key=lambda z: z["order"])
+    nodes, st = scene["nodes"], scene["status"]
+    edges = {t: [e for e in scene["edges"] if e["type"] == t] for t in ("overlap", "waiting")}
+    ref = {n["id"]: n["ref"] for n in nodes}
+    plural = lambda n, word: f"{n} {word}{'' if n == 1 else 's'}"  # noqa: E731
+    out = [f"{plural(len(zones), 'lane')} from the project's own configuration: {' → '.join(z['label'] for z in zones)}."]
+    active = [z for z in zones if z["in_flight"]]
+    if not active:
+        out.append("Nothing is in flight, so every lane is quiet.")
+    else:
+        top = max(z["in_flight"] for z in active)
+        busiest = [z for z in active if z["in_flight"] == top]
+        where = (f"{busiest[0]['label']} holds the most ({top})" if len(busiest) == 1
+                 else f"spread over {', '.join(z['label'] for z in active)}")
+        out.append(f"{plural(st['in_flight'], 'work item')} in flight across {plural(st['areas_active'], 'area')}; "
+                   f"{where}. Lanes without work stay compact.")
+    for e in edges["overlap"]:
+        out.append(f"{ref[e['from']]} and {ref[e['to']]} both change {', '.join(e['files'])} in parallel: "
+                   "coordination is foregrounded with an orange connector and an attention item.")
+    for e in edges["waiting"]:
+        out.append(f"{ref[e['from']]} waits on {ref[e['to']]} ({e['basis']}): drawn as a grey arrow, a dependency, not a conflict.")
+    stale = [n for n in nodes if n["status"] == "stale"]
+    if stale:
+        out.append(f"{', '.join(n['ref'] for n in stale)} has gone quiet ({round(max(n['age_hours'] for n in stale) / 24)} d): "
+                   "faded, and listed as an open loop to revisit.")
+    burst = [n for n in nodes if "burst" in n["flags"]]
+    if burst:
+        out.append(f"{', '.join(n['ref'] for n in burst)} is a machine-paced stream: folded into one card with ≋, kept in the background.")
+    if active and not (edges["overlap"] or edges["waiting"] or stale or burst):
+        out.append("No relations between work items, so nothing asks for attention; the map stays calm.")
+    c = scene.get("coordination")
+    if not c:
+        out.append("Nothing is declared, so there is no mission rail.")
+    else:
+        nxt = next((g for g in c["gates"] if g["id"] == c["next_gate"]), None)
+        out.append("Declarations exist, so a mission rail shows NOW"
+                   + (f" and the next gate, {nxt['label']}, in {c['hours_to_next']:g} h." if nxt else "; every gate has passed."))
+        cues = c["cues"]
+        if cues:
+            out.append(f"{plural(len(cues), 'declared-vs-observed cue')}: " + "; ".join(q["summary"] for q in cues) + ".")
+        else:
+            out.append("Declared and observed agree: no cue.")
+    return out
