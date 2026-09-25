@@ -1,0 +1,485 @@
+{
+ "schema": "observstory.scene/v1",
+ "source": {
+  "snapshot_schema": "observstory.snapshot/v1",
+  "generated_at": "2026-10-07T15:00:00Z",
+  "repository": "northstar/recsys",
+  "repository_url": null,
+  "default_branch": "main",
+  "window_hours": 48,
+  "title": "Northstar recommendations (synthetic demo)",
+  "lanes_source": "config",
+  "degraded": []
+ },
+ "status": {
+  "in_flight": 6,
+  "overlaps": 0,
+  "waiting": 0,
+  "stale": 0,
+  "areas_active": 6
+ },
+ "zones": [
+  {
+   "id": "data",
+   "label": "Data",
+   "description": "Sources and datasets",
+   "order": 0,
+   "state": "active",
+   "groups": [
+    "area:data"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "pipeline",
+   "label": "Pipeline",
+   "description": "Ingestion and features",
+   "order": 1,
+   "state": "active",
+   "groups": [
+    "area:pipeline"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "model",
+   "label": "Model",
+   "description": "Training and architecture",
+   "order": 2,
+   "state": "active",
+   "groups": [
+    "area:model"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "eval",
+   "label": "Eval",
+   "description": "Benchmarks",
+   "order": 3,
+   "state": "active",
+   "groups": [
+    "area:eval"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "api",
+   "label": "API",
+   "description": "Serving",
+   "order": 4,
+   "state": "active",
+   "groups": [
+    "area:api"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "docs",
+   "label": "Docs",
+   "description": "Explaining it",
+   "order": 5,
+   "state": "active",
+   "groups": [
+    "area:docs"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  }
+ ],
+ "groups": [
+  {
+   "id": "area:data",
+   "zone": "data",
+   "path": "data",
+   "label": "data",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:14"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T14:30:00Z",
+   "age_hours": 0.5
+  },
+  {
+   "id": "area:pipeline",
+   "zone": "pipeline",
+   "path": "pipeline",
+   "label": "pipeline",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:10"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T12:30:00Z",
+   "age_hours": 2.5
+  },
+  {
+   "id": "area:model",
+   "zone": "model",
+   "path": "model",
+   "label": "model",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:11"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T13:00:00Z",
+   "age_hours": 2.0
+  },
+  {
+   "id": "area:eval",
+   "zone": "eval",
+   "path": "eval",
+   "label": "eval",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:12"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T13:30:00Z",
+   "age_hours": 1.5
+  },
+  {
+   "id": "area:api",
+   "zone": "api",
+   "path": "api",
+   "label": "api",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:13"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T14:00:00Z",
+   "age_hours": 1.0
+  },
+  {
+   "id": "area:docs",
+   "zone": "docs",
+   "path": "docs",
+   "label": "docs",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:15"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T15:00:00Z",
+   "age_hours": 0.0
+  }
+ ],
+ "nodes": [
+  {
+   "id": "pr:13",
+   "kind": "pull_request",
+   "group": "area:api",
+   "zone": "api",
+   "ref": "#13",
+   "label": "Batch scoring endpoint",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "dana"
+   ],
+   "last_activity_at": "2026-10-07T14:00:00Z",
+   "age_hours": 1.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:14",
+   "kind": "pull_request",
+   "group": "area:data",
+   "zone": "data",
+   "ref": "#14",
+   "label": "Click-log snapshot",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "emil"
+   ],
+   "last_activity_at": "2026-10-07T14:30:00Z",
+   "age_hours": 0.5,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:15",
+   "kind": "pull_request",
+   "group": "area:docs",
+   "zone": "docs",
+   "ref": "#15",
+   "label": "Model card",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "farah"
+   ],
+   "last_activity_at": "2026-10-07T15:00:00Z",
+   "age_hours": 0.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:12",
+   "kind": "pull_request",
+   "group": "area:eval",
+   "zone": "eval",
+   "ref": "#12",
+   "label": "Multilingual eval set",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "sofia"
+   ],
+   "last_activity_at": "2026-10-07T13:30:00Z",
+   "age_hours": 1.5,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:11",
+   "kind": "pull_request",
+   "group": "area:model",
+   "zone": "model",
+   "ref": "#11",
+   "label": "Embedding dim 1024",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "ben"
+   ],
+   "last_activity_at": "2026-10-07T13:00:00Z",
+   "age_hours": 2.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:10",
+   "kind": "pull_request",
+   "group": "area:pipeline",
+   "zone": "pipeline",
+   "ref": "#10",
+   "label": "Tokenizer v2 features",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-10-07T12:30:00Z",
+   "age_hours": 2.5,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  }
+ ],
+ "edges": [],
+ "attention": [],
+ "details": {
+  "signals": {},
+  "work_items": {
+   "pr:15": {
+    "paths": [
+     "docs/model-card.md"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "docs"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "64779ea095aef4bfed17fb81d1e2d23b899a436d",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:14": {
+    "paths": [
+     "data/sources.yaml"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "data"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "64779ea095aef4bfed17fb81d1e2d23b899a436d",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:13": {
+    "paths": [
+     "api/batch.py"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "api"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "64779ea095aef4bfed17fb81d1e2d23b899a436d",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:12": {
+    "paths": [
+     "eval/multilingual/run.py"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "eval"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "64779ea095aef4bfed17fb81d1e2d23b899a436d",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:11": {
+    "paths": [
+     "model/config.yaml",
+     "model/embed.py"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "model"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "64779ea095aef4bfed17fb81d1e2d23b899a436d",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:10": {
+    "paths": [
+     "pipeline/features/tokenize.py",
+     "pipeline/features/vocab.py"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "pipeline"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "64779ea095aef4bfed17fb81d1e2d23b899a436d",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   }
+  },
+  "areas": {
+   "data": {
+    "files": [
+     "data/sources.yaml"
+    ],
+    "actors": [
+     "emil"
+    ],
+    "recent_commits": 0
+   },
+   "pipeline": {
+    "files": [
+     "pipeline/features/tokenize.py",
+     "pipeline/features/vocab.py"
+    ],
+    "actors": [
+     "alice"
+    ],
+    "recent_commits": 0
+   },
+   "model": {
+    "files": [
+     "model/config.yaml",
+     "model/embed.py"
+    ],
+    "actors": [
+     "ben"
+    ],
+    "recent_commits": 0
+   },
+   "eval": {
+    "files": [
+     "eval/multilingual/run.py"
+    ],
+    "actors": [
+     "sofia"
+    ],
+    "recent_commits": 0
+   },
+   "api": {
+    "files": [
+     "api/batch.py"
+    ],
+    "actors": [
+     "dana"
+    ],
+    "recent_commits": 0
+   },
+   "docs": {
+    "files": [
+     "docs/model-card.md"
+    ],
+    "actors": [
+     "farah"
+    ],
+    "recent_commits": 0
+   }
+  }
+ },
+ "coordination": null
+}

@@ -1,0 +1,467 @@
+{
+ "schema": "observstory.scene/v1",
+ "source": {
+  "snapshot_schema": "observstory.snapshot/v1",
+  "generated_at": "2026-10-07T15:00:00Z",
+  "repository": "northstar/voice-notes",
+  "repository_url": null,
+  "default_branch": "main",
+  "window_hours": 48,
+  "title": "Voice notes hackathon (synthetic demo)",
+  "lanes_source": "config",
+  "degraded": []
+ },
+ "status": {
+  "in_flight": 6,
+  "overlaps": 0,
+  "waiting": 0,
+  "stale": 0,
+  "areas_active": 5
+ },
+ "zones": [
+  {
+   "id": "intent",
+   "label": "Intent",
+   "description": "Pitch and decisions",
+   "order": 0,
+   "state": "active",
+   "groups": [
+    "area:docs"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "core",
+   "label": "Core",
+   "description": "Audio, transcription, core API",
+   "order": 1,
+   "state": "active",
+   "groups": [
+    "area:src/transcribe",
+    "area:src/audio"
+   ],
+   "in_flight": 2,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "interface",
+   "label": "Interface",
+   "description": "Recorder UI",
+   "order": 2,
+   "state": "active",
+   "groups": [
+    "area:web"
+   ],
+   "in_flight": 2,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "verify",
+   "label": "Verify",
+   "description": "Evaluation",
+   "order": 3,
+   "state": "active",
+   "groups": [
+    "area:evals"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  }
+ ],
+ "groups": [
+  {
+   "id": "area:docs",
+   "zone": "intent",
+   "path": "docs",
+   "label": "docs",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:14"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T14:30:00Z",
+   "age_hours": 0.5
+  },
+  {
+   "id": "area:src/transcribe",
+   "zone": "core",
+   "path": "src/transcribe",
+   "label": "transcribe",
+   "parent": "src",
+   "attention": false,
+   "nodes": [
+    "pr:11"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T13:46:00Z",
+   "age_hours": 1.2
+  },
+  {
+   "id": "area:src/audio",
+   "zone": "core",
+   "path": "src/audio",
+   "label": "audio",
+   "parent": "src",
+   "attention": false,
+   "nodes": [
+    "pr:10"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T12:30:00Z",
+   "age_hours": 2.5
+  },
+  {
+   "id": "area:web",
+   "zone": "interface",
+   "path": "web",
+   "label": "web",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:15",
+    "pr:12"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T15:00:00Z",
+   "age_hours": 0.0
+  },
+  {
+   "id": "area:evals",
+   "zone": "verify",
+   "path": "evals",
+   "label": "evals",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:13"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T14:00:00Z",
+   "age_hours": 1.0
+  }
+ ],
+ "nodes": [
+  {
+   "id": "pr:14",
+   "kind": "pull_request",
+   "group": "area:docs",
+   "zone": "intent",
+   "ref": "#14",
+   "label": "Pitch deck notes",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "emil"
+   ],
+   "last_activity_at": "2026-10-07T14:30:00Z",
+   "age_hours": 0.5,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:13",
+   "kind": "pull_request",
+   "group": "area:evals",
+   "zone": "verify",
+   "ref": "#13",
+   "label": "Transcription evals",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "dana"
+   ],
+   "last_activity_at": "2026-10-07T14:00:00Z",
+   "age_hours": 1.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:10",
+   "kind": "pull_request",
+   "group": "area:src/audio",
+   "zone": "core",
+   "ref": "#10",
+   "label": "Audio capture pipeline",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-10-07T12:30:00Z",
+   "age_hours": 2.5,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:11",
+   "kind": "pull_request",
+   "group": "area:src/transcribe",
+   "zone": "core",
+   "ref": "#11",
+   "label": "Local transcription",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "ben"
+   ],
+   "last_activity_at": "2026-10-07T13:46:00Z",
+   "age_hours": 1.2,
+   "also_touches": [],
+   "flags": [
+    "agent",
+    "burst"
+   ],
+   "attention": false
+  },
+  {
+   "id": "pr:15",
+   "kind": "pull_request",
+   "group": "area:web",
+   "zone": "interface",
+   "ref": "#15",
+   "label": "Waveform view",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "farah"
+   ],
+   "last_activity_at": "2026-10-07T15:00:00Z",
+   "age_hours": 0.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:12",
+   "kind": "pull_request",
+   "group": "area:web",
+   "zone": "interface",
+   "ref": "#12",
+   "label": "Recorder UI",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "sofia"
+   ],
+   "last_activity_at": "2026-10-07T13:30:00Z",
+   "age_hours": 1.5,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  }
+ ],
+ "edges": [],
+ "attention": [],
+ "details": {
+  "signals": {
+   "burst:pr:11": {
+    "type": "burst",
+    "summary": "pr:11: 16 commits within 30 min (machine-paced stream)",
+    "basis": "heuristic",
+    "confidence": "high",
+    "evidence": [
+     {
+      "kind": "commit",
+      "ref": "16 commits",
+      "url": null,
+      "detail": "from 2026-10-07T13:00:00+00:00 to 2026-10-07T13:30:00+00:00; agent trailer declared"
+     }
+    ],
+    "rule": {
+     "name": "burst.rate",
+     "params": {
+      "min_commits": 8,
+      "window_minutes": 30
+     }
+    },
+    "work_items": [
+     "pr:11"
+    ]
+   }
+  },
+  "work_items": {
+   "pr:15": {
+    "paths": [
+     "web/waveform/Waveform.tsx"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "web"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "c276345cbb42e82c89cd185e25ff0417f9227d96",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:14": {
+    "paths": [
+     "docs/pitch.md"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "docs"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "c276345cbb42e82c89cd185e25ff0417f9227d96",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:13": {
+    "paths": [
+     "evals/transcription/run.py"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "evals"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "c276345cbb42e82c89cd185e25ff0417f9227d96",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:11": {
+    "paths": [
+     "src/transcribe/local.py"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "src/transcribe"
+    ],
+    "state": "open",
+    "burst": {
+     "commits": 16,
+     "minutes": 30,
+     "total_commits": 24
+    },
+    "merge_base": {
+     "sha": "c276345cbb42e82c89cd185e25ff0417f9227d96",
+     "source": "compare"
+    },
+    "commit_count": 24,
+    "waiting_on": []
+   },
+   "pr:12": {
+    "paths": [
+     "web/recorder/Recorder.tsx"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "web"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "c276345cbb42e82c89cd185e25ff0417f9227d96",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:10": {
+    "paths": [
+     "src/audio/buffer.py",
+     "src/audio/capture.py"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "src/audio"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "c276345cbb42e82c89cd185e25ff0417f9227d96",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   }
+  },
+  "areas": {
+   "docs": {
+    "files": [
+     "docs/pitch.md"
+    ],
+    "actors": [
+     "emil"
+    ],
+    "recent_commits": 0
+   },
+   "src/transcribe": {
+    "files": [
+     "src/transcribe/local.py"
+    ],
+    "actors": [
+     "ben"
+    ],
+    "recent_commits": 0
+   },
+   "src/audio": {
+    "files": [
+     "src/audio/buffer.py",
+     "src/audio/capture.py"
+    ],
+    "actors": [
+     "alice"
+    ],
+    "recent_commits": 0
+   },
+   "web": {
+    "files": [
+     "web/recorder/Recorder.tsx",
+     "web/waveform/Waveform.tsx"
+    ],
+    "actors": [
+     "farah",
+     "sofia"
+    ],
+    "recent_commits": 0
+   },
+   "evals": {
+    "files": [
+     "evals/transcription/run.py"
+    ],
+    "actors": [
+     "dana"
+    ],
+    "recent_commits": 0
+   }
+  }
+ },
+ "coordination": null
+}

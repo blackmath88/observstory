@@ -152,6 +152,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 [role=tab]{padding:4px 10px;border-radius:7px;color:var(--ink2);white-space:nowrap}
 [role=tab]:hover{background:color-mix(in srgb,var(--ink) 5%,transparent)}
 [role=tab][aria-selected=true]{background:var(--ink);color:var(--surface)}
+.pg{font-size:12px;color:var(--ink2);white-space:nowrap}
 .nav{display:flex;gap:6px;margin-left:auto}
 .nav button{border:1px solid var(--hair2);border-radius:7px;padding:3px 10px;color:var(--ink2);background:var(--surface)}
 .nav button:disabled{opacity:.35;cursor:default}
@@ -172,6 +173,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg);min-height:480px}
     <span class="brand">Observstory <span>Demo Lab</span></span>
     <span class="synthetic" title="northstar/chat-app, northstar/recsys and northstar/voice-notes are invented; so are Alice, Ben, Sofia and Dana">Synthetic data</span>
     <nav class="tabs" role="tablist" aria-label="Project states">{{TABS}}</nav>
+    <a class="pg" href="playground.html">Semantic UI Playground →</a>
   </div>
   <div class="story">
     <span class="step" id="step"></span>
@@ -220,15 +222,21 @@ fromHash();
 
 
 def main():
+    import build_playground
+    playground = build_playground.main()
     manifest = build_states()
     (HERE / "index.html").write_text(shell(manifest), encoding="utf-8")
     for st in manifest:
         print(f'{st["id"]:<14} {st["status"]}')
+    print(f"playground     {len(playground)} states -> demo/playground.html")
     if "--shots" in sys.argv:
         shot = ROOT / "prototypes/project-map/shot.js"
         for sid, png, w, h, click in SHOTS:
             subprocess.run(["node", str(shot), str(HERE / "index.html") + "#" + sid, str(ROOT / "docs/demo/img" / f"{png}.png"),
                             str(w), str(h)] + ([click] if click else []), check=True)
+        for sid, png, w, h in build_playground.SHOTS:
+            subprocess.run(["node", str(shot), str(HERE / "playground.html") + "#" + sid, str(ROOT / "docs/demo/img" / f"{png}.png"),
+                            str(w), str(h)], check=True)
 
 
 if __name__ == "__main__":

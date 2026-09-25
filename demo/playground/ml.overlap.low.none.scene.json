@@ -1,0 +1,325 @@
+{
+ "schema": "observstory.scene/v1",
+ "source": {
+  "snapshot_schema": "observstory.snapshot/v1",
+  "generated_at": "2026-10-07T15:00:00Z",
+  "repository": "northstar/recsys",
+  "repository_url": null,
+  "default_branch": "main",
+  "window_hours": 48,
+  "title": "Northstar recommendations (synthetic demo)",
+  "lanes_source": "config",
+  "degraded": []
+ },
+ "status": {
+  "in_flight": 2,
+  "overlaps": 1,
+  "waiting": 0,
+  "stale": 0,
+  "areas_active": 2
+ },
+ "zones": [
+  {
+   "id": "data",
+   "label": "Data",
+   "description": "Sources and datasets",
+   "order": 0,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "pipeline",
+   "label": "Pipeline",
+   "description": "Ingestion and features",
+   "order": 1,
+   "state": "active",
+   "groups": [
+    "area:pipeline"
+   ],
+   "in_flight": 2,
+   "attention": true,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "model",
+   "label": "Model",
+   "description": "Training and architecture",
+   "order": 2,
+   "state": "active",
+   "groups": [
+    "area:model"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "eval",
+   "label": "Eval",
+   "description": "Benchmarks",
+   "order": 3,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "api",
+   "label": "API",
+   "description": "Serving",
+   "order": 4,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "docs",
+   "label": "Docs",
+   "description": "Explaining it",
+   "order": 5,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  }
+ ],
+ "groups": [
+  {
+   "id": "area:pipeline",
+   "zone": "pipeline",
+   "path": "pipeline",
+   "label": "pipeline",
+   "parent": "",
+   "attention": true,
+   "nodes": [
+    "pr:10"
+   ],
+   "also_active": [
+    "pr:11"
+   ],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T13:00:00Z",
+   "age_hours": 2.0
+  },
+  {
+   "id": "area:model",
+   "zone": "model",
+   "path": "model",
+   "label": "model",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:11"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T13:00:00Z",
+   "age_hours": 2.0
+  }
+ ],
+ "nodes": [
+  {
+   "id": "pr:11",
+   "kind": "pull_request",
+   "group": "area:model",
+   "zone": "model",
+   "ref": "#11",
+   "label": "Embedding dim 1024",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "ben"
+   ],
+   "last_activity_at": "2026-10-07T13:00:00Z",
+   "age_hours": 2.0,
+   "also_touches": [
+    "pipeline"
+   ],
+   "flags": [],
+   "attention": true
+  },
+  {
+   "id": "pr:10",
+   "kind": "pull_request",
+   "group": "area:pipeline",
+   "zone": "pipeline",
+   "ref": "#10",
+   "label": "Tokenizer v2 features",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-10-07T12:30:00Z",
+   "age_hours": 2.5,
+   "also_touches": [],
+   "flags": [],
+   "attention": true
+  }
+ ],
+ "edges": [
+  {
+   "id": "overlap:pr:10|pr:11",
+   "type": "overlap",
+   "from": "pr:10",
+   "to": "pr:11",
+   "directed": false,
+   "basis": "derived",
+   "confidence": "high",
+   "attention": true,
+   "areas": [
+    "pipeline"
+   ],
+   "files": [
+    "pipeline/features/tokenize.py"
+   ],
+   "signals": [
+    "overlap:pipeline"
+   ]
+  }
+ ],
+ "attention": [
+  {
+   "kind": "overlap",
+   "target": "overlap:pr:10|pr:11",
+   "confidence": "high",
+   "basis": "derived",
+   "label": "#10 and #11 change pipeline in parallel"
+  }
+ ],
+ "details": {
+  "signals": {
+   "overlap:pipeline": {
+    "type": "overlap",
+    "summary": "2 work items change pipeline in parallel; 1 shared file",
+    "basis": "derived",
+    "confidence": "high",
+    "evidence": [
+     {
+      "kind": "file",
+      "ref": "pipeline/features/tokenize.py",
+      "url": null,
+      "work_items": [
+       "pr:10",
+       "pr:11"
+      ],
+      "detail": "changed by 2 work items in parallel"
+     },
+     {
+      "kind": "work_item",
+      "ref": "pr:10",
+      "url": null,
+      "detail": "Tokenizer v2 features (open)"
+     },
+     {
+      "kind": "work_item",
+      "ref": "pr:11",
+      "url": null,
+      "detail": "Embedding dim 1024 (open)"
+     }
+    ],
+    "rule": {
+     "name": "overlap.parallel_pairs",
+     "params": {
+      "min_work_items": 2,
+      "same_author": false,
+      "shared_files": 1,
+      "parallel_pairs": [
+       "pr:10|pr:11"
+      ],
+      "baseline_pairs": [],
+      "sequential_direct_pairs": 0,
+      "explained_by_waiting": [],
+      "excluded_stale": [],
+      "excluded_bot_only": [],
+      "area_only_pairs_skipped": 0,
+      "require_shared_file": true
+     }
+    },
+    "work_items": [
+     "pr:10",
+     "pr:11"
+    ]
+   }
+  },
+  "work_items": {
+   "pr:11": {
+    "paths": [
+     "model/config.yaml",
+     "model/embed.py",
+     "pipeline/features/tokenize.py"
+    ],
+    "paths_total": 3,
+    "areas": [
+     "model",
+     "pipeline"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "64779ea095aef4bfed17fb81d1e2d23b899a436d",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:10": {
+    "paths": [
+     "pipeline/features/tokenize.py",
+     "pipeline/features/vocab.py"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "pipeline"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "64779ea095aef4bfed17fb81d1e2d23b899a436d",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   }
+  },
+  "areas": {
+   "pipeline": {
+    "files": [
+     "pipeline/features/tokenize.py",
+     "pipeline/features/vocab.py"
+    ],
+    "actors": [
+     "alice",
+     "ben"
+    ],
+    "recent_commits": 0
+   },
+   "model": {
+    "files": [
+     "model/config.yaml",
+     "model/embed.py"
+    ],
+    "actors": [
+     "ben"
+    ],
+    "recent_commits": 0
+   }
+  }
+ },
+ "coordination": null
+}

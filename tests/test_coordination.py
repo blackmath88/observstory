@@ -2,6 +2,7 @@
 
 import copy
 import json
+import pathlib
 import sys
 import unittest
 
@@ -192,7 +193,7 @@ class CheckinCli(unittest.TestCase):
         from observstory.cli import main
         with tempfile.TemporaryDirectory() as d:
             notes, f = f"{d}/notes.md", f"{d}/coordination.json"
-            open(notes, "w").write(collab_lab.MORNING_NOTES)
+            pathlib.Path(notes).write_text(collab_lab.MORNING_NOTES)
             out = io.StringIO()
             with contextlib.redirect_stdout(out):
                 main(["checkin", "propose", notes, "--label", "Morning", "--at", "2026-10-03T09:00:00Z", "--file", f])
@@ -201,7 +202,7 @@ class CheckinCli(unittest.TestCase):
             self.assertIn("2 proposed item(s) awaiting confirmation", out.getvalue())
             with contextlib.redirect_stdout(io.StringIO()):
                 main(["checkin", "confirm", "S1", "--by", "Ben", "--at", "2026-10-03T09:10:00Z", "--drop", "D1", "--file", f])
-            data = json.loads(open(f).read())
+            data = json.loads(pathlib.Path(f).read_text())
             self.assertEqual(co.validate(data), [])
             self.assertEqual([(c["id"], c["status"], c["confirmed_by"]) for c in data["commitments"]], [("C1", "declared", "Ben")])
             self.assertEqual(data["decisions"], [])

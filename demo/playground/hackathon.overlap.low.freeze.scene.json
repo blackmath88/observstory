@@ -1,0 +1,367 @@
+{
+ "schema": "observstory.scene/v1",
+ "source": {
+  "snapshot_schema": "observstory.snapshot/v1",
+  "generated_at": "2026-10-07T15:00:00Z",
+  "repository": "northstar/voice-notes",
+  "repository_url": null,
+  "default_branch": "main",
+  "window_hours": 48,
+  "title": "Voice notes hackathon (synthetic demo)",
+  "lanes_source": "config",
+  "degraded": []
+ },
+ "status": {
+  "in_flight": 2,
+  "overlaps": 1,
+  "waiting": 0,
+  "stale": 0,
+  "areas_active": 2
+ },
+ "zones": [
+  {
+   "id": "intent",
+   "label": "Intent",
+   "description": "Pitch and decisions",
+   "order": 0,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "core",
+   "label": "Core",
+   "description": "Audio, transcription, core API",
+   "order": 1,
+   "state": "active",
+   "groups": [
+    "area:src/audio",
+    "area:src/transcribe"
+   ],
+   "in_flight": 2,
+   "attention": true,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "interface",
+   "label": "Interface",
+   "description": "Recorder UI",
+   "order": 2,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "verify",
+   "label": "Verify",
+   "description": "Evaluation",
+   "order": 3,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  }
+ ],
+ "groups": [
+  {
+   "id": "area:src/audio",
+   "zone": "core",
+   "path": "src/audio",
+   "label": "audio",
+   "parent": "src",
+   "attention": true,
+   "nodes": [
+    "pr:11",
+    "pr:10"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T13:00:00Z",
+   "age_hours": 2.0
+  },
+  {
+   "id": "area:src/transcribe",
+   "zone": "core",
+   "path": "src/transcribe",
+   "label": "transcribe",
+   "parent": "src",
+   "attention": false,
+   "nodes": [],
+   "also_active": [
+    "pr:11"
+   ],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T13:00:00Z",
+   "age_hours": 2.0
+  }
+ ],
+ "nodes": [
+  {
+   "id": "pr:11",
+   "kind": "pull_request",
+   "group": "area:src/audio",
+   "zone": "core",
+   "ref": "#11",
+   "label": "Local transcription",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "ben"
+   ],
+   "last_activity_at": "2026-10-07T13:00:00Z",
+   "age_hours": 2.0,
+   "also_touches": [
+    "src/transcribe"
+   ],
+   "flags": [],
+   "attention": true
+  },
+  {
+   "id": "pr:10",
+   "kind": "pull_request",
+   "group": "area:src/audio",
+   "zone": "core",
+   "ref": "#10",
+   "label": "Audio capture pipeline",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-10-07T12:30:00Z",
+   "age_hours": 2.5,
+   "also_touches": [],
+   "flags": [],
+   "attention": true
+  }
+ ],
+ "edges": [
+  {
+   "id": "overlap:pr:10|pr:11",
+   "type": "overlap",
+   "from": "pr:10",
+   "to": "pr:11",
+   "directed": false,
+   "basis": "derived",
+   "confidence": "high",
+   "attention": true,
+   "areas": [
+    "src/audio"
+   ],
+   "files": [
+    "src/audio/capture.py"
+   ],
+   "signals": [
+    "overlap:src/audio"
+   ]
+  }
+ ],
+ "attention": [
+  {
+   "kind": "overlap",
+   "target": "overlap:pr:10|pr:11",
+   "confidence": "high",
+   "basis": "derived",
+   "label": "#10 and #11 change src/audio in parallel"
+  }
+ ],
+ "details": {
+  "signals": {
+   "overlap:src/audio": {
+    "type": "overlap",
+    "summary": "2 work items change src/audio in parallel; 1 shared file",
+    "basis": "derived",
+    "confidence": "high",
+    "evidence": [
+     {
+      "kind": "file",
+      "ref": "src/audio/capture.py",
+      "url": null,
+      "work_items": [
+       "pr:10",
+       "pr:11"
+      ],
+      "detail": "changed by 2 work items in parallel"
+     },
+     {
+      "kind": "work_item",
+      "ref": "pr:10",
+      "url": null,
+      "detail": "Audio capture pipeline (open)"
+     },
+     {
+      "kind": "work_item",
+      "ref": "pr:11",
+      "url": null,
+      "detail": "Local transcription (open)"
+     }
+    ],
+    "rule": {
+     "name": "overlap.parallel_pairs",
+     "params": {
+      "min_work_items": 2,
+      "same_author": false,
+      "shared_files": 1,
+      "parallel_pairs": [
+       "pr:10|pr:11"
+      ],
+      "baseline_pairs": [],
+      "sequential_direct_pairs": 0,
+      "explained_by_waiting": [],
+      "excluded_stale": [],
+      "excluded_bot_only": [],
+      "area_only_pairs_skipped": 0,
+      "require_shared_file": true
+     }
+    },
+    "work_items": [
+     "pr:10",
+     "pr:11"
+    ]
+   }
+  },
+  "work_items": {
+   "pr:11": {
+    "paths": [
+     "src/audio/capture.py",
+     "src/transcribe/local.py"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "src/audio",
+     "src/transcribe"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "c276345cbb42e82c89cd185e25ff0417f9227d96",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:10": {
+    "paths": [
+     "src/audio/buffer.py",
+     "src/audio/capture.py"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "src/audio"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "c276345cbb42e82c89cd185e25ff0417f9227d96",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   }
+  },
+  "areas": {
+   "src/audio": {
+    "files": [
+     "src/audio/buffer.py",
+     "src/audio/capture.py"
+    ],
+    "actors": [
+     "alice",
+     "ben"
+    ],
+    "recent_commits": 0
+   },
+   "src/transcribe": {
+    "files": [
+     "src/transcribe/local.py"
+    ],
+    "actors": [
+     "ben"
+    ],
+    "recent_commits": 0
+   }
+  }
+ },
+ "coordination": {
+  "source": ".observstory/coordination.json",
+  "now": "2026-10-07T15:00:00Z",
+  "span": [
+   "2026-10-07T05:00:00Z",
+   "2026-10-08T06:45:00Z"
+  ],
+  "next_gate": "G1",
+  "hours_to_next": 4.0,
+  "proposed_pending": 0,
+  "sessions": [
+   {
+    "id": "S1",
+    "kind": "check-in",
+    "label": "Morning check-in",
+    "at": "2026-10-07T05:00:00Z",
+    "open_questions": []
+   }
+  ],
+  "gates": [
+   {
+    "id": "G1",
+    "kind": "freeze",
+    "label": "Freeze src/audio/",
+    "at": "2026-10-07T19:00:00Z",
+    "areas": [
+     "src/audio/"
+    ],
+    "passed": false,
+    "next": true,
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   },
+   {
+    "id": "G2",
+    "kind": "submission",
+    "label": "Submission",
+    "at": "2026-10-08T06:00:00Z",
+    "areas": [],
+    "passed": false,
+    "next": false,
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   }
+  ],
+  "commitments": [
+   {
+    "id": "C1",
+    "text": "first piece of work end to end",
+    "owner": "Alice",
+    "due": "2026-10-07T21:00:00Z",
+    "state": "in_progress",
+    "matched": [
+     "pr:10"
+    ],
+    "links": [
+     {
+      "kind": "pr",
+      "ref": "10"
+     }
+    ],
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   }
+  ],
+  "decisions": [],
+  "cues": []
+ }
+}

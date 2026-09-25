@@ -1,0 +1,435 @@
+{
+ "schema": "observstory.scene/v1",
+ "source": {
+  "snapshot_schema": "observstory.snapshot/v1",
+  "generated_at": "2026-10-07T15:00:00Z",
+  "repository": "northstar/billing",
+  "repository_url": null,
+  "default_branch": "main",
+  "window_hours": 48,
+  "title": "Northstar billing (synthetic playground)",
+  "lanes_source": "config",
+  "degraded": []
+ },
+ "status": {
+  "in_flight": 6,
+  "overlaps": 0,
+  "waiting": 0,
+  "stale": 0,
+  "areas_active": 5
+ },
+ "zones": [
+  {
+   "id": "intent",
+   "label": "Intent",
+   "description": "Docs and decisions",
+   "order": 0,
+   "state": "active",
+   "groups": [
+    "area:docs"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "build",
+   "label": "Build",
+   "description": "Application code",
+   "order": 1,
+   "state": "active",
+   "groups": [
+    "area:src/billing",
+    "area:src/auth"
+   ],
+   "in_flight": 3,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "verify",
+   "label": "Verify",
+   "description": "Tests",
+   "order": 2,
+   "state": "active",
+   "groups": [
+    "area:tests"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "ship",
+   "label": "Ship",
+   "description": "Build and deploy",
+   "order": 3,
+   "state": "active",
+   "groups": [
+    "area:deploy"
+   ],
+   "in_flight": 1,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  }
+ ],
+ "groups": [
+  {
+   "id": "area:docs",
+   "zone": "intent",
+   "path": "docs",
+   "label": "docs",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:14"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T14:30:00Z",
+   "age_hours": 0.5
+  },
+  {
+   "id": "area:src/billing",
+   "zone": "build",
+   "path": "src/billing",
+   "label": "billing",
+   "parent": "src",
+   "attention": false,
+   "nodes": [
+    "pr:15",
+    "pr:11"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T15:00:00Z",
+   "age_hours": 0.0
+  },
+  {
+   "id": "area:src/auth",
+   "zone": "build",
+   "path": "src/auth",
+   "label": "auth",
+   "parent": "src",
+   "attention": false,
+   "nodes": [
+    "pr:10"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T12:30:00Z",
+   "age_hours": 2.5
+  },
+  {
+   "id": "area:tests",
+   "zone": "verify",
+   "path": "tests",
+   "label": "tests",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:12"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T13:30:00Z",
+   "age_hours": 1.5
+  },
+  {
+   "id": "area:deploy",
+   "zone": "ship",
+   "path": "deploy",
+   "label": "deploy",
+   "parent": "",
+   "attention": false,
+   "nodes": [
+    "pr:13"
+   ],
+   "also_active": [],
+   "recent_commits": 0,
+   "last_activity_at": "2026-10-07T14:00:00Z",
+   "age_hours": 1.0
+  }
+ ],
+ "nodes": [
+  {
+   "id": "pr:13",
+   "kind": "pull_request",
+   "group": "area:deploy",
+   "zone": "ship",
+   "ref": "#13",
+   "label": "Helm chart values",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "dana"
+   ],
+   "last_activity_at": "2026-10-07T14:00:00Z",
+   "age_hours": 1.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:14",
+   "kind": "pull_request",
+   "group": "area:docs",
+   "zone": "intent",
+   "ref": "#14",
+   "label": "API reference",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "emil"
+   ],
+   "last_activity_at": "2026-10-07T14:30:00Z",
+   "age_hours": 0.5,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:10",
+   "kind": "pull_request",
+   "group": "area:src/auth",
+   "zone": "build",
+   "ref": "#10",
+   "label": "Session tokens",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-10-07T12:30:00Z",
+   "age_hours": 2.5,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:15",
+   "kind": "pull_request",
+   "group": "area:src/billing",
+   "zone": "build",
+   "ref": "#15",
+   "label": "Tax rules",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "farah"
+   ],
+   "last_activity_at": "2026-10-07T15:00:00Z",
+   "age_hours": 0.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:11",
+   "kind": "pull_request",
+   "group": "area:src/billing",
+   "zone": "build",
+   "ref": "#11",
+   "label": "Invoice totals",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "ben"
+   ],
+   "last_activity_at": "2026-10-07T13:00:00Z",
+   "age_hours": 2.0,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  },
+  {
+   "id": "pr:12",
+   "kind": "pull_request",
+   "group": "area:tests",
+   "zone": "verify",
+   "ref": "#12",
+   "label": "Session test suite",
+   "url": null,
+   "status": "in_flight",
+   "review_state": "no_reviewer",
+   "actors": [
+    "sofia"
+   ],
+   "last_activity_at": "2026-10-07T13:30:00Z",
+   "age_hours": 1.5,
+   "also_touches": [],
+   "flags": [],
+   "attention": false
+  }
+ ],
+ "edges": [],
+ "attention": [],
+ "details": {
+  "signals": {},
+  "work_items": {
+   "pr:15": {
+    "paths": [
+     "src/billing/tax.py"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "src/billing"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "a44026fc5cd11d08e22cc74fd856bcd503d24999",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:14": {
+    "paths": [
+     "docs/api.md"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "docs"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "a44026fc5cd11d08e22cc74fd856bcd503d24999",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:13": {
+    "paths": [
+     "deploy/helm/values.yaml"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "deploy"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "a44026fc5cd11d08e22cc74fd856bcd503d24999",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:12": {
+    "paths": [
+     "tests/auth/test_session.py"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "tests"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "a44026fc5cd11d08e22cc74fd856bcd503d24999",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:11": {
+    "paths": [
+     "src/billing/invoice.py"
+    ],
+    "paths_total": 1,
+    "areas": [
+     "src/billing"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "a44026fc5cd11d08e22cc74fd856bcd503d24999",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   },
+   "pr:10": {
+    "paths": [
+     "src/auth/session.py",
+     "src/auth/tokens.py"
+    ],
+    "paths_total": 2,
+    "areas": [
+     "src/auth"
+    ],
+    "state": "open",
+    "burst": null,
+    "merge_base": {
+     "sha": "a44026fc5cd11d08e22cc74fd856bcd503d24999",
+     "source": "compare"
+    },
+    "commit_count": 4,
+    "waiting_on": []
+   }
+  },
+  "areas": {
+   "docs": {
+    "files": [
+     "docs/api.md"
+    ],
+    "actors": [
+     "emil"
+    ],
+    "recent_commits": 0
+   },
+   "src/billing": {
+    "files": [
+     "src/billing/invoice.py",
+     "src/billing/tax.py"
+    ],
+    "actors": [
+     "ben",
+     "farah"
+    ],
+    "recent_commits": 0
+   },
+   "src/auth": {
+    "files": [
+     "src/auth/session.py",
+     "src/auth/tokens.py"
+    ],
+    "actors": [
+     "alice"
+    ],
+    "recent_commits": 0
+   },
+   "tests": {
+    "files": [
+     "tests/auth/test_session.py"
+    ],
+    "actors": [
+     "sofia"
+    ],
+    "recent_commits": 0
+   },
+   "deploy": {
+    "files": [
+     "deploy/helm/values.yaml"
+    ],
+    "actors": [
+     "dana"
+    ],
+    "recent_commits": 0
+   }
+  }
+ },
+ "coordination": null
+}

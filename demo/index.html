@@ -29,6 +29,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 [role=tab]{padding:4px 10px;border-radius:7px;color:var(--ink2);white-space:nowrap}
 [role=tab]:hover{background:color-mix(in srgb,var(--ink) 5%,transparent)}
 [role=tab][aria-selected=true]{background:var(--ink);color:var(--surface)}
+.pg{font-size:12px;color:var(--ink2);white-space:nowrap}
 .nav{display:flex;gap:6px;margin-left:auto}
 .nav button{border:1px solid var(--hair2);border-radius:7px;padding:3px 10px;color:var(--ink2);background:var(--surface)}
 .nav button:disabled{opacity:.35;cursor:default}
@@ -49,6 +50,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg);min-height:480px}
     <span class="brand">Observstory <span>Demo Lab</span></span>
     <span class="synthetic" title="northstar/chat-app, northstar/recsys and northstar/voice-notes are invented; so are Alice, Ben, Sofia and Dana">Synthetic data</span>
     <nav class="tabs" role="tablist" aria-label="Project states"><span class="act">One week</span><button type="button" role="tab" id="tab-quiet" aria-controls="stage" data-i="0">Quiet</button><button type="button" role="tab" id="tab-parallel" aria-controls="stage" data-i="1">Parallel</button><button type="button" role="tab" id="tab-overlap" aria-controls="stage" data-i="2">Overlap</button><button type="button" role="tab" id="tab-crowded" aria-controls="stage" data-i="3">Crowded</button><button type="button" role="tab" id="tab-resolved" aria-controls="stage" data-i="4">Resolved</button><button type="button" role="tab" id="tab-calm" aria-controls="stage" data-i="5">Calm again</button><span class="act">Moments</span><button type="button" role="tab" id="tab-burst" aria-controls="stage" data-i="6">Agent burst</button><button type="button" role="tab" id="tab-stale" aria-controls="stage" data-i="7">Stale</button><span class="act">Another project</span><button type="button" role="tab" id="tab-other-project" aria-controls="stage" data-i="8">Other project</button><span class="act">Declared vs observed</span><button type="button" role="tab" id="tab-kickoff" aria-controls="stage" data-i="9">Kickoff</button><button type="button" role="tab" id="tab-saturday-morning" aria-controls="stage" data-i="10">Sat 09:30</button><button type="button" role="tab" id="tab-after-core-freeze" aria-controls="stage" data-i="11">Sat 15:00</button><button type="button" role="tab" id="tab-feature-freeze" aria-controls="stage" data-i="12">Sat 23:00</button></nav>
+    <a class="pg" href="playground.html">Semantic UI Playground →</a>
   </div>
   <div class="story">
     <span class="step" id="step"></span>

@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Project Map · northstar/recsys</title>
+<style>
+:root{--bg:#f6f5f1;--surface:#fdfcfa;--ink:#1d1d1f;--ink2:#515154;--ink3:#8a8a8e;--hair:#e4e2dc;--hair2:#d6d4cd;
+--accent:#b4530a;--accent-t:#fbefe4;--select:#0a66d6;--wire:#6e6e73;
+--t0:#f1efe8;--t1:#ecf1ec;--t2:#ecf0f5;--t3:#f2eef4;--t4:#f4efe7;--t5:#eef1f0;
+--sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161617;--surface:#1e1e20;--ink:#f2f2f4;--ink2:#b8b8bd;
+--ink3:#85858b;--hair:#2e2e31;--hair2:#3a3a3e;--accent:#f09a45;--accent-t:#3a2716;--select:#4c9bff;--wire:#9a9aa0;
+--t0:#1f1e1b;--t1:#1b201c;--t2:#1b1e23;--t3:#211d23;--t4:#221f1a;--t5:#1d2120}}
+:root[data-theme="dark"]{--bg:#161617;--surface:#1e1e20;--ink:#f2f2f4;--ink2:#b8b8bd;--ink3:#85858b;--hair:#2e2e31;--hair2:#3a3a3e;
+--accent:#f09a45;--accent-t:#3a2716;--select:#4c9bff;--wire:#9a9aa0;--t0:#1f1e1b;--t1:#1b201c;--t2:#1b1e23;--t3:#211d23;--t4:#221f1a;--t5:#1d2120}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:13px/1.45 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:underline;text-decoration-color:var(--hair2);text-underline-offset:2px}
+a:hover{text-decoration-color:currentColor}
+code,.ref,.mono{font-family:var(--mono);font-size:11.5px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;text-align:left;cursor:pointer}
+:focus-visible{outline:2px solid var(--select);outline-offset:2px;border-radius:6px}
+.muted{color:var(--ink3)}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 32px;flex-wrap:wrap;padding:22px 28px 14px;border-bottom:1px solid var(--hair)}
+.mark{display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+h1{margin:2px 0 0;font-size:21px;font-weight:600;letter-spacing:-.01em}
+h1 a{text-decoration:none}
+.sub{color:var(--ink3);font-size:12px}
+.status{margin:0;color:var(--ink2);font-size:12.5px}
+.status b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.status b.hot{color:var(--accent)}
+.fresh{display:block;text-align:right;color:var(--ink3);font-size:11.5px;margin-top:2px}
+.degraded{margin:10px 28px 0;color:var(--accent);font-size:12px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;padding:22px 28px 40px;align-items:start}
+.mapwrap{min-width:0}
+.map{position:relative;display:flex;flex-wrap:wrap;gap:30px 30px;align-items:stretch}
+.wires{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:2}
+.zone{position:relative;z-index:1;flex:3 1 240px;min-width:220px;max-width:560px;border-radius:12px;padding:12px 12px 14px;display:flex;flex-direction:column;gap:10px}
+.zone.quiet{flex:0 0 132px;min-width:132px}
+.t0{background:var(--t0)}.t1{background:var(--t1)}.t2{background:var(--t2)}.t3{background:var(--t3)}.t4{background:var(--t4)}.t5{background:var(--t5)}
+.zh{display:flex;align-items:baseline;gap:8px}
+.zh h2{margin:0;font-size:11.5px;font-weight:650;letter-spacing:.09em;text-transform:uppercase;color:var(--ink2)}
+.zo{font:500 10.5px var(--mono);color:var(--ink3)}
+.zc{margin-left:auto;font:500 11px var(--mono);color:var(--ink3)}
+.zd{margin:-6px 0 0;color:var(--ink3);font-size:11.5px}
+.zq{margin:0;color:var(--ink3);font-size:12px}
+.recent{margin:0;color:var(--ink3);font-size:11px;line-height:1.6}
+.recent code{font-size:10.5px;word-break:break-all}
+.group{background:var(--surface);border:1px solid var(--hair);border-radius:10px;padding:2px 4px 4px}
+.group.att{border-color:color-mix(in srgb,var(--accent) 55%,var(--hair))}
+.thins{display:flex;flex-direction:column;gap:4px}
+.tl{margin:2px 2px 0;color:var(--ink3);font-size:11px}
+.group.thin{display:flex;align-items:center;gap:6px;padding:0 8px 0 0;min-height:30px}
+.group.thin .gh{flex:1;min-width:0;padding:5px 8px}
+.group.thin .path{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}
+.group.thin .chips{display:flex;gap:4px;min-width:0;max-width:48%;justify-content:flex-end}
+.group.thin .ref-chip{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gh{display:flex;align-items:baseline;gap:8px;width:100%;padding:7px 8px 5px;border-radius:7px}
+.gh:hover{background:color-mix(in srgb,var(--ink) 4%,transparent)}
+.path{min-width:0;flex:1;font-family:var(--mono);font-size:11.5px;overflow-wrap:anywhere}
+.par{color:var(--ink3)}
+.leaf{color:var(--ink);font-weight:600}
+.pill{font-size:10.5px;font-weight:600;color:var(--accent);background:var(--accent-t);border-radius:999px;padding:0 7px;line-height:17px}
+.gage{font:10.5px var(--mono);color:var(--ink3)}
+.node{display:flex;flex-direction:column;gap:1px;width:100%;padding:6px 8px;border-radius:7px;position:relative}
+.node:hover{background:color-mix(in srgb,var(--ink) 4%,transparent)}
+.nl{display:flex;gap:7px;align-items:baseline;min-width:0}
+.ref{color:var(--ink2);flex:none;max-width:45%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.node[data-id^="branch:"] .ref{font-family:var(--sans);font-size:10.5px;border:1px solid var(--hair);border-radius:4px;padding:0 4px;line-height:16px;align-self:center}
+.lbl{min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.nm{color:var(--ink3);font-size:11.5px;display:flex;flex-wrap:wrap;gap:0 6px;align-items:baseline}
+.flag{color:var(--ink2);font-size:11px}
+.also{color:var(--ink3)}
+.node.s-stale,.node.s-landed{opacity:.62}
+.node.s-landed .ref{font-family:var(--sans);font-size:11.5px}
+.node.att.s-in_flight .ref,.node.att.s-draft .ref{color:var(--accent)}
+.more summary{cursor:pointer;color:var(--ink3);font-size:11.5px;padding:4px 8px;list-style:none}
+.more summary::-webkit-details-marker{display:none}
+.more summary::before{content:"+ "}
+.more[open] summary::before{content:"− "}
+.alsohere{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:baseline;padding:2px 8px 5px;color:var(--ink3);font-size:11px}
+.ref-chip{font:11px var(--mono);color:var(--ink2);border:1px solid var(--hair);border-radius:5px;padding:0 5px}
+.ref-chip:hover{border-color:var(--hair2);color:var(--ink)}
+.is-selected{box-shadow:inset 0 0 0 1.5px var(--select);background:color-mix(in srgb,var(--select) 7%,transparent)!important}
+.dimmed .node:not(.is-related):not(.is-selected){opacity:.35}
+.dimmed .node.s-stale.is-related,.dimmed .node.s-landed.is-related{opacity:.8}
+.wire{fill:none;stroke-linecap:round}
+.wire.k-ov,.k-ov{stroke:var(--accent);stroke-width:1.6;fill:none}
+.wire.k-wt,.k-wt{stroke:var(--wire);stroke-width:1.3;fill:none}
+.wire.c-medium{stroke-dasharray:5 4}.wire.c-low{stroke-dasharray:1.5 4}
+.wire.flow{stroke:var(--hair2);stroke-width:1.2}
+.hit{fill:none;stroke:transparent;stroke-width:14;pointer-events:stroke;cursor:pointer}
+.hit:focus-visible{outline:none}
+.hit:focus-visible+.wire,.wires g.is-selected .wire{stroke-width:3}
+.wires g.dim .wire{opacity:.25}
+.wlabel{font:600 10px var(--sans);fill:var(--accent);paint-order:stroke;stroke:var(--bg);stroke-width:4px;letter-spacing:.02em}
+.wlabel.k-wt{fill:var(--ink2);stroke:var(--bg);stroke-width:4px}
+.side{position:sticky;top:16px;display:flex;flex-direction:column;gap:14px}
+.sh{margin:0;font-size:12px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+.sh span{font:500 11px var(--mono);color:var(--ink3);margin-left:4px}
+.attention{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+.attention li{border-bottom:1px solid var(--hair)}
+.att-item{display:grid;grid-template-columns:16px 1fr;gap:1px 8px;width:100%;padding:9px 4px}
+.att-item:hover{background:color-mix(in srgb,var(--ink) 4%,transparent)}
+.att-item .g{grid-row:span 2;color:var(--ink3);font-size:11px;line-height:19px}
+.att-item.k-overlap .g{color:var(--accent)}
+.att-item .b{color:var(--ink3);font-size:11px}
+.calm{color:var(--ink3);margin:0}
+.legend{color:var(--ink2);font-size:11.5px;border-top:1px solid var(--hair);padding-top:12px}
+.legend p{margin:0 0 6px;display:flex;align-items:center;flex-wrap:wrap;gap:4px 6px}
+.legend svg{vertical-align:middle}
+.lz,.lg,.ln{display:inline-block;width:14px;height:10px;border-radius:3px}
+.lz{background:var(--t1)}.lg{background:var(--surface);border:1px solid var(--hair2);margin-left:6px}.ln{border-bottom:2px solid var(--ink3);width:12px;height:6px;margin-left:6px}
+.foot{margin:0;color:var(--ink3);font-size:11.5px}
+.nojs{color:var(--ink3);font-size:12px}
+.inspector{position:fixed;top:0;right:0;bottom:0;width:min(400px,100vw);background:var(--surface);border-left:1px solid var(--hair);
+  overflow:auto;padding:22px 22px 40px;z-index:10;box-shadow:-8px 0 24px rgba(0,0,0,.04);transition:transform .16s ease}
+.inspector[hidden]{display:block;transform:translateX(102%);visibility:hidden}
+.close{position:absolute;top:12px;right:14px;font-size:20px;line-height:1;color:var(--ink3);padding:4px 8px;border-radius:6px}
+.close:hover{background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.ins-k{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin:0 30px 4px 0}
+.ins-k.hot{color:var(--accent)}
+.ins h3{margin:0 0 6px;font-size:17px;font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+.ins .open{display:inline-block;margin:2px 0 12px;font-size:12.5px}
+.ins dl{display:grid;grid-template-columns:96px 1fr;gap:5px 10px;margin:8px 0 14px;font-size:12.5px}
+.ins dt{color:var(--ink3)} .ins dd{margin:0;overflow-wrap:anywhere}
+.ins h4{margin:16px 0 6px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.ins ul{list-style:none;margin:0;padding:0}
+.ins li{padding:5px 0;border-top:1px solid var(--hair);font-size:12.5px;overflow-wrap:anywhere}
+.ins li .d{display:block;color:var(--ink3);font-size:11.5px}
+.ins .tag{font:10.5px var(--mono);color:var(--ink2);border:1px solid var(--hair);border-radius:4px;padding:0 4px;margin-right:4px}
+.ins .jump{color:var(--ink);text-decoration:underline;text-decoration-color:var(--hair2);text-underline-offset:2px}
+.ins .files code{display:block;padding:2px 0;word-break:break-all}
+.ins .rule{color:var(--ink3);font-size:11.5px}
+.mission{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:10px 16px 8px;margin-bottom:22px}
+.mh{display:flex;align-items:baseline;gap:6px 16px;flex-wrap:wrap}.mh .mark{margin-right:4px}
+.nx{font-size:13.5px;color:var(--ink)}.nx b{font-weight:600}.pend{margin-left:auto;color:var(--ink3);font-size:11.5px}
+.railwrap{overflow-x:auto}.rail{position:relative;min-width:640px;margin:8px 34px 0}
+.axis{position:absolute;left:0;right:0;top:62px;height:2px;background:var(--hair2)}
+.past{position:absolute;left:0;top:62px;height:2px;background:var(--ink3)}
+.nowm{position:absolute;top:22px;height:64px;border-left:1.5px solid var(--ink)}
+.nowm span{position:absolute;top:-16px;left:-14px;font:600 10px var(--mono)}.nowm.low span{top:66px}
+.mk{position:absolute;transform:translateX(-50%);text-align:center;white-space:nowrap;font-size:11px;padding:0 3px;border-radius:5px}
+.mk:hover{background:color-mix(in srgb,var(--ink) 5%,transparent)}
+.mk.gate{top:14px;z-index:1}.mk.gate b{display:block;font-weight:600;font-size:11px;background:var(--surface)}.mk.gate i{display:block;margin:2px auto;width:2px;height:28px;background:var(--ink)}
+.mk.gate span{color:var(--ink3);font:10.5px var(--mono);background:var(--surface)}.mk.gate.passed{color:var(--ink3)}.mk.gate.passed i{background:var(--ink3)}
+.mk.gate.hot,.mk.gate.hot span{color:var(--accent)}.mk.gate.hot i{background:var(--accent)}
+.mk.ses{top:55px;z-index:1}.mk.ses i{display:block;margin:0 auto;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--ink2)}
+.mk.ses span{display:block;color:var(--ink3);font-size:10.5px;background:var(--surface);max-width:110px;overflow:hidden;text-overflow:ellipsis}.mk.ses.bare span{visibility:hidden}.mk.ses.l span,.mk.ses.r span{position:absolute;top:14px}.mk.ses.l span{left:-2px}.mk.ses.r span{right:-2px}
+.mk.due i,.lg-due{display:inline-block;width:9px;height:9px;transform:rotate(45deg);background:var(--ink3)}
+.mk.due i{display:block;margin:0 auto}.mk.due span{font:10px var(--mono);color:var(--ink3)}
+.s-in_progress i,.lg-due.s-in_progress{background:var(--select)!important}.s-landed i,.lg-due.s-landed{background:#2f6b4f!important}
+.s-not_started i,.lg-due.s-not_started{background:transparent!important;border:1.5px solid var(--ink3)}
+.mk.due.hot i{border-color:var(--accent)!important}.mk.due.hot span{color:var(--accent)}
+.rl{margin:2px 0 0;color:var(--ink3);font-size:11px}.rl .lg-due{margin:0 3px 0 8px;width:8px;height:8px}
+.sh2{margin:14px 0 6px;font-size:11px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.att-item.k-declared .g{color:var(--accent)}
+.sides{display:grid;gap:8px;margin:6px 0 12px}.side-d,.side-o{border:1px solid var(--hair);border-radius:8px;padding:8px 10px;font-size:12.5px}
+.side-o{background:color-mix(in srgb,var(--ink) 2.5%,transparent)}.sides .k{font:600 10px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:2px}
+.sides .rel{color:var(--accent);font-size:11.5px;text-align:center}
+@media (prefers-reduced-motion:reduce){.inspector{transition:none}}
+@media (max-width:1100px){.layout{grid-template-columns:1fr}.side{position:static}}
+@media (max-width:760px){
+  .top{padding:16px 16px 12px}.layout{padding:16px;gap:20px}.degraded{margin:8px 16px 0}
+  .map{flex-direction:column;gap:22px}.zone,.zone.quiet{flex:1 1 auto;max-width:none;min-width:0}
+  .zone.quiet{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+  .zone.quiet .recent br{display:none}.zone.quiet .recent code{margin-right:6px}
+  .fresh{text-align:left}
+  .inspector{top:auto;left:0;width:100%;max-height:72vh;border-left:0;border-top:1px solid var(--hair);border-radius:14px 14px 0 0}
+  .inspector[hidden]{transform:translateY(102%)}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="id"><span class="mark">Observstory</span><h1>northstar/recsys</h1>
+    <span class="sub">Northstar recommendations (synthetic demo)</span></div>
+  <p class="status"><b>6</b> in flight · <b class="">0</b> overlaps · <b>0</b> waiting · <b>1</b> stale<span class="fresh fixed">Playground · synthetic, Wednesday 15:00</span></p>
+</header>
+
+<main class="layout">
+  <div class="mapwrap">
+    
+    <div class="map" id="map" aria-label="Project map: lanes, areas and work in flight">
+      <svg class="wires" id="wires" aria-hidden="false" role="group" aria-label="Relationships"></svg>
+      <article class="zone t0" id="z-data" data-id="data"><header class="zh"><span class="zo">01</span><h2>Data</h2><span class=zc>1</span></header><p class="zd">Sources and datasets</p><section class="group" id="g-area:data" data-id="area:data"><button type="button" class="gh" data-kind="group" data-id="area:data" title="data"><span class="path"><span class="leaf">data</span></span><span class="gage">30m</span></button><button type="button" class="node s-in_flight" id="n-pr:14" data-kind="node" data-id="pr:14" title="Click-log snapshot"><span class="nl"><span class="ref">#14</span><span class="lbl">Click-log snapshot</span></span><span class="nm">emil · 30m ago · no reviewer</span></button></section></article><article class="zone t1" id="z-pipeline" data-id="pipeline"><header class="zh"><span class="zo">02</span><h2>Pipeline</h2><span class=zc>1</span></header><p class="zd">Ingestion and features</p><section class="group" id="g-area:pipeline" data-id="area:pipeline"><button type="button" class="gh" data-kind="group" data-id="area:pipeline" title="pipeline"><span class="path"><span class="leaf">pipeline</span></span><span class="gage">2h</span></button><button type="button" class="node s-in_flight" id="n-pr:10" data-kind="node" data-id="pr:10" title="Tokenizer v2 features"><span class="nl"><span class="ref">#10</span><span class="lbl">Tokenizer v2 features</span></span><span class="nm">alice · 2h ago · no reviewer</span></button></section></article><article class="zone t2" id="z-model" data-id="model"><header class="zh"><span class="zo">03</span><h2>Model</h2><span class=zc>1</span></header><p class="zd">Training and architecture</p><section class="group" id="g-area:model" data-id="area:model"><button type="button" class="gh" data-kind="group" data-id="area:model" title="model"><span class="path"><span class="leaf">model</span></span><span class="gage">5d</span></button><button type="button" class="node s-stale att" id="n-pr:11" data-kind="node" data-id="pr:11" title="Embedding dim 1024"><span class="nl"><span class="ref">#11</span><span class="lbl">Embedding dim 1024</span></span><span class="nm">ben · 5d ago · stale</span></button></section></article><article class="zone t3" id="z-eval" data-id="eval"><header class="zh"><span class="zo">04</span><h2>Eval</h2><span class=zc>1</span></header><p class="zd">Benchmarks</p><section class="group" id="g-area:eval" data-id="area:eval"><button type="button" class="gh" data-kind="group" data-id="area:eval" title="eval"><span class="path"><span class="leaf">eval</span></span><span class="gage">2h</span></button><button type="button" class="node s-in_flight" id="n-pr:12" data-kind="node" data-id="pr:12" title="Multilingual eval set"><span class="nl"><span class="ref">#12</span><span class="lbl">Multilingual eval set</span></span><span class="nm">sofia · 2h ago · no reviewer</span></button></section></article><article class="zone t4" id="z-api" data-id="api"><header class="zh"><span class="zo">05</span><h2>API</h2><span class=zc>1</span></header><p class="zd">Serving</p><section class="group" id="g-area:api" data-id="area:api"><button type="button" class="gh" data-kind="group" data-id="area:api" title="api"><span class="path"><span class="leaf">api</span></span><span class="gage">1h</span></button><button type="button" class="node s-in_flight" id="n-pr:13" data-kind="node" data-id="pr:13" title="Batch scoring endpoint"><span class="nl"><span class="ref">#13</span><span class="lbl">Batch scoring endpoint</span></span><span class="nm">dana · 1h ago · no reviewer</span></button></section></article><article class="zone t5" id="z-docs" data-id="docs"><header class="zh"><span class="zo">06</span><h2>Docs</h2><span class=zc>1</span></header><p class="zd">Explaining it</p><section class="group" id="g-area:docs" data-id="area:docs"><button type="button" class="gh" data-kind="group" data-id="area:docs" title="docs"><span class="path"><span class="leaf">docs</span></span><span class="gage">1m</span></button><button type="button" class="node s-in_flight" id="n-pr:15" data-kind="node" data-id="pr:15" title="Model card"><span class="nl"><span class="ref">#15</span><span class="lbl">Model card</span></span><span class="nm">farah · 1m ago · no reviewer</span></button></section></article>
+    </div>
+    <noscript><p class="nojs">Connectors and the evidence inspector need JavaScript. Everything else is plain HTML.</p></noscript>
+  </div>
+  <aside class="side">
+    <h2 class="sh">Needs attention <span>1</span></h2>
+    <ul class=attention><li><button type="button" class="att-item k-stale" data-kind="node" data-id="pr:11"><span class="g" aria-hidden="true">◷</span><span class="t">#11 idle for 5d</span><span class="b">stale · medium</span></button></li></ul>
+    <div class="legend">
+      <p><span class="lz"></span>lane<span class="lg"></span>area<span class="ln"></span>work item</p>
+      <p><svg width="28" height="8" aria-hidden="true"><path d="M2 4H26" class="k-ov"/></svg>parallel change
+         <svg width="28" height="8" aria-hidden="true"><path d="M2 4H22" class="k-wt"/><path d="M20 1l4 3-4 3" class="k-wt"/></svg>waits on</p>
+      <p class="muted">faded = stale or already landed · newest work first in each area</p>
+    </div>
+    <p class="foot">Last 48 h of northstar/recsys · main ·
+      <a href="ml.stale.high.none.scene.json">scene.json</a> · <a href="ml.stale.high.none.snapshot.json">snapshot.json</a></p>
+    <p class="foot muted">Observstory describes work, not people.</p>
+  </aside>
+</main>
+<aside class="inspector" id="inspector" aria-label="Inspector" hidden>
+  <button type="button" class="close" id="close" aria-label="Close inspector">×</button>
+  <div id="ins"></div>
+</aside>
+<script type="application/json" id="scene">{"schema": "observstory.scene/v1", "source": {"snapshot_schema": "observstory.snapshot/v1", "generated_at": "2026-10-07T15:00:00Z", "repository": "northstar/recsys", "repository_url": null, "default_branch": "main", "window_hours": 48, "title": "Northstar recommendations (synthetic demo)", "lanes_source": "config", "degraded": []}, "status": {"in_flight": 6, "overlaps": 0, "waiting": 0, "stale": 1, "areas_active": 6}, "zones": [{"id": "data", "label": "Data", "description": "Sources and datasets", "order": 0, "state": "active", "groups": ["area:data"], "in_flight": 1, "attention": false, "recently_changed": [], "recently_changed_more": 0}, {"id": "pipeline", "label": "Pipeline", "description": "Ingestion and features", "order": 1, "state": "active", "groups": ["area:pipeline"], "in_flight": 1, "attention": false, "recently_changed": [], "recently_changed_more": 0}, {"id": "model", "label": "Model", "description": "Training and architecture", "order": 2, "state": "active", "groups": ["area:model"], "in_flight": 1, "attention": false, "recently_changed": [], "recently_changed_more": 0}, {"id": "eval", "label": "Eval", "description": "Benchmarks", "order": 3, "state": "active", "groups": ["area:eval"], "in_flight": 1, "attention": false, "recently_changed": [], "recently_changed_more": 0}, {"id": "api", "label": "API", "description": "Serving", "order": 4, "state": "active", "groups": ["area:api"], "in_flight": 1, "attention": false, "recently_changed": [], "recently_changed_more": 0}, {"id": "docs", "label": "Docs", "description": "Explaining it", "order": 5, "state": "active", "groups": ["area:docs"], "in_flight": 1, "attention": false, "recently_changed": [], "recently_changed_more": 0}], "groups": [{"id": "area:data", "zone": "data", "path": "data", "label": "data", "parent": "", "attention": false, "nodes": ["pr:14"], "also_active": [], "recent_commits": 0, "last_activity_at": "2026-10-07T14:30:00Z", "age_hours": 0.5}, {"id": "area:pipeline", "zone": "pipeline", "path": "pipeline", "label": "pipeline", "parent": "", "attention": false, "nodes": ["pr:10"], "also_active": [], "recent_commits": 0, "last_activity_at": "2026-10-07T12:30:00Z", "age_hours": 2.5}, {"id": "area:model", "zone": "model", "path": "model", "label": "model", "parent": "", "attention": false, "nodes": ["pr:11"], "also_active": [], "recent_commits": 0, "last_activity_at": "2026-10-02T16:00:00Z", "age_hours": 119.0}, {"id": "area:eval", "zone": "eval", "path": "eval", "label": "eval", "parent": "", "attention": false, "nodes": ["pr:12"], "also_active": [], "recent_commits": 0, "last_activity_at": "2026-10-07T13:30:00Z", "age_hours": 1.5}, {"id": "area:api", "zone": "api", "path": "api", "label": "api", "parent": "", "attention": false, "nodes": ["pr:13"], "also_active": [], "recent_commits": 0, "last_activity_at": "2026-10-07T14:00:00Z", "age_hours": 1.0}, {"id": "area:docs", "zone": "docs", "path": "docs", "label": "docs", "parent": "", "attention": false, "nodes": ["pr:15"], "also_active": [], "recent_commits": 0, "last_activity_at": "2026-10-07T15:00:00Z", "age_hours": 0.0}], "nodes": [{"id": "pr:13", "kind": "pull_request", "group": "area:api", "zone": "api", "ref": "#13", "label": "Batch scoring endpoint", "url": null, "status": "in_flight", "review_state": "no_reviewer", "actors": ["dana"], "last_activity_at": "2026-10-07T14:00:00Z", "age_hours": 1.0, "also_touches": [], "flags": [], "attention": false}, {"id": "pr:14", "kind": "pull_request", "group": "area:data", "zone": "data", "ref": "#14", "label": "Click-log snapshot", "url": null, "status": "in_flight", "review_state": "no_reviewer", "actors": ["emil"], "last_activity_at": "2026-10-07T14:30:00Z", "age_hours": 0.5, "also_touches": [], "flags": [], "attention": false}, {"id": "pr:15", "kind": "pull_request", "group": "area:docs", "zone": "docs", "ref": "#15", "label": "Model card", "url": null, "status": "in_flight", "review_state": "no_reviewer", "actors": ["farah"], "last_activity_at": "2026-10-07T15:00:00Z", "age_hours": 0.0, "also_touches": [], "flags": [], "attention": false}, {"id": "pr:12", "kind": "pull_request", "group": "area:eval", "zone": "eval", "ref": "#12", "label": "Multilingual eval set", "url": null, "status": "in_flight", "review_state": "no_reviewer", "actors": ["sofia"], "last_activity_at": "2026-10-07T13:30:00Z", "age_hours": 1.5, "also_touches": [], "flags": [], "attention": false}, {"id": "pr:11", "kind": "pull_request", "group": "area:model", "zone": "model", "ref": "#11", "label": "Embedding dim 1024", "url": null, "status": "stale", "review_state": "no_reviewer", "actors": ["ben"], "last_activity_at": "2026-10-02T16:00:00Z", "age_hours": 119.0, "also_touches": [], "flags": [], "attention": true}, {"id": "pr:10", "kind": "pull_request", "group": "area:pipeline", "zone": "pipeline", "ref": "#10", "label": "Tokenizer v2 features", "url": null, "status": "in_flight", "review_state": "no_reviewer", "actors": ["alice"], "last_activity_at": "2026-10-07T12:30:00Z", "age_hours": 2.5, "also_touches": [], "flags": [], "attention": false}], "edges": [], "attention": [{"kind": "stale", "target": "pr:11", "confidence": "medium", "basis": "heuristic", "label": "#11 idle for 5d"}], "details": {"signals": {"stale:pr:11": {"type": "stale", "summary": "pr:11 idle for 5d", "basis": "heuristic", "confidence": "medium", "evidence": [{"kind": "timestamp", "ref": "2026-10-02T16:00:00Z", "url": null, "detail": "no activity for 5d"}, {"kind": "work_item", "ref": "pr:11", "url": null, "detail": "Embedding dim 1024 (open)"}], "rule": {"name": "stale.idle", "params": {"stale_hours": 72.0, "idle_hours": 119.0}}, "work_items": ["pr:11"]}}, "work_items": {"pr:15": {"paths": ["docs/model-card.md"], "paths_total": 1, "areas": ["docs"], "state": "open", "burst": null, "merge_base": {"sha": "64779ea095aef4bfed17fb81d1e2d23b899a436d", "source": "compare"}, "commit_count": 4, "waiting_on": []}, "pr:14": {"paths": ["data/sources.yaml"], "paths_total": 1, "areas": ["data"], "state": "open", "burst": null, "merge_base": {"sha": "64779ea095aef4bfed17fb81d1e2d23b899a436d", "source": "compare"}, "commit_count": 4, "waiting_on": []}, "pr:13": {"paths": ["api/batch.py"], "paths_total": 1, "areas": ["api"], "state": "open", "burst": null, "merge_base": {"sha": "64779ea095aef4bfed17fb81d1e2d23b899a436d", "source": "compare"}, "commit_count": 4, "waiting_on": []}, "pr:12": {"paths": ["eval/multilingual/run.py"], "paths_total": 1, "areas": ["eval"], "state": "open", "burst": null, "merge_base": {"sha": "64779ea095aef4bfed17fb81d1e2d23b899a436d", "source": "compare"}, "commit_count": 4, "waiting_on": []}, "pr:10": {"paths": ["pipeline/features/tokenize.py", "pipeline/features/vocab.py"], "paths_total": 2, "areas": ["pipeline"], "state": "open", "burst": null, "merge_base": {"sha": "64779ea095aef4bfed17fb81d1e2d23b899a436d", "source": "compare"}, "commit_count": 4, "waiting_on": []}, "pr:11": {"paths": ["model/config.yaml", "model/embed.py"], "paths_total": 2, "areas": ["model"], "state": "open", "burst": null, "merge_base": {"sha": "64779ea095aef4bfed17fb81d1e2d23b899a436d", "source": "compare"}, "commit_count": 2, "waiting_on": []}}, "areas": {"data": {"files": ["data/sources.yaml"], "actors": ["emil"], "recent_commits": 0}, "pipeline": {"files": ["pipeline/features/tokenize.py", "pipeline/features/vocab.py"], "actors": ["alice"], "recent_commits": 0}, "model": {"files": ["model/config.yaml", "model/embed.py"], "actors": ["ben"], "recent_commits": 0}, "eval": {"files": ["eval/multilingual/run.py"], "actors": ["sofia"], "recent_commits": 0}, "api": {"files": ["api/batch.py"], "actors": ["dana"], "recent_commits": 0}, "docs": {"files": ["docs/model-card.md"], "actors": ["farah"], "recent_commits": 0}}}, "coordination": null}</script>
+<script>
+(function(){
+const scene = JSON.parse(document.getElementById('scene').textContent);
+const map = document.getElementById('map'), svg = document.getElementById('wires');
+const ins = document.getElementById('inspector'), body = document.getElementById('ins');
+const NS = 'http://www.w3.org/2000/svg';
+const nodes = Object.fromEntries(scene.nodes.map(n => [n.id, n]));
+const groups = Object.fromEntries(scene.groups.map(g => [g.id, g]));
+const edges = Object.fromEntries(scene.edges.map(e => [e.id, e]));
+const zones = Object.fromEntries(scene.zones.map(z => [z.id, z]));
+const D = scene.details;
+let selected = null, lastFocus = null;
+
+// freshness, relative to the viewer's clock
+const fresh = document.querySelector('.fresh:not(.fixed)');
+if (fresh) { const h = (Date.now() - Date.parse(fresh.dataset.generated)) / 36e5;
+  if (isFinite(h) && h >= 0) fresh.textContent = 'snapshot ' + (h < 1 ? Math.max(1, Math.round(h*60)) + ' min' : h < 48 ? Math.round(h) + ' h' : Math.round(h/24) + ' days') + ' old'; }
+
+function el(tag, attrs, ...kids){ const e = document.createElement(tag);
+  for (const [k,v] of Object.entries(attrs||{})) { if (v == null) continue; if (k === 'text') e.textContent = v; else e.setAttribute(k, v); }
+  for (const k of kids) if (k != null) e.append(k.nodeType ? k : document.createTextNode(k)); return e; }
+function age(h){ if (h == null) return ''; return h < 1 ? Math.max(1, Math.round(h*60)) + 'm' : h < 48 ? Math.round(h) + 'h' : Math.round(h/24) + 'd'; }
+function link(url, text, cls){ return url ? el('a', {href: url, class: cls, target: '_blank', rel: 'noopener'}, text) : el('span', {class: cls}, text); }
+function jump(kind, id, text){ const b = el('button', {type: 'button', class: 'jump', 'data-kind': kind, 'data-id': id}, text); return b; }
+
+// ---------------------------------------------------------------- geometry
+function anchor(id){
+  let e = document.getElementById('n-' + id);
+  if (!e || !e.offsetParent || e.getBoundingClientRect().height === 0) {
+    const d = e && e.closest('details'); e = d ? d.querySelector('summary') : e; }
+  if (!e) return null;
+  const m = map.getBoundingClientRect(), r = e.getBoundingClientRect();
+  return {l: r.left - m.left, r: r.right - m.left, t: r.top - m.top, b: r.bottom - m.top, cy: r.top - m.top + Math.min(14, r.height/2), cx: (r.left + r.right)/2 - m.left};
+}
+// Paths always run from a to b, so a directed edge's arrowhead lands on b.
+function pathBetween(a, b){
+  const W = map.clientWidth, sameCol = Math.abs(a.cx - b.cx) < 40 || (a.l < b.r && b.l < a.r);
+  if (sameCol) { const bulge = Math.min(64, 18 + Math.abs(b.cy - a.cy) / 6);
+    if (Math.max(a.r, b.r) + bulge + 56 <= W) { const x = Math.max(a.r, b.r) - 6;
+      return {d: `M${a.r-6},${a.cy} C${x+bulge},${a.cy} ${x+bulge},${b.cy} ${b.r-6},${b.cy}`, mx: x + bulge*0.75, my: (a.cy+b.cy)/2, side: 'r'}; }
+    const x = Math.min(a.l, b.l) + 6;   // no room on the right (narrow screens): bracket on the left
+    return {d: `M${a.l+6},${a.cy} C${x-bulge},${a.cy} ${x-bulge},${b.cy} ${b.l+6},${b.cy}`, mx: x - bulge*0.75, my: (a.cy+b.cy)/2, side: 'l'}; }
+  if (Math.abs(a.t - b.t) > 20 && !(a.r < b.l - 20 || b.r < a.l - 20)) { // stacked rows: vertical tangents
+    const down = a.t < b.t, ya = down ? a.b : a.t, yb = down ? b.t : b.b, dy = (yb - ya) / 2;
+    return {d: `M${a.cx},${ya} C${a.cx},${ya+dy} ${b.cx},${yb-dy} ${b.cx},${yb}`, mx: (a.cx+b.cx)/2, my: (ya+yb)/2, side: 'r'}; }
+  const right = a.cx < b.cx, xa = right ? a.r : a.l, xb = right ? b.l : b.r, dx = Math.max(24, Math.abs(xb - xa) / 2) * (right ? 1 : -1);
+  return {d: `M${xa},${a.cy} C${xa+dx},${a.cy} ${xb-dx},${b.cy} ${xb},${b.cy}`, mx: (xa+xb)/2, my: (a.cy+b.cy)/2, side: 'c'};
+}
+function draw(){
+  svg.replaceChildren();
+  const defs = document.createElementNS(NS, 'defs');
+  defs.innerHTML = '<marker id="arw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L7 4L1 7" fill="none" stroke="var(--wire)" stroke-width="1.3"/></marker>' +
+                   '<marker id="flow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1L7 4L1 7" fill="none" stroke="var(--hair2)" stroke-width="1.3"/></marker>';
+  svg.append(defs);
+  // flow arrows between consecutive zones on the same row
+  const zs = [...map.querySelectorAll('.zone')], m = map.getBoundingClientRect();
+  for (let i = 0; i + 1 < zs.length; i++) {
+    const a = zs[i].getBoundingClientRect(), b = zs[i+1].getBoundingClientRect();
+    if (Math.abs(a.top - b.top) > 4 || b.left < a.right) continue;
+    const y = a.top - m.top + 19, p = document.createElementNS(NS, 'path');
+    p.setAttribute('d', `M${a.right - m.left + 6},${y} H${b.left - m.left - 6}`); p.setAttribute('class', 'wire flow'); p.setAttribute('marker-end', 'url(#flow)');
+    svg.append(p);
+  }
+  const labelled = scene.edges.length <= 6, said = new Set();  // label each kind of relationship once per area
+  for (const e of scene.edges) {
+    const a = anchor(e.from), b = anchor(e.to); if (!a || !b) continue;
+    const geo = pathBetween(a, b), g = document.createElementNS(NS, 'g');
+    g.dataset.id = e.id; if (selected && selected.id === e.id) g.classList.add('is-selected');
+    const hit = document.createElementNS(NS, 'path'), line = document.createElementNS(NS, 'path');
+    hit.setAttribute('d', geo.d); hit.setAttribute('class', 'hit'); hit.setAttribute('tabindex', '0'); hit.setAttribute('role', 'button');
+    hit.setAttribute('aria-label', (e.type === 'overlap' ? 'Overlap: ' : 'Waiting: ') + nodes[e.from].ref + (e.type === 'overlap' ? ' and ' : ' waits on ') + nodes[e.to].ref);
+    hit.dataset.kind = 'edge'; hit.dataset.id = e.id;
+    const t = document.createElementNS(NS, 'title'); t.textContent = hit.getAttribute('aria-label'); hit.append(t);
+    line.setAttribute('d', geo.d); line.setAttribute('class', `wire ${e.type === 'overlap' ? 'k-ov' : 'k-wt'} c-${e.confidence}`);
+    if (e.directed) line.setAttribute('marker-end', 'url(#arw)');
+    g.append(hit, line);
+    const fits = geo.side === 'l' ? geo.mx - 56 >= 0 : geo.side === 'r' ? geo.mx + 56 <= map.clientWidth + 24 : true;
+    const key = e.type + '|' + (geo.side === 'c' ? e.id : nodes[e.from].group);
+    if (labelled && fits && !said.has(key)) { said.add(key); const tx = document.createElementNS(NS, 'text');
+      tx.setAttribute('x', geo.side === 'l' ? geo.mx - 4 : geo.side === 'c' ? geo.mx : geo.mx + 4); tx.setAttribute('y', geo.side === 'c' ? geo.my - 7 : geo.my + 3);
+      tx.setAttribute('text-anchor', geo.side === 'l' ? 'end' : geo.side === 'c' ? 'middle' : 'start');
+      tx.setAttribute('class', 'wlabel ' + (e.type === 'overlap' ? '' : 'k-wt')); tx.textContent = e.type === 'overlap' ? 'overlap' : 'waits on'; g.append(tx); }
+    svg.append(g);
+  }
+  applyDim();
+}
+
+// ---------------------------------------------------------------- selection
+function related(sel){
+  const r = new Set();
+  if (!sel) return r;
+  if (sel.kind === 'node') { r.add(sel.id); for (const e of scene.edges) if (e.from === sel.id || e.to === sel.id) { r.add(e.from); r.add(e.to); r.add(e.id); } }
+  if (sel.kind === 'edge') { const e = edges[sel.id]; r.add(e.from); r.add(e.to); r.add(e.id); }
+  if (sel.kind === 'group') { const g = groups[sel.id]; for (const n of [...g.nodes, ...g.also_active]) r.add(n);
+    for (const e of scene.edges) if (e.areas.includes(g.path)) { r.add(e.id); r.add(e.from); r.add(e.to); } }
+  if (sel.kind === 'commitment') { (M.commitments[sel.id].matched || []).forEach(w => r.add(w)); }
+  if (sel.kind === 'gate') { const q = cueFor(sel.id); if (q) q.observed.work_items.forEach(w => r.add(w)); }
+  return r;
+}
+function applyDim(){
+  const r = related(selected);
+  map.classList.toggle('dimmed', !!selected);
+  document.querySelectorAll('.node').forEach(n => n.classList.toggle('is-related', r.has(n.dataset.id)));
+  svg.querySelectorAll('g[data-id]').forEach(g => { g.classList.toggle('dim', !!selected && !r.has(g.dataset.id)); g.classList.toggle('is-selected', !!selected && selected.id === g.dataset.id); });
+}
+function select(kind, id, from){
+  document.querySelectorAll('.is-selected').forEach(x => x.classList.remove('is-selected'));
+  selected = {kind, id}; lastFocus = from || document.activeElement;
+  const target = kind === 'node' ? document.getElementById('n-' + id) : kind === 'group' ? document.querySelector(`#g-${CSS.escape(id)} > .gh`)
+               : ['gate', 'commitment', 'session'].includes(kind) ? document.getElementById('m-' + id) : null;
+  if (target) { target.classList.add('is-selected'); const d = target.closest('details'); if (d && !d.open) { d.open = true; draw(); } }
+  body.replaceChildren(kind === 'node' ? nodeView(id) : kind === 'group' ? groupView(id) : kind === 'edge' ? edgeView(id)
+                       : kind === 'gate' ? gateView(id) : kind === 'commitment' ? commitmentView(id) : sessionView(id));
+  ins.hidden = false; applyDim(); draw();
+  document.getElementById('close').focus({preventScroll: true});
+}
+function close(){
+  ins.hidden = true; selected = null; document.querySelectorAll('.is-selected').forEach(x => x.classList.remove('is-selected'));
+  map.classList.remove('dimmed'); applyDim(); if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+document.addEventListener('click', ev => {
+  const t = ev.target.closest('[data-kind][data-id]'); if (!t) return;
+  if (t.tagName === 'A') return; ev.preventDefault(); select(t.dataset.kind, t.dataset.id, t);
+});
+document.addEventListener('keydown', ev => {
+  if (ev.key === 'Escape' && !ins.hidden) close();
+  if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.classList && ev.target.classList.contains('hit')) { ev.preventDefault(); select('edge', ev.target.dataset.id, ev.target); }
+});
+document.getElementById('close').addEventListener('click', close);
+
+// ---------------------------------------------------------------- inspector views
+function evidenceList(signalIds){
+  const ul = el('ul');
+  for (const sid of signalIds) { const s = D.signals[sid]; if (!s) continue;
+    ul.append(el('li', {}, el('span', {class: 'tag'}, s.basis), el('span', {class: 'tag'}, s.confidence), s.summary));
+    for (const e of s.evidence) {
+      if (e.kind === 'work_item') continue;
+      ul.append(el('li', {}, el('span', {class: 'tag'}, e.kind), e.kind === 'file' ? el('code', {}, e.ref) : link(e.url, e.ref, 'mono'),
+                   e.detail ? el('span', {class: 'd'}, e.detail) : null)); }
+    const params = Object.entries(s.rule.params).filter(([k, v]) => v !== null && v !== 0 && v !== false && !(Array.isArray(v) && (v.length === 0 || v.length > 6)))
+                         .map(([k, v]) => k + '=' + (Array.isArray(v) ? v.join(', ') : v)).join(' · ');
+    ul.append(el('li', {class: 'rule'}, 'rule ', el('code', {}, s.rule.name), params ? ' · ' + params : ''));
+  }
+  return ul;
+}
+function dl(rows){ const d = el('dl'); for (const [k, v] of rows) if (v != null && v !== '') d.append(el('dt', {}, k), el('dd', {}, v)); return d; }
+function nodeView(id){
+  const n = nodes[id], w = D.work_items[id] || {}, f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k' + (n.attention ? ' hot' : '')}, (n.kind === 'pull_request' ? 'Pull request' : n.kind === 'branch' ? 'Branch without a pull request' : 'Landed on the default branch')));
+  f.append(el('h3', {}, n.label));
+  if (n.url) f.append(link(n.url, n.kind === 'direct' ? 'Open a landed commit ↗' : 'Open ' + n.ref + ' on GitHub ↗', 'open'));
+  const g = groups[n.group];
+  f.append(dl([['State', [n.status.replace('_', ' '), n.review_state && n.review_state !== 'draft' ? n.review_state.replace('_', ' ') : ''].filter(Boolean).join(' · ')],
+               ['Authors', n.actors.join(', ')], ['Last activity', n.age_hours == null ? '' : age(n.age_hours) + ' ago'],
+               ['Lane', zones[n.zone].label], ['Area', el('code', {}, g.path)],
+               ['Also touches', n.also_touches.length ? n.also_touches.join(', ') : ''],
+               ['Commits', w.commit_count], ['Diverged at', w.merge_base ? (w.merge_base.sha || '').slice(0, 7) + ' (' + w.merge_base.source + ')' : ''],
+               ['Burst', w.burst ? w.burst.commits + ' commits in ' + w.burst.minutes + ' min' : '']]));
+  const rel = scene.edges.filter(e => e.from === id || e.to === id);
+  if (rel.length) { f.append(el('h4', {}, 'Relationships')); const ul = el('ul');
+    for (const e of rel) { const other = nodes[e.from === id ? e.to : e.from];
+      const txt = e.type === 'overlap' ? 'changes ' + (e.files.length ? e.files.length + ' shared file' + (e.files.length > 1 ? 's' : '') : e.areas.join(', ')) + ' in parallel with ' + other.ref
+                : (e.from === id ? 'waits on ' : 'is waited on by ') + other.ref;
+      ul.append(el('li', {}, jump('edge', e.id, txt), el('span', {class: 'd'}, other.label))); }
+    f.append(ul); }
+  const sig = Object.keys(D.signals).filter(s => D.signals[s].work_items.includes(id) && D.signals[s].type !== 'overlap' && D.signals[s].type !== 'waiting');
+  if (sig.length) { f.append(el('h4', {}, 'Signals'), evidenceList(sig)); }
+  if (w.paths && w.paths.length) { f.append(el('h4', {}, 'Files changed' + (w.paths_total > w.paths.length ? ` (first ${w.paths.length} of ${w.paths_total})` : ` (${w.paths_total})`)));
+    const d = el('div', {class: 'files'}); w.paths.slice(0, 16).forEach(p => d.append(el('code', {}, p))); if (w.paths.length > 16) d.append(el('span', {class: 'muted'}, '+' + (w.paths.length - 16) + ' more')); f.append(d); }
+  return el('div', {class: 'ins'}, f);
+}
+function groupView(id){
+  const g = groups[id], a = D.areas[g.path] || {}, f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k' + (g.attention ? ' hot' : '')}, 'Area · ' + zones[g.zone].label), el('h3', {}, g.path));
+  const items = [...g.nodes, ...g.also_active];
+  f.append(dl([['Work here', items.length + ' work item' + (items.length !== 1 ? 's' : '')], ['Last activity', g.age_hours == null ? '' : age(g.age_hours) + ' ago'],
+               ['Commits', a.recent_commits ? a.recent_commits + ' on the default branch in the window' : '']]));
+  if (items.length) { f.append(el('h4', {}, 'Work items')); const ul = el('ul');
+    for (const i of items) ul.append(el('li', {}, jump('node', i, nodes[i].ref + '  ' + nodes[i].label), el('span', {class: 'd'}, nodes[i].actors.join(', ') + (nodes[i].age_hours != null ? ' · ' + age(nodes[i].age_hours) + ' ago' : '') + (g.nodes.includes(i) ? '' : ' · drawn in ' + groups[nodes[i].group].path))));
+    f.append(ul); }
+  const ov = scene.edges.filter(e => e.areas.includes(g.path));
+  if (ov.length) { f.append(el('h4', {}, 'Parallel changes here')); const ul = el('ul');
+    for (const e of ov) ul.append(el('li', {}, jump('edge', e.id, nodes[e.from].ref + ' and ' + nodes[e.to].ref), el('span', {class: 'd'}, e.files.filter(x => x === g.path || x.startsWith(g.path + '/')).join(', '))));
+    f.append(ul, el('h4', {}, 'Evidence'), evidenceList(D.signals['overlap:' + g.path] ? ['overlap:' + g.path] : [])); }
+  if (a.files && a.files.length) { f.append(el('h4', {}, 'Files in flight')); const d = el('div', {class: 'files'}); a.files.slice(0, 16).forEach(p => d.append(el('code', {}, p))); f.append(d); }
+  return el('div', {class: 'ins'}, f);
+}
+function edgeView(id){
+  const e = edges[id], A = nodes[e.from], B = nodes[e.to], f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k hot'}, e.type === 'overlap' ? 'Parallel change' : 'Waiting'));
+  f.append(el('h3', {}, e.type === 'overlap' ? `${A.ref} and ${B.ref} change the same ${e.files.length ? 'files' : 'area'}` : `${A.ref} waits on ${B.ref}`));
+  f.append(dl([['Basis', e.basis], ['Confidence', e.confidence], ['Areas', e.areas.join(', ')]]));
+  f.append(el('h4', {}, 'Work items')); const ul = el('ul');
+  for (const n of [A, B]) ul.append(el('li', {}, jump('node', n.id, n.ref + '  ' + n.label), el('span', {class: 'd'}, n.actors.join(', ') + (n.age_hours != null ? ' · ' + age(n.age_hours) + ' ago' : '') + (n.url ? ' · ' : ''), n.url ? link(n.url, 'open ↗') : null)));
+  f.append(ul);
+  if (e.files.length) { f.append(el('h4', {}, 'Shared files')); const d = el('div', {class: 'files'}); e.files.forEach(p => d.append(el('code', {}, p))); f.append(d); }
+  f.append(el('h4', {}, 'Evidence'), evidenceList(e.signals));
+  return el('div', {class: 'ins'}, f);
+}
+
+// ---------------------------------------------------------------- declared state (issue #7)
+const C = scene.coordination || {gates: [], commitments: [], sessions: [], decisions: [], cues: []};
+const M = {gates: Object.fromEntries(C.gates.map(g => [g.id, g])), commitments: Object.fromEntries(C.commitments.map(c => [c.id, c])),
+           sessions: Object.fromEntries(C.sessions.map(s => [s.id, s]))};
+function cueFor(id){ return C.cues.find(q => q.subject.id === id); }
+function workRef(w){ return nodes[w] ? jump('node', w, nodes[w].ref + '  ' + nodes[w].label) : el('span', {}, w.startsWith('pr:') ? '#' + w.slice(3) + ' (not in flight)' : w.startsWith('direct:') ? 'a direct push' : w); }
+function sessionLine(sid, by){ const s = M.sessions[sid]; return (s ? s.label + ' · ' : '') + 'confirmed by ' + (by || '?'); }
+function sides(q){
+  if (!q) return null;
+  const d = q.declared, o = q.observed, box = el('div', {class: 'sides'});
+  box.append(el('div', {class: 'side-d'}, el('span', {class: 'k'}, 'Declared'), d.text,
+             el('div', {class: 'muted'}, [d.owner ? 'owner ' + d.owner : '', d.due ? 'due ' + d.due.slice(11, 16) : '', d.at ? 'at ' + d.at.slice(11, 16) : '',
+                                          (d.areas || []).join(', ')].filter(Boolean).join(' · ')),
+             el('div', {class: 'muted'}, sessionLine(d.session, d.confirmed_by))));
+  box.append(el('div', {class: 'rel'}, q.summary.split(': ').slice(-1)[0] + ' · ' + q.confidence));
+  const ob = el('div', {class: 'side-o'}, el('span', {class: 'k'}, 'Observed'));
+  if (o.work_items.length) o.work_items.forEach(w => ob.append(el('div', {}, workRef(w)))); else ob.append(el('div', {}, 'nothing linked'));
+  ob.append(el('div', {class: 'muted'}, o.detail)); box.append(ob); return box;
+}
+function gateView(id){
+  const g = M.gates[id], q = cueFor(id), f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k' + (q ? ' hot' : '')}, 'Gate · ' + g.kind + ' · declared'), el('h3', {}, g.label));
+  f.append(dl([['When', g.at.replace('T', ' ').slice(0, 16)], ['Scope', (g.areas || []).join(', ') || (g.kind === 'freeze' ? 'the whole repository' : '')],
+               ['Status', g.passed ? 'passed' : g.next ? 'next gate' : 'upcoming'], ['Declared in', sessionLine(g.session, g.confirmed_by)]]));
+  if (q) f.append(el('h4', {}, 'Declared vs observed'), sides(q));
+  return el('div', {class: 'ins'}, f);
+}
+function commitmentView(id){
+  const c = M.commitments[id], q = cueFor(id), f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k' + (q ? ' hot' : '')}, 'Commitment · declared'), el('h3', {}, c.text));
+  f.append(dl([['Owner', c.owner ? c.owner + ' (as declared)' : ''], ['Due', c.due ? c.due.replace('T', ' ').slice(0, 16) : ''],
+               ['Links', c.links.map(l => l.kind + ' ' + l.ref).join(', ') || 'none declared'],
+               ['Observed', c.state.replace('_', ' ')], ['Declared in', sessionLine(c.session, c.confirmed_by)]]));
+  if (c.matched.length) { f.append(el('h4', {}, 'Linked work')); const ul = el('ul'); c.matched.forEach(w => ul.append(el('li', {}, workRef(w)))); f.append(ul); }
+  if (q) f.append(el('h4', {}, 'Declared vs observed'), sides(q));
+  f.append(el('p', {class: 'rule'}, 'State comes from the repository, not from anyone updating a status.'));
+  return el('div', {class: 'ins'}, f);
+}
+function sessionView(id){
+  const s = M.sessions[id], f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k'}, 'Check-in · ' + s.kind), el('h3', {}, s.label));
+  f.append(dl([['When', s.at.replace('T', ' ').slice(0, 16)], ['Recorded', 'no (notes, confirmed by people)']]));
+  const mine = [...C.gates.map(g => ['gate', g.id, g.label, g.session]), ...C.commitments.map(c => ['commitment', c.id, c.text, c.session])].filter(x => x[3] === id);
+  if (mine.length) { f.append(el('h4', {}, 'Declared here')); const ul = el('ul'); mine.forEach(([k, i, t]) => ul.append(el('li', {}, jump(k, i, i + '  ' + t)))); f.append(ul); }
+  const dec = C.decisions.filter(d => d.session === id);
+  if (dec.length) { f.append(el('h4', {}, 'Decisions')); const ul = el('ul');
+    dec.forEach(d => ul.append(el('li', {}, d.text, el('span', {class: 'd'}, (d.areas || []).join(', ') + (d.changed_after.length ? ' · changed since: ' + d.changed_after.map(w => w.startsWith('direct:') ? 'a direct push' : w.replace('pr:', '#')).join(', ') : ''))))); f.append(ul); }
+  if ((s.open_questions || []).length) { f.append(el('h4', {}, 'Open questions')); const ul = el('ul'); s.open_questions.forEach(qq => ul.append(el('li', {}, qq))); f.append(ul); }
+  return el('div', {class: 'ins'}, f);
+}
+
+// ---------------------------------------------------------------- lifecycle
+draw();
+new ResizeObserver(() => requestAnimationFrame(draw)).observe(map);
+map.addEventListener('toggle', () => requestAnimationFrame(draw), true);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+})();
+</script>
+</body>
+</html>
