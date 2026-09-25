@@ -146,3 +146,64 @@ class Reconciliation(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SceneAndPage(unittest.TestCase):
+    def scene(self, name):
+        from observstory.map_compiler import compile_scene
+        snap, _ = moment(name)
+        return compile_scene(snap)
+
+    def test_scene_carries_the_rail_and_declared_cues_and_validates(self):
+        from observstory.validate import scene_errors
+        s = self.scene("after-core-freeze")
+        self.assertEqual(scene_errors(s), [])
+        self.assertEqual(s["coordination"]["next_gate"], "G3")
+        declared = [a for a in s["attention"] if a["kind"] == "declared"]
+        self.assertEqual(len(declared), 2)
+        ids = {x["id"] for k in ("gates", "commitments") for x in s["coordination"][k]}
+        self.assertTrue(all(a["target"] in ids for a in declared))
+
+    def test_no_declarations_means_no_rail(self):
+        from observstory.map_compiler import compile_scene
+        from observstory.map_render import render_map
+        obs = json.loads((DIR / "after-core-freeze.json").read_text())
+        snap = derive(obs, config.normalise(CFG), parse_time(obs["fetched_at"]))
+        page = render_map(compile_scene(snap))
+        self.assertNotIn('class="mission"', page)
+        self.assertNotIn('<h3 class="sh2">Declared vs observed', page)
+
+    def test_page_shows_rail_markers_and_separate_declared_section(self):
+        from observstory.map_render import render_map
+        page = render_map(self.scene("feature-freeze"))
+        self.assertIn('class="mission"', page)
+        for mid in ("m-S1", "m-S2", "m-G1", "m-G4", "m-C3"):
+            self.assertIn(f'id="{mid}"', page)
+        self.assertNotIn('id="m-S3"', page)                  # the unconfirmed session is not on the rail
+        self.assertIn("2 proposed items await confirmation", page)
+        self.assertIn('<h3 class="sh2">Declared vs observed', page)
+
+
+class CheckinCli(unittest.TestCase):
+    def test_propose_pending_confirm_roundtrip(self):
+        import contextlib
+        import io
+        import tempfile
+        from observstory.cli import main
+        with tempfile.TemporaryDirectory() as d:
+            notes, f = f"{d}/notes.md", f"{d}/coordination.json"
+            open(notes, "w").write(collab_lab.MORNING_NOTES)
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out):
+                main(["checkin", "propose", notes, "--label", "Morning", "--at", "2026-10-03T09:00:00Z", "--file", f])
+                main(["checkin", "pending", "--file", f])
+            self.assertIn("S1: 2 proposed item(s)", out.getvalue())
+            self.assertIn("2 proposed item(s) awaiting confirmation", out.getvalue())
+            with contextlib.redirect_stdout(io.StringIO()):
+                main(["checkin", "confirm", "S1", "--by", "Ben", "--at", "2026-10-03T09:10:00Z", "--drop", "D1", "--file", f])
+            data = json.loads(open(f).read())
+            self.assertEqual(co.validate(data), [])
+            self.assertEqual([(c["id"], c["status"], c["confirmed_by"]) for c in data["commitments"]], [("C1", "declared", "Ben")])
+            self.assertEqual(data["decisions"], [])
+            with self.assertRaises(SystemExit):
+                main(["checkin", "confirm", "S1", "--by", " ", "--file", f])

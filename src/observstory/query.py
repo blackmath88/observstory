@@ -102,10 +102,26 @@ def handoff(snapshot):
     })
 
 
+def coordination(snapshot):
+    """What did the team declare, and how does the repository compare? Declared items only (ADR-029, ADR-030)."""
+    c = snapshot.get("coordination")
+    if not c:
+        return _envelope(snapshot, "coordination", {}, {
+            "declared": False, "note": "No .observstory/coordination.json: nothing has been declared."})
+    return _envelope(snapshot, "coordination", {}, {
+        "declared": True, "next_gate": next((g for g in c["gates"] if g.get("next")), None),
+        "gates": c["gates"], "commitments": c["commitments"], "decisions": c["decisions"], "cues": c["cues"],
+        "proposed_pending": c["proposed_pending"],
+        "note": "Declared means confirmed by a named person. Commitment states come from repository evidence; "
+                "cues compare the two and say nothing about people.",
+    })
+
+
 QUERIES = {
     "changes-since": changes_since,
     "work-near": work_near,
     "overlaps": overlaps,
     "open-loops": open_loops,
     "handoff": handoff,
+    "coordination": coordination,
 }

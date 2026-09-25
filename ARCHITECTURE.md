@@ -47,11 +47,28 @@ map_render.py → index.html  (Project Map, default)      render.py → radar.ht
 | `map_render.py` | Scene → Project Map page (HTML/CSS, SVG connectors, inspector) | yes |
 | `render.py` | Radar view (alternative projection) | yes |
 | `query.py` | Agent questions over the snapshot | yes |
-| `cli.py` | `build`, `derive`, `render`, `query`, `validate` | — |
+| `coordination.py` | Declared collaboration state: marker extractor (proposes), confirm (declares), `as_of`, `reconcile` → `snapshot.coordination` | yes |
+| `cli.py` | `build`, `derive`, `render`, `query`, `checkin`, `validate` | — |
 
 Because derivation is pure, **fixtures are observation bundles** and every signal is tested
 without the network. The same property enables replay: timeline playback is `derive` applied to
 a sequence of observation bundles.
+
+### Declared collaboration state (optional, issue #7)
+
+```text
+check-in notes ──checkin propose──► .observstory/coordination.json (PROPOSED) ──checkin confirm --by──► DECLARED
+                                                     │  committed to the observed repo (ADR-028)
+                                                     ▼
+derive(observations, config, now, coordination) ──reconcile()──► snapshot.coordination
+      gates (passed/next) · commitments (state from linked work) · decisions · cues (declared + observed sides)
+                                                     ▼
+scene.coordination ──► mission rail + "Declared vs observed" attention + inspector   ·   query coordination
+```
+
+Cues never enter `snapshot.signals` (ADR-030). Proposed items are counted, never reconciled
+(ADR-029). The Action reads the file from its checkout (`coordination` input); without it,
+`snapshot.coordination` is `null` and the map has no rail.
 
 ## Typed model (snapshot v1)
 
@@ -65,6 +82,7 @@ Snapshot
  ├─ lanes[]        semantic groups of areas (config, defaults, or "other")
  ├─ signals[]      type, basis, confidence, subject{area|work_item}, work_items, evidence[], rule
  ├─ actors[]       id, kind (human|bot), linked, work_items   ← no counts, by design
+ ├─ coordination   null | declared gates, commitments, decisions, cues (schema/coordination-v1.json)
  ├─ commits[]      default-branch commits in the window, attributed to a work item
  └─ issues[]
 ```

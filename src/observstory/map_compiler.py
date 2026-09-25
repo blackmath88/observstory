@@ -190,6 +190,12 @@ def compile_scene(snap: dict) -> dict:
                               "recent_commits": areas[g["path"]]["recent_commits"]} for g in groups},
     }
 
+    coordination = compile_coordination(snap.get("coordination"))
+    if coordination:
+        for q in coordination["cues"]:
+            attention.append({"kind": "declared", "target": q["subject"]["id"], "confidence": q["confidence"],
+                              "basis": "declared", "label": q["summary"]})
+
     summary = snap["summary"]["signals"]
     return {
         "schema": SCENE_SCHEMA,
@@ -203,4 +209,34 @@ def compile_scene(snap: dict) -> dict:
                    "areas_active": snap["summary"]["areas_active"]},
         "zones": zones, "groups": groups, "nodes": nodes, "edges": edge_list,
         "attention": attention, "details": details,
+        "coordination": coordination,
+    }
+
+
+def compile_coordination(c: dict | None) -> dict | None:
+    """The mission rail: declared gates, check-ins and commitment due times, with their observed state.
+    Declared items stay out of the lane cards (principle: declared intent is not observed reality)."""
+    if not c:
+        return None
+    now = parse_time(c["now"])
+    times = [now] + [parse_time(x["at"]) for x in c["sessions"] + c["gates"]] \
+        + [parse_time(x["due"]) for x in c["commitments"] if x.get("due")]
+    start, end = min(times), max(times)
+    end = end + (end - start) * 0.03  # a little room after the last marker
+    nxt = next((g for g in c["gates"] if g["next"]), None)
+    cue_of = {q["subject"]["id"]: q["id"] for q in c["cues"]}
+    return {
+        "source": c["source"], "now": c["now"],
+        "span": [start.isoformat().replace("+00:00", "Z"), end.isoformat().replace("+00:00", "Z")],
+        "next_gate": nxt["id"] if nxt else None,
+        "hours_to_next": round((parse_time(nxt["at"]) - now).total_seconds() / 3600, 1) if nxt else None,
+        "proposed_pending": c["proposed_pending"],
+        "sessions": [{k: x.get(k) for k in ("id", "kind", "label", "at", "open_questions")} for x in c["sessions"]],
+        "gates": [dict({k: g.get(k) for k in ("id", "kind", "label", "at", "areas", "passed", "next", "confirmed_by")},
+                       session=g.get("source", {}).get("session"), cue=cue_of.get(g["id"])) for g in c["gates"]],
+        "commitments": [dict({k: x.get(k) for k in ("id", "text", "owner", "due", "state", "matched", "links", "confirmed_by")},
+                             session=x.get("source", {}).get("session"), cue=cue_of.get(x["id"])) for x in c["commitments"]],
+        "decisions": [dict({k: x.get(k) for k in ("id", "text", "areas", "changed_after", "confirmed_by")},
+                           session=x.get("source", {}).get("session")) for x in c["decisions"]],
+        "cues": c["cues"],
     }

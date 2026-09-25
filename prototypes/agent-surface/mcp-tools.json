@@ -33,6 +33,12 @@
       "description": "Open PRs grouped by the author's declared review state (review requested / no reviewer / draft).",
       "inputSchema": {"type": "object", "properties": {}},
       "cli": "observstory query handoff"
+    },
+    {
+      "name": "observstory.coordination",
+      "description": "Declared gates, commitments and decisions (confirmed by a named person), each commitment's state from repository evidence, and declared-vs-observed cues. Empty when the repository has no .observstory/coordination.json.",
+      "inputSchema": { "type": "object", "properties": {} },
+      "cli": "observstory query coordination"
     }
   ],
   "guarantees": [

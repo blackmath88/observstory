@@ -6,7 +6,7 @@ rail, commitment states and "declared vs observed" cues on the Project Map.
 
 ## MUST
 - `schema/coordination-v1.json` with Session, Gate, Commitment and Decision; `status` and `source` on every declaration
-- `observstory checkin propose NOTES --session … --at …` (deterministic extractor; writes proposed items)
+- `observstory checkin propose NOTES --label … --at …` (deterministic extractor; writes proposed items)
 - `observstory checkin confirm SESSION --by NAME [--only IDs | --drop IDs]` (promotes proposed → declared)
 - The Action reads the coordination file if it exists (zero-config: none means no rail)
 - Reconciliation rules C-linked, C-unlinked, G-freeze and G-open in `snapshot.coordination`

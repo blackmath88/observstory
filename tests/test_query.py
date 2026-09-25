@@ -29,6 +29,15 @@ class AgentQueries(unittest.TestCase):
         hand = query.handoff(snap)["answer"]
         self.assertEqual([w["id"] for w in hand["ready_for_review"]], ["pr:41"])
 
+    def test_coordination_query(self):
+        import json
+        from tests.helpers import ROOT
+        snap = json.loads((ROOT / "demo/states/after-core-freeze.snapshot.json").read_text())
+        ans = query.coordination(snap)["answer"]
+        self.assertEqual(ans["next_gate"]["id"], "G3")
+        self.assertEqual(sorted(q["rule"] for q in ans["cues"]), ["commitment.unstarted", "freeze.changed_after"])
+        self.assertFalse(query.coordination(snapshot("demo-t3"))["answer"]["declared"])
+
     def test_envelope_is_uniform(self):
         snap = snapshot("e1-same-subsystem")
         for name, fn in query.QUERIES.items():

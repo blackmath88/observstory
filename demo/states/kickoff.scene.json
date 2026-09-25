@@ -1,0 +1,244 @@
+{
+ "schema": "observstory.scene/v1",
+ "source": {
+  "snapshot_schema": "observstory.snapshot/v1",
+  "generated_at": "2026-10-02T19:00:00Z",
+  "repository": "northstar/voice-notes",
+  "repository_url": null,
+  "default_branch": "main",
+  "window_hours": 48,
+  "title": "Voice notes hackathon (synthetic demo)",
+  "lanes_source": "config",
+  "degraded": []
+ },
+ "status": {
+  "in_flight": 0,
+  "overlaps": 0,
+  "waiting": 0,
+  "stale": 0,
+  "areas_active": 2
+ },
+ "zones": [
+  {
+   "id": "intent",
+   "label": "Intent",
+   "description": "Pitch and decisions",
+   "order": 0,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [
+    "README.md"
+   ],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "core",
+   "label": "Core",
+   "description": "Audio, transcription, core API",
+   "order": 1,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [
+    "src/core"
+   ],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "interface",
+   "label": "Interface",
+   "description": "Recorder UI",
+   "order": 2,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  },
+  {
+   "id": "verify",
+   "label": "Verify",
+   "description": "Evaluation",
+   "order": 3,
+   "state": "quiet",
+   "groups": [],
+   "in_flight": 0,
+   "attention": false,
+   "recently_changed": [],
+   "recently_changed_more": 0
+  }
+ ],
+ "groups": [],
+ "nodes": [],
+ "edges": [],
+ "attention": [],
+ "details": {
+  "signals": {},
+  "work_items": {},
+  "areas": {}
+ },
+ "coordination": {
+  "source": ".observstory/coordination.json",
+  "now": "2026-10-02T19:00:00Z",
+  "span": [
+   "2026-10-02T18:30:00Z",
+   "2026-10-04T07:03:54Z"
+  ],
+  "next_gate": "G1",
+  "hours_to_next": 5.0,
+  "proposed_pending": 0,
+  "sessions": [
+   {
+    "id": "S1",
+    "kind": "kickoff",
+    "label": "Kickoff",
+    "at": "2026-10-02T18:30:00Z",
+    "open_questions": [
+     "do we need speaker labels for the demo"
+    ]
+   }
+  ],
+  "gates": [
+   {
+    "id": "G1",
+    "kind": "checkpoint",
+    "label": "Skeleton demo",
+    "at": "2026-10-03T00:00:00Z",
+    "areas": [],
+    "passed": false,
+    "next": true,
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   },
+   {
+    "id": "G2",
+    "kind": "freeze",
+    "label": "Freeze src/core/",
+    "at": "2026-10-03T12:00:00Z",
+    "areas": [
+     "src/core/"
+    ],
+    "passed": false,
+    "next": false,
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   },
+   {
+    "id": "G3",
+    "kind": "freeze",
+    "label": "Freeze web/, src/",
+    "at": "2026-10-03T22:00:00Z",
+    "areas": [
+     "web/",
+     "src/"
+    ],
+    "passed": false,
+    "next": false,
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   },
+   {
+    "id": "G4",
+    "kind": "submission",
+    "label": "Submission",
+    "at": "2026-10-04T06:00:00Z",
+    "areas": [],
+    "passed": false,
+    "next": false,
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   }
+  ],
+  "commitments": [
+   {
+    "id": "C1",
+    "text": "audio capture pipeline",
+    "owner": "Alice",
+    "due": "2026-10-03T10:00:00Z",
+    "state": "not_started",
+    "matched": [],
+    "links": [
+     {
+      "kind": "path",
+      "ref": "src/audio/"
+     }
+    ],
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   },
+   {
+    "id": "C2",
+    "text": "transcription adapter",
+    "owner": "Ben",
+    "due": "2026-10-03T12:00:00Z",
+    "state": "not_started",
+    "matched": [],
+    "links": [
+     {
+      "kind": "path",
+      "ref": "src/transcribe/"
+     }
+    ],
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   },
+   {
+    "id": "C3",
+    "text": "recorder UI",
+    "owner": "Sofia",
+    "due": "2026-10-03T14:00:00Z",
+    "state": "not_started",
+    "matched": [],
+    "links": [
+     {
+      "kind": "path",
+      "ref": "web/recorder/"
+     }
+    ],
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   },
+   {
+    "id": "C4",
+    "text": "evaluation set for transcription accuracy",
+    "owner": "Dana",
+    "due": "2026-10-03T16:00:00Z",
+    "state": "not_started",
+    "matched": [],
+    "links": [
+     {
+      "kind": "path",
+      "ref": "evals/"
+     }
+    ],
+    "confirmed_by": "Alice",
+    "session": "S1",
+    "cue": null
+   }
+  ],
+  "decisions": [
+   {
+    "id": "D1",
+    "text": "everything runs locally, no cloud speech-to-text",
+    "areas": [
+     "src/transcribe/"
+    ],
+    "changed_after": [],
+    "confirmed_by": "Alice",
+    "session": "S1"
+   }
+  ],
+  "cues": []
+ }
+}

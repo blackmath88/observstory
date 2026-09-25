@@ -583,6 +583,7 @@
    }
   }
  ],
+ "coordination": null,
  "provenance": {
   "source": "synthetic (Demo Lab)",
   "collector": "blackmath88/observstory",

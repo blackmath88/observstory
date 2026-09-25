@@ -20,8 +20,10 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "fixtures"))
 
+import collab_lab  # noqa: E402
 import demo_lab  # noqa: E402
 from observstory import config  # noqa: E402
+from observstory import coordination as co  # noqa: E402
 from observstory.derive import derive, parse_time  # noqa: E402
 from observstory.map_compiler import compile_scene  # noqa: E402
 from observstory.map_render import render_map  # noqa: E402
@@ -56,21 +58,39 @@ STATES = [  # id, tab, act, caption, hint
     ("other-project", "Other project", "shape",
      "A different Northstar project with its own lanes: Data, Pipeline, Model, Eval, API, Docs.",
      "Same renderer; the lanes come from the project's configuration."),
+    ("kickoff", "Kickoff", "declared",
+     "A 36-hour hackathon. At kickoff the team agrees gates and who does what; Alice confirms the notes.",
+     "The rail shows what people declared. Diamonds are commitments; none has linked work yet."),
+    ("saturday-morning", "Sat 09:30", "declared",
+     "Alice's audio pipeline has landed; Ben and Sofia are in flight. The morning check-in adds a commitment for #12.",
+     "Commitment states come from the repository, not from anyone updating a status."),
+    ("after-core-freeze", "Sat 15:00", "declared",
+     "The core API freeze was at 12:00. The core API still changed afterwards, and the evaluation set has not started.",
+     "Two cues under Declared vs observed. Click the orange gate on the rail for both sides."),
+    ("feature-freeze", "Sat 23:00", "declared",
+     "The feature freeze has passed while the recorder UI is still open. The evening notes are proposed, not confirmed.",
+     "Unconfirmed notes never reach the rail; they wait for a named person."),
 ]
-ACTS = {"story": "One week", "moments": "Moments", "shape": "Another project"}
+ACTS = {"story": "One week", "moments": "Moments", "shape": "Another project", "declared": "Declared vs observed"}
 SHOTS = [("overlap", "demo-lab-overlap", 1440, 900, None), ("resolved", "demo-lab-resolved", 1440, 900, None),
-         ("crowded", "demo-lab-narrow", 390, 844, None)]
+         ("crowded", "demo-lab-narrow", 390, 844, None), ("after-core-freeze", "demo-lab-declared", 1440, 900, None)]
 
 
 def build_states() -> list[dict]:
-    fixtures = demo_lab.build()
+    fixtures, hack, declared = demo_lab.build(), collab_lab.moments(), collab_lab.declarations()
     out = HERE / "states"
     out.mkdir(exist_ok=True)
     manifest = []
     for sid, tab, act, caption, hint in STATES:
-        obs = fixtures[sid]
-        cfg = demo_lab.RECSYS_CONFIG if sid == "other-project" else demo_lab.CHAT_APP_CONFIG
-        snap = derive(obs, config.normalise(cfg), parse_time(obs["fetched_at"]))
+        if act == "declared":  # issue #7: declarations as they stood at that moment, reconciled by the real derive
+            obs, cfg = hack[sid], collab_lab.CONFIG
+            now = parse_time(obs["fetched_at"])
+            snap = derive(obs, config.normalise(cfg), now, coordination=co.as_of(declared, now),
+                          coordination_source=co.DEFAULT_PATH)
+        else:
+            obs = fixtures[sid]
+            cfg = demo_lab.RECSYS_CONFIG if sid == "other-project" else demo_lab.CHAT_APP_CONFIG
+            snap = derive(obs, config.normalise(cfg), parse_time(obs["fetched_at"]))
         scene = compile_scene(snap)
         errors = validate(snap) + scene_errors(scene)
         if errors:
@@ -78,7 +98,8 @@ def build_states() -> list[dict]:
         (out / f"{sid}.snapshot.json").write_text(json.dumps(snap, indent=1, ensure_ascii=False))
         (out / f"{sid}.scene.json").write_text(json.dumps(scene, indent=1, ensure_ascii=False))
         when = parse_time(scene["source"]["generated_at"])
-        story_time = f'Story time: {when.strftime("%A %H:%M")}' + ("" if sid == "other-project" else f', week {1 + (when - demo_lab.T0).days // 7}')
+        week = "" if act in ("shape", "declared") else f', week {1 + (when - demo_lab.T0).days // 7}'
+        story_time = f'Story time: {when.strftime("%A %H:%M")}{week}'
         (out / f"{sid}.html").write_text(render_map(scene, radar_href=None, data_href=sid + ".{name}.json", time_label=story_time))
         s = scene["status"]
         manifest.append({"id": sid, "tab": tab, "act": act, "caption": caption, "hint": hint,
@@ -149,7 +170,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg);min-height:480px}
 <header class="bar">
   <div class="row">
     <span class="brand">Observstory <span>Demo Lab</span></span>
-    <span class="synthetic" title="northstar/chat-app and northstar/recsys are invented; so are Alice, Ben and Sofia">Synthetic data</span>
+    <span class="synthetic" title="northstar/chat-app, northstar/recsys and northstar/voice-notes are invented; so are Alice, Ben, Sofia and Dana">Synthetic data</span>
     <nav class="tabs" role="tablist" aria-label="Project states">{{TABS}}</nav>
   </div>
   <div class="story">

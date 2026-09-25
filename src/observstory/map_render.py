@@ -7,6 +7,7 @@ never interprets GitHub data: everything it shows comes from the scene.
 
 from __future__ import annotations
 
+import datetime as dt
 import html
 import json
 
@@ -115,13 +116,81 @@ def zone_html(z: dict, groups: dict, nodes: dict) -> str:
 def attention_html(scene: dict) -> str:
     if not scene["attention"]:
         return '<p class="calm">Nothing needs a conversation right now.</p>'
-    glyph = {"overlap": "●", "waiting": "→", "stale": "◷"}
-    rows = "".join(
-        f'<li><button type="button" class="att-item k-{a["kind"]}" data-kind="{"edge" if a["kind"] != "stale" else "node"}" '
-        f'data-id="{esc(a["target"])}"><span class="g" aria-hidden="true">{glyph[a["kind"]]}</span>'
-        f'<span class="t">{esc(a["label"])}</span><span class="b">{esc(a["kind"])} · {esc(a["basis"])} · {esc(a["confidence"])}</span>'
-        f'</button></li>' for a in scene["attention"])
-    return f"<ul class=attention>{rows}</ul>"
+    glyph = {"overlap": "●", "waiting": "→", "stale": "◷", "declared": "◇"}
+    coord = scene.get("coordination") or {}
+    gate_ids = {g["id"] for g in coord.get("gates", [])}
+
+    def kind_of(a):
+        if a["kind"] == "declared":
+            return "gate" if a["target"] in gate_ids else "commitment"
+        return "node" if a["kind"] == "stale" else "edge"
+
+    def rows(items):
+        return "".join(
+            f'<li><button type="button" class="att-item k-{a["kind"]}" data-kind="{kind_of(a)}" '
+            f'data-id="{esc(a["target"])}"><span class="g" aria-hidden="true">{glyph[a["kind"]]}</span>'
+            f'<span class="t">{esc(a["label"])}</span><span class="b">'
+            f'{esc("declared vs observed" if a["kind"] == "declared" else a["kind"])} · {esc(a["confidence"])}</span>'
+            f'</button></li>' for a in items)
+    repo = [a for a in scene["attention"] if a["kind"] != "declared"]
+    declared = [a for a in scene["attention"] if a["kind"] == "declared"]
+    out = f"<ul class=attention>{rows(repo)}</ul>" if repo else ""
+    if declared:
+        out += f'<h3 class="sh2">Declared vs observed</h3><ul class="attention">{rows(declared)}</ul>'
+    return out
+
+
+def _when(ts: str, span_hours: float) -> str:
+    t = dt.datetime.fromisoformat(ts.replace("Z", "+00:00"))
+    return t.strftime("%a %H:%M") if span_hours > 20 else t.strftime("%H:%M")
+
+
+def mission_html(scene: dict) -> str:
+    """Declared gates, check-ins and commitment due times on one rail (issue #7). Only when declared."""
+    c = scene.get("coordination")
+    if not c:
+        return ""
+    t0, t1 = (dt.datetime.fromisoformat(x.replace("Z", "+00:00")) for x in c["span"])
+    width = max((t1 - t0).total_seconds(), 1)
+    hours = width / 3600
+
+    def x(ts):
+        t = dt.datetime.fromisoformat(ts.replace("Z", "+00:00"))
+        return f"{max(0.0, min(100.0, 100 * (t - t0).total_seconds() / width)):.2f}%"
+
+    gpos = [float(x(g["at"])[:-1]) for g in c["gates"]]
+    near = lambda ts: any(abs(float(x(ts)[:-1]) - p) < 10 for p in gpos)  # noqa: E731 - a gate label would collide
+    parts = [f'<div class="axis"></div><div class="past" style="width:{x(c["now"])}"></div>'
+             f'<div class="nowm{" low" if near(c["now"]) else ""}" style="left:{x(c["now"])}"><span>NOW</span></div>']
+    for sess in c["sessions"]:
+        parts.append(f'<button type="button" class="mk ses{" bare" if near(sess["at"]) else ""}" id="m-{esc(sess["id"])}" data-kind="session" data-id="{esc(sess["id"])}" '
+                     f'style="left:{x(sess["at"])}" title="{esc(sess["label"])} · {_when(sess["at"], hours)}"><i></i>'
+                     f'<span>{esc(sess["label"])}</span></button>')
+    for g in c["gates"]:
+        cls = " ".join(k for k, on in (("passed", g["passed"]), ("next", g["next"]), ("hot", g["cue"])) if on)
+        parts.append(f'<button type="button" class="mk gate {cls}" id="m-{esc(g["id"])}" data-kind="gate" data-id="{esc(g["id"])}" '
+                     f'style="left:{x(g["at"])}" title="{esc(g["label"])}"><b>{esc(g["label"])}</b><i></i>'
+                     f'<span>{_when(g["at"], hours)}</span></button>')
+    placed: list[tuple[float, int]] = []
+    for cm in sorted((cm for cm in c["commitments"] if cm.get("due")), key=lambda cm: cm["due"]):
+        pos = float(x(cm["due"])[:-1])
+        row = next(r for r in range(6) if all(abs(pos - p) > 3.2 for p, rr in placed if rr == r))
+        placed.append((pos, row))
+        parts.append(f'<button type="button" class="mk due s-{esc(cm["state"])}{" hot" if cm["cue"] else ""}" id="m-{esc(cm["id"])}" '
+                     f'data-kind="commitment" data-id="{esc(cm["id"])}" style="left:{pos:.2f}%;top:{96 + row * 22}px" '
+                     f'title="{esc(cm["text"])} · {esc(cm["state"].replace("_", " "))}"><i></i><span>{esc(cm["id"])}</span></button>')
+    rows = max([r for _, r in placed], default=-1) + 1
+    nxt = next((g for g in c["gates"] if g["id"] == c["next_gate"]), None)
+    head = (f'Next: <b>{esc(nxt["label"])}</b> at {_when(nxt["at"], hours)} · in {c["hours_to_next"]:g} h'
+            if nxt else "All declared gates have passed")
+    pending = (f'<span class="pend">{c["proposed_pending"]} proposed item{"s" if c["proposed_pending"] != 1 else ""} '
+               f'await confirmation · <code>observstory checkin pending</code></span>') if c["proposed_pending"] else ""
+    return (f'<section class="mission" aria-label="Mission timeline: declared gates, check-ins and commitments">'
+            f'<div class="mh"><span class="mark">Mission · declared</span><span class="nx">{head}</span>{pending}</div>'
+            f'<div class="railwrap"><div class="rail" style="height:{104 + rows * 22}px">{"".join(parts)}</div></div>'
+            f'<p class="rl"><span class="lg-due s-in_progress"></span>in progress <span class="lg-due s-landed"></span>landed '
+            f'<span class="lg-due s-not_started"></span>not started · ○ check-in · │ gate · declared items are confirmed by people; '
+            f'their state comes from the repository</p></section>')
 
 
 def render_map(scene: dict, radar_href: str | None = "radar.html", data_href: str = "data/{name}.json",
@@ -156,6 +225,7 @@ def render_map(scene: dict, radar_href: str | None = "radar.html", data_href: st
 {degraded}
 <main class="layout">
   <div class="mapwrap">
+    {mission_html(scene)}
     <div class="map" id="map" aria-label="Project map: lanes, areas and work in flight">
       <svg class="wires" id="wires" aria-hidden="false" role="group" aria-label="Relationships"></svg>
       {zones}
@@ -317,6 +387,32 @@ h1 a{text-decoration:none}
 .ins .jump{color:var(--ink);text-decoration:underline;text-decoration-color:var(--hair2);text-underline-offset:2px}
 .ins .files code{display:block;padding:2px 0;word-break:break-all}
 .ins .rule{color:var(--ink3);font-size:11.5px}
+.mission{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:10px 16px 8px;margin-bottom:22px}
+.mh{display:flex;align-items:baseline;gap:6px 16px;flex-wrap:wrap}.mh .mark{margin-right:4px}
+.nx{font-size:13.5px;color:var(--ink)}.nx b{font-weight:600}.pend{margin-left:auto;color:var(--ink3);font-size:11.5px}
+.railwrap{overflow-x:auto}.rail{position:relative;min-width:640px;margin:8px 34px 0}
+.axis{position:absolute;left:0;right:0;top:62px;height:2px;background:var(--hair2)}
+.past{position:absolute;left:0;top:62px;height:2px;background:var(--ink3)}
+.nowm{position:absolute;top:22px;height:64px;border-left:1.5px solid var(--ink)}
+.nowm span{position:absolute;top:-16px;left:-14px;font:600 10px var(--mono)}.nowm.low span{top:66px}
+.mk{position:absolute;transform:translateX(-50%);text-align:center;white-space:nowrap;font-size:11px;padding:0 3px;border-radius:5px}
+.mk:hover{background:color-mix(in srgb,var(--ink) 5%,transparent)}
+.mk.gate{top:14px;z-index:1}.mk.gate b{display:block;font-weight:600;font-size:11px;background:var(--surface)}.mk.gate i{display:block;margin:2px auto;width:2px;height:28px;background:var(--ink)}
+.mk.gate span{color:var(--ink3);font:10.5px var(--mono);background:var(--surface)}.mk.gate.passed{color:var(--ink3)}.mk.gate.passed i{background:var(--ink3)}
+.mk.gate.hot,.mk.gate.hot span{color:var(--accent)}.mk.gate.hot i{background:var(--accent)}
+.mk.ses{top:55px;z-index:1}.mk.ses i{display:block;margin:0 auto;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--ink2)}
+.mk.ses span{display:block;color:var(--ink3);font-size:10.5px;background:var(--surface);max-width:110px;overflow:hidden;text-overflow:ellipsis}.mk.ses.bare span{visibility:hidden}
+.mk.due i,.lg-due{display:inline-block;width:9px;height:9px;transform:rotate(45deg);background:var(--ink3)}
+.mk.due i{display:block;margin:0 auto}.mk.due span{font:10px var(--mono);color:var(--ink3)}
+.s-in_progress i,.lg-due.s-in_progress{background:var(--select)!important}.s-landed i,.lg-due.s-landed{background:#2f6b4f!important}
+.s-not_started i,.lg-due.s-not_started{background:transparent!important;border:1.5px solid var(--ink3)}
+.mk.due.hot i{border-color:var(--accent)!important}.mk.due.hot span{color:var(--accent)}
+.rl{margin:2px 0 0;color:var(--ink3);font-size:11px}.rl .lg-due{margin:0 3px 0 8px;width:8px;height:8px}
+.sh2{margin:14px 0 6px;font-size:11px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.att-item.k-declared .g{color:var(--accent)}
+.sides{display:grid;gap:8px;margin:6px 0 12px}.side-d,.side-o{border:1px solid var(--hair);border-radius:8px;padding:8px 10px;font-size:12.5px}
+.side-o{background:color-mix(in srgb,var(--ink) 2.5%,transparent)}.sides .k{font:600 10px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:2px}
+.sides .rel{color:var(--accent);font-size:11.5px;text-align:center}
 @media (prefers-reduced-motion:reduce){.inspector{transition:none}}
 @media (max-width:1100px){.layout{grid-template-columns:1fr}.side{position:static}}
 @media (max-width:760px){
@@ -424,6 +520,8 @@ function related(sel){
   if (sel.kind === 'edge') { const e = edges[sel.id]; r.add(e.from); r.add(e.to); r.add(e.id); }
   if (sel.kind === 'group') { const g = groups[sel.id]; for (const n of [...g.nodes, ...g.also_active]) r.add(n);
     for (const e of scene.edges) if (e.areas.includes(g.path)) { r.add(e.id); r.add(e.from); r.add(e.to); } }
+  if (sel.kind === 'commitment') { (M.commitments[sel.id].matched || []).forEach(w => r.add(w)); }
+  if (sel.kind === 'gate') { const q = cueFor(sel.id); if (q) q.observed.work_items.forEach(w => r.add(w)); }
   return r;
 }
 function applyDim(){
@@ -435,9 +533,11 @@ function applyDim(){
 function select(kind, id, from){
   document.querySelectorAll('.is-selected').forEach(x => x.classList.remove('is-selected'));
   selected = {kind, id}; lastFocus = from || document.activeElement;
-  const target = kind === 'node' ? document.getElementById('n-' + id) : kind === 'group' ? document.querySelector(`#g-${CSS.escape(id)} > .gh`) : null;
+  const target = kind === 'node' ? document.getElementById('n-' + id) : kind === 'group' ? document.querySelector(`#g-${CSS.escape(id)} > .gh`)
+               : ['gate', 'commitment', 'session'].includes(kind) ? document.getElementById('m-' + id) : null;
   if (target) { target.classList.add('is-selected'); const d = target.closest('details'); if (d && !d.open) { d.open = true; draw(); } }
-  body.replaceChildren(kind === 'node' ? nodeView(id) : kind === 'group' ? groupView(id) : edgeView(id));
+  body.replaceChildren(kind === 'node' ? nodeView(id) : kind === 'group' ? groupView(id) : kind === 'edge' ? edgeView(id)
+                       : kind === 'gate' ? gateView(id) : kind === 'commitment' ? commitmentView(id) : sessionView(id));
   ins.hidden = false; applyDim(); draw();
   document.getElementById('close').focus({preventScroll: true});
 }
@@ -522,6 +622,57 @@ function edgeView(id){
   f.append(ul);
   if (e.files.length) { f.append(el('h4', {}, 'Shared files')); const d = el('div', {class: 'files'}); e.files.forEach(p => d.append(el('code', {}, p))); f.append(d); }
   f.append(el('h4', {}, 'Evidence'), evidenceList(e.signals));
+  return el('div', {class: 'ins'}, f);
+}
+
+// ---------------------------------------------------------------- declared state (issue #7)
+const C = scene.coordination || {gates: [], commitments: [], sessions: [], decisions: [], cues: []};
+const M = {gates: Object.fromEntries(C.gates.map(g => [g.id, g])), commitments: Object.fromEntries(C.commitments.map(c => [c.id, c])),
+           sessions: Object.fromEntries(C.sessions.map(s => [s.id, s]))};
+function cueFor(id){ return C.cues.find(q => q.subject.id === id); }
+function workRef(w){ return nodes[w] ? jump('node', w, nodes[w].ref + '  ' + nodes[w].label) : el('span', {}, w.startsWith('pr:') ? '#' + w.slice(3) + ' (not in flight)' : w.startsWith('direct:') ? 'a direct push' : w); }
+function sessionLine(sid, by){ const s = M.sessions[sid]; return (s ? s.label + ' · ' : '') + 'confirmed by ' + (by || '?'); }
+function sides(q){
+  if (!q) return null;
+  const d = q.declared, o = q.observed, box = el('div', {class: 'sides'});
+  box.append(el('div', {class: 'side-d'}, el('span', {class: 'k'}, 'Declared'), d.text,
+             el('div', {class: 'muted'}, [d.owner ? 'owner ' + d.owner : '', d.due ? 'due ' + d.due.slice(11, 16) : '', d.at ? 'at ' + d.at.slice(11, 16) : '',
+                                          (d.areas || []).join(', ')].filter(Boolean).join(' · ')),
+             el('div', {class: 'muted'}, sessionLine(d.session, d.confirmed_by))));
+  box.append(el('div', {class: 'rel'}, q.summary.split(': ').slice(-1)[0] + ' · ' + q.confidence));
+  const ob = el('div', {class: 'side-o'}, el('span', {class: 'k'}, 'Observed'));
+  if (o.work_items.length) o.work_items.forEach(w => ob.append(el('div', {}, workRef(w)))); else ob.append(el('div', {}, 'nothing linked'));
+  ob.append(el('div', {class: 'muted'}, o.detail)); box.append(ob); return box;
+}
+function gateView(id){
+  const g = M.gates[id], q = cueFor(id), f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k' + (q ? ' hot' : '')}, 'Gate · ' + g.kind + ' · declared'), el('h3', {}, g.label));
+  f.append(dl([['When', g.at.replace('T', ' ').slice(0, 16)], ['Scope', (g.areas || []).join(', ') || (g.kind === 'freeze' ? 'the whole repository' : '')],
+               ['Status', g.passed ? 'passed' : g.next ? 'next gate' : 'upcoming'], ['Declared in', sessionLine(g.session, g.confirmed_by)]]));
+  if (q) f.append(el('h4', {}, 'Declared vs observed'), sides(q));
+  return el('div', {class: 'ins'}, f);
+}
+function commitmentView(id){
+  const c = M.commitments[id], q = cueFor(id), f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k' + (q ? ' hot' : '')}, 'Commitment · declared'), el('h3', {}, c.text));
+  f.append(dl([['Owner', c.owner ? c.owner + ' (as declared)' : ''], ['Due', c.due ? c.due.replace('T', ' ').slice(0, 16) : ''],
+               ['Links', c.links.map(l => l.kind + ' ' + l.ref).join(', ') || 'none declared'],
+               ['Observed', c.state.replace('_', ' ')], ['Declared in', sessionLine(c.session, c.confirmed_by)]]));
+  if (c.matched.length) { f.append(el('h4', {}, 'Linked work')); const ul = el('ul'); c.matched.forEach(w => ul.append(el('li', {}, workRef(w)))); f.append(ul); }
+  if (q) f.append(el('h4', {}, 'Declared vs observed'), sides(q));
+  f.append(el('p', {class: 'rule'}, 'State comes from the repository, not from anyone updating a status.'));
+  return el('div', {class: 'ins'}, f);
+}
+function sessionView(id){
+  const s = M.sessions[id], f = document.createDocumentFragment();
+  f.append(el('p', {class: 'ins-k'}, 'Check-in · ' + s.kind), el('h3', {}, s.label));
+  f.append(dl([['When', s.at.replace('T', ' ').slice(0, 16)], ['Recorded', 'no (notes, confirmed by people)']]));
+  const mine = [...C.gates.map(g => ['gate', g.id, g.label, g.session]), ...C.commitments.map(c => ['commitment', c.id, c.text, c.session])].filter(x => x[3] === id);
+  if (mine.length) { f.append(el('h4', {}, 'Declared here')); const ul = el('ul'); mine.forEach(([k, i, t]) => ul.append(el('li', {}, jump(k, i, i + '  ' + t)))); f.append(ul); }
+  const dec = C.decisions.filter(d => d.session === id);
+  if (dec.length) { f.append(el('h4', {}, 'Decisions')); const ul = el('ul');
+    dec.forEach(d => ul.append(el('li', {}, d.text, el('span', {class: 'd'}, (d.areas || []).join(', ') + (d.changed_after.length ? ' · changed since: ' + d.changed_after.map(w => w.startsWith('direct:') ? 'a direct push' : w.replace('pr:', '#')).join(', ') : ''))))); f.append(ul); }
+  if ((s.open_questions || []).length) { f.append(el('h4', {}, 'Open questions')); const ul = el('ul'); s.open_questions.forEach(qq => ul.append(el('li', {}, qq))); f.append(ul); }
   return el('div', {class: 'ins'}, f);
 }
 

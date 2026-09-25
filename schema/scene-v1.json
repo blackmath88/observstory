@@ -112,6 +112,13 @@
         "work_items",
         "areas"
       ]
+    },
+    "coordination": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Mission rail (issue #7): declared sessions, gates and commitments with observed state, and declared-vs-observed cues. Null when the repository declares nothing."
     }
   },
   "$defs": {
@@ -403,7 +410,8 @@
           "enum": [
             "overlap",
             "waiting",
-            "stale"
+            "stale",
+            "declared"
           ]
         },
         "target": {

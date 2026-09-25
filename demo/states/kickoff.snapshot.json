@@ -1,0 +1,493 @@
+{
+ "schema": "observstory.snapshot/v1",
+ "generated_at": "2026-10-02T19:00:00Z",
+ "trigger": {
+  "event": "demo-lab"
+ },
+ "repository": {
+  "full_name": "northstar/voice-notes",
+  "url": null,
+  "default_branch": "main",
+  "visibility": "public",
+  "description": "Synthetic demo repository"
+ },
+ "window": {
+  "hours": 48,
+  "since": "2026-09-30T19:00:00Z"
+ },
+ "config": {
+  "source": "file",
+  "lanes_source": "config",
+  "title": "Voice notes hackathon (synthetic demo)",
+  "signals": {
+   "overlap_min_work_items": 2,
+   "stale_hours": 72,
+   "burst_min_commits": 8,
+   "burst_window_minutes": 30,
+   "overlap_require_shared_file": true
+  },
+  "ignore": [
+   "package-lock.json",
+   "yarn.lock",
+   "pnpm-lock.yaml",
+   "poetry.lock",
+   "Cargo.lock",
+   "go.sum",
+   "uv.lock",
+   "Gemfile.lock",
+   "composer.lock",
+   "dist/",
+   "build/",
+   "node_modules/",
+   "vendor/",
+   "*.min.js",
+   "*.min.css",
+   "*.map",
+   "CHANGELOG*",
+   ".changeset/",
+   "*.api.md",
+   "/observstory/"
+  ],
+  "containers": [
+   "src",
+   "packages",
+   "apps",
+   "services",
+   "lib",
+   "libs",
+   "app",
+   "modules",
+   "crates",
+   "internal",
+   "cmd"
+  ],
+  "area_depth": 1
+ },
+ "summary": {
+  "in_flight": 0,
+  "areas_active": 2,
+  "commits_in_window": 2,
+  "open_issues": 0,
+  "signals": {
+   "overlap": 0,
+   "stale": 0,
+   "waiting": 0,
+   "burst": 0
+  }
+ },
+ "lanes": [
+  {
+   "id": "intent",
+   "label": "Intent",
+   "description": "Pitch and decisions",
+   "source": "config",
+   "areas": [
+    "README.md"
+   ],
+   "in_flight": [
+    "direct:alice"
+   ],
+   "recent_commits": 1
+  },
+  {
+   "id": "core",
+   "label": "Core",
+   "description": "Audio, transcription, core API",
+   "source": "config",
+   "areas": [
+    "src/core"
+   ],
+   "in_flight": [
+    "direct:ben"
+   ],
+   "recent_commits": 1
+  },
+  {
+   "id": "interface",
+   "label": "Interface",
+   "description": "Recorder UI",
+   "source": "config",
+   "areas": [],
+   "in_flight": [],
+   "recent_commits": 0
+  },
+  {
+   "id": "verify",
+   "label": "Verify",
+   "description": "Evaluation",
+   "source": "config",
+   "areas": [],
+   "in_flight": [],
+   "recent_commits": 0
+  }
+ ],
+ "areas": [
+  {
+   "id": "README.md",
+   "lane": "intent",
+   "in_flight": [
+    "direct:alice"
+   ],
+   "files": [
+    "README.md"
+   ],
+   "recent_commits": 1,
+   "actors": [
+    "alice"
+   ],
+   "last_activity_at": "2026-10-01T22:00:00Z"
+  },
+  {
+   "id": "src/core",
+   "lane": "core",
+   "in_flight": [
+    "direct:ben"
+   ],
+   "files": [
+    "src/core/api.py"
+   ],
+   "recent_commits": 1,
+   "actors": [
+    "ben"
+   ],
+   "last_activity_at": "2026-10-02T16:00:00Z"
+  }
+ ],
+ "work_items": [
+  {
+   "id": "direct:ben",
+   "kind": "direct",
+   "number": null,
+   "title": "Direct pushes to main",
+   "url": null,
+   "state": "pushed",
+   "in_flight": false,
+   "head": "main",
+   "base": null,
+   "actors": [
+    "ben"
+   ],
+   "created_at": null,
+   "last_activity_at": "2026-10-02T16:00:00Z",
+   "paths": [
+    "src/core/api.py"
+   ],
+   "areas": [
+    "src/core"
+   ],
+   "lanes": [
+    "core"
+   ],
+   "commit_count": 1,
+   "review_state": null,
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": null
+  },
+  {
+   "id": "direct:alice",
+   "kind": "direct",
+   "number": null,
+   "title": "Direct pushes to main",
+   "url": null,
+   "state": "pushed",
+   "in_flight": false,
+   "head": "main",
+   "base": null,
+   "actors": [
+    "alice"
+   ],
+   "created_at": null,
+   "last_activity_at": "2026-10-01T22:00:00Z",
+   "paths": [
+    "README.md"
+   ],
+   "areas": [
+    "README.md"
+   ],
+   "lanes": [
+    "intent"
+   ],
+   "commit_count": 1,
+   "review_state": null,
+   "waiting_on": [],
+   "agent_declared": false,
+   "burst": null,
+   "merge_base": null
+  }
+ ],
+ "commits": [
+  {
+   "sha": "7fd4b0deef4ca017eafcb089828710247ca6773d",
+   "url": null,
+   "message": "Core API skeleton",
+   "date": "2026-10-02T16:00:00Z",
+   "actor": "ben",
+   "paths": [
+    "src/core/api.py"
+   ],
+   "areas": [
+    "src/core"
+   ],
+   "work_item": "direct:ben"
+  },
+  {
+   "sha": "72cc2bd91ad7b721c30bb8168b85de61b218c4ad",
+   "url": null,
+   "message": "Pitch and plan",
+   "date": "2026-10-01T22:00:00Z",
+   "actor": "alice",
+   "paths": [
+    "README.md"
+   ],
+   "areas": [
+    "README.md"
+   ],
+   "work_item": "direct:alice"
+  }
+ ],
+ "issues": [],
+ "actors": [
+  {
+   "id": "alice",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "direct:alice"
+   ]
+  },
+  {
+   "id": "ben",
+   "kind": "human",
+   "linked": true,
+   "work_items": [
+    "direct:ben"
+   ]
+  }
+ ],
+ "signals": [],
+ "coordination": {
+  "source": ".observstory/coordination.json",
+  "now": "2026-10-02T19:00:00Z",
+  "proposed_pending": 0,
+  "sessions": [
+   {
+    "id": "S1",
+    "kind": "kickoff",
+    "label": "Kickoff",
+    "at": "2026-10-02T18:30:00Z",
+    "recorded": false,
+    "open_questions": [
+     "do we need speaker labels for the demo"
+    ]
+   }
+  ],
+  "gates": [
+   {
+    "id": "G1",
+    "status": "declared",
+    "confirmed_by": "Alice",
+    "confirmed_at": "2026-10-02T18:48:00Z",
+    "kind": "checkpoint",
+    "label": "Skeleton demo",
+    "at": "2026-10-03T00:00:00Z",
+    "areas": [],
+    "source": {
+     "session": "S1",
+     "extractor": "markers/v1",
+     "line": 2,
+     "excerpt": "- CHECKPOINT Skeleton demo at 00:00"
+    },
+    "passed": false,
+    "next": true
+   },
+   {
+    "id": "G2",
+    "status": "declared",
+    "confirmed_by": "Alice",
+    "confirmed_at": "2026-10-02T18:48:00Z",
+    "kind": "freeze",
+    "label": "Freeze src/core/",
+    "at": "2026-10-03T12:00:00Z",
+    "areas": [
+     "src/core/"
+    ],
+    "source": {
+     "session": "S1",
+     "extractor": "markers/v1",
+     "line": 3,
+     "excerpt": "- FREEZE src/core/ at Sat 12:00"
+    },
+    "passed": false,
+    "next": false
+   },
+   {
+    "id": "G3",
+    "status": "declared",
+    "confirmed_by": "Alice",
+    "confirmed_at": "2026-10-02T18:48:00Z",
+    "kind": "freeze",
+    "label": "Freeze web/, src/",
+    "at": "2026-10-03T22:00:00Z",
+    "areas": [
+     "web/",
+     "src/"
+    ],
+    "source": {
+     "session": "S1",
+     "extractor": "markers/v1",
+     "line": 4,
+     "excerpt": "- FREEZE web/, src/ at Sat 22:00"
+    },
+    "passed": false,
+    "next": false
+   },
+   {
+    "id": "G4",
+    "status": "declared",
+    "confirmed_by": "Alice",
+    "confirmed_at": "2026-10-02T18:48:00Z",
+    "kind": "submission",
+    "label": "Submission",
+    "at": "2026-10-04T06:00:00Z",
+    "areas": [],
+    "source": {
+     "session": "S1",
+     "extractor": "markers/v1",
+     "line": 5,
+     "excerpt": "- SUBMISSION at Sun 06:00"
+    },
+    "passed": false,
+    "next": false
+   }
+  ],
+  "commitments": [
+   {
+    "id": "C1",
+    "status": "declared",
+    "confirmed_by": "Alice",
+    "confirmed_at": "2026-10-02T18:48:00Z",
+    "text": "audio capture pipeline",
+    "owner": "Alice",
+    "due": "2026-10-03T10:00:00Z",
+    "links": [
+     {
+      "kind": "path",
+      "ref": "src/audio/"
+     }
+    ],
+    "source": {
+     "session": "S1",
+     "extractor": "markers/v1",
+     "line": 6,
+     "excerpt": "- @Alice: audio capture pipeline (by Sat 10:00) [src/audio/]"
+    },
+    "state": "not_started",
+    "matched": [],
+    "cue": null
+   },
+   {
+    "id": "C2",
+    "status": "declared",
+    "confirmed_by": "Alice",
+    "confirmed_at": "2026-10-02T18:48:00Z",
+    "text": "transcription adapter",
+    "owner": "Ben",
+    "due": "2026-10-03T12:00:00Z",
+    "links": [
+     {
+      "kind": "path",
+      "ref": "src/transcribe/"
+     }
+    ],
+    "source": {
+     "session": "S1",
+     "extractor": "markers/v1",
+     "line": 7,
+     "excerpt": "- @Ben: transcription adapter (by Sat 12:00) [src/transcribe/]"
+    },
+    "state": "not_started",
+    "matched": [],
+    "cue": null
+   },
+   {
+    "id": "C3",
+    "status": "declared",
+    "confirmed_by": "Alice",
+    "confirmed_at": "2026-10-02T18:48:00Z",
+    "text": "recorder UI",
+    "owner": "Sofia",
+    "due": "2026-10-03T14:00:00Z",
+    "links": [
+     {
+      "kind": "path",
+      "ref": "web/recorder/"
+     }
+    ],
+    "source": {
+     "session": "S1",
+     "extractor": "markers/v1",
+     "line": 8,
+     "excerpt": "- @Sofia: recorder UI (by Sat 14:00) [web/recorder/]"
+    },
+    "state": "not_started",
+    "matched": [],
+    "cue": null
+   },
+   {
+    "id": "C4",
+    "status": "declared",
+    "confirmed_by": "Alice",
+    "confirmed_at": "2026-10-02T18:48:00Z",
+    "text": "evaluation set for transcription accuracy",
+    "owner": "Dana",
+    "due": "2026-10-03T16:00:00Z",
+    "links": [
+     {
+      "kind": "path",
+      "ref": "evals/"
+     }
+    ],
+    "source": {
+     "session": "S1",
+     "extractor": "markers/v1",
+     "line": 9,
+     "excerpt": "- @Dana: evaluation set for transcription accuracy (by Sat 16:00) [evals/]"
+    },
+    "state": "not_started",
+    "matched": [],
+    "cue": null
+   }
+  ],
+  "decisions": [
+   {
+    "id": "D1",
+    "status": "declared",
+    "confirmed_by": "Alice",
+    "confirmed_at": "2026-10-02T18:48:00Z",
+    "text": "everything runs locally, no cloud speech-to-text",
+    "areas": [
+     "src/transcribe/"
+    ],
+    "source": {
+     "session": "S1",
+     "extractor": "markers/v1",
+     "line": 10,
+     "excerpt": "- DECISION: everything runs locally, no cloud speech-to-text [src/transcribe/]"
+    },
+    "changed_after": []
+   }
+  ],
+  "cues": []
+ },
+ "provenance": {
+  "source": "synthetic (Demo Lab)",
+  "collector": "blackmath88/observstory",
+  "collector_version": "1.0.0",
+  "observations_fetched_at": "2026-10-02T19:00:00Z",
+  "api_calls": 0,
+  "rate_limit_remaining": null,
+  "degraded": []
+ }
+}
