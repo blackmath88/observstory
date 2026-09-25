@@ -81,6 +81,10 @@ Every signal carries `basis`, `confidence`, `evidence[]` (with GitHub URLs) and 
 its parameters. **Observed, derived and inferred are never mixed up.** See
 [observable-signals.md](docs/discovery/observable-signals.md).
 
+## Product vision
+
+Observstory is also an experiment in **semantic UI compilation**: typed project state is compiled into task-specific, evidence-backed projections rather than rendered through one fixed dashboard. See [`docs/vision-semantic-ui-compiler.md`](docs/vision-semantic-ui-compiler.md).
+
 ## How it works
 
 ```text
