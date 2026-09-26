@@ -151,3 +151,30 @@ or webhook handling. The MCP server is a thin adapter over `query.py` reading a 
   fields on actors.
 - The hosted service (v2) should use least-privilege App permissions (metadata, contents: read,
   pull requests: read, issues: read) and configurable retention.
+
+
+## Weavr as an orchestration consumer
+
+Observstory may be consumed by orchestration systems such as Weavr without changing its product boundary.
+
+The contract stays:
+
+```text
+GitHub → observations → observstory.snapshot/v1
+```
+
+A Weavr integration reads the snapshot and compiles orchestration policy from it. Observstory does **not** gain provider routing, mission scheduling, coding-agent control, or merge policy.
+
+The responsibility split is:
+
+```text
+Observstory observes
+        ↓
+typed snapshot + evidence
+        ↓
+Weavr decides
+        ↓
+agents / runners act
+```
+
+See [docs/integrations/weavr.md](docs/integrations/weavr.md).
