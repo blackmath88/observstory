@@ -134,6 +134,20 @@ A cue such as *"Freeze src/core/ at 12:00: src/core/ changed afterwards in #12"*
 people. Nothing is recorded or transcribed, and nothing extracted counts until a person confirms
 it. Without the file, nothing changes. Guide: [docs/collaboration-delivery](docs/collaboration-delivery/README.md).
 
+## Integration with orchestration systems
+
+Observstory's typed snapshot can be consumed by orchestration systems without making Observstory an orchestrator.
+
+The first documented consumer is Weavr:
+
+```text
+Observstory observes → Weavr decides → agents act
+```
+
+Weavr can use overlap, stale, waiting, burst and declared coordination evidence when compiling safe next actions. The snapshot schema remains owned by Observstory, and Observstory does not perform provider routing or agent control.
+
+See [docs/integrations/weavr.md](docs/integrations/weavr.md).
+
 ## For coding agents
 
 ```bash

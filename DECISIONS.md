@@ -170,3 +170,18 @@ event-triggered runs plus in-flight evidence, and both work inside an Action.
 - Selecting a relation opens whatever collapses its ends.
 **Rejected.** Geometric edge bundling or force layout (unpredictable geometry, against ADR-023, which rejected force-directed layout). Dropping relations from the map (every one stays in "Needs attention" with its evidence).
 **Test.** `tests/test_map.py::test_designed_states_are_below_the_hub_threshold`; `prototypes/project-map/measure-wires.js` for the drawn result.
+
+
+## ADR-034: Orchestrators consume the snapshot; Observstory does not become an orchestrator
+**Context.** Weavr needs project-wide repository coordination evidence while deciding whether agent missions may continue, review, pause or escalate.
+**Decision.** `observstory.snapshot/v1` is the integration boundary. Weavr may consume it and build its own orchestration projection, but no Weavr-specific routing or policy fields are added to the Observstory snapshot.
+**Why.** This preserves ADR-001: the snapshot stays the stable product boundary and Observstory remains about evidence-backed project state.
+**Consequence.** Observstory owns claims such as overlap/stale/waiting/burst and their provenance. Weavr owns the consequence of those claims under mission/autonomy policy.
+
+## ADR-035: Preserve basis and provenance when orchestration consumes signals
+**Decision.** Consumers such as Weavr must preserve signal IDs, basis, confidence, evidence references, freshness and degraded collection state when those signals influence an orchestration decision.
+**Why.** A heuristic cannot become an unqualified fact merely because it crossed a product boundary, and decisions must remain auditable.
+
+## ADR-036: No agent/provider performance scoring in Observstory
+**Decision.** Weavr may evaluate its own runs/providers using references to Observstory conditions, but Observstory will not add agent rankings, provider scores, or per-person performance metrics.
+**Why.** That would violate the existing repository-observability and anti-surveillance boundary.
