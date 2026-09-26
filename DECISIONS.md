@@ -160,3 +160,13 @@ event-triggered runs plus in-flight evidence, and both work inside an Action.
 **Decision.** When declarations exist, a single rail (NOW, check-ins, gates, commitment due times) is drawn above the lanes. Declared cues are in their own "Declared vs observed" section of the attention column. Gates and commitments open in the same inspector, with the declared side above the observed side.
 **Why.** Next-gate awareness must be visible in under 10 seconds (Develop comparison), and a tab hides it. Drawing declarations inside lane cards would mix declared and observed (principle 1).
 **Details.** The rail only exists when `.observstory/coordination.json` does, so zero-config maps don't change. Only a count of proposed items is shown, with the command that confirms them. Label collisions near NOW or a gate are resolved in the renderer (the NOW label flips below the line; a check-in label near a gate is shown on hover only).
+
+## ADR-033: A connector is drawn only when it can be read
+**Context.** On real repositories (the playground's real states), overlap connectors fanned out of dense cards: up to 13 met at one point on uv. Two causes were measured. A card inside a closed "N more" still reports a layout box in current Chromium, so lines ran to invisible cards. And hubs: one change overlapping many others.
+**Decision.** This is a renderer-only rule; the scene and signals don't change.
+- Anchors inside a closed `<details>` use its summary.
+- A card with more than 3 relations shows `×N`, and its connectors are drawn when it or one of its relations is selected.
+- Relations with a collapsed end are counted on the summary when they stay within one area. Across areas, they're bundled into one dashed line per pair of visible anchors.
+- Selecting a relation opens whatever collapses its ends.
+**Rejected.** Geometric edge bundling or force layout (unpredictable geometry, against ADR-023, which rejected force-directed layout). Dropping relations from the map (every one stays in "Needs attention" with its evidence).
+**Test.** `tests/test_map.py::test_designed_states_are_below_the_hub_threshold`; `prototypes/project-map/measure-wires.js` for the drawn result.

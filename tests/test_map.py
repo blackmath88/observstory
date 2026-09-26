@@ -145,6 +145,23 @@ class Renderer(unittest.TestCase):
         self.assertIn("@media (max-width:760px)", page)
         self.assertIn("prefers-reduced-motion", page)
 
+    def test_dense_maps_keep_connectors_readable(self):
+        page = render_map(compile_scene(snapshot("e1-same-subsystem")))
+        self.assertIn("const HUB = 3", page)                        # busy cards get a count, lines on selection
+        self.assertIn("details:not([open])", page)                  # collapsed cards anchor on their summary
+        self.assertIn("dataset.bundle", page)                       # lines to collapsed work are bundled
+
+    def test_designed_states_are_below_the_hub_threshold(self):
+        # the rule only changes busy real repositories: every synthetic scene draws exactly what it did before
+        import json
+        from tests.helpers import ROOT
+        for path in list((ROOT / "demo/states").glob("*.scene.json")) + list((ROOT / "demo/playground").glob("[!r]*.scene.json")):
+            scene, degree = json.loads(path.read_text()), {}
+            for e in scene["edges"]:
+                for end in (e["from"], e["to"]):
+                    degree[end] = degree.get(end, 0) + 1
+            self.assertLessEqual(max(degree.values(), default=0), 3, path.name)
+
     def test_no_person_metrics_on_the_page(self):
         page = render_map(scene("m2-crowded-area")).lower()
         for word in ("leaderboard", "productivity", "score", "velocity"):
