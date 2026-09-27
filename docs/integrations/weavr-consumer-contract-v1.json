@@ -1,0 +1,37 @@
+{
+  "schema": "observstory.consumer-expectations/v1",
+  "consumer": "blackmath88/weavr",
+  "provider_contract": "observstory.snapshot/v1",
+  "required_top_level": [
+    "schema",
+    "generated_at",
+    "repository",
+    "signals"
+  ],
+  "required_repository_fields": [
+    "full_name"
+  ],
+  "required_signal_fields": [
+    "id",
+    "type",
+    "basis",
+    "confidence"
+  ],
+  "optional_consumed_fields": [
+    "coordination",
+    "provenance.degraded",
+    "signals[].subject",
+    "signals[].evidence"
+  ],
+  "semantic_expectations": [
+    "signal basis remains one of derived|heuristic|declared",
+    "signal confidence remains one of high|medium|low",
+    "signal ids remain stable evidence references within a snapshot",
+    "heuristic signals are not promoted to observed facts",
+    "no Weavr routing/provider fields are added to the snapshot"
+  ],
+  "compatibility": {
+    "additive_fields": "allowed",
+    "breaking_change": "requires new snapshot schema version or explicit migration"
+  }
+}
