@@ -177,4 +177,4 @@ Weavr decides
 agents / runners act
 ```
 
-See [docs/integrations/weavr.md](docs/integrations/weavr.md).
+See [docs/integrations/weavr.md](docs/integrations/weavr.md). ADR-037 governs cross-repo contract evolution: Observstory owns snapshot semantics/versioning, while consumers own their projections; provider-side fitness tests protect known consumer expectations.
