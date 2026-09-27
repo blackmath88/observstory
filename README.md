@@ -146,7 +146,7 @@ Observstory observes → Weavr decides → agents act
 
 Weavr can use overlap, stale, waiting, burst and declared coordination evidence when compiling safe next actions. The snapshot schema remains owned by Observstory, and Observstory does not perform provider routing or agent control.
 
-See [docs/integrations/weavr.md](docs/integrations/weavr.md).
+See [docs/integrations/weavr.md](docs/integrations/weavr.md). The integration uses producer-owned schema versioning plus consumer-contract fitness tests so the boundary cannot drift silently.
 
 ## For coding agents
 

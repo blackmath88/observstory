@@ -185,3 +185,11 @@ event-triggered runs plus in-flight evidence, and both work inside an Action.
 ## ADR-036: No agent/provider performance scoring in Observstory
 **Decision.** Weavr may evaluate its own runs/providers using references to Observstory conditions, but Observstory will not add agent rankings, provider scores, or per-person performance metrics.
 **Why.** That would violate the existing repository-observability and anti-surveillance boundary.
+
+## ADR-037: Cross-repo contracts are producer-owned; consumer expectations are explicit
+**Context.** Weavr consumes `observstory.snapshot/v1`. The integration can drift if Observstory changes semantics unnoticed or if Weavr starts depending on producer internals.
+**Decision.** Observstory owns the producer contract, schema versioning and signal semantics. Consumers own their projections and orchestration consequences. Known consumer expectations may be mirrored into Observstory as a narrow manifest and enforced by provider-side contract fitness tests.
+**Why.** ADRs preserve why each side owns its boundary; the schema and tests protect the machine seam. This avoids copying one shared ADR across repositories while still making compatibility obligations visible.
+**Compatibility.** Additive fields are allowed. Removing/changing a field or semantic guarantee listed in a known-consumer contract requires a new snapshot schema version or an explicit coordinated migration.
+**Known consumer.** Weavr expectations are recorded in `docs/integrations/weavr-consumer-contract-v1.json`. Weavr owns its consumer-side ADR and orchestration policy.
+**Rejected.** A shared ADR file copied into both repositories: it creates two competing histories. A Pact broker or service-contract platform: too heavy for the current local JSON/file boundary.

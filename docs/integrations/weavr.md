@@ -172,3 +172,57 @@ Later delivery options may include:
 - REST from a hosted Observstory service.
 
 Those are transport choices. The snapshot remains the product boundary.
+
+
+## Architecture governance across repositories
+
+The integration uses a federated ADR pattern rather than one duplicated decision record.
+
+```text
+Observstory ADRs
+  explain producer semantics
+        ↓
+observstory.snapshot/v1
+  machine contract
+        ↓
+Weavr ADRs
+  explain consumer expectations and orchestration consequences
+```
+
+Relevant Observstory decisions:
+
+- ADR-001 — the typed snapshot is the product boundary;
+- ADR-034 — Observstory remains an observer, not an orchestrator;
+- ADR-035 — basis/provenance must survive consumption;
+- ADR-036 — agent/provider scoring stays outside Observstory;
+- ADR-037 — producer-owned cross-repo contracts and explicit consumer expectations.
+
+The Weavr repository owns the reciprocal consumer-side ADR.
+
+### Known-consumer expectations
+
+Weavr's current minimum expectations are mirrored in:
+
+```text
+docs/integrations/weavr-consumer-contract-v1.json
+```
+
+This is intentionally narrower than the full snapshot schema. It lists only the fields and semantic guarantees Weavr currently depends on.
+
+Provider-side test:
+
+```text
+tests/test_weavr_contract.py
+```
+
+This acts as an architecture fitness function. A refactor that still validates the full Observstory schema but removes something Weavr relies on should fail this contract test before merge.
+
+### Evolution rule
+
+- additive fields: compatible;
+- new signal types: compatible if consumers ignore unknown types safely;
+- removal/rename/semantic change of a consumed field: breaking;
+- breaking change: new snapshot schema version or coordinated migration;
+- transport changes (file → MCP → REST): not a semantic contract change if the same snapshot semantics are preserved.
+
+ADRs explain why the boundary exists. Schema and contract tests enforce it mechanically.
