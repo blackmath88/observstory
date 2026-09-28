@@ -148,6 +148,8 @@ Weavr can use overlap, stale, waiting, burst and declared coordination evidence 
 
 See [docs/integrations/weavr.md](docs/integrations/weavr.md). The integration uses producer-owned schema versioning plus consumer-contract fitness tests so the boundary cannot drift silently.
 
+For assistants and fresh chats, the standing orientation rule is: **read Observstory first when present, then hand governance/next-action decisions to Weavr**. See [AGENTS.md](AGENTS.md).
+
 ## For coding agents
 
 ```bash
