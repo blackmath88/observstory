@@ -226,3 +226,25 @@ This acts as an architecture fitness function. A refactor that still validates t
 - transport changes (file → MCP → REST): not a semantic contract change if the same snapshot semantics are preserved.
 
 ADRs explain why the boundary exists. Schema and contract tests enforce it mechanically.
+
+
+## Assistant orientation protocol
+
+For assistants entering a repository that has Observstory configured, Observstory should be the first situational picture.
+
+```text
+Observstory snapshot / coordination state
+→ identify relevant work and evidence
+→ inspect repository details only as needed
+→ pass observed state to Weavr when governed work is involved
+→ Weavr compiles legal next action
+→ runtime executes
+```
+
+This is an orientation rule, not an expansion of Observstory authority.
+
+Observstory remains responsible for evidence-backed repository state. Weavr remains responsible for intent, policy, orchestration and authority.
+
+If the snapshot is missing, stale, degraded or insufficient, assistants should inspect the repository directly rather than treating Observstory as a blocker.
+
+The reciprocal fresh-chat contract is owned by Weavr in `docs/CHATGPT-OPERATING-CONTRACT.md`.
