@@ -85,6 +85,23 @@ its parameters. **Observed, derived and inferred are never mixed up.** See
 
 Observstory is also an experiment in **semantic UI compilation**: typed project state is compiled into task-specific, evidence-backed projections rather than rendered through one fixed dashboard. See [`docs/vision-semantic-ui-compiler.md`](docs/vision-semantic-ui-compiler.md).
 
+## Experimental: living System Maps
+
+Observstory now has an experimental `observstory.system-map/v0` module for declared, evidence-aware architecture. The canonical artifact contains semantic nodes, relationships, status, basis and evidence — never layout coordinates.
+
+```text
+architecture/system.json
+        ↓
+System Map compiler
+   ↙             ↘
+Mermaid          interactive HTML
+README/GitHub    inspect · filter · semantic edit
+```
+
+This does **not** change the snapshot boundary: `observstory.snapshot/v1` remains observed repository state, while a System Map is declared/project knowledge. A future layer may reconcile the two without collapsing declared architecture into observed truth.
+
+See [`docs/ui/system-map.md`](docs/ui/system-map.md). XL LAB is the first real consumer.
+
 ## How it works
 
 ```text
