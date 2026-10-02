@@ -176,6 +176,10 @@ Declared, not yet materialized.
 
 Those must remain evidence-backed cues, not assertions that the declared model is correct.
 
+## Interactive example
+
+The repository includes a self-contained XL LAB example at [`demo/system-map.html`](../../demo/system-map.html). It demonstrates status/view filters, evidence inspection, semantic editing and JSON export against the real v0 schema.
+
 ## Product boundary
 
 System Map may help people reason about architecture. It does not:
