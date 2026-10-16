@@ -1,6 +1,16 @@
+<!-- BEGIN public-repo-header -->
+<div align="center">
+
 # Observstory
 
 **Shared situational awareness for AI-assisted software work.**
+
+<a href="https://github.com/blackmath88/observstory"><img alt="Primary language: HTML" src="https://img.shields.io/badge/language-HTML-526078?style=flat"></a>
+<a href="https://github.com/blackmath88/observstory/tree/main/docs"><img alt="Documentation" src="https://img.shields.io/badge/docs-guide-16796f?style=flat"></a>
+<a href="https://github.com/blackmath88/observstory/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/blackmath88/observstory?style=flat&amp;color=737373"></a>
+
+</div>
+<!-- END public-repo-header -->
 
 When several people, each with their own coding agents, build in parallel, the work moves faster
 than the team's shared picture of it. Overlaps and stalled work are discovered at merge time.
