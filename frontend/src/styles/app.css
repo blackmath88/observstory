@@ -854,17 +854,19 @@ summary:focus-visible {
   grid-template-columns: 52% 48%;
   font-size: 10px;
   color: var(--fg-muted);
-  padding: 12px 20px;
+  padding: 12px 0;
   border-bottom: 1px solid var(--border);
   background: #fcfcfd;
 }
-.workstream-axis > div {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
+.timeline-ticks {
+  position: relative;
+  min-height: 15px;
+  margin-left: 12px;
+  margin-right: 24px;
 }
-.workstream-axis > div > span:nth-child(2) {
-  display: none;
+.timeline-tick {
+  position: absolute;
+  white-space: nowrap;
 }
 .workstream-row {
   display: grid;
@@ -928,12 +930,12 @@ summary:focus-visible {
   min-width: 0;
   overflow: hidden;
   padding: 0 24px 0 12px;
-  background: repeating-linear-gradient(90deg, transparent, transparent calc(25% - 1px), #f1f1f5 calc(25% - 1px), #f1f1f5 25%);
 }
 .time-track {
   position: relative;
-  height: 100%;
-  min-height: 100px;
+  height: 48px;
+  min-height: 48px;
+  background: repeating-linear-gradient(90deg, transparent, transparent calc(25% - 1px), #f1f1f5 calc(25% - 1px), #f1f1f5 25%);
 }
 .workspace-now {
   position: absolute;
@@ -943,13 +945,8 @@ summary:focus-visible {
   top: 0;
 }
 .no-date {
-  position: absolute;
-  top: 39%;
-  left: 8px;
   font-size: 11px;
-  color: #686873;
-  background: #fff;
-  padding: 0 6px;
+  color: var(--fg-muted);
 }
 .planned-bar {
   position: absolute;
@@ -958,6 +955,7 @@ summary:focus-visible {
   border: 1.5px solid #007aff;
   border-radius: 4px;
   background: #f2f7ff;
+  padding: 0;
 }
 .observed-point {
   position: absolute;
@@ -966,15 +964,29 @@ summary:focus-visible {
   height: 7px;
   border-radius: 50%;
   background: #0066d6;
+  border: 0;
+  padding: 0;
+  transform: translateX(-50%);
+}
+.time-captions {
+  display: grid;
+  gap: 5px;
+  padding: 3px 0 12px;
 }
 .time-caption {
-  position: absolute;
-  left: 0;
-  top: 64%;
-  font-size: 9px;
+  display: block;
+  text-align: left;
+  font-size: 10px;
+  line-height: 1.5;
   color: var(--fg-muted);
   width: 100%;
   overflow-wrap: anywhere;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+.planned-bar.clipped {
+  border-style: dashed;
 }
 .workstream-children {
   box-shadow: inset 2px 0 var(--exploration);
@@ -1196,6 +1208,64 @@ summary:focus-visible {
   }
 }
 
+.timeline-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  padding: 12px 20px 0;
+}
+.timeline-controls fieldset {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--canvas-subtle);
+}
+.timeline-controls button {
+  border: 0;
+  background: transparent;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 11px;
+}
+.timeline-controls button[aria-pressed="true"] {
+  background: white;
+  color: #0059be;
+  box-shadow: 0 1px 4px #20203012;
+}
+.timeline-controls p {
+  margin: 0;
+  color: var(--fg-muted);
+  font-size: 11px;
+}
+.timeline-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding: 10px 20px 12px;
+  color: var(--fg-muted);
+  font-size: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.timeline-axis-title {
+  padding-left: 20px;
+}
+@media (max-width: 600px) {
+  .timeline-controls {
+    padding: 12px;
+  }
+  .timeline-controls button {
+    min-height: 44px;
+  }
+  .timeline-summary {
+    display: grid;
+    padding: 10px 12px;
+  }
+}
+
 .workspace-detail {
   position: fixed;
   inset: 0 0 0 auto;
@@ -1307,11 +1377,12 @@ summary:focus-visible {
     grid-template-columns: minmax(0, 1fr);
   }
   .row-time {
-    height: 58px;
+    min-height: 80px;
     margin-left: 46px;
   }
   .time-track {
-    min-height: 58px;
+    min-height: 38px;
+    height: 38px;
   }
   .workstream-axis {
     display: none;
@@ -1343,16 +1414,6 @@ summary:focus-visible {
     transition: none;
     scroll-behavior: auto;
   }
-}
-
-.planned-milestone {
-  position: absolute;
-  top: 35%;
-  width: 11px;
-  height: 11px;
-  border: 1.5px solid #007aff;
-  background: #fff;
-  transform: rotate(45deg);
 }
 
 .reveal-notice {

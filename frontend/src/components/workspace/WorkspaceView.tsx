@@ -1,5 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import type { Bundle } from "../../data/types";
+import { useNow } from "../../lib/useNow";
+import {
+  instantPosition,
+  periodPosition,
+  readTimelineRange,
+  recordTiming,
+  type TimelineAxis,
+  type TimelineRange,
+  timelineAxis,
+  timelineTime,
+} from "../../view/timeline";
 import {
   FOCUSES,
   type Focus,
@@ -29,6 +40,8 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
   const [focus, setFocus] = useState(() => readFocus(new URLSearchParams(window.location.hash.split("?")[1]).get("focus")));
   const [query, setQuery] = useState(() => new URLSearchParams(window.location.hash.split("?")[1]).get("q") ?? "");
   const [revealId, setRevealId] = useState(() => new URLSearchParams(window.location.hash.split("?")[1]).get("reveal"));
+  const [range, setRange] = useState(() => readTimelineRange(new URLSearchParams(window.location.hash.split("?")[1]).get("range")));
+  const now = useNow();
   const scope = scopeWorkspace(model, focus, query, revealId);
   const trigger = useRef<HTMLElement | null>(null);
   const lastSelection = useRef(selection);
@@ -49,6 +62,7 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
       setFocus(readFocus(p.get("focus")));
       setQuery(p.get("q") ?? "");
       setRevealId(p.get("reveal"));
+      setRange(readTimelineRange(p.get("range")));
     };
     window.addEventListener("hashchange", sync);
     window.addEventListener("popstate", sync);
@@ -74,7 +88,15 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
     });
     return () => cancelAnimationFrame(frame);
   }, [selection, revealId]);
-  function navigate(item: string | null, view = board, push = true, nextFocus: Focus = focus, nextQuery = query, nextReveal = revealId) {
+  function navigate(
+    item: string | null,
+    view = board,
+    push = true,
+    nextFocus: Focus = focus,
+    nextQuery = query,
+    nextReveal = revealId,
+    nextRange: TimelineRange = range,
+  ) {
     if (view) nextReveal = null;
     const p = new URLSearchParams();
     if (view) p.set("view", "board");
@@ -82,6 +104,7 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
     if (nextFocus !== "all") p.set("focus", nextFocus);
     if (nextQuery) p.set("q", nextQuery);
     if (nextReveal) p.set("reveal", nextReveal);
+    if (nextRange !== "recent") p.set("range", nextRange);
     const hash = `#/${p.size ? `?${p}` : ""}`;
     const drawerReturn = !!item && ((!selection && push) || (!!selection && !!window.history.state?.drawerReturn));
     window.history[push ? "pushState" : "replaceState"]({ workspace: true, drawerReturn }, "", hash);
@@ -90,6 +113,7 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
     setFocus(nextFocus);
     setQuery(nextQuery);
     setRevealId(nextReveal);
+    setRange(nextRange);
   }
   function open(id: string) {
     if (!document.activeElement?.closest("dialog")) trigger.current = document.activeElement as HTMLElement;
@@ -143,13 +167,11 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
       </div>
     );
   }
-  const dated = model.records
-    .flatMap((r) => [r.observed, r.planned?.start, r.planned?.end])
-    .filter((v): v is string => !!v && Number.isFinite(Date.parse(v)));
-  const now = Date.now();
-  const min = Math.min(now - 86400000, ...dated.map(Date.parse));
-  const max = Math.max(now + 86400000, ...dated.map(Date.parse));
-  const axis = { min, max, now };
+  const axis = timelineAxis(
+    model.records.filter((record) => scope.visible.has(record.id)),
+    range,
+    now.getTime(),
+  );
   return (
     <>
       <section className="workspace-mission" aria-labelledby="mission-h">
@@ -278,19 +300,61 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
                 <h2>Workstreams</h2>
                 <span>Stable order · expand for context</span>
               </div>
+              <div className="timeline-controls">
+                <fieldset aria-label="Timeline range">
+                  <button
+                    type="button"
+                    aria-pressed={range === "recent"}
+                    onClick={() => navigate(selection, board, true, focus, query, revealId, "recent")}
+                  >
+                    Recent window
+                  </button>
+                  <button
+                    type="button"
+                    aria-pressed={range === "fit"}
+                    onClick={() => navigate(selection, board, true, focus, query, revealId, "fit")}
+                  >
+                    Fit evidence
+                  </button>
+                </fieldset>
+                <p>
+                  {range === "recent" ? "Last 6 hours · next 2 hours" : "Fits results and containing records, including collapsed members"}
+                </p>
+              </div>
+              <div className="timeline-summary" role="status">
+                <span>
+                  {timelineTime(axis.min)} — {timelineTime(axis.max)} UTC
+                </span>
+                <span>
+                  {axis.dated} dated · {axis.undated} undated{axis.outside ? ` · ${axis.outside} with dates outside this window` : ""}
+                </span>
+                <span>Points: latest recorded activity. Bands: calendar target precision, never work duration.</span>
+                {axis.empty && <span>No dated records. Window is based on the clock.</span>}
+                {axis.clockOutside && <span>Now is {axis.clockOutside} this window.</span>}
+              </div>
               <div className="workstream-axis">
-                <span>Work & context</span>
-                <div>
-                  <span>{new Date(min).toLocaleDateString()}</span>
-                  <span>Planned: outline · observed: point</span>
-                  <span>{new Date(max).toLocaleDateString()}</span>
+                <span className="timeline-axis-title">Work & context · UTC</span>
+                <div className="timeline-ticks">
+                  {axis.ticks.map((tick) => (
+                    <span
+                      key={tick.value}
+                      className="timeline-tick"
+                      style={{
+                        left: `${tick.position}%`,
+                        transform: `translateX(-${tick.position === 0 ? 0 : tick.position === 100 ? 100 : 50}%)`,
+                      }}
+                      title={new Date(tick.value).toISOString()}
+                    >
+                      {tick.label}
+                    </span>
+                  ))}
                 </div>
               </div>
               {model.roots.map((r) => renderRecord(r))}
               {!model.records.length && <p className="box-blank">No workspace records available. Inspect Data sources.</p>}
               <div className="workspace-legend">
                 <span className="legend-now" /> Now <span className="legend-planned" /> Planned target <span className="legend-event" />{" "}
-                Observed activity · never duration
+                Observed activity · never duration · planned bands show calendar precision
               </div>
             </>
           )}
@@ -371,10 +435,12 @@ function RecordRow({
   expanded?: boolean;
   onToggle?: () => void;
   onOpen: (id: string) => void;
-  axis: { min: number; max: number; now: number };
+  axis: TimelineAxis;
 }) {
-  const position = (date: string | number) =>
-    Math.max(0, Math.min(100, (((typeof date === "number" ? date : Date.parse(date)) - axis.min) / (axis.max - axis.min)) * 100));
+  const timing = recordTiming(r);
+  const observed = instantPosition(timing.observed, axis);
+  const planned = periodPosition(timing.planned, axis);
+  const clock = instantPosition(axis.now, axis);
   return (
     <div className={`workstream-row ${selected ? "selected" : ""}`}>
       <div className="row-identity" style={{ paddingLeft: `${16 + Math.min(depth, 5) * 14}px` }}>
@@ -401,30 +467,48 @@ function RecordRow({
       </div>
       <div className="row-time">
         <div className="time-track">
-          <i className="workspace-now" style={{ left: `${position(axis.now)}%` }} />
-          {r.planned ? (
-            <>
-              <span
-                className={r.milestone ? "planned-milestone" : "planned-bar"}
-                style={{
-                  left: `${position(r.planned.start)}%`,
-                  width: `${Math.max(1, position(r.planned.end ?? r.planned.start) - position(r.planned.start))}%`,
-                }}
-              />
-              <span className="time-caption">
-                {r.milestone ? "Milestone target" : "Planned"} {r.planned.start}
-                {r.planned.end ? ` → ${r.planned.end}` : ""} · {r.planned.precision} precision
-              </span>
-            </>
-          ) : (
-            !r.observed && <span className="no-date">No date</span>
+          {clock.position !== null && <i className="workspace-now" aria-hidden="true" style={{ left: `${clock.position}%` }} />}
+          {planned && !planned.outside && (
+            <button
+              type="button"
+              className={`planned-bar ${planned.clipped ? "clipped" : ""}`}
+              style={{ left: `${planned.left}%`, width: `${planned.width}%` }}
+              aria-label={`Inspect planned target for ${r.title}`}
+              onClick={() => onOpen(r.id)}
+            />
+          )}
+          {observed.position !== null && (
+            <button
+              type="button"
+              className="observed-point"
+              style={{ left: `${observed.position}%` }}
+              aria-label={`Inspect observed activity for ${r.title}`}
+              title={r.observed}
+              onClick={() => onOpen(r.id)}
+            />
+          )}
+        </div>
+        <div className="time-captions">
+          {r.planned && (
+            <button type="button" className="time-caption" onClick={() => onOpen(r.id)}>
+              {r.milestone ? "◇ Milestone target" : "Planned target"}: {r.planned.start}
+              {r.planned.end ? ` → ${r.planned.end}` : ""} · {r.planned.precision} precision
+              {planned?.outside
+                ? ` · ${planned.outside === "before" ? "Before" : "After"} window`
+                : planned?.clipped
+                  ? " · Extends beyond window"
+                  : !planned
+                    ? " · Date unavailable"
+                    : ""}
+            </button>
           )}
           {r.observed && (
-            <>
-              <span className="observed-point" style={{ left: `${position(r.observed)}%` }} />
-              <span className="time-caption">Observed {r.observed}</span>
-            </>
+            <button type="button" className="time-caption" onClick={() => onOpen(r.id)} title={r.observed}>
+              Observed {timing.observed === null ? "date unavailable" : `${timelineTime(timing.observed)} UTC`}
+              {observed.outside ? ` · ${observed.outside === "before" ? "Before" : "After"} window` : ""}
+            </button>
           )}
+          {!r.planned && !r.observed && <span className="no-date">No date</span>}
         </div>
       </div>
     </div>

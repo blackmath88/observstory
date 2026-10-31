@@ -154,3 +154,57 @@ was edited. Self-reviewed only. No deployment or preview server is left running.
 Next concrete increment: a useful timeline range control (recent window / fit evidence), with
 hour-level labels where supported, clear out-of-range observations and undated rows retained.
 Do not turn the available latest-activity points into a complete event ledger or durations.
+
+
+## NUC turn 3 — readable, precision-aware timeline
+
+Continues from `f45775c2e163c1b3a097ed2569765f3977cba7d3` on the same stacked draft.
+The existing Overview timeline now has Recent window (last six hours / next two hours) and
+Fit evidence controls. Fit uses available dates for results and containing records, including
+collapsed members. `range=fit` is preserved with filters, view and selection through reload.
+UTC axis ticks expose hours for short ranges and calendar dates for long ranges; the full
+range remains visible on phones. Summaries count dated/undated records and dates outside the
+window. Empty date evidence is explicitly clock-based. A fitted window can omit Now from its
+plot and states when the clock is before/after it; moving the clock never refreshes evidence.
+
+Out-of-range observed timestamps retain labelled captions without fake points at plot edges.
+Partially visible planned targets use clipped/dashed outlines and explicit captions. Planned
+day/month/year targets occupy their whole UTC calendar precision (including the declared end
+period), not a guessed instant or observed duration. Milestones keep a ◇ caption, without a
+midnight/midday diamond implying an exact time. Points and captions open the same shared
+drawer with keyboard access and return focus. Separate caption lines support independent
+planned and observed evidence. Raw timestamp strings remain in titles/the detail drawer.
+
+Real inputs remain the captured Open Presence publication at `b1af012`, not refreshed this
+turn. The implementation filter contains 10 records (9 dated, 1 undated). Screenshots use a
+**controlled browser clock at 2026-10-31T19:30:00Z** for reproducibility, not a live runtime claim.
+`timeline-fit-1440.png`, `timeline-fit-390.png`, `timeline-recent-1440.png` show the actual prebuilt
+release with real inputs. Desktop/phone fit views were visually inspected. A separate test
+clock on 3 November checks old observations outside the recent window; it is not new source data.
+
+Checks:
+
+- Typecheck and lint pass (existing Biome configuration deprecation notice only).
+- `npm test`: 37 pass, one opt-in live-data test skipped. Five new timeline model tests cover
+  calendar/leap-month precision, invalid dates, out-of-range observations without clamping,
+  fit independent of the current clock, unknown dates, independent evidence channels, explicit
+  clipping, stable UTC labels and record immutability.
+- `npm run release`: final static frontend rebuilt into `frontend/release/`, with no project data.
+- Five Python release-packaging checks pass against the final release.
+- Initial targeted browser run: six pass (real timeline and prior reveal behavior); three
+  synthetic reload tests raced Escape before the drawer mounted. One focused test repair waits
+  for the dialog to become visible, then verifies it closes. No product workaround was added.
+- Final command: `OBSERVSTORY_PREBUILT=1 OBSERVSTORY_LIVE_DATA=/tmp/observatory-20261031-live/data npm run e2e -- --grep 'timeline preserves|real Open Presence timeline'`:
+  **6/6 pass** at 390, 768 and 1440px against the final release. Includes future calendar targets,
+  no fabricated milestone/observation points, unknown dates, range persistence through drawer
+  reload and Board/Overview, fit/clock separation, marker keyboard activation/focus restoration,
+  aligned nested tracks, real old-observation captions without edge points, Fit recovery,
+  no real-input browser errors and no page horizontal overflow.
+
+Standalone final release/data copy: `/tmp/observatory-20261031-turn3/preview/` (14 release files
+byte-match `frontend/release/`). Serve only with loopback binding. No server is left running.
+Self-reviewed only; no consumer source, reducer/System Map, schema, accepted decision or human
+review changed. Coordinator report now records consumer pin draft #19 at older producer
+`4d107c6`; that pin needs a separate coordinator update to this PR's new exact head.
+Next increment: useful Board grouping by record kind versus explicit lifecycle, retaining
+Undeclared status and the shared filters/drawer. No task-state inference is needed.

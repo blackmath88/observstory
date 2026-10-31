@@ -84,8 +84,9 @@ paused supporting exploration; it is never shipped as consumer state.
 Without a declaration the view uses selected knowledge in source order plus area groups sorted
 by ID. Area groupings are labelled derived; they never establish conceptual relationships.
 Document status and observed artifact state are retained as evidence, not mapped to lifecycle.
-Undated records stay visible. Timeline points mark observed activity, outlines mark declared
-planned targets, diamonds mark milestone targets; no commit-to-commit duration is inferred.
+Undated records stay visible. Timeline points mark latest observed activity. Outlined calendar
+bands mark declared planned targets at day/month/year precision; milestones retain a ◇ caption
+without inventing an exact time. Bands never describe observed work duration.
 Missing or mismatched inputs are qualified. Board uses an explicit Undeclared column.
 
 Record category filters (Research, Concepts, Planning, Implementation, Other context) use
@@ -99,6 +100,16 @@ Expansion persists locally per data base. View, selection, category and search u
 `#/?view=board&focus=plan&q=checkpoint&item=ws-plan`. Drawer close restores focus and expansion;
 direct selection links and reload work under arbitrary project subpaths. The event clock and
 Data sources remain accessible, and companion classic/replay links are probed as before.
+
+The timeline defaults to a rolling recent window (last six hours / next two hours). **Fit evidence**
+fits available observations and full planned target periods from results and their containing
+records, including collapsed members. `range=fit` in the hash survives reload, drawer and view
+navigation. Axis labels and planned calendar boundaries use UTC so printed dates stay stable;
+raw source timestamps remain in marker/caption titles and the drawer. Targets include their end
+date's entire declared period. Out-of-range dates have explicit Before/After/Extends captions,
+never clamped fake edge events. No dated records falls back to a clearly labelled clock-based
+window. Now is omitted from the plot when outside a fitted range and explicitly qualified.
+The minute-updated clock does not refresh source data or change its freshness.
 
 The shared detail drawer shows root-to-record membership routes and each record's evidence
 basis. Multiple memberships remain separate routes; conceptual relations and filesystem paths
