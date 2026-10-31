@@ -1,7 +1,25 @@
-import type { Bundle, CompanionView, EventSchedule, Knowledge, Scene, Snapshot, SourceName, SourceResult, SourceSpec } from "./types";
+import type {
+  Bundle,
+  CompanionView,
+  EventSchedule,
+  Knowledge,
+  Scene,
+  Snapshot,
+  SourceName,
+  SourceResult,
+  SourceSpec,
+  Workspace,
+} from "./types";
 import { isRecord, validate } from "./validate";
 
 export const SOURCES = {
+  workspace: {
+    name: "workspace",
+    file: "workspace.json",
+    required: false,
+    schemaId: "observstory.workspace/v1",
+    label: "Workspace declaration",
+  },
   snapshot: { name: "snapshot", file: "snapshot.json", required: true, schemaId: "observstory.snapshot/v1", label: "Snapshot" },
   scene: { name: "scene", file: "scene.json", required: true, schemaId: "observstory.scene/v1", label: "Scene" },
   knowledge: {
@@ -78,14 +96,15 @@ export async function loadBundle(
   now = new Date(),
   probe: (url: string) => Promise<Response> = (u) => fetch(u, { method: "HEAD", cache: "no-store" }),
 ): Promise<Bundle> {
-  const [snapshot, scene, knowledge, event, views] = await Promise.all([
+  const [snapshot, scene, knowledge, event, workspace, views] = await Promise.all([
     loadSource<Snapshot>(SOURCES.snapshot, base, fetcher),
     loadSource<Scene>(SOURCES.scene, base, fetcher),
     loadSource<Knowledge>(SOURCES.knowledge, base, fetcher),
     loadSource<EventSchedule>(SOURCES.event, base, fetcher),
+    loadSource<Workspace>(SOURCES.workspace, base, fetcher),
     companionViews(probe),
   ]);
-  return { base, receivedAt: now.toISOString(), views, snapshot, scene, knowledge, event };
+  return { base, receivedAt: now.toISOString(), views, snapshot, scene, knowledge, event, workspace };
 }
 
 /** The activity views need both required sources; everything else degrades per panel. */

@@ -14,3 +14,5 @@ default is `hackathon`.
 
 Real consumer data (for example the BaselHack Open Presence Pages output) is only used locally
 for verification. It is never committed here; development-practice principle 6.
+
+`workspace/` is synthetic: undated research, proposed concept, milestone target, and a paused supporting branch with explicit judgment and resume context. It is separate from real consumer inputs and is not copied into the release.

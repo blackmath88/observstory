@@ -28,9 +28,9 @@ export const Route = createFileRoute("/_app")({
 });
 
 export function problemCount(b: Bundle): number {
-  return (["snapshot", "scene", "knowledge", "event"] as const).filter((k) => {
+  return (["snapshot", "scene", "knowledge", "event", "workspace"] as const).filter((k) => {
     const s = b[k].status;
-    return s !== "ok" && !(s === "missing" && (k === "knowledge" || k === "event"));
+    return s !== "ok" && !(s === "missing" && (k === "knowledge" || k === "event" || k === "workspace"));
   }).length;
 }
 

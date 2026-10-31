@@ -30,6 +30,27 @@ function Sources() {
               <div className="meta">
                 <code>{r.url}</code> · expects <code>{spec.schemaId}</code>
               </div>
+              {r.status === "ok" && (
+                <div className="meta">
+                  {k === "snapshot" && bundle.snapshot.status === "ok" && (
+                    <>
+                      Observed commit: <code>{bundle.snapshot.data.trigger?.sha ?? "unavailable"}</code> · Generated{" "}
+                      {bundle.snapshot.data.generated_at}
+                    </>
+                  )}
+                  {k === "knowledge" && bundle.knowledge.status === "ok" && (
+                    <>
+                      Resolved commit: <code>{bundle.knowledge.data.resolved_commit ?? "unavailable"}</code> · Complete:{" "}
+                      {String(bundle.knowledge.data.complete)} · Diagnostics: {bundle.knowledge.data.diagnostics?.length ?? "unavailable"}
+                    </>
+                  )}
+                  {k === "workspace" && bundle.workspace.status === "ok" && (
+                    <>
+                      Declaration commit: <code>{bundle.workspace.data.source_commit ?? "unavailable"}</code>
+                    </>
+                  )}
+                </div>
+              )}
               <div style={{ marginTop: 6 }}>
                 <SourceStatus result={r} required={spec.required} />
               </div>

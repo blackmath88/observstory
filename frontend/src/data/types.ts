@@ -165,6 +165,8 @@ export interface Knowledge {
   title?: string;
   generated_at: string;
   complete: boolean;
+  resolved_commit?: string;
+  diagnostics?: unknown[];
   records: KnowledgeRecord[];
   selection?: { current_direction?: { state: string; reason?: string; record?: string | null; candidates?: string[] } };
 }
@@ -186,7 +188,27 @@ export interface EventSchedule {
   }[];
 }
 
-export type SourceName = "snapshot" | "scene" | "knowledge" | "event";
+export interface WorkspaceRecord {
+  milestone?: boolean;
+  id: string;
+  title: string;
+  kind: string;
+  context?: string;
+  status?: string;
+  members?: string[];
+  sources?: string[];
+  attention?: string;
+  resume?: { stopping_point: string; next_action: string };
+  planned?: { start: string; end?: string; precision: "day" | "month" | "year" };
+}
+export interface Workspace {
+  schema: "observstory.workspace/v1";
+  source_commit?: string;
+  records: WorkspaceRecord[];
+  relations: { from: string; to: string; type: string }[];
+}
+
+export type SourceName = "snapshot" | "scene" | "knowledge" | "event" | "workspace";
 
 export interface SourceSpec<T> {
   name: SourceName;
@@ -222,4 +244,5 @@ export interface Bundle {
   scene: SourceResult<Scene>;
   knowledge: SourceResult<Knowledge>;
   event: SourceResult<EventSchedule>;
+  workspace: SourceResult<Workspace>;
 }

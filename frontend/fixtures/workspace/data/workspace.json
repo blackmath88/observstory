@@ -1,0 +1,55 @@
+{
+  "schema": "observstory.workspace/v1",
+  "records": [
+    {
+      "id": "mission",
+      "title": "Synthetic \u00b7 knowledge workspace",
+      "kind": "workstream",
+      "members": [
+        "research",
+        "concept",
+        "plan",
+        "branch"
+      ]
+    },
+    {
+      "id": "research",
+      "title": "Undated research",
+      "kind": "research"
+    },
+    {
+      "id": "concept",
+      "title": "Proposed concept",
+      "kind": "concept",
+      "status": "proposed"
+    },
+    {
+      "id": "plan",
+      "title": "Planned checkpoint",
+      "kind": "plan",
+      "planned": {
+        "start": "2026-11-01",
+        "precision": "day"
+      },
+      "milestone": true
+    },
+    {
+      "id": "branch",
+      "title": "Paused supporting exploration",
+      "kind": "support",
+      "status": "paused",
+      "resume": {
+        "stopping_point": "Compared two retrieval methods; relevance remains uncertain.",
+        "next_action": "Inspect the held-out examples, then return the finding to the parent."
+      },
+      "attention": "Choose the evaluation examples before continuing."
+    }
+  ],
+  "relations": [
+    {
+      "from": "branch",
+      "to": "mission",
+      "type": "supports"
+    }
+  ]
+}

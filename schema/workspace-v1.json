@@ -1,0 +1,146 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "observstory.workspace/v1"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "workstream",
+              "research",
+              "concept",
+              "plan",
+              "implementation",
+              "support"
+            ]
+          },
+          "context": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "active",
+              "paused",
+              "blocked",
+              "complete",
+              "proposed"
+            ]
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^https://"
+            }
+          },
+          "attention": {
+            "type": "string"
+          },
+          "resume": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "stopping_point": {
+                "type": "string"
+              },
+              "next_action": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "stopping_point",
+              "next_action"
+            ]
+          },
+          "planned": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "start": {
+                "type": "string"
+              },
+              "end": {
+                "type": "string"
+              },
+              "precision": {
+                "enum": [
+                  "day",
+                  "month",
+                  "year"
+                ]
+              }
+            },
+            "required": [
+              "start",
+              "precision"
+            ]
+          },
+          "milestone": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "kind"
+        ]
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "explores_for",
+              "supports",
+              "spawned_from",
+              "blocks"
+            ]
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "type"
+        ]
+      }
+    },
+    "source_commit": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "records",
+    "relations"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

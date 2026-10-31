@@ -63,6 +63,7 @@ runs:
         OBSERVSTORY_FRONTEND: ${{ inputs.frontend }}
       run: |
         python3 "$GITHUB_ACTION_PATH/scripts/observstory.py" build
+        python3 "$GITHUB_ACTION_PATH/scripts/publish_workspace.py"
         case "$OBSERVSTORY_FRONTEND" in
           classic) ;;
           observatory)
