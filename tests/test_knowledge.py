@@ -7,6 +7,7 @@ import re
 import subprocess
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from observstory import knowledge
 from observstory.knowledge_render import render_knowledge
@@ -81,6 +82,34 @@ class KnowledgeTest(unittest.TestCase):
         self.assertEqual(render_map(scene), render_map(scene, knowledge_href=None))
         self.assertNotIn("project knowledge", render_map(scene))
         self.assertIn('<a href="knowledge.html">project knowledge</a>', render_map(scene, knowledge_href="knowledge.html"))
+
+    def test_action_tracks_stable_ref_but_reads_event_commit(self):
+        from observstory import cli
+        first = self.repo.commit(base_files())
+        self.repo.commit({"CONCEPT.md": CONCEPT_B})
+        with tempfile.TemporaryDirectory() as out:
+            env = {"OBSERVSTORY_KNOWLEDGE": M, "OBSERVSTORY_KNOWLEDGE_REPO": self.repo.path,
+                   "OBSERVSTORY_SHA": first, "OBSERVSTORY_REF": "refs/heads/main"}
+            with patch.dict("os.environ", env):
+                self.assertEqual(cli._build_knowledge(pathlib.Path(out), "fixture/repo"), "knowledge.html")
+            art = json.loads(pathlib.Path(out, "data/knowledge.json").read_text())
+            self.assertEqual(art["requested_ref"], "refs/heads/main")
+            self.assertEqual(art["resolved_commit"], first)
+            expected = self.repo.build(first)
+            self.assertEqual(art["snapshot_id"], expected["snapshot_id"])
+            self.assertEqual(art["sources"], expected["sources"])
+            self.assertEqual(knowledge.artifact_errors(art), [])
+
+    def test_action_without_ref_keeps_pinned_request(self):
+        from observstory import cli
+        first = self.repo.commit(base_files())
+        with tempfile.TemporaryDirectory() as out:
+            env = {"OBSERVSTORY_KNOWLEDGE": M, "OBSERVSTORY_KNOWLEDGE_REPO": self.repo.path,
+                   "OBSERVSTORY_SHA": first, "OBSERVSTORY_REF": ""}
+            with patch.dict("os.environ", env):
+                cli._build_knowledge(pathlib.Path(out), "fixture/repo")
+            art = json.loads(pathlib.Path(out, "data/knowledge.json").read_text())
+            self.assertEqual(art["requested_ref"], first)
 
     def test_disabled_build_writes_no_knowledge_outputs(self):
         from observstory import cli
@@ -245,3 +274,4 @@ class KnowledgeTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
