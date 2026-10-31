@@ -761,3 +761,125 @@ def packet_markdown(p: dict) -> str:
           f"- semantic index: {_md(json.dumps(f['semantic_index'], sort_keys=True))}",
           f"- pre-manifest history: {p['coverage']['pre_manifest_history']}", ""]
     return "\n".join(L)
+
+
+# ---------------------------------------------------------------- UI bundle
+
+TYPE_ORDER = ("concept", "decision", "plan", "question", "research", "module")
+
+
+def _frame(st: dict) -> dict:
+    return {"records": {rid: [r["version"]["version_id"], r["state"]] for rid, r in sorted(st["records"].items())},
+            "relations": sorted(st["relations"]),
+            "direction": st["direction"],
+            "proposals": {pid: p["status"]["state"] for pid, p in sorted(st["proposals"].items())}}
+
+
+def _known_at_frames(view, repository, requested_ref, events):
+    out = {}
+    for t in sorted({e["recorded_at"] for e in events}):
+        st = state_at(view, repository, known_at=t, requested_ref=requested_ref)
+        if st["state"] == "recorded":
+            out[t] = dict(_frame(st), cutoff=st["cutoff"])
+    return out
+
+
+def ui_bundle(view: dict, repository: str, *, requested_ref: str | None = None, packets: list[dict] | None = None,
+              status: dict | None = None, suggested_links: dict | None = None) -> dict:
+    """Everything the Observatory page shows, precomputed by the same reducer the CLI uses. The browser only
+    presents and compares these states; it never folds events itself (one implementation, ADR-026)."""
+    snaps = sorted([s for s in view["snapshots"] if s["repository"] == repository
+                    and (requested_ref is None or s["requested_ref"] == requested_ref)],
+                   key=lambda s: (s["lineage"], s["position"]))
+    head = head_snapshot(view, repository, requested_ref)
+    now = state_at(view, repository, snapshot_id=head["snapshot_id"]) if head else None
+    events = [e for e in view["events"] if e["repository"] == repository]
+    seen: list[str] = []
+    for e in events:
+        if e["type"] in ("record_added",) and e["subject"] not in seen:
+            seen.append(e["subject"])
+    rv = _index(view)["rv"]
+    types = {}
+    for v in view["record_versions"]:
+        if v["repository"] == repository:
+            types.setdefault(v["record"], v["type"])
+    # Stable layout: column by type, row by first-seen order. Positions never move during replay.
+    cols: dict[str, int] = {}
+    layout = {}
+    for rid in seen:
+        t = types.get(rid, "module")
+        c = TYPE_ORDER.index(t) if t in TYPE_ORDER else len(TYPE_ORDER)
+        layout[rid] = {"col": c, "row": cols.get(t, 0)}
+        cols[t] = cols.get(t, 0) + 1
+    replay = []
+    running = []
+    for e in events:
+        running.append(e)
+        if e["type"] in STATE_EVENTS:
+            replay.append({"seq": e["seq"], "frame": _frame(reduce(view, running))})
+    return {
+        "schema": "observstory.memory-ui/v1",
+        "repository": repository, "requested_ref": requested_ref or (head["requested_ref"] if head else None),
+        "generated_at": view.get("generated_at"), "host": view.get("host"),
+        "status": status or {"ingestion": {"state": "not_reported"}, "indexing": view.get("indexing")},
+        "sources": [s for s in view["sources"] if s["repository"] == repository],
+        "head": head,
+        "now": None if now is None else {"frame": _frame(now), "cutoff": now["cutoff"],
+                                          "proposals": {pid: {"proposal": p["proposal"], "status": p["status"]}
+                                                        for pid, p in now["proposals"].items()},
+                                          "coverage_boundaries": now["coverage_boundaries"]},
+        "snapshots": snaps,
+        "snapshot_frames": {s["snapshot_id"]: _frame(state_at(view, repository, snapshot_id=s["snapshot_id"])) for s in snaps},
+        # "system as known at": the head state using only what had been recorded by each recorded_at instant
+        "known_at_frames": _known_at_frames(view, repository, requested_ref, events),
+        "events": events,
+        "replay": replay,
+        "versions": {k: v for k, v in rv.items() if v["repository"] == repository},
+        "relation_versions": {v["relation_id"]: v for v in view["relation_versions"] if v["repository"] == repository},
+        "layout": {"columns": list(TYPE_ORDER), "nodes": layout},
+        "suggested_links": suggested_links or {"state": "unavailable",
+                                               "reason": "no current semantic index generation; only declared links are shown",
+                                               "links": []},
+        "packets": packets or [],
+        "receipts": view.get("receipts", []),
+    }
+
+
+# ---------------------------------------------------------------- write-back helpers and public export
+
+def new_proposal(pid, kind, title, statement, *, author, author_kind, repository, base_commit, evidence,
+                 via=None, packet_id=None, conditions=(), change="none", submitted_at=None) -> dict:
+    import datetime as _dt
+    ev = []
+    for item in evidence:
+        if "/" in item or item.endswith(".md"):
+            ev.append({"path": item})
+        else:
+            rid, _, ver = item.partition("@")
+            ev.append({"record": rid} | ({"version_id": ver} if ver else {}))
+    parts = change.split(":")
+    ch = {"op": "none"}
+    if parts[0] == "set_status" and len(parts) == 3:
+        ch = {"op": "set_status", "target": parts[1], "to": parts[2]}
+    elif parts[0] in ("add_link", "end_link") and len(parts) == 4:
+        ch = {"op": parts[0], "from": parts[1], "rel": parts[2], "to": parts[3]}
+    elif parts[0] != "none":
+        ch = {"op": "invalid:" + change}
+    base = {"repository": repository, "commit": base_commit} | ({"context_packet_id": packet_id} if packet_id else {})
+    return {"schema": PROPOSAL_SCHEMA, "id": pid, "kind": kind, "title": title, "statement": statement,
+            "author": {"name": author, "kind": author_kind} | ({"via": via} if via else {}),
+            "submitted_at": submitted_at or _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "base": base, "evidence": ev, "conditions": list(conditions), "proposed_change": ch}
+
+
+def public_view(view: dict) -> dict:
+    """Only material whose snapshot audience is public; receipts keep ids and hashes but no consumer notes."""
+    keep = {s["snapshot_id"] for s in view["snapshots"] if s.get("audience") == "public"}
+    evs = [e for e in view["events"] if e.get("snapshot_id") in keep or (e["type"] == "coverage_boundary")]
+    used_rv = {x for e in evs for x in (e.get("before"), e.get("after")) if x}
+    return dict(view, snapshots=[s for s in view["snapshots"] if s["snapshot_id"] in keep], events=evs,
+                record_versions=[v for v in view["record_versions"] if v["version_id"] in used_rv],
+                relation_versions=[v for v in view["relation_versions"] if v["relation_version_id"] in used_rv],
+                receipts=[{k: r.get(k) for k in ("receipt_id", "packet_id", "issued_at", "task", "cutoff_commit",
+                                                 "json_sha256", "markdown_sha256")} for r in view.get("receipts", [])],
+                scope={"audience": "public"})
