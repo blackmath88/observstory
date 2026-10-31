@@ -1,5 +1,23 @@
 # Walking Observatory: creature studies
 
+## Study 03 (current): brutalism as anatomy
+
+- Live page: https://claude.ai/artifact/TWaKX6op5eq4oYz48pcHQJ (private to the owner until shared)
+- Source: `study-03.html`. Concept: `CONCEPT-BRUTALIST-OBSERVATORY.md`.
+- A salamander-tortoise drawn at 256×160 art pixels:
+  - board-formed concrete shell plates, with verdigris and copper only on seams and rivets;
+  - a cantilevered collar with ribbon windows;
+  - two curved concrete shells that part like wing cases to reveal a pale lattice telescope;
+  - two low rear fins;
+  - a wide, smiling head with porthole eyes and wooden shutter eyelids.
+- The states animate:
+  - the shells open and close;
+  - the creature rises and walks;
+  - the ribbon windows light up (in a running wave during replay);
+  - the eyes blink, and it breathes while resting.
+- The page includes a state sheet, a silhouette test, and a preview of the brutalist product
+  shell with the ribbon-window lane strip.
+
 ## Study 02 (current)
 
 - Live page: https://claude.ai/artifact/9LrQckWMfSpLbtGGrdS4qS (private to the owner until shared)

@@ -1,0 +1,607 @@
+<title>Brutalist Observatory Creature</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: cast-concrete bench. One stage, a recessed control slab, then the evidence: state sheet, silhouette,
+   the creature inside a brutalist product shell. Deliberately single-theme: concrete at night. */
+:root {
+  color-scheme: dark;
+  --ground: #16171c;     /* concrete in shadow */
+  --slab: #1d1f25;       /* panel */
+  --slab-2: #24272e;     /* raised slab, header */
+  --recess: #121318;     /* recessed window */
+  --joint: #343842;      /* 2px expansion joint */
+  --joint-hi: #454a55;
+  --ink: #e8e4dc;        /* concrete paper */
+  --ink-2: #b4b2ad;
+  --ink-3: #85847f;
+  --lamp: #f0b35a;       /* lit window */
+  --sage: #6fae9a;       /* focus, selection */
+  --signal: #ff9550;     /* reserved: needs a conversation */
+  --label: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "IBM Plex Sans", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+body { background: var(--ground); color: var(--ink); font: 15px/1.55 var(--body); margin: 0; }
+.wrap { max-width: 1260px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 30px; }
+:focus-visible { outline: 2px solid var(--sage); outline-offset: 2px; }
+.lbl { font: 600 13px var(--label); letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); }
+h1 { font: 700 clamp(34px, 5vw, 56px)/0.95 var(--label); letter-spacing: .04em; text-transform: uppercase; margin: 6px 0 0; text-wrap: balance; }
+h2 { font: 700 26px/1 var(--label); letter-spacing: .08em; text-transform: uppercase; margin: 0; }
+.lede { max-width: 70ch; color: var(--ink-2); margin: 10px 0 0; }
+.chamfer { clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%); }
+
+.bench { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 18px; align-items: start; }
+.stage { background: var(--recess); border-top: 2px solid var(--joint); box-shadow: inset 0 3px 0 #0c0d10; padding: 12px; display: grid; gap: 10px; min-width: 0; }
+.stage canvas { display: block; image-rendering: pixelated; max-width: 100%; margin: 0 auto; }
+.caption { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; color: var(--ink-2); font-size: 14px; }
+.caption b { font: 700 18px var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
+.tag { font: 500 12px var(--mono); padding: 1px 8px; border: 1px solid var(--joint-hi); color: var(--ink-2); }
+.tag.signal { border-color: var(--signal); color: var(--signal); }
+
+.panel { background: var(--slab); border-top: 2px solid var(--joint-hi); padding: 16px; display: grid; gap: 16px; }
+.ctl { display: grid; gap: 6px; }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 2px; background: var(--joint); padding: 2px; }
+.seg button { background: var(--recess); color: var(--ink-2); border: 0; padding: 8px 4px; font: 600 14px var(--label); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--slab-2); color: var(--ink); box-shadow: inset 0 -2px 0 var(--lamp); }
+input[type=range] { width: 100%; accent-color: var(--sage); }
+.btn { background: var(--slab-2); color: var(--ink); border: 0; border-top: 1px solid var(--joint-hi); padding: 7px 12px; font: 600 14px var(--label); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.mono { font: 12px var(--mono); color: var(--ink-2); }
+dl.meaning { margin: 0; border-top: 2px solid var(--joint); padding-top: 12px; display: grid; gap: 4px; font-size: 13px; color: var(--ink-2); }
+dl.meaning dt { font: 700 15px var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
+dl.meaning dd { margin: 0 0 6px; }
+
+section { display: grid; gap: 14px; }
+.sec-h { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; border-bottom: 2px solid var(--joint); padding-bottom: 8px; }
+.sec-h p { margin: 0; color: var(--ink-3); font-size: 14px; max-width: 72ch; }
+.sheet { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.cell { background: var(--slab); padding: 10px; display: grid; gap: 8px; min-width: 0; }
+.cell canvas { width: 100%; height: auto; image-rendering: pixelated; display: block; background: var(--recess); }
+.cell b { font: 700 17px var(--label); letter-spacing: .1em; text-transform: uppercase; }
+.cell span { color: var(--ink-3); font-size: 13px; }
+.sil { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; background: #e8e4dc; padding: 16px; color: #16171c; }
+.sil canvas { image-rendering: pixelated; display: block; }
+.sil figcaption { font: 600 12px var(--label); letter-spacing: .14em; text-transform: uppercase; margin-top: 6px; }
+.sil figure { margin: 0; }
+
+/* product shell preview */
+.shell { background: var(--ground); border: 2px solid var(--joint); overflow: hidden; }
+.shell-top { background: var(--slab-2); display: flex; align-items: stretch; gap: 0; box-shadow: 0 4px 0 #0c0d10; position: relative; z-index: 1; margin: 0 -6px; padding: 0 22px; flex-wrap: wrap; }
+.shell-top .brand { font: 700 18px var(--label); letter-spacing: .14em; text-transform: uppercase; padding: 14px 18px 14px 0; border-right: 2px solid var(--joint); }
+.shell-top button { background: none; border: 0; color: var(--ink-2); font: 600 17px var(--label); letter-spacing: .12em; text-transform: uppercase; padding: 14px 16px; cursor: pointer; }
+.shell-top button[aria-current="true"] { color: var(--ink); background: var(--ground); box-shadow: inset 0 2px 0 var(--lamp); }
+.shell-top .snap { margin-left: auto; align-self: center; font: 12px var(--mono); color: var(--ink-3); }
+.shell-body { display: grid; grid-template-columns: 280px minmax(0, 1fr); }
+.shell-side { background: var(--slab); border-right: 2px solid var(--joint); }
+.shell-side canvas { display: block; image-rendering: pixelated; width: 100%; height: auto; background: var(--recess); }
+.shell-side .id { padding: 12px 16px; }
+.shell-side .id b { font: 700 22px var(--label); letter-spacing: .1em; text-transform: uppercase; display: block; }
+.shell-side .id span { color: var(--ink-2); font-size: 13px; }
+.shell-main { padding: 18px; display: grid; gap: 16px; align-content: start; min-width: 0; }
+.ribbon { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; background: #2b2e36; padding: 6px; border-top: 3px solid #3a3e48; box-shadow: 0 3px 0 #0c0d10; }
+.ribbon div { background: var(--recess); box-shadow: inset 0 3px 0 #08090b; padding: 10px 12px; display: grid; gap: 2px; min-width: 0; }
+.ribbon div.lit { background: linear-gradient(#3a2c18, #2a2216); box-shadow: inset 0 3px 0 #1a140c, inset 0 0 0 1px #6a4a22; }
+.ribbon div.attn { box-shadow: inset 0 3px 0 #1a140c, inset 0 0 0 2px var(--signal); }
+.ribbon b { font: 700 16px var(--label); letter-spacing: .14em; text-transform: uppercase; }
+.ribbon .lit b { color: var(--lamp); }
+.ribbon span { font: 12px var(--mono); color: var(--ink-3); }
+.status { background: var(--slab); border-top: 2px solid var(--joint-hi); padding: 14px 16px; display: flex; gap: 16px; align-items: center; }
+.status canvas { image-rendering: pixelated; flex: none; background: var(--recess); }
+.status b { font: 700 20px var(--label); letter-spacing: .08em; text-transform: uppercase; display: block; }
+.status span { color: var(--ink-2); font-size: 14px; }
+.rows { background: var(--recess); box-shadow: inset 0 3px 0 #0b0c0f; }
+.rows div { display: grid; grid-template-columns: 14px 1fr auto; gap: 12px; padding: 11px 14px; border-top: 2px solid var(--ground); font-size: 14px; align-items: center; }
+.rows div:first-child { border-top: 0; }
+.rows i { width: 10px; height: 10px; display: block; background: var(--ink-3); }
+.rows i.sig { background: var(--signal); }
+.rows .r { color: var(--ink-3); font: 12px var(--mono); }
+.note { color: var(--ink-2); font-size: 14px; border-left: 3px solid var(--lamp); padding: 2px 12px; max-width: 80ch; margin: 0; }
+
+@media (max-width: 920px) { .bench { grid-template-columns: 1fr; } .shell-body { grid-template-columns: 1fr; } .ribbon { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="lbl">Observstory · direction D · creature study 03 · north star: brutalism as anatomy</div>
+    <h1>Brutalist Observatory Creature</h1>
+    <p class="lede">A gentle salamander-tortoise whose back is a modern observatory cast in concrete. Two curved concrete shells part like wing cases to reveal a pale lattice telescope; a cantilevered collar carries a ribbon of lit windows; porthole eyes have wooden shutters for eyelids. Copper only in the seams. Drawn by code at 256×160 pixels so every part can move. All project data shown is synthetic.</p>
+  </header>
+
+  <div class="bench">
+    <div class="stage">
+      <canvas id="main" width="768" height="480" aria-label="Animated pixel-art observatory creature"></canvas>
+      <div class="caption" id="caption" aria-live="polite"></div>
+    </div>
+    <div class="panel chamfer" role="group" aria-label="Study controls">
+      <div class="ctl"><span class="lbl">State</span><div class="seg" id="c-state"></div></div>
+      <div class="ctl"><span class="lbl">Sky</span><div class="seg" id="c-sky"></div></div>
+      <div class="ctl"><span class="lbl">Rear fins</span><div class="seg" id="c-fins"></div></div>
+      <div class="ctl"><label class="lbl" for="c-aim">Telescope aim · follows the selected lane</label><input id="c-aim" type="range" min="-30" max="55" step="5" value="30"></div>
+      <div class="row"><button class="btn" id="c-motion" type="button" aria-pressed="true">Motion on</button><span class="mono" id="c-note"></span></div>
+      <dl class="meaning">
+        <dt>Resting</dt><dd>Nothing needs a conversation. Shells closed, eyes shuttered, ribbon windows dim, a sleepy breath.</dd>
+        <dt>Up</dt><dd>An overlap or a wait exists. It rises, the shells part, the telescope lifts, the ribbon lights, the lantern glows.</dd>
+        <dt>Travelling</dt><dd>Replay is playing. It walks, shells half open, the ribbon lights in a running wave, stars trail behind.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-h"><h2>State sheet</h2><p>The same creature, same scale. Posture and the opening of the shells carry the state; the page always says it in words too.</p></div>
+    <div class="sheet" id="sheet"></div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>Silhouette test</h2><p>In black only it must read as a tortoise carrying an observatory, not a castle. Shown at 1× and at 48 pixels wide.</p></div>
+    <div class="sil" id="sil"></div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>In the product shell</h2><p>Brutalism in the UI: recessed slabs, a cantilevered header with tabs cut into it, 2px joints, one chamfer, and the ribbon-window lane strip. Lit means work is in flight; an orange frame means it needs a conversation; every slot says so in words.</p></div>
+    <div class="shell" aria-label="Product shell preview (synthetic data)">
+      <div class="shell-top">
+        <span class="brand">Observatory</span>
+        <button type="button" aria-current="true">Overview</button><button type="button">Sky</button><button type="button">List</button><button type="button">Replay</button>
+        <span class="snap">static snapshot · Sat 26 Oct 18:00 UTC</span>
+      </div>
+      <div class="shell-body">
+        <div class="shell-side"><canvas id="corner" width="280" height="180" aria-hidden="true"></canvas><div class="id"><b>Observatory</b><span>watching synthetic/photo-frame-commons</span></div></div>
+        <div class="shell-main">
+          <div class="ribbon" id="ribbon"></div>
+          <div class="status chamfer"><canvas id="portrait" width="128" height="80" aria-hidden="true"></canvas><div><b id="st-t"></b><span id="st-s"></span></div></div>
+          <div class="rows" id="rows"></div>
+        </div>
+      </div>
+    </div>
+    <p class="note">The creature lives in the corner and in the status card; the rest is plain, recessed, legible. Texture and moss stay in margins and quiet edges, never behind reading surfaces.</p>
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  const W = 256, H = 160, G = 140;
+  const R = {
+    ink: "#151621",
+    concrete: ["#24262d", "#33363e", "#474a52", "#5f6268", "#797b7f", "#95969a", "#b3b3b2", "#cfcdc8"],
+    skin: ["#2b3632", "#3e4c44", "#55665b", "#6f8273", "#8ca08e", "#adbfaa", "#cbd8c4"],
+    verd: ["#1b4642", "#28655d", "#3f8a79", "#69b19b"],
+    copper: ["#7a4733", "#ad6c4b", "#d6966d"],
+    steel: ["#4f5968", "#7a8697", "#a9b4c1", "#d3dae2", "#f2f5f8"],
+    interior: ["#0f1016", "#171922", "#20232e"],
+    lamp: ["#6a3f22", "#b8732f", "#eba64f", "#ffd27f", "#fff1c8"],
+    signal: ["#9a3a19", "#ff9550", "#ffd0a3"],
+    moss: ["#1c3324", "#28482f", "#3c663b", "#5d8a4b", "#8fb465"],
+    wood: ["#2c2422", "#463833", "#64514a", "#857066"],
+    brass: ["#5a4825", "#8f7438", "#c4a457", "#e6cf88"],
+    toe: ["#bfb3a6", "#ddd3c6"],
+    bird: ["#3d3a45", "#6d6875", "#c9c1b8"],
+  };
+  const SKY = {
+    dusk: { sky: ["#141632", "#1b1e42", "#262852", "#383262", "#55416f", "#7f5679", "#a96f80"], cloud: ["#363159", "#53466f", "#7c5b80", "#a9768a", "#cd9596"], mtn: ["#1f2139", "#2b2c4b", "#3b3a5f"], snow: ["#6c6a90", "#9895b8"], meadow: ["#15261d", "#1d3727", "#2a4c31", "#3e653c", "#567e45"], flower: ["#e7c66a", "#c6c0dd", "#d58693"], star: "#efe3c6", shadow: "#0f1b14" },
+    day: { sky: ["#2b5d9e", "#3670b1", "#4a86c2", "#669dd1", "#88b6de", "#b0cfe9", "#d2e4f1"], cloud: ["#9fb0c7", "#c3cfdf", "#e1e8f1", "#f6f8fb", "#ffffff"], mtn: ["#4d6483", "#69809d", "#899eb7"], snow: ["#d9e4ee", "#f5f8fa"], meadow: ["#2d5824", "#3d712e", "#558e38", "#76ab46", "#9cc75a"], flower: ["#f2d14b", "#f3f5f8", "#e0697a"], star: null, shadow: "#294a21" },
+  };
+
+  /* ── kit ── */
+  const BAY = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5].map((v) => (v + 0.5) / 16);
+  const bay = (x, y) => BAY[(x & 3) + ((y & 3) << 2)];
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const CC = new Map();
+  const C = (h) => { let v = CC.get(h); if (v === undefined) { const n = parseInt(h.slice(1), 16); v = (0xff << 24) | ((n & 0xff) << 16) | (n & 0xff00) | ((n >> 16) & 0xff); CC.set(h, v); } return v; };
+  const DITHER = 0.32;
+  function rd(ramp, v, x, y) { const f = clamp(v, 0, 1) * (ramp.length - 1); let i = Math.floor(f); if (f - i > 0.5 + (bay(x, y) - 0.5) * DITHER) i++; return ramp[clamp(i, 0, ramp.length - 1)]; }
+  function hash(x, y, s) { let h = (x * 374761393 + y * 668265263 + s * 2147483647) | 0; h = (h ^ (h >>> 13)) * 1274126177; return ((h ^ (h >>> 16)) >>> 0) / 4294967296; }
+  function mulberry32(seed) { let a = seed >>> 0; return () => { a = (a + 0x6d2b79f5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+  class Buf {
+    constructor(w, h) { this.w = w; this.h = h; this.p = new Uint32Array(w * h); }
+    set(x, y, hex) { x = Math.round(x); y = Math.round(y); if (x < 0 || y < 0 || x >= this.w || y >= this.h) return; this.p[y * this.w + x] = C(hex); }
+    has(x, y) { x = Math.round(x); y = Math.round(y); return x >= 0 && y >= 0 && x < this.w && y < this.h && this.p[y * this.w + x] !== 0; }
+    rect(x, y, w, h, hex) { for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) this.set(x + i, y + j, hex); }
+  }
+  function ell(b, cx, cy, rx, ry, ramp, o = {}) {
+    for (let y = Math.floor(cy - ry); y <= Math.ceil(cy + ry); y++) {
+      if (o.half && y > cy) continue;
+      for (let x = Math.floor(cx - rx); x <= Math.ceil(cx + rx); x++) {
+        const nx = (x + 0.5 - cx) / rx, ny = (y + 0.5 - cy) / ry, d = nx * nx + ny * ny;
+        if (d > 1) continue;
+        const nz = Math.sqrt(1 - d);
+        let v = (o.v0 ?? 0.45) + 0.4 * (-0.55 * nx - 0.62 * ny) + 0.26 * nz - 0.1;
+        if (o.fn) { const r = o.fn(nx, ny, x, y, v); if (r === null) continue; if (typeof r === "string") { b.set(x, y, r); continue; } if (typeof r === "number") v = r; }
+        b.set(x, y, rd(ramp, v, x, y));
+      }
+    }
+  }
+  function seg(b, x0, y0, x1, y1, w, ramp, v0 = 0.5, round = true, w1) {
+    const dx = x1 - x0, dy = y1 - y0, L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L, nx = -uy, ny = ux, lit = nx * -0.6 + ny * -0.8;
+    const ww = Math.max(w, w1 ?? w);
+    for (let py = Math.floor(Math.min(y0, y1) - ww); py <= Math.ceil(Math.max(y0, y1) + ww); py++) for (let px = Math.floor(Math.min(x0, x1) - ww); px <= Math.ceil(Math.max(x0, x1) + ww); px++) {
+      const rx = px + 0.5 - x0, ry = py + 0.5 - y0, t = rx * ux + ry * uy, o = rx * nx + ry * ny;
+      const hw = (w1 == null ? w : lerp(w, w1, clamp(t / L, 0, 1))) / 2;
+      if (Math.abs(o) > hw) continue;
+      if (t < 0 || t > L) { if (!round) continue; const ex = t < 0 ? 0 : L; if (Math.hypot(t - ex, o) > hw) continue; }
+      const k = o / hw;
+      b.set(px, py, rd(ramp, v0 + 0.34 * k * Math.sign(lit || 1) - 0.12 * k * k, px, py));
+    }
+  }
+  function line(b, x0, y0, x1, y1, hex) { const n = Math.max(Math.abs(x1 - x0), Math.abs(y1 - y0), 1); for (let i = 0; i <= n; i++) b.set(x0 + ((x1 - x0) * i) / n, y0 + ((y1 - y0) * i) / n, hex); }
+
+  /* ═══ the creature ═══ */
+  function creature(b, s) {
+    const t = s.t, open = s.open, raise = s.raise, walk = s.state === "travel";
+    const bob = walk ? Math.floor(t / 3) % 2 : (s.state === "rest" && s.motion && t % 46 < 7 ? 1 : 0);
+    const lift = raise * 8;
+    const base = G - 9 - lift + bob;                 // shell rim
+    const scx = 116, srx = 60, sry = 36, sTop = base - sry;
+    const out = {};
+    const phase = t / 3;
+
+    /* far legs and tail (behind) */
+    function leg(lx, far, ph) {
+      const ramp = far ? R.skin.slice(0, 4) : R.skin;
+      if (raise < 0.15) {   // lying: splayed paw on the grass
+        ell(b, lx, G - 3, 8.5, 4.5, ramp, { v0: far ? 0.3 : 0.55 });
+        if (!far) for (let k = 0; k < 4; k++) { b.set(lx + 3 + k * 2, G - 1, R.toe[1]); b.set(lx + 3 + k * 2, G, R.toe[0]); }
+        return;
+      }
+      const lifted = walk ? Math.max(0, Math.sin(ph)) * 3 : 0, sw = walk ? Math.cos(ph) * 2.5 : 0;
+      const top = base - 4, bot = G - lifted;
+      seg(b, lx, top, lx + sw, bot - 3, far ? 10 : 11, ramp, far ? 0.3 : 0.55, true, far ? 8 : 9);
+      for (let j = 0; j < 3; j++) if (!far) line(b, lx - 4 + sw * (j / 3), top + 4 + j * 4, lx + 3 + sw * (j / 3), top + 5 + j * 4, R.skin[2]);   // skin folds
+      ell(b, lx + sw + 1, bot - 2, 6.5, 3.2, ramp, { v0: far ? 0.3 : 0.6 });
+      if (!far) for (let k = 0; k < 3; k++) { b.set(lx + sw + 1 + k * 2.5, bot, R.toe[1]); b.set(lx + sw + 2 + k * 2.5, bot, R.toe[0]); }
+    }
+    leg(scx - 30, true, phase + Math.PI); leg(scx + 40, true, phase);
+    // tail, tapering, with moss along the top
+    const tx0 = scx - srx + 4, ty0 = base - 3;
+    seg(b, tx0, ty0, tx0 - 16, G - 7 + bob, 11, R.skin, 0.5, true, 7);
+    seg(b, tx0 - 16, G - 7 + bob, tx0 - 30, G - 3, 7, R.skin, 0.48, true, 3);
+    for (let i = 0; i < 26; i++) if (hash(i, 3, 7) > 0.55) b.set(tx0 - i, ty0 - 4 + i * 0.25, R.moss[2 + (i % 2)]);
+
+    /* rear fins (dorsal plates), behind the dome */
+    if (s.fins) {
+      const fin = (x0, x1, tipx, tipy, yb) => {
+        for (let y = tipy; y <= yb; y++) {
+          const f = (y - tipy) / (yb - tipy);
+          const xl = lerp(tipx, x0, Math.pow(f, 0.8)), xr = lerp(tipx + 1, x1, Math.pow(f, 1.6));
+          for (let x = Math.floor(xl); x <= Math.ceil(xr); x++) {
+            const k = (x - xl) / Math.max(1, xr - xl);
+            let v = 0.68 - k * 0.42 - f * 0.08;
+            if ((x + y) % 5 === 0 && k > 0.1) v -= 0.08;          // board-form grain
+            b.set(x, y, rd(R.concrete, v, x, y));
+          }
+        }
+        line(b, tipx, tipy, x0, yb, R.concrete[6]);
+      };
+      fin(scx - 46, scx - 30, scx - 52, sTop - 4, sTop + 18);
+      fin(scx - 32, scx - 18, scx - 40, sTop - 16, sTop + 10);
+    }
+
+    /* the shell: board-formed concrete plates, verdigris seams, copper rivets */
+    ell(b, scx, base, srx, sry, R.concrete, {
+      half: true, v0: 0.5, fn: (nx, ny, x, y, v) => {
+        const lat = ny < -0.62 ? 2 : ny < -0.28 ? 1 : 0;
+        const nLon = lat === 2 ? 3 : lat === 1 ? 4 : 5;
+        const off = lat === 1 ? 0.5 : 0;
+        const lonOf = (xx) => Math.floor((Math.asin(clamp((xx + 0.5 - scx) / srx, -1, 1)) / Math.PI + 0.5) * nLon + off);
+        const latOf = (yy) => { const q = (yy + 0.5 - base) / sry; return q < -0.62 ? 2 : q < -0.28 ? 1 : 0; };
+        if (lonOf(x) !== lonOf(x + 1) || latOf(y) !== latOf(y + 1)) return ((x + y) % 4 === 0) ? R.copper[2] : R.verd[1];
+        v += (hash(lonOf(x), lat, 11) - 0.5) * 0.14;              // each plate cast a little differently
+        if (y % 3 === 0) v -= 0.04;                               // board-form lines
+        if (hash(x, y, 5) > 0.99) v -= 0.16;                      // aggregate speckle
+        const mn = hash(Math.floor(x / 6), Math.floor(y / 4), 9) * 0.6 + hash(Math.floor(x / 3), Math.floor(y / 2), 2) * 0.4;
+        if ((ny < -0.7 && mn > 0.45) || mn > 0.86) return rd(R.moss, 0.3 + 0.45 * (-ny) + (hash(x, y, 1) - 0.5) * 0.25, x, y);
+        return v;
+      },
+    });
+    // rain streaks under seams
+    // the rim: a heavy cast lip with a shadowed underside
+    for (let i = -srx - 2; i <= srx + 2; i++) {
+      b.set(scx + i, base, rd(R.concrete, 0.72 - (i + srx) * 0.003, scx + i, base));
+      b.set(scx + i, base + 1, rd(R.concrete, 0.45 - (i + srx) * 0.002, scx + i, base + 1));
+      b.set(scx + i, base + 2, R.concrete[1]);
+      b.set(scx + i, base + 3, R.ink);
+    }
+
+    /* the collar: cantilevered saucer ring with ribbon windows */
+    const ccx = scx - 6, cY = sTop + 5, crx = 31, cry = 5;
+    ell(b, ccx, cY - 6, crx, cry, R.concrete, { v0: 0.78 });                       // top face
+    for (let x = ccx - crx; x <= ccx + crx; x++) {
+      const dx = (x - ccx) / crx, front = Math.sqrt(Math.max(0, 1 - dx * dx)) * cry;
+      for (let j = 0; j < 7; j++) {
+        const y = Math.round(cY - 6 + front + j);
+        let v = 0.58 - dx * 0.25 - j * 0.03;
+        b.set(x, y, rd(R.concrete, v, x, y));
+      }
+      b.set(x, Math.round(cY + 1 + front), R.ink);                                // cantilever shadow line
+    }
+    // ribbon windows: lit by state
+    const nWin = 8;
+    for (let k = 0; k < nWin; k++) {
+      const x = ccx - crx + 4 + k * 7.4, dx = (x + 2 - ccx) / crx, front = Math.sqrt(Math.max(0, 1 - dx * dx)) * cry;
+      const y = Math.round(cY - 6 + front + 2);
+      let lit = s.ribbon;
+      if (walk) lit = ((Math.floor(t / 2) - k) % nWin + nWin) % nWin < 3 ? 1 : 0.15;
+      const glow = lit > 0.6 ? R.lamp[3] : lit > 0.3 ? R.lamp[2] : R.lamp[0];
+      b.rect(x, y, 4, 3, glow);
+      if (lit > 0.6) b.set(x + 1, y, R.lamp[4]);
+      b.set(x + 4, y, R.concrete[6]); b.set(x + 4, y + 1, R.concrete[5]); b.set(x + 4, y + 2, R.concrete[4]);   // pilaster
+    }
+
+    /* the dome: interior, truss telescope, then two concrete shells that part */
+    const dcx = ccx, dcy = cY - 8, drx = 23, dry = 22;
+    const gap = open * 3, slide = open * 7;
+    ell(b, dcx, dcy, drx - 1, dry - 1, R.interior, { half: true, v0: 0.5, fn: (nx, ny, x, y, v) => (((x + y) % 6 === 0 || (x - y) % 6 === 0) && ny < -0.2 ? R.interior[2] : v) });
+    // truss telescope on a fork mount
+    if (open > 0.05) {
+      const a = (s.aim * Math.PI) / 180 * open;
+      const px = dcx, py = dcy - 4;
+      const ux = Math.sin(a), uy = -Math.cos(a), nx = -uy, ny = ux;
+      const L = 10 + 22 * open;
+      seg(b, px - 7, py + 6, px - 7, py - 1, 2.5, R.steel, 0.4, false); seg(b, px + 7, py + 6, px + 7, py - 1, 2.5, R.steel, 0.35, false);   // fork
+      b.rect(px - 8, py + 5, 17, 2, R.steel[1]);
+      const P = (tt, side, wv) => [px + ux * tt + nx * side * wv, py + uy * tt + ny * side * wv];
+      const wA = 5.5, wB = 4.2;
+      for (const side of [-1, 1]) { const [x0, y0] = P(0, side, wA), [x1, y1] = P(L, side, wB); seg(b, x0, y0, x1, y1, 1.6, R.steel, 0.75, false); }
+      const nseg = 4;
+      for (let k = 0; k < nseg; k++) {
+        const t0 = (k / nseg) * L, t1 = ((k + 1) / nseg) * L, w0 = lerp(wA, wB, k / nseg), w1 = lerp(wA, wB, (k + 1) / nseg);
+        const [ax, ay] = P(t0, k % 2 ? 1 : -1, w0), [bx, by] = P(t1, k % 2 ? -1 : 1, w1);
+        line(b, ax, ay, bx, by, R.steel[2]);
+      }
+      // mirror cell and top ring
+      const [m0x, m0y] = P(0, -1, wA + 1), [m1x, m1y] = P(0, 1, wA + 1);
+      seg(b, m0x, m0y, m1x, m1y, 3.4, R.steel, 0.5, false);
+      const [mx, my] = P(1.2, 0, 0); b.set(mx, my, "#bcd6f0"); b.set(mx - nx * 2, my - ny * 2, "#9fbfe0"); b.set(mx + nx * 2, my + ny * 2, "#e8f3ff");
+      const [r0x, r0y] = P(L, -1, wB + 0.8), [r1x, r1y] = P(L, 1, wB + 0.8);
+      seg(b, r0x, r0y, r1x, r1y, 2.6, R.steel, 0.7, false);
+      out.tip = P(L, 0, 0);
+    }
+    // the two shells
+    const shell = (side) => {
+      const off = side * slide;
+      ell(b, dcx + off, dcy, drx, dry + open * 2, R.concrete, {
+        half: true, v0: 0.56, fn: (nx, ny, x, y, v) => {
+          const dx = x + 0.5 - (dcx + off);
+          if (side < 0 ? dx > -gap : dx < gap) return null;            // this shell's half only
+          const edge = side < 0 ? dx > -gap - 2 : dx < gap + 2;
+          if (edge) return rd(R.concrete, 0.82 - (y - (dcy - dry)) * 0.004, x, y);   // cut face: shows the shell's thickness
+          // curved board-form lines following the meridians
+          const mer = Math.round(nx * 9);
+          const merR = Math.round(((x + 1.5 - (dcx + off)) / drx) * 9);
+          if (mer !== merR && ny < -0.15) v -= 0.07;
+          if (Math.abs(ny + 0.42) < 0.035) return (x % 3 === 0) ? R.copper[1] : R.verd[1];   // one verdigris seam band
+          if (ny < -0.82 && hash(Math.floor(x / 2), y, 4) > 0.5) return rd(R.moss, 0.6, x, y);
+          return v;
+        },
+      });
+    };
+    shell(-1); shell(1);
+    // the wing-case tips: when open, the inner edges curl up like petals
+    if (open > 0.2) for (const side of [-1, 1]) {
+      const ex = dcx + side * (slide + gap + 1), ey = dcy - dry - open * 2;
+      seg(b, ex, ey + 6, ex + side * -1, ey - 2 * open, 2.4, R.concrete, 0.8, true);
+    }
+    // lantern from the right shell's edge
+    if (s.state === "up") {
+      const lx = Math.round(dcx + slide + gap + 2), ly = Math.round(dcy - dry + 8);
+      line(b, lx, ly, lx + 3, ly + 1, R.concrete[1]); line(b, lx + 3, ly + 1, lx + 3, ly + 4, R.concrete[1]);
+      b.rect(lx + 1, ly + 5, 5, 1, R.brass[1]);
+      b.rect(lx + 2, ly + 6, 3, 4, R.signal[1]); b.set(lx + 3, ly + 7, R.signal[2]); b.set(lx + 3, ly + 8, R.signal[2]);
+      b.rect(lx + 1, ly + 10, 5, 1, R.brass[1]);
+      out.lantern = { x: lx + 3, y: ly + 8 };
+    }
+    // armillary and weathervane: small brass jewellery on the shell
+    const ax0 = scx - 34, ay0 = sTop + 10;
+    seg(b, ax0, ay0, ax0, ay0 - 6, 1.2, R.brass, 0.6, false);
+    for (let k = 0; k < 36; k++) { const q = (k / 36) * Math.PI * 2; b.set(ax0 + Math.cos(q) * 4, ay0 - 10 + Math.sin(q) * 4, R.brass[3]); b.set(ax0 + Math.cos(q) * 4 * Math.cos(t * 0.06 * (s.motion ? 1 : 0) + 0.7), ay0 - 10 + Math.sin(q) * 4, R.brass[2]); b.set(ax0 + Math.cos(q) * 4, ay0 - 10 + Math.sin(q) * 1.4, R.brass[1]); }
+    b.set(ax0, ay0 - 10, R.lamp[4]);
+    const wx0 = scx - 22, wy0 = sTop + 4;
+    seg(b, wx0, wy0, wx0, wy0 - 9, 1, R.brass, 0.6, false);
+    line(b, wx0 - 4, wy0 - 6, wx0 + 4, wy0 - 6, R.brass[2]);
+    b.rect(wx0 - 1, wy0 - 12, 3, 2, R.brass[3]); b.set(wx0 + 2, wy0 - 13, R.brass[3]); b.set(wx0 - 2, wy0 - 11, R.brass[2]);
+    // balcony at the rear of the shell
+    const bx0 = scx - 58, by0 = base - 14;
+    for (let i = 0; i < 12; i++) { b.set(bx0 + i, by0, R.wood[2]); b.set(bx0 + i, by0 + 1, R.wood[0]); if (i % 3 === 0) for (let j = 1; j < 6; j++) b.set(bx0 + i, by0 - j, R.concrete[5]); b.set(bx0 + i, by0 - 6, R.concrete[6]); }
+    // ladder against the flank
+    const lx0 = scx + 30;
+    for (let y = base - 26; y <= G - 1; y++) { const d = (y - (base - 26)) * 0.12; b.set(lx0 + d, y, R.concrete[1]); b.set(lx0 + 5 + d, y, R.concrete[0]); if ((y - base) % 4 === 0) for (let i = 1; i < 5; i++) b.set(lx0 + i + d, y, R.concrete[3]); }
+    // ferns at the base
+    const fern = (fx, fy, h) => { for (let k = 0; k < h; k++) { b.set(fx, fy - k, R.moss[2]); if (k % 2 === 0) { b.set(fx - 1 - (k % 4 === 0 ? 1 : 0), fy - k, R.moss[3]); b.set(fx + 1 + (k % 4 === 0 ? 1 : 0), fy - k - 1, R.moss[3]); } } };
+    fern(scx + 22, base - 2, 7); fern(scx - 12, sTop + 3, 6);
+
+    /* head: organic, smiling, porthole eyes with shutter eyelids */
+    const hcx = scx + srx + 2, hcy = G - 12 - raise * 7 + bob;
+    leg(scx + 34, false, phase + Math.PI);                    // near front leg sits under the head
+    // neck folds into the shell, then a wide, low salamander head
+    ell(b, hcx - 12, hcy - 2, 14, 12, R.skin, { v0: 0.5 });
+    ell(b, hcx + 4, hcy, 25, 12.5, R.skin, { v0: 0.62, fn: (nx, ny, x, y, v) => (ny > 0.45 ? v - 0.14 : v) });
+    ell(b, hcx + 16, hcy - 3, 12, 8, R.skin, { v0: 0.7 });                               // brow and snout
+    // the smile: wide and soft, corners turned up
+    for (let x = hcx - 6; x <= hcx + 26; x++) { const f = (x - hcx - 10) / 16; const y = Math.round(hcy + 5 - (1 - f * f) * 3.2); b.set(x, y, R.skin[0]); if (Math.abs(f) < 0.7) b.set(x, y + 1, R.skin[2]); }
+    b.set(hcx - 7, hcy + 3, R.skin[0]); b.set(hcx - 8, hcy + 2, R.skin[1]); b.set(hcx + 27, hcy + 2, R.skin[0]); b.set(hcx + 28, hcy + 1, R.skin[1]);
+    b.set(hcx + 24, hcy - 5, R.skin[0]); b.set(hcx + 26, hcy - 4, R.skin[0]);           // nostrils
+    b.rect(hcx + 2, hcy + 1, 3, 1, "#a08a8c");                                           // a little cheek
+    // porthole eyes
+    const eye = (ex, ey, r, near) => {
+      ell(b, ex, ey, r + 1.3, r + 1.3, R.brass, { v0: 0.58 });
+      for (let k = 0; k < 8; k++) { const q = (k / 8) * Math.PI * 2 + 0.3; b.set(ex + Math.cos(q) * (r + 0.7), ey + Math.sin(q) * (r + 0.7), R.brass[3]); }
+      const shut = s.shut;
+      ell(b, ex, ey, r, r, R.lamp, { v0: 0.55 + (1 - shut) * 0.35, fn: (nx, ny, x, y, v) => {
+        if (ny < -1 + shut * 2) return rd(R.wood, 0.5 + (y % 2 ? 0.1 : -0.1), x, y);      // wooden shutter sliding down
+        if (Math.abs(x + 0.5 - ex) < 0.5 || Math.abs(y + 0.5 - ey) < 0.5) return R.lamp[1]; // a fine window cross
+        return v + 0.25 * (1 - Math.hypot(nx, ny));
+      } });
+      if (near && shut < 0.7) { b.set(ex - r * 0.4, ey - r * 0.4, R.lamp[4]); }
+      if (near) {   // side shutters, folded open
+        const so = 1 - shut;
+        for (let j = -r + 1; j <= r - 1; j++) { b.set(ex - r - 3 - so, ey + j, R.wood[2]); b.set(ex - r - 2 - so, ey + j, R.wood[3]); b.set(ex + r + 2 + so, ey + j, R.wood[2]); b.set(ex + r + 3 + so, ey + j, R.wood[1]); }
+      }
+    };
+    eye(hcx - 6, hcy - 9, 4.4, false);
+    eye(hcx + 9, hcy - 8, 6.6, true);
+    // moss cap on the head
+    for (let i = -10; i < 12; i++) if (hash(i, 9, 1) > 0.45) b.set(hcx + i, hcy - 15 - (hash(i, 2, 2) > 0.6 ? 1 : 0) + Math.abs(i - 1) * 0.08, R.moss[3]);
+    leg(scx - 36, false, phase);                              // near hind leg
+    out.head = { x: hcx + 27, y: hcy - 5 };
+    out.dome = { x: dcx, y: dcy - dry };
+    out.base = base;
+
+    // birds on the collar rim; one hops now and then
+    const hop = s.motion && t % 60 > 54 ? 1 : 0;
+    [[ccx + 20, cY - 9, 0], [ccx + 25, cY - 9 - hop, 1]].forEach(([x, y, k]) => { b.set(x, y, R.bird[1]); b.set(x + 1, y, R.bird[1]); b.set(x, y - 1, R.bird[0]); b.set(x + 1, y - 1, R.bird[2]); b.set(x + 2, y - 1, R.lamp[2]); b.set(x - 1, y, R.bird[0]); void k; });
+    return out;
+  }
+
+  /* ═══ background ═══ */
+  const bgCache = new Map();
+  function background(sky) {
+    if (bgCache.has(sky)) return bgCache.get(sky);
+    const S = SKY[sky], b = new Buf(W, H), r = mulberry32(sky === "dusk" ? 4 : 9);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) b.set(x, y, rd(S.sky, Math.pow(y / 120, 1.25), x, y));
+    if (S.star) for (let i = 0; i < 90; i++) { const x = Math.floor(r() * W), y = Math.floor(r() * 64); b.set(x, y, r() > 0.85 ? S.star : S.sky[3]); }
+    const clouds = sky === "dusk" ? [[40, 46, 40, 9], [200, 34, 34, 8], [226, 66, 26, 6], [110, 22, 20, 5]] : [[40, 30, 38, 10], [196, 26, 40, 11], [140, 52, 24, 6]];
+    clouds.forEach(([cx, cy, w, h]) => { for (let k = 0; k < 7; k++) { const ox = (k - 3) * (w / 6), oy = -Math.abs(Math.sin(k * 1.7)) * h * 0.6; ell(b, cx + ox, cy + oy, w / 3.4, h * 0.75, S.cloud, { v0: 0.55, fn: (nx, ny, x, y, v) => (y > cy + h * 0.3 ? null : v) }); } });
+    const ridge = (base, amp, per, seed, ramp, snow) => {
+      const rr = mulberry32(seed), kn = []; for (let i = 0; i < 30; i++) kn.push(rr());
+      for (let x = 0; x < W; x++) {
+        const k = x / per, i = Math.floor(k), f = k - i, sm = f * f * (3 - 2 * f), peak = 1 - Math.abs(f - 0.5) * 2;
+        const hgt = amp * (kn[i] * (1 - sm) + kn[i + 1] * sm) * (0.55 + 0.45 * peak), top = Math.round(base - hgt);
+        for (let y = top; y < G; y++) b.set(x, y, snow && y - top < 3 + kn[i] * 4 && hgt > amp * 0.55 ? snow[f < 0.5 ? 1 : 0] : rd(ramp, (f < 0.5 ? 0.65 : 0.3) - (y - top) * 0.008, x, y));
+      }
+    };
+    ridge(112, 48, 30, sky === "dusk" ? 3 : 5, S.mtn, S.snow);
+    ridge(122, 16, 20, 11, [S.meadow[0], S.meadow[1], S.meadow[2]], null);
+    for (let y = 124; y < H; y++) for (let x = 0; x < W; x++) b.set(x, y, rd(S.meadow, 0.78 - (y - 124) * 0.018 + Math.sin(x / 11 + y) * 0.04, x, y));
+    for (let i = 0; i < 160; i++) { const x = Math.floor(r() * W), y = 127 + Math.floor(r() * 33); b.set(x, y, S.flower[Math.floor(r() * 3)]); if (r() > 0.6) b.set(x, y + 1, S.meadow[3]); }
+    bgCache.set(sky, b); return b;
+  }
+
+  /* ═══ compose ═══ */
+  function render(s, opts = {}) {
+    const S = SKY[s.sky];
+    const out = new Buf(W, H);
+    if (!opts.transparent) out.p.set(background(s.sky).p);
+    if (!opts.transparent) for (let y = -3; y <= 3; y++) for (let x = -78; x <= 82; x++) if ((x * x) / (80 * 80) + (y * y) / 9 <= 1) out.set(118 + x, G + y, S.shadow);
+    const cb = new Buf(W, H);
+    const info = creature(cb, s);
+    const ink = C(R.ink);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const i = y * W + x;
+      if (cb.p[i]) { out.p[i] = opts.silhouette ? C("#16171c") : cb.p[i]; continue; }
+      if (!opts.silhouette && ((x > 0 && cb.p[i - 1]) || (x < W - 1 && cb.p[i + 1]) || (y > 0 && cb.p[i - W]) || (y < H - 1 && cb.p[i + W]))) out.p[i] = ink;
+    }
+    if (opts.silhouette || opts.transparent) return out;
+    // lantern halo
+    if (info.lantern && s.sky === "dusk") for (let y = -5; y <= 5; y++) for (let x = -5; x <= 5; x++) { const d = x * x + y * y; if (d > 8 && d < 26 && ((x + y + s.t) & 1) === 0 && !cb.has(info.lantern.x + x, info.lantern.y + y)) out.set(info.lantern.x + x, info.lantern.y + y, "#6e3524"); }
+    // sleepy breath while resting
+    if (s.state === "rest" && s.motion) { const k = s.t % 36; if (k < 14) { const r = 1 + k * 0.18; ell(out, info.head.x + 3 + k * 0.5, info.head.y - 1 - k * 0.45, r, r * 0.8, ["#8d93a8", "#b3b8c8", "#d9dce6"], { v0: 0.6 - k * 0.02 }); } }
+    // star trail while travelling
+    if (s.state === "travel") for (let k = 0; k < 14; k++) { const age = ((s.motion ? s.t : 0) * 0.8 + k * 5) % 70; const x = 30 + k * 4 - age * 0.4, y = 40 + Math.sin(k * 1.7) * 14 + age * 0.15; if (age < 60) out.set(x, y, age < 20 ? "#fff1c8" : age < 40 ? "#efe3c6" : "#8d88aa"); }
+    return out;
+  }
+
+  const scratch = document.createElement("canvas"); scratch.width = W; scratch.height = H;
+  const sctx = scratch.getContext("2d");
+  function paint(canvas, buf, scale, crop) {
+    sctx.putImageData(new ImageData(new Uint8ClampedArray(buf.p.buffer.slice(0)), W, H), 0, 0);
+    const c = crop || { x: 0, y: 0, w: W, h: H };
+    if (canvas.width !== Math.round(c.w * scale)) canvas.width = Math.round(c.w * scale);
+    if (canvas.height !== Math.round(c.h * scale)) canvas.height = Math.round(c.h * scale);
+    const ctx = canvas.getContext("2d"); ctx.imageSmoothingEnabled = false;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(scratch, c.x, c.y, c.w, c.h, 0, 0, c.w * scale, c.h * scale);
+  }
+
+  /* ═══ state & controls ═══ */
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const TARGET = { rest: { open: 0, raise: 0, shut: 0.62, ribbon: 0.2 }, up: { open: 1, raise: 1, shut: 0, ribbon: 1 }, travel: { open: 0.55, raise: 1, shut: 0.15, ribbon: 0.5 } };
+  const S = { state: "up", sky: "dusk", fins: true, aim: 30, motion: !reduce.matches, t: 0, open: 1, raise: 1, shut: 0, ribbon: 1 };
+  const snapTo = (st) => Object.assign({}, S, TARGET[st], { state: st });
+  const CAP = {
+    rest: ["Resting", "quiet", "Nothing needs a conversation. It lies low with its shells closed, like a building on the hill."],
+    up: ["Up", "lantern lit", "Something may need a conversation. It rises, the shells part and the telescope lifts toward the lane you selected."],
+    travel: ["Travelling", "replay", "Replay is playing. It walks through the repository's history with its shells half open."],
+  };
+  function seg3(id, opts, key, onPick) {
+    document.getElementById(id).replaceChildren(...opts.map(([v, label]) => {
+      const bt = document.createElement("button"); bt.type = "button"; bt.textContent = label; bt.setAttribute("aria-pressed", String(S[key] === v));
+      bt.addEventListener("click", () => { onPick ? onPick(v) : (S[key] = v); sync(); }); return bt;
+    }));
+  }
+  const main = document.getElementById("main");
+  function scaleFor(el) { return clamp(Math.floor(((el.clientWidth || 768) - 24) / W), 1, 4); }
+  function drawLive() {
+    const f = render(S);
+    paint(main, f, scaleFor(main.parentElement));
+    paint(document.getElementById("corner"), f, 2, { x: 50, y: 70, w: 140, h: 90 });
+    const still = render(Object.assign(snapTo(S.state), { t: 0, motion: false }), { transparent: false });
+    paint(document.getElementById("portrait"), still, 1, { x: 52, y: 68, w: 128, h: 80 });
+  }
+  function drawStatic() {
+    document.getElementById("sheet").replaceChildren(...["rest", "up", "travel"].map((st) => {
+      const cell = document.createElement("div"); cell.className = "cell";
+      const cv = document.createElement("canvas"); cv.setAttribute("aria-hidden", "true");
+      paint(cv, render(Object.assign(snapTo(st), { t: 6, motion: false })), 2);
+      const b = document.createElement("b"); b.textContent = CAP[st][0];
+      const sp = document.createElement("span"); sp.textContent = CAP[st][2];
+      cell.append(cv, b, sp); return cell;
+    }));
+    const sil = document.getElementById("sil"); sil.replaceChildren();
+    ["rest", "up"].forEach((st) => {
+      const buf = render(Object.assign(snapTo(st), { t: 0, motion: false }), { silhouette: true });
+      [[1, "1× · " + CAP[st][0]], [48 / 190, "48 px wide"]].forEach(([sc, lbl]) => {
+        const fig = document.createElement("figure"); const cv = document.createElement("canvas");
+        const crop = { x: 26, y: 36, w: 190, h: 110 };
+        if (sc < 1) { const tmp = document.createElement("canvas"); paint(tmp, buf, 1, crop); cv.width = 48; cv.height = Math.round(48 * 110 / 190); const cx = cv.getContext("2d"); cx.imageSmoothingEnabled = true; cx.drawImage(tmp, 0, 0, cv.width, cv.height); }
+        else paint(cv, buf, 1, crop);
+        const cap = document.createElement("figcaption"); cap.textContent = lbl;
+        fig.append(cv, cap); sil.append(fig);
+      });
+    });
+    // product-shell preview, synthetic data
+    const lanes = S.state === "rest"
+      ? [["Intent", "1 item", "lit"], ["Build", "2 items", "lit"], ["Verify", "quiet", ""], ["Ship", "1 item", "lit"]]
+      : [["Intent", "2 items", "lit"], ["Build", "4 items · overlap", "lit attn"], ["Verify", "1 item", "lit"], ["Ship", "1 stale", ""]];
+    document.getElementById("ribbon").replaceChildren(...lanes.map(([n, s2, cls]) => { const d = document.createElement("div"); d.className = cls; const b = document.createElement("b"); b.textContent = n; const sp = document.createElement("span"); sp.textContent = s2; d.append(b, sp); return d; }));
+    const rows = S.state === "rest" ? [["", "Nothing needs a conversation right now.", ""]] : [["sig", "#21 and #22 change src/provenance in parallel", "derived · high"], ["", "voice-notes waits on #22", "heuristic · medium"], ["", "pages-preview idle for 3d (no pull request)", "derived · high"]];
+    document.getElementById("rows").replaceChildren(...rows.map(([c, txt, r]) => { const d = document.createElement("div"); const i = document.createElement("i"); if (c) i.className = c; const s1 = document.createElement("span"); s1.textContent = txt; const s2 = document.createElement("span"); s2.className = "r"; s2.textContent = r; d.append(i, s1, s2); return d; }));
+    document.getElementById("st-t").textContent = { rest: "The observatory is resting", up: "The observatory is up", travel: "Walking through history" }[S.state];
+    document.getElementById("st-s").textContent = { rest: "Nothing needs a conversation", up: "2 things may need a conversation · lantern lit", travel: "Replaying file history · event 12 of 20" }[S.state];
+  }
+  function sync() {
+    seg3("c-state", [["rest", "Resting"], ["up", "Up"], ["travel", "Travel"]], "state");
+    seg3("c-sky", [["dusk", "Dusk"], ["day", "Day"]], "sky");
+    seg3("c-fins", [[true, "Two fins"], [false, "None"]], "fins");
+    const mb = document.getElementById("c-motion"); mb.textContent = S.motion ? "Motion on" : "Motion off"; mb.setAttribute("aria-pressed", String(S.motion));
+    if (!S.motion) Object.assign(S, TARGET[S.state]);
+    const [a, tagText, b] = CAP[S.state];
+    const cap = document.getElementById("caption"); cap.replaceChildren();
+    const e1 = document.createElement("b"); e1.textContent = a; const e2 = document.createElement("span"); e2.className = "tag" + (S.state === "up" ? " signal" : ""); e2.textContent = tagText; const e3 = document.createElement("span"); e3.textContent = b;
+    cap.append(e1, e2, e3);
+    document.getElementById("c-note").textContent = "aim " + S.aim + "°";
+    drawLive(); drawStatic();
+  }
+  document.getElementById("c-aim").addEventListener("input", (e) => { S.aim = +e.target.value; document.getElementById("c-note").textContent = "aim " + S.aim + "°"; drawLive(); });
+  document.getElementById("c-motion").addEventListener("click", () => { S.motion = !S.motion; sync(); });
+  reduce.addEventListener("change", () => { S.motion = !reduce.matches; sync(); });
+  window.addEventListener("resize", drawLive);
+  setInterval(() => {
+    if (!S.motion || document.visibilityState !== "visible") return;
+    S.t++;
+    const tg = TARGET[S.state];
+    S.open += clamp(tg.open - S.open, -0.06, 0.06);
+    S.raise += clamp(tg.raise - S.raise, -0.08, 0.08);
+    S.ribbon += clamp(tg.ribbon - S.ribbon, -0.08, 0.08);
+    let shut = tg.shut; if (S.state !== "rest" && S.t % 64 > 61) shut = 1;              // blink
+    if (S.state === "rest" && S.t % 120 > 104) shut = 0.35;                                 // a sleepy peek
+    S.shut += clamp(shut - S.shut, -0.34, 0.34);
+    drawLive();
+  }, 100);
+  sync();
+})();
+</script>
