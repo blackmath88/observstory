@@ -144,6 +144,26 @@ A cue such as *"Freeze src/core/ at 12:00: src/core/ changed afterwards in #12"*
 people. Nothing is recorded or transcribed, and nothing extracted counts until a person confirms
 it. Without the file, nothing changes. Guide: [docs/collaboration-delivery](docs/collaboration-delivery/README.md).
 
+## Optional: Project Knowledge and Project Memory
+
+*The project remembers. Every collaborator gets the context they need.* A repository that commits
+`.observstory/knowledge.json` selects the documents that carry its direction, decisions, research and
+open questions ([usage](docs/project-knowledge/USAGE.md)). Project Memory ([usage](docs/project-knowledge/MEMORY.md),
+[ADR-038](DECISIONS.md)) keeps every first-parent revision of that selection as immutable versions and
+events, answers "what was true at this commit" and "what did we know at that time" without consulting
+any retrieval index, issues reproducible context packets (JSON + Markdown, same `packet_id` for the
+same recorded state) and takes findings back as reviewable proposal files: only a human review record
+accepts one.
+
+What exists and what does not, as of this branch:
+
+| Available | Not available yet |
+| --- | --- |
+| `observstory memory` CLI (regenerate from Git, state, history, changes, context, propose, render) | a Pages workflow that publishes the memory page (the Action is unchanged) |
+| Observatory page: Now / History / Graph / Context, evidence inspector, knowledge replay | final pixel artwork (study assets only) and the TanStack rewrite |
+| Durable NUC host with real ingestion times, outbox, receipts, MCP (in baselhack26-knowledge-lab) | a remote MCP transport reachable by hosted ChatGPT/Claude |
+| Write-back via `.observstory/proposals/` + `.observstory/reviews/` in pull requests | a write endpoint or GitHub-App approval flow (ADR-031) |
+
 ## Integration with orchestration systems
 
 Observstory's typed snapshot can be consumed by orchestration systems without making Observstory an orchestrator.
