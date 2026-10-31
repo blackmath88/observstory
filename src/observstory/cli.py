@@ -119,6 +119,10 @@ def _build_knowledge(out: pathlib.Path, repository: str) -> str | None:
     ref = os.environ.get("OBSERVSTORY_SHA") or "HEAD"
     try:
         art = knowledge_mod.build(repo, ref, manifest, repository)
+        # Read only the event's pinned SHA; retain its stable ref as the tracking
+        # scope. Resolving the branch here could race a later push. This label
+        # comes from the Action context and does not assert an upstream fetch.
+        art["requested_ref"] = os.environ.get("OBSERVSTORY_REF") or ref
     except knowledge_mod.KnowledgeError as exc:
         print(f"::warning::observstory knowledge skipped: {exc}")
         return None
@@ -366,3 +370,4 @@ def main(argv=None) -> None:
     handlers = {"build": cmd_build, "derive": cmd_derive, "render": cmd_render, "query": cmd_query, "checkin": cmd_checkin,
                 "validate": cmd_validate, "knowledge": cmd_knowledge, None: cmd_build}
     handlers[args.cmd](args)
+
