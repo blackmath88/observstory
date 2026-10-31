@@ -2,6 +2,7 @@
 
 import datetime as dt
 import json
+import pathlib
 import unittest
 
 from observstory import memory, memory_git
@@ -200,6 +201,24 @@ class MemoryTest(unittest.TestCase):
                       [{k: o[k] for k in ("record", "reason")} for o in p["omissions"]])
         q = memory.context_packet(self.view(), R, "anything old", include_historical=True)
         self.assertIn("old", [r["id"] for r in q["records"]])
+
+
+    def test_outputs_match_published_schemas(self):
+        from observstory.validate import _check
+        root = pathlib.Path(__file__).resolve().parents[1] / "schema"
+        c1 = self.repo.commit(files())
+        self.repo.commit(files(extra={".observstory/proposals/finding-one.json": proposal("finding-one", c1)}))
+        v = self.view()
+        for name, doc in (("memory-v1", v), ("context-packet-v1", memory.context_packet(v, R, "concept"))):
+            schema = json.loads((root / f"{name}.json").read_text())
+            errors = []
+            _check(doc, schema, schema, name, errors)
+            self.assertEqual(errors, [], name)
+        for name, doc in (("proposal-v1", json.loads(proposal("finding-one", c1))), ("review-v1", json.loads(review("finding-one")))):
+            schema = json.loads((root / f"{name}.json").read_text())
+            errors = []
+            _check(doc, schema, schema, name, errors)
+            self.assertEqual(errors, [], name)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "observstory.proposal/v1",
+  "title": "Observstory write-back proposal or finding",
+  "description": "Committed by people or assistants as .observstory/proposals/<id>.json, normally through a pull request. Recording a proposal approves nothing; only an observstory.review/v1 record by a human (or an explicit Weavr authorization) changes its state.",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "kind",
+    "title",
+    "statement",
+    "author",
+    "submitted_at",
+    "base",
+    "evidence"
+  ],
+  "properties": {
+    "schema": {
+      "const": "observstory.proposal/v1"
+    },
+    "id": {
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "finding",
+        "proposal"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "statement": {
+      "type": "string"
+    },
+    "author": {
+      "type": "object",
+      "required": [
+        "name",
+        "kind"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "human",
+            "assistant"
+          ]
+        },
+        "via": {
+          "type": "string"
+        }
+      }
+    },
+    "submitted_at": {
+      "type": "string"
+    },
+    "base": {
+      "type": "object",
+      "required": [
+        "repository",
+        "commit"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "snapshot_id": {
+          "type": "string"
+        },
+        "context_packet_id": {
+          "type": "string"
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "record": {
+            "type": "string"
+          },
+          "version_id": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "blob": {
+            "type": "string"
+          },
+          "quote": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "proposed_change": {
+      "type": "object",
+      "required": [
+        "op"
+      ],
+      "properties": {
+        "op": {
+          "enum": [
+            "none",
+            "set_status",
+            "add_link",
+            "end_link",
+            "add_record"
+          ]
+        }
+      }
+    },
+    "supersedes": {
+      "type": "string"
+    }
+  }
+}
