@@ -23,7 +23,8 @@ writeFileSync(join(here, "index.html"), html);
 // 2 · Export assets from the same drawing code the page uses.
 const ctx = vm.createContext({});
 vm.runInContext(read("src/pixels.js"), ctx);
-const P = ctx.ObsPixels;
+vm.runInContext(read("src/creature.js"), ctx);
+const P = ctx.ObsPixels, C = ctx.ObsCreature;
 mkdirSync(join(here, "assets"), { recursive: true });
 const out = (name, buf, title) => writeFileSync(join(here, "assets", name), P.toSVG(buf, null, title));
 const lanes = ["intent", "build", "verify", "ship"];
@@ -60,6 +61,23 @@ for (const [k, rows] of Object.entries(P.ICONS)) {
   const b = new P.PixelBuffer(9, 9); P.glyph(b, 0, 0, rows, "dome-hi"); out(`icon-${k}.svg`, b, `Icon: ${k}`);
 }
 
+// D · the living observatory, one SVG per habit pose.
+const POSES = {
+  resting: { eyes: "closed", angle: 70 },
+  attentive: { eyes: "open", angle: 35, lantern: true, note: true },
+  listening: { eyes: "open", lift: 1, lean: -1, angle: 10, door: 2, look: -1 },
+  notes: { eyes: "half", chart: 4, angle: 50 },
+  greeting: { eyes: "wide", smoke: 3, angle: 60, look: 1 },
+};
+for (const [k, pose] of Object.entries(POSES)) {
+  const b = new P.PixelBuffer(58, 50);
+  C.duskSky(b, 5, { horizon: 46, density: 0.01 }); C.hill(b, 2, 0, 0, 46, 46);
+  C.creature(b, 6, 46, pose);
+  out(`living-${k}.svg`, b, `Living observatory: ${k}`);
+}
+const sprite = new P.PixelBuffer(50, 50); C.creature(sprite, 2, 46, POSES.attentive);
+out("living-sprite-transparent.svg", sprite, "Living observatory sprite on transparent ground");
+
 // 3 · Tokens as data (parsed from tokens.css :root, night + paper).
 const css = read("tokens.css");
 const block = (sel) => {
@@ -71,6 +89,7 @@ writeFileSync(join(here, "assets", "tokens.json"), JSON.stringify({
   status: "proposal — pending owner templates",
   night: block(":root"),
   paper: block(':root[data-theme="paper"]'),
+  dusk_direction_d: block(':root[data-direction="d"]'),
   azimuth: P.AZIMUTH,
   pixel_palette: P.PALETTE,
 }, null, 2) + "\n");

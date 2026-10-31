@@ -4,9 +4,29 @@ Status: **provisional.** The owner's visual templates have not arrived yet. This
 with reasons. Final selection, palette and composition stay open until the templates have been
 reviewed against these studies.
 
-## Short version
+## Short version (round 2, after owner feedback)
 
-Recommended: **C · Star atlas as the map, framed by A · Courtyard as the persistent identity.**
+Recommended: **D · Living observatory.** It is the synthesis the round-1 recommendation pointed
+towards, now with the warmth the owner asked for:
+- C's atlas becomes the creature's sky;
+- A's courtyard becomes the creature itself;
+- B's "telescope turns to what you select" becomes shared gaze.
+
+Keep A–C in the page for comparison only.
+
+Trade-offs specific to D:
+- It has the most build effort. Scope the first implementation to the owner's "smallest
+  version": the silhouette, the idle loop, aiming at a selection, one incoming-event animation
+  (replay shooting star), one inking animation, and the information panel. Everything else is
+  optional.
+- The scene takes about 600px of height on desktop. The list view must stay a first-class
+  equivalent, and it does in the study.
+- Charm can outrun evidence. Adopt the behaviour-law table as a review checklist: every habit
+  maps to typed state or is declared decoration, and its meaning is also said in text.
+
+### Round 1 (kept for the record)
+
+Recommended then: **C · Star atlas as the map, framed by A · Courtyard as the persistent identity.**
 Keep B's interaction law (*the telescope turns to what you select*), but put it in the courtyard
 dome rather than in a separate instrument panel.
 
@@ -44,6 +64,21 @@ dome rather than in a separate instrument panel.
   product decision (see below), not something the study settles.
 - Pixel art at 3× in a 248px sidebar is small. The dome reads well, but the telescope tube is
   only a few art pixels. Templates may call for a larger scene band.
+
+## New decisions raised by D
+
+1. **Scan button.** The owner's sketch includes "ring a bell → it scans". A static Pages site
+   cannot start the Action without a browser GitHub token, which the rewrite plan rules out. The
+   study's bell therefore explains instead of scanning. A real scan needs a decision on a
+   trigger path, for example a `workflow_dispatch` link that opens GitHub's own UI.
+2. **Milestone comets and CI lamps.** The sketch maps releases to comets and failing tests to a
+   lamp. Observstory does not observe releases or CI today (CI state is a v3 candidate), so
+   neither is drawn. Adding them is a collector scope change, not a design change.
+3. **Attention colour.** In D the accent shifts to signal orange `#ff9550` to stay distinct from
+   the amber lamp and the copper dome. The existing UI language keeps `#f09a45`/`#b4530a`.
+   Choose one.
+4. **Sound.** The sketch mentions small mechanism sounds. None are in the study. Sound would need
+   to be opt-in and carry no information.
 
 ## Decisions awaiting owner templates
 

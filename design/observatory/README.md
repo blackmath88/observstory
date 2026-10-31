@@ -12,7 +12,7 @@ frontend rewrite. It changes no producer code, schema, renderer or Action.
 Open `index.html` in a browser. It is self-contained and makes no network requests. The study bar
 at the top switches between:
 
-- **Direction:** A Courtyard, B Instrument, C Atlas;
+- **Direction:** D Living (the default since owner feedback on 31 Oct), A Courtyard, B Instrument, C Atlas;
 - **State:** Quiet, Overlap, Replay;
 - **Theme:** Night (the default for this study), Paper;
 - **Motion:** decorative motion on or off. The system's reduced-motion setting always wins.
@@ -30,12 +30,54 @@ Recommendation and open decisions: [RECOMMENDATION.md](RECOMMENDATION.md).
 | `study.src.html` | Page template |
 | `tokens.css` | **Token proposal**: night and paper themes, the scenery palette, type, space, pixel scale and motion |
 | `src/pixels.js` | **Editable pixel source**: a seeded PRNG, a palette-name pixel buffer, and procedural observatory, refractor, sky, hills, tree and eyepiece drawings, plus the 5×5 data-star glyphs and 9×9 icons. The same code draws to canvas and to SVG. |
+| `src/creature.js` | D's sprite and scenery: the dusk sky, hill and creature with pose parameters (eyes, look, lean, settle, lift, door, lantern, note, chart, smoke) |
+| `src/living.js` | D's engine: sky layout, habit loop, listening sequence, hand-inked edges, hover gaze, replay shooting stars and the honest "new look" note |
 | `src/data.js` | Synthetic data shaped like `observstory.scene/v1` (zones, groups, nodes, edges, attention), the replay events and a deterministic `replayAt(pos)` |
 | `src/study.js`, `src/study.css` | Working interface: navigation, board/field/atlas maps, list, replay, attention rail, inspector, keyboard |
 | `build.mjs` | `node design/observatory/build.mjs` builds `index.html`, `assets/*.svg` and `assets/tokens.json`. It is deterministic: two runs give byte-identical output. |
 | `assets/` | Exported SVGs: the observatory in every lane and window state, the refractor at each lane, the courtyard, the horizon strip, the eyepiece, the star glyphs and the icons. Also `tokens.json`. |
 | `shoot.sh` | Rebuilds the page and regenerates `screenshots/` with headless Chromium, with motion off |
 | `screenshots/` | Desktop (1440) and mobile (390) captures of all three directions in every state |
+
+## D · Living observatory (owner direction, round 2)
+
+After the first round the owner asked for warmth: *the observatory should be the creature*. It is
+an old, gentle caretaker whose way of understanding the world is to watch the repository, collect
+its small events and draw connections between them. Direction D does this while keeping A–C's
+architecture and honesty laws.
+
+- **Look:** a dusk sky (indigo to violet), warm cream stars, mossy stone and an aged, patched
+  copper dome. The telescope is the snout, the attic windows read as eyes only through their
+  light, the foundation folds into tucked paws, and there is a fern and an amber side door. No
+  laser grids, holograms, particle streams or red alarms.
+- **The scene is the map.** The sky above the creature is the project chart, with stable lane
+  regions, area clusters on paper tags, and work items as 5×5 stars. The list, rail and
+  inspector stay crisp HTML. Paper tags carry the readable labels on the sky.
+- **Habits** (see the behaviour law table on the page and in `src/living.js`):
+  - *Listens before it looks:* the door brightens, the dome lifts, then the telescope turns.
+  - *Has weight:* it leans against the turn and hesitates once halfway.
+  - *Draws by hand:* a relation is inked once, when it first appears.
+  - *Comfortable at rest:* eyes closed, breathing, a moth, a chart peeking out of the hatch.
+- **Interactions:**
+  - Hovering or focusing a star shares its gaze, and a paper label appears.
+  - Selecting opens the inspector.
+  - Replay sends a shooting star per commit, which lands as a lasting point in its area.
+    Removals stay as hollow points.
+  - Clicking the building gets a single acknowledgement (a wide-eyed look and a chimney puff).
+  - **"Ask for a new look"** answers honestly. It shows when the snapshot was taken and says
+    that a new look happens when the GitHub Action runs, which this page cannot start. Nothing
+    pretends to scan.
+- **Colour roles in D:**
+  - The amber lamp is ambient: "someone is home".
+  - The copper is scenery.
+  - The attention accent becomes a brighter **signal orange**, used only for the lantern under
+    the telescope, overlap lines and attention centres.
+  - Selection stays cool blue.
+- **Pixel scale:** one picture at one integer scale, 4× on desktop and 3× on small screens. On
+  small screens the sky scrolls sideways instead of shrinking.
+
+Editable source: `src/creature.js` (sprite, sky, hill, poses) and `src/living.js` (habits and the
+data layer). Exported poses: `assets/living-*.svg`.
 
 ## The laws this study proposes
 

@@ -16,12 +16,13 @@
     a: { key: "a", name: "Courtyard", long: "A · Observatory courtyard" },
     b: { key: "b", name: "Instrument", long: "B · Telescope instrument" },
     c: { key: "c", name: "Atlas", long: "C · Star atlas" },
+    d: { key: "d", name: "Living", long: "D · Living observatory" },
   };
   const ZONE_CODE = { intent: "INT", build: "BLD", verify: "VER", ship: "SHP" };
   const CONF = { high: "●", medium: "◐", low: "○" };
 
   const S = {
-    study: "a", state: "overlap", view: "map", sel: null, pos: 11,
+    study: "d", state: "overlap", view: "map", sel: null, pos: 11,
     theme: "night", motion: true, playing: false, speed: 1, lastView: "map",
   };
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -105,7 +106,7 @@
       const g = D.GROUPS.find((x) => x.path === ev.area);
       return { angle: P.AZIMUTH[g.zone], open: true, why: `following replay event in ${laneLabel(g.zone)} · ${ev.area}` };
     }
-    if (!S.sel) return { angle: P.PARKED, open: false, why: "parked — nothing selected" };
+    if (!S.sel) return { angle: P.PARKED, open: false, why: S.study === "d" ? "resting, lowered toward the horizon — nothing selected" : "parked — nothing selected" };
     let zone = null, what = "";
     if (S.sel.startsWith("area:")) { zone = zoneOfGroup(S.sel); what = groupById(S.sel).path; }
     const n = nodeById(S.sel);
@@ -117,8 +118,12 @@
   }
   const laneLabel = (z) => (D.ZONES.find((x) => x.id === z) || {}).label || z;
   function windowLit() {
-    if (S.state === "replay") return { lit: false, why: "window unlit — coordination is not reconstructed from commit history" };
+    const d = S.study === "d";
+    if (S.state === "replay") return { lit: false, why: d ? "lantern dark — coordination is not reconstructed from commit history" : "window unlit — coordination is not reconstructed from commit history" };
     const n = snap().attention.filter((a) => a.kind === "overlap" || a.kind === "waiting").length;
+    if (d) return n
+      ? { lit: true, why: `lantern lit — ${n} signal${n > 1 ? "s" : ""} suggest a conversation` }
+      : { lit: false, why: S.sel ? "lantern dark — nothing needs a conversation" : "resting — nothing needs a conversation" };
     return n
       ? { lit: true, why: `window lit — ${n} signal${n > 1 ? "s" : ""} suggest a conversation` }
       : { lit: false, why: "window unlit — nothing needs a conversation" };
@@ -161,6 +166,7 @@
   function render() {
     const focusKey = document.activeElement && document.activeElement.getAttribute && document.activeElement.getAttribute("data-key");
     document.documentElement.dataset.theme = S.theme;
+    document.documentElement.dataset.direction = S.study;
     writeHash();
     renderStudyBar();
     const app = document.getElementById("app");
@@ -192,7 +198,7 @@
     const bar = document.getElementById("studybar");
     bar.replaceChildren(
       h("h1", null, "Observatory · pixel-design study"),
-      seg("Direction", "study", [["a", "A Courtyard"], ["b", "B Instrument"], ["c", "C Atlas"]], (v) => { S.study = v; render(); }),
+      seg("Direction", "study", [["d", "D Living"], ["a", "A Courtyard"], ["b", "B Instrument"], ["c", "C Atlas"]], (v) => { S.study = v; render(); }),
       seg("State", "state", [["quiet", "Quiet"], ["overlap", "Overlap"], ["replay", "Replay"]], (v) => setState(v)),
       seg("Theme", "theme", [["night", "Night"], ["paper", "Paper"]], (v) => { S.theme = v; render(); }),
       h("span", { class: "ctl" }, h("span", { class: "seg-label" }, "Motion"),
@@ -401,9 +407,14 @@
     m.classList.toggle("dimmed", !!rel);
     if (S.state === "replay") { m.replaceChildren(...replayPane()); return; }
     const head = h("div", { class: "pane-head" },
-      h("h2", null, S.view === "list" ? "All work items" : { a: "Project map", b: "Recency field", c: "Atlas" }[S.study]),
-      h("span", { class: "faint" }, S.view === "list" ? "full equivalent of the map, keyboard ↑↓ Enter Esc" : { a: "lanes → areas → work items", b: "distance from the right edge = time since last activity", c: "stable sky regions per lane; stars are work items" }[S.study]),
+      h("h2", null, S.view === "list" ? "All work items" : { a: "Project map", b: "Recency field", c: "Atlas", d: "Sky" }[S.study]),
+      h("span", { class: "faint" }, S.view === "list" ? "full equivalent of the map, keyboard ↑↓ Enter Esc" : { a: "lanes → areas → work items", b: "distance from the right edge = time since last activity", c: "stable sky regions per lane; stars are work items", d: "stars are work items · hover one to share its gaze" }[S.study]),
       legend());
+    if (S.study === "d" && S.view === "map") {
+      m.replaceChildren(head, living().node);
+      living().update(livingModel(rel));
+      return;
+    }
     let body;
     if (S.view === "list") body = listView(rel);
     else if (S.study === "a") body = boardView(rel);
@@ -640,6 +651,43 @@
     return wrap;
   }
 
+  /* ── D · living sky model (typed state → what the creature may reflect) ── */
+  let livingInst = null;
+  function living() { return livingInst || (livingInst = window.ObsLiving.create()); }
+  let prevReplayPos = null;
+  function livingModel(rel) {
+    const replay = S.state === "replay";
+    const st = snap();
+    const win = windowLit();
+    const ev = replay ? D.EVENTS[S.pos] : null;
+    const model = {
+      mode: replay ? "replay" : "snapshot",
+      motion: motionOn(),
+      loaded: true,
+      lanes: D.ZONES, groups: D.GROUPS,
+      stars: replay ? [] : st.nodes.map((n) => ({
+        id: n.id, group: n.group, status: n.status, attn: !!n.attention, ref: n.ref, label: n.label, age: age(n.age_hours) + " ago",
+        aria: `${n.ref} ${n.label}, ${STATUS_WORD[n.status]}, ${groupById(n.group).path}, last activity ${age(n.age_hours)} ago`,
+      })),
+      edges: replay ? [] : st.edges,
+      related: rel,
+      selId: S.sel,
+      aimId: replay ? D.GROUPS.find((g) => g.path === ev.area).id : S.sel,
+      mood: replay ? "replay" : win.lit || S.sel ? "attentive" : "rest",
+      lantern: win.lit,
+      note: !replay && st.commitments.length > 0,
+      drift: replay ? S.pos * 3 : 0,
+      lookText: {
+        when: replay ? "this is a replay of saved commit history." : `${st.collected} (static snapshot).`,
+        how: "A new look happens when the repository's GitHub Action runs. This page can't start it, and doesn't pretend to.",
+      },
+      replay: replay ? { pos: S.pos, event: ev, files: D.replayAt(S.pos).files, dots: D.replayDots(S.pos) } : null,
+      onSelect: (id, el) => select(id, el),
+    };
+    prevReplayPos = replay ? S.pos : null;
+    return model;
+  }
+
   /* ── replay ── */
   function replayPane() {
     const rp = D.replayAt(S.pos);
@@ -670,6 +718,13 @@
       h("div", null, ev.msg),
       h("div", { class: "mono muted" }, ev.path));
     let viz;
+    if (S.study === "d") {
+      const sky = living();
+      queueMicrotask(() => sky.update(livingModel(null)));
+      viz = null;
+      return [head, sky.node, h("div", { class: "replay" }, feeds, transport, ticks, card,
+        h("p", { class: "note" }, `Each commit arrives as a shooting star and leaves a point in its area; removals stay as hollow points. Baseline ${D.BASELINE.sha}. Pull-request, overlap and waiting state are not reconstructed from commit timestamps.`))];
+    }
     if (S.study === "c") viz = atlasView(null, true);
     else {
       viz = h("table", { class: "areas" },
@@ -792,6 +847,11 @@
 
   /* ── notes below the app: per-study rationale + shared mapping + asset sheet ── */
   const NOTES = {
+    d: {
+      idea: "The observatory is the creature: a caretaker, not a controller. It watches its sky (the project map), listens before it looks, inks a relation by hand once it has evidence for it, and rests without disappointment when nothing needs a conversation. The readable surfaces (list, rail, inspector) stay crisp HTML; the living scene is the map.",
+      plus: ["Warmth and identity: you visit it, you don't operate it.", "Every habit maps to state or is declared decoration; text says the same thing.", "One scene does map, attention, selection and replay."],
+      minus: ["Most build effort: sprite, habits, tracing, replay animation.", "Larger scene takes vertical space; list view must remain first-class.", "Risk of charm outrunning evidence; enforce the behaviour law in code review."],
+    },
     a: {
       idea: "A place you return to. The courtyard sits in the sidebar's empty space; a thin horizon runs under the title bar. The working surface is the existing lane → area → item board, unchanged in meaning.",
       plus: ["Most legible: scenery never shares space with data.", "Warm window reads instantly as \"someone should talk\".", "Cheapest to build: one canvas, one strip."],
@@ -820,6 +880,19 @@
     ["Instrument motion", "Only when selection or replay position changes", "—", "No scanning animation: collection is never live here"],
   ];
 
+  const MAPPING_D = [
+    ["Eyes closed, settling, moth near the door", "Rest: no attention signal and nothing selected", "Status bar \"Resting — nothing needs a conversation\"", "Never sad or abandoned; no productivity cue"],
+    ["Signal lantern under the telescope", "≥1 overlap or waiting signal", "Status bar + Needs attention", "Brightest colour in the scene, reserved"],
+    ["Door lamp (amber)", "A snapshot is loaded (someone is home)", "Collection: snapshot time", "Dark only if nothing loaded"],
+    ["Listen → look: door brightens, dome lifts, telescope turns, body leans", "Selection, hover/focus (shared gaze), or replay event", "Inspector / paper label / event card", "Turn hesitates once halfway; reduced motion: jump"],
+    ["Hand-inked line", "An overlap (dashed signal) or waiting (thread + arrow) edge from the snapshot", "Legend, pills, inspector evidence", "Inked once when it first appears; never a guessed relation"],
+    ["Shooting star → point in an area", "A commit in replay (repository file history)", "Event card, areas list", "Only in replay; removals stay as hollow points"],
+    ["Sky drift", "Replay position (time passing)", "Position readout", "Decorative; stops with reduced motion"],
+    ["Paper slip by the door", "A declared commitment exists", "Declared section", "Declared ≠ observed"],
+    ["Chart peeking from the hatch, chimney puff, greeting", "Nothing (habit / one-time acknowledgement)", "—", "Never required to get anything done"],
+    ["Telescope sweep (not shown)", "Reserved for a real, running collection", "—", "The static page cannot start one and says so"],
+  ];
+
   function renderNotes() {
     const n = NOTES[S.study];
     const box = document.getElementById("notes");
@@ -828,9 +901,9 @@
         h("table", null, h("tr", null, h("th", null, "Gains"), h("th", null, "Costs")),
           h("tr", null, h("td", null, h("ul", { style: "margin:0;padding-left:16px" }, n.plus.map((x) => h("li", null, x)))),
             h("td", null, h("ul", { style: "margin:0;padding-left:16px" }, n.minus.map((x) => h("li", null, x))))))),
-      h("div", { class: "card", style: "grid-column: span 2" }, h("h2", null, "State → visual mapping (shared by all three)"),
-        h("table", null, h("tr", null, ["Mark", "Means", "Also said in text", "Rule"].map((x) => h("th", null, x))),
-          MAPPING.map((r) => h("tr", null, r.map((c) => h("td", null, c)))))),
+      h("div", { class: "card", style: "grid-column: span 2" }, h("h2", null, S.study === "d" ? "Behaviour law — what each habit means" : "State → visual mapping (shared by A, B, C)"),
+        h("table", null, h("tr", null, [S.study === "d" ? "Behaviour" : "Mark", "Means", "Also said in text", "Rule"].map((x) => h("th", null, x))),
+          (S.study === "d" ? MAPPING_D : MAPPING).map((r) => h("tr", null, r.map((c) => h("td", null, c)))))),
       assetSheet());
   }
 
@@ -845,8 +918,14 @@
     };
     const obs = (o) => (b) => { b.rect(0, 30, b.w, 4, "hill-near"); P.observatory(b, 4, 30, o); };
     return h("div", { class: "card", style: "grid-column: 1 / -1" },
-      h("h2", null, "Pixel sheet — editable source: src/pixels.js · exported SVGs: assets/"),
+      h("h2", null, "Pixel sheet — editable source: src/creature.js, src/pixels.js · exported SVGs: assets/"),
       h("div", { class: "sheet" },
+        ...[["resting", { eyes: "closed", angle: 70, door: 1 }], ["attentive · lantern", { eyes: "open", angle: 35, lantern: true, note: true }],
+            ["listening · lift, lean", { eyes: "open", lift: 1, lean: -1, angle: 10, door: 2, look: -1 }], ["checking notes", { eyes: "half", chart: 4, angle: 50 }],
+            ["greeting", { eyes: "wide", smoke: 3, angle: 60, look: 1 }]].map(([lbl, pose]) => fig("D · " + lbl, 58, 50, (b) => {
+          window.ObsCreature.duskSky(b, 5, { horizon: 46, density: 0.01 }); window.ObsCreature.hill(b, 2, 0, 0, 46, 46);
+          window.ObsCreature.creature(b, 6, 46, pose);
+        }, 3)),
         fig("observatory · parked · unlit", 34, 34, obs({ open: false, lit: false })),
         fig("· Build (−18°) · lit", 34, 34, obs({ open: true, lit: true, angle: -18 })),
         fig("· Ship (+50°) · unlit", 34, 34, obs({ open: true, lit: false, angle: 50 })),

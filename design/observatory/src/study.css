@@ -222,6 +222,54 @@ table.areas tr.cur td { background: var(--select-t); }
 .eyepiece canvas { width: 168px; height: 168px; }
 .eyepiece .tag { position: absolute; font-family: var(--font-mono); font-size: 10px; color: var(--ink); background: var(--px-void); padding: 0 3px; transform: translate(-50%, 0); white-space: nowrap; }
 
+/* ── D · living sky ────────────────────────────────────────────── */
+.living { border-bottom: 1px solid var(--hair); background: #191b38; }
+.living-scroll { overflow-x: auto; }
+.living-stage { position: relative; }
+.living-stage canvas.px { position: absolute; left: 0; top: 0; }
+.living-data { position: absolute; left: 0; top: 0; overflow: visible; }
+.lane-name { fill: #8e88a6; font: 700 10px var(--font-ui); letter-spacing: .16em; }
+.meridian { stroke: #3e3560; stroke-dasharray: 1 6; }
+.halo-area { fill: rgba(243, 230, 196, .025); stroke: rgba(243, 230, 196, .13); stroke-dasharray: 2 5; }
+.lcluster:hover .halo-area { stroke: rgba(243, 230, 196, .4); }
+.lcluster.cur .halo-area { stroke: #9cc3ff; stroke-dasharray: none; }
+.lstar { cursor: pointer; }
+.lstar:focus { outline: none; }
+.lstar .hit { fill: transparent; }
+.lstar:focus-visible .hit { stroke: #9cc3ff; stroke-width: 2; }
+.lstar .core { fill: #f3e6c4; }
+.lstar.stale .core, .lstar.draft .core { fill: #8e88a6; }
+.lstar .core.signal { fill: #ff9550; }
+.lstar.sel .core:not(.signal) { fill: #fff0c8; }
+.lstar .ring { fill: none; stroke: #9cc3ff; stroke-width: 1.5; }
+.lstar.dim { opacity: .35; }
+.sref { font: 11px var(--font-mono); fill: #eadcb6; paint-order: stroke; stroke: #191b38; stroke-width: 3px; stroke-linejoin: round; }
+.lstar.stale .sref, .lstar.draft .sref { fill: #8e88a6; }
+.edge { stroke-linecap: round; }
+.edge.overlap { stroke: #ff9550; stroke-width: 2; stroke-dasharray: 6 4; }
+.edge.waiting { stroke: var(--l-thread); stroke-width: 1.5; }
+.edge.off { opacity: .3; }
+.edge.pending { opacity: 0; }
+.ink { stroke: #f2cf8f; stroke-width: 2; stroke-linecap: round; animation: ink 900ms ease-out forwards; }
+@keyframes ink { to { stroke-dashoffset: 0; } }
+.fdot { fill: #f3e6c4; }
+.fdot.removed { fill: none; stroke: #8e88a6; stroke-width: 1.5; }
+.fdot.fresh { opacity: 0; animation: land 250ms 650ms forwards; }
+@keyframes land { to { opacity: 1; } }
+.living-tags { position: absolute; inset: 0; pointer-events: none; }
+.ptag { position: absolute; transform: translate(-50%, 0); background: var(--paper, #efe3c6); color: var(--paper-ink, #2a2233); font: 10px/1.5 var(--font-mono); padding: 0 4px; border-radius: 2px; box-shadow: 0 1px 0 rgba(0, 0, 0, .5); white-space: nowrap; }
+.ptag.quiet { opacity: .5; }
+.ptag.big { font: 12px/1.45 var(--font-ui); padding: 2px 7px; z-index: 2; transform: translate(-50%, -100%); }
+.ptag.big b { font-family: var(--font-mono); font-weight: 700; }
+.ptag .age { color: #6b5f73; font-family: var(--font-mono); font-size: 11px; }
+.greet { position: absolute; background: transparent; border: 0; cursor: pointer; padding: 0; }
+.greet:focus-visible { outline: 2px solid #9cc3ff; }
+.bell { position: absolute; display: inline-flex; gap: 6px; align-items: center; font: 11px var(--font-ui); color: #2a2233; background: #efe3c6; border: 0; border-radius: 2px; padding: 2px 8px; cursor: pointer; box-shadow: 0 1px 0 rgba(0, 0, 0, .5); white-space: nowrap; }
+.bell svg { display: block; }
+.living-note { position: absolute; width: 300px; background: #efe3c6; color: #2a2233; font-size: 12px; line-height: 1.45; padding: 8px 10px; border-radius: 2px; box-shadow: 0 2px 0 rgba(0, 0, 0, .55); z-index: 3; }
+.living-note .note-close { display: block; margin-top: 6px; background: #2a2233; color: #efe3c6; border: 0; border-radius: 2px; padding: 1px 10px; cursor: pointer; }
+.app[data-study="d"] .titlebar { background: linear-gradient(var(--sky-2), var(--sky-2)); }
+
 /* ── Notes & asset sheet below the app ─────────────────────────── */
 .notes { margin: 0 var(--s4) var(--s6); display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--s4); }
 .card { border: 1px solid var(--hair); border-radius: var(--radius-panel); background: var(--sky-1); padding: var(--s3) var(--s4); }

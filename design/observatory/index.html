@@ -108,6 +108,29 @@
   --decor: #d9d6cd;
 }
 
+/* Direction D — living observatory: dusk instead of night.
+ * Warm cream ink, violet shadows, copper and moss in the scenery. The attention
+ * accent becomes a brighter signal orange so it stays distinct from the always-on
+ * amber lamp (ambient, decorative) and the copper dome (scenery). */
+:root[data-direction="d"] {
+  --sky-0: #131327; --sky-1: #191931; --sky-2: #20203b; --sky-3: #292848;
+  --hair: #2b2a46; --hair-2: #3b3858;
+  --ink: #ede5d5; --ink-2: #b7aec4; --ink-3: #8d86a3;
+  --mark: #eadcb6; --mark-dim: #8e88a6;
+  --select: #9cc3ff; --select-t: #252b4e;
+  --accent: #ff9550; --accent-t: #3a2320;
+  --wire: #b9b0c9; --decor: #3e3560;
+  --l-thread: #b9b0c9;
+  --paper: #efe3c6; --paper-ink: #2a2233;
+  --px-void: #191b38;
+}
+:root[data-direction="d"][data-theme="paper"] {
+  --sky-0: #efece6; --sky-1: #f8f6f1; --sky-2: #f1eee8; --sky-3: #e7e3db;
+  --hair: #dcd7cd; --hair-2: #cdc7bc; --ink: #221d2b; --ink-2: #514a5c; --ink-3: #6f6878;
+  --mark: #3e3560; --mark-dim: #8e88a6; --select: #2f5fd0; --select-t: #e3e9fb;
+  --accent: #c2541a; --accent-t: #fbeee4; --wire: #6c6478;
+}
+
 @media (max-width: 767px) {
   :root { --px-scale: 2; }
 }
@@ -337,6 +360,54 @@ table.areas tr.cur td { background: var(--select-t); }
 .eyepiece { position: relative; width: 168px; margin: 0 auto 8px; }
 .eyepiece canvas { width: 168px; height: 168px; }
 .eyepiece .tag { position: absolute; font-family: var(--font-mono); font-size: 10px; color: var(--ink); background: var(--px-void); padding: 0 3px; transform: translate(-50%, 0); white-space: nowrap; }
+
+/* ── D · living sky ────────────────────────────────────────────── */
+.living { border-bottom: 1px solid var(--hair); background: #191b38; }
+.living-scroll { overflow-x: auto; }
+.living-stage { position: relative; }
+.living-stage canvas.px { position: absolute; left: 0; top: 0; }
+.living-data { position: absolute; left: 0; top: 0; overflow: visible; }
+.lane-name { fill: #8e88a6; font: 700 10px var(--font-ui); letter-spacing: .16em; }
+.meridian { stroke: #3e3560; stroke-dasharray: 1 6; }
+.halo-area { fill: rgba(243, 230, 196, .025); stroke: rgba(243, 230, 196, .13); stroke-dasharray: 2 5; }
+.lcluster:hover .halo-area { stroke: rgba(243, 230, 196, .4); }
+.lcluster.cur .halo-area { stroke: #9cc3ff; stroke-dasharray: none; }
+.lstar { cursor: pointer; }
+.lstar:focus { outline: none; }
+.lstar .hit { fill: transparent; }
+.lstar:focus-visible .hit { stroke: #9cc3ff; stroke-width: 2; }
+.lstar .core { fill: #f3e6c4; }
+.lstar.stale .core, .lstar.draft .core { fill: #8e88a6; }
+.lstar .core.signal { fill: #ff9550; }
+.lstar.sel .core:not(.signal) { fill: #fff0c8; }
+.lstar .ring { fill: none; stroke: #9cc3ff; stroke-width: 1.5; }
+.lstar.dim { opacity: .35; }
+.sref { font: 11px var(--font-mono); fill: #eadcb6; paint-order: stroke; stroke: #191b38; stroke-width: 3px; stroke-linejoin: round; }
+.lstar.stale .sref, .lstar.draft .sref { fill: #8e88a6; }
+.edge { stroke-linecap: round; }
+.edge.overlap { stroke: #ff9550; stroke-width: 2; stroke-dasharray: 6 4; }
+.edge.waiting { stroke: var(--l-thread); stroke-width: 1.5; }
+.edge.off { opacity: .3; }
+.edge.pending { opacity: 0; }
+.ink { stroke: #f2cf8f; stroke-width: 2; stroke-linecap: round; animation: ink 900ms ease-out forwards; }
+@keyframes ink { to { stroke-dashoffset: 0; } }
+.fdot { fill: #f3e6c4; }
+.fdot.removed { fill: none; stroke: #8e88a6; stroke-width: 1.5; }
+.fdot.fresh { opacity: 0; animation: land 250ms 650ms forwards; }
+@keyframes land { to { opacity: 1; } }
+.living-tags { position: absolute; inset: 0; pointer-events: none; }
+.ptag { position: absolute; transform: translate(-50%, 0); background: var(--paper, #efe3c6); color: var(--paper-ink, #2a2233); font: 10px/1.5 var(--font-mono); padding: 0 4px; border-radius: 2px; box-shadow: 0 1px 0 rgba(0, 0, 0, .5); white-space: nowrap; }
+.ptag.quiet { opacity: .5; }
+.ptag.big { font: 12px/1.45 var(--font-ui); padding: 2px 7px; z-index: 2; transform: translate(-50%, -100%); }
+.ptag.big b { font-family: var(--font-mono); font-weight: 700; }
+.ptag .age { color: #6b5f73; font-family: var(--font-mono); font-size: 11px; }
+.greet { position: absolute; background: transparent; border: 0; cursor: pointer; padding: 0; }
+.greet:focus-visible { outline: 2px solid #9cc3ff; }
+.bell { position: absolute; display: inline-flex; gap: 6px; align-items: center; font: 11px var(--font-ui); color: #2a2233; background: #efe3c6; border: 0; border-radius: 2px; padding: 2px 8px; cursor: pointer; box-shadow: 0 1px 0 rgba(0, 0, 0, .5); white-space: nowrap; }
+.bell svg { display: block; }
+.living-note { position: absolute; width: 300px; background: #efe3c6; color: #2a2233; font-size: 12px; line-height: 1.45; padding: 8px 10px; border-radius: 2px; box-shadow: 0 2px 0 rgba(0, 0, 0, .55); z-index: 3; }
+.living-note .note-close { display: block; margin-top: 6px; background: #2a2233; color: #efe3c6; border: 0; border-radius: 2px; padding: 1px 10px; cursor: pointer; }
+.app[data-study="d"] .titlebar { background: linear-gradient(var(--sky-2), var(--sky-2)); }
 
 /* ── Notes & asset sheet below the app ─────────────────────────── */
 .notes { margin: 0 var(--s4) var(--s6); display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--s4); }
@@ -755,6 +826,7 @@ table.areas tr.cur td { background: var(--select-t); }
     stale:    [".........", "..xxxxx..", ".x.....x.", ".x..x..x.", ".x..xx.x.", ".x.....x.", "..xxxxx..", ".........", "........."],
     declared: [".........", ".xxxxxx..", ".x....x..", ".x.xx.x..", ".x....x..", ".x.xx.x..", ".x....x..", ".xxxxxx..", "........."],
     plate:    [".........", "xxxxxxxxx", "x.......x", "x..x....x", "x.xxx...x", "x..x..x.x", "x.......x", "xxxxxxxxx", "........."],
+    bell:     ["....x....", "...xxx...", "..xxxxx..", "..xxxxx..", "..xxxxx..", ".xxxxxxx.", "xxxxxxxxx", "....x....", "........."],
     dome:     [".........", "...xxx...", "..xx.xx..", ".xxx.xxx.", ".xxx.xxx.", "xxxxxxxxx", "x.x...x.x", "x.x...x.x", "xxxxxxxxx"],
   };
 
@@ -831,6 +903,636 @@ table.areas tr.cur td { background: var(--select-t); }
     sky, hills, tree, observatory, refractor, arc, eyepiece, tube, glyph,
     toCanvas, toSVG, paletteFromCSS, quantize,
   };
+})(typeof window !== "undefined" ? window : globalThis);
+</script>
+<script>
+/* src/creature.js */
+/* Direction D — the living observatory. Editable pixel source.
+ *
+ * The observatory *is* the creature: a copper dome like an oversized shell,
+ * a telescope like a curious snout, two attic windows that read as eyes only
+ * through their light, a stone foundation folded into tucked paws, moss in the
+ * seams, an amber side door where someone is always working.
+ *
+ * Every pose parameter maps either to project state or to a declared
+ * decorative habit (see README → "D · behaviour law"). Nothing here decides
+ * what a pose means; the engine (living.js) does, from typed state.
+ *
+ * Depends on ObsPixels (pixels.js). Adds the dusk palette to it.
+ */
+(function (root) {
+  "use strict";
+  const P = root.ObsPixels;
+
+  Object.assign(P.PALETTE, {
+    "dusk-0": "#191b38", "dusk-1": "#212448", "dusk-2": "#2c2b55", "dusk-3": "#3e3560", "dusk-4": "#56426a",
+    "cream": "#f3e6c4", "cream-dim": "#8e88a6", "cream-faint": "#5d5880",
+    "moss-0": "#1f3029", "moss-1": "#2b4434", "moss-2": "#3f6040", "moss-3": "#6b8c4c", "fern": "#557a45",
+    "rock-0": "#2e2a3a", "rock-1": "#4d4759", "rock-2": "#6d6679", "rock-3": "#938a9c",
+    "plaster": "#b3a8ae", "plaster-lo": "#857a8b",
+    "copper-0": "#5e3227", "copper-1": "#8c4d33", "copper-2": "#b56b45", "copper-3": "#d99263",
+    "patina": "#5b998b", "patina-hi": "#86bfac",
+    "brass-0": "#7d6136", "brass-1": "#c39d58", "brass-2": "#e2c487",
+    "lamp-dim": "#8f6c49", "lamp": "#f2cf8f", "lamp-hi": "#fff0c8",
+    "ink": "#15121f", "paper": "#efe3c6", "signal": "#ff9550", "smoke": "#a7a1b6",
+  });
+
+  const W = 46, H = 44;               // sprite box (art px); ground at H-4
+  const rad = (d) => (d * Math.PI) / 180;
+
+  /* Dusk sky: indigo above, violet toward the horizon, narrow dither seams.
+   * `drift` slides the decorative star field (history moves the sky). */
+  function duskSky(buf, seed, opts = {}) {
+    const bands = ["dusk-0", "dusk-1", "dusk-2", "dusk-3", "dusk-4"];
+    const stops = opts.stops || [0, 0.34, 0.6, 0.8, 0.93];
+    const bayer = [0, 2, 3, 1];
+    const hzn = opts.horizon ?? buf.h;
+    for (let y = 0; y < buf.h; y++) {
+      const t = y / hzn;
+      let i = 0;
+      while (i < stops.length - 1 && t >= stops[i + 1]) i++;
+      const next = Math.min(i + 1, bands.length - 1);
+      const span = (stops[i + 1] ?? 1) - stops[i];
+      const f = (t - stops[i]) / span;        // 0..1 inside band
+      for (let x = 0; x < buf.w; x++) {
+        const thr = (bayer[(x & 1) + 2 * (y & 1)] + 0.5) / 4;
+        buf.set(x, y, f > 0.9 && (f - 0.9) / 0.1 > thr ? bands[next] : bands[i]);   // narrow seams only
+      }
+    }
+    const rnd = P.mulberry32(seed);
+    const n = Math.round(buf.w * hzn * (opts.density ?? 0.01));
+    const drift = Math.round(opts.drift || 0);
+    const quiet = opts.quiet || [];
+    for (let k = 0; k < n; k++) {
+      const x = ((Math.floor(rnd() * buf.w * 2) + drift) % buf.w + buf.w) % buf.w;
+      const y = Math.floor(rnd() * hzn * 0.8);
+      const b = rnd();
+      if (quiet.some((q) => x >= q.x && x < q.x + q.w && y >= q.y && y < q.y + q.h)) continue;
+      buf.set(x, y, b > 0.9 ? "cream-dim" : "cream-faint");
+    }
+  }
+
+  /* A rounded grassy hill rising from the left, with tufts. */
+  function hill(buf, seed, x0, x1, top, ground) {
+    const rnd = P.mulberry32(seed);
+    for (let x = 0; x < buf.w; x++) {
+      let y;
+      if (x < x0) y = top;
+      else if (x < x1) { const f = (x - x0) / (x1 - x0); y = Math.round(top + (ground - top) * (0.5 - 0.5 * Math.cos(f * Math.PI))); }
+      else y = ground;
+      for (let j = y; j < buf.h; j++) buf.set(x, j, j === y ? "moss-2" : j - y < 3 ? "moss-1" : "moss-0");
+      if (rnd() < 0.18) buf.set(x, y - 1, "moss-2");
+      if (rnd() < 0.06) { buf.set(x, y - 1, "moss-3"); buf.set(x, y - 2, "moss-3"); }
+    }
+  }
+
+  const FERN = ["..f..f", ".f.ff.", "f.ff..", ".ff.f.", "ff....", ".f...."];
+
+  /* The creature. pose:
+   *   angle    telescope azimuth, degrees from vertical (+ = right)
+   *   eyes     "closed" | "half" | "open" | "wide"
+   *   look     -1 | 0 | 1   pupils
+   *   lean     -1 | 0 | 1   upper body shifts against a turn (weight)
+   *   settle   0 | 1        breathing: upper body sinks one pixel
+   *   lift     0 | 1        dome lifts (listening)
+   *   door     0 | 1 | 2    side-door lamp: dim / working / bright
+   *   lantern  bool         signal lantern under the telescope (attention)
+   *   note     bool         paper slip pinned by the door (declared commitment)
+   *   chart    0..4         star chart poking out of the hatch
+   *   smoke    0..6         chimney puff frame
+   */
+  function creature(buf, x, g, pose = {}) {
+    const p = Object.assign({ angle: 35, eyes: "open", look: 0, lean: 0, settle: 0, lift: 0, door: 1, lantern: false, note: false, chart: 0, smoke: 0 }, pose);
+    const set = (a, b, c) => buf.set(a, b, c);
+
+    // ── foundation (folded body) ──
+    const fx0 = x + 7, fx1 = x + 38, ftop = g - 13;
+    for (let j = 0; j < 13; j++) {
+      const inset = j === 0 ? 2 : j === 1 ? 1 : 0;
+      for (let i = fx0 + inset; i <= fx1 - inset; i++) {
+        let c = "rock-2";
+        if (i < fx0 + 3) c = "rock-3";
+        if (i > fx1 - 7) c = "rock-1";
+        if (j > 10) c = "rock-1";
+        if (j % 4 === 3 && (i + (j % 8 === 3 ? 0 : 3)) % 7 !== 0) c = i > fx1 - 7 ? "rock-0" : "rock-1";
+        set(i, ftop + j, c);
+      }
+    }
+    // paws, tucked forward
+    const paw = (px) => {
+      for (let j = 0; j < 5; j++) for (let i = 0; i < 9; i++) {
+        if (j === 0 && (i === 0 || i === 8)) continue;
+        let c = j === 0 ? "rock-3" : j === 4 ? "rock-1" : "rock-2";
+        if ((i === 3 || i === 6) && j >= 3) c = "rock-0";
+        set(px + i, g - 5 + j, c);
+      }
+    };
+    paw(x + 3); paw(x + 33);
+    // moss along the seams
+    const rnd = P.mulberry32(91);
+    for (let i = fx0 + 2; i <= fx1 - 2; i++) {
+      set(i, ftop, rnd() < 0.3 ? "moss-3" : "moss-2");
+      if (rnd() < 0.25) set(i, ftop + 1, "moss-1");
+      if (rnd() < 0.08) set(i, ftop + 2, "moss-1");
+    }
+    for (let i = 0; i < 9; i++) if (rnd() < 0.5) set(x + 3 + i, g - 5, "moss-2");
+    for (let i = 0; i < 9; i++) if (rnd() < 0.4) set(x + 33 + i, g - 5, "moss-2");
+    buf.grid(x + 1, g - 10, FERN, { f: "fern" });
+
+    // side door, always a little lit: someone is working inside
+    const dx = x + 15, dtop = g - 10;
+    for (let j = 0; j < 9; j++) for (let i = 0; i < 6; i++) {
+      if (j === 0 && (i === 0 || i === 5)) continue;
+      const edge = i === 0 || i === 5 || j === 0;
+      let c = edge ? "rock-0" : p.door === 0 ? "lamp-dim" : "lamp";
+      if (!edge && p.door === 2 && i > 1 && i < 4 && j > 2) c = "lamp-hi";
+      set(dx + i, dtop + j, c);
+    }
+    set(dx + 3, dtop + 5, "brass-1");
+    if (p.door > 0) for (let k = 0; k < 4; k++) for (let i = -k; i < 6 + k; i++) if ((i + k) % 2 === 0 || k === 0) {
+      if (buf.get(dx + i, g + k)) set(dx + i, g + k, k === 0 ? "moss-3" : "lamp-dim");
+    }
+    if (p.note) { buf.rect(x + 23, g - 9, 3, 4, "paper"); set(x + 24, g - 8, "ink"); set(x + 24, g - 9, "brass-1"); }
+
+    // ── upper body: drum with eyes, chimney, hatch ──
+    const ux = x + p.lean, uy = -p.settle;
+    const D0 = x + 9 + p.lean, D1 = x + 35 + p.lean, dTop = ftop - 7 + uy;
+    for (let j = 0; j < 7; j++) for (let i = D0; i <= D1; i++) {
+      let c = i > D1 - 7 ? "plaster-lo" : "plaster";
+      if (j === 0) c = "copper-1";
+      if (j === 6) c = "plaster-lo";
+      set(i, dTop + j, c);
+    }
+    // eyes: attic windows (6×5 with frame)
+    const eye = (ex) => {
+      for (let j = 0; j < 5; j++) for (let i = 0; i < 6; i++) {
+        const frame = i === 0 || i === 5 || j === 0 || j === 4;
+        set(ex + i, dTop + 1 + j, frame ? "rock-0" : "lamp");
+      }
+      const ix = ex + 1, iy = dTop + 2;           // interior 4×3
+      const pupX = ix + 1 + p.look;
+      if (p.eyes === "open") { set(pupX, iy + 1, "ink"); set(pupX + 1, iy + 1, "ink"); set(pupX, iy + 2, "ink"); set(pupX + 1, iy + 2, "ink"); }
+      if (p.eyes === "wide") { for (let i = 0; i < 4; i++) for (let j = 0; j < 3; j++) set(ix + i, iy + j, "lamp-hi"); set(pupX, iy + 1, "ink"); set(pupX + 1, iy + 1, "ink"); }
+      if (p.eyes === "half") { for (let i = 0; i < 4; i++) set(ix + i, iy, "copper-1"); set(pupX, iy + 2, "ink"); set(pupX + 1, iy + 2, "ink"); }
+      if (p.eyes === "closed") { for (let i = 0; i < 4; i++) { set(ix + i, iy, "copper-1"); set(ix + i, iy + 1, "copper-1"); set(ix + i, iy + 2, "lamp-dim"); } }
+    };
+    eye(ux + 12); eye(ux + 25);
+    // hatch + chart
+    set(D0, dTop + 2, "ink"); set(D0, dTop + 3, "ink"); set(D0, dTop + 4, "ink");
+    for (let k = 1; k <= p.chart; k++) { set(D0 - k, dTop + 3, "paper"); if (k < 3) set(D0 - k, dTop + 2, "paper"); if (k === 2) set(D0 - k, dTop + 3, "cream-dim"); }
+    // ── dome, an oversized patched copper shell ──
+    const R = 12, ccx = ux + 22, base = dTop - 1 - p.lift;
+    if (p.lift) for (let i = ccx - R + 1; i <= ccx + R - 1; i++) set(i, dTop - 1, "ink");
+    for (let dy = 0; dy <= R; dy++) {
+      const half = Math.floor(Math.sqrt(R * R - dy * dy) + 0.3);
+      for (let dxx = -half; dxx <= half; dxx++) {
+        let c = "copper-2";
+        if (dxx < -half / 3 && dy > R / 3) c = "copper-3";
+        if (dxx > half / 2) c = "copper-1";
+        if (Math.abs(dxx) === half || dy === R) c = "copper-0";
+        if (dy === 3 && (dxx + 30) % 3 === 0 && Math.abs(dxx) < half) c = "copper-0";   // rivets
+        set(ccx + dxx, base - dy, c);
+      }
+    }
+    [[-7, 5], [-6, 5], [-6, 6], [-5, 6], [5, 8], [6, 8], [6, 9], [2, 10]].forEach(([a, b]) => set(ccx + a, base - b, "patina"));
+    set(ccx - 6, base - 6, "patina-hi");
+    for (let i = -2; i <= 1; i++) for (let j = 5; j <= 7; j++) set(ccx + i, base - j, (i === -2 || i === 1 || j === 5 || j === 7) ? "copper-1" : "copper-2");
+    set(ccx - 2, base - 7, "copper-3"); set(ccx + 1, base - 5, "copper-3");
+
+    // slit faces the telescope
+    const a = rad(p.angle);
+    const slitX = Math.round(ccx + Math.sin(a) * R * 0.5);
+    for (let dy = 2; dy <= R - 1; dy++) {
+      const half = Math.floor(Math.sqrt(R * R - dy * dy));
+      for (let k = -1; k <= 1; k++) if (Math.abs(slitX + k - ccx) < half) set(slitX + k, base - dy, "ink");
+    }
+
+    // chimney + smoke
+    const cx0 = ux + 33;
+    for (let j = 0; j < 6; j++) for (let i = 0; i < 3; i++) set(cx0 + i, dTop - 5 + j, j === 0 ? "rock-3" : i === 2 ? "rock-1" : "rock-2");
+    if (p.smoke > 0) {
+      const f = p.smoke;
+      const puff = (ox, oy, r) => { for (let i = -r; i <= r; i++) for (let j = -r; j <= r; j++) if (Math.abs(i) + Math.abs(j) <= r) set(cx0 + 1 + ox + i, dTop - 7 - oy + j, "smoke"); };
+      puff(0, f, f > 4 ? 0 : 1);
+      if (f > 2) puff(1, f + 3, 0);
+    }
+
+    // ── telescope snout ──
+    const pvx = slitX, pvy = base - 5;
+    const ux1 = Math.sin(a), uy1 = -Math.cos(a), nx = -uy1, ny = ux1;
+    for (let t = 0; t <= 16; t += 0.5) {
+      const thick = t > 12 ? 4 : 3;                       // dew shield
+      for (let k = 0; k < thick; k++) {
+        const o = k - (thick - 1) / 2;
+        const px = pvx + ux1 * t + nx * o, py = pvy + uy1 * t + ny * o;
+        set(px, py, (t > 6 && t < 7.5) || (t > 11.5 && t < 12.5) ? "copper-1" : k === 0 ? "brass-2" : k === thick - 1 ? "brass-0" : "brass-1");
+      }
+    }
+    const tipX = Math.round(pvx + ux1 * 16.5), tipY = Math.round(pvy + uy1 * 16.5);
+    set(tipX, tipY, "ink"); set(tipX + Math.round(nx), tipY + Math.round(ny), "ink");
+    if (p.lantern) {
+      const lx = Math.round(pvx + ux1 * 12), ly = Math.round(pvy + uy1 * 12) + 2;
+      set(lx, ly, "ink"); set(lx, ly + 1, "ink");
+      buf.rect(lx - 1, ly + 2, 3, 3, "signal"); set(lx, ly + 3, "lamp-hi");
+    }
+    return { pivot: { x: pvx, y: pvy }, tip: { x: tipX, y: tipY }, box: { x, y: g - H + 4, w: W, h: H } };
+  }
+
+  function moth(buf, x, y, f) {
+    buf.set(x, y, "cream-dim");
+    if (f % 2) { buf.set(x - 1, y - 1, "cream"); buf.set(x + 1, y - 1, "cream"); }
+    else { buf.set(x - 1, y, "cream"); buf.set(x + 1, y, "cream"); }
+  }
+
+  /* Angle (deg from vertical) from the telescope pivot to an art-space point. */
+  function aimAt(pivot, pt) {
+    const d = (Math.atan2(pt.x - pivot.x, pivot.y - pt.y) * 180) / Math.PI;
+    return Math.max(-20, Math.min(80, P.quantize(d)));
+  }
+
+  root.ObsCreature = { W, H, duskSky, hill, creature, moth, aimAt };
+})(typeof window !== "undefined" ? window : globalThis);
+</script>
+<script>
+/* src/living.js */
+/* Direction D — living sky engine.
+ *
+ * The observatory watches its sky (the project map) and keeps a few habits:
+ *   listens before it looks — door brightens, dome lifts, then the telescope turns;
+ *   has weight              — the body leans against a turn, hesitates halfway, settles;
+ *   draws by hand           — a relation (overlap / waiting) is inked once, then kept;
+ *   is comfortable at rest  — eyes closed, one lamp lit, tends its chart, a moth visits.
+ *
+ * Law: habits are decoration and may stop at any time (reduced motion, Motion off);
+ * every *state* they reflect is also stated in text by the page. The engine never
+ * invents a relation: it only inks edges it is given, and only animates commits
+ * during replay, where the event really is a commit.
+ */
+(function (root) {
+  "use strict";
+  const P = root.ObsPixels, C = root.ObsCreature;
+  const SVGNS = "http://www.w3.org/2000/svg";
+
+  function el(tag, attrs, ...kids) {
+    const e = tag.startsWith("svg:") ? document.createElementNS(SVGNS, tag.slice(4)) : document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) {
+      if (v == null || v === false) continue;
+      if (k === "on") for (const [ev, fn] of Object.entries(v)) e.addEventListener(ev, fn);
+      else e.setAttribute(k, v === true ? "" : v);
+    }
+    for (const k of kids.flat(3)) if (k != null && k !== false) e.append(k instanceof Node ? k : document.createTextNode(String(k)));
+    return e;
+  }
+
+  function create() {
+    const node = el("div", { class: "living" });
+    const scroller = el("div", { class: "living-scroll" });
+    const stage = el("div", { class: "living-stage" });
+    const bg = el("canvas", { class: "px", "aria-hidden": "true" });
+    const actor = el("canvas", { class: "px actor", "aria-hidden": "true" });
+    const fx = el("canvas", { class: "px fx", "aria-hidden": "true" });
+    const svg = document.createElementNS(SVGNS, "svg");
+    svg.setAttribute("class", "living-data");
+    const tags = el("div", { class: "living-tags" });
+    const greet = el("button", { type: "button", class: "greet", "aria-label": "Greet the observatory (decorative)" });
+    const bell = el("button", { type: "button", class: "bell", "data-key": "living:bell" });
+    const note = el("div", { class: "living-note", role: "status", hidden: true });
+    stage.append(bg, svg, actor, fx, tags, greet, bell, note);
+    scroller.append(stage);
+    node.append(scroller);
+
+    let M = null;                  // last model
+    let S = 3, W = 0, H = 0;       // scale and art size
+    let bgBuf = null, layout = null, lastDrift = null, lastW = 0;
+    let hover = null;              // {x,y} art point the viewer is looking at
+    const traced = new Set();
+    let timer = null;
+    const REST_ANGLE = 70;            // resting: snout lowered toward the horizon
+    const st = { t: 0, angle: REST_ANGLE, target: REST_ANGLE, seq: null, ack: 0, notes: 0, smoke: 0, chart: 0, cool: 0 };
+
+    const motion = () => M && M.motion;
+    const pal = () => P.paletteFromCSS();
+
+    /* ── geometry ── */
+    function measure() {
+      // The living scene is one picture at one integer scale: 4× desktop, 3× small screens.
+      S = window.innerWidth < 768 ? 3 : 4;
+      const cw = Math.max(node.clientWidth || 900, 720);
+      W = Math.floor(cw / S);
+      H = S === 3 ? 172 : 150;
+    }
+    const G = () => H - 12;                      // creature ground line
+    const CX = 6;                                // creature x
+
+    function computeLayout() {
+      const lanes = M.lanes, groups = M.groups;
+      const x0 = 10, x1 = W - 8, top = 22, bottom = H - 54;
+      const colW = (x1 - x0) / lanes.length;
+      const clusters = {};
+      lanes.forEach((z, zi) => {
+        const gs = groups.filter((g) => g.zone === z.id);
+        const slot = (bottom - top) / gs.length;
+        gs.forEach((g, gi) => {
+          const j = (P.hash(g.id) % 13) - 6;
+          clusters[g.id] = { id: g.id, path: g.path, zone: z.id, x: Math.round(x0 + colW * (zi + 0.5) + j), y: Math.round(top + slot * (gi + 0.5)) };
+        });
+      });
+      const stars = {};
+      Object.values(clusters).forEach((c) => {
+        const ns = M.stars.filter((s) => s.group === c.id);
+        const placed = [];
+        ns.forEach((s) => {
+          let a = (P.hash(s.id) % 8) * 45, p;
+          for (let k = 0; k < 8; k++, a += 45) {
+            const r = ns.length === 1 ? 0 : 9;
+            p = { x: Math.round(c.x + Math.cos((a * Math.PI) / 180) * r * 1.3), y: Math.round(c.y - 2 + Math.sin((a * Math.PI) / 180) * r * 0.8) };
+            if (placed.every((q) => Math.hypot(q.x - p.x, q.y - p.y) > 9)) break;
+          }
+          placed.push(p);
+          stars[s.id] = Object.assign({}, p, { s });
+        });
+      });
+      return { x0, x1, top, bottom, colW, clusters, stars };
+    }
+
+    function dotPos(d) {
+      const c = Object.values(layout.clusters).find((x) => x.path === d.area);
+      const hsh = P.hash(d.key);
+      const a = (hsh % 360) * Math.PI / 180, r = 4 + (hsh >> 9) % 9;
+      return { x: Math.round(c.x + Math.cos(a) * r * 1.4), y: Math.round(c.y + Math.sin(a) * r * 0.8) };
+    }
+
+    function pointFor(id) {
+      if (!id || !layout) return null;
+      if (layout.stars[id]) return layout.stars[id];
+      if (layout.clusters[id]) return layout.clusters[id];
+      const e = M.edges.find((x) => x.id === id);
+      if (e && layout.stars[e.from] && layout.stars[e.to]) {
+        const a = layout.stars[e.from], b = layout.stars[e.to];
+        return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+      }
+      return null;
+    }
+
+    /* ── drawing ── */
+    function drawBg() {
+      const drift = M.drift || 0;
+      if (bgBuf && lastDrift === drift && lastW === W) return;
+      lastDrift = drift; lastW = W;
+      bgBuf = new P.PixelBuffer(W, H);
+      C.duskSky(bgBuf, 23, { horizon: H - 8, density: 0.007, drift,
+        quiet: Object.values(layout.clusters).map((c) => ({ x: c.x - 22, y: c.y - 14, w: 44, h: 32 })) });
+      C.hill(bgBuf, 4, 54, 96, G(), H - 5);
+      P.toCanvas(bg, bgBuf, S, pal());
+    }
+
+    function pose() {
+      const rest = M.mood === "rest";
+      const p = {
+        angle: st.angle, eyes: rest ? "closed" : "open", look: 0, lean: 0, settle: 0, lift: 0,
+        door: M.loaded ? 1 : 0, lantern: !!M.lantern, note: !!M.note, chart: st.chart, smoke: st.smoke,
+      };
+      if (!motion()) { p.eyes = rest ? "half" : "open"; p.angle = st.target; return p; }
+      const t = st.t;
+      // breathing / settling
+      if ((t % (rest ? 50 : 42)) < (rest ? 7 : 4)) p.settle = 1;
+      // eyes
+      if (rest) { if (t % 110 > 96) { p.eyes = "half"; p.look = -1; } }
+      else if (t % 64 > 61) p.eyes = "closed";
+      // listening sequence
+      if (st.seq) {
+        const k = t - st.seq.start;
+        if (k < 6) p.door = 2;
+        if (k >= 2) p.lift = 1;
+        p.eyes = "open";
+        p.look = Math.sign(st.target - st.angle) || st.seq.dir;
+        if (st.angle !== st.target && k >= 4) p.lean = -Math.sign(st.target - st.angle);
+      }
+      if (st.notes > 0) { p.eyes = "half"; p.look = 0; p.chart = 4; }
+      if (st.ack > 0) { p.eyes = "wide"; }
+      return p;
+    }
+
+    function drawActor() {
+      const ax = 0, ay = G() - 48, aw = 64, ah = 56;
+      const buf = new P.PixelBuffer(aw, ah);
+      for (let y = 0; y < ah; y++) for (let x = 0; x < aw; x++) buf.px[y * aw + x] = bgBuf.get(ax + x, ay + y);
+      const p = pose();
+      const out = C.creature(buf, CX - ax, G() - ay, p);
+      if (motion() && M.mood === "rest") C.moth(buf, CX + 20 + Math.round(Math.sin(st.t / 4) * 5), G() - ay - 16 + Math.round(Math.cos(st.t / 3) * 2), st.t);
+      P.toCanvas(actor, buf, S, pal());
+      actor.style.left = ax * S + "px"; actor.style.top = ay * S + "px";
+      st.pivot = { x: out.pivot.x + ax, y: out.pivot.y + ay };
+      Object.assign(greet.style, { left: (CX + 7) * S + "px", top: (G() - 30) * S + "px", width: 32 * S + "px", height: 30 * S + "px" });
+    }
+
+    function retarget() {
+      if (!st.pivot) st.pivot = { x: CX + 28, y: G() - 26 };
+      const pt = hover || pointFor(M.aimId);
+      const tgt = pt ? C.aimAt(st.pivot, pt) : REST_ANGLE;
+      if (tgt !== st.target) {
+        st.target = tgt;
+        if (motion()) st.seq = { start: st.t, dir: Math.sign(tgt - st.angle), paused: false, half: (st.angle + tgt) / 2 };
+        else st.angle = tgt;
+      }
+    }
+
+    function tick() {
+      if (!node.isConnected) return;
+      st.t++;
+      if (st.seq) {
+        const k = st.t - st.seq.start;
+        if (k >= 4 && st.angle !== st.target) {
+          const crossing = !st.seq.paused && Math.abs(st.angle - st.seq.half) < 5;
+          if (crossing) { st.seq.paused = true; st.seq.hold = 3; }
+          if (st.seq.hold > 0) st.seq.hold--;
+          else st.angle += 5 * Math.sign(st.target - st.angle);
+          if (st.angle === st.target) st.seq.doneAt = st.t;
+        }
+        if (st.angle === st.target && st.seq.doneAt == null) st.seq.doneAt = st.t;
+        if (st.seq.doneAt != null && st.t - st.seq.doneAt > 4) st.seq = null;
+      }
+      if (st.ack > 0) st.ack--;
+      if (st.cool > 0) st.cool--;
+      if (st.notes > 0) st.notes--;
+      if (st.smoke > 0) st.smoke = st.smoke >= 6 ? 0 : st.smoke + 1;
+      if (!st.notes) {
+        const c = st.t % 170;
+        st.chart = M.mood === "rest" && c > 150 ? Math.min(3, (c - 150) >> 1) - (c > 164 ? (c - 164) : 0) : 0;
+        if (st.chart < 0) st.chart = 0;
+      }
+      drawActor();
+    }
+
+    function startLoop() {
+      clearInterval(timer);
+      if (motion()) timer = setInterval(tick, 100);
+    }
+
+    /* ── shooting star (replay only) ── */
+    function shoot(to) {
+      if (!motion()) return;
+      const ctx = fx.getContext("2d");
+      fx.width = W * S; fx.height = H * S;
+      const pl = pal();
+      const from = { x: to.x - 46, y: Math.max(2, to.y - 30) };
+      const t0 = performance.now(), dur = 650;
+      const trail = ["cream", "cream", "cream-dim", "cream-faint", "dusk-4"];
+      (function frame(now) {
+        const f = Math.min(1, (now - t0) / dur);
+        ctx.clearRect(0, 0, fx.width, fx.height);
+        if (f < 1) {
+          trail.forEach((c, i) => {
+            const g = Math.max(0, f - i * 0.035);
+            const x = Math.round(from.x + (to.x - from.x) * g), y = Math.round(from.y + (to.y - from.y) * g);
+            ctx.fillStyle = pl[c] || P.PALETTE[c];
+            ctx.fillRect(x * S, y * S, S, S);
+          });
+          requestAnimationFrame(frame);
+        }
+      })(t0);
+    }
+
+    /* ── data layer ── */
+    function drawData() {
+      const s = S;
+      svg.setAttribute("viewBox", `0 0 ${W * s} ${H * s}`);
+      svg.setAttribute("width", W * s); svg.setAttribute("height", H * s);
+      svg.replaceChildren();
+      tags.replaceChildren();
+      const add = (n) => { svg.append(n); return n; };
+      const tag = (x, y, text, cls) => tags.append(el("span", { class: "ptag " + (cls || ""), style: `left:${x * s}px;top:${y * s}px` }, text));
+      add(el("svg:defs", null, el("svg:marker", { id: "larrow", viewBox: "0 0 6 6", refX: 9, refY: 3, markerWidth: 6, markerHeight: 6, orient: "auto" }, el("svg:path", { d: "M0 0 L6 3 L0 6 Z", fill: "var(--l-thread)" }))));
+      // lane names along the top, faint meridians between lanes
+      M.lanes.forEach((z, i) => {
+        const x = layout.x0 + layout.colW * (i + 0.5);
+        add(el("svg:text", { x: x * s, y: 11 * s, "text-anchor": "middle", class: "lane-name" }, z.label.toUpperCase()));
+        if (i) add(el("svg:line", { x1: (layout.x0 + layout.colW * i) * s, y1: 16 * s, x2: (layout.x0 + layout.colW * i) * s, y2: (layout.bottom + 8) * s, class: "meridian" }));
+      });
+      const rel = M.related;
+      // clusters (hover target + paper tag)
+      Object.values(layout.clusters).forEach((c) => {
+        const has = M.mode === "replay" || M.stars.some((x) => x.group === c.id);
+        const cur = M.replay && M.replay.event && c.path === M.replay.event.area;
+        const g = add(el("svg:g", { class: "lcluster" + (cur ? " cur" : ""), on: {
+          mouseenter: () => { hover = c; retarget(); }, mouseleave: () => { hover = null; retarget(); },
+        } }));
+        g.append(el("svg:ellipse", { cx: c.x * s, cy: (c.y - 1) * s, rx: 16 * s, ry: 11 * s, class: "halo-area" }));
+        tag(c.x, c.y + 10, M.replay ? `${c.path} · ${M.replay.files[c.path]} files` : c.path, has ? "" : "quiet");
+      });
+      // replay dots: the lasting record each commit leaves
+      if (M.replay) {
+        M.replay.dots.forEach((d) => {
+          const p = dotPos(d);
+          add(el("svg:rect", { x: p.x * s, y: p.y * s, width: 2 * s, height: 2 * s, class: "fdot" + (d.removed ? " removed" : "") + (d.fresh && motion() ? " fresh" : "") }));
+        });
+      }
+      // relations, inked by hand the first time they appear
+      const ids = new Set(M.edges.map((e) => e.id));
+      [...traced].forEach((id) => { if (!ids.has(id)) traced.delete(id); });
+      M.edges.forEach((e) => {
+        const a = layout.stars[e.from], b = layout.stars[e.to];
+        if (!a || !b) return;
+        const on = !rel || rel.has(e.id);
+        const attrs = { x1: a.x * s, y1: a.y * s, x2: b.x * s, y2: b.y * s, class: `edge ${e.type}` + (on ? "" : " off"), "marker-end": e.directed ? "url(#larrow)" : null };
+        const final = add(el("svg:line", attrs));
+        if (!traced.has(e.id) && motion()) {
+          final.classList.add("pending");
+          const len = Math.hypot(b.x - a.x, b.y - a.y) * s;
+          const ink = add(el("svg:line", { x1: a.x * s, y1: a.y * s, x2: b.x * s, y2: b.y * s, class: "ink", style: `stroke-dasharray:${len};stroke-dashoffset:${len}` }));
+          st.chart = 3;
+          setTimeout(() => { ink.remove(); final.classList.remove("pending"); }, 1300);
+        }
+        traced.add(e.id);
+      });
+      // stars: selectable, labelled
+      Object.values(layout.stars).forEach((p) => {
+        const x = p.s;
+        const sel = M.selId === x.id;
+        const g = add(el("svg:g", {
+          class: "lstar " + x.status + (sel ? " sel" : "") + (rel && !rel.has(x.id) ? " dim" : ""), tabindex: 0, role: "button",
+          "data-sel": "", "data-key": `l:${x.id}`, "aria-pressed": String(sel), "aria-label": x.aria,
+          transform: `translate(${p.x * s} ${p.y * s})`,
+          on: {
+            click: (ev) => M.onSelect(x.id, ev.currentTarget),
+            keydown: (ev) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); M.onSelect(x.id, ev.currentTarget); } },
+            mouseenter: () => { hover = p; retarget(); showLabel(p); }, mouseleave: () => { hover = null; retarget(); hideLabel(); },
+            focus: () => { hover = p; retarget(); showLabel(p); }, blur: () => { hover = null; retarget(); hideLabel(); },
+          },
+        }));
+        g.append(el("svg:rect", { class: "hit", x: -4 * s, y: -4 * s, width: 8 * s, height: 8 * s }));
+        const rows = P.STAR_GLYPHS[x.status] || P.STAR_GLYPHS.in_flight;
+        rows.forEach((r, yy) => [...r].forEach((ch, xx) => {
+          if (ch === "x" || ch === "X") g.append(el("svg:rect", { x: (xx - 2) * s, y: (yy - 2) * s, width: s, height: s, class: ch === "X" && x.attn ? "core signal" : "core" }));
+        }));
+        if (sel) g.append(el("svg:rect", { class: "ring", x: -4 * s + 0.5, y: -4 * s + 0.5, width: 8 * s - 1, height: 8 * s - 1 }));
+        g.append(el("svg:text", { x: 4 * s, y: -2 * s, class: "sref" }, x.ref));
+      });
+      const selP = layout.stars[M.selId];
+      if (selP) showLabel(selP, true);
+    }
+
+    function bellIcon() {
+      const g = el("svg:svg", { width: 11, height: 11, viewBox: "0 0 9 9", "shape-rendering": "crispEdges", "aria-hidden": "true" });
+      P.ICONS.bell.forEach((r, y) => [...r].forEach((ch, x) => { if (ch === "x") g.append(el("svg:rect", { x, y, width: 1, height: 1, fill: "#8c4d33" })); }));
+      return g;
+    }
+
+    let labelEl = null;
+    function showLabel(p, sticky) {
+      hideLabel(true);
+      const x = p.s;
+      labelEl = el("span", { class: "ptag big" + (sticky ? " sticky" : ""), style: `left:${p.x * S}px;top:${(p.y - 5) * S}px` },
+        el("b", null, x.ref), " ", x.label, el("span", { class: "age" }, " · " + x.age));
+      tags.append(labelEl);
+    }
+    function hideLabel(force) {
+      if (labelEl && (force || !labelEl.classList.contains("sticky"))) { labelEl.remove(); labelEl = null; }
+      if (!force && M && layout.stars[M.selId]) showLabel(layout.stars[M.selId], true);
+    }
+
+    /* ── interactions with the creature itself ── */
+    greet.addEventListener("click", () => {
+      if (st.cool > 0) return;
+      st.ack = 8; st.smoke = 1; st.cool = 40;
+      if (!motion()) drawActor();
+    });
+    bell.addEventListener("click", () => {
+      note.hidden = false;
+      note.replaceChildren(el("b", null, "Last look: "), M.lookText.when, el("br"), M.lookText.how,
+        el("button", { type: "button", class: "note-close", "data-key": "living:note-close", on: { click: () => { note.hidden = true; bell.focus(); } } }, "OK"));
+      st.notes = 25;
+      clearTimeout(note._t); note._t = setTimeout(() => { note.hidden = true; }, 9000);
+      if (!motion()) drawActor();
+    });
+
+    function update(model) {
+      const prev = M;
+      M = model;
+      measure();
+      layout = computeLayout();
+      stage.style.width = W * S + "px"; stage.style.height = H * S + "px";
+      drawBg();
+      drawData();
+      bell.replaceChildren(bellIcon(), "Ask for a new look");
+      Object.assign(bell.style, { left: (CX + 48) * S + "px", top: (G() - 14) * S + "px" });
+      Object.assign(note.style, { left: (CX + 48) * S + "px", top: (G() - 44) * S + "px" });
+      if (!motion()) { st.angle = st.target; st.seq = null; }
+      retarget();
+      if (!motion()) st.angle = st.target;
+      drawActor();
+      if (M.replay && prev && prev.replay && M.replay.pos === prev.replay.pos + 1 && M.replay.event) {
+        const fresh = M.replay.dots.find((d) => d.fresh);
+        shoot(fresh ? dotPos(fresh) : layout.clusters[M.aimId] || { x: W / 2, y: 30 });
+      }
+      if (!prev || prev.motion !== M.motion) startLoop();
+    }
+
+    window.addEventListener("resize", () => { if (M) { lastW = 0; update(M); } });
+    return { node, update };
+  }
+
+  root.ObsLiving = { create };
 })(typeof window !== "undefined" ? window : globalThis);
 </script>
 <script>
@@ -996,7 +1698,23 @@ table.areas tr.cur td { background: var(--select-t); }
     return { pos, event: EVENTS[pos] || null, files, touched };
   }
 
-  root.ObsData = { PROJECT, ZONES, GROUPS, STATES: { quiet: QUIET, overlap: OVERLAP }, BASELINE, EVENTS, FEEDS, replayAt };
+  /* The lasting record of each commit as points per area: baseline files,
+   * additions, and removals kept as hollow points (deletions are preserved). */
+  function replayDots(pos) {
+    const dots = [];
+    for (const [area, n] of Object.entries(BASELINE.files)) for (let i = 0; i < n; i++) dots.push({ key: `${area}#base${i}`, area, removed: false });
+    for (let i = 0; i <= pos && i < EVENTS.length; i++) {
+      const e = EVENTS[i];
+      if (e.op === "add") dots.push({ key: e.path, area: e.area, removed: false, fresh: i === pos });
+      if (e.op === "remove") {
+        const hit = dots.find((d) => d.key === e.path && !d.removed) || [...dots].reverse().find((d) => d.area === e.area && !d.removed && d.key.includes("#base"));
+        if (hit) hit.removed = true;
+      }
+    }
+    return dots;
+  }
+
+  root.ObsData = { PROJECT, ZONES, GROUPS, STATES: { quiet: QUIET, overlap: OVERLAP }, BASELINE, EVENTS, FEEDS, replayAt, replayDots };
 })(typeof window !== "undefined" ? window : globalThis);
 </script>
 <script>
@@ -1019,12 +1737,13 @@ table.areas tr.cur td { background: var(--select-t); }
     a: { key: "a", name: "Courtyard", long: "A · Observatory courtyard" },
     b: { key: "b", name: "Instrument", long: "B · Telescope instrument" },
     c: { key: "c", name: "Atlas", long: "C · Star atlas" },
+    d: { key: "d", name: "Living", long: "D · Living observatory" },
   };
   const ZONE_CODE = { intent: "INT", build: "BLD", verify: "VER", ship: "SHP" };
   const CONF = { high: "●", medium: "◐", low: "○" };
 
   const S = {
-    study: "a", state: "overlap", view: "map", sel: null, pos: 11,
+    study: "d", state: "overlap", view: "map", sel: null, pos: 11,
     theme: "night", motion: true, playing: false, speed: 1, lastView: "map",
   };
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -1108,7 +1827,7 @@ table.areas tr.cur td { background: var(--select-t); }
       const g = D.GROUPS.find((x) => x.path === ev.area);
       return { angle: P.AZIMUTH[g.zone], open: true, why: `following replay event in ${laneLabel(g.zone)} · ${ev.area}` };
     }
-    if (!S.sel) return { angle: P.PARKED, open: false, why: "parked — nothing selected" };
+    if (!S.sel) return { angle: P.PARKED, open: false, why: S.study === "d" ? "resting, lowered toward the horizon — nothing selected" : "parked — nothing selected" };
     let zone = null, what = "";
     if (S.sel.startsWith("area:")) { zone = zoneOfGroup(S.sel); what = groupById(S.sel).path; }
     const n = nodeById(S.sel);
@@ -1120,8 +1839,12 @@ table.areas tr.cur td { background: var(--select-t); }
   }
   const laneLabel = (z) => (D.ZONES.find((x) => x.id === z) || {}).label || z;
   function windowLit() {
-    if (S.state === "replay") return { lit: false, why: "window unlit — coordination is not reconstructed from commit history" };
+    const d = S.study === "d";
+    if (S.state === "replay") return { lit: false, why: d ? "lantern dark — coordination is not reconstructed from commit history" : "window unlit — coordination is not reconstructed from commit history" };
     const n = snap().attention.filter((a) => a.kind === "overlap" || a.kind === "waiting").length;
+    if (d) return n
+      ? { lit: true, why: `lantern lit — ${n} signal${n > 1 ? "s" : ""} suggest a conversation` }
+      : { lit: false, why: S.sel ? "lantern dark — nothing needs a conversation" : "resting — nothing needs a conversation" };
     return n
       ? { lit: true, why: `window lit — ${n} signal${n > 1 ? "s" : ""} suggest a conversation` }
       : { lit: false, why: "window unlit — nothing needs a conversation" };
@@ -1164,6 +1887,7 @@ table.areas tr.cur td { background: var(--select-t); }
   function render() {
     const focusKey = document.activeElement && document.activeElement.getAttribute && document.activeElement.getAttribute("data-key");
     document.documentElement.dataset.theme = S.theme;
+    document.documentElement.dataset.direction = S.study;
     writeHash();
     renderStudyBar();
     const app = document.getElementById("app");
@@ -1195,7 +1919,7 @@ table.areas tr.cur td { background: var(--select-t); }
     const bar = document.getElementById("studybar");
     bar.replaceChildren(
       h("h1", null, "Observatory · pixel-design study"),
-      seg("Direction", "study", [["a", "A Courtyard"], ["b", "B Instrument"], ["c", "C Atlas"]], (v) => { S.study = v; render(); }),
+      seg("Direction", "study", [["d", "D Living"], ["a", "A Courtyard"], ["b", "B Instrument"], ["c", "C Atlas"]], (v) => { S.study = v; render(); }),
       seg("State", "state", [["quiet", "Quiet"], ["overlap", "Overlap"], ["replay", "Replay"]], (v) => setState(v)),
       seg("Theme", "theme", [["night", "Night"], ["paper", "Paper"]], (v) => { S.theme = v; render(); }),
       h("span", { class: "ctl" }, h("span", { class: "seg-label" }, "Motion"),
@@ -1404,9 +2128,14 @@ table.areas tr.cur td { background: var(--select-t); }
     m.classList.toggle("dimmed", !!rel);
     if (S.state === "replay") { m.replaceChildren(...replayPane()); return; }
     const head = h("div", { class: "pane-head" },
-      h("h2", null, S.view === "list" ? "All work items" : { a: "Project map", b: "Recency field", c: "Atlas" }[S.study]),
-      h("span", { class: "faint" }, S.view === "list" ? "full equivalent of the map, keyboard ↑↓ Enter Esc" : { a: "lanes → areas → work items", b: "distance from the right edge = time since last activity", c: "stable sky regions per lane; stars are work items" }[S.study]),
+      h("h2", null, S.view === "list" ? "All work items" : { a: "Project map", b: "Recency field", c: "Atlas", d: "Sky" }[S.study]),
+      h("span", { class: "faint" }, S.view === "list" ? "full equivalent of the map, keyboard ↑↓ Enter Esc" : { a: "lanes → areas → work items", b: "distance from the right edge = time since last activity", c: "stable sky regions per lane; stars are work items", d: "stars are work items · hover one to share its gaze" }[S.study]),
       legend());
+    if (S.study === "d" && S.view === "map") {
+      m.replaceChildren(head, living().node);
+      living().update(livingModel(rel));
+      return;
+    }
     let body;
     if (S.view === "list") body = listView(rel);
     else if (S.study === "a") body = boardView(rel);
@@ -1643,6 +2372,43 @@ table.areas tr.cur td { background: var(--select-t); }
     return wrap;
   }
 
+  /* ── D · living sky model (typed state → what the creature may reflect) ── */
+  let livingInst = null;
+  function living() { return livingInst || (livingInst = window.ObsLiving.create()); }
+  let prevReplayPos = null;
+  function livingModel(rel) {
+    const replay = S.state === "replay";
+    const st = snap();
+    const win = windowLit();
+    const ev = replay ? D.EVENTS[S.pos] : null;
+    const model = {
+      mode: replay ? "replay" : "snapshot",
+      motion: motionOn(),
+      loaded: true,
+      lanes: D.ZONES, groups: D.GROUPS,
+      stars: replay ? [] : st.nodes.map((n) => ({
+        id: n.id, group: n.group, status: n.status, attn: !!n.attention, ref: n.ref, label: n.label, age: age(n.age_hours) + " ago",
+        aria: `${n.ref} ${n.label}, ${STATUS_WORD[n.status]}, ${groupById(n.group).path}, last activity ${age(n.age_hours)} ago`,
+      })),
+      edges: replay ? [] : st.edges,
+      related: rel,
+      selId: S.sel,
+      aimId: replay ? D.GROUPS.find((g) => g.path === ev.area).id : S.sel,
+      mood: replay ? "replay" : win.lit || S.sel ? "attentive" : "rest",
+      lantern: win.lit,
+      note: !replay && st.commitments.length > 0,
+      drift: replay ? S.pos * 3 : 0,
+      lookText: {
+        when: replay ? "this is a replay of saved commit history." : `${st.collected} (static snapshot).`,
+        how: "A new look happens when the repository's GitHub Action runs. This page can't start it, and doesn't pretend to.",
+      },
+      replay: replay ? { pos: S.pos, event: ev, files: D.replayAt(S.pos).files, dots: D.replayDots(S.pos) } : null,
+      onSelect: (id, el) => select(id, el),
+    };
+    prevReplayPos = replay ? S.pos : null;
+    return model;
+  }
+
   /* ── replay ── */
   function replayPane() {
     const rp = D.replayAt(S.pos);
@@ -1673,6 +2439,13 @@ table.areas tr.cur td { background: var(--select-t); }
       h("div", null, ev.msg),
       h("div", { class: "mono muted" }, ev.path));
     let viz;
+    if (S.study === "d") {
+      const sky = living();
+      queueMicrotask(() => sky.update(livingModel(null)));
+      viz = null;
+      return [head, sky.node, h("div", { class: "replay" }, feeds, transport, ticks, card,
+        h("p", { class: "note" }, `Each commit arrives as a shooting star and leaves a point in its area; removals stay as hollow points. Baseline ${D.BASELINE.sha}. Pull-request, overlap and waiting state are not reconstructed from commit timestamps.`))];
+    }
     if (S.study === "c") viz = atlasView(null, true);
     else {
       viz = h("table", { class: "areas" },
@@ -1795,6 +2568,11 @@ table.areas tr.cur td { background: var(--select-t); }
 
   /* ── notes below the app: per-study rationale + shared mapping + asset sheet ── */
   const NOTES = {
+    d: {
+      idea: "The observatory is the creature: a caretaker, not a controller. It watches its sky (the project map), listens before it looks, inks a relation by hand once it has evidence for it, and rests without disappointment when nothing needs a conversation. The readable surfaces (list, rail, inspector) stay crisp HTML; the living scene is the map.",
+      plus: ["Warmth and identity: you visit it, you don't operate it.", "Every habit maps to state or is declared decoration; text says the same thing.", "One scene does map, attention, selection and replay."],
+      minus: ["Most build effort: sprite, habits, tracing, replay animation.", "Larger scene takes vertical space; list view must remain first-class.", "Risk of charm outrunning evidence; enforce the behaviour law in code review."],
+    },
     a: {
       idea: "A place you return to. The courtyard sits in the sidebar's empty space; a thin horizon runs under the title bar. The working surface is the existing lane → area → item board, unchanged in meaning.",
       plus: ["Most legible: scenery never shares space with data.", "Warm window reads instantly as \"someone should talk\".", "Cheapest to build: one canvas, one strip."],
@@ -1823,6 +2601,19 @@ table.areas tr.cur td { background: var(--select-t); }
     ["Instrument motion", "Only when selection or replay position changes", "—", "No scanning animation: collection is never live here"],
   ];
 
+  const MAPPING_D = [
+    ["Eyes closed, settling, moth near the door", "Rest: no attention signal and nothing selected", "Status bar \"Resting — nothing needs a conversation\"", "Never sad or abandoned; no productivity cue"],
+    ["Signal lantern under the telescope", "≥1 overlap or waiting signal", "Status bar + Needs attention", "Brightest colour in the scene, reserved"],
+    ["Door lamp (amber)", "A snapshot is loaded (someone is home)", "Collection: snapshot time", "Dark only if nothing loaded"],
+    ["Listen → look: door brightens, dome lifts, telescope turns, body leans", "Selection, hover/focus (shared gaze), or replay event", "Inspector / paper label / event card", "Turn hesitates once halfway; reduced motion: jump"],
+    ["Hand-inked line", "An overlap (dashed signal) or waiting (thread + arrow) edge from the snapshot", "Legend, pills, inspector evidence", "Inked once when it first appears; never a guessed relation"],
+    ["Shooting star → point in an area", "A commit in replay (repository file history)", "Event card, areas list", "Only in replay; removals stay as hollow points"],
+    ["Sky drift", "Replay position (time passing)", "Position readout", "Decorative; stops with reduced motion"],
+    ["Paper slip by the door", "A declared commitment exists", "Declared section", "Declared ≠ observed"],
+    ["Chart peeking from the hatch, chimney puff, greeting", "Nothing (habit / one-time acknowledgement)", "—", "Never required to get anything done"],
+    ["Telescope sweep (not shown)", "Reserved for a real, running collection", "—", "The static page cannot start one and says so"],
+  ];
+
   function renderNotes() {
     const n = NOTES[S.study];
     const box = document.getElementById("notes");
@@ -1831,9 +2622,9 @@ table.areas tr.cur td { background: var(--select-t); }
         h("table", null, h("tr", null, h("th", null, "Gains"), h("th", null, "Costs")),
           h("tr", null, h("td", null, h("ul", { style: "margin:0;padding-left:16px" }, n.plus.map((x) => h("li", null, x)))),
             h("td", null, h("ul", { style: "margin:0;padding-left:16px" }, n.minus.map((x) => h("li", null, x))))))),
-      h("div", { class: "card", style: "grid-column: span 2" }, h("h2", null, "State → visual mapping (shared by all three)"),
-        h("table", null, h("tr", null, ["Mark", "Means", "Also said in text", "Rule"].map((x) => h("th", null, x))),
-          MAPPING.map((r) => h("tr", null, r.map((c) => h("td", null, c)))))),
+      h("div", { class: "card", style: "grid-column: span 2" }, h("h2", null, S.study === "d" ? "Behaviour law — what each habit means" : "State → visual mapping (shared by A, B, C)"),
+        h("table", null, h("tr", null, [S.study === "d" ? "Behaviour" : "Mark", "Means", "Also said in text", "Rule"].map((x) => h("th", null, x))),
+          (S.study === "d" ? MAPPING_D : MAPPING).map((r) => h("tr", null, r.map((c) => h("td", null, c)))))),
       assetSheet());
   }
 
@@ -1848,8 +2639,14 @@ table.areas tr.cur td { background: var(--select-t); }
     };
     const obs = (o) => (b) => { b.rect(0, 30, b.w, 4, "hill-near"); P.observatory(b, 4, 30, o); };
     return h("div", { class: "card", style: "grid-column: 1 / -1" },
-      h("h2", null, "Pixel sheet — editable source: src/pixels.js · exported SVGs: assets/"),
+      h("h2", null, "Pixel sheet — editable source: src/creature.js, src/pixels.js · exported SVGs: assets/"),
       h("div", { class: "sheet" },
+        ...[["resting", { eyes: "closed", angle: 70, door: 1 }], ["attentive · lantern", { eyes: "open", angle: 35, lantern: true, note: true }],
+            ["listening · lift, lean", { eyes: "open", lift: 1, lean: -1, angle: 10, door: 2, look: -1 }], ["checking notes", { eyes: "half", chart: 4, angle: 50 }],
+            ["greeting", { eyes: "wide", smoke: 3, angle: 60, look: 1 }]].map(([lbl, pose]) => fig("D · " + lbl, 58, 50, (b) => {
+          window.ObsCreature.duskSky(b, 5, { horizon: 46, density: 0.01 }); window.ObsCreature.hill(b, 2, 0, 0, 46, 46);
+          window.ObsCreature.creature(b, 6, 46, pose);
+        }, 3)),
         fig("observatory · parked · unlit", 34, 34, obs({ open: false, lit: false })),
         fig("· Build (−18°) · lit", 34, 34, obs({ open: true, lit: true, angle: -18 })),
         fig("· Ship (+50°) · unlit", 34, 34, obs({ open: true, lit: false, angle: 50 })),

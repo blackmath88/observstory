@@ -159,5 +159,21 @@
     return { pos, event: EVENTS[pos] || null, files, touched };
   }
 
-  root.ObsData = { PROJECT, ZONES, GROUPS, STATES: { quiet: QUIET, overlap: OVERLAP }, BASELINE, EVENTS, FEEDS, replayAt };
+  /* The lasting record of each commit as points per area: baseline files,
+   * additions, and removals kept as hollow points (deletions are preserved). */
+  function replayDots(pos) {
+    const dots = [];
+    for (const [area, n] of Object.entries(BASELINE.files)) for (let i = 0; i < n; i++) dots.push({ key: `${area}#base${i}`, area, removed: false });
+    for (let i = 0; i <= pos && i < EVENTS.length; i++) {
+      const e = EVENTS[i];
+      if (e.op === "add") dots.push({ key: e.path, area: e.area, removed: false, fresh: i === pos });
+      if (e.op === "remove") {
+        const hit = dots.find((d) => d.key === e.path && !d.removed) || [...dots].reverse().find((d) => d.area === e.area && !d.removed && d.key.includes("#base"));
+        if (hit) hit.removed = true;
+      }
+    }
+    return dots;
+  }
+
+  root.ObsData = { PROJECT, ZONES, GROUPS, STATES: { quiet: QUIET, overlap: OVERLAP }, BASELINE, EVENTS, FEEDS, replayAt, replayDots };
 })(typeof window !== "undefined" ? window : globalThis);

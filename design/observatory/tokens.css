@@ -99,6 +99,29 @@
   --decor: #d9d6cd;
 }
 
+/* Direction D — living observatory: dusk instead of night.
+ * Warm cream ink, violet shadows, copper and moss in the scenery. The attention
+ * accent becomes a brighter signal orange so it stays distinct from the always-on
+ * amber lamp (ambient, decorative) and the copper dome (scenery). */
+:root[data-direction="d"] {
+  --sky-0: #131327; --sky-1: #191931; --sky-2: #20203b; --sky-3: #292848;
+  --hair: #2b2a46; --hair-2: #3b3858;
+  --ink: #ede5d5; --ink-2: #b7aec4; --ink-3: #8d86a3;
+  --mark: #eadcb6; --mark-dim: #8e88a6;
+  --select: #9cc3ff; --select-t: #252b4e;
+  --accent: #ff9550; --accent-t: #3a2320;
+  --wire: #b9b0c9; --decor: #3e3560;
+  --l-thread: #b9b0c9;
+  --paper: #efe3c6; --paper-ink: #2a2233;
+  --px-void: #191b38;
+}
+:root[data-direction="d"][data-theme="paper"] {
+  --sky-0: #efece6; --sky-1: #f8f6f1; --sky-2: #f1eee8; --sky-3: #e7e3db;
+  --hair: #dcd7cd; --hair-2: #cdc7bc; --ink: #221d2b; --ink-2: #514a5c; --ink-3: #6f6878;
+  --mark: #3e3560; --mark-dim: #8e88a6; --select: #2f5fd0; --select-t: #e3e9fb;
+  --accent: #c2541a; --accent-t: #fbeee4; --wire: #6c6478;
+}
+
 @media (max-width: 767px) {
   :root { --px-scale: 2; }
 }

@@ -348,6 +348,7 @@
     stale:    [".........", "..xxxxx..", ".x.....x.", ".x..x..x.", ".x..xx.x.", ".x.....x.", "..xxxxx..", ".........", "........."],
     declared: [".........", ".xxxxxx..", ".x....x..", ".x.xx.x..", ".x....x..", ".x.xx.x..", ".x....x..", ".xxxxxx..", "........."],
     plate:    [".........", "xxxxxxxxx", "x.......x", "x..x....x", "x.xxx...x", "x..x..x.x", "x.......x", "xxxxxxxxx", "........."],
+    bell:     ["....x....", "...xxx...", "..xxxxx..", "..xxxxx..", "..xxxxx..", ".xxxxxxx.", "xxxxxxxxx", "....x....", "........."],
     dome:     [".........", "...xxx...", "..xx.xx..", ".xxx.xxx.", ".xxx.xxx.", "xxxxxxxxx", "x.x...x.x", "x.x...x.x", "xxxxxxxxx"],
   };
 
