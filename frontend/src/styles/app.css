@@ -1354,3 +1354,70 @@ summary:focus-visible {
   background: #fff;
   transform: rotate(45deg);
 }
+
+.reveal-notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid #c6dfff;
+  background: var(--accent-subtle);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-size: 12px;
+}
+.reveal-title,
+.reveal-description {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.reveal-description {
+  color: var(--fg-muted);
+  margin-top: 4px;
+}
+.end-reveal {
+  flex-shrink: 0;
+  min-height: 44px;
+}
+.detail-locations nav ol {
+  list-style: none;
+  margin: 12px 0;
+  padding: 0 0 0 12px;
+  border-left: 2px solid var(--border);
+}
+.detail-locations nav li {
+  padding: 6px 0;
+  font-size: 12px;
+}
+.detail-locations nav li + li {
+  padding-left: 12px;
+}
+.detail-locations nav li button {
+  min-height: 44px;
+}
+.detail-locations small {
+  display: block;
+  font-size: 10px;
+  color: var(--fg-muted);
+  margin-top: 3px;
+}
+.reveal-button {
+  border: 1px solid #c6dfff;
+  background: var(--accent-subtle);
+  color: #0059be;
+  border-radius: 7px;
+  padding: 10px 14px;
+  min-height: 44px;
+  font-size: 12px;
+}
+.reveal-button:disabled {
+  color: var(--fg-muted);
+  cursor: default;
+}
+@media (max-width: 600px) {
+  .reveal-notice {
+    align-items: start;
+    padding: 12px;
+  }
+}

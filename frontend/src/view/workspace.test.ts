@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { loadBundle } from "../data/load";
 import { validate } from "../data/validate";
-import { type RecordView, readFocus, scopeWorkspace, workspace } from "./workspace";
+import { type RecordView, readFocus, scopeWorkspace, workspace, workspaceLocations } from "./workspace";
 
 describe("workspace evidence semantics", () => {
   it("keeps missing inputs honest and does not manufacture progress", async () => {
@@ -113,6 +113,46 @@ describe("shared workspace navigation", () => {
     expect(scope.matching.has("parent")).toBe(false);
     expect(JSON.stringify(model.records)).toBe(before);
     expect(scope.matches[0]?.status).toBeUndefined();
+  });
+  it("reveals a record outside filters without adding it to results or exposing unrelated descendants", () => {
+    const before = JSON.stringify(model.records);
+    const scoped = scopeWorkspace(model, "plan", "no match", "artifact");
+    expect(scoped.matches).toEqual([]);
+    expect([...scoped.visible].sort()).toEqual(["area", "artifact", "parent"]);
+    expect(scoped.revealed?.id).toBe("artifact");
+    expect(scopeWorkspace(model, "plan", "no match").visible.size).toBe(0);
+    expect(scopeWorkspace(model, "plan", "no match", "missing").revealed).toBeUndefined();
+    expect(JSON.stringify(model.records)).toBe(before);
+  });
+  it("retains all membership routes and their evidence basis, without using conceptual relations", () => {
+    const other: RecordView = {
+      id: "other",
+      title: "Other declared container",
+      kind: "workstream",
+      members: ["paper"],
+      basis: "Declared",
+      material: [],
+    };
+    const locations = workspaceLocations([...records, other], "paper");
+    expect(locations.paths.map((path) => path.map((r) => r.id))).toEqual([
+      ["parent", "area", "paper"],
+      ["other", "paper"],
+    ]);
+    expect(locations.paths[0]?.map((r) => r.basis)).toEqual(["Declared", "Derived", "Selected knowledge · document current"]);
+    expect(workspaceLocations(records, "question").paths.map((path) => path.map((r) => r.id))).toEqual([["question"]]);
+    expect(workspaceLocations(records, "unavailable").paths).toEqual([]);
+  });
+  it("bounds location traversal and reports cyclic or omitted routes", () => {
+    const parents = Array.from(
+      { length: 13 },
+      (_, i): RecordView => ({ id: `p${i}`, title: "Container", kind: "workstream", members: ["paper"], basis: "Declared", material: [] }),
+    );
+    const many = workspaceLocations([...records.filter((r) => r.id === "paper"), ...parents], "paper");
+    expect(many.paths).toHaveLength(12);
+    expect(many.truncated).toBe(true);
+    const cyclic = records.map((r) => (r.id === "area" ? { ...r, members: ["paper", "parent"] } : r));
+    expect(workspaceLocations(cyclic, "paper").cyclic).toBe(true);
+    expect(workspaceLocations(cyclic, "paper").paths).toEqual([]);
   });
   it("keeps unknown kinds as other context and combines kind and text filters", () => {
     expect(scopeWorkspace(model, "context", "question").matches.map((r) => r.id)).toEqual(["question"]);

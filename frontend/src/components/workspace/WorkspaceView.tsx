@@ -1,6 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import type { Bundle } from "../../data/types";
-import { FOCUSES, type Focus, publicURL, type RecordView, readFocus, scopeWorkspace, workspace } from "../../view/workspace";
+import {
+  FOCUSES,
+  type Focus,
+  publicURL,
+  type RecordView,
+  readFocus,
+  scopeWorkspace,
+  workspace,
+  workspaceLocations,
+} from "../../view/workspace";
 import { EventClock } from "../overview/EventClock";
 
 function preference<T>(key: string, fallback: T): T {
@@ -19,9 +28,11 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
   const [selection, setSelection] = useState(() => new URLSearchParams(window.location.hash.split("?")[1]).get("item"));
   const [focus, setFocus] = useState(() => readFocus(new URLSearchParams(window.location.hash.split("?")[1]).get("focus")));
   const [query, setQuery] = useState(() => new URLSearchParams(window.location.hash.split("?")[1]).get("q") ?? "");
-  const scope = scopeWorkspace(model, focus, query);
+  const [revealId, setRevealId] = useState(() => new URLSearchParams(window.location.hash.split("?")[1]).get("reveal"));
+  const scope = scopeWorkspace(model, focus, query, revealId);
   const trigger = useRef<HTMLElement | null>(null);
   const lastSelection = useRef(selection);
+  const lastReveal = useRef<string | null>(null);
   const selected = model.byId.get(selection ?? "");
   useEffect(() => {
     try {
@@ -37,6 +48,7 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
       setBoard(p.get("view") === "board");
       setFocus(readFocus(p.get("focus")));
       setQuery(p.get("q") ?? "");
+      setRevealId(p.get("reveal"));
     };
     window.addEventListener("hashchange", sync);
     window.addEventListener("popstate", sync);
@@ -50,34 +62,46 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
       lastSelection.current = selection;
       return;
     }
-    requestAnimationFrame(() => {
+    const locating = revealId !== lastReveal.current;
+    lastReveal.current = revealId;
+    const frame = requestAnimationFrame(() => {
       const fallback = [...document.querySelectorAll<HTMLElement>("button[data-record-id]")].find(
-        (element) => element.dataset.recordId === lastSelection.current,
+        (element) => element.dataset.recordId === (revealId ?? lastSelection.current),
       );
-      const target = trigger.current?.isConnected ? trigger.current : fallback;
+      const target = locating && revealId ? fallback : trigger.current?.isConnected ? trigger.current : fallback;
+      if (revealId && (locating || !trigger.current?.isConnected)) target?.scrollIntoView({ block: "center", behavior: "instant" });
       target?.focus({ preventScroll: true });
     });
-  }, [selection]);
-  function navigate(item: string | null, view = board, push = true, nextFocus: Focus = focus, nextQuery = query) {
+    return () => cancelAnimationFrame(frame);
+  }, [selection, revealId]);
+  function navigate(item: string | null, view = board, push = true, nextFocus: Focus = focus, nextQuery = query, nextReveal = revealId) {
+    if (view) nextReveal = null;
     const p = new URLSearchParams();
     if (view) p.set("view", "board");
     if (item) p.set("item", item);
     if (nextFocus !== "all") p.set("focus", nextFocus);
     if (nextQuery) p.set("q", nextQuery);
+    if (nextReveal) p.set("reveal", nextReveal);
     const hash = `#/${p.size ? `?${p}` : ""}`;
-    window.history[push ? "pushState" : "replaceState"]({ workspace: true }, "", hash);
+    const drawerReturn = !!item && ((!selection && push) || (!!selection && !!window.history.state?.drawerReturn));
+    window.history[push ? "pushState" : "replaceState"]({ workspace: true, drawerReturn }, "", hash);
     setSelection(item);
     setBoard(view);
     setFocus(nextFocus);
     setQuery(nextQuery);
+    setRevealId(nextReveal);
   }
   function open(id: string) {
     if (!document.activeElement?.closest("dialog")) trigger.current = document.activeElement as HTMLElement;
     navigate(id, board, !selection);
   }
   function close() {
-    if (window.history.state?.workspace) window.history.back();
+    if (window.history.state?.drawerReturn) window.history.back();
     else navigate(null, board, false);
+  }
+  function endReveal() {
+    trigger.current = document.querySelector<HTMLInputElement>(".workspace-search input");
+    navigate(null, board, true, focus, query, null);
   }
   function toggle(id: string) {
     setExpanded((prev) => (prev.includes(id) ? prev.filter((v) => v !== id) : [...prev, id]));
@@ -85,15 +109,15 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
   function renderRecord(r: RecordView, path: string[] = []): React.ReactNode {
     if (path.includes(r.id) || !scope.visible.has(r.id)) return null;
     const children = (r.members ?? []).map((id) => model.byId.get(id)).filter((v): v is RecordView => !!v);
-    const isExpanded = scope.active || expanded.includes(r.id);
+    const isExpanded = scope.active || scope.revealAncestors.has(r.id) || expanded.includes(r.id);
     return (
-      <div key={r.id} className={scope.active && !scope.matching.has(r.id) ? "scope-ancestor" : undefined}>
+      <div key={r.id} className={scope.active && !scope.matching.has(r.id) && r.id !== revealId ? "scope-ancestor" : undefined}>
         <RecordRow
           record={r}
           depth={path.length}
-          selected={selection === r.id}
+          selected={selection === r.id || (!selection && revealId === r.id)}
           expanded={isExpanded}
-          onToggle={scope.active ? undefined : () => toggle(r.id)}
+          onToggle={scope.active || scope.revealAncestors.has(r.id) ? undefined : () => toggle(r.id)}
           onOpen={open}
           axis={axis}
         />
@@ -189,9 +213,32 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
           </button>
         </p>
       )}
+      {scope.revealed && (
+        <div className="reveal-notice" role="status">
+          <div>
+            <strong className="reveal-title">Located in Overview: {scope.revealed.title}</strong>
+            <span className="reveal-description">
+              {scope.matching.has(scope.revealed.id)
+                ? "Your filters and saved expansion are unchanged."
+                : "Outside your current filters. Temporarily shown with its containing records; your filters are unchanged."}
+            </span>
+          </div>
+          <button type="button" className="text-button end-reveal" onClick={endReveal}>
+            End reveal
+          </button>
+        </div>
+      )}
+      {revealId && !scope.revealed && (
+        <p className="workspace-notice" role="status">
+          Revealed record is unavailable in this input.{" "}
+          <button type="button" className="text-button" onClick={() => navigate(selection, board, false, focus, query, null)}>
+            End reveal
+          </button>
+        </p>
+      )}
       <div className="workspace-layout">
         <section className="workstreams" aria-label={board ? "Board" : "Workstreams"}>
-          {scope.matches.length === 0 && model.records.length > 0 && (
+          {scope.matches.length === 0 && !scope.revealed && model.records.length > 0 && (
             <div className="box-blank">
               <h2>No matching records</h2>
               <p>Try another category or search term. Missing results do not imply no work.</p>
@@ -292,7 +339,18 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
         </p>
       )}
       {selected && (
-        <Detail key={selected.id} record={selected} records={model.byId} relations={model.relations} onOpen={open} onClose={close} />
+        <Detail
+          key={selected.id}
+          record={selected}
+          records={model.byId}
+          relations={model.relations}
+          onOpen={open}
+          onClose={close}
+          onReveal={() => {
+            trigger.current = null;
+            navigate(null, false, true, focus, query, selected.id);
+          }}
+        />
       )}
     </>
   );
@@ -327,7 +385,13 @@ function RecordRow({
         ) : (
           <span className="branch-joint">↳</span>
         )}
-        <button type="button" className="record-button" data-record-id={r.id} onClick={() => onOpen(r.id)}>
+        <button
+          type="button"
+          className="record-button"
+          aria-current={selected ? "location" : undefined}
+          data-record-id={r.id}
+          onClick={() => onOpen(r.id)}
+        >
           <strong>{r.title}</strong>
           <span>
             {r.kind} <b>·</b> {r.status ?? "Lifecycle undeclared"}
@@ -373,14 +437,17 @@ function Detail({
   relations,
   onOpen,
   onClose,
+  onReveal,
 }: {
   record: RecordView;
   records: Map<string, RecordView>;
   relations: { from: string; to: string; type: string }[];
   onOpen: (id: string) => void;
   onClose: () => void;
+  onReveal: () => void;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
+  const locations = workspaceLocations([...records.values()], r.id);
   useEffect(() => {
     const d = dialog.current;
     d?.showModal();
@@ -407,6 +474,36 @@ function Detail({
           {r.kind} · {r.status ?? "Lifecycle undeclared"}
         </p>
         <h2 id="detail-title">{r.title}</h2>
+        <section className="detail-locations" aria-labelledby="locations-title">
+          <h3 id="locations-title">Location in workspace</h3>
+          {locations.paths.length === 1 && locations.paths[0]?.length === 1 ? (
+            <p>Top-level record. No containing record is published.</p>
+          ) : (
+            <nav aria-label="Workspace locations">
+              {locations.paths.map((path) => (
+                <ol key={JSON.stringify(path.map((part) => part.id))}>
+                  {path.map((part) => (
+                    <li key={part.id}>
+                      {part.id === r.id ? (
+                        <span aria-current="location">{part.title}</span>
+                      ) : (
+                        <button type="button" className="text-button" onClick={() => onOpen(part.id)}>
+                          {part.title}
+                        </button>
+                      )}
+                      <small>{part.basis}</small>
+                    </li>
+                  ))}
+                </ol>
+              ))}
+            </nav>
+          )}
+          {locations.truncated && <p>Additional workspace locations are omitted from this preview.</p>}
+          {locations.cyclic && <p>A membership cycle prevents resolving some workspace locations.</p>}
+          <button type="button" className="reveal-button" onClick={onReveal} disabled={!locations.paths.length}>
+            Reveal in Overview ↗
+          </button>
+        </section>
         <section>
           <h3>Context</h3>
           <p>{r.context ?? "No additional purpose is declared."}</p>

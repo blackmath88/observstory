@@ -118,3 +118,107 @@ test("real Open Presence sources remain navigable through shared category filter
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   expect(errors).toEqual([]);
 });
+
+test("drawer locations preserve multiple membership routes and reveal without changing expansion", async ({ page }) => {
+  await page.route("**/data/workspace.json", async (route) => {
+    const response = await route.fetch();
+    const data = await response.json();
+    data.records.find((r: { id: string }) => r.id === "branch").members = ["deep-research"];
+    data.records.push({ id: "deep-research", title: "Nested source experiment", kind: "research" });
+    data.records.push({ id: "other", title: "Another declared workstream", kind: "workstream", members: ["deep-research"] });
+    await route.fulfill({ response, json: data });
+  });
+  await page.goto("/workspace/#/?view=board&item=deep-research");
+  const locations = page.getByRole("navigation", { name: "Workspace locations" });
+  await expect(locations.locator("ol")).toHaveCount(2);
+  await expect(locations).toContainText("Synthetic · knowledge workspace");
+  await expect(locations).toContainText("Another declared workstream");
+  await locations.getByRole("button", { name: "Paused supporting exploration", exact: true }).click();
+  await expect(page.getByRole("dialog").getByRole("heading", { level: 2 })).toHaveText("Paused supporting exploration");
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("region", { name: "Board", exact: true })).toBeVisible();
+  const savedExpansion = await page.evaluate(() => localStorage.getItem("observatory:./data/:expanded"));
+  await page.locator(".board-card").filter({ hasText: "Nested source experiment" }).click();
+  await page.getByRole("button", { name: /Reveal in Overview/ }).focus();
+  await page.keyboard.press("Enter");
+  const record = page.locator(".record-button").filter({ hasText: "Nested source experiment" });
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await expect(record).toHaveCount(2);
+  await expect(record.first()).toBeFocused();
+  await expect(record.first()).toHaveAttribute("aria-current", "location");
+  await page.reload();
+  await expect(record.first()).toBeFocused();
+  expect(await page.evaluate(() => localStorage.getItem("observatory:./data/:expanded"))).toBe(savedExpansion);
+  await page.getByRole("button", { name: "End reveal", exact: true }).click();
+  await expect(record).toHaveCount(0);
+  await expect(page.getByRole("searchbox")).toBeFocused();
+  await expect(page.getByRole("button", { name: "Expand Synthetic · knowledge workspace", exact: true })).toHaveAttribute(
+    "aria-expanded",
+    "false",
+  );
+});
+
+test("drawer reveal qualifies records outside filters and survives reload and browser history", async ({ page }) => {
+  await page.goto("/workspace/#/?focus=plan&q=checkpoint&item=research");
+  await expect(page.getByRole("dialog")).toContainText("Undated research");
+  await page.getByRole("button", { name: /Reveal in Overview/ }).click();
+  const research = page.locator(".record-button").filter({ hasText: "Undated research" });
+  await expect(research).toBeFocused();
+  await expect(page.locator(".reveal-notice")).toContainText("Outside your current filters");
+  await expect(page.getByRole("button", { name: /^Planning \d/ })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("searchbox")).toHaveValue("checkpoint");
+  await expect(page.locator(".workspace-toolbar")).toContainText("1 of 5 records");
+  await expect(page.locator(".workstream-row.selected")).toHaveCSS("background-color", "rgb(238, 245, 255)");
+  const checkpoint = page.locator(".record-button").filter({ hasText: "Planned checkpoint" });
+  await checkpoint.click();
+  await expect(page.getByRole("dialog").getByRole("heading", { level: 2 })).toHaveText("Planned checkpoint");
+  await page.keyboard.press("Escape");
+  await expect(checkpoint).toBeFocused();
+  await page.reload();
+  await expect(research).toBeFocused();
+  await page.getByRole("button", { name: "End reveal", exact: true }).click();
+  await expect(research).toHaveCount(0);
+  await expect(page.getByRole("searchbox")).toBeFocused();
+  await page.goBack();
+  await expect(research).toBeFocused();
+  await page.getByRole("button", { name: "Board", exact: true }).click();
+  await expect(page.locator(".reveal-notice")).toHaveCount(0);
+  await expect(page.locator(".board-card")).toHaveCount(1);
+  await expect(page.locator(".board-card")).toContainText("Planned checkpoint");
+  await page.goBack();
+  await expect(research).toBeFocused();
+});
+
+test("real Open Presence drawer locations retain declared and derived provenance", async ({ page }, testInfo) => {
+  test.skip(!process.env.OBSERVSTORY_LIVE_DATA, "Set OBSERVSTORY_LIVE_DATA to captured public consumer inputs");
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.goto("/live/#/?view=board&focus=research&item=research-pdf-history-claims");
+  let locations = page.getByRole("navigation", { name: "Workspace locations" });
+  await expect(locations).toContainText("PDF history · optional supporting module");
+  await expect(locations).toContainText("Declared workspace");
+  await expect(page.getByRole("dialog").getByRole("link").first()).toHaveAttribute(
+    "href",
+    /https:\/\/github.com\/blackmath88\/baselhack26-open-presence\/blob\//,
+  );
+  await page.screenshot({ path: testInfo.outputPath("open-presence-membership-detail.png") });
+  await page.getByRole("button", { name: /Reveal in Overview/ }).click();
+  await expect(page.locator(".record-button").filter({ hasText: "Claim ledger and verification queue" })).toBeFocused();
+  await page.getByRole("button", { name: /^Implementation \d/ }).click();
+  await page.getByRole("button", { name: "Board", exact: true }).click();
+  const artifact = page
+    .locator(".board-card")
+    .filter({ hasText: /Observed / })
+    .first();
+  const title = (await artifact.locator("strong").textContent()) ?? "";
+  await artifact.click();
+  locations = page.getByRole("navigation", { name: "Workspace locations" });
+  await expect(locations).toContainText("Repository implementation");
+  await expect(locations).toContainText("Derived area grouping");
+  await expect(locations).toContainText("Observed");
+  await page.getByRole("button", { name: /Reveal in Overview/ }).click();
+  await expect(page.locator(".record-button").filter({ hasText: title }).first()).toBeFocused();
+  await page.screenshot({ path: testInfo.outputPath("open-presence-revealed-artifact.png"), fullPage: true });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  expect(errors).toEqual([]);
+});

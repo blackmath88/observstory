@@ -111,7 +111,7 @@ export function recordFocus(record: RecordView): Focus {
   return ["research", "concept", "plan", "implementation"].includes(record.kind) ? (record.kind as Focus) : "context";
 }
 
-export function scopeWorkspace(model: ReturnType<typeof workspace>, focus: Focus, query: string) {
+export function scopeWorkspace(model: ReturnType<typeof workspace>, focus: Focus, query: string, revealId?: string | null) {
   const words = query.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
   const matches = model.records.filter((r) => {
     const text = [
@@ -131,16 +131,56 @@ export function scopeWorkspace(model: ReturnType<typeof workspace>, focus: Focus
   });
   const matching = new Set(matches.map((r) => r.id));
   // Retain declared/derived ancestors for orientation without changing membership.
-  const visible = new Set(matching);
+  const revealed = model.byId.get(revealId ?? "");
+  const revealAncestors = membershipClosure(model.records, revealed ? [revealed.id] : []);
+  const visible = membershipClosure(model.records, [...matching, ...revealAncestors]);
+  return { matches, matching, visible, revealed, revealAncestors, active: focus !== "all" || words.length > 0 };
+}
+
+/** Membership is declared or derived by the producer; relations and file paths never imply membership. */
+function membershipClosure(records: RecordView[], ids: string[]) {
+  const included = new Set(ids);
   let changed = true;
   while (changed) {
     changed = false;
-    for (const r of model.records) {
-      if (!visible.has(r.id) && r.members?.some((id) => visible.has(id))) {
-        visible.add(r.id);
+    for (const r of records) {
+      if (!included.has(r.id) && r.members?.some((id) => included.has(id))) {
+        included.add(r.id);
         changed = true;
       }
     }
   }
-  return { matches, matching, visible, active: focus !== "all" || words.length > 0 };
+  return included;
+}
+
+/** Stable root-to-record routes, including multiple memberships, with bounded traversal. */
+export function workspaceLocations(records: RecordView[], id: string) {
+  const byId = new Map(records.map((r) => [r.id, r]));
+  const parents = new Map<string, RecordView[]>();
+  for (const r of records) {
+    for (const child of new Set(r.members ?? [])) {
+      if (byId.has(child)) parents.set(child, [...(parents.get(child) ?? []), r]);
+    }
+  }
+  const paths: RecordView[][] = [];
+  let truncated = false;
+  let cyclic = false;
+  let steps = 0;
+  function visit(record: RecordView, tail: RecordView[]) {
+    if (tail.some((r) => r.id === record.id)) {
+      cyclic = true;
+      return;
+    }
+    if (++steps > 512 || paths.length >= 12) {
+      truncated = true;
+      return;
+    }
+    const path = [record, ...tail];
+    const containing = parents.get(record.id) ?? [];
+    if (!containing.length) paths.push(path);
+    else for (const parent of containing) visit(parent, path);
+  }
+  const record = byId.get(id);
+  if (record) visit(record, []);
+  return { paths, truncated, cyclic };
 }

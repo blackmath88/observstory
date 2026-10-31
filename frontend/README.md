@@ -100,6 +100,19 @@ Expansion persists locally per data base. View, selection, category and search u
 direct selection links and reload work under arbitrary project subpaths. The event clock and
 Data sources remain accessible, and companion classic/replay links are probed as before.
 
+The shared detail drawer shows root-to-record membership routes and each record's evidence
+basis. Multiple memberships remain separate routes; conceptual relations and filesystem paths
+do not create parents. Missing containment is stated explicitly. Location traversal is bounded
+to 12 routes / 512 visits and discloses omitted or cyclic paths.
+
+**Reveal in Overview** closes the drawer, opens existing ancestors temporarily, highlights and
+focuses the record, and scrolls it into view. `reveal=<record ID>` in the hash preserves this
+location across reload/history. Search/category and saved expansion remain unchanged. A notice
+qualifies any revealed record outside the filters; counts still describe matching records.
+**End reveal** restores normal visibility and returns focus to search. Switching to Board also
+ends the reveal. Drawer breadcrumbs can open containing records; direct-link close stays in
+the workspace.
+
 The local fixture host includes `/workspace/` for synthetic interaction checks. To preview
 real consumer data, copy `release/` to a directory alongside that consumer's `data/`, then run
 `python3 -m http.server 4318 --bind 127.0.0.1 --directory /path/to/preview`.

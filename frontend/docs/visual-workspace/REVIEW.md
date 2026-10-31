@@ -102,3 +102,55 @@ The coordinator must update the consumer pin separately; no consumer source, dep
 provider/auth, memory reducer, System Map or accepted decision was changed.
 Next increment: make selected records easier to locate in long workstreams, including
 containing-workstream breadcrumbs in the shared detail drawer. No new dates/owners needed.
+
+
+## NUC turn 2 — locate a record in its workspace
+
+Continues from `4d107c6cd8b045dce38f2c412712307fd4e25c3c` on the same stacked draft.
+The shared drawer now displays published root-to-record containment routes, retaining
+multiple memberships and each record's declared/derived/observed basis. Top-level records
+say no containing record is published. Relations and filesystem paths never create parents.
+Traversal is bounded to 12 routes and 512 visits; omitted/cyclic locations are disclosed.
+
+**Reveal in Overview** closes the drawer, temporarily opens existing ancestors, highlights
+and focuses the record, and scrolls it into view. The hash `reveal` parameter preserves this
+across reload/history. Search/category and saved expansion stay unchanged. A banner explicitly
+qualifies records outside the filters; match counts exclude that temporary exception.
+End reveal returns focus to search and restores normal filtered visibility. Switching to Board
+ends reveal. Breadcrumb buttons open containing records without losing the drawer's origin;
+a direct-linked drawer can close safely after following a breadcrumb.
+
+The captured Open Presence inputs and their limitations remain those recorded above at
+`b1af0128bfd48e5d6e8b8579f790858636b7d087`. No source-owned lifecycle, owner, progress or date
+was added. Real declared containment (PDF claim ledger → optional module) and derived containment
+(observed artifact → area → Repository implementation) were exercised through the actual release.
+
+Checks for this increment:
+
+- Typecheck and lint pass (existing Biome configuration deprecation notice only).
+- `npm test`: 32 tests pass, one opt-in live-data test skipped. Three new model tests cover
+  outside-filter reveal without changing counts, multiple membership routes/evidence basis,
+  unavailable records, cycles and bounded traversal. Earlier live input validation was not
+  repeated; real release browser checks below load the same captured inputs.
+- `npm run release`: passes; updated `frontend/release/` contains no project data.
+- Five Python release-packaging checks pass against the final release.
+- Initial focused prebuilt-release browser run: 12 pass at 390, 768 and 1440px. Covers existing
+  category/search interaction plus new multiple membership, breadcrumb/direct-link close,
+  reveal/reload/history and real declared/derived source navigation.
+- Additional focus/highlight checks exposed a Browser Back focus regression (three widths).
+  One focused repair distinguishes restoring a reveal from closing a drawer. Final command:
+  `OBSERVSTORY_PREBUILT=1 OBSERVSTORY_LIVE_DATA=/tmp/observatory-20261031-live/data npm run e2e -- --grep 'drawer reveal|real Open Presence drawer locations'`:
+  **6/6 pass** against the final release, including returning focus to another opened record,
+  selected highlight outside filters, direct reload, End reveal, Browser Back state,
+  source URLs and no page overflow/browser exceptions in the real-input scenarios.
+- `membership-1440.png`, `membership-390.png`, `reveal-1440.png` are captured real-input views.
+  Drawer captures were visually inspected on phone and desktop.
+
+Final standalone local release/data copy: `/tmp/observatory-20261031-turn2/preview/`.
+Use the loopback serving command above with this directory. The coordinator still owns the
+consumer pin update; no consumer, memory reducer, System Map, accepted decision or human review
+was edited. Self-reviewed only. No deployment or preview server is left running.
+
+Next concrete increment: a useful timeline range control (recent window / fit evidence), with
+hour-level labels where supported, clear out-of-range observations and undated rows retained.
+Do not turn the available latest-activity points into a complete event ledger or durations.
