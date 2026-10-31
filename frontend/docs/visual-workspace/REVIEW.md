@@ -49,3 +49,56 @@ when present. No NUC runtime, paid model or backend service was required. Physic
 screen readers, Safari and Firefox were not tested. No automated accessibility certification is
 claimed. Consumer state should be refreshed by its Action after review, not represented by this
 captured preview as current progress.
+
+
+## NUC increment — 31 October, record navigation
+
+Stack base: PR #24 at `84c3c0a4e1d870f0aa56e47db9ee59fcfd1ee844`.
+This increment targets `feat/observatory-visual-workspace`; #24 still targets
+`feat/frontend-tanstack-start` at `af5b2d725301f46ee1796b3d215fd90694fb8c12`.
+Self-reviewed only; draft delivery does not accept source declarations.
+
+Overview and Board now share category filters, text search and matching counts. Categories
+use existing record kinds only (research, concept, plan, implementation, other context).
+They do not create workstream membership or promote document/artifact status to lifecycle.
+Search includes title, context, basis, source titles and declared resume/attention text.
+Hash parameters `focus` and `q` preserve filters with view and selection through reload and
+browser history. No results has a clear reset. Overview automatically reveals matching
+nested members with their existing ancestor chain, without changing saved expansion choices.
+Unfiltered expansion works at every membership level. Nested identity indentation keeps the
+timeline columns aligned. The shared drawer restores record focus even after a reload.
+
+### Current input evidence
+
+Public Open Presence inputs fetched directly from its Pages `data/` directory during this
+increment: snapshot `2026-10-31T18:38:42Z`, knowledge `2026-10-31T18:39:07Z`, scene
+`2026-10-31T18:38:42Z`. Snapshot, complete knowledge and workspace all cite
+`b1af0128bfd48e5d6e8b8579f790858636b7d087`. The supplied runtime capture at `77b1845`
+was older. This captured preview is static evidence, not a statement about current progress.
+The projection contains 39 records: research 7, concepts 2, planning 4, implementation 10,
+other context 16. Sources, undeclared lifecycle and missing dates remain visible.
+Raw consumer inputs stay outside the repository.
+
+### Checks and local consumption
+
+- `npm run typecheck`, `npm run lint`: pass (existing Biome configuration deprecation notice).
+- `OBSERVSTORY_LIVE_DATA=/tmp/observatory-20261031-live/data npm test`: 30 tests pass,
+  including real published source contract validation.
+- `npm run release`: production frontend rebuilt into `frontend/release/`, with no project data.
+- `python -m unittest discover -s tests -p test_frontend_release.py`: five packaging checks pass.
+- `OBSERVSTORY_PREBUILT=1 OBSERVSTORY_LIVE_DATA=/tmp/observatory-20261031-live/data npm run e2e -- --grep 'category and search|nested membership|real Open Presence'`:
+  nine focused Chromium checks pass at 390, 768 and 1440px against the actual prebuilt release.
+  Includes keyboard filter selection, search, Overview/Board consistency, selection/reload,
+  drawer Escape/focus, empty results/reset, deep membership, saved expansion, real source
+  links, timeline alignment, page overflow and browser errors.
+- Initial broader run: 15 passed, three copies of the same reload-focus failure. One focused
+  repair added a record-based focus fallback; the nine relevant release checks above passed.
+- `navigation-1440.png` and `navigation-390.png` show the captured real implementation view.
+
+The local test host binds only `127.0.0.1` and is owned/stopped by Playwright. `OBSERVSTORY_PREBUILT=1`
+selects `release/`; `OBSERVSTORY_LIVE_DATA` supplies an external data directory at `/live/`.
+A standalone copy is also available locally at `/tmp/observatory-20261031-live/preview/`.
+The coordinator must update the consumer pin separately; no consumer source, deployment,
+provider/auth, memory reducer, System Map or accepted decision was changed.
+Next increment: make selected records easier to locate in long workstreams, including
+containing-workstream breadcrumbs in the shared detail drawer. No new dates/owners needed.

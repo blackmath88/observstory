@@ -88,11 +88,22 @@ Undated records stay visible. Timeline points mark observed activity, outlines m
 planned targets, diamonds mark milestone targets; no commit-to-commit duration is inferred.
 Missing or mismatched inputs are qualified. Board uses an explicit Undeclared column.
 
-Expansion persists locally per data base. View and selection use hash query parameters, e.g.
-`#/?view=board&item=ws-plan`. Drawer close restores focus and expansion;
+Record category filters (Research, Concepts, Planning, Implementation, Other context) use
+record kinds without inventing membership or lifecycle. Text search covers title, context,
+evidence basis, source titles and declared resume/attention text. Both views show the same
+matches. Overview keeps existing ancestors visible and reveals matching descendants at every
+level; clearing filters restores saved expansion choices. Timeline columns stay aligned across
+nesting levels. Category counts reflect the current search.
+
+Expansion persists locally per data base. View, selection, category and search use hash query parameters, e.g.
+`#/?view=board&focus=plan&q=checkpoint&item=ws-plan`. Drawer close restores focus and expansion;
 direct selection links and reload work under arbitrary project subpaths. The event clock and
 Data sources remain accessible, and companion classic/replay links are probed as before.
 
 The local fixture host includes `/workspace/` for synthetic interaction checks. To preview
 real consumer data, copy `release/` to a directory alongside that consumer's `data/`, then run
-`python3 -m http.server 4318 --directory /path/to/preview`.
+`python3 -m http.server 4318 --bind 127.0.0.1 --directory /path/to/preview`.
+
+To verify the prebuilt release with captured real inputs, use
+`OBSERVSTORY_PREBUILT=1 OBSERVSTORY_LIVE_DATA=/path/to/data npm run e2e -- --grep 'real Open Presence'`.
+The Playwright-owned host serves it under `/live/` and binds only `127.0.0.1`.

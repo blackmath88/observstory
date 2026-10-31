@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { loadBundle } from "../data/load";
 import { validate } from "../data/validate";
-import { workspace } from "./workspace";
+import { type RecordView, readFocus, scopeWorkspace, workspace } from "./workspace";
 
 describe("workspace evidence semantics", () => {
   it("keeps missing inputs honest and does not manufacture progress", async () => {
@@ -73,5 +73,52 @@ describe("workspace evidence semantics", () => {
         relations: [],
       }).ok,
     ).toBe(false);
+  });
+});
+
+describe("shared workspace navigation", () => {
+  const records: RecordView[] = [
+    { id: "parent", title: "Declared workstream", kind: "workstream", members: ["area"], basis: "Declared", material: [] },
+    { id: "area", title: "Nested area", kind: "implementation", members: ["paper", "artifact"], basis: "Derived", material: [] },
+    {
+      id: "paper",
+      title: "Retrieval study",
+      kind: "research",
+      basis: "Selected knowledge · document current",
+      material: [{ title: "CLAIMS.md" }],
+    },
+    {
+      id: "artifact",
+      title: "Implement retrieval",
+      kind: "implementation",
+      basis: "Observed pull_request · landed (artifact state)",
+      material: [],
+    },
+    { id: "question", title: "Open question", kind: "question", basis: "Selected knowledge", material: [] },
+  ];
+  const model = {
+    records,
+    byId: new Map(records.map((r) => [r.id, r])),
+    roots: records.filter((r) => r.id === "parent" || r.id === "question"),
+    relations: [],
+    warnings: [],
+    revisions: [],
+    direction: undefined,
+  };
+  it("shows matching records and their entire ancestor chain without inventing membership or lifecycle", () => {
+    const before = JSON.stringify(model.records);
+    const scope = scopeWorkspace(model, "research", "  RETRIEVAL claims  ");
+    expect(scope.matches.map((r) => r.id)).toEqual(["paper"]);
+    expect([...scope.visible].sort()).toEqual(["area", "paper", "parent"]);
+    expect(scope.matching.has("parent")).toBe(false);
+    expect(JSON.stringify(model.records)).toBe(before);
+    expect(scope.matches[0]?.status).toBeUndefined();
+  });
+  it("keeps unknown kinds as other context and combines kind and text filters", () => {
+    expect(scopeWorkspace(model, "context", "question").matches.map((r) => r.id)).toEqual(["question"]);
+    expect(scopeWorkspace(model, "implementation", "retrieval").matches.map((r) => r.id)).toEqual(["artifact"]);
+    expect(scopeWorkspace(model, "research", "landed").matches).toEqual([]);
+    expect(scopeWorkspace(model, "all", " ").matches).toEqual(records);
+    expect(readFocus("invented")).toBe("all");
   });
 });

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { Bundle } from "../../data/types";
-import { publicURL, type RecordView, workspace } from "../../view/workspace";
+import { FOCUSES, type Focus, publicURL, type RecordView, readFocus, scopeWorkspace, workspace } from "../../view/workspace";
 import { EventClock } from "../overview/EventClock";
 
 function preference<T>(key: string, fallback: T): T {
@@ -17,7 +17,11 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
   const [expanded, setExpanded] = useState<string[]>(() => preference(`${key}expanded`, []));
   const [board, setBoard] = useState(() => new URLSearchParams(window.location.hash.split("?")[1]).get("view") === "board");
   const [selection, setSelection] = useState(() => new URLSearchParams(window.location.hash.split("?")[1]).get("item"));
+  const [focus, setFocus] = useState(() => readFocus(new URLSearchParams(window.location.hash.split("?")[1]).get("focus")));
+  const [query, setQuery] = useState(() => new URLSearchParams(window.location.hash.split("?")[1]).get("q") ?? "");
+  const scope = scopeWorkspace(model, focus, query);
   const trigger = useRef<HTMLElement | null>(null);
+  const lastSelection = useRef(selection);
   const selected = model.byId.get(selection ?? "");
   useEffect(() => {
     try {
@@ -31,6 +35,8 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
       const p = new URLSearchParams(window.location.hash.split("?")[1]);
       setSelection(p.get("item"));
       setBoard(p.get("view") === "board");
+      setFocus(readFocus(p.get("focus")));
+      setQuery(p.get("q") ?? "");
     };
     window.addEventListener("hashchange", sync);
     window.addEventListener("popstate", sync);
@@ -40,19 +46,30 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
     };
   }, []);
   useEffect(() => {
-    if (!selection)
-      requestAnimationFrame(() => {
-        if (trigger.current?.isConnected) trigger.current.focus({ preventScroll: true });
-      });
+    if (selection) {
+      lastSelection.current = selection;
+      return;
+    }
+    requestAnimationFrame(() => {
+      const fallback = [...document.querySelectorAll<HTMLElement>("button[data-record-id]")].find(
+        (element) => element.dataset.recordId === lastSelection.current,
+      );
+      const target = trigger.current?.isConnected ? trigger.current : fallback;
+      target?.focus({ preventScroll: true });
+    });
   }, [selection]);
-  function navigate(item: string | null, view = board, push = true) {
+  function navigate(item: string | null, view = board, push = true, nextFocus: Focus = focus, nextQuery = query) {
     const p = new URLSearchParams();
     if (view) p.set("view", "board");
     if (item) p.set("item", item);
+    if (nextFocus !== "all") p.set("focus", nextFocus);
+    if (nextQuery) p.set("q", nextQuery);
     const hash = `#/${p.size ? `?${p}` : ""}`;
     window.history[push ? "pushState" : "replaceState"]({ workspace: true }, "", hash);
     setSelection(item);
     setBoard(view);
+    setFocus(nextFocus);
+    setQuery(nextQuery);
   }
   function open(id: string) {
     if (!document.activeElement?.closest("dialog")) trigger.current = document.activeElement as HTMLElement;
@@ -64,6 +81,43 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
   }
   function toggle(id: string) {
     setExpanded((prev) => (prev.includes(id) ? prev.filter((v) => v !== id) : [...prev, id]));
+  }
+  function renderRecord(r: RecordView, path: string[] = []): React.ReactNode {
+    if (path.includes(r.id) || !scope.visible.has(r.id)) return null;
+    const children = (r.members ?? []).map((id) => model.byId.get(id)).filter((v): v is RecordView => !!v);
+    const isExpanded = scope.active || expanded.includes(r.id);
+    return (
+      <div key={r.id} className={scope.active && !scope.matching.has(r.id) ? "scope-ancestor" : undefined}>
+        <RecordRow
+          record={r}
+          depth={path.length}
+          selected={selection === r.id}
+          expanded={isExpanded}
+          onToggle={scope.active ? undefined : () => toggle(r.id)}
+          onOpen={open}
+          axis={axis}
+        />
+        {isExpanded && (
+          <div className="workstream-children">
+            {children.map((child) => renderRecord(child, [...path, r.id]))}
+            {!scope.active &&
+              model.relations
+                .filter((e) => e.to === r.id || e.from === r.id)
+                .map((e) => (
+                  <button
+                    type="button"
+                    className="relation-link"
+                    key={`${e.from}:${e.type}:${e.to}`}
+                    onClick={() => open(e.from === r.id ? e.to : e.from)}
+                  >
+                    {model.byId.get(e.from)?.title} <span>{e.type.replaceAll("_", " ")}</span> {model.byId.get(e.to)?.title} ↗
+                  </button>
+                ))}
+            {!scope.active && !children.length && <p className="row-context">{r.context ?? r.basis}. No additional membership declared.</p>}
+          </div>
+        )}
+      </div>
+    );
   }
   const dated = model.records
     .flatMap((r) => [r.observed, r.planned?.start, r.planned?.end])
@@ -105,22 +159,60 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
             Board
           </button>
         </fieldset>
-        <span>{model.records.length} records · read only</span>
+        <span role="status">
+          {scope.matches.length} of {model.records.length} records · read only
+        </span>
       </div>
+      <div className="workspace-filters">
+        <fieldset className="focus-switch" aria-label="Record category">
+          {FOCUSES.map((f) => (
+            <button type="button" key={f.id} aria-pressed={focus === f.id} onClick={() => navigate(selection, board, true, f.id)}>
+              {f.label} <span className="focus-count">{scopeWorkspace(model, f.id, query).matches.length}</span>
+            </button>
+          ))}
+        </fieldset>
+        <label className="workspace-search">
+          <span>Find records</span>
+          <input
+            type="search"
+            value={query}
+            placeholder="Title, context, source…"
+            onChange={(e) => navigate(selection, board, false, focus, e.target.value)}
+          />
+        </label>
+      </div>
+      {scope.active && (
+        <p className="scope-note">
+          Filtered by record kind and text. Overview keeps containing workstreams visible for context.{" "}
+          <button type="button" className="text-button" onClick={() => navigate(selection, board, true, "all", "")}>
+            Clear filters
+          </button>
+        </p>
+      )}
       <div className="workspace-layout">
         <section className="workstreams" aria-label={board ? "Board" : "Workstreams"}>
+          {scope.matches.length === 0 && model.records.length > 0 && (
+            <div className="box-blank">
+              <h2>No matching records</h2>
+              <p>Try another category or search term. Missing results do not imply no work.</p>
+              <button type="button" className="text-button" onClick={() => navigate(selection, board, true, "all", "")}>
+                Clear filters
+              </button>
+            </div>
+          )}
           {board ? (
             <div className="workspace-board">
-              {[...new Set(model.records.map((r) => r.status ?? "Undeclared"))].map((status) => (
+              {[...new Set(scope.matches.map((r) => r.status ?? "Undeclared"))].map((status) => (
                 <section className="board-column" key={status}>
                   <h2>
-                    {status} <span>{model.records.filter((r) => (r.status ?? "Undeclared") === status).length}</span>
+                    {status} <span>{scope.matches.filter((r) => (r.status ?? "Undeclared") === status).length}</span>
                   </h2>
-                  {model.records
+                  {scope.matches
                     .filter((r) => (r.status ?? "Undeclared") === status)
                     .map((r) => (
                       <button
                         type="button"
+                        data-record-id={r.id}
                         className={`board-card ${selection === r.id ? "selected" : ""}`}
                         key={r.id}
                         onClick={() => open(r.id)}
@@ -147,41 +239,7 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
                   <span>{new Date(max).toLocaleDateString()}</span>
                 </div>
               </div>
-              {model.roots.map((r) => (
-                <div key={r.id}>
-                  <RecordRow
-                    record={r}
-                    selected={selection === r.id}
-                    expanded={expanded.includes(r.id)}
-                    onToggle={() => toggle(r.id)}
-                    onOpen={open}
-                    axis={axis}
-                  />
-                  {expanded.includes(r.id) && (
-                    <div className="workstream-children">
-                      {(r.members ?? [])
-                        .map((id) => model.byId.get(id))
-                        .filter((v): v is RecordView => !!v)
-                        .map((child) => (
-                          <RecordRow key={child.id} record={child} selected={selection === child.id} onOpen={open} axis={axis} />
-                        ))}
-                      {model.relations
-                        .filter((e) => e.to === r.id || e.from === r.id)
-                        .map((e) => (
-                          <button
-                            type="button"
-                            className="relation-link"
-                            key={`${e.from}:${e.type}:${e.to}`}
-                            onClick={() => open(e.from === r.id ? e.to : e.from)}
-                          >
-                            {model.byId.get(e.from)?.title} <span>{e.type.replaceAll("_", " ")}</span> {model.byId.get(e.to)?.title} ↗
-                          </button>
-                        ))}
-                      {!r.members?.length && <p className="row-context">{r.context ?? r.basis}. No additional membership declared.</p>}
-                    </div>
-                  )}
-                </div>
-              ))}
+              {model.roots.map((r) => renderRecord(r))}
               {!model.records.length && <p className="box-blank">No workspace records available. Inspect Data sources.</p>}
               <div className="workspace-legend">
                 <span className="legend-now" /> Now <span className="legend-planned" /> Planned target <span className="legend-event" />{" "}
@@ -242,6 +300,7 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
 
 function RecordRow({
   record: r,
+  depth = 0,
   selected,
   expanded,
   onToggle,
@@ -249,6 +308,7 @@ function RecordRow({
   axis,
 }: {
   record: RecordView;
+  depth?: number;
   selected: boolean;
   expanded?: boolean;
   onToggle?: () => void;
@@ -259,7 +319,7 @@ function RecordRow({
     Math.max(0, Math.min(100, (((typeof date === "number" ? date : Date.parse(date)) - axis.min) / (axis.max - axis.min)) * 100));
   return (
     <div className={`workstream-row ${selected ? "selected" : ""}`}>
-      <div className="row-identity">
+      <div className="row-identity" style={{ paddingLeft: `${16 + Math.min(depth, 5) * 14}px` }}>
         {onToggle ? (
           <button type="button" className="expand-row" aria-label={`Expand ${r.title}`} aria-expanded={expanded} onClick={onToggle}>
             {expanded ? "⌄" : "›"}
@@ -267,7 +327,7 @@ function RecordRow({
         ) : (
           <span className="branch-joint">↳</span>
         )}
-        <button type="button" className="record-button" onClick={() => onOpen(r.id)}>
+        <button type="button" className="record-button" data-record-id={r.id} onClick={() => onOpen(r.id)}>
           <strong>{r.title}</strong>
           <span>
             {r.kind} <b>·</b> {r.status ?? "Lifecycle undeclared"}

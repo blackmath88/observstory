@@ -93,3 +93,54 @@ export function workspace(bundle: Bundle) {
 export function publicURL(url?: string) {
   return url?.startsWith("https://") ? url : undefined;
 }
+
+/** Navigation categories use record kinds only. They imply no relationship or lifecycle. */
+export const FOCUSES = [
+  { id: "all", label: "All work" },
+  { id: "research", label: "Research" },
+  { id: "concept", label: "Concepts" },
+  { id: "plan", label: "Planning" },
+  { id: "implementation", label: "Implementation" },
+  { id: "context", label: "Other context" },
+] as const;
+export type Focus = (typeof FOCUSES)[number]["id"];
+export function readFocus(value: string | null): Focus {
+  return FOCUSES.find((f) => f.id === value)?.id ?? "all";
+}
+export function recordFocus(record: RecordView): Focus {
+  return ["research", "concept", "plan", "implementation"].includes(record.kind) ? (record.kind as Focus) : "context";
+}
+
+export function scopeWorkspace(model: ReturnType<typeof workspace>, focus: Focus, query: string) {
+  const words = query.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+  const matches = model.records.filter((r) => {
+    const text = [
+      r.title,
+      r.kind,
+      r.context,
+      r.basis,
+      r.status,
+      r.attention,
+      r.resume?.stopping_point,
+      r.resume?.next_action,
+      ...r.material.map((s) => s.title),
+    ]
+      .join(" ")
+      .toLocaleLowerCase();
+    return (focus === "all" || recordFocus(r) === focus) && words.every((word) => text.includes(word));
+  });
+  const matching = new Set(matches.map((r) => r.id));
+  // Retain declared/derived ancestors for orientation without changing membership.
+  const visible = new Set(matching);
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const r of model.records) {
+      if (!visible.has(r.id) && r.members?.some((id) => visible.has(id))) {
+        visible.add(r.id);
+        changed = true;
+      }
+    }
+  }
+  return { matches, matching, visible, active: focus !== "all" || words.length > 0 };
+}
