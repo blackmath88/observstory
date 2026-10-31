@@ -75,6 +75,21 @@ for (const [k, pose] of Object.entries(POSES)) {
   C.creature(b, 6, 46, pose);
   out(`living-${k}.svg`, b, `Living observatory: ${k}`);
 }
+const WALK = {
+  lying: { raise: 0, head: 0, eyes: "closed", angle: 60 },
+  rising: { raise: 2, head: 1, eyes: "half", angle: 45 },
+  standing: { raise: 5, head: 3, eyes: "open", lantern: true, angle: 20, note: true },
+  walking: { raise: 5, head: 3, step: 1, eyes: "open", angle: -15 },
+  greeting: { raise: 5, head: 4, eyes: "wide", angle: 40 },
+};
+for (const [k, pose] of Object.entries(WALK)) {
+  const b = new P.PixelBuffer(50, 40);
+  C.duskSky(b, 41, { horizon: 35, density: 0.02 }); b.rect(0, 35, 50, 5, "moss-1"); for (let x = 0; x < 50; x++) b.set(x, 35, "moss-2");
+  C.turtle(b, 3, 35, pose);
+  out(`walking-observatory-${k}.svg`, b, `Walking observatory: ${k}`);
+}
+const wsprite = new P.PixelBuffer(46, 40); C.turtle(wsprite, 1, 38, WALK.standing);
+out("walking-observatory-sprite.svg", wsprite, "Walking observatory sprite on transparent ground");
 const sprite = new P.PixelBuffer(50, 50); C.creature(sprite, 2, 46, POSES.attentive);
 out("living-sprite-transparent.svg", sprite, "Living observatory sprite on transparent ground");
 

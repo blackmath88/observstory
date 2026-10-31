@@ -366,6 +366,7 @@ table.areas tr.cur td { background: var(--select-t); }
 .living-scroll { overflow-x: auto; }
 .living-stage { position: relative; }
 .living-stage canvas.px { position: absolute; left: 0; top: 0; }
+.living-stage [hidden] { display: none !important; }
 .living-data { position: absolute; left: 0; top: 0; overflow: visible; }
 .lane-name { fill: #8e88a6; font: 700 10px var(--font-ui); letter-spacing: .16em; }
 .meridian { stroke: #3e3560; stroke-dasharray: 1 6; }
@@ -408,6 +409,107 @@ table.areas tr.cur td { background: var(--select-t); }
 .living-note { position: absolute; width: 300px; background: #efe3c6; color: #2a2233; font-size: 12px; line-height: 1.45; padding: 8px 10px; border-radius: 2px; box-shadow: 0 2px 0 rgba(0, 0, 0, .55); z-index: 3; }
 .living-note .note-close { display: block; margin-top: 6px; background: #2a2233; color: #efe3c6; border: 0; border-radius: 2px; padding: 1px 10px; cursor: pointer; }
 .app[data-study="d"] .titlebar { background: linear-gradient(var(--sky-2), var(--sky-2)); }
+
+
+/* ── D · round 3 shell (Weavr-aligned workbench) ───────────────── */
+.app[data-study="d"] { display: block; min-height: 0; background: var(--sky-0); }
+.d-shell { display: grid; grid-template-columns: 300px minmax(0, 1fr) 300px; min-height: 760px; }
+.d-side { border-right: 1px solid var(--hair); background: var(--sky-1); display: flex; flex-direction: column; min-width: 0; }
+.critter { position: relative; border-bottom: 1px solid var(--hair); background: #191b38; line-height: 0; }
+.critter canvas { width: auto; max-width: 100%; }
+.critter-greet { position: absolute; left: 6%; right: 6%; top: 30%; bottom: 8%; background: transparent; border: 0; cursor: pointer; }
+.critter-greet:focus-visible { outline: 2px solid var(--select); }
+.d-ident { padding: var(--s3) var(--s4) var(--s3); border-bottom: 1px solid var(--hair); }
+.d-name { font-size: 20px; font-weight: 700; letter-spacing: -.01em; }
+.d-tag { color: var(--ink-2); font-size: var(--fs-sm); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.d-caption { margin: 8px 0 0; font-size: var(--fs-sm); color: var(--ink-2); }
+.d-sec { padding: var(--s3) var(--s4); border-bottom: 1px solid var(--hair); }
+.d-sec-h { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+.d-select { margin-top: 6px; border: 1px solid var(--hair-2); border-radius: var(--radius); padding: 6px 10px; background: var(--sky-0); font-size: var(--fs-sm); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.d-nav { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.d-nav button { width: 100%; display: flex; justify-content: space-between; border: 0; background: none; color: var(--ink-2); padding: 7px 10px; border-radius: var(--radius); cursor: pointer; font-size: var(--fs-md); }
+.d-nav button:hover { background: var(--sky-2); color: var(--ink); }
+.d-nav .n { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-3); }
+.d-snap { margin: var(--s3); border: 1px solid var(--hair-2); border-radius: 6px; background: var(--sky-2); font-size: var(--fs-sm); display: grid; gap: 2px; }
+.d-snap-h { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--ink-3); }
+.dot.on { background: var(--accent); }
+.d-look { margin-top: 8px; justify-self: start; display: inline-flex; gap: 6px; align-items: center; background: var(--paper, #efe3c6); color: var(--paper-ink, #2a2233); border: 0; border-radius: 3px; padding: 3px 9px; font-size: var(--fs-sm); cursor: pointer; }
+.d-look-note { margin: 6px 0 0; color: var(--ink-2); font-size: var(--fs-sm); }
+
+.d-main { min-width: 0; border-right: 1px solid var(--hair); }
+.d-tabs { display: flex; align-items: center; gap: 4px; padding: 0 var(--s5); height: 60px; border-bottom: 1px solid var(--hair); background: var(--sky-1); position: sticky; top: 0; z-index: 4; overflow-x: auto; }
+.d-tab { border: 0; background: none; color: var(--ink-2); font-size: 18px; padding: 0 12px; height: 100%; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; }
+.d-tab:hover { color: var(--ink); }
+.d-tab[aria-current="true"] { color: var(--ink); font-weight: 650; border-bottom-color: var(--select); }
+.d-tabs-r { margin-left: auto; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.d-chip { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-sm); color: var(--ink-2); }
+.d-btn { border: 1px solid var(--hair-2); background: var(--sky-2); color: var(--ink); border-radius: var(--radius); padding: 6px 12px; font-size: var(--fs-sm); font-weight: 600; cursor: pointer; white-space: nowrap; }
+.d-btn:disabled { color: var(--ink-3); cursor: not-allowed; }
+.d-pad { padding: var(--s5); display: grid; gap: var(--s4); align-content: start; }
+.d-h1 { font-size: 28px; margin: 0; letter-spacing: -.01em; display: flex; align-items: center; gap: 12px; }
+.d-synth { font-size: var(--fs-xs); font-weight: 500; color: var(--paper-ink, #2a2233); background: var(--paper, #efe3c6); border-radius: 3px; padding: 1px 7px; letter-spacing: 0; }
+.d-lede { margin: -6px 0 0; color: var(--ink-2); max-width: 70ch; }
+.d-card { border: 1px solid var(--hair-2); border-radius: 6px; background: var(--sky-1); padding: var(--s3) var(--s4); min-width: 0; }
+.d-card.d-flush { padding: 0; overflow: hidden; }
+.d-card h2 { margin: 0; font-size: 17px; }
+.d-card h2.caps { font-size: var(--fs-xs); margin-bottom: 8px; }
+.d-card-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.d-pad-h { padding: var(--s3) var(--s4) 0; }
+.d-small { font-size: var(--fs-sm); }
+.d-badge { font-family: var(--font-mono); font-size: var(--fs-xs); border: 1px solid var(--hair-2); border-radius: 99px; min-width: 22px; text-align: center; padding: 1px 6px; color: var(--ink-2); }
+.d-badge.on { border-color: var(--accent); color: var(--accent); }
+.d-status { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--s4); padding: var(--s3) var(--s4); background: var(--sky-2); }
+.d-status.lit { box-shadow: inset 3px 0 0 var(--accent); }
+.d-portrait { width: 92px; height: 60px; }
+.d-status-t { font-size: 18px; font-weight: 650; }
+.d-status-s { color: var(--ink-2); font-size: var(--fs-md); }
+.d-counts { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; font-size: var(--fs-sm); color: var(--ink-2); }
+.d-counts b { color: var(--ink); font-family: var(--font-mono); }
+.d-counts .acc, .d-counts .acc b { color: var(--accent); }
+.d-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s4); }
+.d-rows { list-style: none; margin: 0 calc(-1 * var(--s4)); padding: 0; }
+.d-row { width: 100%; display: grid; grid-template-columns: 18px 1fr auto; gap: 12px; align-items: center; text-align: left; border: 0; border-top: 1px solid var(--hair); background: none; color: var(--ink); padding: 12px var(--s4); cursor: pointer; }
+.d-row:hover, .d-row[aria-pressed="true"] { background: var(--sky-2); }
+.d-row.overlap { box-shadow: inset 2px 0 0 var(--accent); }
+.d-row-m { display: grid; }
+.d-row-t { font-weight: 600; }
+.d-row-s { color: var(--ink-3); font-size: var(--fs-sm); }
+.d-arrow { color: var(--ink-2); font-size: 18px; }
+.d-empty { color: var(--ink-2); margin: 4px 0; }
+.d-gates-wrap { padding: 14px 4px 0; }
+.d-gates { width: 100%; height: auto; }
+.app[data-study="d"] .board { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; padding: var(--s3) var(--s4) var(--s4); }
+.app[data-study="d"] .pill { white-space: normal; }
+.app[data-study="d"] .lane { border: 0; border-radius: 6px; background: var(--sky-2); }
+.app[data-study="d"] .lane-head .caps { font-size: var(--fs-sm); color: var(--ink); letter-spacing: .12em; }
+.app[data-study="d"] .d-num { font-family: var(--font-mono); color: var(--ink-3); letter-spacing: 0; font-weight: 400; }
+.app[data-study="d"] .group { background: var(--sky-1); }
+.d-right { min-width: 0; padding: var(--s4) var(--s3); display: grid; gap: var(--s3); align-content: start; background: var(--sky-0); }
+.d-right .inspector { background: none; padding: 0; border: 0; }
+.d-insp { border-color: var(--select); }
+.d-legend .legend { margin: 0 0 6px; display: grid; gap: 4px; }
+.d-orn { width: 100%; height: auto; opacity: .9; }
+
+@media (max-width: 1240px) {
+  .d-shell { grid-template-columns: 260px minmax(0, 1fr); }
+  .d-right { grid-column: 1 / -1; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .d-orn { display: none; }
+  .d-two { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+  .d-shell { grid-template-columns: 1fr; }
+  .d-side { border-right: 0; }
+  .d-side .d-sec:not(.d-snap) { display: none; }
+  .critter canvas { margin: 0 auto; }
+  .d-tabs { padding: 0 var(--s2); height: 52px; }
+  .d-tab { font-size: 15px; padding: 0 8px; }
+  .d-tabs-r .d-btn { display: none; }
+  .d-pad { padding: var(--s3); }
+  .d-status { grid-template-columns: auto 1fr; }
+  .d-status .d-btn { grid-column: 1 / -1; justify-self: start; }
+  .app[data-study="d"] .board { grid-template-columns: 1fr; }
+}
 
 /* ── Notes & asset sheet below the app ─────────────────────────── */
 .notes { margin: 0 var(--s4) var(--s6); display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--s4); }
@@ -1150,7 +1252,101 @@ table.areas tr.cur td { background: var(--select-t); }
     return Math.max(-20, Math.min(80, P.quantize(d)));
   }
 
-  root.ObsCreature = { W, H, duskSky, hill, creature, moth, aimAt };
+  /* ── The walking observatory (round 3) ───────────────────────────
+   * A turtle whose shell is the dome. Low-fi on purpose: flat 2–3-tone
+   * materials, drawn for 5–6× display, like Weavr's sidebar character.
+   *
+   * pose:
+   *   raise    0..5    0 = lying down (just a building), 5 = standing
+   *   step     0 | 1   walking gait (alternating legs), only meaningful when raised
+   *   head     0..4    how far the head comes out of the shell
+   *   eyes     "closed" | "half" | "open" | "wide"
+   *   angle    telescope azimuth, deg from vertical (+ = right)
+   *   lantern  bool    signal lantern under the telescope (attention)
+   *   door     0 | 1 | 2
+   *   settle   0 | 1   breathing
+   *   note     bool    paper slip on the door (declared commitment)
+   * Box: 44 × 36 art px; x is the left edge, g the ground row. */
+  function turtle(buf, x, g, pose = {}) {
+    const p = Object.assign({ raise: 0, step: 0, head: 0, eyes: "closed", angle: 40, lantern: false, door: 1, settle: 0, note: false }, pose);
+    const set = (a, b, c) => buf.set(a, b, c);
+    const r = p.raise;
+    const bb = g - 1 - r + p.settle;            // body bottom row
+    const B0 = x + 5, B1 = x + 34;              // body band span
+
+    // legs (behind the body first: far side, darker)
+    if (r > 0) {
+      const leg = (lx, far, lifted) => {
+        const top = bb + 1, bot = g - (lifted ? 1 : 0);
+        for (let y = top; y <= bot; y++) for (let i = 0; i < 4; i++) set(lx + i, y, far ? "rock-1" : i === 0 ? "rock-3" : "rock-2");
+        if (!far) { set(lx - 1, bot, "rock-2"); set(lx + 4, bot, "rock-2"); }
+      };
+      leg(x + 11, true, p.step === 0); leg(x + 31, true, p.step === 1);
+      leg(x + 8, false, p.step === 1); leg(x + 27, false, p.step === 0);
+      // tail
+      if (r > 2) { set(x + 3, bb - 2, "rock-2"); set(x + 4, bb - 2, "rock-2"); set(x + 2, bb - 1, "rock-1"); }
+    } else {
+      // lying down: a stone plinth with moss, the house sits on the ground
+      for (let i = B0 - 1; i <= B1 + 1; i++) { set(i, g, "rock-1"); if ((i * 7) % 5 === 0) set(i, g, "moss-2"); }
+    }
+
+    // head + neck (front, right)
+    const hx = B1 - 1 + p.head;
+    const hy = bb - 5 - (r > 2 ? 1 : 0);
+    for (let j = 0; j < 4; j++) for (let i = 0; i < 5; i++) {
+      if ((i === 4 && (j === 0 || j === 3))) continue;
+      set(hx + i, hy + j, j === 0 ? "rock-3" : j === 3 ? "rock-1" : "rock-2");
+    }
+    if (p.head > 0) for (let i = B1 - 1; i < hx; i++) { set(i, hy + 1, "rock-2"); set(i, hy + 2, "rock-1"); }
+    const ex = hx + 2, ey = hy + 1;
+    if (p.eyes === "open") { set(ex, ey, "lamp-hi"); set(ex + 1, ey, "ink"); }
+    else if (p.eyes === "wide") { set(ex, ey, "lamp-hi"); set(ex + 1, ey, "lamp-hi"); set(ex, ey + 1, "ink"); }
+    else if (p.eyes === "half") { set(ex, ey + 1, "lamp"); set(ex + 1, ey + 1, "ink"); }
+    else { set(ex, ey + 1, "rock-0"); set(ex + 1, ey + 1, "rock-0"); }
+
+    // body band: plaster ring with lit windows and the side door
+    for (let j = 0; j < 8; j++) for (let i = B0; i <= B1; i++) {
+      let c = i > B1 - 8 ? "plaster-lo" : "plaster";
+      if (j === 0) c = "copper-0";
+      if (j === 4 && (i % 6) === 2) c = "plaster-lo";
+      if (j === 7) c = "rock-1";
+      set(i, bb - 7 + j, c);
+    }
+    [[x + 15, 0], [x + 21, 0]].forEach(([wx]) => { buf.rect(wx, bb - 5, 3, 2, "lamp"); set(wx + 2, bb - 4, "lamp-dim"); set(wx + 1, bb - 5, "rock-0"); set(wx + 1, bb - 4, "rock-0"); });
+    for (let j = 0; j < 6; j++) for (let i = 0; i < 3; i++) set(x + 8 + i, bb - 6 + j, j === 0 && i !== 1 ? "plaster" : j === 0 ? "rock-0" : p.door === 0 ? "lamp-dim" : p.door === 2 && i === 1 ? "lamp-hi" : "lamp");
+    if (p.note) { set(x + 12, bb - 5, "paper"); set(x + 12, bb - 4, "paper"); set(x + 13, bb - 5, "paper"); }
+
+    // shell = dome, with scute seams, patina and a little moss
+    const R = 12, cx = x + 19, base = bb - 8;
+    for (let dy = 0; dy <= R; dy++) {
+      const half = Math.floor(Math.sqrt(R * R - dy * dy) * 1.06 + 0.3);
+      for (let d = -half; d <= half; d++) {
+        let c = "copper-2";
+        if (d < -half * 0.35 && dy > 3) c = "copper-3";
+        if (d > half * 0.55) c = "copper-1";
+        if (dy === 4 && Math.abs(d) < half - 1) c = "copper-1";                  // scute ring
+        if ((d === -5 || d === 5) && dy > 4 && dy < 9) c = "copper-1";          // scute seams
+        set(cx + d, base - dy, c);
+      }
+    }
+    [[-8, 2], [-7, 2], [-7, 3], [6, 6], [7, 6], [2, 9]].forEach(([a, b]) => set(cx + a, base - b, "patina"));
+    [[-3, 11], [-2, 11], [1, 11], [4, 10]].forEach(([a, b]) => set(cx + a, base - b, "moss-3"));
+
+    // slit faces the telescope; telescope pokes out
+    const a = rad(p.angle);
+    const sx = Math.round(cx + Math.sin(a) * 6);
+    for (let dy = 3; dy <= R - 1; dy++) { set(sx, base - dy, "ink"); set(sx + 1, base - dy, "ink"); }
+    const px = sx + 0.5, py = base - 5;
+    const ux = Math.sin(a), uy = -Math.cos(a), nx = -uy, ny = ux;
+    for (let t2 = 0; t2 <= 14; t2 += 0.5) for (let k = 0; k < 2; k++) set(px + ux * t2 + nx * k, py + uy * t2 + ny * k, t2 > 11 ? (k === 0 ? "brass-1" : "brass-0") : k === 0 ? "brass-2" : "brass-0");
+    set(Math.round(px + ux * 14.5), Math.round(py + uy * 14.5), "ink");
+    if (p.lantern) {
+      const lx = Math.round(px + ux * 10), ly = Math.round(py + uy * 10) + 1;
+      set(lx, ly, "ink"); buf.rect(lx - 1, ly + 1, 3, 3, "signal"); set(lx, ly + 2, "lamp-hi");
+    }
+  }
+
+  root.ObsCreature = { W, H, duskSky, hill, creature, moth, aimAt, turtle };
 })(typeof window !== "undefined" ? window : globalThis);
 </script>
 <script>
@@ -1219,14 +1415,15 @@ table.areas tr.cur td { background: var(--select-t); }
       S = window.innerWidth < 768 ? 3 : 4;
       const cw = Math.max(node.clientWidth || 900, 720);
       W = Math.floor(cw / S);
-      H = S === 3 ? 172 : 150;
+      const noC = M && M.creature === false;      // creature lives elsewhere: no hill band needed
+      H = S === 3 ? (noC ? 140 : 172) : (noC ? 116 : 150);
     }
     const G = () => H - 12;                      // creature ground line
     const CX = 6;                                // creature x
 
     function computeLayout() {
       const lanes = M.lanes, groups = M.groups;
-      const x0 = 10, x1 = W - 8, top = 22, bottom = H - 54;
+      const x0 = 10, x1 = W - 8, top = 22, bottom = H - (M.creature === false ? 12 : 54);
       const colW = (x1 - x0) / lanes.length;
       const clusters = {};
       lanes.forEach((z, zi) => {
@@ -1277,12 +1474,12 @@ table.areas tr.cur td { background: var(--select-t); }
     /* ── drawing ── */
     function drawBg() {
       const drift = M.drift || 0;
-      if (bgBuf && lastDrift === drift && lastW === W) return;
+      if (bgBuf && lastDrift === drift && lastW === W && bgBuf.h === H) return;
       lastDrift = drift; lastW = W;
       bgBuf = new P.PixelBuffer(W, H);
-      C.duskSky(bgBuf, 23, { horizon: H - 8, density: 0.007, drift,
+      C.duskSky(bgBuf, 23, { horizon: H - 8, density: 0.007, drift, stops: M.creature === false ? [0, 0.45, 0.78, 0.94, 0.995] : undefined,
         quiet: Object.values(layout.clusters).map((c) => ({ x: c.x - 22, y: c.y - 14, w: 44, h: 32 })) });
-      C.hill(bgBuf, 4, 54, 96, G(), H - 5);
+      if (M.creature !== false) C.hill(bgBuf, 4, 54, 96, G(), H - 5);
       P.toCanvas(bg, bgBuf, S, pal());
     }
 
@@ -1314,6 +1511,9 @@ table.areas tr.cur td { background: var(--select-t); }
     }
 
     function drawActor() {
+      const off = M && M.creature === false;
+      actor.hidden = off; greet.hidden = off; bell.hidden = off;
+      if (off) { st.pivot = { x: CX + 28, y: G() - 26 }; return; }
       const ax = 0, ay = G() - 48, aw = 64, ah = 56;
       const buf = new P.PixelBuffer(aw, ah);
       for (let y = 0; y < ah; y++) for (let x = 0; x < aw; x++) buf.px[y * aw + x] = bgBuf.get(ax + x, ay + y);
@@ -1536,6 +1736,141 @@ table.areas tr.cur td { background: var(--select-t); }
 })(typeof window !== "undefined" ? window : globalThis);
 </script>
 <script>
+/* src/critter.js */
+/* Direction D (round 3) — the walking observatory in the sidebar corner.
+ *
+ * Posture is the one piece of state the creature carries, and the page always
+ * says it in words as well:
+ *   lying    — nothing needs a conversation; it is just an observatory on a hill
+ *   standing — an overlap / waiting signal exists; it gets up, lantern lit
+ *   walking  — replay is playing; it travels through the repository's history
+ * The telescope turns to the lane of the selection (or replay event).
+ * Breathing, blinking, a peek and the greeting are decoration: they stop with
+ * reduced motion and carry no information.
+ */
+(function (root) {
+  "use strict";
+  const P = root.ObsPixels, C = root.ObsCreature;
+
+  const AW = 50, AH = 40, GROUND = 35;
+
+  function scene(buf, scroll, drift) {
+    C.duskSky(buf, 41, { horizon: GROUND, density: 0.02, drift, stops: [0, 0.45, 0.75, 0.9, 0.97] });
+    // far hills, then the near ground that scrolls while walking
+    const rnd = P.mulberry32(12);
+    const far = []; for (let i = 0; i < 12; i++) far.push(rnd());
+    for (let x = 0; x < buf.w; x++) {
+      const k = ((x + drift * 0.5) / 9), i = Math.floor(k), f = k - i;
+      const h = Math.round(GROUND - 3 - 3 * (far[((i % 11) + 11) % 11] * (1 - f) + far[(((i + 1) % 11) + 11) % 11] * f));
+      for (let y = h; y < GROUND; y++) buf.set(x, y, "moss-0");
+    }
+    for (let x = 0; x < buf.w; x++) {
+      buf.set(x, GROUND, "moss-2");
+      for (let y = GROUND + 1; y < buf.h; y++) buf.set(x, y, y === GROUND + 1 ? "moss-1" : "moss-0");
+      const wx = x + scroll;
+      if (((wx * 13) % 17) === 0) buf.set(x, GROUND - 1, "moss-3");
+      if (((wx * 7) % 23) === 0) { buf.set(x, GROUND + 2, "rock-1"); buf.set(x + 1, GROUND + 2, "rock-1"); }
+    }
+  }
+
+  function poseFor(st, motion) {
+    const standing = st.posture !== "lying";
+    const p = {
+      raise: st.raise, head: st.head, step: st.step, angle: st.angle,
+      eyes: standing ? "open" : "closed", lantern: st.lantern, note: st.note, door: 1, settle: 0,
+    };
+    if (!motion) return p;
+    const t = st.t;
+    if (!standing && t % 46 < 6) p.settle = 1;
+    if (!standing && t % 120 > 104) { p.eyes = "half"; }
+    if (standing && t % 58 > 55) p.eyes = "closed";
+    if (st.greet > 0) { p.eyes = "wide"; p.head = 4; p.door = 2; }
+    return p;
+  }
+
+  function create() {
+    const node = document.createElement("div");
+    node.className = "critter";
+    const cv = document.createElement("canvas");
+    cv.className = "px";
+    cv.setAttribute("aria-hidden", "true");
+    const greet = document.createElement("button");
+    greet.type = "button";
+    greet.className = "critter-greet";
+    greet.setAttribute("aria-label", "Greet the observatory (decorative)");
+    node.append(cv, greet);
+
+    const st = { t: 0, posture: "lying", raise: 0, head: 0, step: 0, angle: 60, target: 60, lantern: false, note: false, greet: 0, cool: 0, scroll: 0, motion: true };
+    let timer = null;
+
+    function scale() { return window.innerWidth < 768 ? 4 : 6; }
+
+    function draw() {
+      const b = new P.PixelBuffer(AW, AH);
+      scene(b, st.scroll, Math.round(st.scroll / 6));
+      C.turtle(b, 3, GROUND, poseFor(st, st.motion));
+      P.toCanvas(cv, b, scale(), P.paletteFromCSS());
+    }
+
+    function settleTargets() {
+      const up = st.posture !== "lying";
+      return { raise: up ? 5 : 0, head: up ? 3 : 0 };
+    }
+
+    function tick() {
+      if (!node.isConnected) return;
+      st.t++;
+      const tg = settleTargets();
+      if (st.t % 2 === 0) {
+        if (st.raise !== tg.raise) st.raise += Math.sign(tg.raise - st.raise);
+        else if (st.head !== tg.head) st.head += Math.sign(tg.head - st.head);
+      }
+      if (st.angle !== st.target) st.angle += 5 * Math.sign(st.target - st.angle);
+      if (st.posture === "walking" && st.raise === 5 && st.t % 3 === 0) { st.step = 1 - st.step; st.scroll++; }
+      if (st.posture !== "walking") st.step = 0;
+      if (st.greet > 0) st.greet--;
+      if (st.cool > 0) st.cool--;
+      draw();
+    }
+
+    greet.addEventListener("click", () => {
+      if (st.cool > 0) return;
+      st.greet = 10; st.cool = 40;
+      if (!st.motion) { draw(); setTimeout(() => { st.greet = 0; draw(); }, 900); }
+    });
+
+    function update(s) {
+      st.posture = s.posture; st.lantern = s.lantern; st.note = s.note;
+      st.target = P.quantize(s.angle);
+      const changedMotion = st.motion !== s.motion;
+      st.motion = s.motion;
+      if (!s.motion) {
+        const tg = settleTargets();
+        st.raise = tg.raise; st.head = tg.head; st.angle = st.target; st.step = 0;
+      }
+      if (changedMotion || !timer) {
+        clearInterval(timer); timer = null;
+        if (s.motion) timer = setInterval(tick, 100);
+      }
+      draw();
+    }
+
+    window.addEventListener("resize", draw);
+    return { node, update };
+  }
+
+  /* Small static portrait for status cards: same sprite, posture only. */
+  function portrait(canvas, posture, opts = {}) {
+    const b = new P.PixelBuffer(46, 30);
+    const up = posture !== "lying";
+    C.turtle(b, 1, 28, { raise: up ? 5 : 0, head: up ? 3 : 0, eyes: up ? "open" : "closed", angle: opts.angle ?? 40, lantern: !!opts.lantern, step: posture === "walking" ? 1 : 0 });
+    P.toCanvas(canvas, b, 2, P.paletteFromCSS());
+  }
+
+  root.ObsCritter = { create, portrait, AW, AH };
+})(typeof window !== "undefined" ? window : globalThis);
+</script>
+<script>
 /* src/data.js */
 /* SYNTHETIC STUDY DATA — not observed from any repository.
  *
@@ -1601,6 +1936,12 @@ table.areas tr.cur td { background: var(--select-t); }
     edges: [],
     attention: [],
     commitments: [],
+    gates: [
+      { label: "Hackathon plan", state: "passed", at: 0.12 },
+      { label: "Consent copy reviewed", state: "not_started", at: 0.55 },
+      { label: "Demo dry-run", state: "not_started", at: 0.86 },
+    ],
+    now: 0.38,
   };
 
   const OVERLAP = {
@@ -1643,6 +1984,12 @@ table.areas tr.cur td { background: var(--select-t); }
       { kind: "waiting", target: "waiting:branch:voice-notes>pr:22", label: "voice-notes waits on #22", basis: "heuristic", confidence: "medium" },
       { kind: "stale", target: "branch:pages-preview", label: "pages-preview idle for 3d (no pull request)", basis: "derived", confidence: "high" },
     ],
+    gates: [
+      { label: "Hackathon plan", state: "passed", at: 0.12 },
+      { label: "Consent copy reviewed", state: "in_progress", at: 0.55, linked: "pr:22" },
+      { label: "Demo dry-run", state: "not_started", at: 0.86 },
+    ],
+    now: 0.64,
     commitments: [
       { id: "c1", text: "Consent copy reviewed before demo", declared_by: "lea", state: "open", linked: "pr:22", note: "declared in .observstory/coordination.json · linked work still open" },
     ],
@@ -1747,6 +2094,7 @@ table.areas tr.cur td { background: var(--select-t); }
     theme: "night", motion: true, playing: false, speed: 1, lastView: "map",
   };
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const SKELETON = document.getElementById("app").innerHTML;   // static template markup, no data
   let angleNow = P.PARKED, angleTimer = null, playTimer = null, twinkle = 0, twinkleTimer = null;
   let lastTrigger = null;
 
@@ -1779,6 +2127,7 @@ table.areas tr.cur td { background: var(--select-t); }
     if (q.get("pos")) S.pos = Math.max(0, Math.min(D.EVENTS.length - 1, +q.get("pos") || 0));
     if (q.get("theme") === "paper") S.theme = "paper";
     if (q.get("motion") === "off") S.motion = false;
+    S.dView = q.get("dview") === "sky" ? "sky" : "overview";
   }
   function writeHash() {
     const q = new URLSearchParams({ study: S.study, state: S.state, view: S.view });
@@ -1786,6 +2135,7 @@ table.areas tr.cur td { background: var(--select-t); }
     if (S.state === "replay") q.set("pos", S.pos);
     if (S.theme !== "night") q.set("theme", S.theme);
     if (!S.motion) q.set("motion", "off");
+    if (S.study === "d" && S.dView === "sky" && S.state !== "replay" && S.view !== "list") q.set("dview", "sky");
     history.replaceState(null, "", "#" + q.toString());
   }
   const motionOn = () => S.motion && !reducedMotion.matches;
@@ -1827,7 +2177,7 @@ table.areas tr.cur td { background: var(--select-t); }
       const g = D.GROUPS.find((x) => x.path === ev.area);
       return { angle: P.AZIMUTH[g.zone], open: true, why: `following replay event in ${laneLabel(g.zone)} · ${ev.area}` };
     }
-    if (!S.sel) return { angle: P.PARKED, open: false, why: S.study === "d" ? "resting, lowered toward the horizon — nothing selected" : "parked — nothing selected" };
+    if (!S.sel) return { angle: P.PARKED, open: false, why: S.study === "d" ? "telescope lowered — nothing selected" : "parked — nothing selected" };
     let zone = null, what = "";
     if (S.sel.startsWith("area:")) { zone = zoneOfGroup(S.sel); what = groupById(S.sel).path; }
     const n = nodeById(S.sel);
@@ -1893,6 +2243,16 @@ table.areas tr.cur td { background: var(--select-t); }
     const app = document.getElementById("app");
     app.dataset.study = S.study;
     app.dataset.state = S.state;
+    if (S.study === "d") {
+      renderD(app);
+      renderNotes();
+      if (focusKey) {
+        const el = document.querySelector(`[data-key="${CSS.escape(focusKey)}"]`);
+        if (el) el.focus({ preventScroll: true });
+      }
+      return;
+    }
+    if (!document.getElementById("titlebar")) app.innerHTML = SKELETON;
     renderTitle();
     renderSide();
     renderMain();
@@ -2391,6 +2751,7 @@ table.areas tr.cur td { background: var(--select-t); }
         aria: `${n.ref} ${n.label}, ${STATUS_WORD[n.status]}, ${groupById(n.group).path}, last activity ${age(n.age_hours)} ago`,
       })),
       edges: replay ? [] : st.edges,
+      creature: false,          // round 3: the creature lives in the sidebar and watches this sky
       related: rel,
       selId: S.sel,
       aimId: replay ? D.GROUPS.find((g) => g.path === ev.area).id : S.sel,
@@ -2407,6 +2768,184 @@ table.areas tr.cur td { background: var(--select-t); }
     };
     prevReplayPos = replay ? S.pos : null;
     return model;
+  }
+
+
+  /* ═════════════ D · round 3: clean workbench, walking observatory in the corner ═════════════ */
+  let critterInst = null;
+  const critter = () => critterInst || (critterInst = window.ObsCritter.create());
+  if (!("dView" in S)) S.dView = "overview";
+  S.lookNote = false;
+
+  function posture() {
+    if (S.state === "replay") return S.playing ? "walking" : "standing";
+    return windowLit().lit ? "standing" : "lying";
+  }
+  function postureWords() {
+    const p = posture();
+    if (p === "walking") return { title: "The observatory is walking through history", sub: "Replaying repository file history · " + `event ${S.pos + 1} of ${D.EVENTS.length}` };
+    if (S.state === "replay") return { title: "The observatory stands at a point in history", sub: `Paused at ${D.EVENTS[S.pos].sha} · ${D.EVENTS[S.pos].at.replace("T", " ")}` };
+    const n = snap().attention.filter((a) => a.kind === "overlap" || a.kind === "waiting").length;
+    return p === "standing"
+      ? { title: "The observatory is up", sub: `${n} thing${n > 1 ? "s" : ""} may need a conversation · lantern lit` }
+      : { title: "The observatory is lying down", sub: "Nothing needs a conversation right now" };
+  }
+
+  function dView() { return S.state === "replay" ? "replay" : S.view === "list" ? "list" : S.dView === "sky" ? "sky" : "overview"; }
+  function goView(v) {
+    if (v === "replay") { setState("replay"); return; }
+    if (S.state === "replay") setState("overlap");
+    S.view = v === "list" ? "list" : "map";
+    S.dView = v === "sky" ? "sky" : "overview";
+    render();
+  }
+
+  function renderD(app) {
+    const st = snap();
+    const rel = relatedIds();
+    const tgt = target();
+    const words = postureWords();
+    const view = dView();
+
+    // ── sidebar ──
+    const cr = critter();
+    cr.update({ posture: posture(), angle: tgt.open ? tgt.angle : 60, lantern: windowLit().lit, note: S.state !== "replay" && st.commitments.length > 0, motion: motionOn() });
+    const lanesNav = h("ul", { class: "d-nav" }, D.ZONES.map((z) => {
+      const n = S.state === "replay" ? null : st.nodes.filter((x) => zoneOfGroup(x.group) === z.id).length;
+      return h("li", null, h("button", { type: "button", "data-key": `dlane:${z.id}`, on: { click: () => { goView("overview"); requestAnimationFrame(() => { const el = document.getElementById("dlane-" + z.id); if (el) el.scrollIntoView({ block: "nearest", behavior: motionOn() ? "smooth" : "auto" }); }); } } },
+        h("span", null, z.label), h("span", { class: "n" }, n == null ? "" : n ? String(n) : "quiet")));
+    }));
+    const side = h("aside", { class: "d-side", "aria-label": "Observatory" },
+      cr.node,
+      h("div", { class: "d-ident" },
+        h("div", { class: "d-name" }, "Observatory"),
+        h("div", { class: "d-tag" }, "watching ", h("span", { class: "mono" }, D.PROJECT.repository)),
+        h("p", { class: "d-caption", "aria-live": "polite" }, cap(words.title.replace("The observatory", "It")), ". ", cap(tgt.why.replace(/^telescope /, "")).replace(/^Pointing/, "Telescope pointing").replace(/^Lowered/, "Telescope lowered").replace(/^Following/, "Telescope following"), ".")),
+      h("div", { class: "d-sec" }, h("div", { class: "caps" }, "Repository"),
+        h("div", { class: "d-select mono" }, D.PROJECT.repository, h("span", { class: "faint" }, " · main"))),
+      h("div", { class: "d-sec" }, h("div", { class: "d-sec-h" }, "Lanes"), lanesNav),
+      h("div", { class: "d-sec d-snap" },
+        h("div", { class: "d-snap-h" }, h("i", { class: "dot" }), S.state === "replay" ? "Replay · saved history" : "Static snapshot"),
+        h("div", { class: "mono" }, S.state === "replay" ? `baseline ${D.BASELINE.sha}` : st.collected),
+        h("div", { class: "faint" }, "not live · window 48h"),
+        h("button", { type: "button", class: "d-look", "data-key": "d:look", "aria-expanded": String(S.lookNote), on: { click: () => { S.lookNote = !S.lookNote; render(); } } }, iconSVG("bell", "currentColor", 1.2), "Ask for a new look"),
+        S.lookNote ? h("p", { class: "d-look-note", role: "status" }, "A new look happens when the repository's GitHub Action runs (on push, pull request, or hourly). This page shows a saved snapshot and can't start one.") : null));
+
+    // ── tabs ──
+    const tabs = [["overview", "Overview"], ["sky", "Sky"], ["list", "List"], ["replay", "Replay"]];
+    const top = h("nav", { class: "d-tabs", "aria-label": "Views" },
+      tabs.map(([v, label]) => h("button", { type: "button", class: "d-tab", "aria-current": String(view === v), "data-key": `dtab:${v}`, on: { click: () => goView(v) } }, label)),
+      h("span", { class: "d-tabs-r" },
+        h("span", { class: "d-chip" }, h("i", { class: "dot" + (windowLit().lit ? " on" : "") }), S.state === "replay" ? "replay" : `snapshot ${st.collected.split("· ")[1] || st.collected}`),
+        h("button", { type: "button", class: "d-btn", disabled: true, title: "Synthetic data has no repository URL" }, "Open repository ↗")));
+
+    // ── content ──
+    let content;
+    if (view === "overview") content = dOverview(st, rel, words);
+    else if (view === "sky") {
+      content = h("div", { class: "d-pad" }, h("h1", { class: "d-h1" }, "Sky"),
+        h("p", { class: "d-lede" }, "The observatory's chart of the same snapshot: stars are work items in their areas; dashed signal lines are overlaps, threads are waits. Hover a star and the observatory looks with you."),
+        h("div", { class: "d-card d-flush" }, living().node));
+      queueMicrotask(() => living().update(livingModel(rel)));
+    } else if (view === "list") content = h("div", { class: "d-pad" }, h("h1", { class: "d-h1" }, "All work items"), h("div", { class: "d-card d-flush" }, listView(rel)));
+    else content = h("div", { class: "d-pad" }, h("h1", { class: "d-h1" }, "Replay"), h("div", { class: "d-card d-flush" }, replayPane().slice(1)));
+    const main = h("section", { class: "d-main" + (rel ? " dimmed" : ""), id: "main", "aria-label": "Work" }, top, content);
+
+    // ── right column ──
+    const right = h("aside", { class: "d-right", "aria-label": "Inspector and collection" });
+    const insp = inspector();
+    if (insp) right.append(h("div", { class: "d-card d-insp" }, insp));
+    right.append(dCollection(st), dLegend(), dOrnament());
+
+    app.replaceChildren(h("div", { class: "d-shell" }, side, main, right));
+  }
+
+  function dOverview(st, rel, words) {
+    const pc = h("canvas", { class: "px d-portrait", "aria-hidden": "true" });
+    window.ObsCritter.portrait(pc, posture(), { lantern: windowLit().lit, angle: target().open ? target().angle : 60 });
+    const ov = st.edges.filter((e) => e.type === "overlap").length, wt = st.edges.filter((e) => e.type === "waiting").length;
+    const stale = st.nodes.filter((n) => n.status === "stale").length;
+    const status = h("div", { class: "d-card d-status" + (windowLit().lit ? " lit" : "") }, pc,
+      h("div", null, h("div", { class: "d-status-t" }, words.title),
+        h("div", { class: "d-status-s" }, words.sub),
+        h("div", { class: "d-counts" },
+          h("span", null, h("b", null, st.nodes.length), " in flight"), h("span", { class: ov ? "acc" : "" }, h("b", null, ov), " overlap"),
+          h("span", { class: wt ? "acc" : "" }, h("b", null, wt), " waiting"), h("span", null, h("b", null, stale), " stale"))),
+      h("button", { type: "button", class: "d-btn", "data-key": "d:sky", on: { click: () => goView("sky") } }, "See the sky ↗"));
+
+    const att = st.attention;
+    const needs = h("div", { class: "d-card" },
+      h("div", { class: "d-card-h" }, h("h2", null, "Needs a conversation"), h("span", { class: "d-badge" + (att.length ? " on" : "") }, att.length)),
+      att.length ? h("ul", { class: "d-rows" }, att.map((a) => h("li", null, h("button", {
+        type: "button", class: "d-row " + a.kind, "data-key": `datt:${a.target}`, "aria-pressed": String(S.sel === a.target),
+        on: { click: (ev) => select(a.target, ev.currentTarget) },
+      }, iconSVG(a.kind === "overlap" ? "overlap" : a.kind === "waiting" ? "waiting" : "stale", a.kind === "overlap" ? "var(--accent)" : "var(--ink-3)", 1.6),
+        h("span", { class: "d-row-m" }, h("span", { class: "d-row-t" }, a.label), h("span", { class: "d-row-s" }, `${CONF[a.confidence]} ${a.basis} · ${a.confidence} confidence`)),
+        h("span", { class: "d-arrow", "aria-hidden": "true" }, "→")))))
+      : h("p", { class: "d-empty" }, "Nothing needs a conversation right now."));
+
+    const gates = st.gates || [];
+    const strip = h("div", { class: "d-card" },
+      h("div", { class: "d-card-h" }, h("h2", null, "Mission ", h("span", { class: "faint" }, "· declared")),
+        h("span", { class: "faint d-small" }, st.commitments.length ? `${st.commitments.length} commitment open` : "no open commitments")),
+      dGateStrip(gates, st.now),
+      h("p", { class: "d-small faint" }, "Declared by people in .observstory/coordination.json; each gate's state comes from the repository."));
+
+    const lanes = h("div", { class: "d-card d-flush" },
+      h("div", { class: "d-card-h d-pad-h" }, h("h2", null, "Lanes"), h("span", { class: "faint d-small" }, "lanes → areas → work items · newest first")),
+      boardView(rel));
+    lanes.querySelectorAll(".lane").forEach((el, i) => { el.id = "dlane-" + D.ZONES[i].id; el.querySelector(".lane-head .caps").prepend(h("span", { class: "d-num" }, String(i + 1).padStart(2, "0") + " ")); });
+
+    return h("div", { class: "d-pad" },
+      h("h1", { class: "d-h1" }, "Overview", h("span", { class: "d-synth" }, "synthetic data")),
+      status, h("div", { class: "d-two" }, needs, strip), lanes);
+  }
+
+  function dGateStrip(gates, now) {
+    const W = 380, y = 24;
+    const svg = s("svg", { viewBox: `0 0 ${W} 64`, class: "d-gates", role: "img", "aria-label": "Declared gates: " + gates.map((g) => `${g.label} ${g.state.replace("_", " ")}`).join(", ") });
+    svg.append(s("line", { x1: 16, y1: y, x2: W - 16, y2: y, stroke: "var(--hair-2)", "stroke-width": 2 }),
+      s("line", { x1: 16, y1: y, x2: 16 + (W - 32) * now, y2: y, stroke: "var(--ink-3)", "stroke-width": 2 }));
+    gates.forEach((g) => {
+      const x = 16 + (W - 32) * g.at;
+      const fill = g.state === "passed" ? "var(--ink-2)" : g.state === "in_progress" ? "var(--select)" : "var(--sky-1)";
+      svg.append(s("rect", { x: x - 6, y: y - 6, width: 12, height: 12, transform: `rotate(45 ${x} ${y})`, fill, stroke: g.state === "not_started" ? "var(--ink-3)" : fill, "stroke-width": 1.5 }),
+        s("text", { x, y: y + 24, "text-anchor": "middle", fill: "var(--ink-2)", "font-size": 11 }, g.label),
+        s("text", { x, y: y + 37, "text-anchor": "middle", fill: "var(--ink-3)", "font-size": 10, "font-family": "var(--font-mono)" }, g.state.replace("_", " ")));
+    });
+    const nx = 16 + (W - 32) * now;
+    svg.append(s("line", { x1: nx, y1: 6, x2: nx, y2: y + 8, stroke: "var(--ink)", "stroke-width": 1.5 }),
+      s("text", { x: nx, y: 6, dy: -1, "text-anchor": "middle", fill: "var(--ink)", "font-size": 9, "font-weight": 700, "letter-spacing": ".1em" }, "NOW"));
+    svg.setAttribute("style", "overflow:visible");
+    return h("div", { class: "d-gates-wrap" }, svg);
+  }
+
+  function dCollection(st) {
+    if (S.state === "replay") return h("div", { class: "d-card" }, h("h2", { class: "caps" }, "Source"),
+      h("dl", { class: "kv" }, h("dt", null, "Feed"), h("dd", null, "Repository file history"), h("dt", null, "Baseline"), h("dd", { class: "mono" }, D.BASELINE.sha),
+        h("dt", null, "Commits"), h("dd", null, `${D.EVENTS.length} first-parent`), h("dt", null, "Not available"), h("dd", null, "Observatory state history, graph events")));
+    return h("div", { class: "d-card" }, h("h2", { class: "caps" }, "Collection"),
+      h("dl", { class: "kv" },
+        h("dt", null, "Snapshot"), h("dd", { class: "mono" }, st.collected),
+        h("dt", null, "Mode"), h("dd", null, "static file · not live"),
+        h("dt", null, "Trigger"), h("dd", { class: "mono" }, st.trigger),
+        st.coverage.map(([k, v]) => [h("dt", null, k), h("dd", { class: v === "complete" ? "" : "skipped" }, v)])),
+      st.degraded.length ? h("div", { class: "degraded" }, "Degraded: ", st.degraded.join("; "), ". Absent data is shown as skipped, not as zero.") : null,
+      st.commitments.length ? h("div", { class: "declared-item", style: "margin-top:8px" }, h("span", { class: "tag" }, "declared"), st.commitments[0].text,
+        h("div", { class: "faint", style: "font-size:11px" }, `by ${st.commitments[0].declared_by} · ${st.commitments[0].note}`)) : null);
+  }
+  function dLegend() {
+    return h("div", { class: "d-card d-legend" }, h("h2", { class: "caps" }, "Legend"), legend(),
+      h("p", { class: "d-small faint" }, "Lying down = nothing needs a conversation · standing = an overlap or wait exists · walking = replay playing. Observstory describes work, not people."));
+  }
+  function dOrnament() {
+    const c = h("canvas", { class: "px d-orn", "aria-hidden": "true" });
+    const b = new P.PixelBuffer(70, 60);
+    const rnd = P.mulberry32(5);
+    for (let i = 0; i < 90; i++) { const x = Math.floor(rnd() * 70), y = Math.floor(rnd() * 60); b.set(x, y, rnd() > 0.85 ? "cream-dim" : rnd() > 0.5 ? "dusk-3" : "dusk-2"); }
+    for (let x = 0; x < 70; x++) { const y = Math.round(30 + Math.sin(x / 9) * 4); if (x % 3) b.set(x, y, "dusk-4"); }
+    P.toCanvas(c, b, 4, P.paletteFromCSS());
+    return c;
   }
 
   /* ── replay ── */
@@ -2569,9 +3108,9 @@ table.areas tr.cur td { background: var(--select-t); }
   /* ── notes below the app: per-study rationale + shared mapping + asset sheet ── */
   const NOTES = {
     d: {
-      idea: "The observatory is the creature: a caretaker, not a controller. It watches its sky (the project map), listens before it looks, inks a relation by hand once it has evidence for it, and rests without disappointment when nothing needs a conversation. The readable surfaces (list, rail, inspector) stay crisp HTML; the living scene is the map.",
-      plus: ["Warmth and identity: you visit it, you don't operate it.", "Every habit maps to state or is declared decoration; text says the same thing.", "One scene does map, attention, selection and replay."],
-      minus: ["Most build effort: sprite, habits, tracing, replay animation.", "Larger scene takes vertical space; list view must remain first-class.", "Risk of charm outrunning evidence; enforce the behaviour law in code review."],
+      idea: "Round 3. A clean, Weavr-aligned workbench is the default: an overview status card, a 'Needs a conversation' list, the declared mission strip and the lane board. The walking observatory lives in the sidebar corner. It is a turtle whose shell is the dome: it lies down as a plain building when nothing needs a conversation, stands up with its lantern lit when an overlap or a wait exists, and walks while replay plays. The star-chart sky is a tab rather than the home screen.",
+      plus: ["The real UI is clean and overview-first; the ornament frames it.", "Posture is one legible state mapping, always restated in words.", "Matches Weavr's shell, so the two tools feel like siblings without sharing a character."],
+      minus: ["The creature carries less information than the full sky scene in D2.", "The sidebar character needs its own small animation loop.", "Pixel chunkiness (6×) must be held consistent across future art."],
     },
     a: {
       idea: "A place you return to. The courtyard sits in the sidebar's empty space; a thin horizon runs under the title bar. The working surface is the existing lane → area → item board, unchanged in meaning.",
@@ -2602,6 +3141,9 @@ table.areas tr.cur td { background: var(--select-t); }
   ];
 
   const MAPPING_D = [
+    ["Lying down: legs tucked, head in, just a building", "No overlap or waiting signal in the snapshot", "Status card \"lying down · nothing needs a conversation\"", "Not sad, not idle-shaming"],
+    ["Standing up: legs out, head out, lantern lit", "≥1 overlap or waiting signal", "Status card \"is up · N may need a conversation\"", "Gets up to tell you; never an alarm"],
+    ["Walking", "Replay is playing", "Status card + sidebar caption", "Stops when paused (standing at a point in history)"],
     ["Eyes closed, settling, moth near the door", "Rest: no attention signal and nothing selected", "Status bar \"Resting — nothing needs a conversation\"", "Never sad or abandoned; no productivity cue"],
     ["Signal lantern under the telescope", "≥1 overlap or waiting signal", "Status bar + Needs attention", "Brightest colour in the scene, reserved"],
     ["Door lamp (amber)", "A snapshot is loaded (someone is home)", "Collection: snapshot time", "Dark only if nothing loaded"],
@@ -2641,9 +3183,15 @@ table.areas tr.cur td { background: var(--select-t); }
     return h("div", { class: "card", style: "grid-column: 1 / -1" },
       h("h2", null, "Pixel sheet — editable source: src/creature.js, src/pixels.js · exported SVGs: assets/"),
       h("div", { class: "sheet" },
+        ...[["lying down", { raise: 0, head: 0, eyes: "closed", angle: 60 }], ["getting up", { raise: 2, head: 1, eyes: "half", angle: 45 }],
+            ["standing · lantern", { raise: 5, head: 3, eyes: "open", lantern: true, angle: 20, note: true }], ["walking (replay)", { raise: 5, head: 3, step: 1, eyes: "open", angle: -15 }],
+            ["greeting", { raise: 5, head: 4, eyes: "wide", angle: 40 }]].map(([lbl, pose]) => fig("D3 · " + lbl, 50, 40, (b) => {
+          window.ObsCreature.duskSky(b, 41, { horizon: 35, density: 0.02 }); b.rect(0, 35, 50, 5, "moss-1"); for (let x = 0; x < 50; x++) b.set(x, 35, "moss-2");
+          window.ObsCreature.turtle(b, 3, 35, pose);
+        }, 4)),
         ...[["resting", { eyes: "closed", angle: 70, door: 1 }], ["attentive · lantern", { eyes: "open", angle: 35, lantern: true, note: true }],
             ["listening · lift, lean", { eyes: "open", lift: 1, lean: -1, angle: 10, door: 2, look: -1 }], ["checking notes", { eyes: "half", chart: 4, angle: 50 }],
-            ["greeting", { eyes: "wide", smoke: 3, angle: 60, look: 1 }]].map(([lbl, pose]) => fig("D · " + lbl, 58, 50, (b) => {
+            ["greeting", { eyes: "wide", smoke: 3, angle: 60, look: 1 }]].map(([lbl, pose]) => fig("D2 · " + lbl, 58, 50, (b) => {
           window.ObsCreature.duskSky(b, 5, { horizon: 46, density: 0.01 }); window.ObsCreature.hill(b, 2, 0, 0, 46, 46);
           window.ObsCreature.creature(b, 6, 46, pose);
         }, 3)),

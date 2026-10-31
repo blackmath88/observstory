@@ -32,6 +32,7 @@ Recommendation and open decisions: [RECOMMENDATION.md](RECOMMENDATION.md).
 | `src/pixels.js` | **Editable pixel source**: a seeded PRNG, a palette-name pixel buffer, and procedural observatory, refractor, sky, hills, tree and eyepiece drawings, plus the 5×5 data-star glyphs and 9×9 icons. The same code draws to canvas and to SVG. |
 | `src/creature.js` | D's sprite and scenery: the dusk sky, hill and creature with pose parameters (eyes, look, lean, settle, lift, door, lantern, note, chart, smoke) |
 | `src/living.js` | D's engine: sky layout, habit loop, listening sequence, hand-inked edges, hover gaze, replay shooting stars and the honest "new look" note |
+| `src/critter.js` | Round 3 posture engine for the sidebar creature (lying / standing / walking), plus the status-card portrait |
 | `src/data.js` | Synthetic data shaped like `observstory.scene/v1` (zones, groups, nodes, edges, attention), the replay events and a deterministic `replayAt(pos)` |
 | `src/study.js`, `src/study.css` | Working interface: navigation, board/field/atlas maps, list, replay, attention rail, inspector, keyboard |
 | `build.mjs` | `node design/observatory/build.mjs` builds `index.html`, `assets/*.svg` and `assets/tokens.json`. It is deterministic: two runs give byte-identical output. |
@@ -39,7 +40,41 @@ Recommendation and open decisions: [RECOMMENDATION.md](RECOMMENDATION.md).
 | `shoot.sh` | Rebuilds the page and regenerates `screenshots/` with headless Chromium, with motion off |
 | `screenshots/` | Desktop (1440) and mobile (390) captures of all three directions in every state |
 
-## D · Living observatory (owner direction, round 2)
+## D · round 3: a clean workbench, and the walking observatory in the corner
+
+Owner feedback on round 2: the living scene is lovely, but it is ornamental. The real UI must stay
+very clean and overview-first, aligned with Weavr's shell. The creature should be *more* alive: a
+walking house that lies down and is an observatory, then stands up. It should still be low-fi
+pixel art.
+
+- **Default view = Overview**, a clean dark workbench in Weavr's density:
+  - large top tabs (Overview, Sky, List, Replay);
+  - a status card with a small portrait, e.g. "The observatory is up · 2 things may need a
+    conversation";
+  - a "Needs a conversation" list with arrows;
+  - the declared **mission strip** (gates passed, in progress or not started, plus a NOW marker),
+    carried over from today's Project Map;
+  - the numbered **lane board** (01 Intent … 04 Ship);
+  - a right column with the inspector, collection, legend and a decorative pixel field;
+  - no ornament in the reading path.
+- **The walking observatory** sits in the sidebar corner, where Weavr's character sits. It is a
+  turtle whose shell is the copper dome. Its posture is the single state it carries, always also
+  in words:
+  - **lying down** (legs tucked, head in: just a building): nothing needs a conversation;
+  - **standing** (legs out, head out, lantern lit): an overlap or waiting signal exists;
+  - **walking**: replay is playing. When paused it stands at that point in history.
+- **The telescope** still turns to the lane of the selection or the replay event.
+- **Decorative habits:** breathing while lying, blinking, a peek, and a greeting when clicked.
+  All of them stop with reduced motion.
+- **Sky** is now a tab. It shows the same star chart, without its own creature; the one in the
+  corner does the watching.
+- **"Ask for a new look"** lives in the snapshot card and explains why the static page can't
+  start a collection.
+- **Pixel style:** 6× in the sidebar (4× on mobile), flat 2–3-tone materials, the same dusk
+  palette. Editable in `src/creature.js` (`turtle()`) and `src/critter.js` (posture engine,
+  portrait). Exported poses: `assets/walking-observatory-*.svg`.
+
+## D2 · Living observatory (round 2, kept as the Sky tab's engine)
 
 After the first round the owner asked for warmth: *the observatory should be the creature*. It is
 an old, gentle caretaker whose way of understanding the world is to watch the repository, collect

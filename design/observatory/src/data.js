@@ -62,6 +62,12 @@
     edges: [],
     attention: [],
     commitments: [],
+    gates: [
+      { label: "Hackathon plan", state: "passed", at: 0.12 },
+      { label: "Consent copy reviewed", state: "not_started", at: 0.55 },
+      { label: "Demo dry-run", state: "not_started", at: 0.86 },
+    ],
+    now: 0.38,
   };
 
   const OVERLAP = {
@@ -104,6 +110,12 @@
       { kind: "waiting", target: "waiting:branch:voice-notes>pr:22", label: "voice-notes waits on #22", basis: "heuristic", confidence: "medium" },
       { kind: "stale", target: "branch:pages-preview", label: "pages-preview idle for 3d (no pull request)", basis: "derived", confidence: "high" },
     ],
+    gates: [
+      { label: "Hackathon plan", state: "passed", at: 0.12 },
+      { label: "Consent copy reviewed", state: "in_progress", at: 0.55, linked: "pr:22" },
+      { label: "Demo dry-run", state: "not_started", at: 0.86 },
+    ],
+    now: 0.64,
     commitments: [
       { id: "c1", text: "Consent copy reviewed before demo", declared_by: "lea", state: "open", linked: "pr:22", note: "declared in .observstory/coordination.json · linked work still open" },
     ],

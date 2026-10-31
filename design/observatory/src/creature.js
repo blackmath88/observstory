@@ -241,5 +241,99 @@
     return Math.max(-20, Math.min(80, P.quantize(d)));
   }
 
-  root.ObsCreature = { W, H, duskSky, hill, creature, moth, aimAt };
+  /* ── The walking observatory (round 3) ───────────────────────────
+   * A turtle whose shell is the dome. Low-fi on purpose: flat 2–3-tone
+   * materials, drawn for 5–6× display, like Weavr's sidebar character.
+   *
+   * pose:
+   *   raise    0..5    0 = lying down (just a building), 5 = standing
+   *   step     0 | 1   walking gait (alternating legs), only meaningful when raised
+   *   head     0..4    how far the head comes out of the shell
+   *   eyes     "closed" | "half" | "open" | "wide"
+   *   angle    telescope azimuth, deg from vertical (+ = right)
+   *   lantern  bool    signal lantern under the telescope (attention)
+   *   door     0 | 1 | 2
+   *   settle   0 | 1   breathing
+   *   note     bool    paper slip on the door (declared commitment)
+   * Box: 44 × 36 art px; x is the left edge, g the ground row. */
+  function turtle(buf, x, g, pose = {}) {
+    const p = Object.assign({ raise: 0, step: 0, head: 0, eyes: "closed", angle: 40, lantern: false, door: 1, settle: 0, note: false }, pose);
+    const set = (a, b, c) => buf.set(a, b, c);
+    const r = p.raise;
+    const bb = g - 1 - r + p.settle;            // body bottom row
+    const B0 = x + 5, B1 = x + 34;              // body band span
+
+    // legs (behind the body first: far side, darker)
+    if (r > 0) {
+      const leg = (lx, far, lifted) => {
+        const top = bb + 1, bot = g - (lifted ? 1 : 0);
+        for (let y = top; y <= bot; y++) for (let i = 0; i < 4; i++) set(lx + i, y, far ? "rock-1" : i === 0 ? "rock-3" : "rock-2");
+        if (!far) { set(lx - 1, bot, "rock-2"); set(lx + 4, bot, "rock-2"); }
+      };
+      leg(x + 11, true, p.step === 0); leg(x + 31, true, p.step === 1);
+      leg(x + 8, false, p.step === 1); leg(x + 27, false, p.step === 0);
+      // tail
+      if (r > 2) { set(x + 3, bb - 2, "rock-2"); set(x + 4, bb - 2, "rock-2"); set(x + 2, bb - 1, "rock-1"); }
+    } else {
+      // lying down: a stone plinth with moss, the house sits on the ground
+      for (let i = B0 - 1; i <= B1 + 1; i++) { set(i, g, "rock-1"); if ((i * 7) % 5 === 0) set(i, g, "moss-2"); }
+    }
+
+    // head + neck (front, right)
+    const hx = B1 - 1 + p.head;
+    const hy = bb - 5 - (r > 2 ? 1 : 0);
+    for (let j = 0; j < 4; j++) for (let i = 0; i < 5; i++) {
+      if ((i === 4 && (j === 0 || j === 3))) continue;
+      set(hx + i, hy + j, j === 0 ? "rock-3" : j === 3 ? "rock-1" : "rock-2");
+    }
+    if (p.head > 0) for (let i = B1 - 1; i < hx; i++) { set(i, hy + 1, "rock-2"); set(i, hy + 2, "rock-1"); }
+    const ex = hx + 2, ey = hy + 1;
+    if (p.eyes === "open") { set(ex, ey, "lamp-hi"); set(ex + 1, ey, "ink"); }
+    else if (p.eyes === "wide") { set(ex, ey, "lamp-hi"); set(ex + 1, ey, "lamp-hi"); set(ex, ey + 1, "ink"); }
+    else if (p.eyes === "half") { set(ex, ey + 1, "lamp"); set(ex + 1, ey + 1, "ink"); }
+    else { set(ex, ey + 1, "rock-0"); set(ex + 1, ey + 1, "rock-0"); }
+
+    // body band: plaster ring with lit windows and the side door
+    for (let j = 0; j < 8; j++) for (let i = B0; i <= B1; i++) {
+      let c = i > B1 - 8 ? "plaster-lo" : "plaster";
+      if (j === 0) c = "copper-0";
+      if (j === 4 && (i % 6) === 2) c = "plaster-lo";
+      if (j === 7) c = "rock-1";
+      set(i, bb - 7 + j, c);
+    }
+    [[x + 15, 0], [x + 21, 0]].forEach(([wx]) => { buf.rect(wx, bb - 5, 3, 2, "lamp"); set(wx + 2, bb - 4, "lamp-dim"); set(wx + 1, bb - 5, "rock-0"); set(wx + 1, bb - 4, "rock-0"); });
+    for (let j = 0; j < 6; j++) for (let i = 0; i < 3; i++) set(x + 8 + i, bb - 6 + j, j === 0 && i !== 1 ? "plaster" : j === 0 ? "rock-0" : p.door === 0 ? "lamp-dim" : p.door === 2 && i === 1 ? "lamp-hi" : "lamp");
+    if (p.note) { set(x + 12, bb - 5, "paper"); set(x + 12, bb - 4, "paper"); set(x + 13, bb - 5, "paper"); }
+
+    // shell = dome, with scute seams, patina and a little moss
+    const R = 12, cx = x + 19, base = bb - 8;
+    for (let dy = 0; dy <= R; dy++) {
+      const half = Math.floor(Math.sqrt(R * R - dy * dy) * 1.06 + 0.3);
+      for (let d = -half; d <= half; d++) {
+        let c = "copper-2";
+        if (d < -half * 0.35 && dy > 3) c = "copper-3";
+        if (d > half * 0.55) c = "copper-1";
+        if (dy === 4 && Math.abs(d) < half - 1) c = "copper-1";                  // scute ring
+        if ((d === -5 || d === 5) && dy > 4 && dy < 9) c = "copper-1";          // scute seams
+        set(cx + d, base - dy, c);
+      }
+    }
+    [[-8, 2], [-7, 2], [-7, 3], [6, 6], [7, 6], [2, 9]].forEach(([a, b]) => set(cx + a, base - b, "patina"));
+    [[-3, 11], [-2, 11], [1, 11], [4, 10]].forEach(([a, b]) => set(cx + a, base - b, "moss-3"));
+
+    // slit faces the telescope; telescope pokes out
+    const a = rad(p.angle);
+    const sx = Math.round(cx + Math.sin(a) * 6);
+    for (let dy = 3; dy <= R - 1; dy++) { set(sx, base - dy, "ink"); set(sx + 1, base - dy, "ink"); }
+    const px = sx + 0.5, py = base - 5;
+    const ux = Math.sin(a), uy = -Math.cos(a), nx = -uy, ny = ux;
+    for (let t2 = 0; t2 <= 14; t2 += 0.5) for (let k = 0; k < 2; k++) set(px + ux * t2 + nx * k, py + uy * t2 + ny * k, t2 > 11 ? (k === 0 ? "brass-1" : "brass-0") : k === 0 ? "brass-2" : "brass-0");
+    set(Math.round(px + ux * 14.5), Math.round(py + uy * 14.5), "ink");
+    if (p.lantern) {
+      const lx = Math.round(px + ux * 10), ly = Math.round(py + uy * 10) + 1;
+      set(lx, ly, "ink"); buf.rect(lx - 1, ly + 1, 3, 3, "signal"); set(lx, ly + 2, "lamp-hi");
+    }
+  }
+
+  root.ObsCreature = { W, H, duskSky, hill, creature, moth, aimAt, turtle };
 })(typeof window !== "undefined" ? window : globalThis);

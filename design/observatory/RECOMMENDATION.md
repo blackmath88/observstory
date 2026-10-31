@@ -4,7 +4,26 @@ Status: **provisional.** The owner's visual templates have not arrived yet. This
 with reasons. Final selection, palette and composition stay open until the templates have been
 reviewed against these studies.
 
-## Short version (round 2, after owner feedback)
+## Short version (round 3)
+
+Recommended: **D as now built.** It is a clean, Weavr-aligned workbench as the default, with the
+walking observatory as the identity in the sidebar corner and the star-chart sky as a tab. This
+keeps the creature's warmth while the overview stays the product.
+
+Why posture is the right single mapping: lying, standing and walking are three states anyone
+reads instantly from a small sprite. They match the three things a visitor most needs to know:
+everything is calm, something needs a conversation, or you are looking at history. And they never
+compete with the data for attention.
+
+For the first implementation, still follow the owner's "smallest version". In this layout that
+means:
+- the sprite with lying, standing and walking poses;
+- telescope aim;
+- the status card;
+- the overview cards;
+- the Sky tab, as an optional extra.
+
+## Round 2 (kept for the record)
 
 Recommended: **D · Living observatory.** It is the synthesis the round-1 recommendation pointed
 towards, now with the warmth the owner asked for:

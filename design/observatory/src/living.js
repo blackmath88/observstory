@@ -62,14 +62,15 @@
       S = window.innerWidth < 768 ? 3 : 4;
       const cw = Math.max(node.clientWidth || 900, 720);
       W = Math.floor(cw / S);
-      H = S === 3 ? 172 : 150;
+      const noC = M && M.creature === false;      // creature lives elsewhere: no hill band needed
+      H = S === 3 ? (noC ? 140 : 172) : (noC ? 116 : 150);
     }
     const G = () => H - 12;                      // creature ground line
     const CX = 6;                                // creature x
 
     function computeLayout() {
       const lanes = M.lanes, groups = M.groups;
-      const x0 = 10, x1 = W - 8, top = 22, bottom = H - 54;
+      const x0 = 10, x1 = W - 8, top = 22, bottom = H - (M.creature === false ? 12 : 54);
       const colW = (x1 - x0) / lanes.length;
       const clusters = {};
       lanes.forEach((z, zi) => {
@@ -120,12 +121,12 @@
     /* ── drawing ── */
     function drawBg() {
       const drift = M.drift || 0;
-      if (bgBuf && lastDrift === drift && lastW === W) return;
+      if (bgBuf && lastDrift === drift && lastW === W && bgBuf.h === H) return;
       lastDrift = drift; lastW = W;
       bgBuf = new P.PixelBuffer(W, H);
-      C.duskSky(bgBuf, 23, { horizon: H - 8, density: 0.007, drift,
+      C.duskSky(bgBuf, 23, { horizon: H - 8, density: 0.007, drift, stops: M.creature === false ? [0, 0.45, 0.78, 0.94, 0.995] : undefined,
         quiet: Object.values(layout.clusters).map((c) => ({ x: c.x - 22, y: c.y - 14, w: 44, h: 32 })) });
-      C.hill(bgBuf, 4, 54, 96, G(), H - 5);
+      if (M.creature !== false) C.hill(bgBuf, 4, 54, 96, G(), H - 5);
       P.toCanvas(bg, bgBuf, S, pal());
     }
 
@@ -157,6 +158,9 @@
     }
 
     function drawActor() {
+      const off = M && M.creature === false;
+      actor.hidden = off; greet.hidden = off; bell.hidden = off;
+      if (off) { st.pivot = { x: CX + 28, y: G() - 26 }; return; }
       const ax = 0, ay = G() - 48, aw = 64, ah = 56;
       const buf = new P.PixelBuffer(aw, ah);
       for (let y = 0; y < ah; y++) for (let x = 0; x < aw; x++) buf.px[y * aw + x] = bgBuf.get(ax + x, ay + y);

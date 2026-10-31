@@ -26,6 +26,7 @@
     theme: "night", motion: true, playing: false, speed: 1, lastView: "map",
   };
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const SKELETON = document.getElementById("app").innerHTML;   // static template markup, no data
   let angleNow = P.PARKED, angleTimer = null, playTimer = null, twinkle = 0, twinkleTimer = null;
   let lastTrigger = null;
 
@@ -58,6 +59,7 @@
     if (q.get("pos")) S.pos = Math.max(0, Math.min(D.EVENTS.length - 1, +q.get("pos") || 0));
     if (q.get("theme") === "paper") S.theme = "paper";
     if (q.get("motion") === "off") S.motion = false;
+    S.dView = q.get("dview") === "sky" ? "sky" : "overview";
   }
   function writeHash() {
     const q = new URLSearchParams({ study: S.study, state: S.state, view: S.view });
@@ -65,6 +67,7 @@
     if (S.state === "replay") q.set("pos", S.pos);
     if (S.theme !== "night") q.set("theme", S.theme);
     if (!S.motion) q.set("motion", "off");
+    if (S.study === "d" && S.dView === "sky" && S.state !== "replay" && S.view !== "list") q.set("dview", "sky");
     history.replaceState(null, "", "#" + q.toString());
   }
   const motionOn = () => S.motion && !reducedMotion.matches;
@@ -106,7 +109,7 @@
       const g = D.GROUPS.find((x) => x.path === ev.area);
       return { angle: P.AZIMUTH[g.zone], open: true, why: `following replay event in ${laneLabel(g.zone)} · ${ev.area}` };
     }
-    if (!S.sel) return { angle: P.PARKED, open: false, why: S.study === "d" ? "resting, lowered toward the horizon — nothing selected" : "parked — nothing selected" };
+    if (!S.sel) return { angle: P.PARKED, open: false, why: S.study === "d" ? "telescope lowered — nothing selected" : "parked — nothing selected" };
     let zone = null, what = "";
     if (S.sel.startsWith("area:")) { zone = zoneOfGroup(S.sel); what = groupById(S.sel).path; }
     const n = nodeById(S.sel);
@@ -172,6 +175,16 @@
     const app = document.getElementById("app");
     app.dataset.study = S.study;
     app.dataset.state = S.state;
+    if (S.study === "d") {
+      renderD(app);
+      renderNotes();
+      if (focusKey) {
+        const el = document.querySelector(`[data-key="${CSS.escape(focusKey)}"]`);
+        if (el) el.focus({ preventScroll: true });
+      }
+      return;
+    }
+    if (!document.getElementById("titlebar")) app.innerHTML = SKELETON;
     renderTitle();
     renderSide();
     renderMain();
@@ -670,6 +683,7 @@
         aria: `${n.ref} ${n.label}, ${STATUS_WORD[n.status]}, ${groupById(n.group).path}, last activity ${age(n.age_hours)} ago`,
       })),
       edges: replay ? [] : st.edges,
+      creature: false,          // round 3: the creature lives in the sidebar and watches this sky
       related: rel,
       selId: S.sel,
       aimId: replay ? D.GROUPS.find((g) => g.path === ev.area).id : S.sel,
@@ -686,6 +700,184 @@
     };
     prevReplayPos = replay ? S.pos : null;
     return model;
+  }
+
+
+  /* ═════════════ D · round 3: clean workbench, walking observatory in the corner ═════════════ */
+  let critterInst = null;
+  const critter = () => critterInst || (critterInst = window.ObsCritter.create());
+  if (!("dView" in S)) S.dView = "overview";
+  S.lookNote = false;
+
+  function posture() {
+    if (S.state === "replay") return S.playing ? "walking" : "standing";
+    return windowLit().lit ? "standing" : "lying";
+  }
+  function postureWords() {
+    const p = posture();
+    if (p === "walking") return { title: "The observatory is walking through history", sub: "Replaying repository file history · " + `event ${S.pos + 1} of ${D.EVENTS.length}` };
+    if (S.state === "replay") return { title: "The observatory stands at a point in history", sub: `Paused at ${D.EVENTS[S.pos].sha} · ${D.EVENTS[S.pos].at.replace("T", " ")}` };
+    const n = snap().attention.filter((a) => a.kind === "overlap" || a.kind === "waiting").length;
+    return p === "standing"
+      ? { title: "The observatory is up", sub: `${n} thing${n > 1 ? "s" : ""} may need a conversation · lantern lit` }
+      : { title: "The observatory is lying down", sub: "Nothing needs a conversation right now" };
+  }
+
+  function dView() { return S.state === "replay" ? "replay" : S.view === "list" ? "list" : S.dView === "sky" ? "sky" : "overview"; }
+  function goView(v) {
+    if (v === "replay") { setState("replay"); return; }
+    if (S.state === "replay") setState("overlap");
+    S.view = v === "list" ? "list" : "map";
+    S.dView = v === "sky" ? "sky" : "overview";
+    render();
+  }
+
+  function renderD(app) {
+    const st = snap();
+    const rel = relatedIds();
+    const tgt = target();
+    const words = postureWords();
+    const view = dView();
+
+    // ── sidebar ──
+    const cr = critter();
+    cr.update({ posture: posture(), angle: tgt.open ? tgt.angle : 60, lantern: windowLit().lit, note: S.state !== "replay" && st.commitments.length > 0, motion: motionOn() });
+    const lanesNav = h("ul", { class: "d-nav" }, D.ZONES.map((z) => {
+      const n = S.state === "replay" ? null : st.nodes.filter((x) => zoneOfGroup(x.group) === z.id).length;
+      return h("li", null, h("button", { type: "button", "data-key": `dlane:${z.id}`, on: { click: () => { goView("overview"); requestAnimationFrame(() => { const el = document.getElementById("dlane-" + z.id); if (el) el.scrollIntoView({ block: "nearest", behavior: motionOn() ? "smooth" : "auto" }); }); } } },
+        h("span", null, z.label), h("span", { class: "n" }, n == null ? "" : n ? String(n) : "quiet")));
+    }));
+    const side = h("aside", { class: "d-side", "aria-label": "Observatory" },
+      cr.node,
+      h("div", { class: "d-ident" },
+        h("div", { class: "d-name" }, "Observatory"),
+        h("div", { class: "d-tag" }, "watching ", h("span", { class: "mono" }, D.PROJECT.repository)),
+        h("p", { class: "d-caption", "aria-live": "polite" }, cap(words.title.replace("The observatory", "It")), ". ", cap(tgt.why.replace(/^telescope /, "")).replace(/^Pointing/, "Telescope pointing").replace(/^Lowered/, "Telescope lowered").replace(/^Following/, "Telescope following"), ".")),
+      h("div", { class: "d-sec" }, h("div", { class: "caps" }, "Repository"),
+        h("div", { class: "d-select mono" }, D.PROJECT.repository, h("span", { class: "faint" }, " · main"))),
+      h("div", { class: "d-sec" }, h("div", { class: "d-sec-h" }, "Lanes"), lanesNav),
+      h("div", { class: "d-sec d-snap" },
+        h("div", { class: "d-snap-h" }, h("i", { class: "dot" }), S.state === "replay" ? "Replay · saved history" : "Static snapshot"),
+        h("div", { class: "mono" }, S.state === "replay" ? `baseline ${D.BASELINE.sha}` : st.collected),
+        h("div", { class: "faint" }, "not live · window 48h"),
+        h("button", { type: "button", class: "d-look", "data-key": "d:look", "aria-expanded": String(S.lookNote), on: { click: () => { S.lookNote = !S.lookNote; render(); } } }, iconSVG("bell", "currentColor", 1.2), "Ask for a new look"),
+        S.lookNote ? h("p", { class: "d-look-note", role: "status" }, "A new look happens when the repository's GitHub Action runs (on push, pull request, or hourly). This page shows a saved snapshot and can't start one.") : null));
+
+    // ── tabs ──
+    const tabs = [["overview", "Overview"], ["sky", "Sky"], ["list", "List"], ["replay", "Replay"]];
+    const top = h("nav", { class: "d-tabs", "aria-label": "Views" },
+      tabs.map(([v, label]) => h("button", { type: "button", class: "d-tab", "aria-current": String(view === v), "data-key": `dtab:${v}`, on: { click: () => goView(v) } }, label)),
+      h("span", { class: "d-tabs-r" },
+        h("span", { class: "d-chip" }, h("i", { class: "dot" + (windowLit().lit ? " on" : "") }), S.state === "replay" ? "replay" : `snapshot ${st.collected.split("· ")[1] || st.collected}`),
+        h("button", { type: "button", class: "d-btn", disabled: true, title: "Synthetic data has no repository URL" }, "Open repository ↗")));
+
+    // ── content ──
+    let content;
+    if (view === "overview") content = dOverview(st, rel, words);
+    else if (view === "sky") {
+      content = h("div", { class: "d-pad" }, h("h1", { class: "d-h1" }, "Sky"),
+        h("p", { class: "d-lede" }, "The observatory's chart of the same snapshot: stars are work items in their areas; dashed signal lines are overlaps, threads are waits. Hover a star and the observatory looks with you."),
+        h("div", { class: "d-card d-flush" }, living().node));
+      queueMicrotask(() => living().update(livingModel(rel)));
+    } else if (view === "list") content = h("div", { class: "d-pad" }, h("h1", { class: "d-h1" }, "All work items"), h("div", { class: "d-card d-flush" }, listView(rel)));
+    else content = h("div", { class: "d-pad" }, h("h1", { class: "d-h1" }, "Replay"), h("div", { class: "d-card d-flush" }, replayPane().slice(1)));
+    const main = h("section", { class: "d-main" + (rel ? " dimmed" : ""), id: "main", "aria-label": "Work" }, top, content);
+
+    // ── right column ──
+    const right = h("aside", { class: "d-right", "aria-label": "Inspector and collection" });
+    const insp = inspector();
+    if (insp) right.append(h("div", { class: "d-card d-insp" }, insp));
+    right.append(dCollection(st), dLegend(), dOrnament());
+
+    app.replaceChildren(h("div", { class: "d-shell" }, side, main, right));
+  }
+
+  function dOverview(st, rel, words) {
+    const pc = h("canvas", { class: "px d-portrait", "aria-hidden": "true" });
+    window.ObsCritter.portrait(pc, posture(), { lantern: windowLit().lit, angle: target().open ? target().angle : 60 });
+    const ov = st.edges.filter((e) => e.type === "overlap").length, wt = st.edges.filter((e) => e.type === "waiting").length;
+    const stale = st.nodes.filter((n) => n.status === "stale").length;
+    const status = h("div", { class: "d-card d-status" + (windowLit().lit ? " lit" : "") }, pc,
+      h("div", null, h("div", { class: "d-status-t" }, words.title),
+        h("div", { class: "d-status-s" }, words.sub),
+        h("div", { class: "d-counts" },
+          h("span", null, h("b", null, st.nodes.length), " in flight"), h("span", { class: ov ? "acc" : "" }, h("b", null, ov), " overlap"),
+          h("span", { class: wt ? "acc" : "" }, h("b", null, wt), " waiting"), h("span", null, h("b", null, stale), " stale"))),
+      h("button", { type: "button", class: "d-btn", "data-key": "d:sky", on: { click: () => goView("sky") } }, "See the sky ↗"));
+
+    const att = st.attention;
+    const needs = h("div", { class: "d-card" },
+      h("div", { class: "d-card-h" }, h("h2", null, "Needs a conversation"), h("span", { class: "d-badge" + (att.length ? " on" : "") }, att.length)),
+      att.length ? h("ul", { class: "d-rows" }, att.map((a) => h("li", null, h("button", {
+        type: "button", class: "d-row " + a.kind, "data-key": `datt:${a.target}`, "aria-pressed": String(S.sel === a.target),
+        on: { click: (ev) => select(a.target, ev.currentTarget) },
+      }, iconSVG(a.kind === "overlap" ? "overlap" : a.kind === "waiting" ? "waiting" : "stale", a.kind === "overlap" ? "var(--accent)" : "var(--ink-3)", 1.6),
+        h("span", { class: "d-row-m" }, h("span", { class: "d-row-t" }, a.label), h("span", { class: "d-row-s" }, `${CONF[a.confidence]} ${a.basis} · ${a.confidence} confidence`)),
+        h("span", { class: "d-arrow", "aria-hidden": "true" }, "→")))))
+      : h("p", { class: "d-empty" }, "Nothing needs a conversation right now."));
+
+    const gates = st.gates || [];
+    const strip = h("div", { class: "d-card" },
+      h("div", { class: "d-card-h" }, h("h2", null, "Mission ", h("span", { class: "faint" }, "· declared")),
+        h("span", { class: "faint d-small" }, st.commitments.length ? `${st.commitments.length} commitment open` : "no open commitments")),
+      dGateStrip(gates, st.now),
+      h("p", { class: "d-small faint" }, "Declared by people in .observstory/coordination.json; each gate's state comes from the repository."));
+
+    const lanes = h("div", { class: "d-card d-flush" },
+      h("div", { class: "d-card-h d-pad-h" }, h("h2", null, "Lanes"), h("span", { class: "faint d-small" }, "lanes → areas → work items · newest first")),
+      boardView(rel));
+    lanes.querySelectorAll(".lane").forEach((el, i) => { el.id = "dlane-" + D.ZONES[i].id; el.querySelector(".lane-head .caps").prepend(h("span", { class: "d-num" }, String(i + 1).padStart(2, "0") + " ")); });
+
+    return h("div", { class: "d-pad" },
+      h("h1", { class: "d-h1" }, "Overview", h("span", { class: "d-synth" }, "synthetic data")),
+      status, h("div", { class: "d-two" }, needs, strip), lanes);
+  }
+
+  function dGateStrip(gates, now) {
+    const W = 380, y = 24;
+    const svg = s("svg", { viewBox: `0 0 ${W} 64`, class: "d-gates", role: "img", "aria-label": "Declared gates: " + gates.map((g) => `${g.label} ${g.state.replace("_", " ")}`).join(", ") });
+    svg.append(s("line", { x1: 16, y1: y, x2: W - 16, y2: y, stroke: "var(--hair-2)", "stroke-width": 2 }),
+      s("line", { x1: 16, y1: y, x2: 16 + (W - 32) * now, y2: y, stroke: "var(--ink-3)", "stroke-width": 2 }));
+    gates.forEach((g) => {
+      const x = 16 + (W - 32) * g.at;
+      const fill = g.state === "passed" ? "var(--ink-2)" : g.state === "in_progress" ? "var(--select)" : "var(--sky-1)";
+      svg.append(s("rect", { x: x - 6, y: y - 6, width: 12, height: 12, transform: `rotate(45 ${x} ${y})`, fill, stroke: g.state === "not_started" ? "var(--ink-3)" : fill, "stroke-width": 1.5 }),
+        s("text", { x, y: y + 24, "text-anchor": "middle", fill: "var(--ink-2)", "font-size": 11 }, g.label),
+        s("text", { x, y: y + 37, "text-anchor": "middle", fill: "var(--ink-3)", "font-size": 10, "font-family": "var(--font-mono)" }, g.state.replace("_", " ")));
+    });
+    const nx = 16 + (W - 32) * now;
+    svg.append(s("line", { x1: nx, y1: 6, x2: nx, y2: y + 8, stroke: "var(--ink)", "stroke-width": 1.5 }),
+      s("text", { x: nx, y: 6, dy: -1, "text-anchor": "middle", fill: "var(--ink)", "font-size": 9, "font-weight": 700, "letter-spacing": ".1em" }, "NOW"));
+    svg.setAttribute("style", "overflow:visible");
+    return h("div", { class: "d-gates-wrap" }, svg);
+  }
+
+  function dCollection(st) {
+    if (S.state === "replay") return h("div", { class: "d-card" }, h("h2", { class: "caps" }, "Source"),
+      h("dl", { class: "kv" }, h("dt", null, "Feed"), h("dd", null, "Repository file history"), h("dt", null, "Baseline"), h("dd", { class: "mono" }, D.BASELINE.sha),
+        h("dt", null, "Commits"), h("dd", null, `${D.EVENTS.length} first-parent`), h("dt", null, "Not available"), h("dd", null, "Observatory state history, graph events")));
+    return h("div", { class: "d-card" }, h("h2", { class: "caps" }, "Collection"),
+      h("dl", { class: "kv" },
+        h("dt", null, "Snapshot"), h("dd", { class: "mono" }, st.collected),
+        h("dt", null, "Mode"), h("dd", null, "static file · not live"),
+        h("dt", null, "Trigger"), h("dd", { class: "mono" }, st.trigger),
+        st.coverage.map(([k, v]) => [h("dt", null, k), h("dd", { class: v === "complete" ? "" : "skipped" }, v)])),
+      st.degraded.length ? h("div", { class: "degraded" }, "Degraded: ", st.degraded.join("; "), ". Absent data is shown as skipped, not as zero.") : null,
+      st.commitments.length ? h("div", { class: "declared-item", style: "margin-top:8px" }, h("span", { class: "tag" }, "declared"), st.commitments[0].text,
+        h("div", { class: "faint", style: "font-size:11px" }, `by ${st.commitments[0].declared_by} · ${st.commitments[0].note}`)) : null);
+  }
+  function dLegend() {
+    return h("div", { class: "d-card d-legend" }, h("h2", { class: "caps" }, "Legend"), legend(),
+      h("p", { class: "d-small faint" }, "Lying down = nothing needs a conversation · standing = an overlap or wait exists · walking = replay playing. Observstory describes work, not people."));
+  }
+  function dOrnament() {
+    const c = h("canvas", { class: "px d-orn", "aria-hidden": "true" });
+    const b = new P.PixelBuffer(70, 60);
+    const rnd = P.mulberry32(5);
+    for (let i = 0; i < 90; i++) { const x = Math.floor(rnd() * 70), y = Math.floor(rnd() * 60); b.set(x, y, rnd() > 0.85 ? "cream-dim" : rnd() > 0.5 ? "dusk-3" : "dusk-2"); }
+    for (let x = 0; x < 70; x++) { const y = Math.round(30 + Math.sin(x / 9) * 4); if (x % 3) b.set(x, y, "dusk-4"); }
+    P.toCanvas(c, b, 4, P.paletteFromCSS());
+    return c;
   }
 
   /* ── replay ── */
@@ -848,9 +1040,9 @@
   /* ── notes below the app: per-study rationale + shared mapping + asset sheet ── */
   const NOTES = {
     d: {
-      idea: "The observatory is the creature: a caretaker, not a controller. It watches its sky (the project map), listens before it looks, inks a relation by hand once it has evidence for it, and rests without disappointment when nothing needs a conversation. The readable surfaces (list, rail, inspector) stay crisp HTML; the living scene is the map.",
-      plus: ["Warmth and identity: you visit it, you don't operate it.", "Every habit maps to state or is declared decoration; text says the same thing.", "One scene does map, attention, selection and replay."],
-      minus: ["Most build effort: sprite, habits, tracing, replay animation.", "Larger scene takes vertical space; list view must remain first-class.", "Risk of charm outrunning evidence; enforce the behaviour law in code review."],
+      idea: "Round 3. A clean, Weavr-aligned workbench is the default: an overview status card, a 'Needs a conversation' list, the declared mission strip and the lane board. The walking observatory lives in the sidebar corner. It is a turtle whose shell is the dome: it lies down as a plain building when nothing needs a conversation, stands up with its lantern lit when an overlap or a wait exists, and walks while replay plays. The star-chart sky is a tab rather than the home screen.",
+      plus: ["The real UI is clean and overview-first; the ornament frames it.", "Posture is one legible state mapping, always restated in words.", "Matches Weavr's shell, so the two tools feel like siblings without sharing a character."],
+      minus: ["The creature carries less information than the full sky scene in D2.", "The sidebar character needs its own small animation loop.", "Pixel chunkiness (6×) must be held consistent across future art."],
     },
     a: {
       idea: "A place you return to. The courtyard sits in the sidebar's empty space; a thin horizon runs under the title bar. The working surface is the existing lane → area → item board, unchanged in meaning.",
@@ -881,6 +1073,9 @@
   ];
 
   const MAPPING_D = [
+    ["Lying down: legs tucked, head in, just a building", "No overlap or waiting signal in the snapshot", "Status card \"lying down · nothing needs a conversation\"", "Not sad, not idle-shaming"],
+    ["Standing up: legs out, head out, lantern lit", "≥1 overlap or waiting signal", "Status card \"is up · N may need a conversation\"", "Gets up to tell you; never an alarm"],
+    ["Walking", "Replay is playing", "Status card + sidebar caption", "Stops when paused (standing at a point in history)"],
     ["Eyes closed, settling, moth near the door", "Rest: no attention signal and nothing selected", "Status bar \"Resting — nothing needs a conversation\"", "Never sad or abandoned; no productivity cue"],
     ["Signal lantern under the telescope", "≥1 overlap or waiting signal", "Status bar + Needs attention", "Brightest colour in the scene, reserved"],
     ["Door lamp (amber)", "A snapshot is loaded (someone is home)", "Collection: snapshot time", "Dark only if nothing loaded"],
@@ -920,9 +1115,15 @@
     return h("div", { class: "card", style: "grid-column: 1 / -1" },
       h("h2", null, "Pixel sheet — editable source: src/creature.js, src/pixels.js · exported SVGs: assets/"),
       h("div", { class: "sheet" },
+        ...[["lying down", { raise: 0, head: 0, eyes: "closed", angle: 60 }], ["getting up", { raise: 2, head: 1, eyes: "half", angle: 45 }],
+            ["standing · lantern", { raise: 5, head: 3, eyes: "open", lantern: true, angle: 20, note: true }], ["walking (replay)", { raise: 5, head: 3, step: 1, eyes: "open", angle: -15 }],
+            ["greeting", { raise: 5, head: 4, eyes: "wide", angle: 40 }]].map(([lbl, pose]) => fig("D3 · " + lbl, 50, 40, (b) => {
+          window.ObsCreature.duskSky(b, 41, { horizon: 35, density: 0.02 }); b.rect(0, 35, 50, 5, "moss-1"); for (let x = 0; x < 50; x++) b.set(x, 35, "moss-2");
+          window.ObsCreature.turtle(b, 3, 35, pose);
+        }, 4)),
         ...[["resting", { eyes: "closed", angle: 70, door: 1 }], ["attentive · lantern", { eyes: "open", angle: 35, lantern: true, note: true }],
             ["listening · lift, lean", { eyes: "open", lift: 1, lean: -1, angle: 10, door: 2, look: -1 }], ["checking notes", { eyes: "half", chart: 4, angle: 50 }],
-            ["greeting", { eyes: "wide", smoke: 3, angle: 60, look: 1 }]].map(([lbl, pose]) => fig("D · " + lbl, 58, 50, (b) => {
+            ["greeting", { eyes: "wide", smoke: 3, angle: 60, look: 1 }]].map(([lbl, pose]) => fig("D2 · " + lbl, 58, 50, (b) => {
           window.ObsCreature.duskSky(b, 5, { horizon: 46, density: 0.01 }); window.ObsCreature.hill(b, 2, 0, 0, 46, 46);
           window.ObsCreature.creature(b, 6, 46, pose);
         }, 3)),
