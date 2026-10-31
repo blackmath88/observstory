@@ -46,6 +46,7 @@ runs:
         OBSERVSTORY_REPOSITORY: ${{ github.repository }}
         OBSERVSTORY_API_URL: ${{ github.api_url }}
         OBSERVSTORY_SHA: ${{ github.sha }}
+        OBSERVSTORY_REF: ${{ github.ref }}
         OBSERVSTORY_EVENT: ${{ github.event_name }}
         OBSERVSTORY_RUN_ID: ${{ github.run_id }}
         OBSERVSTORY_CONFIG: ${{ inputs.config }}
@@ -57,3 +58,4 @@ runs:
         echo "snapshot=$OBSERVSTORY_OUTPUT/data/snapshot.json" >> "$GITHUB_OUTPUT"
         python3 -c "import json,sys; print('overlaps=%d' % json.load(open(sys.argv[1]))['summary']['signals']['overlap'])" \
           "$OBSERVSTORY_OUTPUT/data/snapshot.json" >> "$GITHUB_OUTPUT"
+
