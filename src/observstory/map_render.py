@@ -196,9 +196,10 @@ def mission_html(scene: dict) -> str:
 
 
 def render_map(scene: dict, radar_href: str | None = "radar.html", data_href: str = "data/{name}.json",
-               time_label: str | None = None) -> str:
+               time_label: str | None = None, knowledge_href: str | None = None) -> str:
     """data_href: where the footer links to the scene and snapshot JSON ({name} is "scene" or "snapshot").
-    time_label: a fixed label instead of "snapshot N h old" (used by the synthetic Demo Lab)."""
+    time_label: a fixed label instead of "snapshot N h old" (used by the synthetic Demo Lab).
+    knowledge_href: link to the opt-in Project Knowledge view; None (the default) leaves the page unchanged."""
     src, st = scene["source"], scene["status"]
     groups = {g["id"]: g for g in scene["groups"]}
     nodes = {n["id"]: n for n in scene["nodes"]}
@@ -208,6 +209,8 @@ def render_map(scene: dict, radar_href: str | None = "radar.html", data_href: st
                    f'<b>{st["waiting"]}</b> waiting', f'<b>{st["stale"]}</b> stale']
     degraded = f'<p class="degraded">Partial data: {esc("; ".join(src["degraded"]))}</p>' if src.get("degraded") else ""
     radar = f' · <a href="{esc(radar_href)}">radar view</a>' if radar_href else ""
+    if knowledge_href:
+        radar += f' · <a href="{esc(knowledge_href)}">project knowledge</a>'
     raw = json.dumps(scene, ensure_ascii=False).replace("<", "\\u003c")  # nothing in the JSON can open a tag
     repo_link = f'<a href="{esc(src.get("repository_url"))}">{esc(src["repository"])}</a>' if src.get("repository_url") else esc(src["repository"])
     return f"""<!doctype html>

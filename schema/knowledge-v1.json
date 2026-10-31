@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "observstory.knowledge/v1",
+  "title": "Observstory Project Knowledge artifact v1 (opt-in, separate from snapshot/v1)",
+  "type": "object",
+  "required": ["schema", "producer", "snapshot_id", "repository", "requested_ref", "resolved_commit", "title", "source",
+               "generated_at", "complete", "completeness", "records", "relationships", "selection", "sources", "diagnostics"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "observstory.knowledge/v1"},
+    "producer": {"type": "object", "required": ["name", "version"]},
+    "snapshot_id": {"type": "string"},
+    "repository": {"type": "string"},
+    "requested_ref": {"type": "string"},
+    "resolved_commit": {"type": "string"},
+    "title": {"type": "string"},
+    "source": {
+      "type": "object",
+      "required": ["method", "manifest_path", "manifest_blob", "manifest_sha256", "selection_policy", "audience", "upstream_check"],
+      "properties": {"method": {"const": "git-objects-at-resolved-commit"}}
+    },
+    "generated_at": {"type": "string"},
+    "complete": {"type": "boolean"},
+    "completeness": {"type": "object", "required": ["selected_sources", "read", "failed"]},
+    "records": {"type": "array", "items": {"$ref": "#/$defs/record"}},
+    "relationships": {"type": "array", "items": {"$ref": "#/$defs/relationship"}},
+    "selection": {
+      "type": "object", "required": ["current_direction"],
+      "properties": {"current_direction": {
+        "type": "object", "required": ["state", "reason", "record", "candidates"],
+        "properties": {"state": {"enum": ["selected", "unresolved"]}, "record": {"type": ["string", "null"]},
+                       "candidates": {"type": "array", "items": {"type": "string"}}}}}
+    },
+    "sources": {"type": "array", "items": {
+      "type": "object", "required": ["path", "blob", "size", "status"],
+      "properties": {"status": {"enum": ["read", "missing", "too_large", "not_utf8"]}}}},
+    "diagnostics": {"type": "array", "items": {
+      "type": "object", "required": ["severity", "code", "subject", "message"], "additionalProperties": false,
+      "properties": {"severity": {"enum": ["error", "warning"]}, "code": {"type": "string"},
+                     "subject": {"type": "string"}, "message": {"type": "string"}}}}
+  },
+  "$defs": {
+    "basis": {
+      "type": "object", "required": ["kind", "declarations"],
+      "properties": {"kind": {"enum": ["source_declared", "manifest_classification", "manifest_declared",
+                                         "coordination_confirmed", "coordination_recorded"]},
+                     "declarations": {"type": "array", "items": {"type": "object", "required": ["path", "quote", "found", "line", "url"]}}}
+    },
+    "record": {
+      "type": "object",
+      "required": ["id", "logical_id", "type", "status", "origin", "title", "path", "section", "location", "blob",
+                   "content_sha256", "excerpt", "excerpt_truncated", "url", "readable", "basis", "note"],
+      "properties": {"id": {"type": "string"}, "logical_id": {"type": "string"}, "readable": {"type": "boolean"},
+                     "basis": {"$ref": "#/$defs/basis"}}
+    },
+    "relationship": {
+      "type": "object", "required": ["from", "rel", "to", "resolved", "basis"],
+      "properties": {"resolved": {"type": "boolean"}, "basis": {"$ref": "#/$defs/basis"}}
+    }
+  }
+}

@@ -12,6 +12,10 @@
   observstory checkin propose NOTES --label L --at ISO   notes -> PROPOSED items in .observstory/coordination.json
   observstory checkin confirm SESSION --by NAME          PROPOSED -> DECLARED (only a named person can)
   observstory checkin pending                            list items awaiting confirmation
+  observstory knowledge build [--repo DIR] [--ref REF] [--out F] [--html F] [--base-ref REF | --base F]
+                                          opt-in Project Knowledge artifact from a committed manifest
+  observstory knowledge brief|record ID|changes|render [--artifact F]
+                                          deterministic queries over that artifact (docs/project-knowledge/USAGE.md)
 """
 
 from __future__ import annotations
@@ -25,6 +29,7 @@ import sys
 
 from . import config as config_mod
 from . import coordination as coordination_mod
+from . import knowledge as knowledge_mod
 from . import query as query_mod
 from .derive import derive, parse_time
 from .map_compiler import compile_scene
@@ -33,7 +38,7 @@ from .render import render
 from .validate import scene_errors, validate
 
 
-def _write_outputs(out: pathlib.Path, observations: dict | None, snapshot: dict) -> None:
+def _write_outputs(out: pathlib.Path, observations: dict | None, snapshot: dict, knowledge_href: str | None = None) -> None:
     data = out / "data"
     data.mkdir(parents=True, exist_ok=True)
     if observations is not None:
@@ -46,7 +51,7 @@ def _write_outputs(out: pathlib.Path, observations: dict | None, snapshot: dict)
             print(f"::error::scene validation: {e}", file=sys.stderr)
         raise SystemExit(2)
     (data / "scene.json").write_text(json.dumps(scene, indent=2, ensure_ascii=False), encoding="utf-8")
-    (out / "index.html").write_text(render_map(scene), encoding="utf-8")   # Project Map (default view)
+    (out / "index.html").write_text(render_map(scene, knowledge_href=knowledge_href), encoding="utf-8")   # Project Map
     (out / "radar.html").write_text(render(snapshot), encoding="utf-8")    # radar (alternative projection)
 
 
@@ -94,7 +99,8 @@ def cmd_build(_args) -> None:
     snap = derive(obs, cfg, now, coordination=declared, coordination_source=coord_path)
     _check(snap)
     out = pathlib.Path(os.environ.get("OBSERVSTORY_OUTPUT", "observstory"))
-    _write_outputs(out, obs, snap)
+    knowledge_href = _build_knowledge(out, repository) if os.environ.get("OBSERVSTORY_KNOWLEDGE") else None
+    _write_outputs(out, obs, snap, knowledge_href)
     for note in snap["provenance"]["degraded"]:
         print(f"::warning::observstory degraded: {note}")
     print(_summary_line(snap))
@@ -102,6 +108,40 @@ def cmd_build(_args) -> None:
     if step_summary:
         with open(step_summary, "a", encoding="utf-8") as fh:
             fh.write(markdown_summary(snap))
+
+
+def _build_knowledge(out: pathlib.Path, repository: str) -> str | None:
+    """Opt-in (OBSERVSTORY_KNOWLEDGE=manifest path). Reads Git objects of the built commit in the checkout.
+    Any failure is a warning: the Project Map is still written, just without the knowledge link."""
+    from .knowledge_render import render_knowledge
+    manifest = os.environ["OBSERVSTORY_KNOWLEDGE"]
+    repo = os.environ.get("OBSERVSTORY_KNOWLEDGE_REPO", ".")
+    ref = os.environ.get("OBSERVSTORY_SHA") or "HEAD"
+    try:
+        art = knowledge_mod.build(repo, ref, manifest, repository)
+    except knowledge_mod.KnowledgeError as exc:
+        print(f"::warning::observstory knowledge skipped: {exc}")
+        return None
+    errors = knowledge_mod.artifact_errors(art)
+    if errors:
+        print(f"::warning::observstory knowledge skipped, artifact invalid: {'; '.join(errors[:5])}")
+        return None
+    try:
+        base = knowledge_mod.build(repo, f"{art['resolved_commit']}^1", manifest, repository)
+        diff = knowledge_mod.changes(base, art)
+    except knowledge_mod.KnowledgeError as exc:
+        diff = knowledge_mod.changes(None, art, f"first parent of {art['resolved_commit'][:12]} has no usable manifest "
+                                                f"or is not in the checkout: {exc}")
+    data = out / "data"
+    data.mkdir(parents=True, exist_ok=True)
+    (data / "knowledge.json").write_text(json.dumps(art, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    (data / "knowledge.changes.json").write_text(json.dumps(diff, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    (out / "knowledge.html").write_text(render_knowledge(art, diff, map_href="index.html"), encoding="utf-8")
+    for d in art["diagnostics"]:
+        print(f"::{'error' if d['severity'] == 'error' else 'warning'}::knowledge {d['code']} {d['subject']}: {d['message']}")
+    print(f"OBSERVSTORY_KNOWLEDGE_OK snapshot={art['snapshot_id']} commit={art['resolved_commit'][:12]} "
+          f"complete={str(art['complete']).lower()} changes={diff['state']}")
+    return "knowledge.html"
 
 
 def markdown_summary(snap: dict) -> str:
@@ -183,6 +223,77 @@ def cmd_checkin(args) -> None:
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
+def _load_json(path: str) -> dict:
+    return json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
+
+
+def _knowledge_base(args, target: dict):
+    """(base artifact or None, reason). A base is a retained artifact file or one regenerated from Git."""
+    if args.base:
+        if not pathlib.Path(args.base).exists():
+            return None, f"base artifact {args.base} not found"
+        return _load_json(args.base), ""
+    if args.base_ref:
+        try:
+            return knowledge_mod.build(args.repo, args.base_ref, args.manifest, target["repository"]), ""
+        except knowledge_mod.KnowledgeError as exc:
+            return None, f"base {args.base_ref!r} could not be generated: {exc}"
+    return None, "no base snapshot supplied"
+
+
+def cmd_knowledge(args) -> None:
+    from .knowledge_render import render_knowledge
+    k = args.knowledge_cmd
+    if k == "build":
+        try:
+            art = knowledge_mod.build(args.repo, args.ref, args.manifest, args.repository)
+        except knowledge_mod.KnowledgeError as exc:
+            raise SystemExit(f"::error::observstory knowledge: {exc}") from None
+        errors = knowledge_mod.artifact_errors(art)
+        if errors:
+            raise SystemExit("::error::knowledge artifact validation: " + "; ".join(errors[:10]))
+        out = pathlib.Path(args.out)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(art, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        diff = None
+        if args.base or args.base_ref:
+            base, reason = _knowledge_base(args, art)
+            diff = knowledge_mod.changes(base, art, reason)
+            out.with_name(out.stem + ".changes.json").write_text(json.dumps(diff, indent=2, ensure_ascii=False) + "\n",
+                                                                 encoding="utf-8")
+        if args.html:
+            pathlib.Path(args.html).write_text(render_knowledge(art, diff, map_href=args.map_href), encoding="utf-8")
+        sel = art["selection"]["current_direction"]
+        print(f"OBSERVSTORY_KNOWLEDGE_OK snapshot={art['snapshot_id']} commit={art['resolved_commit'][:12]} "
+              f"complete={str(art['complete']).lower()} records={len(art['records'])} "
+              f"current={sel['record'] or 'unresolved:' + sel['reason']} "
+              f"errors={sum(d['severity'] == 'error' for d in art['diagnostics'])}"
+              + (f" changes={diff['state']}" if diff else ""))
+        return
+    if k == "changes":
+        if args.target:
+            target = _load_json(args.target)
+        else:
+            try:
+                target = knowledge_mod.build(args.repo, args.ref, args.manifest, args.repository)
+            except knowledge_mod.KnowledgeError as exc:
+                raise SystemExit(f"observstory knowledge: {exc}") from None
+        base, reason = _knowledge_base(args, target)
+        print(json.dumps(knowledge_mod.changes(base, target, reason), indent=2, ensure_ascii=False))
+        return
+    art = _load_json(args.artifact)
+    if k == "brief":
+        print(knowledge_mod.brief_text(art) if args.format == "text"
+              else json.dumps(knowledge_mod.brief(art), indent=2, ensure_ascii=False))
+    elif k == "record":
+        result = knowledge_mod.record(art, args.id)
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+        raise SystemExit(0 if result["answer"]["found"] else 1)
+    elif k == "render":
+        diff = _load_json(args.changes) if args.changes else None
+        pathlib.Path(args.out).write_text(render_knowledge(art, diff, map_href=args.map_href), encoding="utf-8")
+
+
 def cmd_validate(args) -> None:
     errors = validate(json.loads(pathlib.Path(args.snapshot).read_text(encoding="utf-8")))
     print("\n".join(errors) if errors else "valid")
@@ -224,9 +335,34 @@ def main(argv=None) -> None:
     q.add_argument("name", choices=sorted(query_mod.QUERIES))
     q.add_argument("args", nargs="*")
     q.add_argument("--snapshot", default="observstory/data/snapshot.json")
+    k = sub.add_parser("knowledge", help="opt-in Project Knowledge artifact and queries")
+    ksub = k.add_subparsers(dest="knowledge_cmd", required=True)
+    kb = ksub.add_parser("build", help="resolve one commit, read the manifest and its sources there, write the artifact")
+    kc = ksub.add_parser("changes", help="compare two artifacts (or two refs regenerated from Git)")
+    for x in (kb, kc):
+        x.add_argument("--repo", default=".", help="local Git repository (default: .)")
+        x.add_argument("--ref", default="HEAD")
+        x.add_argument("--manifest", default=knowledge_mod.DEFAULT_MANIFEST)
+        x.add_argument("--repository", help="owner/name for source links (default: from origin)")
+        x.add_argument("--base", help="retained base artifact JSON")
+        x.add_argument("--base-ref", help="regenerate the base artifact from this ref")
+    kb.add_argument("--out", default="observstory/data/knowledge.json")
+    kb.add_argument("--html", help="also write the human view here")
+    kb.add_argument("--map-href", default=None, help="link from the view back to the Project Map")
+    kc.add_argument("--target", help="target artifact JSON (default: build --ref)")
+    kbr = ksub.add_parser("brief", help="current direction, decisions, research, open questions, retired material")
+    kbr.add_argument("--format", choices=["json", "text"], default="json")
+    kr = ksub.add_parser("record", help="one record with its sources and relationships")
+    kr.add_argument("id")
+    kre = ksub.add_parser("render", help="render the human view from an artifact")
+    kre.add_argument("--changes", help="changes JSON to include")
+    kre.add_argument("--out", default="observstory/knowledge.html")
+    kre.add_argument("--map-href", default=None)
+    for x in (kbr, kr, kre):
+        x.add_argument("--artifact", default="observstory/data/knowledge.json")
     v = sub.add_parser("validate")
     v.add_argument("snapshot")
     args = parser.parse_args(argv)
     handlers = {"build": cmd_build, "derive": cmd_derive, "render": cmd_render, "query": cmd_query, "checkin": cmd_checkin,
-                "validate": cmd_validate, None: cmd_build}
+                "validate": cmd_validate, "knowledge": cmd_knowledge, None: cmd_build}
     handlers[args.cmd](args)
