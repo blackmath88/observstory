@@ -203,6 +203,30 @@ class MemoryTest(unittest.TestCase):
         self.assertIn("old", [r["id"] for r in q["records"]])
 
 
+    def test_ui_replay_does_not_keep_records_from_abandoned_lineage(self):
+        base = self.repo.commit(files())
+        extra = {"id": "abandoned", "type": "module", "path": "ONLY.md", "status": "planned"}
+        self.repo.commit(files(records=BASE_RECORDS + [extra], extra={"ONLY.md": "# Abandoned branch"}))
+        old = self.view()
+        self.repo.git("checkout", "-b", "replacement", base)
+        self.repo.commit(files(concept=CONCEPT_B))
+        new = self.view("replacement", t=self.t0 + dt.timedelta(hours=1))
+        # The durable host retains both lineages and their shared base.
+        merged = dict(new)
+        for key, identity in (("snapshots", "snapshot_id"), ("record_versions", "version_id"),
+                              ("relation_versions", "relation_version_id"), ("events", "event_id")):
+            values = {x[identity]: x for x in old[key]}
+            for x in new[key]:
+                values.setdefault(x[identity], x)
+            merged[key] = list(values.values())
+        for i, event in enumerate(merged["events"], 1):
+            event["seq"] = i
+        for i, snap in enumerate(merged["snapshots"], 1):
+            snap["recorded_seq"] = i
+        bundle = memory.ui_bundle(merged, R)
+        self.assertNotIn("abandoned", bundle["now"]["frame"]["records"])
+        self.assertEqual(bundle["replay"][-1]["frame"], bundle["now"]["frame"])
+
     def test_outputs_match_published_schemas(self):
         from observstory.validate import _check
         root = pathlib.Path(__file__).resolve().parents[1] / "schema"

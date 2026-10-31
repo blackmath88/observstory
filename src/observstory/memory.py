@@ -816,10 +816,15 @@ def ui_bundle(view: dict, repository: str, *, requested_ref: str | None = None, 
         cols[t] = cols.get(t, 0) + 1
     replay = []
     running = []
+    chains = {s["snapshot_id"]: set(chain(view, s["snapshot_id"])) for s in snaps}
     for e in events:
         running.append(e)
         if e["type"] in STATE_EVENTS:
-            replay.append({"seq": e["seq"], "frame": _frame(reduce(view, running))})
+            # Replay follows the event's ancestry, just like state_at. Folding the
+            # entire ingestion log would retain records from an abandoned branch.
+            ancestry = chains.get(e.get("snapshot_id"), set())
+            scoped = [x for x in running if x.get("snapshot_id") in ancestry]
+            replay.append({"seq": e["seq"], "frame": _frame(reduce(view, scoped))})
     return {
         "schema": "observstory.memory-ui/v1",
         "repository": repository, "requested_ref": requested_ref or (head["requested_ref"] if head else None),
