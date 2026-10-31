@@ -1624,3 +1624,79 @@ summary:focus-visible {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+.published-relationships h3 > span {
+  color: var(--fg-muted);
+  font-weight: 400;
+  margin-left: 6px;
+}
+.detail-body .relationship-inputs {
+  font-size: 10px;
+}
+.published-relationship {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 10px;
+  background: #fcfcfe;
+}
+.relationship-source {
+  font-size: 10px;
+  color: var(--fg-muted);
+}
+.relationship-path {
+  display: grid;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.relationship-current {
+  font-weight: 500;
+}
+.relationship-verb {
+  color: #68569b;
+  font-size: 11px;
+}
+.relationship-endpoint {
+  min-height: 32px;
+  line-height: 1.5;
+}
+.relationship-missing {
+  color: #745000;
+}
+.detail-body .relationship-resolution {
+  font-size: 10px;
+  margin: 10px 0;
+}
+.detail-body .relationship-notice {
+  color: #745000;
+  font-size: 11px;
+}
+.relationship-evidence {
+  border-top: 1px solid var(--border);
+  padding-top: 9px;
+  font-size: 11px;
+}
+.relationship-evidence-toggle {
+  cursor: pointer;
+  color: #0064d2;
+  min-height: 24px;
+}
+.relationship-quote blockquote {
+  margin: 10px 0;
+  padding: 4px 10px;
+  border-left: 2px solid var(--border);
+  font-size: 12px;
+  color: var(--fg);
+  white-space: pre-wrap;
+}
+.detail-body .relationship-evidence p {
+  font-size: 11px;
+}
+@media (max-width: 600px) {
+  .relationship-endpoint,
+  .relationship-evidence-toggle {
+    min-height: 44px;
+  }
+}

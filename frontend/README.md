@@ -136,6 +136,15 @@ qualifies any revealed record outside the filters; counts still describe matchin
 ends the reveal. Drawer breadcrumbs can open containing records; direct-link close stays in
 the workspace.
 
+**Published relationships** in the same drawer preserves incoming/outgoing knowledge links
+and explicit workspace relations separately from membership. Each link shows its original
+source, basis and direction. Related records open the existing drawer; unavailable endpoints
+remain labelled text. Exporter endpoint resolution is shown separately from local availability.
+Expandable evidence preserves source quotes, producer quote-match results (including false or
+unchecked), and pinned source/manifest links. Manifest-only declarations have no invented quote.
+Malformed fields and partial/missing relationship inputs are qualified; they never add records,
+parents, lifecycle or approval. Repository/commit/path checks prevent unpinned manifest fallbacks.
+
 The local fixture host includes `/workspace/` for synthetic interaction checks. To preview
 real consumer data, copy `release/` to a directory alongside that consumer's `data/`, then run
 `python3 -m http.server 4318 --bind 127.0.0.1 --directory /path/to/preview`.

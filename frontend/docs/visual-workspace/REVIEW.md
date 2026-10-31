@@ -260,3 +260,64 @@ accepted decision or human review changed. Self-reviewed only; no deployment.
 Next concrete increment: inspect and surface the existing published knowledge relationships
 in the shared detail drawer, separately from containment, with source basis and unavailable
 endpoints visible. Do not derive conceptual links from these Board categories or file paths.
+
+
+## NUC turn 5 — inspect and follow published relationships
+
+Continues from `e4dde99295ee5067d935eaf2de3a2ed306f6aa60` on stacked draft #26.
+The shared drawer now displays the incoming and outgoing relationships already published by
+Project knowledge, alongside explicit Workspace relations. Source labels, basis and original
+direction remain separate from the existing membership routes. Known endpoints open the same
+drawer and retain category/search/group/range navigation; missing endpoints remain labelled text.
+Source kind, unknown lifecycle and source material remain unchanged.
+
+Expandable evidence preserves exact quoted text as plain text, source URLs/located lines,
+producer quote-match results (found, not found, unchecked), and pinned manifest links.
+Manifest-only links explicitly lack a quoted passage. Exporter endpoint resolution remains
+separate from local endpoint availability and is not acceptance. Defensive field projection
+qualifies malformed optional payloads without discarding other knowledge; links with neither
+endpoint available locally are counted as unplaced. Partial/missing inputs remain qualified.
+Pinned manifest links require a safe repository, exact commit and relative source path.
+
+The same static real Open Presence inputs at `b1af012` contain seven knowledge links:
+three source-declared links with located quotations, four manifest-declared links without
+quotations. The existing optional-module Workspace relationship stays separately attributed.
+The claim ledger qualifies the supplied report; the report informs the PDF module. Human
+Signal has four published incoming/outgoing links. All 39 records remain unchanged and their
+lifecycle remains undeclared. Raw inputs remain outside Git; no producer/schema/reducer or
+consumer files changed.
+
+Checks and evidence:
+
+- Typecheck and full lint pass; existing Biome configuration deprecation information only.
+- Full unit suite: 43 pass / one opt-in live test skipped. After the final unplaced-endpoint
+  refinement, all three focused relationship tests pass again, including schema-valid malformed
+  payloads, false/null quote matches, no record/membership mutation and pinned URL checks.
+- Final `npm run release` succeeds (12 assets, 14 release files, no project data); five Python
+  release-packaging checks pass on that final release.
+- Initial browser loader needed an explicit Node JSON import attribute. Initial interaction
+  run then passed 9/12 checks; all three failures were the same case-sensitive test expectation
+  for the correctly displayed “Outside your current filters.” A focused assertion repair passed
+  9/9. The later unplaced-endpoint refinement was rebuilt and the final targeted release run
+  again passed **9/9** at 390/768/1440px:
+  `OBSERVSTORY_PREBUILT=1 OBSERVSTORY_LIVE_DATA=/tmp/observatory-20261031-live/data npm run e2e -- --workers=1 tests/e2e/relationships.spec.ts`.
+- Keyboard evidence expansion and related-record selection, partial/unresolved/unavailable and
+  malformed inputs, unsafe quote URL suppression, source/manifest URLs, direct-link reload,
+  existing filters/grouping, cross-kind reveal and page overflow are checked. The synthetic
+  flow records zero browser exceptions. Three existing real membership/source regressions
+  also passed in the initial run against the same product except the later unplaced notice.
+- `relationships-quote-1440.png`, `relationships-quote-390.png` and
+  `relationships-manifest-1440.png` are real-input screenshots from the final release.
+  Desktop and phone quote plus desktop manifest views were visually self-inspected.
+
+Standalone final release/data copy: `/tmp/observatory-20261031-turn5/preview/`; all 14 release
+files byte-match `frontend/release/`. Release index SHA256:
+`421bb107c52e0613243f59aa113a2210ebb997e3e069770a02d02324b28d5f1f`.
+Playwright owned/stopped its loopback host; no preview server remains running.
+Self-reviewed only. This remains a static capture, with physical touch, screen reader,
+Safari/Firefox and independent review unrun. The coordinator owns the separate consumer pin.
+
+Next concrete increment: make record source inspection easier in this same drawer by grouping
+source material, immutable captured revisions and partial/mismatched-input context in one
+compact provenance section. Preserve source distinctions and existing links; do not introduce
+status authoring, derived conceptual links or a second dashboard.

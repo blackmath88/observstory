@@ -1,0 +1,107 @@
+{
+  "schema": "observstory.knowledge/v1",
+  "producer": {
+    "name": "synthetic fixture",
+    "version": "1"
+  },
+  "snapshot_id": "synthetic",
+  "repository": "northstar/voice-notes",
+  "requested_ref": "synthetic",
+  "resolved_commit": "1111111111111111111111111111111111111111",
+  "title": "Synthetic relationship evidence",
+  "source": {
+    "method": "git-objects-at-resolved-commit",
+    "manifest_path": ".observstory/knowledge.json",
+    "manifest_blob": null,
+    "manifest_sha256": null,
+    "selection_policy": "synthetic",
+    "audience": "public",
+    "upstream_check": null
+  },
+  "generated_at": "2026-10-31T18:00:00Z",
+  "complete": false,
+  "completeness": {
+    "selected_sources": 0,
+    "read": 0,
+    "failed": 0
+  },
+  "records": [],
+  "relationships": [
+    {
+      "from": "research",
+      "rel": "qualifies",
+      "to": "concept",
+      "resolved": false,
+      "basis": {
+        "kind": "manifest_declared",
+        "declarations": [
+          {
+            "path": "research.md",
+            "quote": "Source claim, not an accepted decision.",
+            "found": false,
+            "line": 7,
+            "url": "https://example.com/research#L7"
+          }
+        ]
+      }
+    },
+    {
+      "from": "concept",
+      "rel": "informs",
+      "to": "missing-record",
+      "resolved": true,
+      "basis": {
+        "kind": "manifest_declared",
+        "declarations": []
+      }
+    },
+    {
+      "from": "research",
+      "rel": {},
+      "to": {},
+      "resolved": false,
+      "basis": {
+        "kind": "manifest_declared",
+        "declarations": [
+          {
+            "path": {},
+            "quote": {},
+            "found": null,
+            "line": -1,
+            "url": "javascript:alert(1)"
+          }
+        ]
+      }
+    },
+    {
+      "from": {},
+      "rel": "informs",
+      "to": {},
+      "resolved": false,
+      "basis": {
+        "kind": "manifest_declared",
+        "declarations": []
+      }
+    },
+    {
+      "from": "missing-a",
+      "rel": "informs",
+      "to": "missing-b",
+      "resolved": false,
+      "basis": {
+        "kind": "manifest_declared",
+        "declarations": []
+      }
+    }
+  ],
+  "selection": {
+    "current_direction": {
+      "state": "unresolved",
+      "reason": "Synthetic",
+      "record": null,
+      "candidates": []
+    }
+  },
+  "sources": [],
+  "diagnostics": []
+}

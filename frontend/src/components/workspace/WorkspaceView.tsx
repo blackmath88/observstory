@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Bundle } from "../../data/types";
 import { useNow } from "../../lib/useNow";
 import { type BoardGrouping, readBoardGrouping } from "../../view/board";
+import { publishedRelationships, type RelationshipEvidence } from "../../view/relationships";
 import {
   instantPosition,
   periodPosition,
@@ -24,6 +25,7 @@ import {
 } from "../../view/workspace";
 import { EventClock } from "../overview/EventClock";
 import { BoardView } from "./BoardView";
+import { RelationshipPanel } from "./RelationshipPanel";
 
 function preference<T>(key: string, fallback: T): T {
   try {
@@ -35,6 +37,7 @@ function preference<T>(key: string, fallback: T): T {
 
 export function WorkspaceView({ bundle }: { bundle: Bundle }) {
   const model = workspace(bundle);
+  const relationshipEvidence = publishedRelationships(bundle, model.records);
   const key = `observatory:${bundle.base}:`;
   const [expanded, setExpanded] = useState<string[]>(() => preference(`${key}expanded`, []));
   const [board, setBoard] = useState(() => new URLSearchParams(window.location.hash.split("?")[1]).get("view") === "board");
@@ -397,7 +400,7 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
           key={selected.id}
           record={selected}
           records={model.byId}
-          relations={model.relations}
+          relationshipEvidence={relationshipEvidence}
           onOpen={open}
           onClose={close}
           onReveal={() => {
@@ -508,14 +511,14 @@ function RecordRow({
 function Detail({
   record: r,
   records,
-  relations,
+  relationshipEvidence,
   onOpen,
   onClose,
   onReveal,
 }: {
   record: RecordView;
   records: Map<string, RecordView>;
-  relations: { from: string; to: string; type: string }[];
+  relationshipEvidence: RelationshipEvidence;
   onOpen: (id: string) => void;
   onClose: () => void;
   onReveal: () => void;
@@ -582,19 +585,8 @@ function Detail({
           <h3>Context</h3>
           <p>{r.context ?? "No additional purpose is declared."}</p>
           <p className="meta">{r.basis}</p>
-          {relations
-            .filter((e) => e.from === r.id || e.to === r.id)
-            .map((e) => (
-              <button
-                type="button"
-                className="relation-link"
-                key={`${e.from}:${e.type}:${e.to}`}
-                onClick={() => onOpen(e.from === r.id ? e.to : e.from)}
-              >
-                {records.get(e.from)?.title} · {e.type.replaceAll("_", " ")} · {records.get(e.to)?.title} ↗
-              </button>
-            ))}
         </section>
+        <RelationshipPanel recordId={r.id} evidence={relationshipEvidence} onOpen={onOpen} />
         <section>
           <h3>Material</h3>
           {r.material.length ? (
