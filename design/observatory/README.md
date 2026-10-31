@@ -32,13 +32,42 @@ Recommendation and open decisions: [RECOMMENDATION.md](RECOMMENDATION.md).
 | `src/pixels.js` | **Editable pixel source**: a seeded PRNG, a palette-name pixel buffer, and procedural observatory, refractor, sky, hills, tree and eyepiece drawings, plus the 5×5 data-star glyphs and 9×9 icons. The same code draws to canvas and to SVG. |
 | `src/creature.js` | D's sprite and scenery: the dusk sky, hill and creature with pose parameters (eyes, look, lean, settle, lift, door, lantern, note, chart, smoke) |
 | `src/living.js` | D's engine: sky layout, habit loop, listening sequence, hand-inked edges, hover gaze, replay shooting stars and the honest "new look" note |
-| `src/critter.js` | Round 3 posture engine for the sidebar creature (lying / standing / walking), plus the status-card portrait |
+| `src/ornament.js` | Round 4 corner ornament: the painted tortoise frames with posture, blink, breathing, glow and the dome reveal; also the status-card face |
 | `src/data.js` | Synthetic data shaped like `observstory.scene/v1` (zones, groups, nodes, edges, attention), the replay events and a deterministic `replayAt(pos)` |
 | `src/study.js`, `src/study.css` | Working interface: navigation, board/field/atlas maps, list, replay, attention rail, inspector, keyboard |
 | `build.mjs` | `node design/observatory/build.mjs` builds `index.html`, `assets/*.svg` and `assets/tokens.json`. It is deterministic: two runs give byte-identical output. |
 | `assets/` | Exported SVGs: the observatory in every lane and window state, the refractor at each lane, the courtyard, the horizon strip, the eyepiece, the star glyphs and the icons. Also `tokens.json`. |
 | `shoot.sh` | Rebuilds the page and regenerates `screenshots/` with headless Chromium, with motion off |
 | `screenshots/` | Desktop (1440) and mobile (390) captures of all three directions in every state |
+
+## D · round 4 (final design shell): brutalist workbench with the painted ornament
+
+- Live page: https://claude.ai/artifact/PQXy4HJn6C4hdbxhZzPNsY (private to the owner until shared).
+  This is the same build as `index.html`.
+- **Ornament:** the owner's painted observatory tortoise, pixelated to 320×179 (see
+  `creature/`), sits top-left as a quiet ornament, like Weavr's sidebar character. It carries
+  posture only, and the page always says it in words:
+  - **resting:** dome closed, sleepy eyes;
+  - **up:** dome open, telescope out, lantern lit;
+  - **travelling:** a slow plod while replay plays.
+  - Blinking, breathing, glow and flicker stop under reduced motion. The same frames give the
+    status-card face.
+  - Source: `src/ornament.js`. The frames are inlined by `build.mjs` from `creature/frames/`.
+- **Brutalist shell:**
+  - concrete night tokens (`:root[data-direction="d"]` in `tokens.css`);
+  - recessed slabs, 2px joints, square corners and one chamfer (the status card);
+  - a cantilevered tab bar with the current tab cut into it;
+  - condensed uppercase labels (Barlow Condensed from Google Fonts, falling back to system
+    condensed faces);
+  - **sage** for selection and focus, **lamp amber** for lit lanes, and **signal orange**
+    reserved for "needs a conversation".
+- **Ribbon-window lane strip** on Overview: one recessed slot per lane.
+  - Lit means work is in flight; an orange frame means it takes part in an overlap or wait.
+  - Each slot is labelled in text and scrolls to its lane.
+- All four tabs (Overview, Sky, List, Replay) use the shell. The Sky tab keeps its own dusk sky
+  chart.
+- The round-3 low-fi turtle (`critter.js`) is removed. The `turtle()` drawing in `creature.js`
+  remains only for the exported comparison assets.
 
 ## D · round 3: a clean workbench, and the walking observatory in the corner
 

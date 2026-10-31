@@ -4,6 +4,21 @@ Status: **provisional.** The owner's visual templates have not arrived yet. This
 with reasons. Final selection, palette and composition stay open until the templates have been
 reviewed against these studies.
 
+## Short version (round 4, final design shell)
+
+Recommended: **D as now built** (https://claude.ai/artifact/PQXy4HJn6C4hdbxhZzPNsY):
+- a clean brutalist workbench as the default;
+- the owner's painted observatory tortoise as a small corner ornament;
+- the ribbon-window lane strip as the at-a-glance summary.
+
+Visual selection is settled. The palette and tokens are in `tokens.css` (direction D).
+
+Still open, outside this design slice:
+- the real typed frontend (`OBSERVATORY-REWRITE.md` slices 0–3, with the TanStack starter
+  still to be identified);
+- walk-cycle and telescope-aim frames, if the ornament should do more than rest, stand and plod;
+- the trigger path for "Ask for a new look".
+
 ## Short version (round 3)
 
 Recommended: **D as now built.** It is a clean, Weavr-aligned workbench as the default, with the

@@ -17,6 +17,10 @@ const read = (p) => readFileSync(join(here, p), "utf8");
 // 1 · Inline the study page.
 const html = read("study.src.html")
   .replace(/<!-- @inline-css (\S+) -->/g, (_, p) => `<style>\n/* ${p} */\n${read(p)}</style>`)
+  .replace("<!-- @inline-frames -->", () => {
+    const uri = (f) => "data:image/png;base64," + readFileSync(join(here, "creature/frames", f)).toString("base64");
+    return `<script>\n/* creature/frames (owner's painted north star, pixelated) */\nwindow.ObsFrames = ${JSON.stringify({ cutUp: uri("cut-up.png"), cutRest: uri("cut-rest.png") })};\n</script>`;
+  })
   .replace(/<!-- @inline-js (\S+) -->/g, (_, p) => `<script>\n/* ${p} */\n${read(p).replace(/<\/script/gi, "<\\/script")}</script>`);
 writeFileSync(join(here, "index.html"), html);
 

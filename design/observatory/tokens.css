@@ -104,16 +104,20 @@
  * accent becomes a brighter signal orange so it stays distinct from the always-on
  * amber lamp (ambient, decorative) and the copper dome (scenery). */
 :root[data-direction="d"] {
-  --sky-0: #131327; --sky-1: #191931; --sky-2: #20203b; --sky-3: #292848;
-  --hair: #2b2a46; --hair-2: #3b3858;
-  --ink: #ede5d5; --ink-2: #b7aec4; --ink-3: #8d86a3;
-  --mark: #eadcb6; --mark-dim: #8e88a6;
-  --select: #9cc3ff; --select-t: #252b4e;
-  --accent: #ff9550; --accent-t: #3a2320;
-  --wire: #b9b0c9; --decor: #3e3560;
-  --l-thread: #b9b0c9;
+  /* Brutalist shell: concrete in shadow, recessed slabs, lit windows. */
+  --sky-0: #16171c; --sky-1: #1d1f25; --sky-2: #24272e; --sky-3: #2b2e36;
+  --hair: #343842; --hair-2: #454a55;
+  --ink: #e8e4dc; --ink-2: #b4b2ad; --ink-3: #8a8984;
+  --mark: #e6dccb; --mark-dim: #84837e;
+  --select: #6fae9a; --select-t: #1f3330;   /* sage: selection and focus */
+  --accent: #ff9550; --accent-t: #3a2320;   /* signal: needs a conversation */
+  --lamp: #f0b35a;                          /* lit window: work in flight */
+  --recess: #121318;
+  --wire: #b9b5ad; --decor: #2f323a;
+  --l-thread: #b9b5ad;
   --paper: #efe3c6; --paper-ink: #2a2233;
   --px-void: #191b38;
+  --font-label: "Barlow Condensed", "Roboto Condensed", "Arial Narrow", "Helvetica Neue", sans-serif;
 }
 :root[data-direction="d"][data-theme="paper"] {
   --sky-0: #efece6; --sky-1: #f8f6f1; --sky-2: #f1eee8; --sky-3: #e7e3db;

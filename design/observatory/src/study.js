@@ -704,8 +704,9 @@
 
 
   /* ═════════════ D · round 3: clean workbench, walking observatory in the corner ═════════════ */
-  let critterInst = null;
-  const critter = () => critterInst || (critterInst = window.ObsCritter.create());
+  let ornamentInst = null;
+  const ornament = () => ornamentInst || (ornamentInst = window.ObsOrnament.create());
+  const ornamentState = () => ({ lying: "rest", standing: "up", walking: "travel" })[posture()];
   if (!("dView" in S)) S.dView = "overview";
   S.lookNote = false;
 
@@ -720,7 +721,7 @@
     const n = snap().attention.filter((a) => a.kind === "overlap" || a.kind === "waiting").length;
     return p === "standing"
       ? { title: "The observatory is up", sub: `${n} thing${n > 1 ? "s" : ""} may need a conversation · lantern lit` }
-      : { title: "The observatory is lying down", sub: "Nothing needs a conversation right now" };
+      : { title: "The observatory is resting", sub: "Nothing needs a conversation right now" };
   }
 
   function dView() { return S.state === "replay" ? "replay" : S.view === "list" ? "list" : S.dView === "sky" ? "sky" : "overview"; }
@@ -740,8 +741,8 @@
     const view = dView();
 
     // ── sidebar ──
-    const cr = critter();
-    cr.update({ posture: posture(), angle: tgt.open ? tgt.angle : 60, lantern: windowLit().lit, note: S.state !== "replay" && st.commitments.length > 0, motion: motionOn() });
+    const cr = ornament();
+    cr.update({ state: ornamentState(), motion: motionOn() });
     const lanesNav = h("ul", { class: "d-nav" }, D.ZONES.map((z) => {
       const n = S.state === "replay" ? null : st.nodes.filter((x) => zoneOfGroup(x.group) === z.id).length;
       return h("li", null, h("button", { type: "button", "data-key": `dlane:${z.id}`, on: { click: () => { goView("overview"); requestAnimationFrame(() => { const el = document.getElementById("dlane-" + z.id); if (el) el.scrollIntoView({ block: "nearest", behavior: motionOn() ? "smooth" : "auto" }); }); } } },
@@ -752,7 +753,8 @@
       h("div", { class: "d-ident" },
         h("div", { class: "d-name" }, "Observatory"),
         h("div", { class: "d-tag" }, "watching ", h("span", { class: "mono" }, D.PROJECT.repository)),
-        h("p", { class: "d-caption", "aria-live": "polite" }, cap(words.title.replace("The observatory", "It")), ". ", cap(tgt.why.replace(/^telescope /, "")).replace(/^Pointing/, "Telescope pointing").replace(/^Lowered/, "Telescope lowered").replace(/^Following/, "Telescope following"), ".")),
+        h("p", { class: "d-caption", "aria-live": "polite" }, cap(words.title.replace("The observatory", "It")), ".",
+          S.state === "replay" ? ` Event in ${tgt.why.replace(/^following replay event in /, "")}.` : S.sel && tgt.open ? ` Looking at ${tgt.why.replace(/^pointing at /, "")}.` : "")),
       h("div", { class: "d-sec" }, h("div", { class: "caps" }, "Repository"),
         h("div", { class: "d-select mono" }, D.PROJECT.repository, h("span", { class: "faint" }, " · main"))),
       h("div", { class: "d-sec" }, h("div", { class: "d-sec-h" }, "Lanes"), lanesNav),
@@ -787,14 +789,14 @@
     const right = h("aside", { class: "d-right", "aria-label": "Inspector and collection" });
     const insp = inspector();
     if (insp) right.append(h("div", { class: "d-card d-insp" }, insp));
-    right.append(dCollection(st), dLegend(), dOrnament());
+    right.append(dCollection(st), dLegend());
 
     app.replaceChildren(h("div", { class: "d-shell" }, side, main, right));
   }
 
   function dOverview(st, rel, words) {
     const pc = h("canvas", { class: "px d-portrait", "aria-hidden": "true" });
-    window.ObsCritter.portrait(pc, posture(), { lantern: windowLit().lit, angle: target().open ? target().angle : 60 });
+    window.ObsOrnament.portrait(pc, ornamentState());
     const ov = st.edges.filter((e) => e.type === "overlap").length, wt = st.edges.filter((e) => e.type === "waiting").length;
     const stale = st.nodes.filter((n) => n.status === "stale").length;
     const status = h("div", { class: "d-card d-status" + (windowLit().lit ? " lit" : "") }, pc,
@@ -828,9 +830,22 @@
       boardView(rel));
     lanes.querySelectorAll(".lane").forEach((el, i) => { el.id = "dlane-" + D.ZONES[i].id; el.querySelector(".lane-head .caps").prepend(h("span", { class: "d-num" }, String(i + 1).padStart(2, "0") + " ")); });
 
+    // ribbon windows: one recessed slot per lane; lit = work in flight, orange frame = needs a conversation
+    const ribbon = h("div", { class: "d-ribbon", role: "group", "aria-label": "Lanes at a glance" }, D.ZONES.map((z) => {
+      const ns = st.nodes.filter((n) => zoneOfGroup(n.group) === z.id);
+      const live = ns.filter((n) => n.status !== "stale").length;
+      const attnEdge = st.edges.find((e) => [e.from, e.to].some((id) => { const n = nodeById(id); return n && zoneOfGroup(n.group) === z.id; }));
+      const stale = ns.filter((n) => n.status === "stale").length;
+      const words = [live ? `${live} item${live > 1 ? "s" : ""}` : stale ? "" : "quiet", attnEdge ? attnEdge.type : "", stale ? `${stale} stale` : ""].filter(Boolean).join(" · ");
+      return h("button", { type: "button", class: (live ? "lit" : "") + (attnEdge ? " attn" : ""), "data-key": `dribbon:${z.id}`,
+        "aria-label": `${z.label}: ${words}`,
+        on: { click: () => { const el = document.getElementById("dlane-" + z.id); if (el) el.scrollIntoView({ block: "nearest", behavior: motionOn() ? "smooth" : "auto" }); } } },
+        h("b", null, z.label), h("span", null, words));
+    }));
+
     return h("div", { class: "d-pad" },
       h("h1", { class: "d-h1" }, "Overview", h("span", { class: "d-synth" }, "synthetic data")),
-      status, h("div", { class: "d-two" }, needs, strip), lanes);
+      status, ribbon, h("div", { class: "d-two" }, needs, strip), lanes);
   }
 
   function dGateStrip(gates, now) {
@@ -868,17 +883,9 @@
   }
   function dLegend() {
     return h("div", { class: "d-card d-legend" }, h("h2", { class: "caps" }, "Legend"), legend(),
-      h("p", { class: "d-small faint" }, "Lying down = nothing needs a conversation · standing = an overlap or wait exists · walking = replay playing. Observstory describes work, not people."));
+      h("p", { class: "d-small faint" }, "Ribbon window lit = work in flight · orange frame = needs a conversation. The observatory rests with its dome closed when nothing needs a conversation, opens it and lights the lantern when an overlap or wait exists, and plods while replay plays. Observstory describes work, not people."));
   }
-  function dOrnament() {
-    const c = h("canvas", { class: "px d-orn", "aria-hidden": "true" });
-    const b = new P.PixelBuffer(70, 60);
-    const rnd = P.mulberry32(5);
-    for (let i = 0; i < 90; i++) { const x = Math.floor(rnd() * 70), y = Math.floor(rnd() * 60); b.set(x, y, rnd() > 0.85 ? "cream-dim" : rnd() > 0.5 ? "dusk-3" : "dusk-2"); }
-    for (let x = 0; x < 70; x++) { const y = Math.round(30 + Math.sin(x / 9) * 4); if (x % 3) b.set(x, y, "dusk-4"); }
-    P.toCanvas(c, b, 4, P.paletteFromCSS());
-    return c;
-  }
+
 
   /* ── replay ── */
   function replayPane() {
