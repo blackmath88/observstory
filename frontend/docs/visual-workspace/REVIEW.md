@@ -208,3 +208,55 @@ review changed. Coordinator report now records consumer pin draft #19 at older p
 `4d107c6`; that pin needs a separate coordinator update to this PR's new exact head.
 Next increment: useful Board grouping by record kind versus explicit lifecycle, retaining
 Undeclared status and the shared filters/drawer. No task-state inference is needed.
+
+
+## NUC turn 4 — Board by kind or declared lifecycle
+
+Continues from `4cd35f395e848a3298e9e77553905d28f49ef449` on the same stacked draft.
+Board now defaults to parallel record-kind columns: Research, Concepts, Planning,
+Implementation and Other context. An explicit By lifecycle control retains the original
+source-owned lifecycle view, including Undeclared. Columns omit empty buckets, preserve
+source order inside each bucket and never convert document/artifact state into lifecycle.
+Cards show original kind, lifecycle, bounded context and unchanged evidence basis.
+
+`group=lifecycle` persists with filters, selection, timeline range and views through reload
+and browser history. Named column jump buttons focus their heading; Tab moves into the cards.
+Return controls restore focus to the navigator. Desktop keeps locally scrollable columns with
+sticky headings; phones stack columns vertically. Single-column results use a responsive grid.
+Changing grouping or matching record IDs resets local Board scroll to the first card; selection
+and clock updates keep the current position. The same drawer, sources and resume material remain.
+
+Real captured Open Presence data at `b1af012` still projects 39 records: Research 7, Concepts 2,
+Planning 4, Implementation 10, Other context 16. **All 39 remain lifecycle undeclared**. Document/artifact states do not populate lifecycle;
+separate synthetic regressions exercise completed-document and landed-artifact labels. Screenshot evidence:
+`board-kinds-1440.png`, `board-kinds-390.png`, `board-lifecycle-1440.png`. The phone screenshot is
+scrolled to the Board controls; no source content or lifecycle was fabricated for the capture.
+Desktop kind/lifecycle and phone kind layouts were visually inspected.
+
+Checks:
+
+- Typecheck and lint pass on the final source (existing Biome deprecation notice only).
+- `npm test`: 40 pass, one opt-in live-data test skipped. Three new projection tests assert
+  exact partition/source order, preserved material and immutability, no document/artifact-to-
+  lifecycle inference, explicit status handling, empty results and safe navigation fallback.
+- `npm run release`: final production bundle rebuilt and checked in; no project data shipped.
+- Five Python release-packaging checks pass against the final release.
+- Initial targeted prebuilt-release run: **12/12 pass** at 390/768/1440px. Covers the prior paused
+  resume/focus/expansion flow plus new grouping, filters, search, selection/reload, view/range/
+  browser history, column jumps, keyboard return, phone stacking and real source links/counts.
+- Visual self-review found inherited local scroll could hide the first cards after changing
+  grouping. One focused repair compares prior grouping/result IDs and resets only that scroll.
+  Final command: `OBSERVSTORY_PREBUILT=1 OBSERVSTORY_LIVE_DATA=/tmp/observatory-20261031-live/data npm run e2e -- --grep 'board grouping|real Open Presence board'`:
+  **6/6 pass** on the final prebuilt release at the same three widths, including a new explicit
+  top/left reset assertion, drawer focus/history, real 39-record kind/lifecycle partitions,
+  source URLs, no real-input browser errors and no page horizontal overflow.
+
+Final local release/data preview: `/tmp/observatory-20261031-turn4/preview/`; all 14 release
+files byte-match `frontend/release/`. No preview server remains running. Consumer draft #19's
+producer pin was reported by the coordinator as `f45775c`; the coordinator owns its next pin
+update to this PR's exact new head. No consumer, Python/schema, memory reducer/System Map,
+accepted decision or human review changed. Self-reviewed only; no deployment.
+
+Next concrete increment: inspect and surface the existing published knowledge relationships
+in the shared detail drawer, separately from containment, with source basis and unavailable
+endpoints visible. Do not derive conceptual links from these Board categories or file paths.

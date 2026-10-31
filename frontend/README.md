@@ -87,7 +87,7 @@ Document status and observed artifact state are retained as evidence, not mapped
 Undated records stay visible. Timeline points mark latest observed activity. Outlined calendar
 bands mark declared planned targets at day/month/year precision; milestones retain a ◇ caption
 without inventing an exact time. Bands never describe observed work duration.
-Missing or mismatched inputs are qualified. Board uses an explicit Undeclared column.
+Missing or mismatched inputs are qualified. Board defaults to kind columns; lifecycle grouping keeps Undeclared explicit.
 
 Record category filters (Research, Concepts, Planning, Implementation, Other context) use
 record kinds without inventing membership or lifecycle. Text search covers title, context,
@@ -100,6 +100,18 @@ Expansion persists locally per data base. View, selection, category and search u
 `#/?view=board&focus=plan&q=checkpoint&item=ws-plan`. Drawer close restores focus and expansion;
 direct selection links and reload work under arbitrary project subpaths. The event clock and
 Data sources remain accessible, and companion classic/replay links are probed as before.
+
+Board defaults to **By kind** (Research, Concepts, Planning, Implementation, Other context).
+**By lifecycle** uses only explicit workspace `status`; knowledge document status and observed
+artifact state never fill missing lifecycle. Every matching record appears exactly once and
+keeps source order within its column. Cards retain original kind, lifecycle, context and basis.
+`group=lifecycle` in the hash preserves grouping through selection, reload, filters and views.
+
+Column jump buttons focus a named heading; Tab proceeds to its cards. Return buttons bring
+focus back to the column navigator. Desktop columns scroll locally with sticky headings;
+phones stack them vertically. A single column uses a responsive card grid. Grouping or matching
+record changes reset only the Board scroll; drawer/clock updates retain position. Grouping is
+read-only and does not declare work relationships or progress.
 
 The timeline defaults to a rolling recent window (last six hours / next two hours). **Fit evidence**
 fits available observations and full planned target periods from results and their containing

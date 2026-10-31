@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Bundle } from "../../data/types";
 import { useNow } from "../../lib/useNow";
+import { type BoardGrouping, readBoardGrouping } from "../../view/board";
 import {
   instantPosition,
   periodPosition,
@@ -22,6 +23,7 @@ import {
   workspaceLocations,
 } from "../../view/workspace";
 import { EventClock } from "../overview/EventClock";
+import { BoardView } from "./BoardView";
 
 function preference<T>(key: string, fallback: T): T {
   try {
@@ -41,6 +43,7 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
   const [query, setQuery] = useState(() => new URLSearchParams(window.location.hash.split("?")[1]).get("q") ?? "");
   const [revealId, setRevealId] = useState(() => new URLSearchParams(window.location.hash.split("?")[1]).get("reveal"));
   const [range, setRange] = useState(() => readTimelineRange(new URLSearchParams(window.location.hash.split("?")[1]).get("range")));
+  const [grouping, setGrouping] = useState(() => readBoardGrouping(new URLSearchParams(window.location.hash.split("?")[1]).get("group")));
   const now = useNow();
   const scope = scopeWorkspace(model, focus, query, revealId);
   const trigger = useRef<HTMLElement | null>(null);
@@ -63,6 +66,7 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
       setQuery(p.get("q") ?? "");
       setRevealId(p.get("reveal"));
       setRange(readTimelineRange(p.get("range")));
+      setGrouping(readBoardGrouping(p.get("group")));
     };
     window.addEventListener("hashchange", sync);
     window.addEventListener("popstate", sync);
@@ -96,6 +100,7 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
     nextQuery = query,
     nextReveal = revealId,
     nextRange: TimelineRange = range,
+    nextGrouping: BoardGrouping = grouping,
   ) {
     if (view) nextReveal = null;
     const p = new URLSearchParams();
@@ -105,6 +110,7 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
     if (nextQuery) p.set("q", nextQuery);
     if (nextReveal) p.set("reveal", nextReveal);
     if (nextRange !== "recent") p.set("range", nextRange);
+    if (nextGrouping !== "kind") p.set("group", nextGrouping);
     const hash = `#/${p.size ? `?${p}` : ""}`;
     const drawerReturn = !!item && ((!selection && push) || (!!selection && !!window.history.state?.drawerReturn));
     window.history[push ? "pushState" : "replaceState"]({ workspace: true, drawerReturn }, "", hash);
@@ -114,6 +120,7 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
     setQuery(nextQuery);
     setRevealId(nextReveal);
     setRange(nextRange);
+    setGrouping(nextGrouping);
   }
   function open(id: string) {
     if (!document.activeElement?.closest("dialog")) trigger.current = document.activeElement as HTMLElement;
@@ -270,30 +277,13 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
             </div>
           )}
           {board ? (
-            <div className="workspace-board">
-              {[...new Set(scope.matches.map((r) => r.status ?? "Undeclared"))].map((status) => (
-                <section className="board-column" key={status}>
-                  <h2>
-                    {status} <span>{scope.matches.filter((r) => (r.status ?? "Undeclared") === status).length}</span>
-                  </h2>
-                  {scope.matches
-                    .filter((r) => (r.status ?? "Undeclared") === status)
-                    .map((r) => (
-                      <button
-                        type="button"
-                        data-record-id={r.id}
-                        className={`board-card ${selection === r.id ? "selected" : ""}`}
-                        key={r.id}
-                        onClick={() => open(r.id)}
-                      >
-                        <small>{r.kind}</small>
-                        <strong>{r.title}</strong>
-                        <span>{r.basis}</span>
-                      </button>
-                    ))}
-                </section>
-              ))}
-            </div>
+            <BoardView
+              records={scope.matches}
+              grouping={grouping}
+              selection={selection}
+              onOpen={open}
+              onGroup={(next) => navigate(selection, board, true, focus, query, revealId, range, next)}
+            />
           ) : (
             <>
               <div className="workspace-heading">

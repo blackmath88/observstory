@@ -36,6 +36,7 @@ test("synthetic branch keeps origin, resume, selection, focus and expansion", as
   await page.reload();
   await expect(expand).toHaveAttribute("aria-expanded", "true");
   await page.getByRole("button", { name: "Board", exact: true }).click();
+  await page.getByRole("button", { name: "By lifecycle", exact: true }).click();
   await expect(page.getByRole("heading", { name: /paused/ })).toBeVisible();
   await page.locator(".board-card").filter({ hasText: "Paused supporting exploration" }).click();
   await expect(page.getByRole("dialog")).toContainText("Stopping point");
@@ -285,6 +286,117 @@ test("real Open Presence timeline fits observations without turning the current 
   await expect(page.locator(".record-button")).toHaveCount(10);
   await page.getByRole("button", { name: "Fit evidence", exact: true }).click();
   await expect(point).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  expect(errors).toEqual([]);
+});
+
+test("board grouping preserves declared lifecycle, filters, selection, reload and view history", async ({ page }) => {
+  await page.goto("/workspace/#/?view=board&range=fit");
+  await expect(page.getByRole("button", { name: "By kind", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator(".board-column")).toHaveCount(4);
+  await expect(page.locator(".board-summary")).toContainText("3 lifecycle undeclared");
+  await page.getByRole("button", { name: "By lifecycle", exact: true }).focus();
+  await page.keyboard.press("Enter");
+  await expect(page.locator(".board-column")).toHaveCount(3);
+  await expect(page.locator('.board-column[data-group-id="missing"] .board-card')).toHaveCount(3);
+  const paused = page.locator(".board-card").filter({ hasText: "Paused supporting exploration" });
+  await paused.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("dialog")).toContainText("Inspect the held-out examples");
+  await page.reload();
+  await expect(page.getByRole("dialog")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(paused).toBeFocused();
+  await expect(page.getByRole("button", { name: "By lifecycle", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await page.getByRole("button", { name: "Overview", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Fit evidence", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await page.getByRole("button", { name: "Board", exact: true }).click();
+  await expect(page.getByRole("button", { name: "By lifecycle", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await page.getByRole("button", { name: /^Research \d/ }).click();
+  await expect(page.locator(".board-card")).toHaveCount(1);
+  await page.getByRole("button", { name: "By kind", exact: true }).click();
+  await expect(page.locator(".board-column")).toHaveCount(1);
+  await page.getByRole("searchbox").fill("not-in-source");
+  await expect(page.getByRole("heading", { name: "No matching records" })).toBeVisible();
+  await expect(page.locator(".board-column")).toHaveCount(0);
+  await page.getByRole("button", { name: "Clear filters" }).first().click();
+  await expect(page.locator(".board-card")).toHaveCount(5);
+  await page.getByRole("button", { name: "By lifecycle", exact: true }).click();
+  await page.goBack();
+  await expect(page.getByRole("button", { name: "By kind", exact: true })).toHaveAttribute("aria-pressed", "true");
+});
+
+test("board column jumps and return navigation work with keyboard and phone stacking", async ({ page }) => {
+  await page.goto("/workspace/#/?view=board");
+  const jump = page.getByRole("button", { name: "Jump to Other context column (2 records)", exact: true });
+  await jump.focus();
+  await page.keyboard.press("Enter");
+  const column = page.locator('.board-column[data-group-id="context"]');
+  await expect(column.getByRole("heading")).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(column.locator(".board-card").first()).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("dialog")).toContainText("Synthetic · knowledge workspace");
+  await page.keyboard.press("Escape");
+  await expect(column.locator(".board-card").first()).toBeFocused();
+  await column.getByRole("button", { name: /Back to board columns/ }).click();
+  await expect(page.getByRole("navigation", { name: "Board columns" }).getByRole("button").first()).toBeFocused();
+  const layout = await page
+    .locator(".workspace-board")
+    .evaluate((element) => ({ display: getComputedStyle(element).display, overflow: element.scrollWidth > element.clientWidth }));
+  if ((page.viewportSize()?.width ?? 0) <= 600) {
+    expect(layout.display).toBe("grid");
+    expect(layout.overflow).toBe(false);
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
+test("real Open Presence board groups kinds without manufacturing lifecycle", async ({ page }, testInfo) => {
+  test.skip(!process.env.OBSERVSTORY_LIVE_DATA, "Set OBSERVSTORY_LIVE_DATA to captured public consumer inputs");
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.goto("/live/#/?view=board");
+  await expect(page.locator(".board-card")).toHaveCount(39);
+  await expect(page.locator(".board-column")).toHaveCount(5);
+  await expect(page.locator(".board-summary")).toContainText("39 lifecycle undeclared");
+  const counts = await page.locator(".board-column h2").allTextContents();
+  expect(counts.map((text) => text.trim().replace(/\s+/g, " "))).toEqual([
+    "Research 7",
+    "Concepts 2",
+    "Planning 4",
+    "Implementation 10",
+    "Other context 16",
+  ]);
+  if ((page.viewportSize()?.width ?? 0) <= 600)
+    await page.locator(".board-tools").evaluate((element) => element.scrollIntoView({ block: "start" }));
+  await page.screenshot({ path: testInfo.outputPath("open-presence-board-kinds.png"), fullPage: (page.viewportSize()?.width ?? 0) > 600 });
+  await page.getByRole("button", { name: "Jump to Implementation column (10 records)", exact: true }).click();
+  const implementation = page.locator('.board-column[data-group-id="implementation"]');
+  await expect(implementation.getByRole("heading")).toBeFocused();
+  const artifact = implementation
+    .locator(".board-card")
+    .filter({ hasText: /Observed / })
+    .first();
+  await artifact.click();
+  await expect(page.getByRole("dialog").getByRole("link").first()).toHaveAttribute(
+    "href",
+    /https:\/\/github.com\/blackmath88\/baselhack26-open-presence\//,
+  );
+  await page.keyboard.press("Escape");
+  await expect(artifact).toBeFocused();
+  await page.getByRole("button", { name: "By lifecycle", exact: true }).click();
+  await expect(page.locator(".board-column")).toHaveCount(1);
+  await expect(page.locator(".board-column h2")).toHaveText("Undeclared 39");
+  await expect
+    .poll(() => page.locator(".workspace-board").evaluate((element) => ({ top: element.scrollTop, left: element.scrollLeft })))
+    .toEqual({ top: 0, left: 0 });
+  await expect(page.locator(".board-card")).toHaveCount(39);
+  if ((page.viewportSize()?.width ?? 0) <= 600)
+    await page.locator(".board-tools").evaluate((element) => element.scrollIntoView({ block: "start" }));
+  await page.screenshot({
+    path: testInfo.outputPath("open-presence-board-lifecycle.png"),
+    fullPage: (page.viewportSize()?.width ?? 0) > 600,
+  });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   expect(errors).toEqual([]);
 });
