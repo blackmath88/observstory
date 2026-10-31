@@ -78,6 +78,16 @@ function AppLayout() {
             )}
             {snapshot?.repository.visibility && <span className="label">{capitalise(snapshot.repository.visibility)}</span>}
             <div className="repo-meta">
+              {snapshot && (
+                <span className="counts">
+                  <span className="sr-only">Project summary: </span>
+                  <b>{snapshot.summary.in_flight}</b> in flight ·{" "}
+                  <b className={snapshot.summary.signals.overlap ? "attention-text" : undefined}>{snapshot.summary.signals.overlap}</b>{" "}
+                  {snapshot.summary.signals.overlap === 1 ? "overlap" : "overlaps"} ·{" "}
+                  <b className={snapshot.summary.signals.waiting ? "attention-text" : undefined}>{snapshot.summary.signals.waiting}</b>{" "}
+                  waiting · <b>{snapshot.summary.signals.stale}</b> stale
+                </span>
+              )}
               {fresh && generatedAt ? (
                 <span
                   title={`Snapshot generated ${absolute(generatedAt)}`}

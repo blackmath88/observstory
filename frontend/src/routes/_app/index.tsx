@@ -1,74 +1,67 @@
-import { AlertIcon, ClockIcon, DotFillIcon, GitPullRequestIcon, LinkIcon } from "@primer/octicons-react";
+import { AlertIcon, ClockIcon, GitPullRequestIcon, LinkIcon } from "@primer/octicons-react";
 import { createFileRoute, getRouteApi, Link } from "@tanstack/react-router";
+import { EventClock } from "../../components/overview/EventClock";
+import { LaneBoard } from "../../components/overview/LaneBoard";
+import { Mission } from "../../components/overview/Mission";
+import { ProjectNow } from "../../components/overview/ProjectNow";
+import { RemainingWork } from "../../components/overview/RemainingWork";
 import { SourceStatus } from "../../components/SourceStatus";
 import { absolute } from "../../data/freshness";
 import { activity, SOURCES } from "../../data/load";
-import type { Scene, SceneAttention, Snapshot } from "../../data/types";
+import type { SceneAttention, Snapshot } from "../../data/types";
+import { useNow } from "../../lib/useNow";
 
 export const Route = createFileRoute("/_app/")({ component: Overview });
 const layout = getRouteApi("/_app");
 
+/** Reading order from HACKATHON-PROJECT-VIEW.md: project now and time, the declared mission,
+ *  then activity. Each panel degrades on its own when its input is missing. */
 function Overview() {
   const bundle = layout.useLoaderData();
+  const now = useNow(30_000);
   const act = activity(bundle);
-  if (!act) {
-    return (
-      <div className="flash danger" role="alert">
-        <AlertIcon size={16} />
-        <div>
-          <strong>Activity is unavailable.</strong>
-          <p>
-            The snapshot and scene are both needed to show work in flight. Nothing is shown as zero.{" "}
-            <Link to="/sources">See what went wrong in Data sources</Link>.
-          </p>
-        </div>
-      </div>
-    );
-  }
-  const { snapshot, scene } = act;
+  const timezone = bundle.event.status === "ok" ? bundle.event.data.timezone : undefined;
   return (
     <>
-      <Stats snapshot={snapshot} />
-      {snapshot.provenance.degraded.length > 0 && (
-        <div className="flash caution">
+      <div className="page-grid">
+        <ProjectNow result={bundle.knowledge} />
+        <EventClock result={bundle.event} />
+      </div>
+      {!act ? (
+        <div className="flash danger" role="alert">
           <AlertIcon size={16} />
           <div>
-            <strong>Collection was partial.</strong>
-            <p>{snapshot.provenance.degraded.join("; ")}. Missing parts are shown as unavailable, not as zero.</p>
+            <strong>Activity is unavailable.</strong>
+            <p>
+              The snapshot and scene are both needed to show work in flight. Nothing is shown as zero.{" "}
+              <Link to="/sources">See what went wrong in Data sources</Link>.
+            </p>
           </div>
         </div>
+      ) : (
+        <>
+          <Mission coordination={act.scene.coordination} timezone={timezone} now={now} />
+          {act.snapshot.provenance.degraded.length > 0 && (
+            <div className="flash caution">
+              <AlertIcon size={16} />
+              <div>
+                <strong>Collection was partial.</strong>
+                <p>{act.snapshot.provenance.degraded.join("; ")}. Missing parts are shown as unavailable, not as zero.</p>
+              </div>
+            </div>
+          )}
+          <div className="page-grid">
+            <LaneBoard scene={act.scene} />
+            <aside className="stack" aria-label="Attention and remaining work">
+              <Attention items={act.scene.attention} />
+              <RemainingWork coordination={act.scene.coordination} issues={act.snapshot.issues} timezone={timezone} />
+              <About snapshot={act.snapshot} />
+              <Inputs />
+            </aside>
+          </div>
+        </>
       )}
-      <div className="page-grid">
-        <div style={{ display: "grid", gap: 24, minWidth: 0 }}>
-          <Attention items={scene.attention} />
-          <Lanes scene={scene} />
-        </div>
-        <aside style={{ display: "grid", gap: 24, minWidth: 0 }} aria-label="About this snapshot">
-          <About snapshot={snapshot} />
-          <Inputs />
-        </aside>
-      </div>
     </>
-  );
-}
-
-function Stats({ snapshot }: { snapshot: Snapshot }) {
-  const s = snapshot.summary;
-  const items: [number, string, boolean][] = [
-    [s.in_flight, "in flight", false],
-    [s.signals.overlap, s.signals.overlap === 1 ? "overlap" : "overlaps", s.signals.overlap > 0],
-    [s.signals.waiting, "waiting", s.signals.waiting > 0],
-    [s.signals.stale, "stale", false],
-  ];
-  return (
-    <section className="box stats" aria-label="Project summary">
-      {items.map(([n, label, attn]) => (
-        <div className="stat" key={label}>
-          <div className={`n${attn ? " attention" : ""}`}>{n}</div>
-          <div className="l">{label}</div>
-        </div>
-      ))}
-    </section>
   );
 }
 
@@ -100,54 +93,6 @@ function Attention({ items }: { items: SceneAttention[] }) {
           </div>
         ))
       )}
-    </section>
-  );
-}
-
-/** A compact first pass of the lanes; the full board arrives in the next slice. Quiet lanes
- *  take one line instead of a full column. */
-function Lanes({ scene }: { scene: Scene }) {
-  const zones = [...scene.zones].sort((a, b) => a.order - b.order);
-  return (
-    <section className="box" aria-labelledby="lanes-h">
-      <div className="box-header">
-        <h2 id="lanes-h">Lanes</h2>
-        <span className="end">
-          {zones.filter((z) => z.state === "active").length} active · {zones.length} total
-        </span>
-      </div>
-      {zones.map((z, i) => (
-        <div className="box-row" key={z.id}>
-          <span className="mono muted" style={{ marginTop: 1 }}>
-            {String(i + 1).padStart(2, "0")}
-          </span>
-          <div className="main">
-            <div className="title">
-              {z.label}
-              {z.attention && (
-                <span style={{ color: "var(--attention)", marginLeft: 6 }} title="Something here needs a conversation">
-                  <DotFillIcon size={16} />
-                </span>
-              )}
-            </div>
-            <div className="meta">
-              {z.state === "quiet" ? "quiet" : `${z.in_flight} in flight`}
-              {z.recently_changed.length > 0 && (
-                <>
-                  {" · recently changed "}
-                  {z.recently_changed.map((p, k) => (
-                    <span key={p}>
-                      {k > 0 && ", "}
-                      <code>{p}</code>
-                    </span>
-                  ))}
-                  {z.recently_changed_more > 0 && ` +${z.recently_changed_more}`}
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      ))}
     </section>
   );
 }

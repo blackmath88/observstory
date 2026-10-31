@@ -14,8 +14,8 @@ test("opens a snapshot under a project subpath and shows the repository", async 
   const errors = trackErrors(page);
   await page.goto("/hackathon/");
   await expect(page.locator(".repo-title")).toContainText("northstar/voice-notes");
-  await expect(page.getByLabel("Project summary")).toContainText("in flight");
-  await expect(page.getByRole("heading", { name: "Lanes" })).toBeVisible();
+  await expect(page.locator(".counts")).toContainText("in flight");
+  await expect(page.getByRole("group", { name: "Lanes" })).toBeVisible();
   expect(errors).toEqual([]);
 });
 
@@ -32,7 +32,7 @@ test("direct entry and reload on a hash route work without a server fallback", a
 test("broken inputs fail visibly and never render as zero", async ({ page }) => {
   await page.goto("/broken/");
   await expect(page.getByRole("alert")).toContainText("Activity is unavailable");
-  await expect(page.getByLabel("Project summary")).toHaveCount(0);
+  await expect(page.locator(".counts")).toHaveCount(0);
   await page
     .getByRole("link", { name: /Data sources/ })
     .first()
@@ -52,4 +52,23 @@ test("tabs are keyboard reachable with a visible current page", async ({ page })
   await sources.focus();
   await page.keyboard.press("Enter");
   await expect(sources).toHaveAttribute("aria-current", "page");
+});
+
+test("overview follows the hackathon reading order and degrades per panel", async ({ page }) => {
+  const errors = trackErrors(page);
+  await page.goto("/hackathon/");
+  // knowledge is not published in this fixture: its panel says so, the rest still works
+  await expect(page.getByText("This repository does not publish project knowledge yet.")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Event clock" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Mission" })).toBeVisible();
+  await expect(page.locator(".timeline-row.now")).toHaveCount(1);
+  await expect(page.getByRole("heading", { name: "Remaining work" })).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+test("a quiet project collapses its lanes and keeps every label readable", async ({ page }) => {
+  await page.goto("/quiet/");
+  await expect(page.getByText("Nothing in flight")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Quiet lanes" })).toBeVisible();
+  await expect(page.getByText("No event schedule is published.")).toBeVisible();
 });
