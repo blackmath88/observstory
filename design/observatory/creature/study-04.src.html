@@ -1,0 +1,301 @@
+<title>Observatory Tortoise</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the painted north star, turned into pixel art and brought to life. Stage first, then the frames it is
+   built from, then the creature inside the brutalist product shell. Single theme: concrete at night. */
+:root {
+  color-scheme: dark;
+  --ground: #16171c; --slab: #1d1f25; --slab-2: #24272e; --recess: #121318;
+  --joint: #343842; --joint-hi: #454a55;
+  --ink: #e8e4dc; --ink-2: #b4b2ad; --ink-3: #85847f;
+  --lamp: #f0b35a; --sage: #6fae9a; --signal: #ff9550; --night: #191b38;
+  --label: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "IBM Plex Sans", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+body { background: var(--ground); color: var(--ink); font: 15px/1.55 var(--body); margin: 0; }
+.wrap { max-width: 1260px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 30px; }
+:focus-visible { outline: 2px solid var(--sage); outline-offset: 2px; }
+.lbl { font: 600 13px var(--label); letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); }
+h1 { font: 700 clamp(34px, 5vw, 56px)/0.95 var(--label); letter-spacing: .04em; text-transform: uppercase; margin: 6px 0 0; text-wrap: balance; }
+h2 { font: 700 26px/1 var(--label); letter-spacing: .08em; text-transform: uppercase; margin: 0; }
+.lede { max-width: 72ch; color: var(--ink-2); margin: 10px 0 0; }
+.chamfer { clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%); }
+
+.bench { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 18px; align-items: start; }
+.stage { background: var(--recess); border-top: 2px solid var(--joint); box-shadow: inset 0 3px 0 #0c0d10; padding: 12px; display: grid; gap: 10px; min-width: 0; }
+.stage canvas { display: block; image-rendering: pixelated; max-width: 100%; margin: 0 auto; }
+.caption { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; color: var(--ink-2); font-size: 14px; }
+.caption b { font: 700 18px var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
+.tag { font: 500 12px var(--mono); padding: 1px 8px; border: 1px solid var(--joint-hi); color: var(--ink-2); }
+.tag.signal { border-color: var(--signal); color: var(--signal); }
+.panel { background: var(--slab); border-top: 2px solid var(--joint-hi); padding: 16px; display: grid; gap: 16px; }
+.ctl { display: grid; gap: 6px; }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 2px; background: var(--joint); padding: 2px; }
+.seg button { background: var(--recess); color: var(--ink-2); border: 0; padding: 8px 4px; font: 600 14px var(--label); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--slab-2); color: var(--ink); box-shadow: inset 0 -2px 0 var(--lamp); }
+dl.meaning { margin: 0; border-top: 2px solid var(--joint); padding-top: 12px; display: grid; gap: 4px; font-size: 13px; color: var(--ink-2); }
+dl.meaning dt { font: 700 15px var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
+dl.meaning dd { margin: 0 0 6px; }
+
+section { display: grid; gap: 14px; }
+.sec-h { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; border-bottom: 2px solid var(--joint); padding-bottom: 8px; }
+.sec-h p { margin: 0; color: var(--ink-3); font-size: 14px; max-width: 74ch; }
+.frames { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.frame { background: var(--slab); padding: 10px; display: grid; gap: 8px; min-width: 0; }
+.frame canvas { width: 100%; height: auto; image-rendering: pixelated; display: block; }
+.frame b { font: 700 17px var(--label); letter-spacing: .1em; text-transform: uppercase; }
+.frame span { color: var(--ink-3); font-size: 13px; }
+
+.shell { background: var(--ground); border: 2px solid var(--joint); overflow: hidden; }
+.shell-top { background: var(--slab-2); display: flex; align-items: stretch; box-shadow: 0 4px 0 #0c0d10; position: relative; z-index: 1; padding: 0 22px; flex-wrap: wrap; }
+.shell-top .brand { font: 700 18px var(--label); letter-spacing: .14em; text-transform: uppercase; padding: 14px 18px 14px 0; border-right: 2px solid var(--joint); }
+.shell-top button { background: none; border: 0; color: var(--ink-2); font: 600 17px var(--label); letter-spacing: .12em; text-transform: uppercase; padding: 14px 16px; cursor: pointer; }
+.shell-top button[aria-current="true"] { color: var(--ink); background: var(--ground); box-shadow: inset 0 2px 0 var(--lamp); }
+.shell-top .snap { margin-left: auto; align-self: center; font: 12px var(--mono); color: var(--ink-3); }
+.shell-body { display: grid; grid-template-columns: 300px minmax(0, 1fr); }
+.shell-side { background: var(--night); border-right: 2px solid var(--joint); }
+.shell-side canvas { display: block; image-rendering: pixelated; margin: 0 auto; max-width: 100%; }
+.shell-side .id { padding: 12px 16px; background: var(--slab); border-top: 2px solid var(--joint); }
+.shell-side .id b { font: 700 22px var(--label); letter-spacing: .1em; text-transform: uppercase; display: block; }
+.shell-side .id span { color: var(--ink-2); font-size: 13px; }
+.shell-side .id p { margin: 8px 0 0; color: var(--ink-2); font-size: 13px; }
+.shell-main { padding: 18px; display: grid; gap: 16px; align-content: start; min-width: 0; }
+.ribbon { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; background: #2b2e36; padding: 6px; border-top: 3px solid #3a3e48; box-shadow: 0 3px 0 #0c0d10; }
+.ribbon div { background: var(--recess); box-shadow: inset 0 3px 0 #08090b; padding: 10px 12px; display: grid; gap: 2px; min-width: 0; }
+.ribbon div.lit { background: linear-gradient(#3a2c18, #2a2216); box-shadow: inset 0 3px 0 #1a140c, inset 0 0 0 1px #6a4a22; }
+.ribbon div.attn { box-shadow: inset 0 3px 0 #1a140c, inset 0 0 0 2px var(--signal); }
+.ribbon b { font: 700 16px var(--label); letter-spacing: .14em; text-transform: uppercase; }
+.ribbon .lit b { color: var(--lamp); }
+.ribbon span { font: 12px var(--mono); color: var(--ink-3); }
+.status { background: var(--slab); border-top: 2px solid var(--joint-hi); padding: 12px 16px; display: flex; gap: 16px; align-items: center; }
+.status canvas { image-rendering: pixelated; flex: none; background: var(--night); }
+.status b { font: 700 20px var(--label); letter-spacing: .08em; text-transform: uppercase; display: block; }
+.status span { color: var(--ink-2); font-size: 14px; }
+.rows { background: var(--recess); box-shadow: inset 0 3px 0 #0b0c0f; }
+.rows div { display: grid; grid-template-columns: 14px 1fr auto; gap: 12px; padding: 11px 14px; border-top: 2px solid var(--ground); font-size: 14px; align-items: center; }
+.rows div:first-child { border-top: 0; }
+.rows i { width: 10px; height: 10px; display: block; background: var(--ink-3); }
+.rows i.sig { background: var(--signal); }
+.rows .r { color: var(--ink-3); font: 12px var(--mono); }
+.notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.notes div { background: var(--slab); padding: 12px 14px; }
+.notes b { font: 700 16px var(--label); letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+.notes p { margin: 0; color: var(--ink-2); font-size: 14px; }
+.notes pre { margin: 8px 0 0; white-space: pre-wrap; word-break: break-word; font: 12px/1.5 var(--mono); color: var(--ink-2); background: var(--recess); padding: 8px 10px; }
+
+@media (max-width: 920px) { .bench { grid-template-columns: 1fr; } .shell-body { grid-template-columns: 1fr; } .ribbon { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="lbl">Observstory · direction D · creature study 04 · from the painted north star</div>
+    <h1>Observatory Tortoise</h1>
+    <p class="lede">The owner's painted north star, turned into pixel art at 320×179 with one shared 64-colour palette, cut into layers and brought to life. The telescope now lives in the dome slit. Resting and up are separate painted frames; the dome opens as a pixel reveal that spreads out from the slit. All project data shown is synthetic.</p>
+  </header>
+
+  <div class="bench">
+    <div class="stage">
+      <canvas id="main" aria-label="Animated pixel-art observatory tortoise"></canvas>
+      <div class="caption" id="caption" aria-live="polite"></div>
+    </div>
+    <div class="panel chamfer" role="group" aria-label="Study controls">
+      <div class="ctl"><span class="lbl">State</span><div class="seg" id="c-state"></div></div>
+      <div class="ctl"><span class="lbl">Motion</span><div class="seg" id="c-motion"></div></div>
+      <dl class="meaning">
+        <dt>Resting</dt><dd>Nothing needs a conversation. Dome closed, sleepy eyes behind the portholes, slow breathing; now and then it peeks.</dd>
+        <dt>Up</dt><dd>An overlap or a wait exists. The dome opens, the telescope comes out, the eyes glow, the lantern burns.</dd>
+        <dt>Travelling</dt><dd>Replay is playing. Dome open, a slow plod, shooting stars overhead. A real walk needs leg frames (see below).</dd>
+      </dl>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-h"><h2>Built from these frames</h2><p>Pixelated from the owner's Nano Banana images, same palette, no hand retouching yet. The cut-outs come from the flat-background frame and are what the product uses.</p></div>
+    <div class="frames" id="frames"></div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>In the product shell</h2><p>The creature at 1× in the sidebar corner and as a face in the status card. Everything else stays recessed, plain and legible. Synthetic data.</p></div>
+    <div class="shell" aria-label="Product shell preview (synthetic data)">
+      <div class="shell-top">
+        <span class="brand">Observatory</span>
+        <button type="button" aria-current="true">Overview</button><button type="button">Sky</button><button type="button">List</button><button type="button">Replay</button>
+        <span class="snap">static snapshot · Sat 26 Oct 18:00 UTC</span>
+      </div>
+      <div class="shell-body">
+        <div class="shell-side"><canvas id="corner" aria-hidden="true"></canvas><div class="id"><b>Observatory</b><span>watching synthetic/photo-frame-commons</span><p id="side-cap"></p></div></div>
+        <div class="shell-main">
+          <div class="ribbon" id="ribbon"></div>
+          <div class="status chamfer"><canvas id="portrait" aria-hidden="true"></canvas><div><b id="st-t"></b><span id="st-s"></span></div></div>
+          <div class="rows" id="rows"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>Next frames to generate</h2><p>Same image, identical framing, each as its own request in Nano Banana. These unlock the remaining motion.</p></div>
+    <div class="notes">
+      <div><b>Walk cycle</b><p>Two to four leg poses make a real plod for replay.</p><pre>Same image, identical framing and creature, flat dark background (#191b38). Walking pose: front right leg and back left leg lifted mid-step, body raised slightly off the ground, dome open, lantern lit.</pre></div>
+      <div><b>Telescope aim</b><p>Three angles let the telescope follow the selected lane.</p><pre>Same image, identical framing, flat dark background (#191b38). Only change the telescope angle: pointing almost straight up. Then a second version pointing low toward the right horizon.</pre></div>
+      <div><b>Resting, flat background</b><p>A clean cut-out for the resting state without the meadow behind it.</p><pre>Same image, identical framing and creature, resting version (dome closed, telescope hidden, sleepy eyes, lantern unlit), with a plain flat dark background (#191b38).</pre></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  const W = 320, H = 179, FOOT = 140;
+  const SRC = { up: "%%Q17%%", rest: "%%Q18%%", cutUp: "%%CUTUP%%", cutRest: "%%CUTREST%%" };
+  const BOX = { eyeNear: [116, 74, 46, 37], eyeFar: [79, 86, 21, 27], lantern: [142, 35, 12, 14], birds: [195, 8, 18, 12] };
+  const PIVOT = [182, 40];
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const S = { state: "up", motion: !reduce.matches, t: 0, open: 1 };
+  const px = {};
+
+  function load(src) { return new Promise((res) => { const im = new Image(); im.onload = () => res(im); im.src = src; }); }
+  function pixels(im) { const c = document.createElement("canvas"); c.width = W; c.height = H; const x = c.getContext("2d"); x.drawImage(im, 0, 0); return x.getImageData(0, 0, W, H); }
+
+  let revealOrder = null;      // pixel indices where up and rest differ, ordered from the slit outward
+  let stars = null;            // sky pixels that may twinkle
+  const scratch = document.createElement("canvas"); scratch.width = W; scratch.height = H;
+  const sctx = scratch.getContext("2d");
+  const out = new ImageData(W, H);
+
+  function hash(i) { let h = i * 2654435761 >>> 0; h ^= h >>> 15; return (h % 1000) / 1000; }
+  function inBox(x, y, b) { return x >= b[0] && x < b[0] + b[2] && y >= b[1] && y < b[1] + b[3]; }
+
+  function prepare() {
+    const U = px.up.data, R = px.rest.data, CU = px.cutUp.data, CR = px.cutRest.data;
+    const diff = [];
+    for (let i = 0; i < W * H; i++) {
+      const k = i * 4;
+      if ((CU[k + 3] || CR[k + 3]) && (U[k] !== R[k] || U[k + 1] !== R[k + 1] || U[k + 2] !== R[k + 2])) {
+        const x = i % W, y = (i / W) | 0;
+        if (inBox(x, y, BOX.eyeNear) || inBox(x, y, BOX.eyeFar)) continue;   // eyes are handled separately
+        diff.push([i, Math.hypot(x - PIVOT[0], (y - PIVOT[1]) * 1.3) + hash(i) * 7]);
+      }
+    }
+    diff.sort((a, b) => a[1] - b[1]);
+    revealOrder = diff.map((d) => d[0]);
+    stars = [];
+    for (let y = 0; y < 70; y++) for (let x = 0; x < W; x++) { const i = y * W + x, k = i * 4; if (!CU[k + 3] && !CR[k + 3] && R[k] + R[k + 1] + R[k + 2] > 520) stars.push(i); }
+  }
+
+  function compose(state, t, open, motion) {
+    const U = px.up.data, R = px.rest.data, CU = px.cutUp.data, CR = px.cutRest.data, O = out.data;
+    const base = open > 0.5 ? U : R, other = open > 0.5 ? R : U;
+    O.set(base);
+    // dome opening / closing: reveal the up frame pixel by pixel from the slit
+    const n = revealOrder.length, shown = Math.round(n * open);
+    for (let j = 0; j < n; j++) {
+      const k = revealOrder[j] * 4, src = j < shown ? U : R;
+      O[k] = src[k]; O[k + 1] = src[k + 1]; O[k + 2] = src[k + 2];
+    }
+    void other;
+    // eyes: open and glowing when up, sleepy when resting; blink and peek
+    let eyesOpen = state !== "rest";
+    if (motion && state !== "rest" && t % 62 > 59) eyesOpen = false;          // blink
+    if (motion && state === "rest" && t % 150 > 132) eyesOpen = true;         // a sleepy peek
+    const eyeSrc = eyesOpen ? U : R;
+    for (const b of [BOX.eyeNear, BOX.eyeFar]) for (let y = b[1]; y < b[1] + b[3]; y++) for (let x = b[0]; x < b[0] + b[2]; x++) {
+      const k = (y * W + x) * 4; O[k] = eyeSrc[k]; O[k + 1] = eyeSrc[k + 1]; O[k + 2] = eyeSrc[k + 2];
+    }
+    // breathing (rest) or a plod (travel): the body above the feet rises one pixel
+    const rise = motion && ((state === "rest" && t % 44 < 9) || (state === "travel" && Math.floor(t / 3) % 2 === 0)) ? 1 : 0;
+    if (rise) {
+      const C = open > 0.5 ? CU : CR, src = O.slice();
+      for (let y = 1; y < FOOT; y++) for (let x = 0; x < W; x++) {
+        const k = (y * W + x) * 4; if (!C[k + 3]) continue;
+        const d = ((y - 1) * W + x) * 4; O[d] = src[k]; O[d + 1] = src[k + 1]; O[d + 2] = src[k + 2];
+      }
+    }
+    // warm light: eyes breathe, lantern flickers
+    const warm = (k, f) => { if (O[k] > 150 && O[k] > O[k + 2] + 60) { O[k] = Math.min(255, O[k] * f); O[k + 1] = Math.min(255, O[k + 1] * f); } };
+    if (motion && eyesOpen) { const f = 1 + 0.07 * Math.sin(t / 5); for (const b of [BOX.eyeNear, BOX.eyeFar]) for (let y = b[1]; y < b[1] + b[3]; y++) for (let x = b[0]; x < b[0] + b[2]; x++) warm((y * W + x) * 4, f); }
+    if (motion && open > 0.5) { const f = 0.93 + 0.14 * hash(t); for (let y = BOX.lantern[1]; y < BOX.lantern[1] + BOX.lantern[3]; y++) for (let x = BOX.lantern[0]; x < BOX.lantern[0] + BOX.lantern[2]; x++) warm((y * W + x) * 4, f); }
+    // birds hop now and then
+    if (motion && t % 70 > 64) { const b = BOX.birds, src = O.slice(); for (let y = b[1] + 1; y < b[1] + b[3]; y++) for (let x = b[0]; x < b[0] + b[2]; x++) { const k = (y * W + x) * 4, d = ((y - 1) * W + x) * 4; if (CU[k + 3]) { O[d] = src[k]; O[d + 1] = src[k + 1]; O[d + 2] = src[k + 2]; } } }
+    // stars twinkle
+    if (motion) for (let j = 0; j < stars.length; j++) if (hash(stars[j] + Math.floor(t / 4) * 7) > 0.8) { const k = stars[j] * 4; O[k] *= 0.7; O[k + 1] *= 0.7; O[k + 2] *= 0.8; }
+    // shooting stars while travelling (replay events)
+    if (state === "travel" && motion) { const p = t % 26; if (p < 10) for (let q = 0; q < 6; q++) { const x = 40 + p * 9 - q * 2, y = 8 + p * 3 - q * 0.7; if (x >= 0 && x < W && y >= 0) { const k = (Math.round(y) * W + Math.round(x)) * 4; const v = 255 - q * 30; O[k] = v; O[k + 1] = v; O[k + 2] = Math.min(255, v + 10); } } }
+    return out;
+  }
+
+  function paint(canvas, img, scale, crop, bg) {
+    sctx.putImageData(img, 0, 0);
+    const c = crop || [0, 0, W, H];
+    canvas.width = c[2] * scale; canvas.height = c[3] * scale;
+    const ctx = canvas.getContext("2d"); ctx.imageSmoothingEnabled = false;
+    if (bg) { ctx.fillStyle = bg; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+    ctx.drawImage(scratch, c[0], c[1], c[2], c[3], 0, 0, c[2] * scale, c[3] * scale);
+  }
+  function cutFrame(state, t, motion) {
+    // the product uses the cut-out on the night ground
+    const C = state === "rest" ? px.cutRest : px.cutUp;
+    const img = new ImageData(new Uint8ClampedArray(C.data), W, H);
+    if (motion && state === "rest" && t % 44 < 9) { const s = img.data.slice(); img.data.fill(0); for (let y = 1; y < H; y++) for (let x = 0; x < W; x++) { const k = (y * W + x) * 4, d = ((y - (y < FOOT ? 1 : 0)) * W + x) * 4; if (s[k + 3]) { img.data[d] = s[k]; img.data[d + 1] = s[k + 1]; img.data[d + 2] = s[k + 2]; img.data[d + 3] = 255; } } }
+    if (state !== "rest" && !(motion && t % 62 > 59)) return img;
+    if (state !== "rest") { const R = px.rest.data; for (const b of [BOX.eyeNear, BOX.eyeFar]) for (let y = b[1]; y < b[1] + b[3]; y++) for (let x = b[0]; x < b[0] + b[2]; x++) { const k = (y * W + x) * 4; if (img.data[k + 3]) { img.data[k] = R[k]; img.data[k + 1] = R[k + 1]; img.data[k + 2] = R[k + 2]; } } }
+    return img;
+  }
+
+  const main = document.getElementById("main");
+  const scaleFor = () => Math.max(1, Math.min(4, Math.floor(((main.parentElement.clientWidth || 960) - 24) / W)));
+  function drawLive() {
+    paint(main, compose(S.state, S.t, S.open, S.motion), scaleFor());
+    const cf = cutFrame(S.state, S.t, S.motion);
+    paint(document.getElementById("corner"), cf, 1, [74, 0, 236, 152], "#191b38");
+    paint(document.getElementById("portrait"), cf, 1, [74, 62, 104, 88], "#191b38");
+  }
+  const CAP = {
+    rest: ["Resting", "quiet", "Nothing needs a conversation. It sleeps with the dome closed; now and then it peeks."],
+    up: ["Up", "lantern lit", "Something may need a conversation. The dome is open, the telescope out, the lantern burning."],
+    travel: ["Travelling", "replay", "Replay is playing. It plods through the repository's history under shooting stars."],
+  };
+  function seg(id, opts, get, set) {
+    document.getElementById(id).replaceChildren(...opts.map(([v, label]) => { const b = document.createElement("button"); b.type = "button"; b.textContent = label; b.setAttribute("aria-pressed", String(get() === v)); b.addEventListener("click", () => { set(v); sync(); }); return b; }));
+  }
+  function sync() {
+    seg("c-state", [["rest", "Resting"], ["up", "Up"], ["travel", "Travel"]], () => S.state, (v) => { S.state = v; });
+    seg("c-motion", [[true, "On"], [false, "Off"]], () => S.motion, (v) => { S.motion = v; });
+    if (!S.motion) S.open = S.state === "rest" ? 0 : 1;
+    const [a, tg, b] = CAP[S.state];
+    const cap = document.getElementById("caption"); cap.replaceChildren();
+    const e1 = document.createElement("b"); e1.textContent = a; const e2 = document.createElement("span"); e2.className = "tag" + (S.state === "up" ? " signal" : ""); e2.textContent = tg; const e3 = document.createElement("span"); e3.textContent = b;
+    cap.append(e1, e2, e3);
+    document.getElementById("side-cap").textContent = { rest: "It is resting. Nothing needs a conversation.", up: "It is up. Telescope pointing at Build · src/provenance.", travel: "It is walking through history." }[S.state];
+    const lanes = S.state === "rest" ? [["Intent", "1 item", "lit"], ["Build", "2 items", "lit"], ["Verify", "quiet", ""], ["Ship", "1 item", "lit"]] : [["Intent", "2 items", "lit"], ["Build", "4 items · overlap", "lit attn"], ["Verify", "1 item", "lit"], ["Ship", "1 stale", ""]];
+    document.getElementById("ribbon").replaceChildren(...lanes.map(([n, s2, cls]) => { const d = document.createElement("div"); d.className = cls; const bb = document.createElement("b"); bb.textContent = n; const sp = document.createElement("span"); sp.textContent = s2; d.append(bb, sp); return d; }));
+    const rows = S.state === "rest" ? [["", "Nothing needs a conversation right now.", ""]] : [["sig", "#21 and #22 change src/provenance in parallel", "derived · high"], ["", "voice-notes waits on #22", "heuristic · medium"], ["", "pages-preview idle for 3d (no pull request)", "derived · high"]];
+    document.getElementById("rows").replaceChildren(...rows.map(([c, txt, r]) => { const d = document.createElement("div"); const i = document.createElement("i"); if (c) i.className = c; const s1 = document.createElement("span"); s1.textContent = txt; const s3 = document.createElement("span"); s3.className = "r"; s3.textContent = r; d.append(i, s1, s3); return d; }));
+    document.getElementById("st-t").textContent = { rest: "The observatory is resting", up: "The observatory is up", travel: "Walking through history" }[S.state];
+    document.getElementById("st-s").textContent = { rest: "Nothing needs a conversation", up: "2 things may need a conversation · lantern lit", travel: "Replaying file history · event 12 of 20" }[S.state];
+    drawLive();
+  }
+  function frames() {
+    const list = [["Up · painted", px.up, null, "Telescope in the dome slit, lantern lit, eyes glowing."], ["Resting · painted", px.rest, null, "Dome closed, sleepy eyes behind the portholes."], ["Cut-out · up", px.cutUp, "#191b38", "Mask from the flat-background frame; this is what the product draws."], ["Cut-out · resting", px.cutRest, "#191b38", "Same mask, adapted where the telescope used to be."]];
+    document.getElementById("frames").replaceChildren(...list.map(([title, img, bg, note]) => { const d = document.createElement("div"); d.className = "frame"; const c = document.createElement("canvas"); c.setAttribute("aria-hidden", "true"); paint(c, img, 2, null, bg); const b = document.createElement("b"); b.textContent = title; const s = document.createElement("span"); s.textContent = note; d.append(c, b, s); return d; }));
+  }
+
+  Promise.all(Object.entries(SRC).map(([k, v]) => load(v).then((im) => { px[k] = pixels(im); }))).then(() => {
+    prepare(); frames(); sync();
+    window.addEventListener("resize", drawLive);
+    reduce.addEventListener("change", () => { S.motion = !reduce.matches; sync(); });
+    setInterval(() => {
+      if (!S.motion || document.visibilityState !== "visible") return;
+      S.t++;
+      const target = S.state === "rest" ? 0 : 1;
+      S.open += Math.max(-0.07, Math.min(0.07, target - S.open));
+      drawLive();
+    }, 100);
+  });
+})();
+</script>

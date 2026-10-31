@@ -1,5 +1,21 @@
 # Walking Observatory: creature studies
 
+## Study 04 (current): the painted north star, as pixel art
+
+- Live page: https://claude.ai/artifact/QybWhMBVmFUW8E6Vxqyt83 (private to the owner until shared)
+- Source: `study-04.src.html`. `build-04.py` inlines `frames/*.png` into `study-04.html`.
+- Frames: the owner's Nano Banana images `references/generated/06–09`.
+  - They are resized to 320×179 and quantised to one shared 64-colour palette.
+  - The creature is cut out with `rig/mask.mjs`; `rig/README.md` has the steps.
+- Animation:
+  - the dome opens as a pixel reveal that spreads out from the slit;
+  - the eyes blink, peek while resting, and glow;
+  - it breathes while resting and bobs 1px while travelling;
+  - the lantern flickers, the stars twinkle and the birds hop;
+  - shooting stars appear during replay.
+- Not possible yet without more frames: a real walk cycle and telescope aim. The page lists the
+  Nano Banana prompts for those frames.
+
 ## Study 03 (current): brutalism as anatomy
 
 - Live page: https://claude.ai/artifact/TWaKX6op5eq4oYz48pcHQJ (private to the owner until shared)
