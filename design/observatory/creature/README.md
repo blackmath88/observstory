@@ -2,7 +2,7 @@
 
 ## Study 04 (current): the painted north star, as pixel art
 
-- Live page: https://claude.ai/artifact/QybWhMBVmFUW8E6Vxqyt83 (private to the owner until shared)
+- Live page: https://claude.ai/artifact/MsBgeMUrkqemu7v9hyLF5n (private to the owner until shared)
 - Source: `study-04.src.html`. `build-04.py` inlines `frames/*.png` into `study-04.html`.
 - Frames: the owner's Nano Banana images `references/generated/06–09`.
   - They are resized to 320×179 and quantised to one shared 64-colour palette.
