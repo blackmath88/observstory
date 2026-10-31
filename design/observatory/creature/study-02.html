@@ -1,0 +1,766 @@
+<title>Walking Observatory II</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a workshop bench at dusk. One large stage on the left, the instrument panel of controls on the right,
+   then the evidence a decision needs: side-by-side variants, seeded variations, actual-size preview, prompts.
+   Deliberately single-theme (dusk): the creature is drawn for the product's dark shell. */
+:root {
+  color-scheme: dark;
+  --ground: #12111f;      /* page */
+  --bench: #1a1930;       /* panels */
+  --bench-2: #22213c;     /* raised */
+  --line: #33315a;        /* 1px rules */
+  --ink: #efe7d8;         /* warm paper ink */
+  --ink-2: #b9b0c8;
+  --ink-3: #8b84a3;
+  --brass: #dcb768;       /* the one accent: controls, focus */
+  --signal: #ff9550;      /* reserved: "needs a conversation" (lantern) */
+  --paper: #efe3c6; --paper-ink: #2a2233;
+  --display: "Alegreya", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --body: "IBM Plex Sans", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+* { box-sizing: border-box; }
+body { background: var(--ground); color: var(--ink); font: 15px/1.55 var(--body); margin: 0; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 28px; }
+h1, h2 { font-family: var(--display); font-weight: 700; text-wrap: balance; margin: 0; letter-spacing: .005em; }
+h1 { font-size: clamp(30px, 4vw, 44px); line-height: 1.05; }
+h2 { font-size: 24px; }
+.eyebrow { font: 500 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.lede { max-width: 68ch; color: var(--ink-2); margin: 8px 0 0; }
+.lede em { color: var(--ink); font-style: italic; font-family: var(--display); font-size: 1.08em; }
+:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+.bench { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; align-items: start; }
+.stage { background: #0c0b16; border: 1px solid var(--line); border-radius: 6px; padding: 12px; display: grid; gap: 10px; min-width: 0; }
+.stage canvas { display: block; image-rendering: pixelated; max-width: 100%; margin: 0 auto; border-radius: 2px; }
+.caption { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; font-size: 14px; color: var(--ink-2); }
+.caption b { color: var(--ink); font-weight: 600; }
+.pill { font: 500 12px var(--mono); border: 1px solid var(--line); border-radius: 99px; padding: 1px 9px; color: var(--ink-2); }
+.pill.signal { border-color: var(--signal); color: var(--signal); }
+
+.panel { background: var(--bench); border: 1px solid var(--line); border-radius: 6px; padding: 14px; display: grid; gap: 14px; }
+.ctl { display: grid; gap: 6px; }
+.ctl > label, .ctl > .lbl { font: 500 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+.seg button { background: var(--bench); color: var(--ink-2); border: 0; border-right: 1px solid var(--line); padding: 7px 6px; font: 500 13px var(--body); cursor: pointer; }
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed="true"] { background: var(--bench-2); color: var(--ink); box-shadow: inset 0 -2px 0 var(--brass); }
+.row { display: flex; gap: 8px; align-items: center; }
+.btn { background: var(--bench-2); color: var(--ink); border: 1px solid var(--line); border-radius: 5px; padding: 6px 10px; font: 500 13px var(--body); cursor: pointer; }
+.btn:hover { border-color: var(--brass); }
+input[type=range] { width: 100%; accent-color: var(--brass); }
+.meaning { font-size: 13px; color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 12px; display: grid; gap: 6px; }
+.meaning dt { color: var(--ink); font-weight: 600; }
+.meaning dd { margin: 0 0 4px; }
+.mono { font-family: var(--mono); font-size: 12px; }
+
+section { display: grid; gap: 12px; }
+.sec-h { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; }
+.sec-h p { margin: 0; color: var(--ink-3); font-size: 14px; max-width: 70ch; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.card { background: var(--bench); border: 1px solid var(--line); border-radius: 6px; padding: 10px; display: grid; gap: 8px; min-width: 0; }
+.card canvas { width: 100%; height: auto; image-rendering: pixelated; display: block; border-radius: 2px; }
+.card button.pick { all: unset; cursor: pointer; display: grid; gap: 8px; }
+.card button.pick:focus-visible { outline: 2px solid var(--brass); outline-offset: 4px; }
+.card .t { font-weight: 600; }
+.card .s { font-size: 13px; color: var(--ink-3); }
+.card.on { border-color: var(--brass); }
+
+.actual { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 16px; align-items: start; }
+.mock-side { background: #191931; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.mock-side canvas { display: block; image-rendering: pixelated; }
+.mock-side .id { padding: 12px 16px; border-top: 1px solid var(--line); }
+.mock-side .id b { font-size: 20px; display: block; }
+.mock-side .id span { color: var(--ink-2); font-size: 13px; }
+.mock-card { background: #20203b; border: 1px solid var(--line); border-radius: 6px; padding: 12px 16px; display: flex; gap: 16px; align-items: center; }
+.mock-card canvas { image-rendering: pixelated; flex: none; }
+.mock-card b { display: block; font-size: 18px; }
+.mock-card span { color: var(--ink-2); font-size: 14px; }
+
+.prompts { display: grid; gap: 12px; }
+.prompt { background: var(--bench); border: 1px solid var(--line); border-radius: 6px; padding: 14px; display: grid; gap: 8px; min-width: 0; }
+.prompt-h { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.prompt-h b { font-family: var(--display); font-size: 19px; }
+.prompt pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 13px/1.55 var(--mono); color: var(--ink-2); background: #12111f; border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px; }
+.note { font-size: 14px; color: var(--ink-2); border-left: 2px solid var(--brass); padding: 2px 12px; max-width: 80ch; }
+.decide { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.decide div { background: var(--bench); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+.decide b { display: block; margin-bottom: 4px; }
+.decide p { margin: 0; color: var(--ink-2); font-size: 14px; }
+
+@media (max-width: 900px) {
+  .bench { grid-template-columns: 1fr; }
+  .actual { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Observstory · direction D · creature study 02</div>
+    <h1>Walking Observatory II</h1>
+    <p class="lede">This time the observatory is the whole creature. The patched dome and its stone drum are the body, the telescope is the snout, and the portholes are its eyes. The tinkering is all instruments: armillary or anemometer on the crown, a turret dome, a sextant arm, a heliostat mirror, ladders, a balcony walkway and ivy. The palette is cooler: verdigris, slate and stone, with brass only as accents. <em>Tinkered, wholesome, unhurried.</em> Every pixel is drawn by code from a seed. All project data mentioned here is synthetic.</p>
+  </header>
+
+  <div class="bench">
+    <div class="stage">
+      <canvas id="main" width="640" height="480" aria-label="Animated pixel-art observatory creature"></canvas>
+      <div class="caption" id="caption" aria-live="polite"></div>
+    </div>
+    <div class="panel" role="group" aria-label="Study controls">
+      <div class="ctl"><span class="lbl">Variant</span><div class="seg" id="c-variant"></div></div>
+      <div class="ctl"><span class="lbl">State</span><div class="seg" id="c-state"></div></div>
+      <div class="ctl"><span class="lbl">Sky</span><div class="seg" id="c-sky"></div></div>
+      <div class="ctl"><label for="c-aim">Telescope aim · follows the selected lane</label><input id="c-aim" type="range" min="-50" max="60" step="5" value="25"></div>
+      <div class="ctl"><span class="lbl">Details</span>
+        <div class="row"><button class="btn" id="c-prev" type="button" aria-label="Previous detail seed">◀</button><span class="mono" id="c-seed"></span><button class="btn" id="c-next" type="button" aria-label="Next detail seed">▶</button><button class="btn" id="c-motion" type="button" aria-pressed="true">Motion on</button></div>
+      </div>
+      <dl class="meaning">
+        <dt>Resting</dt><dd>Nothing needs a conversation. Lying down or landed; eyes half closed, a thin wisp from the stove.</dd>
+        <dt>Up</dt><dd>An overlap or a waiting dependency exists. It stands, eye open, lantern lit.</dd>
+        <dt>Travelling</dt><dd>Replay is playing. It walks (or drifts) through the repository's history.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-h"><h2>Three ways to move</h2><p>Same observatory, same seed, current state. Pick the locomotion that feels most like it.</p></div>
+    <div class="cards" id="trio"></div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>Variations</h2><p>Six detail seeds of the selected variant: crown instrument, turret, sextant, mirror, ladder, stovepipe, patches and ivy. Click one to put it on the stage.</p></div>
+    <div class="cards" id="vars"></div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>At actual size</h2><p>How it reads in the product: the 300px sidebar corner at 2×, and the status-card portrait at 1×. Detail has to survive this.</p></div>
+    <div class="actual">
+      <div class="mock-side"><canvas id="side" width="300" height="220" aria-label="Sidebar preview"></canvas><div class="id"><b>Observatory</b><span>watching synthetic/photo-frame-commons</span></div></div>
+      <div style="display:grid;gap:12px;min-width:0">
+        <div class="mock-card"><canvas id="portrait" width="96" height="72" aria-label="Status card portrait"></canvas><div><b id="pc-t">The observatory is up</b><span id="pc-s">2 things may need a conversation · lantern lit</span></div></div>
+        <p class="note">At 1× the houses blur into texture and only silhouette, legs, eye and lantern read. That is the right hierarchy: posture and lantern carry the state; the tinkered detail is reward for looking closer.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>Image-generation prompts</h2><p>For exploring the look before committing pixels. They describe qualities, not a film, so whatever comes back is our own creature. Treat outputs as reference only.</p></div>
+    <div class="prompts" id="prompts"></div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>Decisions for you</h2></div>
+    <div class="decide">
+      <div><b>Locomotion</b><p>Tortoise (sturdy, closest to round 3), stilt-walker (most "walking house"), or drifter (hovers; most magical, least grounded).</p></div>
+      <div><b>Fidelity</b><p>This study draws at 160×120 art pixels with shading and dithering. Higher reads richer but animates slower to hand-tune; lower returns to the round-3 chunkiness.</p></div>
+      <div><b>Face</b><p>Two porthole windows read as eyes and the telescope as a snout. Keep it subtle (current), add a brow (a cornice over the portholes), or let only one porthole glow.</p></div>
+      <div><b>Material</b><p>Verdigris dome on cool stone with slate patches (current), a darker slate dome, or a pale whitewashed drum for more contrast.</p></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  /* ═══ palette: ramps, dark → light ═══ */
+  const R = {
+    ink: ["#0e0f1a"],
+    slate: ["#1b2130", "#28323f", "#3a4859", "#536779", "#7a8fa1", "#a7bbc9"],
+    plaster: ["#454a5d", "#676d82", "#9298aa", "#bfc3cc", "#e2e3e6"],
+    verd: ["#16383b", "#205150", "#2b6d67", "#418d7d", "#68ae98", "#a2d1ba"],
+    copR: ["#4e2c24", "#7d4a35", "#ad6d4b", "#d39470"],
+    brass: ["#4a3d20", "#7c6833", "#b5984f", "#d9c27a", "#f2e5ad"],
+    enamel: ["#323a4e", "#636e88", "#9ea8bc", "#d1d7e1", "#f2f4f7"],
+    wood: ["#262126", "#3d3438", "#58494c", "#76645f"],
+    moss: ["#173025", "#21472f", "#356a3c", "#5d9150", "#97bc6b"],
+    lamp: ["#7a4a2c", "#c27a3c", "#f0b35a", "#ffd98a", "#fff3cf"],
+    signal: ["#a13f1d", "#ff9550", "#ffd0a3"],
+    cloth: ["#727787", "#a7abb7", "#d6d8de", "#f2f3f5"],
+  };
+
+  const SKY = {
+    dusk: {
+      sky: ["#141632", "#1c1f44", "#282955", "#3d3363", "#5e4371", "#8c5a7d", "#b77584"],
+      cloud: ["#3d3561", "#5e4a77", "#8a6084", "#b97b8c", "#dc9c99"],
+      mtn: ["#22243f", "#2f3053", "#403f66"], snow: ["#6f6c93", "#9592b6"],
+      meadow: ["#16281f", "#1f3a29", "#2d4f33", "#43683f", "#5f8248"],
+      flower: ["#e7c66a", "#cfc8e2", "#d98593"], star: "#efe3c6",
+      smoke: ["#3a3b52", "#55576f", "#777a90", "#a1a3b6"], shadow: "#0e1a14", lampBoost: 1,
+    },
+    day: {
+      sky: ["#2a5c9e", "#3570b2", "#4a87c3", "#679fd2", "#8ab8df", "#b2d0ea", "#d4e5f2"],
+      cloud: ["#9fb0c8", "#c4d0e0", "#e2e9f2", "#f7f9fc", "#ffffff"],
+      mtn: ["#4e6584", "#6a819e", "#8a9fb8"], snow: ["#dbe6ef", "#f6f9fb"],
+      meadow: ["#2f5a26", "#3f7330", "#57903a", "#78ad48", "#9fc95c"],
+      flower: ["#f2d14b", "#f3f5f8", "#e0697a"], star: null,
+      smoke: ["#6d7385", "#8e94a4", "#b4b9c5", "#d9dce3"], shadow: "#2a4a22", lampBoost: 0,
+    },
+  };
+  const W = 160, H = 120, GROUND = 104;
+  const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5].map((v) => (v + 0.5) / 16);
+  const bay = (x, y) => BAYER[(x & 3) + ((y & 3) << 2)];
+  const toInt = (h) => { const n = parseInt(h.slice(1), 16); return (0xff << 24) | ((n & 0xff) << 16) | (n & 0xff00) | ((n >> 16) & 0xff); };
+  const CACHE = new Map();
+  const C = (h) => { let v = CACHE.get(h); if (v === undefined) { v = toInt(h); CACHE.set(h, v); } return v; };
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+  function mulberry32(seed) { let a = seed >>> 0; return () => { a = (a + 0x6d2b79f5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+
+  class Buf {
+    constructor(w, h) { this.w = w; this.h = h; this.p = new Uint32Array(w * h); this.tag = new Uint8Array(w * h); }
+    set(x, y, hex, tag) { x = Math.round(x); y = Math.round(y); if (x < 0 || y < 0 || x >= this.w || y >= this.h) return; const i = y * this.w + x; this.p[i] = C(hex); if (tag) this.tag[i] = tag; }
+    get(x, y) { x = Math.round(x); y = Math.round(y); if (x < 0 || y < 0 || x >= this.w || y >= this.h) return 0; return this.p[y * this.w + x]; }
+    rect(x, y, w, h, hex) { for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) this.set(x + i, y + j, hex); }
+  }
+  /* pick from a ramp with ordered dither between steps */
+  const DITHER = 0.35;   // 0 = hard bands, 1 = full ordered dither; hand-made pixel art keeps it near the edges
+  function rd(ramp, v, x, y) { const f = clamp(v, 0, 1) * (ramp.length - 1); let i = Math.floor(f); if (f - i > 0.5 + (bay(x, y) - 0.5) * DITHER) i++; return ramp[clamp(i, 0, ramp.length - 1)]; }
+
+  /* shaded ellipsoid; light from upper-left */
+  function blob(b, cx, cy, rx, ry, ramp, o = {}) {
+    for (let y = Math.floor(cy - ry); y <= Math.ceil(cy + ry); y++) {
+      if (o.half && y > cy) continue;
+      for (let x = Math.floor(cx - rx); x <= Math.ceil(cx + rx); x++) {
+        const nx = (x + 0.5 - cx) / rx, ny = (y + 0.5 - cy) / ry, d = nx * nx + ny * ny;
+        if (d > 1) continue;
+        const nz = Math.sqrt(1 - d);
+        let v = (o.v0 ?? 0.45) + 0.42 * (-0.55 * nx - 0.6 * ny) + 0.28 * nz - 0.12;
+        if (o.fn) { const r = o.fn(nx, ny, x, y, v); if (r === null) continue; if (typeof r === "number") v = r; else if (typeof r === "string") { b.set(x, y, r); continue; } }
+        b.set(x, y, rd(ramp, v, x, y));
+      }
+    }
+  }
+  /* vertical cylinder */
+  function cyl(b, x, y, w, h, ramp, v0 = 0.5, cap = true) {
+    for (let i = 0; i < w; i++) {
+      const nx = ((i + 0.5) / w) * 2 - 1;
+      const v = v0 - 0.38 * nx + 0.12 * Math.sqrt(1 - nx * nx) - 0.06;
+      for (let j = 0; j < h; j++) b.set(x + i, y + j, rd(ramp, v - j * 0.004, x + i, y + j));
+    }
+    if (cap) for (let i = 0; i < w; i++) b.set(x + i, y, rd(ramp, v0 + 0.25, x + i, y));
+  }
+  /* shaded thick segment (pipes, legs, telescope) */
+  function seg(b, x0, y0, x1, y1, w, ramp, v0 = 0.5, round = true) {
+    const dx = x1 - x0, dy = y1 - y0, L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L, nx = -uy, ny = ux;
+    const hw = w / 2, lit = nx * -0.6 + ny * -0.8;
+    const minx = Math.floor(Math.min(x0, x1) - w), maxx = Math.ceil(Math.max(x0, x1) + w);
+    const miny = Math.floor(Math.min(y0, y1) - w), maxy = Math.ceil(Math.max(y0, y1) + w);
+    for (let py = miny; py <= maxy; py++) for (let px = minx; px <= maxx; px++) {
+      const rx = px + 0.5 - x0, ry = py + 0.5 - y0;
+      let t = rx * ux + ry * uy;
+      const o = rx * nx + ry * ny;
+      if (Math.abs(o) > hw) continue;
+      if (t < 0 || t > L) { if (!round) continue; const ex = t < 0 ? 0 : L; if (Math.hypot(t - ex, o) > hw) continue; }
+      const k = o / hw;
+      const v = v0 + 0.36 * k * Math.sign(lit || 1) - 0.12 * k * k;
+      b.set(px, py, rd(ramp, v, px, py));
+    }
+  }
+  function line(b, x0, y0, x1, y1, hex) {
+    const n = Math.max(Math.abs(x1 - x0), Math.abs(y1 - y0), 1);
+    for (let i = 0; i <= n; i++) b.set(x0 + ((x1 - x0) * i) / n, y0 + ((y1 - y0) * i) / n, hex);
+  }
+  function disc(b, cx, cy, r, hex) { for (let y = -r; y <= r; y++) for (let x = -r; x <= r; x++) if (x * x + y * y <= r * r + r * 0.6) b.set(cx + x, cy + y, hex); }
+
+  /* ═══ little parts ═══ */
+  function house(b, x, base, w, h, o, rnd, lit) {
+    const top = base - h;
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) {
+      const v = 0.62 - (i / w) * 0.35 + (j < 2 ? 0.08 : 0);
+      b.set(x + i, top + j, rd(R.plaster, v, x + i, top + j));
+    }
+    // timber frame
+    for (let j = 0; j < h; j++) { b.set(x, top + j, R.wood[2]); b.set(x + w - 1, top + j, R.wood[1]); }
+    for (let i = 0; i < w; i++) { b.set(x + i, base - 1, R.wood[1]); if (h > 7) b.set(x + i, top + Math.floor(h / 2), R.wood[2]); }
+    if (h > 7 && w > 9) line(b, x + 1, top + Math.floor(h / 2) - 1, x + 3, top + 1, R.wood[2]);
+    // windows
+    const nwin = w > 10 ? 2 : 1;
+    for (let k = 0; k < nwin; k++) {
+      const wx = x + 2 + k * Math.floor((w - 4) / nwin) + (nwin === 1 ? Math.floor((w - 6) / 2) : 0), wy = top + 2;
+      const on = lit && rnd() > 0.15;
+      b.rect(wx, wy, 3, 3, on ? R.lamp[3] : R.slate[1]);
+      if (on) { b.set(wx + 1, wy + 1, R.lamp[4]); b.set(wx + 2, wy + 2, R.lamp[2]); }
+      b.set(wx + 1, wy, R.wood[1]); b.set(wx + 1, wy + 2, R.wood[1]);
+      if (h > 8 && rnd() > 0.5) { b.rect(wx - 1, wy + 3, 5, 1, R.wood[2]); b.set(wx, wy + 2, R.moss[3]); b.set(wx + 2, wy + 2, rnd() > 0.5 ? "#d98593" : "#e7c66a"); }
+    }
+    if (o.door) { b.rect(x + w - 4, base - 5, 3, 4, R.wood[1]); b.set(x + w - 3, base - 4, lit ? R.lamp[2] : R.wood[3]); }
+    // roof
+    const ramp = o.roof === "slate" ? R.slate : R.roof;
+    const rh = o.rh ?? Math.ceil(w / 2) + 1;
+    for (let j = 0; j < rh; j++) {
+      const half = Math.round(((j + 1) / rh) * (w / 2 + 1.5));
+      const mid = x + w / 2 - 0.5;
+      for (let i = -half; i <= half; i++) {
+        const px = Math.round(mid + i), py = top - rh + j;
+        const left = i < 0;
+        let v = left ? 0.68 : 0.36;
+        if ((j % 2 === 1) && ((px + j) % 3 === 0)) v -= 0.22;
+        b.set(px, py, rd(ramp, v, px, py));
+      }
+    }
+    for (let i = -1; i <= w; i++) b.set(x + i, top, ramp[0]);
+    if (rnd() > 0.55) { const mx = x + 1 + Math.floor(rnd() * (w - 2)); b.set(mx, top - 1, R.moss[3]); b.set(mx + 1, top - 1, R.moss[2]); }
+    if (o.pot) { cyl(b, x + w - 4, top - rh + 1, 2, 3, R.roof, 0.4); }
+  }
+
+  function cog(b, cx, cy, r, ang) {
+    for (let k = 0; k < 8; k++) { const a = ang + (k * Math.PI) / 4; seg(b, cx, cy, cx + Math.cos(a) * (r + 1.5), cy + Math.sin(a) * (r + 1.5), 2, R.brass, 0.45, false); }
+    blob(b, cx, cy, r, r, R.brass, { v0: 0.55 });
+    disc(b, cx, cy, 1, R.brass[0]);
+  }
+
+  /* ═══ the creature: the observatory is the whole body ═══ */
+  function plan(seed) {
+    const r = mulberry32(seed * 7919 + 13);
+    return {
+      top: ["armillary", "anemometer", "vane"][Math.floor(r() * 3)],
+      turret: r() > 0.3,
+      sextant: r() > 0.4,
+      mirror: r() > 0.5,
+      ladder: r() > 0.35,
+      stove: r() > 0.25,
+      pennant: r() > 0.5,
+      ivy: 0.35 + r() * 0.5,
+      patches: Array.from({ length: 4 }, () => [Math.floor(r() * 7), Math.floor(r() * 3), r() > 0.65 ? "copper" : "slate"]),
+      hatch: Math.floor(r() * 2),
+      rnd: r,
+    };
+  }
+
+  function creature(b, o) {
+    const pl = plan(o.seed);
+    const rnd = mulberry32(o.seed * 31 + 7);
+    const st = o.state, v = o.variant, t = o.t;
+    const up = st !== "rest", travel = st === "travel";
+    let lift;
+    if (v === "tortoise") lift = up ? 13 : 3;
+    else if (v === "stilt") lift = up ? 24 : 11;
+    else lift = up ? 24 : 7;
+    let bob = 0;
+    if (travel && v !== "drifter") bob = Math.floor(t / 2) % 2;
+    if (v === "drifter" && up) bob = Math.round(Math.sin(t / 5) * 2);
+    if (!up && o.motion) bob = (t % 40) < 6 ? 1 : 0;              // breathing
+
+    const hx = 80;
+    const drumW = 24, drumH = 16;                                  // half-width, height
+    const drumBot = GROUND - lift + bob, drumTop = drumBot - drumH;
+    const dCx = hx - 1, dCy = drumTop - 2, dRx = 26, dRy = 24;     // the dome
+    const out = { smoke: [], hull: { hx, hy: drumTop + 8, rx: drumW, ry: 10 } };
+    const phase = travel ? t / 3 : 0;
+
+    /* ── legs (far side first) ── */
+    function stumpLeg(lx, far, ph) {
+      const lifted = travel ? Math.max(0, Math.sin(ph)) * 3 : 0;
+      const sx = travel ? Math.cos(ph) * 2 : 0;
+      const top = drumBot - 4, bot = GROUND - lifted, len = bot - top;
+      const ramp = far ? R.slate.slice(0, 4) : R.slate;
+      for (let j = 0; j <= len; j++) {
+        const yy = top + j, f = j / len, half = 4.4 - f * 1.3 + (f > 0.8 ? (f - 0.8) * 10 : 0);
+        const cxl = lx + sx * f + Math.sin(f * Math.PI) * 0.7;
+        for (let x = Math.floor(cxl - half); x <= Math.ceil(cxl + half); x++) {
+          const k = (x + 0.5 - cxl) / half; if (Math.abs(k) > 1) continue;
+          let val = (far ? 0.28 : 0.55) - 0.32 * k - 0.1 * k * k;
+          if (!far && j % 4 === 2 && Math.abs(k) < 0.8) val -= 0.16;
+          b.set(x, yy, rd(ramp, val, x, yy));
+        }
+      }
+      if (!far) { [-3, 0, 3].forEach((d) => b.set(lx + sx + d, bot, R.plaster[4])); b.rect(lx - 3, top + 3, 7, 1, R.brass[2]); }
+    }
+    function stiltLeg(hipx, far, ph) {
+      const hipy = drumBot - 3;
+      const swing = travel ? Math.sin(ph) * 0.45 : 0;
+      const crouch = !up;
+      const a1 = (crouch ? -0.95 : 0.25) + swing;
+      const L1 = 13, L2 = crouch ? 13 : 15;
+      const kx = hipx + Math.sin(a1) * L1 * (crouch ? 1.2 : 1), ky = hipy + Math.cos(a1) * L1 * (crouch ? 0.35 : 1);
+      const lifted = travel ? Math.max(0, -Math.sin(ph)) * 3 : 0;
+      const fx = hipx + (crouch ? -4 : swing * 6), fy = GROUND - lifted;
+      const ramp = far ? R.slate.slice(0, 4) : R.slate;
+      seg(b, hipx, hipy, kx, ky, 5, ramp, far ? 0.3 : 0.6);
+      seg(b, kx, ky, fx, fy - 2, 4, ramp, far ? 0.25 : 0.5);
+      void L2;
+      if (!far) seg(b, hipx + 2, hipy + 2, kx + 1, ky - 1, 1.5, R.brass, 0.6, false);
+      blob(b, kx, ky, 2.6, 2.6, far ? R.brass.slice(0, 3) : R.brass, { v0: 0.6 });
+      for (let k = -1; k <= 1; k++) seg(b, fx, fy - 1, fx + 4 + k, fy, 1.6, ramp, 0.45, false);
+      seg(b, fx, fy - 1, fx - 3, fy, 1.6, ramp, 0.45, false);
+    }
+    if (v === "tortoise" && up) { stumpLeg(hx - 11, true, phase + Math.PI); stumpLeg(hx + 17, true, phase); }
+    if (v === "stilt") { stiltLeg(hx - 6, true, phase + Math.PI / 2); stiltLeg(hx + 13, true, phase + Math.PI * 1.5); }
+
+    /* ── behind the dome: stovepipe, turret, mirror ── */
+    if (pl.stove) {
+      const sx = hx - 18, sh = 34;
+      cyl(b, sx, drumTop - sh + 6, 3, sh, R.slate, 0.55);
+      b.rect(sx - 1, drumTop - sh + 5, 5, 2, R.slate[1]); b.rect(sx - 1, drumTop - sh + 5, 5, 1, R.slate[4]);
+      b.rect(sx, drumTop - sh + 16, 3, 1, R.brass[2]);
+      out.smoke.push({ x: sx + 1.5, y: drumTop - sh + 3, k: 0 });
+    }
+    if (pl.mirror) {   // heliostat on a pole, behind the left shoulder
+      const mx = hx - 29, my = drumTop - 20;
+      seg(b, mx + 2, drumTop + 2, mx + 2, my + 3, 1.2, R.brass, 0.5, false);
+      blob(b, mx + 2, my, 3.4, 3.4, R.enamel, { v0: 0.75, fn: (nx, ny, x, y, val) => (nx * nx + ny * ny > 0.6 ? R.brass[2] : val) });
+      b.set(mx + 1, my - 1, R.enamel[4]);
+    }
+
+    /* ── drum: the observatory's stone body ── */
+    for (let j = 0; j < drumH; j++) {
+      const yy = drumTop + j;
+      for (let i = -drumW; i <= drumW; i++) {
+        const nx = (i + 0.5) / drumW;
+        let val = 0.62 - 0.36 * nx + 0.1 * Math.sqrt(Math.max(0, 1 - nx * nx)) - j * 0.008;
+        const course = (j + 2) % 5 === 0;
+        const joint = ((i + (Math.floor((j + 2) / 5) % 2 ? 0 : 4)) % 8 === 0) && !course;
+        if (course || joint) val -= 0.2;
+        b.set(hx + i, yy, rd(R.plaster, val, hx + i, yy));
+      }
+    }
+    for (let i = -drumW - 1; i <= drumW + 1; i++) { b.set(hx + i, drumBot - 1, rd(R.slate, 0.45 - i * 0.008, hx + i, drumBot)); b.set(hx + i, drumBot, R.slate[1]); }
+    // door with a working lamp, left
+    const dx0 = hx - 15;
+    for (let j = 0; j < 9; j++) for (let i = 0; i < 5; i++) {
+      if (j === 0 && (i === 0 || i === 4)) continue;
+      const edge = i === 0 || i === 4 || j === 0;
+      b.set(dx0 + i, drumBot - 10 + j, edge ? R.slate[1] : (i === 2 && j > 3 ? R.lamp[4] : R.lamp[3]));
+    }
+    b.set(dx0 + 3, drumBot - 5, R.brass[3]);
+    // the eyes: two porthole windows facing forward
+    const eyeOpen = up ? (o.motion && t % 64 > 61 ? 0 : 1) : 0.25;
+    [hx + 6, hx + 15].forEach((ex, i) => {
+      const ey = drumTop + 7;
+      blob(b, ex, ey, 3.6, 3.6, R.brass, { v0: 0.62 });
+      blob(b, ex + 0.2, ey + 0.2, 2.3, 2.3, R.lamp, { v0: 0.45 + eyeOpen * 0.45, fn: (nx, ny) => (ny < -1 + (1 - eyeOpen) * 2 ? R.verd[1] : undefined) });
+      if (eyeOpen > 0.5) { b.set(ex + 1, ey, R.ink[0]); b.set(ex + 1, ey + 1, R.ink[0]); b.set(ex - 1, ey - 1, R.lamp[4]); }
+      else { b.rect(ex - 2, ey, 5, 1, R.verd[2]); }
+      void i;
+    });
+    // ivy climbing the stone
+    const ivyR = mulberry32(o.seed + 99);
+    for (let k = 0; k < Math.round(40 * pl.ivy); k++) {
+      const ix = hx - drumW + Math.floor(ivyR() * 12) + (ivyR() > 0.6 ? drumW * 1.4 : 0), iy = drumBot - 1 - Math.floor(ivyR() * drumH * (0.4 + ivyR() * 0.6));
+      b.set(ix, iy, R.moss[1 + Math.floor(ivyR() * 3)]);
+      if (ivyR() > 0.7) b.set(ix + 1, iy - 1, R.moss[3]);
+    }
+    // ladder up the right side
+    if (pl.ladder) {
+      const lx = hx + 21;
+      for (let j = drumTop - 2; j <= drumBot - 1; j++) { b.set(lx, j, R.wood[2]); b.set(lx + 3, j, R.wood[1]); if ((j - drumTop) % 3 === 0) { b.set(lx + 1, j, R.wood[3]); b.set(lx + 2, j, R.wood[2]); } }
+    }
+
+    /* ── balcony walkway ring around the dome's base ── */
+    const by = drumTop;
+    for (let i = -drumW - 4; i <= drumW + 4; i++) {
+      b.set(hx + i, by, rd(R.wood, 0.65 - (i + drumW) * 0.006, hx + i, by));
+      b.set(hx + i, by + 1, R.wood[1]);
+      if ((i + 1) % 2 === 0) b.set(hx + i, by + 2, R.wood[0]);          // corbels
+    }
+    for (let i = -drumW - 4; i <= drumW + 4; i++) b.set(hx + i, by - 5, R.brass[i < 0 ? 3 : 2]);
+    for (let i = -drumW - 4; i <= drumW + 4; i += 4) for (let j = 1; j < 5; j++) b.set(hx + i, by - j, R.brass[1]);
+
+    /* ── the dome: patched panels, seams, rivets ── */
+    const a = (o.aim * Math.PI) / 180;
+    const slitX = dCx + Math.sin(a) * 11;
+    const patchSet = new Set(pl.patches.map(([lon, lat, kind]) => lon + ":" + lat + ":" + kind));
+    const patchOf = (lon, lat) => (patchSet.has(lon + ":" + lat + ":copper") ? "copper" : patchSet.has(lon + ":" + lat + ":slate") ? "slate" : null);
+    blob(b, dCx, dCy, dRx, dRy, R.verd, {
+      half: true, v0: 0.52, fn: (nx, ny, x, y, val) => {
+        if (Math.abs(x + 0.5 - slitX) < 2.2 && ny < -0.12) return R.ink[0];
+        const lonF = (Math.asin(clamp(nx, -1, 1)) / Math.PI + 0.5) * 7;
+        const lon = Math.floor(lonF);
+        const lonR = Math.floor((Math.asin(clamp((x + 1.5 - dCx) / dRx, -1, 1)) / Math.PI + 0.5) * 7);
+        const lat = ny > -0.38 ? 0 : ny > -0.72 ? 1 : 2;
+        if (lon !== lonR) return R.verd[0];                                       // panel seams
+        if (Math.abs(ny + 0.38) < 0.03 || Math.abs(ny + 0.72) < 0.035) return (x % 2 === 0) ? R.verd[5] : R.verd[1];   // rivet rings
+        const pk = patchOf(lon, lat);
+        if (pk === "copper") return rd(R.copR, val + 0.05, x, y);
+        if (pk === "slate") return rd(R.slate, val + 0.12, x, y);
+        return val;
+      },
+    });
+    // a dormer with a lit window, and the hatch with a star chart poking out
+    const dwx = dCx - 13, dwy = dCy - 9;
+    b.rect(dwx - 1, dwy - 1, 6, 6, R.slate[1]); b.rect(dwx, dwy, 4, 4, R.lamp[3]); b.set(dwx + 1, dwy + 1, R.lamp[4]); b.set(dwx + 2, dwy, R.slate[1]); b.set(dwx + 2, dwy + 3, R.slate[1]);
+    for (let i = -1; i <= 5; i++) b.set(dwx + i, dwy - 2 - (i === -1 || i === 5 ? 0 : 1), R.slate[3]);
+    if (pl.hatch) { const hx2 = dCx - 20, hy2 = dCy - 4; b.rect(hx2, hy2, 3, 3, R.ink[0]); b.rect(hx2 - 3, hy2 + 1, 3, 2, R.cloth[3]); b.set(hx2 - 2, hy2 + 1, "#7d93c8"); }
+    // moss along the dome's lower rim
+    for (let i = -dRx + 2; i < dRx - 2; i++) if (rnd() < 0.3) b.set(dCx + i, dCy - 1 - (rnd() < 0.3 ? 1 : 0), R.moss[2 + Math.floor(rnd() * 2)]);
+
+    /* ── crown instrument ── */
+    const ty = dCy - dRy;
+    seg(b, dCx, ty + 1, dCx, ty - 6, 1.4, R.brass, 0.6, false);
+    if (pl.top === "armillary") {
+      const cy = ty - 10, spin = o.motion ? t * 0.08 : 0.6;
+      for (let k = 0; k < 40; k++) {
+        const q = (k / 40) * Math.PI * 2;
+        b.set(dCx + Math.cos(q) * 4.5, cy + Math.sin(q) * 4.5, R.brass[3]);
+        b.set(dCx + Math.cos(q) * 4.5 * Math.cos(spin), cy + Math.sin(q) * 4.5, R.brass[2]);
+        b.set(dCx + Math.cos(q) * 4.5, cy + Math.sin(q) * 1.6, R.brass[1]);
+      }
+      b.set(dCx, cy, R.lamp[4]);
+    } else if (pl.top === "anemometer") {
+      const cy = ty - 8, spin = o.motion ? t * 0.6 : 0;
+      for (let k = 0; k < 3; k++) {
+        const q = spin + (k * Math.PI * 2) / 3, ex = dCx + Math.cos(q) * 5, ey = cy + Math.sin(q) * 1.6;
+        line(b, dCx, cy, ex, ey, R.brass[2]); blob(b, ex, ey, 1.3, 1.3, R.enamel, { v0: 0.7 });
+      }
+    } else {
+      const cy = ty - 8;
+      line(b, dCx - 5, cy, dCx + 5, cy, R.brass[3]); b.rect(dCx + 3, cy - 2, 3, 2, R.brass[2]);
+      b.set(dCx, cy - 3, R.lamp[4]); b.set(dCx - 1, cy - 2, R.lamp[3]); b.set(dCx + 1, cy - 2, R.lamp[3]); b.set(dCx, cy - 1, R.lamp[3]);
+    }
+    if (pl.pennant) { const px = dCx + 1, py = ty - 5; for (let j = 0; j < 3; j++) for (let i = 0; i < 6 - j * 2; i++) b.set(px + i + (o.motion && t % 8 < 4 ? (i > 2 ? 1 : 0) : 0), py + j, j === 1 ? "#d98593" : "#e7c66a"); }
+
+    /* ── turret: a small second dome on the balcony ── */
+    if (pl.turret) {
+      const tx = hx + 25, tbase = by - 1;
+      for (let j = 0; j < 6; j++) for (let i = -4; i <= 4; i++) b.set(tx + i, tbase - j, rd(R.plaster, 0.62 - i * 0.05, tx + i, tbase - j));
+      b.rect(tx - 1, tbase - 4, 2, 2, R.lamp[3]);
+      blob(b, tx, tbase - 6, 5, 5, R.verd, { half: true, v0: 0.55 });
+      seg(b, tx - 1, tbase - 8, tx + 6, tbase - 12, 1.6, R.enamel, 0.6, false);
+    }
+    /* ── sextant arm on the left shoulder ── */
+    if (pl.sextant) {
+      const sx = hx - 26, sy = by - 6;
+      for (let k = 0; k <= 12; k++) { const q = Math.PI * (0.9 + k / 24); b.set(sx + Math.cos(q) * 9, sy + Math.sin(q) * 9, R.brass[3]); }
+      line(b, sx, sy, sx - 8, sy - 5, R.brass[2]); line(b, sx, sy, sx - 9, sy - 1, R.brass[1]);
+      blob(b, sx, sy, 1.5, 1.5, R.brass, { v0: 0.7 });
+    }
+
+    /* ── the telescope: the creature's snout ── */
+    const px0 = slitX, py0 = dCy - 8;
+    const ux = Math.sin(a), uy = -Math.cos(a), nx = -uy, ny = ux;
+    seg(b, px0 - ux * 4, py0 - uy * 4, px0 + ux * 22, py0 + uy * 22, 6, R.enamel, 0.6);
+    seg(b, px0 + ux * 22, py0 + uy * 22, px0 + ux * 29, py0 + uy * 29, 8, R.enamel, 0.55, false);
+    [6, 13, 20, 22].forEach((k) => seg(b, px0 + ux * k, py0 + uy * k, px0 + ux * (k + 0.9), py0 + uy * (k + 0.9), k === 22 ? 8.4 : 6.6, R.brass, 0.55, false));
+    blob(b, px0 + ux * 29.6, py0 + uy * 29.6, 2.4, 2.4, R.lamp, { v0: up ? 0.85 : 0.35 });
+    // finder scope, riding on top
+    seg(b, px0 - nx * 5 + ux * 6, py0 - ny * 5 + uy * 6, px0 - nx * 5 + ux * 15, py0 - ny * 5 + uy * 15, 2.2, R.brass, 0.6);
+    line(b, px0 - nx * 3 + ux * 8, py0 - ny * 3 + uy * 8, px0 - nx * 5 + ux * 8, py0 - ny * 5 + uy * 8, R.brass[1]);
+    if (st === "up") {   // the lantern: "a conversation is needed"
+      const lx = Math.round(px0 + ux * 17), ly = Math.round(py0 + uy * 17) + 3;
+      line(b, lx, ly, lx, ly + 3, R.slate[1]);
+      b.rect(lx - 2, ly + 4, 5, 1, R.slate[2]);
+      b.rect(lx - 1, ly + 5, 3, 4, R.signal[1]); b.set(lx, ly + 6, R.signal[2]); b.set(lx, ly + 7, R.signal[2]);
+      b.rect(lx - 2, ly + 9, 5, 1, R.slate[2]);
+      out.lantern = { x: lx, y: ly + 6 };
+    }
+
+    /* ── near legs / landing gear ── */
+    if (v === "tortoise") {
+      if (up) { stumpLeg(hx - 17, false, phase); stumpLeg(hx + 11, false, phase + Math.PI); }
+      else [-17, -6, 6, 16].forEach((dx) => { for (let i = -3; i <= 3; i++) b.set(hx + dx + i, GROUND - 1, rd(R.slate, 0.55 - i * 0.04, hx + dx + i, GROUND)); b.set(hx + dx - 2, GROUND, R.plaster[4]); b.set(hx + dx + 2, GROUND, R.plaster[4]); });
+    }
+    if (v === "stilt") { stiltLeg(hx - 10, false, phase + Math.PI * 1.5); stiltLeg(hx + 9, false, phase + Math.PI / 2); }
+    if (v === "drifter") {
+      [hx - 15, hx + 14].forEach((pxd, i) => {
+        const py = drumBot;
+        seg(b, pxd, py - 2, pxd, py + 2, 2, R.slate, 0.5, false);
+        blob(b, pxd, py + 3, 4.2, 2.6, R.verd, { v0: 0.6 });
+        const spin = up ? (t + i) % 3 : 1;
+        const bl = [[-7, 0], [-5, 1], [-6, -1]][spin];
+        seg(b, pxd - 1, py + 6, pxd + bl[0], py + 6 + bl[1], 1.5, R.cloth, 0.6, false);
+        seg(b, pxd + 1, py + 6, pxd - bl[0], py + 6 - bl[1], 1.5, R.cloth, 0.5, false);
+        if (!up) { seg(b, pxd - 3, py + 5, pxd - 4, GROUND - 1, 1.5, R.slate, 0.45, false); seg(b, pxd + 3, py + 5, pxd + 4, GROUND - 1, 1.5, R.slate, 0.45, false); b.rect(pxd - 6, GROUND - 1, 13, 1, R.slate[3]); }
+      });
+      const mx = hx - 30, my = drumTop - 2;     // patched kite sail
+      seg(b, mx + 4, drumTop + 6, mx, my - 16, 1.4, R.wood, 0.55, false);
+      const flap = o.motion && up ? Math.round(Math.sin(t / 4)) : 0;
+      for (let j = 0; j < 14; j++) for (let i = 0; i < 7 - Math.floor(j / 3); i++) b.set(mx - 1 - i + flap * (j > 6 ? 1 : 0), my - 14 + j, rd(R.cloth, 0.78 - i * 0.07 - j * 0.01, mx - i, my + j));
+      b.rect(mx - 5, my - 9, 3, 3, "#7d93c8");
+    }
+    out.up = up;
+    return out;
+  }
+
+  /* ═══ background ═══ */
+  const bgCache = new Map();
+  function background(sky) {
+    if (bgCache.has(sky)) return bgCache.get(sky);
+    const S = SKY[sky], b = new Buf(W, H), r = mulberry32(sky === "dusk" ? 4 : 9);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) b.set(x, y, rd(S.sky, Math.pow(y / 92, 1.25), x, y));
+    if (S.star) for (let i = 0; i < 70; i++) { const x = Math.floor(r() * W), y = Math.floor(r() * 50); b.set(x, y, r() > 0.85 ? S.star : S.sky[3]); }
+    // clouds: soft lumps, lit from the upper left
+    const clouds = sky === "dusk" ? [[30, 40, 26, 7], [118, 30, 22, 6], [140, 52, 18, 5], [60, 22, 14, 4]] : [[26, 26, 24, 8], [124, 22, 26, 9], [92, 44, 16, 5]];
+    clouds.forEach(([cx, cy, w, h]) => {
+      for (let k = 0; k < 6; k++) {
+        const ox = (k - 2.5) * (w / 5), oy = -Math.abs(Math.sin(k * 1.7)) * h * 0.6;
+        blob(b, cx + ox, cy + oy, w / 3.2, h * 0.75, S.cloud, { v0: 0.55, fn: (nx, ny, x, y, v) => (y > cy + h * 0.3 ? null : v) });
+      }
+    });
+    // mountains with snow
+    const ridge = (base, amp, per, seed, ramp, snow) => {
+      const rr = mulberry32(seed); const kn = []; for (let i = 0; i < 20; i++) kn.push(rr());
+      for (let x = 0; x < W; x++) {
+        const k = x / per, i = Math.floor(k), f = k - i, s = f * f * (3 - 2 * f);
+        const peak = 1 - Math.abs(f - 0.5) * 2;
+        const hgt = amp * (kn[i] * (1 - s) + kn[i + 1] * s) * (0.55 + 0.45 * peak);
+        const top = Math.round(base - hgt);
+        for (let y = top; y < GROUND; y++) {
+          const lit = (f < 0.5 ? 0.65 : 0.3) - (y - top) * 0.01;
+          b.set(x, y, snow && y - top < 3 + kn[i] * 3 && hgt > amp * 0.55 ? snow[f < 0.5 ? 1 : 0] : rd(ramp, lit, x, y));
+        }
+      }
+    };
+    ridge(84, 38, 23, sky === "dusk" ? 3 : 5, S.mtn, S.snow);
+    ridge(92, 14, 15, 11, [S.meadow[0], S.meadow[1], S.meadow[2]], null);
+    // meadow + flowers
+    for (let y = 94; y < H; y++) for (let x = 0; x < W; x++) b.set(x, y, rd(S.meadow, 0.75 - (y - 94) * 0.025 + Math.sin(x / 9 + y) * 0.04, x, y));
+    for (let i = 0; i < 90; i++) { const x = Math.floor(r() * W), y = 97 + Math.floor(r() * 22); b.set(x, y, S.flower[Math.floor(r() * 3)]); if (r() > 0.6) b.set(x, y + 1, S.meadow[3]); }
+    bgCache.set(sky, b);
+    return b;
+  }
+
+  /* ═══ compose a frame ═══ */
+  function frame(o) {
+    const S = SKY[o.sky];
+    const bg = background(o.sky);
+    const out = new Buf(W, H); out.p.set(bg.p);
+    // ground shadow under the creature
+    const lift = o.variant === "drifter" && o.state !== "rest" ? 26 : 0;
+    const sw = o.variant === "drifter" && o.state !== "rest" ? 22 - Math.round(Math.sin(o.t / 5) * 2) : 34;
+    for (let y = -2; y <= 2; y++) for (let x = -sw; x <= sw; x++) if ((x * x) / (sw * sw) + (y * y) / 6 <= 1 && ((x + y) & 1 || lift === 0)) out.set(80 + x, GROUND + y, S.shadow);
+    void lift;
+    const cb = new Buf(W, H);
+    const info = creature(cb, o);
+    // outline pass (exterior only)
+    const ink = C(R.ink[0]);
+    const ol = new Uint32Array(cb.p);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const i = y * W + x; if (cb.p[i]) continue;
+      if ((x > 0 && cb.p[i - 1]) || (x < W - 1 && cb.p[i + 1]) || (y > 0 && cb.p[i - W]) || (y < H - 1 && cb.p[i + W])) ol[i] = ink;
+    }
+    for (let i = 0; i < ol.length; i++) if (ol[i]) out.p[i] = ol[i];
+    // lantern halo
+    if (info.lantern && o.sky === "dusk") for (let y = -4; y <= 4; y++) for (let x = -4; x <= 4; x++) { const d = x * x + y * y; if (d > 6 && d < 18 && ((x + y + o.t) & 1) === 0 && !cb.get(info.lantern.x + x, info.lantern.y + y)) out.set(info.lantern.x + x, info.lantern.y + y, "#7a3a26"); }
+    // smoke: dark and busy when travelling, a thin wisp when resting
+    const travel = o.state === "travel", up = o.state !== "rest";
+    info.smoke.forEach((c) => {
+      const n = up ? (travel ? 9 : 7) : 3;
+      for (let k = 0; k < n; k++) {
+        const span = up ? 36 : 22;
+        const age = ((o.motion ? o.t * (travel ? 0.9 : 0.5) : 0) + k * (span / n) + c.k * 5) % span;
+        const x = c.x + age * (travel ? -0.9 : 0.55) + Math.sin(age * 0.35 + c.k) * 1.2;
+        const y = c.y - age * (up ? 1.15 : 0.8);
+        const r = (up ? 1.3 : 0.8) + age * (travel ? 0.16 : 0.1);
+        const tone = clamp(age / span, 0, 1);
+        blob(out, x, y, r, r * 0.9, S.smoke, { v0: 0.25 + tone * 0.6 });
+      }
+    });
+    return { buf: out, info };
+  }
+
+  const scratch = document.createElement("canvas"); scratch.width = W; scratch.height = H;
+  const sctx = scratch.getContext("2d");
+  function paint(canvas, buf, scale, crop) {
+    sctx.putImageData(new ImageData(new Uint8ClampedArray(buf.p.buffer.slice(0)), W, H), 0, 0);
+    const ctx = canvas.getContext("2d"); ctx.imageSmoothingEnabled = false;
+    const c = crop || { x: 0, y: 0, w: W, h: H };
+    canvas.width = c.w * scale; canvas.height = c.h * scale;
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(scratch, c.x, c.y, c.w, c.h, 0, 0, c.w * scale, c.h * scale);
+  }
+
+  /* ═══ page state & controls ═══ */
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const S = { variant: "tortoise", state: "up", sky: "dusk", aim: 25, seed: 3, motion: !reduce.matches, t: 0 };
+  const VARIANTS = [["tortoise", "Tortoise"], ["stilt", "Stilt-walker"], ["drifter", "Drifter"]];
+  const STATES = [["rest", "Resting"], ["up", "Up"], ["travel", "Travelling"]];
+  const SKIES = [["dusk", "Dusk"], ["day", "Day"]];
+  const CAP = {
+    rest: ["Resting", "Nothing needs a conversation. It settles down and is simply an observatory; eyes half closed."],
+    up: ["Up", "Something may need a conversation. It stands, opens its eye and lights the lantern."],
+    travel: ["Travelling", "Replay is playing. It walks through the repository's history; the crown instrument spins."],
+  };
+  function segCtl(id, opts, key) {
+    const el = document.getElementById(id);
+    el.replaceChildren(...opts.map(([v, label]) => {
+      const bt = document.createElement("button"); bt.type = "button"; bt.textContent = label; bt.setAttribute("aria-pressed", String(S[key] === v));
+      bt.addEventListener("click", () => { S[key] = v; sync(); }); return bt;
+    }));
+  }
+  function scaleFor(el, max) { const w = el.clientWidth || 640; return clamp(Math.floor((w - 24) / W), 2, max); }
+
+  const main = document.getElementById("main");
+  function drawMain() {
+    const f = frame({ ...S, t: S.motion ? S.t : 0 });
+    paint(main, f.buf, scaleFor(main.parentElement, 5));
+    const sideF = f;
+    paint(document.getElementById("side"), sideF.buf, 2, { x: 5, y: 10, w: 150, h: 110 });
+    const port = frame({ ...S, sky: S.sky, t: 0 });
+    paint(document.getElementById("portrait"), port.buf, 1, { x: 32, y: 34, w: 96, h: 72 });
+  }
+  function drawStatic() {
+    const trio = document.getElementById("trio");
+    trio.replaceChildren(...VARIANTS.map(([v, label]) => {
+      const card = document.createElement("div"); card.className = "card" + (S.variant === v ? " on" : "");
+      const bt = document.createElement("button"); bt.className = "pick"; bt.type = "button";
+      const cv = document.createElement("canvas"); cv.setAttribute("aria-hidden", "true");
+      paint(cv, frame({ ...S, variant: v, t: 0 }).buf, 2);
+      const tt = document.createElement("span"); tt.className = "t"; tt.textContent = label;
+      const ss = document.createElement("span"); ss.className = "s"; ss.textContent = { tortoise: "Stubby stone legs; settles flat as a building.", stilt: "Long jointed legs; crouches to rest, strides to travel.", drifter: "Propeller pods and a kite sail; lands on skids." }[v];
+      bt.append(cv, tt, ss); bt.addEventListener("click", () => { S.variant = v; sync(); }); card.append(bt); return card;
+    }));
+    const vars = document.getElementById("vars");
+    const seeds = [1, 2, 3, 4, 5, 6].map((k) => k + Math.floor((S.seed - 1) / 6) * 6);
+    vars.replaceChildren(...seeds.map((sd) => {
+      const card = document.createElement("div"); card.className = "card" + (S.seed === sd ? " on" : "");
+      const bt = document.createElement("button"); bt.className = "pick"; bt.type = "button"; bt.setAttribute("aria-label", "Use detail seed " + sd);
+      const cv = document.createElement("canvas"); cv.setAttribute("aria-hidden", "true");
+      paint(cv, frame({ ...S, seed: sd, t: 0 }).buf, 2, { x: 20, y: 6, w: 120, h: 104 });
+      const ss = document.createElement("span"); ss.className = "s mono"; ss.textContent = "seed " + sd;
+      bt.append(cv, ss); bt.addEventListener("click", () => { S.seed = sd; sync(); }); card.append(bt); return card;
+    }));
+  }
+  function sync() {
+    segCtl("c-variant", VARIANTS, "variant"); segCtl("c-state", STATES, "state"); segCtl("c-sky", SKIES, "sky");
+    document.getElementById("c-seed").textContent = "seed " + S.seed;
+    const mb = document.getElementById("c-motion");
+    mb.textContent = S.motion ? "Motion on" : "Motion off"; mb.setAttribute("aria-pressed", String(S.motion));
+    const [t1, t2] = CAP[S.state];
+    const cap = document.getElementById("caption");
+    cap.replaceChildren();
+    const b = document.createElement("b"); b.textContent = t1; const sp = document.createElement("span"); sp.textContent = t2;
+    const pill = document.createElement("span"); pill.className = "pill" + (S.state === "up" ? " signal" : ""); pill.textContent = S.state === "up" ? "lantern lit" : S.state === "travel" ? "replay" : "quiet";
+    cap.append(b, pill, sp);
+    document.getElementById("pc-t").textContent = { rest: "The observatory is resting", up: "The observatory is up", travel: "The observatory is walking through history" }[S.state];
+    document.getElementById("pc-s").textContent = { rest: "Nothing needs a conversation right now", up: "2 things may need a conversation · lantern lit", travel: "Replaying repository file history · event 12 of 20" }[S.state];
+    drawMain(); drawStatic();
+  }
+  document.getElementById("c-aim").addEventListener("input", (e) => { S.aim = +e.target.value; drawMain(); drawStatic(); });
+  document.getElementById("c-prev").addEventListener("click", () => { S.seed = Math.max(1, S.seed - 1); sync(); });
+  document.getElementById("c-next").addEventListener("click", () => { S.seed = S.seed + 1; sync(); });
+  document.getElementById("c-motion").addEventListener("click", () => { S.motion = !S.motion; sync(); });
+  reduce.addEventListener("change", () => { S.motion = !reduce.matches; sync(); });
+  window.addEventListener("resize", drawMain);
+  setInterval(() => { if (S.motion && document.visibilityState === "visible") { S.t++; drawMain(); } }, 100);
+
+  /* ═══ prompts ═══ */
+  const PROMPTS = [
+    ["Hero concept · the observatory is the creature", "A small, ancient astronomical observatory that is itself a gentle living creature, standing on a grassy hillside at dusk. Its body is a round stone drum with ivy, and on top a large patched verdigris-copper dome with riveted panel seams, a few slate-grey replacement panels and an open slit. A long cream-white enamel telescope with brass rings pokes out of the slit like a curious snout. Two round brass porthole windows glow warm like eyes. Tinkered instruments are bolted all over it: an armillary sphere on the crown, a little turret dome, a brass sextant arm, a heliostat mirror on a pole, ladders, a wooden balcony walkway with a railing, a thin stovepipe. It stands on four stubby stone legs. Hand-painted 1990s Japanese animation look, wholesome and cozy, cool palette of verdigris, slate blue-grey and pale stone with small warm lamp accents, violet and pink dusk clouds, distant snowy mountains, wildflowers in the foreground."],
+    ["Pixel-art target · same creature", "High-detail pixel art, 160×120 canvas, crisp 1-pixel dark outline around the silhouette, about 40 colours, ordered dithering only at tone edges, light from the upper left. A walking observatory creature where the observatory is the entire body: stone drum with ivy and two glowing porthole eyes, large patched verdigris dome with riveted seams and slate patches, cream enamel telescope snout with brass rings, armillary sphere on top, turret dome, sextant arm, balcony railing, ladder. Cool palette, brass only as accents, warm lamp light in windows. Stubby stone legs. Dusk sky with pink clouds, snowy mountains, flowered meadow. Side view facing right, game-sprite composition, no anti-aliasing."],
+    ["Three locomotions · sheet", "Character design sheet, three versions of the same observatory creature side by side: (1) on four stubby stone legs, (2) on two long jointed mechanical bird-like legs with brass knee joints, (3) hovering on two small propeller pods with a patched kite sail and landing skids. Each is a stone drum with a large patched verdigris dome, a cream enamel telescope snout and porthole eyes, with small bolted-on astronomical instruments. Hand-painted, wholesome, detailed, cool verdigris and slate palette. Same scale and lighting, labels under each."],
+    ["States · resting, up, travelling", "Animation key-pose sheet of a cozy observatory creature with a patched verdigris dome and a cream telescope snout. Pose 1 \u2018resting\u2019: settled low like a building on a hill, porthole eyes half closed, a thin wisp from a stovepipe. Pose 2 \u2018up\u2019: standing tall, eyes glowing, a small orange lantern hanging from the telescope. Pose 3 \u2018travelling\u2019: mid-stride, the armillary sphere on top spinning. Side view, consistent proportions, pixel-art friendly shapes, dusk palette."],
+    ["Negative prompt", "no text, no logos, no existing film characters or castles, no cottages piled on top, no rusty brown boiler body, no painted cartoon face, no glossy 3D render, no photorealism, no neon, no sci-fi lasers, no holograms, no blur, no extra limbs"],
+  ];
+
+  document.getElementById("prompts").replaceChildren(...PROMPTS.map(([title, text], i) => {
+    const d = document.createElement("div"); d.className = "prompt";
+    const hd = document.createElement("div"); hd.className = "prompt-h";
+    const b = document.createElement("b"); b.textContent = title;
+    const btn = document.createElement("button"); btn.className = "btn"; btn.type = "button"; btn.textContent = "Copy"; btn.id = "copy-" + i;
+    const pre = document.createElement("pre"); pre.textContent = text;
+    btn.addEventListener("click", () => {
+      const done = () => { btn.textContent = "Copied"; setTimeout(() => (btn.textContent = "Copy"), 1400); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, () => selectPre(pre, btn));
+      else selectPre(pre, btn);
+    });
+    hd.append(b, btn); d.append(hd, pre); return d;
+  }));
+  function selectPre(pre, btn) { const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected · press Ctrl+C"; }
+
+  sync();
+})();
+</script>

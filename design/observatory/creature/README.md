@@ -1,4 +1,22 @@
-# Walking Observatory: creature study 01
+# Walking Observatory: creature studies
+
+## Study 02 (current)
+
+- Live page: https://claude.ai/artifact/9LrQckWMfSpLbtGGrdS4qS (private to the owner until shared)
+- Source: `study-02.html`.
+- Owner feedback on study 01: put the observatory in focus, so it is the whole creature rather
+  than one part among others, and make it less brown.
+- The body is a stone drum with ivy plus a large patched verdigris dome (riveted seams, slate and
+  a few copper panels). The telescope is a cream-enamel snout with brass rings, and the two
+  porthole windows are eyes.
+- The tinkering is astronomical instruments, varied by seed:
+  - an armillary sphere, anemometer or weathervane on the crown;
+  - a turret dome, a sextant arm and a heliostat mirror;
+  - a ladder, a stovepipe, a pennant, a balcony walkway and a dormer;
+  - a star chart poking out of a hatch.
+- The palette is cool: verdigris, slate and stone, with brass and copper only as accents.
+
+## Study 01
 
 This is a creature-only study for direction D, made after round 3. The owner asked for more
 fidelity, in the spirit of a tinkered walking house: patchwork, stacked cottages, chimneys and
