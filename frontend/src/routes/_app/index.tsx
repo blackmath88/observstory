@@ -32,10 +32,18 @@ function Overview() {
           <AlertIcon size={16} />
           <div>
             <strong>Activity is unavailable.</strong>
-            <p>
-              The snapshot and scene are both needed to show work in flight. Nothing is shown as zero.{" "}
-              <Link to="/sources">See what went wrong in Data sources</Link>.
-            </p>
+            {typeof window !== "undefined" && window.location.protocol === "file:" ? (
+              <p>
+                This page was opened from a file, and browsers do not let it read the <code>data/</code> folder from disk. Open{" "}
+                <a href="./map.html">the classic map</a>, which works offline, or serve this folder (for example{" "}
+                <code>python3 -m http.server</code>) and open it from there.
+              </p>
+            ) : (
+              <p>
+                The snapshot and scene are both needed to show work in flight. Nothing is shown as zero.{" "}
+                <Link to="/sources">See what went wrong in Data sources</Link>.
+              </p>
+            )}
           </div>
         </div>
       ) : (

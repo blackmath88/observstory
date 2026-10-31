@@ -208,9 +208,16 @@ export type SourceResult<T> =
   | { status: "invalid"; url: string; issues: string[] }
   | { status: "unreachable"; url: string; detail: string };
 
+/** Other pages the same Action run published beside this app (classic map, replay, …). */
+export interface CompanionView {
+  href: string;
+  label: string;
+}
+
 export interface Bundle {
   base: string;
   receivedAt: string;
+  views: CompanionView[];
   snapshot: SourceResult<Snapshot>;
   scene: SourceResult<Scene>;
   knowledge: SourceResult<Knowledge>;

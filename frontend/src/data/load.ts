@@ -1,4 +1,4 @@
-import type { Bundle, EventSchedule, Knowledge, Scene, Snapshot, SourceName, SourceResult, SourceSpec } from "./types";
+import type { Bundle, CompanionView, EventSchedule, Knowledge, Scene, Snapshot, SourceName, SourceResult, SourceSpec } from "./types";
 import { isRecord, validate } from "./validate";
 
 export const SOURCES = {
@@ -27,6 +27,28 @@ export function resolveDataBase(search: string, fallback = "./data/"): string {
 
 type Fetcher = (url: string) => Promise<Response>;
 
+/** Pages an Action run may publish beside the app. Each is linked only if it is actually there. */
+export const COMPANIONS = [
+  { href: "./replay.html", label: "Replay" },
+  { href: "./knowledge.html", label: "Knowledge page" },
+  { href: "./map.html", label: "Classic map" },
+  { href: "./radar.html", label: "Radar" },
+] as const;
+
+export async function companionViews(probe: (url: string) => Promise<Response>): Promise<CompanionView[]> {
+  const found = await Promise.all(
+    COMPANIONS.map(async (c): Promise<CompanionView | null> => {
+      try {
+        const res = await probe(c.href);
+        return res.ok ? { href: c.href, label: c.label } : null;
+      } catch {
+        return null;
+      }
+    }),
+  );
+  return found.filter((v): v is CompanionView => v !== null);
+}
+
 export async function loadSource<T>(spec: SourceSpec<T>, base: string, fetcher: Fetcher): Promise<SourceResult<T>> {
   const url = `${base}${spec.file}`;
   let res: Response;
@@ -54,14 +76,16 @@ export async function loadBundle(
   base: string,
   fetcher: Fetcher = (u) => fetch(u, { cache: "no-store" }),
   now = new Date(),
+  probe: (url: string) => Promise<Response> = (u) => fetch(u, { method: "HEAD", cache: "no-store" }),
 ): Promise<Bundle> {
-  const [snapshot, scene, knowledge, event] = await Promise.all([
+  const [snapshot, scene, knowledge, event, views] = await Promise.all([
     loadSource<Snapshot>(SOURCES.snapshot, base, fetcher),
     loadSource<Scene>(SOURCES.scene, base, fetcher),
     loadSource<Knowledge>(SOURCES.knowledge, base, fetcher),
     loadSource<EventSchedule>(SOURCES.event, base, fetcher),
+    companionViews(probe),
   ]);
-  return { base, receivedAt: now.toISOString(), snapshot, scene, knowledge, event };
+  return { base, receivedAt: now.toISOString(), views, snapshot, scene, knowledge, event };
 }
 
 /** The activity views need both required sources; everything else degrades per panel. */

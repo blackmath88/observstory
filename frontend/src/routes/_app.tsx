@@ -1,4 +1,4 @@
-import { AlertIcon, ClockIcon, DatabaseIcon, RepoIcon, TelescopeIcon } from "@primer/octicons-react";
+import { AlertIcon, ClockIcon, DatabaseIcon, LinkExternalIcon, RepoIcon, TelescopeIcon } from "@primer/octicons-react";
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { absolute, freshness } from "../data/freshness";
 import { loadBundle, resolveDataBase } from "../data/load";
@@ -118,6 +118,15 @@ function AppLayout() {
                 </span>
               )}
             </Link>
+            {bundle.views.length > 0 && (
+              <span className="nav-extra">
+                {bundle.views.map((v) => (
+                  <a key={v.href} href={v.href}>
+                    {v.label} <LinkExternalIcon size={12} />
+                  </a>
+                ))}
+              </span>
+            )}
           </nav>
         </div>
       </header>

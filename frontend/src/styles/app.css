@@ -719,3 +719,25 @@ a:hover {
   padding: 0;
   min-inline-size: 0;
 }
+
+.nav-extra {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 8px;
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+.underline-nav .nav-extra a {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  line-height: 1;
+  color: var(--fg-muted);
+}
+.underline-nav .nav-extra a:hover {
+  color: var(--accent);
+}

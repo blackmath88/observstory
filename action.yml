@@ -26,6 +26,13 @@ inputs:
     description: Output directory for index.html (Project Map), radar.html and data/{snapshot,scene,observations}.json.
     required: false
     default: observstory
+  frontend:
+    description: >-
+      Which page becomes index.html. "classic" (default) keeps the Python-rendered Project Map.
+      "observatory" uses the prebuilt static frontend (frontend/release, ADR-038) and moves the
+      classic map to map.html, where it stays reachable and works offline.
+    required: false
+    default: classic
 
 outputs:
   snapshot:
@@ -53,8 +60,27 @@ runs:
         OBSERVSTORY_OUTPUT: ${{ inputs.output }}
         OBSERVSTORY_COORDINATION: ${{ inputs.coordination }}
         OBSERVSTORY_KNOWLEDGE: ${{ inputs.knowledge }}
+        OBSERVSTORY_FRONTEND: ${{ inputs.frontend }}
       run: |
         python3 "$GITHUB_ACTION_PATH/scripts/observstory.py" build
+        case "$OBSERVSTORY_FRONTEND" in
+          classic) ;;
+          observatory)
+            release="$GITHUB_ACTION_PATH/frontend/release"
+            if [ ! -f "$release/index.html" ]; then
+              echo "::error::frontend: observatory needs $release/index.html (run npm run release in frontend/)"
+              exit 1
+            fi
+            mv "$OBSERVSTORY_OUTPUT/index.html" "$OBSERVSTORY_OUTPUT/map.html"
+            cp "$release/index.html" "$OBSERVSTORY_OUTPUT/index.html"
+            cp -R "$release/assets" "$OBSERVSTORY_OUTPUT/assets"
+            echo "Observatory frontend installed; classic map at map.html"
+            ;;
+          *)
+            echo "::error::unknown frontend '$OBSERVSTORY_FRONTEND' (use classic or observatory)"
+            exit 1
+            ;;
+        esac
         echo "snapshot=$OBSERVSTORY_OUTPUT/data/snapshot.json" >> "$GITHUB_OUTPUT"
         python3 -c "import json,sys; print('overlaps=%d' % json.load(open(sys.argv[1]))['summary']['signals']['overlap'])" \
           "$OBSERVSTORY_OUTPUT/data/snapshot.json" >> "$GITHUB_OUTPUT"

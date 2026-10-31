@@ -30,6 +30,19 @@ npm run e2e        # Playwright: build served under /hackathon/, /quiet/, /broke
 - `?data=<relative path>/` points the page at another data folder, for review or for fixtures.
   Only relative same-origin paths are accepted.
 
+## Shipping through the Action
+
+`npm run release` rebuilds `frontend/release/`. Commit it with the source change; Python's
+`tests/test_frontend_release.py` checks it. A consumer opts in with:
+
+```yaml
+- uses: blackmath88/observstory@<sha>
+  with:
+    frontend: observatory   # default: classic
+```
+
+The new app becomes `index.html`, and the classic map moves to `map.html`.
+
 ## Fixtures
 
 The fixtures in `fixtures/` are synthetic, built by `node scripts/make-fixtures.mjs`; see
