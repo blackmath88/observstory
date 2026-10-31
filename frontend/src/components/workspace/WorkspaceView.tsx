@@ -13,19 +13,11 @@ import {
   timelineAxis,
   timelineTime,
 } from "../../view/timeline";
-import {
-  FOCUSES,
-  type Focus,
-  publicURL,
-  type RecordView,
-  readFocus,
-  scopeWorkspace,
-  workspace,
-  workspaceLocations,
-} from "../../view/workspace";
+import { FOCUSES, type Focus, type RecordView, readFocus, scopeWorkspace, workspace, workspaceLocations } from "../../view/workspace";
 import { EventClock } from "../overview/EventClock";
 import { BoardView } from "./BoardView";
 import { RelationshipPanel } from "./RelationshipPanel";
+import { SourcePanel } from "./SourcePanel";
 
 function preference<T>(key: string, fallback: T): T {
   try {
@@ -399,6 +391,7 @@ export function WorkspaceView({ bundle }: { bundle: Bundle }) {
         <Detail
           key={selected.id}
           record={selected}
+          bundle={bundle}
           records={model.byId}
           relationshipEvidence={relationshipEvidence}
           onOpen={open}
@@ -510,6 +503,7 @@ function RecordRow({
 
 function Detail({
   record: r,
+  bundle,
   records,
   relationshipEvidence,
   onOpen,
@@ -517,6 +511,7 @@ function Detail({
   onReveal,
 }: {
   record: RecordView;
+  bundle: Bundle;
   records: Map<string, RecordView>;
   relationshipEvidence: RelationshipEvidence;
   onOpen: (id: string) => void;
@@ -587,25 +582,19 @@ function Detail({
           <p className="meta">{r.basis}</p>
         </section>
         <RelationshipPanel recordId={r.id} evidence={relationshipEvidence} onOpen={onOpen} />
-        <section>
-          <h3>Material</h3>
-          {r.material.length ? (
-            r.material.map((s) => (
-              <p key={`${s.title}:${s.url}`}>
-                <a href={publicURL(s.url)}>{s.title} ↗</a>
+        <SourcePanel record={r} bundle={bundle} />
+        {!!r.members?.length && (
+          <section>
+            <h3>Included records</h3>
+            {(r.members ?? []).map((id) => (
+              <p key={id}>
+                <button type="button" className="text-button" onClick={() => onOpen(id)}>
+                  {records.get(id)?.title ?? `${id} (unavailable)`} ↗
+                </button>
               </p>
-            ))
-          ) : (
-            <p>No source material linked.</p>
-          )}
-          {(r.members ?? []).map((id) => (
-            <p key={id}>
-              <button type="button" className="text-button" onClick={() => onOpen(id)}>
-                {records.get(id)?.title ?? `${id} (unavailable)`} ↗
-              </button>
-            </p>
-          ))}
-        </section>
+            ))}
+          </section>
+        )}
         <section>
           <h3>Resume</h3>
           {r.resume ? (

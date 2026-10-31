@@ -152,3 +152,10 @@ real consumer data, copy `release/` to a directory alongside that consumer's `da
 To verify the prebuilt release with captured real inputs, use
 `OBSERVSTORY_PREBUILT=1 OBSERVSTORY_LIVE_DATA=/path/to/data npm run e2e -- --grep 'real Open Presence'`.
 The Playwright-owned host serves it under `/live/` and binds only `127.0.0.1`.
+
+The drawer's **Sources and provenance** section keeps record source links visible, with
+keyboard-expandable **Captured input revisions** for Snapshot, Scene, Knowledge and Workspace.
+Revision and generation time come only from their own input fields; missing values are stated.
+Input context is bundle-wide, separately labelled from each record's evidence basis. Partial
+knowledge, degraded snapshot collection, unavailable inputs and mismatched revisions are
+qualified beside the source material. Included member records retain their own navigation.

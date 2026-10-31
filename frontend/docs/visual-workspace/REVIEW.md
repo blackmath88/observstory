@@ -321,3 +321,36 @@ Next concrete increment: make record source inspection easier in this same drawe
 source material, immutable captured revisions and partial/mismatched-input context in one
 compact provenance section. Preserve source distinctions and existing links; do not introduce
 status authoring, derived conceptual links or a second dashboard.
+
+
+## NUC recovery increment — compact source/provenance inspection
+
+Continues from `f0cbde87e167ff7f6c631b2c5e2b2cb6e14d074c` on stacked draft #26.
+The actual drawer now groups record source material with a keyboard-expandable captured-input
+section. Snapshot, Scene, Knowledge and Workspace retain their own status, exact immutable
+revision when supplied, and generation time when supplied. This is explicitly bundle-wide
+context, separately labelled from record evidence. There is no fabricated Scene revision or
+Workspace generation time. Partial knowledge, degraded snapshot collection, unavailable inputs
+and mismatched revisions are qualified beside the material. Included records retain navigation
+under their own heading. HTTPS source links remain visible; unavailable public links remain text.
+
+Final checks: typecheck/lint pass (existing Biome configuration deprecation information only),
+production client/SSR/prerender release succeeds, five release-packaging checks pass.
+`OBSERVSTORY_PREBUILT=1 OBSERVSTORY_LIVE_DATA=/tmp/observatory-20261031-live/data npm run e2e -- --workers=1 --grep 'provenance|synthetic branch keeps origin'`:
+**15/15 pass** at 390/768/1440px. Six new checks cover missing/partial/mismatched sources,
+keyboard expansion, exact captured real revisions/source URL, reload/close, retained filters,
+explicit unknown metadata, zero browser errors and no page horizontal overflow. Nine relevant
+existing checks cover relationship/source provenance, membership/reveal and resume/focus/expansion.
+Only this bounded UI change was tested; the unchanged unit suite was not repeated.
+Routine formatting/import/CSS warnings were cleaned up before the final release; no interaction
+failure or product repair was needed. Real `provenance-1440.png` and `provenance-390.png` were
+visually self-inspected. No browser host remains running.
+
+Uses the same static real b1af012 capture; all 39 records and undeclared lifecycles remain.
+Release/data preview: `/tmp/observatory-20261031-turn6/preview/`, 14 release files byte-matched.
+Release index SHA256: `76953ed5cc93f65803569698f6087ffa03569dfb90f3be64edd777944455e272`.
+Exact producer head is recorded in the runtime report and coordinator message for consumer #19.
+Self-reviewed only; no consumer/reducer/System Map/schema, accepted decision or human review
+changed. No merge/deployment. Physical touch, screen reader and Safari/Firefox checks remain
+unrun. Next step is coordinator-owned consumer pin/verification; reserve remaining build-window
+time for focused integration fixes instead of opening another feature.
