@@ -211,7 +211,12 @@
       a && b && a.lineage !== b.lineage ? el("div", { class: "note warn", text: "Different lineages: no ancestry is inferred across a force-push or divergence." }) :
         diffList(diffFrames(B.snapshot_frames[S.cmpFrom], B.snapshot_frames[S.cmpTo])),
       el("p", { class: "faint", text: `${between.length} recorded events between them. A diff states what changed, never why; reasons appear only where a source declares them.` })));
-    return [controls, el("div", { class: "grid2" }, stateP, cmp), replayPanel()];
+    const ops = B.operations || [];
+    const opsP = el("section", { class: "panel" }, el("details", {}, el("summary", { class: "row", text: `Operations log (${ops.length}) — indexing and issued context, not knowledge changes` }),
+      el("div", { class: "body scroll" }, ops.length ? el("table", { class: "log" }, el("thead", {}, el("tr", {}, ["recorded", "operation", "subject", "detail"].map(h => el("th", { scope: "col", text: h })))),
+        el("tbody", {}, ops.slice().reverse().map(e => el("tr", {}, el("td", { text: when(e.recorded_at) }), el("td", { text: e.type }), el("td", { class: "mono", text: e.subject }), el("td", { class: "faint", text: e.note || JSON.stringify(e.detail || {}) }))))) :
+        el("div", { class: "empty", text: "No operations recorded." }))));
+    return [controls, el("div", { class: "grid2" }, stateP, cmp), replayPanel(), opsP];
   }
 
   // ------------------------------------------------------------ REPLAY (shared with Graph)
@@ -234,7 +239,7 @@
       el("input", { type: "range", min: "0", max: String(B.replay.length - 1), value: String(S.rp), "aria-label": "Replay event", "aria-valuetext": `event ${ev.seq}: ${ev.type} ${ev.subject}`, oninput: e => setRp(+e.target.value) }),
       el("label", { class: "faint" }, "speed ", el("select", { onchange: e => { S.speed = +e.target.value; if (S.playing) { clearInterval(S.playing); S.playing = null; play(); } } },
         [0.5, 1, 2, 4].map(x => el("option", { value: String(x), selected: S.speed === x ? true : null, text: x + "×" })))),
-      el("span", { class: "mono faint", "aria-live": "polite", text: `event ${ev.seq}/${B.events[B.events.length - 1].seq} · ${ev.type} · ${ev.subject}` }));
+      el("span", { class: "mono faint", "aria-live": "polite", text: `step ${S.rp + 1}/${B.replay.length} · seq ${ev.seq} · ${ev.type} · ${ev.subject}` }));
   }
   function replayPanel() {
     const curSeq = B.replay.length ? B.replay[S.rp === null ? B.replay.length - 1 : S.rp].seq : null;
@@ -244,7 +249,7 @@
       el("td", { class: "mono", text: e.relation ? `${e.relation.from} ${e.relation.rel} ${e.relation.to}` : e.subject }),
       el("td", { class: "faint", text: e.note || (e.reason ? "reason: source declared" : "") })));
     return el("section", { class: "panel" }, el("h2", {}, "Knowledge replay — recorded events"), el("div", { class: "body" },
-      el("p", { class: "faint", text: "Replays this memory's recorded knowledge events in order. Repository file history and retrieval-index jobs are separate logs and are not mixed in here." }),
+      el("p", { class: "faint", text: "Replays this memory's recorded knowledge events in order. Repository file history, retrieval-index jobs and issued context are separate logs and are not mixed in here." }),
       scrubber(),
       el("div", { class: "scroll" }, el("table", { class: "log" }, el("thead", {}, el("tr", {}, ["seq", "recorded", "commit", "event", "subject", "note"].map(h => el("th", { scope: "col", text: h })))), el("tbody", {}, rows)))));
   }
@@ -253,21 +258,32 @@
   function viewGraph() {
     const f = S.follow ? rpFrame() : frameNow();
     const nodes = B.layout.nodes, cols = B.layout.columns;
-    const W = 190, H = 34, GX = 220, GY = 52, X0 = 16, Y0 = 40;
+    const W = 150, H = 34, GX = 172, GY = 52, X0 = 16, Y0 = 40;
     const maxRow = Math.max(0, ...Object.values(nodes).map(n => n.row));
     const width = X0 * 2 + GX * cols.length, height = Y0 + GY * (maxRow + 1) + 20;
     const pos = id => nodes[id] ? { x: X0 + nodes[id].col * GX, y: Y0 + nodes[id].row * GY } : null;
     const svg = sv("svg", { class: "graph", viewBox: `0 0 ${width} ${height}`, width: String(width), height: String(height), role: "group", "aria-label": "Knowledge graph: records by type, declared links" });
     cols.forEach((c, i) => svg.append(sv("text", { class: "col-h", x: String(X0 + i * GX), y: "22", text: c })));
     const edges = sv("g", {}), labels = sv("g", {});
+    const anchor = (a, b) => {   // leave from the side facing the target; same column loops on the right
+      if (nodes[b.id].col > nodes[a.id].col) return [a.x + W, b.x, 1];
+      if (nodes[b.id].col < nodes[a.id].col) return [a.x, b.x + W, -1];
+      return [a.x + W, b.x + W, 0];
+    };
     for (const lid of f.relations) {
       const r = B.relation_versions[lid]; if (!r) continue;
       const a = pos(r.from), b = pos(r.to); if (!a || !b) continue;
-      const x1 = a.x + W, y1 = a.y + H / 2, x2 = b.x, y2 = b.y + H / 2;
-      const same = Math.abs(x1 - W - x2) < 1;
-      const d = same ? `M${a.x + W} ${y1} C${a.x + W + 30} ${y1} ${b.x + W + 30} ${y2} ${b.x + W} ${y2}` : `M${x1} ${y1} C${(x1 + x2) / 2} ${y1} ${(x1 + x2) / 2} ${y2} ${x2} ${y2}`;
+      a.id = r.from; b.id = r.to;
+      const [x1, x2, dir] = anchor(a, b);
+      const y1 = a.y + H / 2, y2 = b.y + H / 2;
+      const bend = dir === 0 ? 34 : Math.max(24, Math.abs(x2 - x1) / 2);
+      const c1 = dir === 0 ? x1 + bend : x1 + dir * bend, c2 = dir === 0 ? x2 + bend : x2 - dir * bend;
+      const d = `M${x1} ${y1} C${c1} ${y1} ${c2} ${y2} ${x2} ${y2}`;
       edges.append(sv("path", { class: "edge", d, "marker-end": "url(#arrow)" }, sv("title", { text: `${r.from} ${r.rel} ${r.to} (declared: ${r.origin})` })));
-      labels.append(sv("text", { class: "edge-l", x: String(same ? a.x + W + 18 : (x1 + x2) / 2 - 20), y: String((y1 + y2) / 2 - 3), text: r.rel }));
+      // label near the source end (t = 0.3), so links converging on one record keep readable labels
+      const t = 0.3, u = 1 - t, bx = u * u * u * x1 + 3 * u * u * t * c1 + 3 * u * t * t * c2 + t * t * t * x2;
+      const by = u * u * u * y1 + 3 * u * u * t * y1 + 3 * u * t * t * y2 + t * t * t * y2;
+      labels.append(sv("text", { class: "edge-l halo", x: String(bx), y: String(by - 4), "text-anchor": "middle", text: r.rel }));
     }
     for (const l of (B.suggested_links.links || [])) {
       const a = pos(l.from), b = pos(l.to); if (!a || !b) continue;
@@ -282,7 +298,7 @@
       const g = sv("g", { class: cls, tabindex: "0", role: "button", "aria-label": `${label}, ${v ? v.type + " " + v.status : "not selected at this point"}`, "data-i": String(i),
         onclick: () => select("record", rid), onkeydown: ev => graphKey(ev, ids, i, rid) },
         sv("rect", { x: String(p.x), y: String(p.y), width: String(W), height: String(H), rx: "5" }),
-        sv("text", { x: String(p.x + 8), y: String(p.y + 14), text: label.length > 30 ? label.slice(0, 29) + "…" : label }),
+        sv("text", { x: String(p.x + 8), y: String(p.y + 14), text: label.length > 24 ? label.slice(0, 23) + "…" : label }),
         sv("text", { x: String(p.x + 8), y: String(p.y + 27), class: "edge-l", text: v ? v.status : "not selected" }));
       svg.append(g);
     });
