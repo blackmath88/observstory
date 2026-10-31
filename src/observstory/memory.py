@@ -379,9 +379,16 @@ def view_errors(view: dict) -> list[str]:
     return e
 
 
-def _lineage_position(view: dict, snapshot_id: str) -> tuple:
-    s = _index(view)["snap"][snapshot_id]
-    return (s["repository"], s["requested_ref"], s["lineage"], s["position"])
+def chain(view: dict, snapshot_id: str) -> list[str]:
+    """Snapshot ids from the root to `snapshot_id`, following base_snapshot_id. A force-push or divergence
+    therefore branches history at the shared base instead of copying or reordering it."""
+    snaps = _index(view)["snap"]
+    out, cur, seen = [], snapshot_id, set()
+    while cur and cur in snaps and cur not in seen:
+        seen.add(cur)
+        out.append(cur)
+        cur = snaps[cur].get("base_snapshot_id")
+    return out[::-1]
 
 
 def reduce(view: dict, events: list[dict]) -> dict:
@@ -452,32 +459,26 @@ def proposal_status(p: dict, records: dict) -> dict:
             "accepted": state == "accepted"}
 
 
-def _events_for_revision(view: dict, repository: str, snapshot_id: str | None, known_at: str | None) -> list[dict]:
-    snaps = _index(view)["snap"]
-    if snapshot_id:
-        pos = _lineage_position(view, snapshot_id)
-    out = []
-    for ev in view["events"]:
-        if ev["repository"] != repository:
-            continue
-        if known_at and ev["recorded_at"] > known_at:
-            continue
-        if snapshot_id:
-            s = snaps.get(ev.get("snapshot_id") or "")
-            if ev["type"] == "coverage_boundary":
-                out.append(ev)
-                continue
-            if s is None or (s["requested_ref"], s["lineage"]) != pos[1:3] or s["position"] > pos[3]:
-                continue
-        out.append(ev)
-    return out
+def _events_for_revision(view: dict, repository: str, snapshot_id: str, known_at: str | None) -> list[dict]:
+    on_chain = set(chain(view, snapshot_id))
+    return [ev for ev in view["events"] if ev["repository"] == repository
+            and (not known_at or ev["recorded_at"] <= known_at)
+            and (ev["type"] == "coverage_boundary" or ev.get("snapshot_id") in on_chain)]
 
 
 def head_snapshot(view: dict, repository: str, requested_ref: str | None = None, known_at: str | None = None) -> dict | None:
-    cands = [s for s in view["snapshots"] if s["repository"] == repository
-             and (requested_ref is None or s["requested_ref"] == requested_ref)
-             and (known_at is None or s["recorded_at"] <= known_at) and s.get("on_current_lineage", True)]
-    return max(cands, key=lambda s: (s["lineage"], s["position"])) if cands else None
+    """Current head: the source's recorded head; as known at t: the last snapshot this memory recorded by t."""
+    snaps = [s for s in view["snapshots"] if s["repository"] == repository
+             and (requested_ref is None or s["requested_ref"] == requested_ref)]
+    if known_at is None:
+        for src in view.get("sources", []):
+            if src["repository"] == repository and (requested_ref is None or src["requested_ref"] == requested_ref) \
+                    and src.get("head_snapshot_id"):
+                hit = [s for s in snaps if s["snapshot_id"] == src["head_snapshot_id"]]
+                if hit:
+                    return hit[0]
+    cands = [s for s in snaps if known_at is None or s["recorded_at"] <= known_at]
+    return max(cands, key=lambda s: s["recorded_seq"]) if cands else None
 
 
 def state_at(view: dict, repository: str, *, snapshot_id: str | None = None, commit: str | None = None,
@@ -491,7 +492,7 @@ def state_at(view: dict, repository: str, *, snapshot_id: str | None = None, com
         if not match:
             return {"state": "unavailable", "reason": f"commit {commit[:12]} has no recorded snapshot in this memory",
                     "repository": repository}
-        snapshot_id = max(match, key=lambda s: s["lineage"])["snapshot_id"]
+        snapshot_id = max(match, key=lambda s: s["recorded_seq"])["snapshot_id"]
     if not snapshot_id:
         h = head_snapshot(view, repository, requested_ref, known_at)
         if h is None:
@@ -538,31 +539,33 @@ def record_history(view: dict, repository: str, record_id: str) -> dict:
 
 
 def changes_between(view: dict, repository: str, from_snapshot: str, to_snapshot: str) -> dict:
-    a, b = _index(view)["snap"].get(from_snapshot), _index(view)["snap"].get(to_snapshot)
+    snaps = _index(view)["snap"]
+    a, b = snaps.get(from_snapshot), snaps.get(to_snapshot)
     if not a or not b:
         return {"query": "changes_between", "state": "unavailable", "reason": "unknown snapshot"}
-    if (a["requested_ref"], a["lineage"]) != (b["requested_ref"], b["lineage"]):
-        return {"query": "changes_between", "state": "incomparable",
-                "reason": "different lineages; no ancestry is inferred across them", "from": a, "to": b}
-    lo, hi = sorted((a["position"], b["position"]))
-    snaps = _index(view)["snap"]
-    evs = [e for e in view["events"] if e["repository"] == repository and e.get("snapshot_id") in snaps
-           and (snaps[e["snapshot_id"]]["requested_ref"], snaps[e["snapshot_id"]]["lineage"]) == (a["requested_ref"], a["lineage"])
-           and lo < snaps[e["snapshot_id"]]["position"] <= hi]
+    ca, cb = chain(view, from_snapshot), chain(view, to_snapshot)
+    brief = lambda s: {k: s.get(k) for k in ("snapshot_id", "commit", "position", "lineage", "source_time")}  # noqa: E731
     sa = state_at(view, repository, snapshot_id=from_snapshot)
     sb = state_at(view, repository, snapshot_id=to_snapshot)
+
     def net(x, y, key="records"):
-        added = sorted(set(y[key]) - set(x[key]))
-        gone = sorted(set(x[key]) - set(y[key]))
         changed = sorted(k for k in set(x[key]) & set(y[key]) if x[key][k]["version"] != y[key][k]["version"])
-        return {"added": added, "no_longer_selected" if key == "records" else "ended": gone, "changed": changed}
+        return {"added": sorted(set(y[key]) - set(x[key])),
+                ("no_longer_selected" if key == "records" else "ended"): sorted(set(x[key]) - set(y[key])),
+                "changed": changed}
+    if from_snapshot in cb or to_snapshot in ca:
+        lo, hi = (ca, cb) if from_snapshot in cb else (cb, ca)
+        span = set(hi) - set(lo)
+        evs = [e for e in view["events"] if e["repository"] == repository and e.get("snapshot_id") in span]
+        relation = "forward" if from_snapshot in cb else "backward"
+    else:
+        evs, relation = [], "diverged"
     return {"query": "changes_between", "state": "compared", "repository": repository,
-            "from": {k: a[k] for k in ("snapshot_id", "commit", "position", "source_time")},
-            "to": {k: b[k] for k in ("snapshot_id", "commit", "position", "source_time")},
-            "direction": "forward" if a["position"] <= b["position"] else "backward",
-            "events": evs, "net": {"records": net(sa, sb), "relations": net(sa, sb, "relations"),
-                                   "direction": {"from": sa["direction"], "to": sb["direction"]}},
-            "evidence_note": "Events are recorded changes between first-parent snapshots of one lineage."}
+            "from": brief(a), "to": brief(b), "direction": relation, "events": evs,
+            "net": {"records": net(sa, sb), "relations": net(sa, sb, "relations"),
+                    "direction": {"from": sa["direction"], "to": sb["direction"]}},
+            "evidence_note": "Events are recorded changes along one snapshot chain. Diverged lineages compare "
+                             "net state only; no ancestry is inferred across them."}
 
 
 # ---------------------------------------------------------------- context projection
@@ -790,7 +793,7 @@ def ui_bundle(view: dict, repository: str, *, requested_ref: str | None = None, 
     presents and compares these states; it never folds events itself (one implementation, ADR-026)."""
     snaps = sorted([s for s in view["snapshots"] if s["repository"] == repository
                     and (requested_ref is None or s["requested_ref"] == requested_ref)],
-                   key=lambda s: (s["lineage"], s["position"]))
+                   key=lambda s: s["recorded_seq"])
     head = head_snapshot(view, repository, requested_ref)
     now = state_at(view, repository, snapshot_id=head["snapshot_id"]) if head else None
     events = [e for e in view["events"] if e["repository"] == repository]

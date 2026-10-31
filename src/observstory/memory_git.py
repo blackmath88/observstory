@@ -89,7 +89,8 @@ def regenerate_view(repo: str, ref: str, repository: str, *, manifest_path: str 
         events.extend(evs)
         a = o["artifact"]
         snapshots.append({"snapshot_id": a["snapshot_id"], "repository": repository, "requested_ref": ref,
-                          "commit": c, "position": position(repo, c), "lineage": 1, "on_current_lineage": True,
+                          "commit": c, "position": position(repo, c), "lineage": 1, "recorded_seq": len(snapshots) + 1,
+                          "base_snapshot_id": prev["artifact"]["snapshot_id"] if prev else None,
                           "source_time": st, "recorded_at": stamp, "complete": a["complete"],
                           "manifest_blob": a["source"]["manifest_blob"], "producer": a["producer"],
                           "audience": a["source"].get("audience"), "changed": bool(evs),
@@ -101,6 +102,7 @@ def regenerate_view(repo: str, ref: str, repository: str, *, manifest_path: str 
     return {"schema": memory.VIEW_SCHEMA, "generated_at": stamp,
             "host": {"kind": "git-regeneration", "note": "rebuilt from Git; recorded_at is the regeneration time"},
             "sources": [{"repository": repository, "requested_ref": ref, "cursor_commit": tip,
+                         "head_snapshot_id": snapshots[-1]["snapshot_id"] if snapshots else None,
                          "last_sync": {"at": stamp, "outcome": "regenerated"}}],
             "snapshots": snapshots, "record_versions": list(rvs.values()), "relation_versions": list(lvs.values()),
             "events": events, "receipts": [], "indexing": {"state": "not_configured"}}
