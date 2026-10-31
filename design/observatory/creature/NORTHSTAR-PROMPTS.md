@@ -107,3 +107,69 @@ readable at the smallest size.
 
 Our state meanings stay the same: resting means nothing needs a conversation, up (lantern lit)
 means an overlap or wait exists, and travelling means replay is playing.
+
+---
+
+## Round 2: after the first Nano Banana results (31 Oct)
+
+Owner picks: the **owl** and the **tortoise**.
+
+What works:
+- The porthole window-eyes with wooden shutters as eyelids.
+- The tortoise's gentle smile, weight and lying-down posture.
+- Moss, birds, ladder, balcony and armillary.
+
+What doesn't work:
+- The telescope. On the tortoise it grows out of the forehead like a horn, and on the owl it
+  is a loose prop.
+- The owner wants a **modern enclosure mechanism**, like a large modern observatory dome: two
+  curved shutter halves that part to reveal an open lattice (truss) telescope inside, with a
+  louvred ring below.
+
+Direction: tortoise body and face, with a modern dome on its back. The dome's two shells open like
+a beetle's wing cases. That opening becomes the state mapping:
+- **Resting:** shells closed, eyes shuttered.
+- **Up:** shells part, the truss telescope rises, lantern lit.
+- **Travelling:** walking, dome rotating.
+
+The telescope is never on the head. The second reference image (a public observatory rendering)
+is used for the mechanism only.
+
+**Edit prompt.** Attach the tortoise image first and the dome reference second:
+```
+Keep the creature from the first image exactly: its kind smiling face, the two round porthole
+window-eyes with wooden shutters as eyelids, the stone and verdigris shell, moss, ferns, ladder,
+balcony, little birds, the dusk meadow and mountains. Change only the observatory. Remove the
+telescope from its forehead completely. The observatory on its back becomes a modern telescope
+enclosure like the one in the second image: a large rounded dome made of two curved shell halves
+that part down the middle like a beetle's wing cases, revealing an open white lattice truss
+telescope with a large round mirror at its base, tilted up toward the first stars. Below the dome
+runs a ring of louvred vents, like gills. The telescope lives inside the dome on the creature's
+back, never on its head. Dome panels in pale weathered silver-grey with verdigris patina along the
+seams and rivets, a little moss on top. The brass lantern hangs from the edge of one open shutter.
+Same hand-painted wholesome style and palette.
+```
+
+**State sheet.** Send this next in the same chat:
+```
+Keep this exact creature. Clean state sheet on a plain pale background, three poses side by side,
+same scale, labelled:
+1 "Resting": lying down, dome shells fully closed, window-eye shutters half closed, a calm sleepy smile.
+2 "Up": standing, dome shells parted, the truss telescope raised, eyes open and glowing, orange lantern lit.
+3 "Travelling": walking mid-step, dome rotated to one side with shells half open, a few stars trailing behind.
+```
+
+**Mechanism close-up**, for animation parts:
+```
+Keep this exact creature. Close-up cutaway of the dome mechanism only: the two curved shell halves,
+their hinge rails and rollers, the louvred vent ring, the white truss telescope on its rotating
+mount, the round mirror cell. Plain background, clear separate parts, same style.
+```
+
+**Owl variant**, the same fix on the owl image:
+```
+Keep this owl creature exactly, including its porthole eyes with shutters and its face. Replace
+the loose telescope with a modern enclosure built into the top of its head-dome: two curved shell
+halves that part like wing cases to reveal an open white lattice truss telescope inside, tilted
+upward. A louvred vent ring below it. Same style and palette.
+```
