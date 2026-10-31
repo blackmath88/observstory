@@ -1,0 +1,104 @@
+/* Observatory design tokens — PROPOSAL (pixel-design study, 31 Oct 2026).
+ *
+ * Status: study tokens, not shipping tokens. Final palette waits for the owner's
+ * templates (see RECOMMENDATION.md → "Decisions awaiting templates").
+ *
+ * Inherited laws (docs/development/ui-language.md, docs/ui/design-language.md):
+ *   - one accent, reserved for "a conversation is needed";
+ *   - selection and focus use a separate cool colour, never the accent;
+ *   - confidence is shape (dash), not colour;
+ *   - no traffic-light red/amber/green.
+ *
+ * New in this study:
+ *   - the accent is the observatory's warm window: it is lit only when the
+ *     loaded snapshot carries an overlap / waiting signal or a declared-vs-observed cue;
+ *   - scenery colours (--px-*) are a separate, closed palette used only by pixel art;
+ *     UI never reads them and pixel art never uses UI text colours.
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* ── Night (default for the study) ─────────────────────────────── */
+  --sky-0: #0a0e15;   /* page, deepest sky */
+  --sky-1: #10161f;   /* panels: sidebar, inspector */
+  --sky-2: #151d28;   /* raised: hover, header */
+  --sky-3: #1c2633;   /* active row, input */
+  --hair: #222c39;    /* 1px separators */
+  --hair-2: #2e3a4a;  /* stronger separator, graticule */
+
+  --ink: #e4e7ea;     /* primary text  (≈14.9:1 on --sky-1) */
+  --ink-2: #a2abb5;   /* secondary     (≈7.6:1) */
+  --ink-3: #6f7a87;   /* tertiary, ages, rule lines (≈4.1:1 — never for body copy) */
+
+  --mark: #8db5c9;    /* neutral data mark: a work item in flight (existing dark token) */
+  --mark-dim: #57707e;/* stale / landed marks (receding, not hidden) */
+  --select: #78aaf5;  /* selection, focus ring, telescope reticle */
+  --select-t: #16243a;/* selected row background */
+  --accent: #f09a45;  /* conversation needed — the lit window (existing dark token) */
+  --accent-t: #2b1d10;/* accent wash behind attention rows */
+  --wire: #8d97a3;    /* waiting connectors (directed) */
+  --declared: #c9b8e8;/* declared coordination text marker (rail only; not a signal colour) */
+  --decor: #2f3b4d;   /* decorative stars drawn in UI surfaces (atlas): never mistaken for data */
+
+  /* ── Pixel scenery palette (closed set; art only) ───────────────── */
+  --px-void: #070a10;
+  --px-sky-hi: #0d1420;
+  --px-sky-lo: #142032;
+  --px-star-decor: #3d4b60;   /* decorative stars: deliberately low contrast, 1 art px */
+  --px-star-faint: #2a3546;
+  --px-hill-far: #121a26;
+  --px-hill-near: #0c121b;
+  --px-stone: #3a4556;
+  --px-stone-hi: #56637a;
+  --px-dome: #8492a3;
+  --px-dome-hi: #b6c0cc;
+  --px-dome-lo: #5b6779;
+  --px-slit: #05080c;
+  --px-window-off: #2a2219;   /* unlit window: warm but dark */
+  --px-window-on: var(--accent);
+  --px-glow: rgba(240, 154, 69, 0.18);
+  --px-brass: #9a8a6a;        /* telescope fittings (study B) */
+  --px-tube: #c9d1da;
+
+  /* ── Type ───────────────────────────────────────────────────────── */
+  --font-ui: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  --fs-xs: 11px;   /* rule lines, ages, coordinates */
+  --fs-sm: 12px;   /* labels, lane caps, mono refs */
+  --fs-md: 13px;   /* body rows (GitHub density) */
+  --fs-lg: 15px;   /* inspector title */
+  --lh: 1.45;
+  --caps-track: 0.08em;
+
+  /* ── Space & shape ──────────────────────────────────────────────── */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px;
+  --radius: 6px;          /* rows, pills, inputs */
+  --radius-panel: 8px;    /* floating inspector only */
+  --row-h: 32px;
+  --bar-h: 36px;
+
+  /* ── Pixel scale: 1 art pixel = N CSS px, integer only ──────────── */
+  --px-scale: 3;          /* desktop; 2 under 768px */
+
+  /* ── Motion ─────────────────────────────────────────────────────── */
+  --t-fast: 120ms;
+  --t-turn: 600ms;        /* telescope turn, stepped in 8 art-angle steps */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+/* Paper — a light variant so the existing light-primary map rules stay reachable.
+ * Night is the study default because the scenery is a night sky. */
+:root[data-theme="paper"] {
+  color-scheme: light;
+  --sky-0: #efeee9; --sky-1: #f8f7f3; --sky-2: #f2f1ec; --sky-3: #e8e6df;
+  --hair: #dedbd3; --hair-2: #cfccc3;
+  --ink: #1c1d1f; --ink-2: #4f5357; --ink-3: #6e7175;
+  --mark: #2f5467; --mark-dim: #8a9aa3; --select: #0a66d6; --select-t: #e3edfb;
+  --accent: #b4530a; --accent-t: #fbefe4; --wire: #6e6e73; --declared: #5b4a85;
+  --decor: #d9d6cd;
+}
+
+@media (max-width: 767px) {
+  :root { --px-scale: 2; }
+}

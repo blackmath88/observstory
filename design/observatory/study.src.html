@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" data-theme="night">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Observatory pixel studies</title>
+<meta name="description" content="Three pixel-art treatments (courtyard, instrument, atlas) around one working Observstory interface. Synthetic data.">
+<!-- @inline-css tokens.css -->
+<!-- @inline-css src/study.css -->
+</head>
+<body>
+<header id="studybar" class="study-bar" aria-label="Study controls"></header>
+<main id="app" class="app" aria-label="Observatory (study)">
+  <div id="titlebar" class="titlebar"></div>
+  <div id="horizon" class="horizon" aria-hidden="true"></div>
+  <div class="body">
+    <nav id="side" class="side" aria-label="Views and areas"></nav>
+    <section id="main" class="mainpane" aria-label="Work"></section>
+    <aside id="rail" class="rail" aria-label="Attention, collection and inspector"></aside>
+  </div>
+  <footer id="statusbar" class="statusbar"></footer>
+</main>
+<section id="notes" class="notes" aria-label="Study notes"></section>
+<noscript><p style="padding:16px">This study page renders with JavaScript (no network access needed).</p></noscript>
+<!-- @inline-js src/pixels.js -->
+<!-- @inline-js src/data.js -->
+<!-- @inline-js src/study.js -->
+</body>
+</html>
