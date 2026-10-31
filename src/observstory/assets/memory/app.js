@@ -66,7 +66,8 @@
   }
   function go(tab) { S.tab = tab; writeHash(); render(); document.getElementById("main").focus({ preventScroll: true }); }
   function select(kind, id) {
-    S.lastFocus = document.activeElement;
+    const a = document.activeElement;
+    S.returnKey = a && a.dataset ? a.dataset.key || null : null;
     S.sel = kind + ":" + id; writeHash(); render();
     const ins = document.getElementById("inspector");
     ins.classList.add("open");
@@ -74,11 +75,13 @@
   }
   function closeInspector() {
     S.sel = null; writeHash(); render();
-    if (S.lastFocus && document.body.contains(S.lastFocus)) S.lastFocus.focus();
+    // render() rebuilt the DOM: return focus to the control that opened the inspector, found by its key
+    const t = S.returnKey && [...root.querySelectorAll("[data-key]")].find(n => n.dataset.key === S.returnKey);
+    if (t) t.focus(); else document.getElementById("main").focus();
   }
   function rowBtn(kind, id, kids) {
     const pressed = S.sel === kind + ":" + id;
-    return el("button", { class: "row", type: "button", "aria-pressed": pressed ? "true" : "false", onclick: () => select(kind, id) }, kids);
+    return el("button", { class: "row", type: "button", "data-key": kind + ":" + id, "aria-pressed": pressed ? "true" : "false", onclick: () => select(kind, id) }, kids);
   }
 
   // ------------------------------------------------------------ header & status
@@ -295,7 +298,7 @@
       const p = pos(rid), e = f.records[rid], v = e ? V(e[0]) : null;
       const cls = ["node", !e ? "absent" : "", v && ["superseded", "historical"].includes(v.status) ? "historical" : "", e && e[1] !== "current" ? "unavailable" : "", S.sel === "record:" + rid ? "sel" : ""].join(" ");
       const label = (v ? v.title : recTitle(rid)) || rid;
-      const g = sv("g", { class: cls, tabindex: "0", role: "button", "aria-label": `${label}, ${v ? v.type + " " + v.status : "not selected at this point"}`, "data-i": String(i),
+      const g = sv("g", { class: cls, tabindex: "0", role: "button", "data-key": "node:" + rid, "aria-label": `${label}, ${v ? v.type + " " + v.status : "not selected at this point"}`, "data-i": String(i),
         onclick: () => select("record", rid), onkeydown: ev => graphKey(ev, ids, i, rid) },
         sv("rect", { x: String(p.x), y: String(p.y), width: String(W), height: String(H), rx: "5" }),
         sv("text", { x: String(p.x + 8), y: String(p.y + 14), text: label.length > 24 ? label.slice(0, 23) + "…" : label }),

@@ -36,9 +36,9 @@ header.top { display: flex; align-items: center; gap: var(--s3); padding: var(--
 header.top .mark { width: 40px; height: 40px; image-rendering: pixelated; flex: none; }
 header.top h1 { font-size: var(--fs-lg); margin: 0; font-weight: 600; }
 header.top .repo { color: var(--ink-2); }
-.fresh { margin-left: auto; display: flex; gap: var(--s2); flex-wrap: wrap; }
+.fresh { margin-left: auto; display: flex; gap: var(--s2); flex-wrap: wrap; min-width: 0; max-width: 100%; }
 .pill { border: 1px solid var(--hair-2); border-radius: 999px; padding: 1px var(--s2); font-size: var(--fs-sm); color: var(--ink-2);
-  background: var(--sky-2); max-width: 100%; overflow-wrap: anywhere; }
+  background: var(--sky-2); max-width: 100%; min-width: 0; overflow-wrap: anywhere; }
 .pill.warn { border-color: var(--accent); color: var(--accent); background: var(--accent-t); }
 .pill.ok { color: var(--ink); }
 
@@ -53,7 +53,7 @@ aside.inspector { border-left: 1px solid var(--hair); background: var(--sky-1); 
 aside.inspector .close { display: none; }
 aside.inspector h2 { font-size: var(--fs-lg); margin: 0 0 var(--s2); }
 @media (max-width: 900px) {
-  .shell { grid-template-columns: 1fr; }
+  .shell { grid-template-columns: minmax(0, 1fr); }
   aside.inspector { position: fixed; inset: auto 0 0 0; max-height: 75vh; border-left: 0; border-top: 1px solid var(--hair-2);
     box-shadow: 0 -8px 24px rgba(0,0,0,.35); z-index: 5; display: none; }
   aside.inspector.open { display: block; }
@@ -92,7 +92,8 @@ dl.kv { display: grid; grid-template-columns: max-content 1fr; gap: 2px var(--s3
 dl.kv dt { color: var(--ink-3); font-size: var(--fs-sm); }
 dl.kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
 .controls { display: flex; flex-wrap: wrap; gap: var(--s3); align-items: end; margin-bottom: var(--s3); }
-.controls label { display: flex; flex-direction: column; gap: 2px; font-size: var(--fs-sm); color: var(--ink-2); }
+.controls label { display: flex; flex-direction: column; gap: 2px; font-size: var(--fs-sm); color: var(--ink-2); min-width: 0; max-width: 100%; }
+.controls select { width: 100%; }
 select, input[type=text], input[type=number], textarea { background: var(--sky-3); border: 1px solid var(--hair-2); border-radius: var(--radius);
   padding: 5px var(--s2); min-height: 32px; max-width: 100%; }
 textarea { width: 100%; min-height: 72px; }
