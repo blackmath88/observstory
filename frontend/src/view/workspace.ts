@@ -93,3 +93,94 @@ export function workspace(bundle: Bundle) {
 export function publicURL(url?: string) {
   return url?.startsWith("https://") ? url : undefined;
 }
+
+/** Navigation categories use record kinds only. They imply no relationship or lifecycle. */
+export const FOCUSES = [
+  { id: "all", label: "All work" },
+  { id: "research", label: "Research" },
+  { id: "concept", label: "Concepts" },
+  { id: "plan", label: "Planning" },
+  { id: "implementation", label: "Implementation" },
+  { id: "context", label: "Other context" },
+] as const;
+export type Focus = (typeof FOCUSES)[number]["id"];
+export function readFocus(value: string | null): Focus {
+  return FOCUSES.find((f) => f.id === value)?.id ?? "all";
+}
+export function recordFocus(record: RecordView): Focus {
+  return ["research", "concept", "plan", "implementation"].includes(record.kind) ? (record.kind as Focus) : "context";
+}
+
+export function scopeWorkspace(model: ReturnType<typeof workspace>, focus: Focus, query: string, revealId?: string | null) {
+  const words = query.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+  const matches = model.records.filter((r) => {
+    const text = [
+      r.title,
+      r.kind,
+      r.context,
+      r.basis,
+      r.status,
+      r.attention,
+      r.resume?.stopping_point,
+      r.resume?.next_action,
+      ...r.material.map((s) => s.title),
+    ]
+      .join(" ")
+      .toLocaleLowerCase();
+    return (focus === "all" || recordFocus(r) === focus) && words.every((word) => text.includes(word));
+  });
+  const matching = new Set(matches.map((r) => r.id));
+  // Retain declared/derived ancestors for orientation without changing membership.
+  const revealed = model.byId.get(revealId ?? "");
+  const revealAncestors = membershipClosure(model.records, revealed ? [revealed.id] : []);
+  const visible = membershipClosure(model.records, [...matching, ...revealAncestors]);
+  return { matches, matching, visible, revealed, revealAncestors, active: focus !== "all" || words.length > 0 };
+}
+
+/** Membership is declared or derived by the producer; relations and file paths never imply membership. */
+function membershipClosure(records: RecordView[], ids: string[]) {
+  const included = new Set(ids);
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const r of records) {
+      if (!included.has(r.id) && r.members?.some((id) => included.has(id))) {
+        included.add(r.id);
+        changed = true;
+      }
+    }
+  }
+  return included;
+}
+
+/** Stable root-to-record routes, including multiple memberships, with bounded traversal. */
+export function workspaceLocations(records: RecordView[], id: string) {
+  const byId = new Map(records.map((r) => [r.id, r]));
+  const parents = new Map<string, RecordView[]>();
+  for (const r of records) {
+    for (const child of new Set(r.members ?? [])) {
+      if (byId.has(child)) parents.set(child, [...(parents.get(child) ?? []), r]);
+    }
+  }
+  const paths: RecordView[][] = [];
+  let truncated = false;
+  let cyclic = false;
+  let steps = 0;
+  function visit(record: RecordView, tail: RecordView[]) {
+    if (tail.some((r) => r.id === record.id)) {
+      cyclic = true;
+      return;
+    }
+    if (++steps > 512 || paths.length >= 12) {
+      truncated = true;
+      return;
+    }
+    const path = [record, ...tail];
+    const containing = parents.get(record.id) ?? [];
+    if (!containing.length) paths.push(path);
+    else for (const parent of containing) visit(parent, path);
+  }
+  const record = byId.get(id);
+  if (record) visit(record, []);
+  return { paths, truncated, cyclic };
+}

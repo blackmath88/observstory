@@ -162,6 +162,10 @@ export interface KnowledgeRecord {
 
 export interface Knowledge {
   schema: "observstory.knowledge/v1";
+  repository?: string;
+  source?: { manifest_path?: unknown };
+  /** Relationship payload fields are loosely constrained by knowledge/v1. Project safely. */
+  relationships?: unknown[];
   title?: string;
   generated_at: string;
   complete: boolean;
