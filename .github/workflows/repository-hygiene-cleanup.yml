@@ -1,0 +1,30 @@
+name: Repository hygiene branch cleanup
+on:
+  pull_request:
+    types: [closed]
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    if: >-
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.head.ref == 'docs/repository-hygiene-2026-11-01' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const {owner,repo} = context.repo;
+            const pr = context.payload.pull_request;
+            const ref = 'heads/' + pr.head.ref;
+            let live;
+            try { live = (await github.rest.git.getRef({owner,repo,ref})).data.object.sha; }
+            catch (error) { if(error.status===404) {core.notice('Branch already absent');return;} throw error; }
+            if(live !== pr.head.sha) throw new Error('Branch moved; preserving it.');
+            const main = (await github.rest.git.getRef({owner,repo,ref:'heads/main'})).data.object.sha;
+            const comparison = (await github.rest.repos.compareCommitsWithBasehead({owner,repo,basehead:live+'...'+main})).data;
+            if(comparison.merge_base_commit.sha !== live) throw new Error('Head is not contained in main; preserving it.');
+            await github.rest.git.deleteRef({owner,repo,ref});
+            core.notice('Deleted merged hygiene branch ' + pr.head.ref);

@@ -5,7 +5,7 @@
 
 **Shared situational awareness for AI-assisted software work.**
 
-<a href="https://github.com/blackmath88/observstory"><img alt="Primary language: HTML" src="https://img.shields.io/badge/language-HTML-526078?style=flat"></a>
+<a href="https://github.com/blackmath88/observstory"><img alt="Python and TypeScript" src="https://img.shields.io/badge/Python-TypeScript-526078?style=flat"></a>
 <a href="https://github.com/blackmath88/observstory/tree/main/docs"><img alt="Documentation" src="https://img.shields.io/badge/docs-guide-16796f?style=flat"></a>
 <a href="https://github.com/blackmath88/observstory/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/blackmath88/observstory?style=flat&amp;color=737373"></a>
 
@@ -30,6 +30,21 @@ Humans get a dashboard. Coding agents query the same state before they act.
 **▶ [Try the Demo Lab](demo/index.html)**: one fictional project at nine moments, from quiet to overlap
 to resolved, each rendered by the real pipeline. Open `demo/index.html` locally or on GitHub Pages.
 *All demo data is synthetic.*
+
+## Start here
+
+The **static Observatory workspace**, Project Knowledge and Project Memory contracts are implemented on main. Classic Project Map remains the default Action output; the new workspace is opt-in. Code availability does not prove an installed NUC service is current.
+
+| Surface | Purpose | Guide |
+| --- | --- | --- |
+| Observatory workspace | Workstreams, research/concepts/planning, board, timeline and source-evidence drawer | [Frontend](frontend/README.md) · [live Open Presence consumer](https://blackmath88.github.io/baselhack26-open-presence/) |
+| Classic Project Map | In-flight repository work, overlaps, waiting and stale signals | [Project Map](docs/ui/project-map.md) |
+| Project Knowledge | Explicitly selected repository documents, statuses, source revisions and diagnostics | [Usage](docs/project-knowledge/USAGE.md) |
+| Project Memory | Revision history, reproducible context and reviewable write-back | [Contract/CLI](docs/project-knowledge/MEMORY.md) · [durable host](https://github.com/blackmath88/baselhack26-knowledge-lab) |
+
+The workspace uses `frontend: observatory`; add `knowledge: .observstory/knowledge.json` when the consumer declares project knowledge. Optional `.observstory/workspace.json` supplies workstream membership and declared context. Missing inputs remain visible as missing.
+
+![Observatory board with research, concepts and plans](frontend/docs/visual-workspace/board-kinds-1440.png)
 
 ## Install (zero config)
 
@@ -57,7 +72,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: observstory
-        uses: blackmath88/observstory@main   # pin a release tag once one is published
+        uses: blackmath88/observstory@main   # pin a reviewed commit SHA for reproducible consumption
       - uses: actions/upload-artifact@v4
         with: { name: observstory, path: observstory, retention-days: 7 }
 ```
@@ -74,6 +89,18 @@ radar view). **Without any config file** you get:
 The job summary lists the signals. For a hosted page, add the `configure-pages` /
 `upload-pages-artifact` / `deploy-pages` steps (see [ARCHITECTURE.md](ARCHITECTURE.md#publishing)).
 Think twice before doing that on a private repo: Pages may be more visible than the repo.
+
+To opt into the static workspace, extend that Action step:
+
+```yaml
+      - id: observstory
+        uses: blackmath88/observstory@main   # pin a reviewed commit SHA
+        with:
+          frontend: observatory
+          knowledge: .observstory/knowledge.json   # omit unless this manifest exists
+```
+
+Serve downloaded workspace output with `python3 -m http.server --directory observstory 8000`, then open http://localhost:8000/. Browser data fetching requires HTTP; opening its `index.html` through `file://` is unsupported. The classic `map.html` remains available.
 
 To name your own lanes, thresholds or ignore globs, add `observstory.config.json` (see
 [`observstory.config.example.json`](observstory.config.example.json)). Every field is optional.
@@ -155,13 +182,13 @@ any retrieval index, issues reproducible context packets (JSON + Markdown, same 
 same recorded state) and takes findings back as reviewable proposal files: only a human review record
 accepts one.
 
-What exists and what does not, as of this branch:
+Current implementation boundaries:
 
 | Available | Not available yet |
 | --- | --- |
 | `observstory memory` CLI (regenerate from Git, state, history, changes, context, propose, render) | a Pages workflow that publishes the memory page (the Action is unchanged) |
-| Observatory page: Now / History / Graph / Context, evidence inspector, knowledge replay | final pixel artwork (study assets only) and the TanStack rewrite |
-| Durable NUC host with real ingestion times, outbox, receipts, MCP (in baselhack26-knowledge-lab) | a remote MCP transport reachable by hosted ChatGPT/Claude |
+| Memory page: Now / History / Graph / Context, evidence inspector and replay; separate static TanStack workspace | final pixel artwork (study assets only) |
+| Durable host implementation with ingestion times, outbox, receipts and MCP in Knowledge Lab main; verify the installed runtime separately | authenticated remote MCP access for hosted assistants |
 | Write-back via `.observstory/proposals/` + `.observstory/reviews/` in pull requests | a write endpoint or GitHub-App approval flow (ADR-031) |
 
 ## Integration with orchestration systems
@@ -209,7 +236,8 @@ that humans and agents share. More in
 - Authors appear only as the people to talk to about a piece of work.
 - These rules are enforced by tests (`tests/test_principles.py`) and by the schema: actor
   objects can't carry numeric fields.
-- Only metadata is read. File contents are never stored. There is no LLM anywhere.
+- The activity collector reads repository metadata. Opt-in Project Knowledge reads explicitly selected committed documents; Project Memory preserves selected versions and source bytes. Neither feature silently ingests private conversations.
+- Collection, history and context projection are deterministic; retrieval/model calls belong to the separate Knowledge Lab host.
 
 ## Evidence that it works
 
