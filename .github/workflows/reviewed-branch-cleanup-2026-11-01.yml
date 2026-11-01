@@ -16,9 +16,10 @@ jobs:
       - uses: actions/github-script@v7
         with:
           script: |
-            const candidates = [{"name":"blackmath88/nuc-20261031-observatory","sha":"ae4f814f331566aa7dd2befa97d774ec194a3f5d"},{"name":"claude/blissful-brahmagupta-xtddua","sha":"5476032038aa88c3b17c950e4f6dd3ec3dc3c5d4"},{"name":"design/observatory-pixel-studies","sha":"87efedbf421c14fd057f84c8dd7bbe9376cdd3b5"},{"name":"docs/nuc-build-window-2026-10-31","sha":"13123657490feb2a24f805553328211f3ccb535e"},{"name":"docs/project-knowledge-concept","sha":"1823a9bf54025a0200802bef776c7a0472baaf46"},{"name":"docs/weavr-contract-governance","sha":"9aa30162d9a5c091fe9b7b04b55b82d03bd1bc57"},{"name":"docs/weavr-observatory-contract","sha":"85172bf927da106ccb0d93d3ca5c239031d4eb29"},{"name":"feat/frontend-tanstack-start","sha":"af5b2d725301f46ee1796b3d215fd90694fb8c12"},{"name":"feat/observatory-visual-workspace","sha":"84c3c0a4e1d870f0aa56e47db9ee59fcfd1ee844"},{"name":"feat/project-knowledge-slice","sha":"9f83c2c3e801cb9296a014756b7c95c913914952"},{"name":"feat/project-memory-mvp","sha":"3332d9e2e4586b479048c6d8cc854603f65c362e"},{"name":"feat/system-map-v0","sha":"dd4ef8654eaba832d0d86eaf2c67c6fd2beeafac"},{"name":"fix/knowledge-production-ref","sha":"c8bf6ad33f8b66102c00f839c54ec38f364ab271"},{"name":"fix/memory-replay-lineage-review","sha":"c23c35ac8447d2f84bec89e5a9b9e4ee68efb61d"},{"name":"integration/weavr-contract","sha":"71993242e6fc9cf8b8e64aded57e28f9e55f6050"}];
+            const candidates = [{"name":"claude/blissful-brahmagupta-xtddua","sha":"5476032038aa88c3b17c950e4f6dd3ec3dc3c5d4"},{"name":"design/observatory-pixel-studies","sha":"87efedbf421c14fd057f84c8dd7bbe9376cdd3b5"},{"name":"docs/project-knowledge-concept","sha":"1823a9bf54025a0200802bef776c7a0472baaf46"},{"name":"docs/weavr-contract-governance","sha":"9aa30162d9a5c091fe9b7b04b55b82d03bd1bc57"},{"name":"docs/weavr-observatory-contract","sha":"85172bf927da106ccb0d93d3ca5c239031d4eb29"},{"name":"feat/system-map-v0","sha":"dd4ef8654eaba832d0d86eaf2c67c6fd2beeafac"},{"name":"fix/knowledge-production-ref","sha":"c8bf6ad33f8b66102c00f839c54ec38f364ab271"},{"name":"integration/weavr-contract","sha":"71993242e6fc9cf8b8e64aded57e28f9e55f6050"}];
             const {owner, repo} = context.repo;
             const pulls = await github.paginate(github.rest.pulls.list, {owner,repo,state:'open',per_page:100});
+            const mergedPulls = (await github.paginate(github.rest.pulls.list, {owner,repo,state:'closed',per_page:100})).filter(p=>p.merged_at && p.base.ref==='main');
             const main = (await github.rest.git.getRef({owner,repo,ref:'heads/main'})).data.object.sha;
             const results = [];
             for (const candidate of candidates) {
@@ -30,7 +31,8 @@ jobs:
                 const live = (await github.rest.git.getRef({owner,repo,ref:'heads/'+name})).data.object.sha;
                 if (live !== candidate.sha) {results.push({branch:name,state:'preserved-moved'});continue;}
                 const compared = (await github.rest.repos.compareCommitsWithBasehead({owner,repo,basehead:live+'...'+main})).data;
-                if (compared.merge_base_commit.sha !== live) {results.push({branch:name,state:'preserved-unmerged'});continue;}
+                const landedBySquash = mergedPulls.some(p=>p.head.ref===name && p.head.sha===live);
+                if (compared.merge_base_commit.sha !== live && !landedBySquash) {results.push({branch:name,state:'preserved-unmerged'});continue;}
                 await github.rest.git.deleteRef({owner,repo,ref:'heads/'+name});
                 results.push({branch:name,sha:live,state:'deleted-merged'});
               } catch(error) {
