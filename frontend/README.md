@@ -1,7 +1,7 @@
-# Observatory frontend (preview)
+# Observatory frontend
 
-A static TanStack Start v1 app that renders an Observstory snapshot in the browser. It is opt-in:
-the Python renderer (`map_render.py`) remains the default output until this reaches parity.
+A static TanStack Start v1 app that renders an Observstory snapshot in the browser. It is implemented on main and opt-in:
+the Python renderer (`map_render.py`) remains the default Action output.
 Decisions are in [DECISIONS.md → ADR-038](../DECISIONS.md).
 
 ```bash
@@ -20,10 +20,10 @@ npm run e2e        # Playwright: build served under /hackathon/, /quiet/, /broke
 - `npm run build` writes `dist/client/`.
   - Drop it into any folder (for example a GitHub Pages project path), next to the Action's
     `data/` directory. Asset URLs are relative and routes use the hash (`#/sources`), so any
-    subpath, direct link and reload work without a server.
+    subpath, direct link and reload work without server-side routing. Serve the files over HTTP; `file://` cannot fetch the data bundle.
 - The page fetches these at runtime:
   - `./data/snapshot.json` and `./data/scene.json`: required.
-  - `./data/knowledge.json` and `./data/event.json`: optional.
+  - `./data/knowledge.json`, `./data/event.json` and `./data/workspace.json`: optional.
 - Each input is checked against `../schema/*.json`. Its state is shown on the Data sources tab:
   loaded, not published, unsupported version, invalid, unreadable or unreachable. Absent data is
   never shown as zero.
