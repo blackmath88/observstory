@@ -8,7 +8,8 @@ permissions:
   pull-requests: read
 jobs:
   cleanup:
-    if: startsWith(github.event.head_commit.message, 'chore: remove merged branches after review')
+    if: >-
+      startsWith(github.event.head_commit.message, 'chore: remove merged branches after review')
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
