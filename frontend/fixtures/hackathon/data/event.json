@@ -1,0 +1,39 @@
+{
+  "schema": "observstory.event-schedule/v0",
+  "title": "Synthetic hackathon · event timetable",
+  "timezone": "Europe/Zurich",
+  "starts_on": "2026-10-09",
+  "ends_on": "2026-10-11",
+  "source": {
+    "kind": "synthetic_fixture",
+    "independently_verified": false,
+    "note": "Invented for frontend tests."
+  },
+  "coding_deadline": {
+    "event_id": "sun-hands-off",
+    "at": "2026-10-11T12:00:00+02:00",
+    "label": "Hands off!",
+    "basis": "synthetic_fixture"
+  },
+  "events": [
+    {
+      "id": "sat-breakfast",
+      "label": "Breakfast",
+      "start_at": "2026-10-10T08:00:00+02:00",
+      "precision": "exact"
+    },
+    {
+      "id": "sun-hands-off",
+      "label": "Hands off!",
+      "start_at": "2026-10-11T12:00:00+02:00",
+      "precision": "exact"
+    },
+    {
+      "id": "sun-presentations",
+      "label": "Presentations",
+      "start_at": "2026-10-11T13:00:00+02:00",
+      "precision": "exact"
+    }
+  ],
+  "diagnostics": []
+}

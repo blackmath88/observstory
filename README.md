@@ -149,7 +149,7 @@ it. Without the file, nothing changes. Guide: [docs/collaboration-delivery](docs
 *The project remembers. Every collaborator gets the context they need.* A repository that commits
 `.observstory/knowledge.json` selects the documents that carry its direction, decisions, research and
 open questions ([usage](docs/project-knowledge/USAGE.md)). Project Memory ([usage](docs/project-knowledge/MEMORY.md),
-[ADR-038](DECISIONS.md)) keeps every first-parent revision of that selection as immutable versions and
+[ADR-039](DECISIONS.md)) keeps every first-parent revision of that selection as immutable versions and
 events, answers "what was true at this commit" and "what did we know at that time" without consulting
 any retrieval index, issues reproducible context packets (JSON + Markdown, same `packet_id` for the
 same recorded state) and takes findings back as reviewable proposal files: only a human review record

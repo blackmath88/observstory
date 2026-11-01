@@ -1,6 +1,6 @@
 # Project Memory — usage
 
-Builds on [Project Knowledge](USAGE.md) and implements [MVP-NEXT-SHARED-MEMORY.md](MVP-NEXT-SHARED-MEMORY.md); design decision in [ADR-038](../../DECISIONS.md). Opt-in: nothing runs unless a repository commits `.observstory/knowledge.json`.
+Builds on [Project Knowledge](USAGE.md) and implements [MVP-NEXT-SHARED-MEMORY.md](MVP-NEXT-SHARED-MEMORY.md); design decision in [ADR-039](../../DECISIONS.md). Opt-in: nothing runs unless a repository commits `.observstory/knowledge.json`.
 
 **The project remembers. Every collaborator gets the context they need.** Assistants consume dated views; the repository keeps the memory; people review what comes back.
 
