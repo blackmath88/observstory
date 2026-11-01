@@ -16,6 +16,9 @@
                                           opt-in Project Knowledge artifact from a committed manifest
   observstory knowledge brief|record ID|changes|render [--artifact F]
                                           deterministic queries over that artifact (docs/project-knowledge/USAGE.md)
+  observstory memory regenerate --repo DIR --ref REF [--out F]   history view rebuilt from Git (stateless host)
+  observstory memory state|history ID|changes A B|context TASK|render|propose [--view F]
+                                          Project Memory queries, context packets, UI (docs/project-knowledge/MEMORY.md)
 """
 
 from __future__ import annotations
@@ -298,6 +301,62 @@ def cmd_knowledge(args) -> None:
         pathlib.Path(args.out).write_text(render_knowledge(art, diff, map_href=args.map_href), encoding="utf-8")
 
 
+def cmd_memory(args) -> None:
+    from . import memory as mem
+    from . import memory_git
+    from .memory_render import render_memory
+    m = args.memory_cmd
+    out = lambda obj: print(json.dumps(obj, indent=2, ensure_ascii=False, sort_keys=True))  # noqa: E731
+    if m == "regenerate":
+        try:
+            view = memory_git.regenerate_view(args.repo, args.ref, args.repository or knowledge_mod._repository_from_remote(args.repo) or "local/unknown")
+        except knowledge_mod.KnowledgeError as exc:
+            raise SystemExit(f"observstory memory: {exc}") from None
+        pathlib.Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        pathlib.Path(args.out).write_text(json.dumps(view, indent=1, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
+        print(f"wrote {args.out}: {len(view['snapshots'])} snapshots, {len(view['events'])} events")
+        return
+    if m == "propose":
+        doc = mem.new_proposal(args.id, args.kind, args.title, args.statement, author=args.author, author_kind=args.author_kind,
+                               via=args.via, repository=args.repository_name, base_commit=args.base_commit,
+                               packet_id=args.packet_id, evidence=args.evidence, conditions=args.condition,
+                               change=args.change)
+        errors = mem.proposal_errors(doc)
+        if errors:
+            raise SystemExit("proposal invalid: " + "; ".join(errors))
+        text = json.dumps(doc, indent=2, ensure_ascii=False) + "\n"
+        if args.out:
+            pathlib.Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+            pathlib.Path(args.out).write_text(text, encoding="utf-8")
+            print(f"wrote {args.out}; commit it on a branch and open a pull request for review")
+        else:
+            sys.stdout.write(text)
+        return
+    view = _load_json(args.view)
+    errors = mem.view_errors(view)
+    if errors:
+        raise SystemExit("memory view invalid: " + "; ".join(errors[:5]))
+    repo = args.repository or (view["sources"][0]["repository"] if view["sources"] else "")
+    if m == "state":
+        out(mem.state_at(view, repo, snapshot_id=args.snapshot, commit=args.commit, known_at=args.known_at))
+    elif m == "history":
+        out(mem.record_history(view, repo, args.id))
+    elif m == "changes":
+        out(mem.changes_between(view, repo, args.base, args.target))
+    elif m == "context":
+        p = mem.context_packet(view, repo, args.task, snapshot_id=args.snapshot, known_at=args.known_at,
+                               include_historical=args.include_historical, limit=args.limit)
+        if args.format == "markdown":
+            sys.stdout.write(mem.packet_markdown(p))
+        else:
+            out(p)
+    elif m == "render":
+        b = mem.ui_bundle(mem.public_view(view) if args.public else view, repo)
+        pathlib.Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        pathlib.Path(args.out).write_text(render_memory(b), encoding="utf-8")
+        print(f"wrote {args.out}")
+
+
 def cmd_validate(args) -> None:
     errors = validate(json.loads(pathlib.Path(args.snapshot).read_text(encoding="utf-8")))
     print("\n".join(errors) if errors else "valid")
@@ -364,10 +423,54 @@ def main(argv=None) -> None:
     kre.add_argument("--map-href", default=None)
     for x in (kbr, kr, kre):
         x.add_argument("--artifact", default="observstory/data/knowledge.json")
+    mm = sub.add_parser("memory", help="Project Memory: history, temporal queries, context packets, UI")
+    msub = mm.add_subparsers(dest="memory_cmd", required=True)
+    mg = msub.add_parser("regenerate", help="rebuild a memory view from first-parent Git history (recorded_at = now)")
+    mg.add_argument("--repo", default=".")
+    mg.add_argument("--ref", default="HEAD")
+    mg.add_argument("--repository")
+    mg.add_argument("--out", default="observstory/data/memory.json")
+    ms = msub.add_parser("state", help="state at a revision and/or as known at a time")
+    ms.add_argument("--snapshot")
+    ms.add_argument("--commit")
+    ms.add_argument("--known-at")
+    mh = msub.add_parser("history", help="versions and events of one record")
+    mh.add_argument("id")
+    mc = msub.add_parser("changes", help="recorded changes between two snapshots of one lineage")
+    mc.add_argument("base")
+    mc.add_argument("target")
+    mx = msub.add_parser("context", help="task context packet (JSON or Markdown)")
+    mx.add_argument("task")
+    mx.add_argument("--snapshot")
+    mx.add_argument("--known-at")
+    mx.add_argument("--include-historical", action="store_true")
+    mx.add_argument("--limit", type=int, default=12)
+    mx.add_argument("--format", choices=["json", "markdown"], default="json")
+    mr = msub.add_parser("render", help="static Observatory page (Now / History / Graph / Context)")
+    mr.add_argument("--out", default="observstory/memory.html")
+    mr.add_argument("--public", action="store_true", help="keep only audience=public material")
+    for x in (ms, mh, mc, mx, mr):
+        x.add_argument("--view", default="observstory/data/memory.json")
+        x.add_argument("--repository")
+    mp = msub.add_parser("propose", help="write an observstory.proposal/v1 record for review through a pull request")
+    mp.add_argument("--id", required=True)
+    mp.add_argument("--kind", choices=sorted({"finding", "proposal"}), default="finding")
+    mp.add_argument("--title", required=True)
+    mp.add_argument("--statement", required=True)
+    mp.add_argument("--author", required=True)
+    mp.add_argument("--author-kind", choices=["human", "assistant"], required=True)
+    mp.add_argument("--via", help="e.g. 'Claude Code on the NUC'")
+    mp.add_argument("--repository-name", required=True, help="owner/name")
+    mp.add_argument("--base-commit", required=True)
+    mp.add_argument("--packet-id", help="context packet the finding was based on")
+    mp.add_argument("--evidence", action="append", required=True, help="RECORD[@VERSION] or PATH, repeatable")
+    mp.add_argument("--condition", action="append", default=[])
+    mp.add_argument("--change", default="none", help="none | set_status:RECORD:STATUS | add_link:FROM:REL:TO")
+    mp.add_argument("--out")
     v = sub.add_parser("validate")
     v.add_argument("snapshot")
     args = parser.parse_args(argv)
     handlers = {"build": cmd_build, "derive": cmd_derive, "render": cmd_render, "query": cmd_query, "checkin": cmd_checkin,
-                "validate": cmd_validate, "knowledge": cmd_knowledge, None: cmd_build}
+                "validate": cmd_validate, "knowledge": cmd_knowledge, "memory": cmd_memory, None: cmd_build}
     handlers[args.cmd](args)
 

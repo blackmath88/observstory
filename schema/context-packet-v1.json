@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "observstory.context-packet/v1",
+  "title": "Observstory context packet",
+  "description": "One projection (observstory.memory.context_packet) for every surface. packet_id = 'cp_' + sha256 of the canonical JSON of every other field (first 24 hex). Same request on the same recorded state gives the same packet_id. Markdown is rendered deterministically from this JSON.",
+  "type": "object",
+  "required": [
+    "schema",
+    "packet_id",
+    "projection",
+    "request",
+    "state",
+    "instruction"
+  ],
+  "properties": {
+    "schema": {
+      "const": "observstory.context-packet/v1"
+    },
+    "packet_id": {
+      "type": "string"
+    },
+    "projection": {
+      "type": "object",
+      "required": [
+        "name",
+        "version",
+        "policy"
+      ]
+    },
+    "request": {
+      "type": "object",
+      "required": [
+        "task",
+        "repository"
+      ]
+    },
+    "state": {
+      "enum": [
+        "issued",
+        "unavailable"
+      ]
+    },
+    "reason": {
+      "type": "string"
+    },
+    "cutoff": {
+      "type": "object",
+      "required": [
+        "snapshot_id",
+        "commit",
+        "requested_ref",
+        "lineage",
+        "position",
+        "complete"
+      ]
+    },
+    "current_direction": {
+      "type": "object"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "status",
+          "version_id",
+          "path",
+          "blob",
+          "basis",
+          "availability"
+        ]
+      }
+    },
+    "relationships": {
+      "type": "array"
+    },
+    "proposals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "state",
+          "accepted",
+          "author",
+          "base",
+          "evidence"
+        ]
+      }
+    },
+    "unresolved": {
+      "type": "array"
+    },
+    "coverage": {
+      "type": "object"
+    },
+    "source_versions": {
+      "type": "array"
+    },
+    "omissions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "record",
+          "reason"
+        ]
+      }
+    },
+    "freshness": {
+      "type": "object",
+      "required": [
+        "ingestion",
+        "semantic_index"
+      ]
+    },
+    "instruction": {
+      "type": "string"
+    }
+  }
+}

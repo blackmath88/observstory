@@ -1,0 +1,422 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "observstory.memory/v1",
+  "title": "Observstory Project Memory view",
+  "description": "What a memory host exports: snapshots of one or more repositories, immutable record/relation versions and an ordered event log. Produced by observstory.memory_git.regenerate_view (stateless) or the NUC Knowledge Lab (durable). recorded_at is when the host learned a fact; source_time is commit time; valid_from/valid_to are null unless a source declares them.",
+  "type": "object",
+  "required": [
+    "schema",
+    "generated_at",
+    "sources",
+    "snapshots",
+    "record_versions",
+    "relation_versions",
+    "events"
+  ],
+  "properties": {
+    "schema": {
+      "const": "observstory.memory/v1"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "host": {
+      "type": "object"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "snapshots": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/snapshot"
+      }
+    },
+    "record_versions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/record_version"
+      }
+    },
+    "relation_versions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relation_version"
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    },
+    "receipts": {
+      "type": "array"
+    },
+    "indexing": {
+      "type": "object"
+    },
+    "scope": {
+      "type": "object"
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": [
+        "repository",
+        "requested_ref"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "requested_ref": {
+          "type": "string"
+        },
+        "cursor_commit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "head_snapshot_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "last_sync": {
+          "type": "object"
+        }
+      }
+    },
+    "snapshot": {
+      "type": "object",
+      "required": [
+        "snapshot_id",
+        "recorded_seq",
+        "repository",
+        "requested_ref",
+        "commit",
+        "position",
+        "lineage",
+        "base_snapshot_id",
+        "recorded_at",
+        "complete",
+        "audience"
+      ],
+      "properties": {
+        "snapshot_id": {
+          "type": "string"
+        },
+        "recorded_seq": {
+          "type": "integer"
+        },
+        "repository": {
+          "type": "string"
+        },
+        "requested_ref": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "position": {
+          "type": "integer"
+        },
+        "lineage": {
+          "type": "integer"
+        },
+        "base_snapshot_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_time": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "recorded_at": {
+          "type": "string"
+        },
+        "complete": {
+          "type": "boolean"
+        },
+        "changed": {
+          "type": "boolean"
+        },
+        "audience": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "manifest_blob": {
+          "type": "string"
+        },
+        "producer": {
+          "type": "object"
+        },
+        "diagnostics": {
+          "type": "array"
+        }
+      }
+    },
+    "record_version": {
+      "type": "object",
+      "required": [
+        "version_id",
+        "logical_id",
+        "record",
+        "repository",
+        "type",
+        "status",
+        "path",
+        "content_sha256",
+        "basis"
+      ],
+      "properties": {
+        "version_id": {
+          "type": "string"
+        },
+        "logical_id": {
+          "type": "string"
+        },
+        "record": {
+          "type": "string"
+        },
+        "repository": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "path": {
+          "type": "string"
+        },
+        "section": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "blob": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "content_sha256": {
+          "type": "string"
+        },
+        "basis": {
+          "type": "object"
+        },
+        "excerpt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "relation_version": {
+      "type": "object",
+      "required": [
+        "relation_version_id",
+        "relation_id",
+        "repository",
+        "from",
+        "rel",
+        "to",
+        "origin",
+        "basis"
+      ],
+      "properties": {
+        "relation_version_id": {
+          "type": "string"
+        },
+        "relation_id": {
+          "type": "string"
+        },
+        "repository": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "rel": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "origin": {
+          "enum": [
+            "source_declared",
+            "manifest_link",
+            "model_suggested"
+          ]
+        },
+        "basis": {
+          "type": "object"
+        },
+        "valid_from": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "required": [
+        "seq",
+        "event_id",
+        "type",
+        "repository",
+        "subject",
+        "recorded_at",
+        "valid_from",
+        "valid_to",
+        "producer"
+      ],
+      "properties": {
+        "seq": {
+          "type": "integer"
+        },
+        "event_id": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "coverage_boundary",
+            "record_added",
+            "record_revised",
+            "status_changed",
+            "selection_removed",
+            "record_unavailable",
+            "relation_added",
+            "relation_ended",
+            "relation_unconfirmed",
+            "direction_changed",
+            "proposal_recorded",
+            "proposal_withdrawn",
+            "proposal_reviewed",
+            "lineage_changed",
+            "indexing_succeeded",
+            "indexing_failed",
+            "context_issued"
+          ]
+        },
+        "repository": {
+          "type": "string"
+        },
+        "snapshot_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "base_snapshot_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "commit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "subject": {
+          "type": "string"
+        },
+        "before": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "after": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "recorded_at": {
+          "type": "string"
+        },
+        "source_time": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_from": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "actor": {
+          "type": "object"
+        },
+        "producer": {
+          "type": "string"
+        },
+        "reason": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "evidence": {
+          "type": "array"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

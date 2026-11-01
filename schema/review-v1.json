@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "observstory.review/v1",
+  "title": "Observstory review of a proposal",
+  "description": "Committed as .observstory/reviews/<proposal-id>.json (or <proposal-id>.<n>.json). reviewer.kind must be human; an assistant cannot accept. basis names the authenticated act it records (a GitHub PR review URL, a named confirmation as in ADR-029, or a Weavr authorization id).",
+  "type": "object",
+  "required": [
+    "schema",
+    "proposal",
+    "outcome",
+    "reviewer",
+    "reviewed_at",
+    "basis"
+  ],
+  "properties": {
+    "schema": {
+      "const": "observstory.review/v1"
+    },
+    "proposal": {
+      "type": "string"
+    },
+    "outcome": {
+      "enum": [
+        "accepted",
+        "rejected",
+        "superseded",
+        "needs_changes"
+      ]
+    },
+    "reviewer": {
+      "type": "object",
+      "required": [
+        "name",
+        "kind"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "kind": {
+          "const": "human"
+        }
+      }
+    },
+    "reviewed_at": {
+      "type": "string"
+    },
+    "basis": {
+      "type": "object",
+      "required": [
+        "kind",
+        "ref"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "github_pr_review",
+            "named_confirmation",
+            "weavr_authorization"
+          ]
+        },
+        "ref": {
+          "type": "string"
+        }
+      }
+    },
+    "note": {
+      "type": "string"
+    },
+    "conditions": {
+      "type": "array"
+    },
+    "superseded_by": {
+      "type": "string"
+    }
+  }
+}
