@@ -1,0 +1,68 @@
+name: One-time merged branch cleanup
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/merged-branch-cleanup-2026-11-03.yml']
+permissions:
+  contents: write
+  pull-requests: read
+concurrency:
+  group: merged-branch-cleanup
+  cancel-in-progress: false
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Remove only unchanged merged heads without active pull requests
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CLEANUP_BRANCHES: '{"design/observatory-pixel-studies":"87efedbf421c14fd057f84c8dd7bbe9376cdd3b5","docs/project-knowledge-concept":"1823a9bf54025a0200802bef776c7a0472baaf46","feat/system-map-v0":"dd4ef8654eaba832d0d86eaf2c67c6fd2beeafac"}'
+        shell: python
+        run: |
+          import json, os, subprocess, urllib.request
+          from urllib.parse import quote
+          repo = os.environ["GITHUB_REPOSITORY"]
+          allowed = json.loads(os.environ["CLEANUP_BRANCHES"])
+          def api(path):
+              req = urllib.request.Request("https://api.github.com/repos/" + repo + path,
+                  headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"], "Accept": "application/vnd.github+json"})
+              with urllib.request.urlopen(req, timeout=30) as response:
+                  return json.load(response)
+          active = set()
+          page = 1
+          while True:
+              pulls = api("/pulls?state=open&per_page=100&page=" + str(page))
+              for pull in pulls:
+                  if pull["head"]["repo"] and pull["head"]["repo"]["full_name"] == repo:
+                      active.add(pull["head"]["ref"])
+                  active.add(pull["base"]["ref"])
+              if len(pulls) < 100: break
+              page += 1
+          lines = ["# Merged branch cleanup", "", "Only the exact reviewed heads fully contained in main can be removed.", ""]
+          failed = False
+          for branch, expected in allowed.items():
+              if branch == "main" or branch in active:
+                  lines.append("- Kept active branch: " + branch); continue
+              info = api("/branches/" + quote(branch, safe=""))
+              if info.get("protected") or info["commit"]["sha"] != expected:
+                  lines.append("- Kept protected or changed branch: " + branch); continue
+              ancestor = subprocess.run(["git", "merge-base", "--is-ancestor", expected, "HEAD"], check=False)
+              if ancestor.returncode:
+                  lines.append("- Kept unmerged branch: " + branch); continue
+              # The remote rejects deletion if a new commit arrived after the reviewed head.
+              result = subprocess.run(["git", "push", "--force-with-lease=refs/heads/" + branch + ":" + expected,
+                                       "origin", ":refs/heads/" + branch], check=False)
+              if result.returncode:
+                  lines.append("- Deletion refused or failed: " + branch); failed = True
+              else:
+                  lines.append("- Deleted merged branch: " + branch + " (" + expected + ")")
+          report = "\n".join(lines) + "\n"
+          print(report)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as output: output.write(report)
+          if failed: raise SystemExit(1)
+          
