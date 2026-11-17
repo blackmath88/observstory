@@ -1,0 +1,11 @@
+[Unit]
+Description=Refresh owned-host Observstory every 30 minutes
+
+[Timer]
+OnStartupSec=3min
+OnUnitInactiveSec=30min
+AccuracySec=5min
+Unit=observstory-refresh.service
+
+[Install]
+WantedBy=timers.target

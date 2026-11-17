@@ -1,0 +1,14 @@
+[Unit]
+Description=Refresh allowlisted Observstory evidence on owned compute
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/src/observstory
+EnvironmentFile=%h/.config/observstory/secrets.env
+ExecStart=/usr/bin/python3 %h/src/observstory/ops/linuc/refresh.py --config %h/.config/observstory/host.json
+TimeoutStartSec=25min
+NoNewPrivileges=true
+PrivateTmp=true
+UMask=0077
