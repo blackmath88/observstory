@@ -25,6 +25,8 @@ def command(args: list[str], *, cwd: Path | None = None, env: dict | None = None
     if Path(args[0]).name == "git":
         # Source repositories are data, not trusted runtime configuration.
         # Do not load operator-global Git filters or prompt for credentials.
+        # The API token belongs to the deterministic collector, not Git.
+        child_env.pop("OBSERVSTORY_TOKEN", None)
         child_env.update({"GIT_CONFIG_NOSYSTEM": "1",
                           "GIT_CONFIG_GLOBAL": os.devnull,
                           "GIT_TERMINAL_PROMPT": "0",
