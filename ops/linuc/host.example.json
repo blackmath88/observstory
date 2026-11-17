@@ -1,0 +1,15 @@
+{
+  "schema": "observstory.owned-host/v1",
+  "producer_root": "/absolute/path/to/pinned/observstory",
+  "producer_sha": "674279138a8e5ed334653fb80eefb1bc3a6c52b8",
+  "state_root": "/absolute/path/to/private/observstory-state",
+  "repositories": [
+    {
+      "name": "example/synthetic-observatory-pilot",
+      "source": "git@github.com:example/synthetic-observatory-pilot.git",
+      "branch": "main",
+      "frontend": "classic",
+      "knowledge": false
+    }
+  ]
+}
