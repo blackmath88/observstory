@@ -46,20 +46,15 @@ The workspace uses `frontend: observatory`; add `knowledge: .observstory/knowled
 
 ![Observatory board with research, concepts and plans](frontend/docs/visual-workspace/board-kinds-1440.png)
 
-## Install (zero config)
+## Run Observatory (owned host preferred)
+
+For ongoing refresh of private repositories, prefer the [owned-host linuc pilot](ops/linuc/README.md) after a reviewed installation and a synthetic-repository acceptance test. It uses no GitHub-hosted Actions minutes. The following GitHub Actions example is a **manual fallback**, deliberately without schedules or push/PR event triggers. Add automatic triggers only after reviewing cost, access and publication boundaries.
 
 ```yaml
 # .github/workflows/observstory.yml
 name: Observstory
 on:
-  push:
-  pull_request:
-    types: [opened, synchronize, reopened, closed, ready_for_review, converted_to_draft]
-  issues:
-    types: [opened, closed, reopened]
   workflow_dispatch:
-  schedule:
-    - cron: "17 * * * *"   # reconciliation only; events are the primary trigger
 
 permissions:
   contents: read
@@ -125,7 +120,7 @@ Observstory is also an experiment in **semantic UI compilation**: typed project 
 ## How it works
 
 ```text
-GitHub events + hourly reconciliation
+GitHub API collection (owned-host refresh or manual GitHub Action)
           │
           ▼
   collect  ──►  observations.json   facts: commits, PR files and commits, branch compares, issues
